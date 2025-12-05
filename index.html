@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syntra Refining | Smart Critical Minerals Infrastructure</title>
     <meta name="description" content="Syntra Refining Corp operates North America's first feedstock-agnostic smart refinery network. We secure the battery supply chain.">
-    
-    <!-- Tailwind CSS -->
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
+
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
@@ -23,16 +23,16 @@
                 extend: {
                     colors: {
                         syntra: {
-                            base: '#F8FAFC', // Slate 50
-                            surface: '#FFFFFF', 
-                            text: '#0F172A', // Slate 900
-                            deep: '#020617', // Slate 950
-                            midnight: '#0B1120', // Deep Navy
-                            accent: '#FFD700', // Signal Yellow
-                            amber: '#D97706', // Safety Amber
-                            tech: '#0891B2', // Cyan 600
-                            muted: '#64748B', // Slate 500
-                            border: '#E2E8F0', // Slate 200
+                            base: '#F8FAFC',
+                            surface: '#FFFFFF',
+                            text: '#0F172A',
+                            deep: '#020617',
+                            midnight: '#0B1120',
+                            accent: '#FFD700',
+                            amber: '#D97706',
+                            tech: '#0891B2',
+                            muted: '#64748B',
+                            border: '#E2E8F0',
                         }
                     },
                     fontFamily: {
@@ -84,6 +84,18 @@
         @media (min-width: 1024px) {
             .flow-arrow { transform: rotate(-90deg); } /* Point right on desktop */
         }
+
+        /* Feedstock Cards */
+        .feedstock-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+        }
+        .feedstock-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        .feedstock-card:hover i {
+            color: #fbbf24;
+        }
     </style>
 </head>
 <body class="bg-syntra-base text-syntra-text font-sans antialiased scroll-pt-24">
@@ -103,9 +115,13 @@
                 <span class="hidden md:block text-slate-400">CURRENT CAP: 1,000 MT/YR</span>
             </div>
             <div class="flex items-center gap-4">
-                <a href="#observer" class="text-syntra-accent hover:text-white transition-colors font-bold">OBSERVER LOGIN</a>
+                <button type="button" onclick="openObserverModal()" class="text-syntra-accent hover:text-white transition-colors font-bold">
+                    OBSERVER LOGIN
+                </button>
                 <span class="text-slate-600">|</span>
-                <a href="#contact" class="hover:text-syntra-accent transition-colors">SUPPLIER PORTAL</a>
+                <button type="button" onclick="openSupplierModal()" class="hover:text-syntra-accent transition-colors">
+                    SUPPLIER PORTAL
+                </button>
             </div>
         </div>
     </div>
@@ -115,12 +131,12 @@
         <div class="container mx-auto px-6 h-24 flex justify-between items-center">
             <!-- Logo Block -->
             <a href="index.html" class="logo-container flex items-center gap-4 group">
-                <div class="logo-outer w-12 h-12 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
-                    <div class="logo-inner w-5 h-5 bg-syntra-accent transform -rotate-45"></div>
-                </div>
+            <div class="logo-outer w-12 h-12 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
+  <div class="logo-inner w-5 h-5 bg-syntra-accent transform -rotate-45"></div>
+</div>
                 <div class="leading-none flex flex-col justify-center">
                     <div class="font-head font-bold text-3xl tracking-tighter text-syntra-text leading-none">SYNTRA</div>
-                    <div class="font-head text-[0.7rem] font-bold text-syntra-amber tracking-[0.2em] uppercase leading-none mt-1">REFINING</div>
+                    <div class="font-head text-[0.7rem] font-bold text-syntra-amber tracking-[0.2em] uppercase leading-none mt-1">REFINING CORP</div>
                 </div>
             </a>
 
@@ -188,10 +204,10 @@
 
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="#contact" class="px-8 py-4 bg-syntra-accent text-syntra-text font-head font-bold text-lg uppercase tracking-wide hover:bg-yellow-400 transition-colors shadow-xl shadow-yellow-500/20 flex items-center justify-center gap-3">
-                            Secure Capacity <i data-lucide="box" class="w-5 h-5"></i>
+                            Secure Capacity
                         </a>
                         <a href="#technology" class="px-8 py-4 bg-white border border-syntra-border text-syntra-text font-head font-bold text-lg uppercase tracking-wide hover:bg-slate-50 transition-colors flex items-center justify-center gap-3">
-                            Explore SynCore™ <i data-lucide="cpu" class="w-5 h-5"></i>
+                            Explore SynCore™
                         </a>
                     </div>
                 </div>
@@ -293,21 +309,22 @@
                 </a>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-10 border border-syntra-border shadow-sm group">
-                    <i data-lucide="recycle" class="w-12 h-12 text-syntra-text mb-6"></i>
+                <!-- Black Mass -->
+                <div class="feedstock-card bg-white p-10 border border-syntra-border shadow-sm group">
+                    
                     <h3 class="font-head text-2xl font-bold uppercase mb-2">Black Mass</h3>
                     <p class="text-xs text-slate-400 font-mono mb-4 uppercase">Recycling Stream</p>
                     <p class="text-slate-600">Accepting variable grade Li-ion recyclate.</p>
                 </div>
-                <div class="bg-syntra-text text-white p-10 shadow-2xl relative overflow-hidden transform md:-translate-y-4">
+                <!-- Concentrates -->
+                <div class="feedstock-card bg-syntra-text text-white p-10 shadow-2xl relative overflow-hidden transform md:-translate-y-4">
                     <div class="absolute top-0 left-0 w-full h-1 bg-syntra-accent"></div>
-                    <i data-lucide="pickaxe" class="w-12 h-12 text-white mb-6"></i>
                     <h3 class="font-head text-2xl font-bold uppercase mb-2">Concentrates</h3>
                     <p class="text-xs text-syntra-accent font-mono mb-4 uppercase">Mining Stream</p>
                     <p class="text-slate-300">Spodumene, Nickel Sulfide, and Cobalt concentrates.</p>
                 </div>
-                <div class="bg-white p-10 border border-syntra-border shadow-sm group">
-                    <i data-lucide="factory" class="w-12 h-12 text-syntra-text mb-6"></i>
+                <!-- Process Scrap -->
+                <div class="feedstock-card bg-white p-10 border border-syntra-border shadow-sm group">
                     <h3 class="font-head text-2xl font-bold uppercase mb-2">Process Scrap</h3>
                     <p class="text-xs text-slate-400 font-mono mb-4 uppercase">Manufacturing Stream</p>
                     <p class="text-slate-600">Cathode scraps and production waste.</p>
@@ -399,7 +416,7 @@
                     </div>
                     <div class="w-full lg:w-1/3 bg-slate-950 border-2 border-syntra-accent p-12 rounded-xl text-center shadow-[0_0_40px_rgba(255,215,0,0.15)] relative z-20">
                         <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-syntra-accent text-slate-900 px-3 py-1 font-mono text-xs font-bold rounded uppercase">Processing Node</div>
-                        <i data-lucide="cpu" class="w-16 h-16 text-syntra-tech mx-auto mb-6"></i>
+                      
                         <h3 class="font-head text-5xl font-bold text-white mb-2">SYNHUB™</h3>
                         <p class="font-mono text-xs text-syntra-tech">POWERED BY SYNCORE</p>
                     </div>
@@ -484,7 +501,7 @@
             <div class="flex justify-between items-start mb-4">
               <div>
                 <p class="font-mono text-[11px] text-syntra-muted uppercase mb-1">Lithium</p>
-                <h3 class="font-head text-2xl font-bold uppercase">Li Salts</h3>
+                <h3 class="font-head text-2xl font-bold uppercase">Salts</h3>
               </div>
               <span class="px-2 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-mono rounded-full">
                 Battery Grade
@@ -509,7 +526,7 @@
             <div class="flex justify-between items-start mb-4">
               <div>
                 <p class="font-mono text-[11px] text-syntra-muted uppercase mb-1">Nickel &amp; Cobalt</p>
-                <h3 class="font-head text-2xl font-bold uppercase">Ni / Co Intermediates</h3>
+                <h3 class="font-head text-2xl font-bold uppercase">Salts & Metals</h3>
               </div>
               <span class="px-2 py-1 bg-blue-50 text-blue-700 text-[10px] font-mono rounded-full">
                 High Purity
@@ -555,7 +572,119 @@
           </article>
         </div>
       </div>
-    </section>
+  
+<!-- COMPANY / TEAM – compact list -->
+<section id="about" class="py-24 bg-syntra-base border-t border-syntra-border">
+  <div class="container mx-auto px-6">
+    <!-- heading -->
+    <div class="mb-10 max-w-3xl">
+      <span class="font-mono text-xs text-syntra-amber font-bold tracking-widest uppercase mb-2 block">People & Governance</span>
+      <h2 class="font-head text-4xl md:text-5xl font-bold uppercase text-syntra-text">Leadership & Advisors</h2>
+      <p class="text-slate-600 mt-3 text-sm md:text-base">Syntra combines deep process chemistry, automation, and commercialization expertise to deliver bankable critical-minerals infrastructure.</p>
+    </div>
+
+    <!-- two-column compact list -->
+    <div class="grid lg:grid-cols-2 gap-10">
+      <!-- Executive Team -->
+      <div>
+        <h3 class="font-mono text-[11px] font-bold text-syntra-amber uppercase tracking-[0.25em] mb-4">Executive Team</h3>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-4 p-3 rounded-lg hover:bg-white transition-colors">
+            <img src="assets/images/leadership/nifemi.png" alt="Nifemi Oguntuase" class="w-14 h-14 rounded-full object-cover border border-syntra-border">
+            <div class="flex-1">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="font-head font-bold text-syntra-text">Nifemi Oguntuase</p>
+                  <p class="font-mono text-[10px] text-slate-400">CEO</p>
+                </div>
+                <a href="https://www.linkedin.com/in/nifemi-o-lab4/" target="_blank" rel="noopener" class="text-syntra-tech hover:text-syntra-accent"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+              </div>
+              <p class="text-xs text-slate-600 mt-1">Mineral-process chemist + finance; former mining consultant.</p>
+            </div>
+          </li>
+
+          <li class="flex items-center gap-4 p-3 rounded-lg hover:bg-white transition-colors">
+            <img src="assets/images/leadership/michelle.png" alt="Michelle Ernest" class="w-14 h-14 rounded-full object-cover border border-syntra-border">
+            <div class="flex-1">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="font-head font-bold text-syntra-text">Michelle Ernest</p>
+                  <p class="font-mono text-[10px] text-slate-400">Marketing & Lead</p>
+                </div>
+                <a href="https://www.linkedin.com/in/michelleernest/" target="_blank" rel="noopener" class="text-syntra-tech hover:text-syntra-accent"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+              </div>
+              <p class="text-xs text-slate-600 mt-1">10+ yrs scaling early-stage hardware & deep-tech startups.</p>
+            </div>
+          </li>
+
+          <li class="flex items-center gap-4 p-3 rounded-lg hover:bg-white transition-colors">
+            <img src="assets/images/leadership/steven_gravelsins.png" alt="Steven Gravelsins" class="w-14 h-14 rounded-full object-cover border border-syntra-border">
+            <div class="flex-1">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="font-head font-bold text-syntra-text">Steven Gravelsins</p>
+                  <p class="font-mono text-[10px] text-slate-400">Chemist Lead</p>
+                </div>
+                <a href="https://www.linkedin.com/in/steven-gravelsins-00332526b/" target="_blank" rel="noopener" class="text-syntra-tech hover:text-syntra-accent"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+              </div>
+              <p class="text-xs text-slate-600 mt-1">Metallurgist; 10 yrs flow-sheet design for complex ores & recyclate.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Advisors -->
+      <div>
+        <h3 class="font-mono text-[11px] font-bold text-syntra-amber uppercase tracking-[0.25em] mb-4">Scientific & Strategic Advisors</h3>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-4 p-3 rounded-lg hover:bg-white transition-colors">
+            <img src="assets/images/leadership/dahn.png" alt="Dr. Jeff Dahn" class="w-14 h-14 rounded-full object-cover border border-syntra-border">
+            <div class="flex-1">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="font-head font-bold text-syntra-text">Dr. Jeff Dahn</p>
+                  <p class="font-mono text-[10px] text-slate-400">Technology Advisor</p>
+                </div>
+                <span class="text-xs text-slate-400 font-mono uppercase">Advisory</span>
+              </div>
+              <!-- invisible spacer for equal height -->
+              <div class="min-h-[1.125rem]"></div>
+            </div>
+          </li>
+
+          <li class="flex items-center gap-4 p-3 rounded-lg hover:bg-white transition-colors">
+            <img src="assets/images/leadership/erez_ichilov.png" alt="Erez Ichilov" class="w-14 h-14 rounded-full object-cover border border-syntra-border">
+            <div class="flex-1">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="font-head font-bold text-syntra-text">Erez Ichilov</p>
+                  <p class="font-mono text-[10px] text-slate-400">Commercial Strategy</p>
+                </div>
+                <a href="https://www.linkedin.com/in/erez-ichilov-6b820b/" target="_blank" rel="noopener" class="text-syntra-tech hover:text-syntra-accent"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+              </div>
+              <div class="min-h-[1.125rem]"></div>
+            </div>
+          </li>
+
+          <li class="flex items-center gap-4 p-3 rounded-lg hover:bg-white transition-colors">
+            <img src="assets/images/leadership/chris.png" alt="Chris Keevil" class="w-14 h-14 rounded-full object-cover border border-syntra-border">
+            <div class="flex-1">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="font-head font-bold text-syntra-text">Chris Keevil</p>
+                  <p class="font-mono text-[10px] text-slate-400">Governance & Digital</p>
+                </div>
+                <a href="https://www.linkedin.com/in/keevill/" target="_blank" rel="noopener" class="text-syntra-tech hover:text-syntra-accent"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+              </div>
+              <div class="min-h-[1.125rem]"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+  </section>
 
     <!-- OBSERVER PROGRAM -->
     <section id="observer" class="py-24 bg-syntra-midnight text-white relative overflow-hidden">
@@ -584,216 +713,6 @@
             </div>
         </div>
     </section>
-
-    <!-- COMPANY / TEAM -->
-    <section id="about" class="py-24 bg-white border-t border-syntra-border">
-      <div class="container mx-auto px-6">
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-          <div>
-            <span class="font-mono text-xs text-syntra-amber font-bold tracking-widest uppercase mb-2 block">
-              People &amp; Governance
-            </span>
-            <h2 class="font-head text-4xl md:text-5xl font-bold uppercase">
-              Leadership &amp; Advisors
-            </h2>
-            <p class="text-slate-600 mt-4 text-sm md:text-base max-w-xl">
-              Syntra combines deep process chemistry, automation, and commercialization expertise to deliver
-              bankable critical minerals infrastructure.
-            </p>
-          </div>
-        </div>
-
-        <div class="grid lg:grid-cols-2 gap-12">
-          <!-- Executive Team -->
-          <div>
-            <h3 class="font-mono text-[11px] font-bold text-syntra-amber uppercase tracking-[0.25em] mb-4">
-              Executive Team
-            </h3>
-            <div class="space-y-4">
-              <!-- EXEC: Nifemi -->
-              <article class="bg-syntra-base p-5 md:p-6 shadow-sm border border-syntra-border rounded-lg flex gap-4">
-                <img
-                  src="assets/images/leadership/nifemi.png"
-                  alt="Nifemi Oguntuase"
-                  class="w-16 h-16 rounded-full object-cover border border-syntra-border"
-                />
-                <div class="flex-1">
-                  <div class="flex items-start justify-between gap-3">
-                    <div>
-                      <h4 class="font-head font-bold text-lg md:text-xl">Nifemi Oguntuase</h4>
-                      <p class="font-mono text-[11px] text-syntra-muted uppercase">CEO</p>
-                    </div>
-                    <a
-                      href="https://www.linkedin.com/in/nifemi-o-lab4/"
-                      target="_blank"
-                      rel="noopener"
-                      class="inline-flex items-center gap-1 text-[11px] font-mono uppercase text-syntra-tech hover:text-syntra-amber"
-                    >
-                      <i data-lucide="linkedin" class="w-4 h-4"></i>
-                      <span>Profile</span>
-                    </a>
-                  </div>
-                  <p class="text-sm text-slate-600 mt-3">
-                    Background in mineral process chemistry with combined finance experience, providing consulting
-                    services for junior mining exploration support.
-                  </p>
-                </div>
-              </article>
-
-              <!-- EXEC: Michelle -->
-              <article class="bg-syntra-base p-5 md:p-6 shadow-sm border border-syntra-border rounded-lg flex gap-4">
-                <img
-                  src="assets/images/leadership/michelle.png"
-                  alt="Michelle Ernest"
-                  class="w-16 h-16 rounded-full object-cover border border-syntra-border"
-                />
-                <div class="flex-1">
-                  <div class="flex items-start justify-between gap-3">
-                    <div>
-                      <h4 class="font-head font-bold text-lg md:text-xl">Michelle Ernest</h4>
-                      <p class="font-mono text-[11px] text-syntra-muted uppercase">Operations &amp; Growth</p>
-                    </div>
-                    <a
-                      href="https://www.linkedin.com/in/michelleernest/"
-                      target="_blank"
-                      rel="noopener"
-                      class="inline-flex items-center gap-1 text-[11px] font-mono uppercase text-syntra-tech hover:text-syntra-amber"
-                    >
-                      <i data-lucide="linkedin" class="w-4 h-4"></i>
-                      <span>Profile</span>
-                    </a>
-                  </div>
-                  <p class="text-sm text-slate-600 mt-3">
-                    Oversees business operations with over 10 years of experience in startup development and scaling
-                    high-growth teams.
-                  </p>
-                </div>
-              </article>
-
-              <!-- EXEC: Lead Process Chemist (Steven Gravelsins) -->
-              <article class="bg-syntra-base p-5 md:p-6 shadow-sm border border-syntra-border rounded-lg flex gap-4">
-                <img
-                  src="assets/images/leadership/steven_gravelsins.png"
-                  alt="Steven Gravelsins"
-                  class="w-16 h-16 rounded-full object-cover border border-syntra-border"
-                />
-                <div class="flex-1">
-                  <div class="flex items-start justify-between gap-3">
-                    <div>
-                      <h4 class="font-head font-bold text-lg md:text-xl">Steven Gravelsins</h4>
-                      <p class="font-mono text-[11px] text-syntra-muted uppercase">Lead Process Chemist</p>
-                    </div>
-                    <a
-                      href="https://www.linkedin.com/in/steven-gravelsins-00332526b/"
-                      target="_blank"
-                      rel="noopener"
-                      class="inline-flex items-center gap-1 text-[11px] font-mono uppercase text-syntra-tech hover:text-syntra-amber"
-                    >
-                      <i data-lucide="linkedin" class="w-4 h-4"></i>
-                      <span>Profile</span>
-                    </a>
-                  </div>
-                  <p class="text-sm text-slate-600 mt-3">
-                    Expertise in metallurgy and materials chemistry, with over 10 years of experience in
-                    sequence design and extraction conditioning for complex ores and recyclate.
-                  </p>
-                </div>
-              </article>
-            </div>
-          </div>
-
-          <!-- Advisors -->
-          <div>
-            <h3 class="font-mono text-[11px] font-bold text-syntra-amber uppercase tracking-[0.25em] mb-4">
-              Scientific &amp; Strategic Advisors
-            </h3>
-            <div class="space-y-4">
-              <!-- Advisor: Jeff Dahn -->
-              <article class="bg-syntra-base p-5 md:p-6 shadow-sm border border-syntra-border rounded-lg flex gap-4">
-                <img
-                  src="assets/images/leadership/dahn.png"
-                  alt="Dr. Jeff Dahn"
-                  class="w-16 h-16 rounded-full object-cover border border-syntra-border"
-                />
-                <div class="flex-1">
-                  <div class="flex items-start justify-between gap-3">
-                    <div>
-                      <h4 class="font-head font-bold text-lg md:text-xl">Dr. Jeff Dahn</h4>
-                      <p class="font-mono text-[11px] text-slate-400 uppercase">Technology Advisor</p>
-                    </div>
-                    <span class="inline-flex items-center gap-1 text-[11px] font-mono uppercase text-slate-400">
-                      Advisory
-                    </span>
-                  </div>
-                  <p class="text-sm text-slate-600 mt-3">
-                    
-                  </p>
-                </div>
-              </article>
-
-              <!-- Advisor: Erez Ichilov -->
-              <article class="bg-syntra-base p-5 md:p-6 shadow-sm border border-syntra-border rounded-lg flex gap-4">
-                <img
-                  src="assets/images/leadership/erez_ichilov.png"
-                  alt="Erez Ichilov"
-                  class="w-16 h-16 rounded-full object-cover border border-syntra-border"
-                />
-                <div class="flex-1">
-                  <div class="flex items-start justify-between gap-3">
-                    <div>
-                      <h4 class="font-head font-bold text-lg md:text-xl">Erez Ichilov</h4>
-                      <p class="font-mono text-[11px] text-slate-400 uppercase">Commercial Strategy</p>
-                    </div>
-                    <a
-                      href="https://www.linkedin.com/in/erez-ichilov-6b820b/"
-                      target="_blank"
-                      rel="noopener"
-                      class="inline-flex items-center gap-1 text-[11px] font-mono uppercase text-syntra-tech hover:text-syntra-amber"
-                    >
-                      <i data-lucide="linkedin" class="w-4 h-4"></i>
-                      <span>Profile</span>
-                    </a>
-                  </div>
-                  <p class="text-sm text-slate-600 mt-3">
-                   
-                  </p>
-                </div>
-              </article>
-
-              <!-- Advisor: Chris Keevil -->
-              <article class="bg-syntra-base p-5 md:p-6 shadow-sm border border-syntra-border rounded-lg flex gap-4">
-                <img
-                  src="assets/images/leadership/chris.png"
-                  alt="Chris Keevil"
-                  class="w-16 h-16 rounded-full object-cover border border-syntra-border"
-                />
-                <div class="flex-1">
-                  <div class="flex items-start justify-between gap-3">
-                    <div>
-                      <h4 class="font-head font-bold text-lg md:text-xl">Chris Keevil</h4>
-                      <p class="font-mono text-[11px] text-slate-400 uppercase">Governance &amp; Digital</p>
-                    </div>
-                    <a
-                      href="https://www.linkedin.com/in/keevill/"
-                      target="_blank"
-                      rel="noopener"
-                      class="inline-flex items-center gap-1 text-[11px] font-mono uppercase text-syntra-tech hover:text-syntra-amber"
-                    >
-                      <i data-lucide="linkedin" class="w-4 h-4"></i>
-                      <span>Profile</span>
-                    </a>
-                  </div>
-                  <p class="text-sm text-slate-600 mt-3">
-                   
-                  </p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- NEWSLETTER / SUBSCRIBE -->
     <section id="newsletter" class="py-24 bg-syntra-base border-t border-syntra-border">
       <div class="container mx-auto px-6">
@@ -1039,9 +958,9 @@
                         </div>
                     </div>
                     <div class="mt-12 pt-8 border-t border-white/10">
-                        <p class="font-mono text-[10px] text-syntra-accent tracking-widest uppercase mb-4">Trusted by Industry Leaders</p>
+                        <p class="font-mono text-[10px] text-syntra-accent tracking-widest uppercase mb-4"></p>
                         <div class="flex flex-wrap gap-4 text-slate-400 font-head font-bold text-sm">
-                            <span>NRC</span> <span class="text-white/20">/</span> <span>ACOA</span> <span class="text-white/20">/</span> <span>TRIBE NETWORK</span> <span class="text-white/20">/</span> <span>DALHOUSIE</span> <span class="text-white/20">/</span> <span>CDL</span> <span class="text-white/20">/</span> <span>INVEST NS</span> <span class="text-white/20">/</span> <span>CME</span>
+                            
                         </div>
                     </div>
                 </div>
@@ -1095,12 +1014,12 @@
                 <!-- Brand Col -->
                 <div class="md:col-span-4 space-y-6">
                     <a href="index.html" class="logo-container flex items-center gap-4 group">
-                        <div class="logo-outer w-12 h-12 border-[3px] border-white transform rotate-45 flex items-center justify-center">
-                            <div class="logo-inner w-5 h-5 bg-white transform -rotate-45"></div>
-                        </div>
+             <div class="logo-outer w-12 h-12 border-[3px] border-white transform rotate-45 flex items-center justify-center">
+  <div class="logo-inner w-5 h-5 bg-white transform -rotate-45"></div>
+</div>
                         <div class="leading-none flex flex-col justify-center">
                             <div class="font-head font-bold text-3xl tracking-tighter text-white leading-none">SYNTRA</div>
-                            <div class="font-head text-[0.7rem] font-bold text-syntra-accent tracking-[0.2em] uppercase leading-none mt-1">REFINING</div>
+                            <div class="font-head text-[0.7rem] font-bold text-syntra-accent tracking-[0.2em] uppercase leading-none mt-1">REFINING CORP</div>
                         </div>
                     </a>
                     <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
@@ -1145,10 +1064,10 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#contact" class="group flex items-center gap-2 transition-colors hover:text-syntra-accent">
+                            <button type="button" onclick="openSupplierModal()" class="group flex items-center gap-2 transition-colors hover:text-syntra-accent">
                                 <span>Supplier Portal</span>
                                 <i data-lucide="arrow-right" class="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
-                            </a>
+                            </button>
                         </li>
                         <li>
                             <a href="#contact" class="group flex items-center gap-2 transition-colors hover:text-syntra-accent">
@@ -1170,17 +1089,175 @@
         </div>
     </footer>
 
+    <!-- OBSERVER LOGIN MODAL -->
+    <div id="observerModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div class="relative w-full max-w-lg mx-4 bg-syntra-midnight text-white rounded-2xl border border-white/10 shadow-2xl">
+            <button type="button" class="absolute top-3 right-3 p-2 rounded-full bg-white/5 hover:bg-white/10" onclick="closeObserverModal()">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+            <div class="p-6 sm:p-8 space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-syntra-accent flex items-center justify-center">
+                        <i data-lucide="eye" class="w-4 h-4 text-syntra-text"></i>
+                    </div>
+                    <div>
+                        <p class="font-mono text-[11px] uppercase tracking-[0.25em] text-syntra-accent">Observer Access</p>
+                        <h3 class="font-head text-2xl font-bold uppercase">Observer Login</h3>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-300">
+                    Secure access for strategic observers and investors under NDA. Use your issued credentials to view
+                    SynCore™ pilot data, capacity roadmaps, and technical documentation.
+                </p>
+                <form class="space-y-4" onsubmit="event.preventDefault(); alert('Observer login submitted.');">
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-1">Work Email</label>
+                        <input type="email" required class="w-full bg-slate-900 border border-slate-700 p-3 rounded focus:outline-none focus:border-syntra-accent text-sm" placeholder="you@company.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-1">Access Key</label>
+                        <input type="password" required class="w-full bg-slate-900 border border-slate-700 p-3 rounded focus:outline-none focus:border-syntra-accent text-sm" placeholder="••••••••••">
+                    </div>
+                    <div class="flex items-center justify-between text-xs text-slate-400">
+                        <div class="flex items-center gap-2">
+                            <input id="remember-observer" type="checkbox" class="w-4 h-4 border-slate-600 bg-slate-900">
+                            <label for="remember-observer">Remember this device</label>
+                        </div>
+                        <button type="button" class="hover:text-syntra-accent">Request Access</button>
+                    </div>
+                    <button type="submit" class="w-full bg-syntra-accent text-syntra-text font-head font-bold uppercase py-3 mt-2 rounded hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2">
+                        Enter Data Room
+                        <i data-lucide="log-in" class="w-4 h-4"></i>
+                    </button>
+                </form>
+                <p class="text-[10px] font-mono text-slate-500">
+                    By logging in, you agree to the terms of the Syntra Observer NDA and all confidentiality provisions.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPPLIER PORTAL MODAL -->
+    <div id="supplierModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div class="relative w-full max-w-xl mx-4 bg-white rounded-2xl border border-syntra-border shadow-2xl">
+            <button type="button" class="absolute top-3 right-3 p-2 rounded-full bg-slate-100 hover:bg-slate-200" onclick="closeSupplierModal()">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+            <div class="p-6 sm:p-8 space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-syntra-text flex items-center justify-center">
+                        <i data-lucide="truck" class="w-4 h-4 text-syntra-accent"></i>
+                    </div>
+                    <div>
+                        <p class="font-mono text-[11px] uppercase tracking-[0.25em] text-syntra-muted">Supplier Portal</p>
+                        <h3 class="font-head text-2xl font-bold uppercase text-syntra-text">Feedstock &amp; Scrap Suppliers</h3>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-600">
+                    Submit your feedstock profile to our commercial team for review. Approved suppliers receive secure
+                    upload links for spec sheets, assays, and logistics details.
+                </p>
+                <form class="space-y-4" onsubmit="event.preventDefault(); alert('Supplier request submitted. Our team will respond shortly.');">
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">Contact Name</label>
+                            <input type="text" required class="w-full bg-slate-50 border border-slate-200 p-3 rounded focus:outline-none focus:border-syntra-accent text-sm" placeholder="Jane Doe">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">Organization</label>
+                            <input type="text" required class="w-full bg-slate-50 border border-slate-200 p-3 rounded focus:outline-none focus:border-syntra-accent text-sm" placeholder="Company Name">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-1">Work Email</label>
+                        <input type="email" required class="w-full bg-slate-50 border border-slate-200 p-3 rounded focus:outline-none focus:border-syntra-accent text-sm" placeholder="you@company.com">
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">Material Type</label>
+                            <select class="w-full bg-slate-50 border border-slate-200 p-3 rounded focus:outline-none focus:border-syntra-accent text-sm">
+                                <option>Select...</option>
+                                <option>Black Mass</option>
+                                <option>Concentrates</option>
+                                <option>Process Scrap</option>
+                                <option>Other Critical Metals</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-1">Region</label>
+                            <input type="text" class="w-full bg-slate-50 border border-slate-200 p-3 rounded focus:outline-none focus:border-syntra-accent text-sm" placeholder="e.g., Atlantic Canada">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-1">Annual Volume (Approx.)</label>
+                        <input type="text" class="w-full bg-slate-50 border border-slate-200 p-3 rounded focus:outline-none focus:border-syntra-accent text-sm" placeholder="e.g., 500 MT/year">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-1">Notes / Specs</label>
+                        <textarea rows="3" class="w-full bg-slate-50 border border-slate-200 p-3 rounded focus:outline-none focus:border-syntra-accent text-sm" placeholder="Briefly describe chemistry, form factor, and any existing assays."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-syntra-text text-white font-head font-bold uppercase py-3 rounded hover:bg-black transition-colors flex items-center justify-center gap-2">
+                        Submit Supplier Profile
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                    <p class="text-[11px] text-slate-500">
+                        For direct inquiries, email <span class="font-mono text-syntra-text">commercial@syntrarefining.com</span>.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
         lucide.createIcons();
+
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('hidden');
             menu.classList.toggle('flex');
         }
+
         function selectObserverOption() {
             const select = document.getElementById('interest-type');
             select.value = 'observer';
         }
+
+        // Modal helpers
+        const observerModal = document.getElementById('observerModal');
+        const supplierModal = document.getElementById('supplierModal');
+
+        function openObserverModal() {
+            observerModal.classList.remove('hidden');
+            observerModal.classList.add('flex');
+        }
+        function closeObserverModal() {
+            observerModal.classList.add('hidden');
+            observerModal.classList.remove('flex');
+        }
+        function openSupplierModal() {
+            supplierModal.classList.remove('hidden');
+            supplierModal.classList.add('flex');
+        }
+        function closeSupplierModal() {
+            supplierModal.classList.add('hidden');
+            supplierModal.classList.remove('flex');
+        }
+
+        // Close on overlay click
+        observerModal.addEventListener('click', (e) => {
+            if (e.target === observerModal) closeObserverModal();
+        });
+        supplierModal.addEventListener('click', (e) => {
+            if (e.target === supplierModal) closeSupplierModal();
+        });
+
+        // Close on Esc key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeObserverModal();
+                closeSupplierModal();
+            }
+        });
 
         // SLOWER ANIMATION FOR DIGITAL TWIN
         const canvas = document.getElementById('twinCanvas');
