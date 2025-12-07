@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Careers | Syntra Refining</title>
-  <meta name="description" content="Careers at Syntra Refining — join the team building North America's critical minerals infrastructure.">
+  <meta name="description" content="Careers at Syntra Refining — join the team building North America's critical minerals infrastructure." />
 
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -30,28 +34,53 @@
             sans: ['Inter', 'sans-serif'],
             head: ['Oswald', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
-          }
+          },
         }
       }
     }
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-
   <style>
     .logo-container { cursor: pointer; }
-    .logo-outer { transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s; }
-    .logo-inner { transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1), background-color 0.3s; }
-    .logo-container:hover .logo-outer { transform: rotate(0deg); border-color:#D97706; }
+    .logo-outer { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s; }
+    .logo-inner { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s; }
+    .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #D97706; }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #FFD700;
+      transition: width 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    .close-x {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      cursor: pointer;
+    }
+    .close-x::before,
+    .close-x::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+      top: 9px;
+      left: 0;
+    }
+    .close-x::before { transform: rotate(45deg); }
+    .close-x::after { transform: rotate(-45deg); }
   </style>
 </head>
-<body class="bg-syntra-midnight text-white font-sans antialiased">
-
+<body class="bg-syntra-base text-syntra-text font-sans antialiased">
   <!-- TOP TICKER -->
-  <div class="bg-syntra-text text-white py-1.5 border-b border-white/10 text-[10px] md:text-xs font-mono tracking-wide">
+  <div class="bg-syntra-text text-white py-1.5 border-b border-white/10 text-[10px] md:text-xs font-mono tracking-wide z-50 relative">
     <div class="container mx-auto px-6 flex justify-between items-center">
       <div class="flex items-center gap-6">
         <span class="flex items-center gap-2 text-syntra-accent font-bold">
@@ -61,96 +90,168 @@
           </span>
           TALENT GRID: OPEN
         </span>
-        <span class="hidden md:block text-slate-400">Dartmouth, Nova Scotia</span>
+        <span class="hidden md:block text-slate-400">LOC: DARTMOUTH, NOVA SCOTIA</span>
       </div>
-      <div class="flex items-center gap-4 text-slate-400">
-        <a href="index.html#observer" class="hover:text-syntra-accent transition-colors">Observer Program</a>
+      <div class="flex items-center gap-4">
+        <a href="observer.html" class="hover:text-syntra-accent transition-colors">Observer Program</a>
       </div>
     </div>
   </div>
 
-  <!-- NAV -->
-  <nav class="sticky top-0 z-40 bg-syntra-midnight/95 backdrop-blur border-b border-syntra-border">
-    <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+  <!-- MAIN NAVIGATION -->
+  <nav id="navbar" class="sticky top-0 z-40 bg-white border-b border-syntra-border transition-all duration-300">
+    <div class="container mx-auto px-6 h-24 flex justify-between items-center">
       <a href="index.html" class="logo-container flex items-center gap-4 group">
-        <div class="logo-outer w-10 h-10 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
-          <div class="logo-inner w-4 h-4 bg-syntra-accent transform -rotate-45"></div>
+        <div class="logo-outer w-12 h-12 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
+          <div class="logo-inner w-5 h-5 bg-syntra-accent transform -rotate-45"></div>
         </div>
-        <div class="leading-none">
-          <div class="font-head font-bold text-2xl tracking-tight">SYNTRA</div>
-          <div class="font-head text-[0.65rem] font-bold text-syntra-amber tracking-[0.2em] uppercase mt-1">REFINING CORP</div>
+        <div class="leading-none flex flex-col justify-center">
+          <div class="font-head font-bold text-3xl tracking-tighter text-syntra-text leading-none">SYNTRA</div>
+          <div class="font-head text-[0.7rem] font-bold text-syntra-amber tracking-[0.2em] uppercase leading-none mt-1">REFINING CORP</div>
         </div>
       </a>
-      <div class="hidden md:flex items-center gap-8 text-xs font-mono uppercase text-slate-300">
-        <a href="index.html#commercial" class="hover:text-syntra-accent">Commercial</a>
-        <a href="index.html#technology" class="hover:text-syntra-accent">Technology</a>
-        <a href="index.html#about" class="hover:text-syntra-accent">Company</a>
-        <a href="#roles" class="text-syntra-accent">Careers</a>
-        <a href="index.html#contact" class="px-4 py-2 border border-syntra-accent text-syntra-accent rounded hover:bg-syntra-accent hover:text-syntra-text transition-colors">Partner Portal</a>
+
+      <div class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-[0.18em]">
+        <a href="index.html#commercial" class="relative nav-link text-slate-600 hover:text-syntra-text">Commercial</a>
+        <a href="index.html#technology" class="relative nav-link text-slate-600 hover:text-syntra-text">Technology</a>
+        <a href="index.html#infrastructure" class="relative nav-link text-slate-600 hover:text-syntra-text">Network</a>
+        <a href="index.html#about" class="relative nav-link text-slate-600 hover:text-syntra-text">Company</a>
+        <a href="careers.html" class="relative nav-link text-slate-900">Careers</a>
+        <a href="index.html#contact" class="relative nav-link text-slate-600 hover:text-syntra-text">Contact</a>
       </div>
+
+      <button class="text-syntra-text p-2 hover:text-syntra-amber transition-colors md:hidden" onclick="toggleMobileMenu()" aria-label="Open menu">
+        <div class="flex flex-col gap-[6px] items-end">
+          <span class="block w-8 h-[3px] bg-current rounded-full"></span>
+          <span class="block w-8 h-[3px] bg-current rounded-full"></span>
+          <span class="block w-8 h-[3px] bg-current rounded-full"></span>
+        </div>
+      </button>
     </div>
   </nav>
 
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="fixed inset-0 bg-white z-50 hidden flex-col pt-32 px-12 space-y-8" role="dialog" aria-modal="true">
+    <button class="absolute top-8 right-6 p-4" onclick="toggleMobileMenu()" aria-label="Close menu">
+      <div class="close-x text-syntra-text"></div>
+    </button>
+    <div class="container mx-auto grid md:grid-cols-2 gap-12">
+      <div class="flex flex-col gap-6">
+        <a href="index.html#commercial" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Commercial</a>
+        <a href="index.html#technology" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Technology</a>
+        <a href="index.html#infrastructure" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Network</a>
+        <a href="index.html#about" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Company</a>
+        <a href="careers.html" class="text-4xl md:text-6xl font-head font-bold uppercase text-syntra-amber">Careers</a>
+        <a href="index.html#contact" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Contact</a>
+      </div>
+      <div class="hidden md:block border-l border-syntra-border pl-12">
+        <p class="font-mono text-xs text-slate-400 tracking-widest uppercase mb-4">Contact</p>
+        <p class="text-xl mb-8">careers@syntrarefining.com</p>
+        <p class="font-mono text-xs text-slate-400 tracking-widest uppercase mb-4">Location</p>
+        <p class="text-xl">Dartmouth, Nova Scotia<br>Canada</p>
+      </div>
+    </div>
+  </div>
+
   <!-- HERO -->
-  <header class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(250,250,250,0.1),transparent_60%),linear-gradient(135deg,#020617,#0b1120)]"></div>
-    <div class="container mx-auto px-6 py-24 relative z-10">
-      <div class="max-w-3xl">
-        <p class="font-mono text-xs text-syntra-accent tracking-[0.25em] uppercase mb-4">
-          Careers
-        </p>
-        <h1 class="font-head text-4xl md:text-6xl font-bold uppercase mb-6">
-          Build the grid for<br>critical minerals.
-        </h1>
-        <p class="text-slate-300 text-lg max-w-xl mb-8">
-          Syntra is building a distributed network of smart refining hubs for the battery supply chain. 
-          We hire people who are comfortable at the intersection of chemistry, automation, and infrastructure.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#roles" class="px-8 py-3 bg-syntra-accent text-syntra-text font-head font-bold uppercase tracking-wide hover:bg-yellow-400 transition-colors flex items-center gap-2">
-            View Open Roles
-            <i data-lucide="arrow-down" class="w-4 h-4"></i>
-          </a>
-          <a href="mailto:careers@syntrarefining.com?subject=General%20Application"
-             class="px-8 py-3 border border-slate-600 text-slate-200 font-head font-bold uppercase tracking-wide hover:border-syntra-accent hover:text-syntra-accent transition-colors flex items-center gap-2">
-            Send General Application
-            <i data-lucide="mail" class="w-4 h-4"></i>
-          </a>
+  <header class="relative bg-white overflow-hidden border-b border-syntra-border">
+    <div class="absolute inset-0 z-0 opacity-5">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <pattern id="grid-careers" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="black" stroke-width="1"/>
+        </pattern>
+        <rect width="100%" height="100%" fill="url(#grid-careers)" />
+      </svg>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10 py-20">
+      <div class="grid lg:grid-cols-12 gap-16 items-center">
+        <div class="lg:col-span-7">
+          <div class="inline-block px-3 py-1 bg-slate-100 border border-slate-200 text-slate-500 font-mono text-[10px] font-bold mb-6">
+            CAREERS • TALENT GRID
+          </div>
+          <h1 class="font-head text-5xl md:text-6xl lg:text-7xl font-bold text-syntra-text uppercase leading-[0.95] mb-6 tracking-tight">
+            Build the<br>smart refining<br><span class="text-syntra-muted">network.</span>
+          </h1>
+          <p class="text-lg text-slate-600 max-w-xl leading-relaxed mb-8 border-l-4 border-syntra-accent pl-6">
+            Syntra operates a distributed network of smart refining hubs for the North American battery supply chain. We hire people who are comfortable at the intersection of chemistry, automation, and infrastructure.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#roles" class="px-8 py-4 bg-syntra-accent text-syntra-text font-head font-bold text-lg uppercase tracking-wide hover:bg-yellow-400 transition-colors flex items-center justify-center gap-3">
+              View Open Roles
+            </a>
+            <a href="mailto:careers@syntrarefining.com?subject=General%20Application" class="px-8 py-4 bg-white border border-syntra-border text-syntra-text font-head font-bold text-lg uppercase tracking-wide hover:bg-slate-50 transition-colors flex items-center justify-center gap-3">
+              General Application
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 hidden lg:block">
+          <div class="bg-syntra-text text-white p-8 rounded-sm shadow-2xl max-w-md ml-auto border-t-4 border-syntra-accent">
+            <div class="flex justify-between items-end mb-6 border-b border-white/10 pb-4">
+              <div>
+                <h3 class="font-head text-2xl font-bold uppercase">Talent Signals</h3>
+                <p class="font-mono text-xs text-slate-400">SAMPLE TEAM METRICS</p>
+              </div>
+              <span class="text-[10px] font-mono bg-slate-900 px-2 py-1 rounded border border-white/20">SMALL • SENIOR TEAM</span>
+            </div>
+            <div class="grid grid-cols-2 gap-3 font-mono text-xs">
+              <div class="bg-white/5 p-3 rounded">
+                <p class="text-slate-400 mb-1">Process & Chemistry</p>
+                <p class="text-xl font-bold">40%</p>
+              </div>
+              <div class="bg-white/5 p-3 rounded">
+                <p class="text-slate-400 mb-1">Controls & SynCore™</p>
+                <p class="text-xl font-bold">35%</p>
+              </div>
+              <div class="bg-white/5 p-3 rounded">
+                <p class="text-slate-400 mb-1">Industrial Data</p>
+                <p class="text-xl font-bold">15%</p>
+              </div>
+              <div class="bg-white/5 p-3 rounded">
+                <p class="text-slate-400 mb-1">Operations</p>
+                <p class="text-xl font-bold">10%</p>
+              </div>
+            </div>
+            <p class="mt-4 text-[10px] text-slate-400">
+              We prioritize candidates who have shipped real systems: lab rigs, control loops, production software, or industrial hardware.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </header>
 
   <!-- WHY SYNTRA -->
-  <section class="py-20 bg-syntra-midnight border-t border-white/10">
+  <section class="py-24 bg-syntra-base">
     <div class="container mx-auto px-6">
       <div class="max-w-3xl mb-10">
-        <h2 class="font-head text-3xl md:text-4xl font-bold uppercase mb-4">Why work at Syntra?</h2>
-        <p class="text-slate-300 text-sm md:text-base">
-          We operate like a high-trust engineering organization: clear ownership, strong documentation,
-          and tight feedback loops between the lab, plant, and control systems.
+        <span class="font-mono text-xs text-syntra-amber font-bold tracking-widest uppercase mb-2 block">Why Syntra</span>
+        <h2 class="font-head text-4xl md:text-5xl font-bold uppercase">Work at the core of the grid.</h2>
+        <p class="text-slate-600 mt-4 text-sm md:text-base">
+          We operate like a high-trust engineering organization: clear ownership, strong documentation, and tight feedback loops between the lab, plant, and control systems.
         </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <article class="bg-white/5 border border-white/10 rounded-lg p-6">
-          <i data-lucide="cpu" class="w-8 h-8 text-syntra-tech mb-4"></i>
+        <article class="bg-white border border-syntra-border shadow-sm hover:shadow-xl transition-shadow p-6">
+          <div class="border-t-4 border-syntra-accent w-12 mb-4"></div>
           <h3 class="font-head text-xl font-bold uppercase mb-2">Deep Tech</h3>
-          <p class="text-sm text-slate-300">
+          <p class="text-sm text-slate-600">
             Work alongside process chemists, automation engineers, and data teams on real infrastructure problems.
           </p>
         </article>
-        <article class="bg-white/5 border border-white/10 rounded-lg p-6">
-          <i data-lucide="beaker" class="w-8 h-8 text-syntra-accent mb-4"></i>
-          <h3 class="font-head text-xl font-bold uppercase mb-2">Hands-On Lab</h3>
-          <p class="text-sm text-slate-300">
-            Pilot-scale rigs, digital twin models, and instrumented reactors to test and validate new flowsheets.
+        <article class="bg-white border border-syntra-border shadow-sm hover:shadow-xl transition-shadow p-6">
+          <div class="border-t-4 border-syntra-accent w-12 mb-4"></div>
+          <h3 class="font-head text-xl font-bold uppercase mb-2">Pilot-Scale Lab</h3>
+          <p class="text-sm text-slate-600">
+            Instrumented rigs, digital twin models, and reactors to test and validate new flowsheets.
           </p>
         </article>
-        <article class="bg-white/5 border border-white/10 rounded-lg p-6">
-          <i data-lucide="users" class="w-8 h-8 text-emerald-400 mb-4"></i>
+        <article class="bg-white border border-syntra-border shadow-sm hover:shadow-xl transition-shadow p-6">
+          <div class="border-t-4 border-syntra-accent w-12 mb-4"></div>
           <h3 class="font-head text-xl font-bold uppercase mb-2">Small, Senior Team</h3>
-          <p class="text-sm text-slate-300">
+          <p class="text-sm text-slate-600">
             Direct access to leadership, fast decision cycles, and real ownership over outcomes.
           </p>
         </article>
@@ -159,81 +260,67 @@
   </section>
 
   <!-- OPEN ROLES -->
-  <section id="roles" class="py-20 bg-syntra-base text-syntra-text">
+  <section id="roles" class="py-24 bg-white border-y border-syntra-border">
     <div class="container mx-auto px-6">
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
         <div>
-          <p class="font-mono text-xs text-syntra-amber tracking-[0.25em] uppercase mb-2">Open Roles</p>
-          <h2 class="font-head text-3xl md:text-4xl font-bold uppercase">Current opportunities</h2>
-          <p class="text-slate-600 text-sm md:text-base max-w-xl mt-3">
-            Below are representative roles. We also accept strong generalist applications from people with 
-            experience in process development, control systems, or industrial data.
+          <span class="font-mono text-xs text-syntra-amber font-bold tracking-widest uppercase mb-2 block">Open Roles</span>
+          <h2 class="font-head text-4xl md:text-5xl font-bold uppercase">Current opportunities</h2>
+          <p class="text-slate-600 mt-4 text-sm md:text-base max-w-xl">
+            Below are representative roles. We also accept strong generalist applications from people with experience in process development, control systems, or industrial data.
           </p>
         </div>
         <div class="text-xs font-mono text-slate-500 max-w-xs">
-          Don’t see a perfect match? Send a short note and CV to 
+          Don't see a perfect match? Send a short note and CV to
           <a href="mailto:careers@syntrarefining.com" class="text-syntra-tech hover:text-syntra-amber">careers@syntrarefining.com</a>.
         </div>
       </div>
 
       <div class="space-y-6">
-        <!-- Example role 1 -->
-        <article class="bg-white border border-syntra-border rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <!-- Role 1 -->
+        <article class="bg-syntra-base border border-syntra-border rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h3 class="font-head text-2xl font-bold uppercase">Process Development Engineer</h3>
-            <p class="font-mono text-[11px] text-syntra-muted uppercase mt-1">
-              Full-time &bull; Dartmouth, NS &bull; Hybrid
-            </p>
+            <p class="font-mono text-[11px] text-syntra-muted uppercase mt-1">Full-time • Dartmouth, NS • Hybrid</p>
             <p class="text-sm text-slate-600 mt-3 max-w-xl">
-              Lead bench and pilot-scale experiments, support flowsheet design for Li / Ni / Co systems,
-              and work closely with the SynCore™ digital twin team to translate lab data into operating windows.
+              Lead bench and pilot-scale experiments, support flowsheet design for Li / Ni / Co systems, and work closely with the SynCore™ digital twin team to translate lab data into operating windows.
             </p>
           </div>
           <div class="flex flex-col items-start md:items-end gap-2">
-            <span class="text-[11px] font-mono text-slate-500 uppercase">Process &amp; Chemistry</span>
-            <a href="mailto:careers@syntrarefining.com?subject=Application%20-%20Process%20Development%20Engineer"
-               class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors">
+            <span class="text-[11px] font-mono text-slate-500 uppercase">Process & Chemistry</span>
+            <a href="mailto:careers@syntrarefining.com?subject=Application%20-%20Process%20Development%20Engineer" class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors">
               Apply via Email
-              <i data-lucide="arrow-right" class="w-3 h-3"></i>
             </a>
           </div>
         </article>
 
-        <!-- Example role 2 -->
-        <article class="bg-white border border-syntra-border rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <!-- Role 2 -->
+        <article class="bg-syntra-base border border-syntra-border rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <h3 class="font-head text-2xl font-bold uppercase">Automation &amp; Controls Engineer</h3>
-            <p class="font-mono text-[11px] text-syntra-muted uppercase mt-1">
-              Full-time &bull; Dartmouth, NS &bull; Hybrid
-            </p>
+            <h3 class="font-head text-2xl font-bold uppercase">Automation & Controls Engineer</h3>
+            <p class="font-mono text-[11px] text-syntra-muted uppercase mt-1">Full-time • Dartmouth, NS • Hybrid</p>
             <p class="text-sm text-slate-600 mt-3 max-w-xl">
-              Own PLC/DCS configuration, instrumentation integration, and controls logic for pilot and 
-              production systems. Experience with industrial networking and safety systems is an asset.
+              Own PLC/DCS configuration, instrumentation integration, and controls logic for pilot and production systems. Experience with industrial networking and safety systems is an asset.
             </p>
           </div>
           <div class="flex flex-col items-start md:items-end gap-2">
-            <span class="text-[11px] font-mono text-slate-500 uppercase">Controls &amp; SynCore™</span>
-            <a href="mailto:careers@syntrarefining.com?subject=Application%20-%20Automation%20%26%20Controls%20Engineer"
-               class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors">
+            <span class="text-[11px] font-mono text-slate-500 uppercase">Controls & SynCore™</span>
+            <a href="mailto:careers@syntrarefining.com?subject=Application%20-%20Automation%20%26%20Controls%20Engineer" class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors">
               Apply via Email
-              <i data-lucide="arrow-right" class="w-3 h-3"></i>
             </a>
           </div>
         </article>
 
-        <!-- Example "no role" note -->
+        <!-- No exact match -->
         <article class="bg-syntra-midnight text-slate-200 border border-slate-700 rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h3 class="font-head text-xl font-bold uppercase">No exact match?</h3>
             <p class="text-sm text-slate-300 mt-2 max-w-xl">
-              We regularly build roles around exceptional people. If you’ve shipped real systems in mining, 
-              refining, industrial software, or robotics, we’d still like to hear from you.
+              We regularly build roles around exceptional people. If you've shipped real systems in mining, refining, industrial software, or robotics, we'd still like to hear from you.
             </p>
           </div>
-          <a href="mailto:careers@syntrarefining.com?subject=General%20Application"
-             class="inline-flex items-center gap-2 px-4 py-2 bg-white text-syntra-text text-xs font-mono uppercase rounded hover:bg-syntra-accent transition-colors">
+          <a href="mailto:careers@syntrarefining.com?subject=General%20Application" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-syntra-text text-xs font-mono uppercase rounded hover:bg-syntra-accent transition-colors">
             Share your profile
-            <i data-lucide="send" class="w-3 h-3"></i>
           </a>
         </article>
       </div>
@@ -241,19 +328,19 @@
   </section>
 
   <!-- HIRING PROCESS -->
-  <section class="py-20 bg-syntra-base border-t border-syntra-border text-syntra-text">
+  <section class="py-24 bg-syntra-base">
     <div class="container mx-auto px-6">
       <h2 class="font-head text-3xl md:text-4xl font-bold uppercase mb-6">How we hire</h2>
       <div class="grid md:grid-cols-4 gap-6 text-sm">
         <div class="border-t-4 border-syntra-text pt-4">
           <p class="font-mono text-[11px] uppercase text-syntra-muted mb-1">01</p>
-          <h3 class="font-head font-bold uppercase mb-1">Short intro</h3>
+          <h3 class="font-head font-bold uppercase mb-1">Intro call</h3>
           <p class="text-slate-600">15–20 minute conversation focused on your background and what you want to build.</p>
         </div>
         <div class="border-t-4 border-syntra-text pt-4">
           <p class="font-mono text-[11px] uppercase text-syntra-muted mb-1">02</p>
           <h3 class="font-head font-bold uppercase mb-1">Technical deep dive</h3>
-          <p class="text-slate-600">Discussion of real projects you’ve shipped — lab work, control systems, or software.</p>
+          <p class="text-slate-600">Discussion of real projects you've shipped — lab work, control systems, or software.</p>
         </div>
         <div class="border-t-4 border-syntra-text pt-4">
           <p class="font-mono text-[11px] uppercase text-syntra-muted mb-1">03</p>
@@ -262,14 +349,14 @@
         </div>
         <div class="border-t-4 border-syntra-accent pt-4">
           <p class="font-mono text-[11px] uppercase text-syntra-muted mb-1">04</p>
-          <h3 class="font-head font-bold uppercase mb-1">Offer &amp; onboarding</h3>
-          <p class="text-slate-600">Clear comp structure, equity where applicable, and a structured onboarding plan.</p>
+          <h3 class="font-head font-bold uppercase mb-1">Offer & onboarding</h3>
+          <p class="text-slate-600">Clear comp structure and a structured onboarding plan tied to live projects.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER (same layout as index, but links adjusted) -->
+  <!-- FOOTER -->
   <footer class="bg-syntra-midnight text-white py-16 border-t-4 border-syntra-accent">
     <div class="container mx-auto px-6">
       <div class="grid md:grid-cols-12 gap-12 mb-16">
@@ -278,32 +365,31 @@
             <div class="logo-outer w-12 h-12 border-[3px] border-white transform rotate-45 flex items-center justify-center">
               <div class="logo-inner w-5 h-5 bg-white transform -rotate-45"></div>
             </div>
-            <div class="leading-none">
-              <div class="font-head font-bold text-3xl tracking-tighter text-white">SYNTRA</div>
-              <div class="font-head text-[0.7rem] font-bold text-syntra-accent tracking-[0.2em] uppercase mt-1">REFINING CORP</div>
+            <div class="leading-none flex flex-col justify-center">
+              <div class="font-head font-bold text-3xl tracking-tighter text-white leading-none">SYNTRA</div>
+              <div class="font-head text-[0.7rem] font-bold text-syntra-accent tracking-[0.2em] uppercase leading-none mt-1">REFINING CORP</div>
             </div>
           </a>
-          <p class="text-slate-400 text-sm max-w-xs">
-            North America's Critical Minerals Infrastructure.<br>
-            Dartmouth, NS, Canada.
+          <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+            North America's Critical Minerals Infrastructure.<br>Dartmouth, NS, Canada.
           </p>
         </div>
 
         <div class="md:col-span-4 space-y-6">
-          <h4 class="font-head font-bold uppercase tracking-widest text-sm">Corporate</h4>
+          <h4 class="font-head font-bold uppercase tracking-widest text-sm text-white">Corporate</h4>
           <ul class="space-y-4 text-slate-400 text-sm">
-            <li><a href="index.html#about" class="hover:text-syntra-accent flex items-center gap-2">Leadership</a></li>
-            <li><a href="careers.html" class="hover:text-syntra-accent flex items-center gap-2 text-syntra-accent">Careers</a></li>
-            <li><a href="#" class="hover:text-syntra-accent flex items-center gap-2">Investor Relations</a></li>
+            <li><a href="index.html#about" class="hover:text-syntra-accent transition-colors">Leadership</a></li>
+            <li><a href="careers.html" class="hover:text-syntra-accent transition-colors">Careers</a></li>
+            <li><a href="index.html#partner-ecosystem-access" class="hover:text-syntra-accent transition-colors">Investor Relations</a></li>
           </ul>
         </div>
 
         <div class="md:col-span-4 space-y-6">
-          <h4 class="font-head font-bold uppercase tracking-widest text-sm">Commercial</h4>
+          <h4 class="font-head font-bold uppercase tracking-widest text-sm text-white">Commercial</h4>
           <ul class="space-y-4 text-slate-400 text-sm">
-            <li><a href="index.html#contact" class="hover:text-syntra-accent flex items-center gap-2">Commercial Inquiries</a></li>
-            <li><a href="index.html#contact" class="hover:text-syntra-accent flex items-center gap-2">Supplier Portal</a></li>
-            <li><a href="index.html#contact" class="hover:text-syntra-accent flex items-center gap-2">Procurement</a></li>
+            <li><a href="index.html#contact" class="hover:text-syntra-accent transition-colors">Commercial Inquiries</a></li>
+            <li><a href="supplier.html" class="hover:text-syntra-accent transition-colors">Supplier Portal</a></li>
+            <li><a href="observer.html" class="hover:text-syntra-accent transition-colors">Observer Portal</a></li>
           </ul>
         </div>
       </div>
@@ -311,15 +397,19 @@
       <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 font-mono">
         <p>&copy; 2026 Syntra Refining Corp. All Rights Reserved.</p>
         <div class="flex gap-8">
-          <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
-          <a href="terms.html" class="hover:text-white">Terms of Service</a>
+          <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    lucide.createIcons();
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+    }
   </script>
 </body>
 </html>

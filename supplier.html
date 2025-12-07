@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supplier Portal | Syntra Refining</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            syntra: {
+              base: '#F8FAFC',
+              surface: '#FFFFFF',
+              text: '#0F172A',
+              midnight: '#0B1120',
+              accent: '#FFD700',
+              amber: '#D97706',
+              tech: '#0891B2',
+              muted: '#64748B',
+              border: '#E2E8F0',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            head: ['Oswald', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .logo-container { cursor: pointer; }
+    .logo-outer { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s; }
+    .logo-inner { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s; }
+    .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #D97706; }
+  </style>
+</head>
+<body class="bg-syntra-base text-syntra-text font-sans antialiased">
+  <!-- TOP TICKER -->
+  <div class="bg-syntra-text text-white py-1.5 border-b border-white/10 text-[10px] md:text-xs font-mono tracking-wide z-50 relative">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <div class="flex items-center gap-6">
+        <span class="flex items-center gap-2 text-syntra-accent font-bold">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+          </span>
+          SUPPLIER ACCESS: SECURE
+        </span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400">
+        <a href="index.html" class="hover:text-syntra-accent transition-colors">Back to Site</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="bg-white border-b border-syntra-border">
+    <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="logo-container flex items-center gap-3 group">
+        <div class="logo-outer w-10 h-10 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
+          <div class="logo-inner w-4 h-4 bg-syntra-accent transform -rotate-45"></div>
+        </div>
+        <div class="leading-none">
+          <div class="font-head font-bold text-2xl tracking-tight text-syntra-text">SYNTRA</div>
+          <div class="font-head text-[0.65rem] font-bold text-syntra-amber tracking-[0.2em] uppercase mt-1">REFINING CORP</div>
+        </div>
+      </a>
+      <div class="text-xs font-mono uppercase text-syntra-muted">Supplier Portal</div>
+    </div>
+  </nav>
+
+  <!-- LOGIN FORM -->
+  <div id="loginSection" class="min-h-[80vh] flex items-center justify-center py-16">
+    <div class="container mx-auto px-6">
+      <div class="max-w-md mx-auto bg-white border border-syntra-border rounded-lg shadow-2xl p-8">
+        <div class="text-center mb-6">
+          <div class="inline-block w-12 h-12 bg-syntra-accent rounded-full flex items-center justify-center text-syntra-text font-mono font-bold text-xl mb-3">S</div>
+          <h1 class="font-head text-3xl font-bold uppercase">Supplier Portal</h1>
+          <p class="text-sm text-slate-500 mt-2">Enter your supplier access code</p>
+        </div>
+
+        <form onsubmit="handleLogin(event)" class="space-y-4">
+          <div>
+            <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Access Code</label>
+            <input
+              type="text"
+              id="accessCode"
+              class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors font-mono"
+              placeholder="Enter your code..."
+              required
+            />
+          </div>
+
+          <div id="errorMessage" class="hidden text-sm text-red-600 bg-red-50 border border-red-200 rounded p-3">
+            Invalid access code. Please try again.
+          </div>
+
+          <button type="submit" class="w-full bg-syntra-text text-white font-head font-bold uppercase py-3 hover:bg-black transition-colors">
+            Enter Portal
+          </button>
+        </form>
+
+        <div class="mt-6 pt-6 border-t border-syntra-border">
+          <p class="text-xs text-slate-500 text-center">
+            New supplier? <a href="index.html#contact" class="text-syntra-tech hover:text-syntra-amber underline">Register Your Organization</a>
+          </p>
+          <p class="text-[10px] text-slate-400 text-center mt-4">
+            Demo codes: <span class="font-mono">SUPPLIER001</span> or <span class="font-mono">DEMO2026</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD (Hidden by default) -->
+  <div id="dashboardSection" class="hidden">
+    <div class="bg-syntra-midnight text-white py-12 border-b border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h1 class="font-head text-4xl font-bold uppercase mb-2">Supplier Dashboard</h1>
+            <p class="text-slate-400 text-sm">Feedstock & materials portal for Syntra partners</p>
+          </div>
+          <button onclick="handleLogout()" class="px-6 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded text-sm font-mono uppercase transition-colors">
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-6 py-16">
+      <!-- Current RFQs / RFPs -->
+      <div class="bg-white border border-syntra-border rounded-lg p-8 mb-12">
+        <h2 class="font-head text-2xl font-bold uppercase mb-6">Current RFQs & Opportunities</h2>
+        <p class="text-sm text-slate-500 mb-6">
+          Active requests for quotes and partnership opportunities from Syntra Refining.
+        </p>
+
+        <div class="space-y-4">
+          <!-- RFQ 1 -->
+          <div class="border border-syntra-border rounded-lg p-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div>
+                <h3 class="font-head text-xl font-bold uppercase mb-2">Li-ion Black Mass Supply</h3>
+                <p class="text-sm text-slate-600 mb-2">Seeking consistent black mass feedstock, 50-200 MT/month</p>
+                <div class="flex gap-3 text-xs font-mono">
+                  <span class="px-2 py-1 bg-slate-100 rounded">BLACK MASS</span>
+                  <span class="px-2 py-1 bg-slate-100 rounded">LONG-TERM</span>
+                  <span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded">OPEN</span>
+                </div>
+              </div>
+              <div class="flex flex-col gap-2">
+                <p class="text-xs text-slate-500 mb-1">Closes: Feb 28, 2027</p>
+                <a
+                  href="mailto:commercial@syntrarefining.com?subject=RFQ%20Response%3A%20Black%20Mass%20Supply&body=Company%20Name%3A%0A%0AContact%20Person%3A%0A%0AProposed%20Volume%20(MT%2Fmonth)%3A%0A%0AIndicative%20Pricing%3A%0A%0AAdditional%20Notes%3A"
+                  class="px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors text-center"
+                >
+                  Submit Response
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- RFQ 2 -->
+          <div class="border border-syntra-border rounded-lg p-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div>
+                <h3 class="font-head text-xl font-bold uppercase mb-2">Nickel Sulfate Concentrates</h3>
+                <p class="text-sm text-slate-600 mb-2">Spot purchases available, min 10 MT per shipment</p>
+                <div class="flex gap-3 text-xs font-mono">
+                  <span class="px-2 py-1 bg-slate-100 rounded">CONCENTRATES</span>
+                  <span class="px-2 py-1 bg-slate-100 rounded">SPOT</span>
+                  <span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded">OPEN</span>
+                </div>
+              </div>
+              <div class="flex flex-col gap-2">
+                <p class="text-xs text-slate-500 mb-1">Ongoing</p>
+                <a
+                  href="mailto:commercial@syntrarefining.com?subject=RFQ%20Response%3A%20Nickel%20Concentrates&body=Company%20Name%3A%0A%0AContact%20Person%3A%0A%0AAvailable%20Volume%20(MT)%3A%0A%0AChemistry%20%26%20Grade%3A%0A%0AIndicative%20Pricing%3A"
+                  class="px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors text-center"
+                >
+                  Submit Response
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- RFQ 3 -->
+          <div class="border border-syntra-border rounded-lg p-6 bg-slate-50">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div>
+                <h3 class="font-head text-xl font-bold uppercase mb-2">Process Scrap — Cathode Manufacturing</h3>
+                <p class="text-sm text-slate-600 mb-2">Closed for review, awarded Q4 2026</p>
+                <div class="flex gap-3 text-xs font-mono">
+                  <span class="px-2 py-1 bg-slate-200 rounded">PROCESS SCRAP</span>
+                  <span class="px-2 py-1 bg-slate-400 text-white rounded">CLOSED</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Document Submission -->
+      <div class="grid md:grid-cols-2 gap-8 mb-12">
+        <div class="bg-white border border-syntra-border rounded-lg p-8">
+          <h2 class="font-head text-2xl font-bold uppercase mb-4">Submit Documents</h2>
+          <p class="text-sm text-slate-600 mb-6">
+            Send spec sheets, assay reports, or other documentation to our commercial team.
+          </p>
+
+          <form onsubmit="handleDocSubmit(event)" class="space-y-4">
+            <div>
+              <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Company Name</label>
+              <input
+                type="text"
+                id="companyName"
+                class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+                placeholder="Your company"
+                required
+              />
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Contact Email</label>
+              <input
+                type="email"
+                id="contactEmail"
+                class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+                placeholder="you@company.com"
+                required
+              />
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Document Type</label>
+              <select
+                id="docType"
+                class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+                required
+              >
+                <option value="">Select type...</option>
+                <option>Spec Sheet / TDS</option>
+                <option>Assay Report</option>
+                <option>MSDS / SDS</option>
+                <option>Certificate of Analysis</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Notes</label>
+              <textarea
+                id="notes"
+                rows="3"
+                class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+                placeholder="Brief description or notes..."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-syntra-text text-white font-head font-bold uppercase py-3 hover:bg-black transition-colors">
+              Send via Email
+            </button>
+          </form>
+
+          <p class="text-xs text-slate-500 mt-4">
+            This will open your email client. Attach your documents to the email before sending.
+          </p>
+        </div>
+
+        <div class="bg-syntra-midnight text-white rounded-lg p-8">
+          <h2 class="font-head text-2xl font-bold uppercase mb-4">Contact Information</h2>
+          <p class="text-sm text-slate-300 mb-6">
+            For questions about submissions, pricing, or logistics, reach out to our commercial team directly.
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-white/10 rounded flex items-center justify-center flex-shrink-0 mt-1">
+                ✉
+              </div>
+              <div>
+                <p class="font-mono text-xs text-syntra-accent uppercase mb-1">Email</p>
+                <a href="mailto:commercial@syntrarefining.com" class="text-white hover:text-syntra-accent transition-colors">
+                  commercial@syntrarefining.com
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-white/10 rounded flex items-center justify-center flex-shrink-0 mt-1">
+                📍
+              </div>
+              <div>
+                <p class="font-mono text-xs text-syntra-accent uppercase mb-1">Location</p>
+                <p class="text-white">
+                  Dartmouth, Nova Scotia<br>Canada
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-8 border-t border-white/10">
+            <p class="text-xs text-slate-400">
+              All submissions are reviewed within 5 business days. Confidential information is protected under standard NDA terms.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="bg-white border border-syntra-border rounded-lg p-8">
+        <h2 class="font-head text-2xl font-bold uppercase mb-6">Supplier Resources</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div>
+            <h3 class="font-head font-bold uppercase mb-2 text-lg">Accepted Materials</h3>
+            <ul class="text-sm text-slate-600 space-y-1">
+              <li>• Li-ion black mass</li>
+              <li>• Spodumene concentrates</li>
+              <li>• Nickel sulfide concentrates</li>
+              <li>• Cobalt concentrates</li>
+              <li>• Cathode scrap</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-head font-bold uppercase mb-2 text-lg">Requirements</h3>
+            <ul class="text-sm text-slate-600 space-y-1">
+              <li>• Recent assay reports</li>
+              <li>• Chemistry breakdown</li>
+              <li>• Moisture content</li>
+              <li>• Origin documentation</li>
+              <li>• Proposed volumes</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-head font-bold uppercase mb-2 text-lg">Payment Terms</h3>
+            <p class="text-sm text-slate-600">
+              Standard net-30 terms for approved suppliers. Long-term contracts available with favorable payment structures.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-syntra-midnight text-white py-16 border-t-4 border-syntra-accent">
+    <div class="container mx-auto px-6 text-center">
+      <p class="text-slate-400 text-sm mb-4">Syntra Refining Corp. • Supplier Portal</p>
+      <div class="flex justify-center gap-8 text-xs text-slate-500 font-mono">
+        <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+        <a href="index.html" class="hover:text-white transition-colors">Main Site</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Demo codes (hardcoded for front-end demo)
+    const VALID_CODES = ['SUPPLIER001', 'SUPPLIER002', 'DEMO2026'];
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const code = document.getElementById('accessCode').value.trim().toUpperCase();
+      const errorMsg = document.getElementById('errorMessage');
+
+      if (VALID_CODES.includes(code)) {
+        // Valid code - show dashboard
+        document.getElementById('loginSection').classList.add('hidden');
+        document.getElementById('dashboardSection').classList.remove('hidden');
+        errorMsg.classList.add('hidden');
+
+        // Store session (for demo purposes only)
+        sessionStorage.setItem('supplierCode', code);
+      } else {
+        // Invalid code - show error
+        errorMsg.classList.remove('hidden');
+      }
+    }
+
+    function handleLogout() {
+      sessionStorage.removeItem('supplierCode');
+      document.getElementById('loginSection').classList.remove('hidden');
+      document.getElementById('dashboardSection').classList.add('hidden');
+      document.getElementById('accessCode').value = '';
+      document.getElementById('errorMessage').classList.add('hidden');
+    }
+
+    function handleDocSubmit(event) {
+      event.preventDefault();
+
+      const company = document.getElementById('companyName').value;
+      const email = document.getElementById('contactEmail').value;
+      const docType = document.getElementById('docType').value;
+      const notes = document.getElementById('notes').value;
+
+      // Build mailto link with pre-filled content
+      const subject = encodeURIComponent(`Document Submission: ${docType}`);
+      const body = encodeURIComponent(
+        `Company Name: ${company}\n\nContact Email: ${email}\n\nDocument Type: ${docType}\n\nNotes:\n${notes}\n\n---\nPlease attach your documents to this email before sending.`
+      );
+
+      window.location.href = `mailto:commercial@syntrarefining.com?subject=${subject}&body=${body}`;
+    }
+
+    // Check if already logged in on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const storedCode = sessionStorage.getItem('supplierCode');
+      if (storedCode && VALID_CODES.includes(storedCode)) {
+        document.getElementById('loginSection').classList.add('hidden');
+        document.getElementById('dashboardSection').classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy | Syntra Refining</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,46 +13,77 @@
           colors: {
             syntra: {
               base: '#F8FAFC',
+              surface: '#FFFFFF',
               text: '#0F172A',
               midnight: '#0B1120',
               accent: '#FFD700',
+              amber: '#D97706',
               border: '#E2E8F0',
-            }
+            },
           },
           fontFamily: {
-            sans: ['Inter','sans-serif'],
-            head: ['Oswald','sans-serif'],
-            mono: ['JetBrains Mono','monospace'],
-          }
-        }
-      }
-    }
+            sans: ['Inter', 'sans-serif'],
+            head: ['Oswald', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    };
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body class="bg-syntra-base text-syntra-text font-sans antialiased">
 
-  <!-- SIMPLE NAV -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    .logo-container { cursor: pointer; }
+    .logo-outer { transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s; }
+    .logo-inner { transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1), background-color 0.3s; }
+    .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #D97706; }
+  </style>
+</head>
+
+<body class="bg-syntra-base text-syntra-text font-sans antialiased">
+  <!-- TOP TICKER -->
+  <div class="bg-syntra-text text-white py-1.5 border-b border-white/10 text-[10px] md:text-xs font-mono tracking-wide z-50 relative">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <div class="flex items-center gap-6">
+        <span class="flex items-center gap-2 text-syntra-accent font-bold">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+          </span>
+          POLICY CENTER: ONLINE
+        </span>
+        <span class="hidden md:block text-slate-400">LOC: DARTMOUTH, NOVA SCOTIA</span>
+      </div>
+      <div class="hidden md:flex items-center gap-4 text-slate-400">
+        <a href="index.html#contact" class="hover:text-syntra-accent transition-colors">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
   <nav class="bg-white border-b border-syntra-border">
     <div class="container mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3">
-        <div class="w-8 h-8 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
-          <div class="w-4 h-4 bg-syntra-accent transform -rotate-45"></div>
+      <a href="index.html" class="logo-container flex items-center gap-3 group">
+        <div class="logo-outer w-10 h-10 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
+          <div class="logo-inner w-4 h-4 bg-syntra-accent transform -rotate-45"></div>
         </div>
-        <span class="font-head font-bold text-xl tracking-tight">SYNTRA REFINING CORP</span>
+        <div class="leading-none">
+          <div class="font-head font-bold text-2xl tracking-tight text-syntra-text">SYNTRA</div>
+          <div class="font-head text-[0.65rem] font-bold text-syntra-amber tracking-[0.2em] uppercase mt-1">REFINING CORP</div>
+        </div>
       </a>
     </div>
   </nav>
 
+  <!-- CONTENT -->
   <main class="container mx-auto px-6 py-16 max-w-3xl">
     <p class="font-mono text-xs text-syntra-text/60 uppercase tracking-[0.25em] mb-3">Policy</p>
-    <h1 class="font-head text-4xl font-bold uppercase mb-6">Privacy Policy</h1>
+    <h1 class="font-head text-4xl font-bold uppercase mb-4">Privacy Policy</h1>
     <p class="text-sm text-slate-600 mb-6">
-      This Privacy Policy describes how Syntra Refining Corp. (“Syntra”, “we”, “us”, or “our”) collects, 
-      uses, and protects personal information in connection with our website, partner portals, and related services.
+      This Privacy Policy describes how Syntra Refining Corp. ("Syntra", "we", "us", or "our") collects, uses, and protects personal information in connection with our website, partner portals, and related services.
     </p>
 
     <h2 class="font-head text-2xl font-bold mt-10 mb-3">1. Information we collect</h2>
@@ -78,42 +110,75 @@
       <li>Regulators or authorities where required by law.</li>
     </ul>
 
-    <h2 class="font-head text-2xl font-bold mt-10 mb-3">4. Data retention &amp; security</h2>
+    <h2 class="font-head text-2xl font-bold mt-10 mb-3">4. Data retention & security</h2>
     <p class="text-sm text-slate-700">
-      We retain personal information only as long as necessary for the purposes above or as required by law.
-      Access to data is restricted to authorized personnel, and we apply administrative, technical, and 
-      physical safeguards appropriate for our size and risk profile.
+      We retain personal information only as long as necessary for the purposes above or as required by law. Access to data is restricted to authorized personnel, and we apply administrative, technical, and physical safeguards appropriate for our size and risk profile.
     </p>
 
     <h2 class="font-head text-2xl font-bold mt-10 mb-3">5. Your choices</h2>
     <p class="text-sm text-slate-700 mb-3">
-      You may request access, updates, or deletion of your personal information where applicable. 
-      You can also opt out of non-essential communications at any time.
+      You may request access, updates, or deletion of your personal information where applicable. You can also opt out of non-essential communications at any time.
     </p>
     <p class="text-sm text-slate-700">
-      To exercise your rights, contact us at 
-      <a href="mailto:privacy@syntrarefining.com" class="text-sky-700 hover:text-sky-900">Info@syntrarefining.com</a>.
+      To exercise your rights, contact us at
+      <a href="mailto:privacy@syntrarefining.com" class="text-syntra-text underline hover:text-syntra-amber">privacy@syntrarefining.com</a>.
     </p>
 
     <h2 class="font-head text-2xl font-bold mt-10 mb-3">6. Updates to this policy</h2>
     <p class="text-sm text-slate-700 mb-10">
-      We may update this Privacy Policy from time to time. The “Last updated” date will reflect the current version.
+      We may update this Privacy Policy from time to time. The "Last updated" date will reflect the current version.
     </p>
 
     <p class="text-xs text-slate-500 font-mono">Last updated: 2026-01-01</p>
   </main>
 
-  <footer class="bg-syntra-midnight text-white py-8 mt-12">
-    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-mono">
-      <p>&copy; 2026 Syntra Refining Corp.</p>
-      <div class="flex gap-6">
-        <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
-        <a href="terms.html" class="hover:text-white">Terms of Service</a>
-        <a href="index.html" class="hover:text-white">Back to Site</a>
+  <!-- FOOTER -->
+  <footer class="bg-syntra-midnight text-white py-16 border-t-4 border-syntra-accent mt-8">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-12 gap-12 mb-16">
+        <div class="md:col-span-4 space-y-6">
+          <a href="index.html" class="logo-container flex items-center gap-4 group">
+            <div class="logo-outer w-12 h-12 border-[3px] border-white transform rotate-45 flex items-center justify-center">
+              <div class="logo-inner w-5 h-5 bg-white transform -rotate-45"></div>
+            </div>
+            <div class="leading-none flex flex-col justify-center">
+              <div class="font-head font-bold text-3xl tracking-tighter text-white leading-none">SYNTRA</div>
+              <div class="font-head text-[0.7rem] font-bold text-syntra-accent tracking-[0.2em] uppercase leading-none mt-1">REFINING CORP</div>
+            </div>
+          </a>
+          <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+            North America's Critical Minerals Infrastructure.<br>Dartmouth, NS, Canada.
+          </p>
+        </div>
+
+        <div class="md:col-span-4 space-y-6">
+          <h4 class="font-head font-bold uppercase tracking-widest text-sm text-white">Corporate</h4>
+          <ul class="space-y-4 text-slate-400 text-sm">
+            <li><a href="index.html#about" class="hover:text-syntra-accent transition-colors">Leadership</a></li>
+            <li><a href="careers.html" class="hover:text-syntra-accent transition-colors">Careers</a></li>
+            <li><a href="#" class="hover:text-syntra-accent transition-colors">Investor Relations</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-4 space-y-6">
+          <h4 class="font-head font-bold uppercase tracking-widest text-sm text-white">Commercial</h4>
+          <ul class="space-y-4 text-slate-400 text-sm">
+            <li><a href="index.html#contact" class="hover:text-syntra-accent transition-colors">Commercial Inquiries</a></li>
+            <li><a href="supplier.html" class="hover:text-syntra-accent transition-colors">Supplier Portal</a></li>
+            <li><a href="observer.html" class="hover:text-syntra-accent transition-colors">Observer Portal</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 font-mono">
+        <p>&copy; 2026 Syntra Refining Corp. All Rights Reserved.</p>
+        <div class="flex gap-8">
+          <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+          <a href="index.html" class="hover:text-white transition-colors">Back to Site</a>
+        </div>
       </div>
     </div>
   </footer>
-
-  <script>lucide.createIcons();</script>
 </body>
 </html>

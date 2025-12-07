@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Observer Portal | Syntra Refining</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            syntra: {
+              base: '#F8FAFC',
+              surface: '#FFFFFF',
+              text: '#0F172A',
+              midnight: '#0B1120',
+              accent: '#FFD700',
+              amber: '#D97706',
+              tech: '#0891B2',
+              muted: '#64748B',
+              border: '#E2E8F0',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            head: ['Oswald', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .logo-container { cursor: pointer; }
+    .logo-outer { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s; }
+    .logo-inner { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s; }
+    .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #D97706; }
+  </style>
+</head>
+<body class="bg-syntra-base text-syntra-text font-sans antialiased">
+  <!-- TOP TICKER -->
+  <div class="bg-syntra-text text-white py-1.5 border-b border-white/10 text-[10px] md:text-xs font-mono tracking-wide z-50 relative">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <div class="flex items-center gap-6">
+        <span class="flex items-center gap-2 text-syntra-accent font-bold">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+          </span>
+          OBSERVER ACCESS: SECURE
+        </span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400">
+        <a href="index.html" class="hover:text-syntra-accent transition-colors">Back to Site</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="bg-white border-b border-syntra-border">
+    <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="logo-container flex items-center gap-3 group">
+        <div class="logo-outer w-10 h-10 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
+          <div class="logo-inner w-4 h-4 bg-syntra-accent transform -rotate-45"></div>
+        </div>
+        <div class="leading-none">
+          <div class="font-head font-bold text-2xl tracking-tight text-syntra-text">SYNTRA</div>
+          <div class="font-head text-[0.65rem] font-bold text-syntra-amber tracking-[0.2em] uppercase mt-1">REFINING CORP</div>
+        </div>
+      </a>
+      <div class="text-xs font-mono uppercase text-syntra-muted">Observer Portal</div>
+    </div>
+  </nav>
+
+  <!-- LOGIN FORM -->
+  <div id="loginSection" class="min-h-[80vh] flex items-center justify-center py-16">
+    <div class="container mx-auto px-6">
+      <div class="max-w-md mx-auto bg-white border border-syntra-border rounded-lg shadow-2xl p-8">
+        <div class="text-center mb-6">
+          <div class="inline-block w-12 h-12 bg-syntra-accent rounded-full flex items-center justify-center text-syntra-text font-mono font-bold text-xl mb-3">O</div>
+          <h1 class="font-head text-3xl font-bold uppercase">Observer Portal</h1>
+          <p class="text-sm text-slate-500 mt-2">Enter your access token to continue</p>
+        </div>
+
+        <form onsubmit="handleLogin(event)" class="space-y-4">
+          <div>
+            <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Access Token</label>
+            <input
+              type="text"
+              id="accessToken"
+              class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors font-mono"
+              placeholder="Enter your token..."
+              required
+            />
+          </div>
+
+          <div id="errorMessage" class="hidden text-sm text-red-600 bg-red-50 border border-red-200 rounded p-3">
+            Invalid access token. Please try again.
+          </div>
+
+          <button type="submit" class="w-full bg-syntra-text text-white font-head font-bold uppercase py-3 hover:bg-black transition-colors">
+            Enter Portal
+          </button>
+        </form>
+
+        <div class="mt-6 pt-6 border-t border-syntra-border">
+          <p class="text-xs text-slate-500 text-center">
+            Need access? <a href="index.html#contact" class="text-syntra-tech hover:text-syntra-amber underline">Request Observer Status</a>
+          </p>
+          <p class="text-[10px] text-slate-400 text-center mt-4">
+            Demo tokens: <span class="font-mono">OBSERVER123</span> or <span class="font-mono">SYNTRA2027</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD (Hidden by default) -->
+  <div id="dashboardSection" class="hidden">
+    <div class="bg-syntra-midnight text-white py-12 border-b border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h1 class="font-head text-4xl font-bold uppercase mb-2">Observer Dashboard</h1>
+            <p class="text-slate-400 text-sm">Strategic visibility into Syntra's capacity and operations</p>
+          </div>
+          <button onclick="handleLogout()" class="px-6 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded text-sm font-mono uppercase transition-colors">
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-6 py-16">
+      <!-- Status Cards -->
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="bg-white border border-syntra-border rounded-lg p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-mono text-xs uppercase text-syntra-muted">Grid Status</h3>
+            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+          </div>
+          <p class="font-head text-3xl font-bold">ONLINE</p>
+          <p class="text-sm text-slate-500 mt-2">All systems operational</p>
+        </div>
+
+        <div class="bg-white border border-syntra-border rounded-lg p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-mono text-xs uppercase text-syntra-muted">Current Capacity</h3>
+          </div>
+          <p class="font-head text-3xl font-bold">1,000 <span class="text-lg text-slate-500">MT/YR</span></p>
+          <p class="text-sm text-slate-500 mt-2">Dartmouth facility</p>
+        </div>
+
+        <div class="bg-white border border-syntra-border rounded-lg p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-mono text-xs uppercase text-syntra-muted">Target Expansion</h3>
+          </div>
+          <p class="font-head text-3xl font-bold">10,000 <span class="text-lg text-slate-500">MT/YR</span></p>
+          <p class="text-sm text-slate-500 mt-2">By Q2 2027</p>
+        </div>
+      </div>
+
+      <!-- Facility Overview -->
+      <div class="bg-white border border-syntra-border rounded-lg p-8 mb-12">
+        <h2 class="font-head text-2xl font-bold uppercase mb-6">Facility Overview</h2>
+        <div class="space-y-4 text-sm">
+          <div class="flex justify-between py-3 border-b border-syntra-border">
+            <span class="font-mono text-syntra-muted">Location</span>
+            <span class="font-semibold">Dartmouth, Nova Scotia, Canada</span>
+          </div>
+          <div class="flex justify-between py-3 border-b border-syntra-border">
+            <span class="font-mono text-syntra-muted">Technology Platform</span>
+            <span class="font-semibold">SynCore™ Digital Twin</span>
+          </div>
+          <div class="flex justify-between py-3 border-b border-syntra-border">
+            <span class="font-mono text-syntra-muted">Primary Products</span>
+            <span class="font-semibold">Li, Ni, Co, Mn, Al, Cu salts</span>
+          </div>
+          <div class="flex justify-between py-3 border-b border-syntra-border">
+            <span class="font-mono text-syntra-muted">Feedstock Streams</span>
+            <span class="font-semibold">Black Mass, Concentrates, Process Scrap</span>
+          </div>
+          <div class="flex justify-between py-3">
+            <span class="font-mono text-syntra-muted">Environmental Approach</span>
+            <span class="font-semibold">Zero Liquid Discharge</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Metrics (Placeholder) -->
+      <div class="bg-syntra-midnight text-white rounded-lg p-8 mb-12">
+        <h2 class="font-head text-2xl font-bold uppercase mb-6">Key Metrics</h2>
+        <p class="text-slate-400 text-sm mb-6">
+          Detailed operational metrics and pilot data are available under full NDA. Contact your Syntra representative for access to the complete data room.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white/5 border border-white/10 rounded p-4">
+            <p class="font-mono text-xs text-syntra-accent uppercase mb-2">Process Efficiency</p>
+            <p class="text-2xl font-bold">Data Room Access Required</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded p-4">
+            <p class="font-mono text-xs text-syntra-accent uppercase mb-2">Product Purity Ranges</p>
+            <p class="text-2xl font-bold">NDA Level 2 Required</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESG & Compliance Notes -->
+      <div class="bg-white border border-syntra-border rounded-lg p-8">
+        <h2 class="font-head text-2xl font-bold uppercase mb-6">ESG & Compliance Notes</h2>
+        <div class="prose prose-sm max-w-none">
+          <p class="text-slate-600 mb-4">
+            Syntra operates in full compliance with Canadian federal and provincial environmental regulations. Our zero liquid discharge approach eliminates wastewater concerns, and all process emissions are monitored in real-time via the SynCore™ platform.
+          </p>
+          <ul class="list-disc pl-6 text-slate-600 space-y-2">
+            <li>Permitting: Active permits in Nova Scotia for hydrometallurgical processing</li>
+            <li>Safety: Lost-time incident rate maintained at zero for 18+ months</li>
+            <li>Community: Ongoing engagement with local stakeholders and Indigenous communities</li>
+          </ul>
+          <p class="text-xs text-slate-500 mt-6">
+            For detailed ESG reports and audit documentation, contact <a href="mailto:commercial@syntrarefining.com" class="text-syntra-tech underline">commercial@syntrarefining.com</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-syntra-midnight text-white py-16 border-t-4 border-syntra-accent">
+    <div class="container mx-auto px-6 text-center">
+      <p class="text-slate-400 text-sm mb-4">Syntra Refining Corp. • Observer Portal</p>
+      <div class="flex justify-center gap-8 text-xs text-slate-500 font-mono">
+        <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+        <a href="index.html" class="hover:text-white transition-colors">Main Site</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Demo tokens (hardcoded for front-end demo)
+    const VALID_TOKENS = ['OBSERVER123', 'SYNTRA2027', 'DEMO2026'];
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const token = document.getElementById('accessToken').value.trim().toUpperCase();
+      const errorMsg = document.getElementById('errorMessage');
+
+      if (VALID_TOKENS.includes(token)) {
+        // Valid token - show dashboard
+        document.getElementById('loginSection').classList.add('hidden');
+        document.getElementById('dashboardSection').classList.remove('hidden');
+        errorMsg.classList.add('hidden');
+
+        // Store session (for demo purposes only)
+        sessionStorage.setItem('observerToken', token);
+      } else {
+        // Invalid token - show error
+        errorMsg.classList.remove('hidden');
+      }
+    }
+
+    function handleLogout() {
+      sessionStorage.removeItem('observerToken');
+      document.getElementById('loginSection').classList.remove('hidden');
+      document.getElementById('dashboardSection').classList.add('hidden');
+      document.getElementById('accessToken').value = '';
+      document.getElementById('errorMessage').classList.add('hidden');
+    }
+
+    // Check if already logged in on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const storedToken = sessionStorage.getItem('observerToken');
+      if (storedToken && VALID_TOKENS.includes(storedToken)) {
+        document.getElementById('loginSection').classList.add('hidden');
+        document.getElementById('dashboardSection').classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terms of Service | Syntra Refining</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,105 +13,165 @@
           colors: {
             syntra: {
               base: '#F8FAFC',
+              surface: '#FFFFFF',
               text: '#0F172A',
               midnight: '#0B1120',
               accent: '#FFD700',
+              amber: '#D97706',
               border: '#E2E8F0',
-            }
+            },
           },
           fontFamily: {
             sans: ['Inter','sans-serif'],
             head: ['Oswald','sans-serif'],
             mono: ['JetBrains Mono','monospace'],
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    };
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body class="bg-syntra-base text-syntra-text font-sans antialiased">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    .logo-container { cursor: pointer; }
+    .logo-outer { transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s; }
+    .logo-inner { transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1), background-color 0.3s; }
+    .logo-container:hover .logo-outer { transform: rotate(0deg); border-color:#D97706; }
+  </style>
+</head>
+
+<body class="bg-syntra-base text-syntra-text font-sans antialiased">
+  <!-- TOP TICKER -->
+  <div class="bg-syntra-text text-white py-1.5 border-b border-white/10 text-[10px] md:text-xs font-mono tracking-wide z-50 relative">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <div class="flex items-center gap-6">
+        <span class="flex items-center gap-2 text-syntra-accent font-bold">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+          </span>
+          LEGAL NODE: ONLINE
+        </span>
+        <span class="hidden md:block text-slate-400">LOC: DARTMOUTH, NOVA SCOTIA</span>
+      </div>
+      <div class="hidden md:flex items-center gap-4 text-slate-400">
+        <a href="index.html#contact" class="hover:text-syntra-accent transition-colors">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
   <nav class="bg-white border-b border-syntra-border">
     <div class="container mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3">
-        <div class="w-8 h-8 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
-          <div class="w-4 h-4 bg-syntra-accent transform -rotate-45"></div>
+      <a href="index.html" class="logo-container flex items-center gap-3 group">
+        <div class="logo-outer w-10 h-10 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
+          <div class="logo-inner w-4 h-4 bg-syntra-accent transform -rotate-45"></div>
         </div>
-        <span class="font-head font-bold text-xl tracking-tight">SYNTRA REFINING CORP</span>
+        <div class="leading-none">
+          <div class="font-head font-bold text-2xl tracking-tight text-syntra-text">SYNTRA</div>
+          <div class="font-head text-[0.65rem] font-bold text-syntra-amber tracking-[0.2em] uppercase mt-1">REFINING CORP</div>
+        </div>
       </a>
     </div>
   </nav>
 
+  <!-- CONTENT -->
   <main class="container mx-auto px-6 py-16 max-w-3xl">
     <p class="font-mono text-xs text-syntra-text/60 uppercase tracking-[0.25em] mb-3">Terms</p>
     <h1 class="font-head text-4xl font-bold uppercase mb-6">Terms of Service</h1>
     <p class="text-sm text-slate-600 mb-6">
-      These Terms of Service (“Terms”) govern your use of the Syntra Refining Corp. (“Syntra”) website,
-      partner portals, and any related online services (collectively, the “Services”).
-      By accessing or using the Services, you agree to these Terms.
+      These Terms of Service ("Terms") govern your use of the Syntra Refining Corp. ("Syntra") website, partner portals, and any related online services (collectively, the "Services"). By accessing or using the Services, you agree to these Terms.
     </p>
 
     <h2 class="font-head text-2xl font-bold mt-10 mb-3">1. Use of the services</h2>
     <p class="text-sm text-slate-700">
-      The Services are provided for informational and business-to-business purposes. You agree not to misuse
-      the Services, attempt to gain unauthorized access, or interfere with their normal operation.
+      The Services are provided for informational and business-to-business purposes. You agree not to misuse the Services, attempt to gain unauthorized access, or interfere with their normal operation.
     </p>
 
     <h2 class="font-head text-2xl font-bold mt-10 mb-3">2. No investment or technical advice</h2>
     <p class="text-sm text-slate-700">
-      Content provided through the Services, including technical overviews, roadmaps, and investor materials,
-      is for general information only and does not constitute investment, legal, engineering, or other professional advice.
+      Content provided through the Services, including technical overviews, roadmaps, and investor materials, is for general information only and does not constitute investment, legal, engineering, or other professional advice.
     </p>
 
     <h2 class="font-head text-2xl font-bold mt-10 mb-3">3. Confidential information</h2>
     <p class="text-sm text-slate-700 mb-3">
-      Certain areas of the Services (such as Observer or data room access) may be subject to separate non-disclosure
-      agreements (NDAs) or commercial contracts. In case of conflict, those agreements govern.
+      Certain areas of the Services (such as Observer or data room access) may be subject to separate non-disclosure agreements (NDAs) or commercial contracts. In case of conflict, those agreements govern.
     </p>
 
     <h2 class="font-head text-2xl font-bold mt-10 mb-3">4. Intellectual property</h2>
     <p class="text-sm text-slate-700 mb-3">
-      All content, trademarks, logos, and technology associated with the Services are owned or licensed by Syntra.
-      Except as explicitly permitted, you may not copy, modify, or redistribute any content without prior written consent.
+      All content, trademarks, logos, and technology associated with the Services are owned or licensed by Syntra. Except as explicitly permitted, you may not copy, modify, or redistribute any content without prior written consent.
     </p>
 
-    <h2 class="font-head text-2xl font-bold mt-10 mb-3">5. Disclaimer &amp; limitation of liability</h2>
+    <h2 class="font-head text-2xl font-bold mt-10 mb-3">5. Disclaimer & limitation of liability</h2>
     <p class="text-sm text-slate-700 mb-3">
-      The Services are provided “as is” and “as available” without warranties of any kind. To the maximum extent
-      permitted by law, Syntra disclaims all liability for any indirect, incidental, or consequential damages
-      arising from use of the Services.
+      The Services are provided "as is" and "as available" without warranties of any kind. To the maximum extent permitted by law, Syntra disclaims all liability for any indirect, incidental, or consequential damages arising from use of the Services.
     </p>
 
     <h2 class="font-head text-2xl font-bold mt-10 mb-3">6. Governing law</h2>
     <p class="text-sm text-slate-700 mb-3">
-      These Terms are governed by the laws of the Province of Nova Scotia and the federal laws of Canada applicable therein,
-      without regard to conflict-of-law principles.
+      These Terms are governed by the laws of the Province of Nova Scotia and the federal laws of Canada applicable therein, without regard to conflict-of-law principles.
     </p>
 
     <h2 class="font-head text-2xl font-bold mt-10 mb-3">7. Contact</h2>
     <p class="text-sm text-slate-700 mb-10">
-      For questions about these Terms, contact us at 
-      <a href="mailto:Info@syntrarefining.com" class="text-sky-700 hover:text-sky-900">legal@syntrarefining.com</a>.
+      For questions about these Terms, contact us at
+      <a href="mailto:legal@syntrarefining.com" class="text-syntra-text underline hover:text-syntra-amber">legal@syntrarefining.com</a>.
     </p>
 
     <p class="text-xs text-slate-500 font-mono">Last updated: 2026-01-01</p>
   </main>
 
-  <footer class="bg-syntra-midnight text-white py-8 mt-12">
-    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-mono">
-      <p>&copy; 2026 Syntra Refining Corp.</p>
-      <div class="flex gap-6">
-        <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
-        <a href="terms.html" class="hover:text-white">Terms of Service</a>
-        <a href="index.html" class="hover:text-white">Back to Site</a>
+  <!-- FOOTER -->
+  <footer class="bg-syntra-midnight text-white py-16 border-t-4 border-syntra-accent mt-8">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-12 gap-12 mb-16">
+        <div class="md:col-span-4 space-y-6">
+          <a href="index.html" class="logo-container flex items-center gap-4 group">
+            <div class="logo-outer w-12 h-12 border-[3px] border-white transform rotate-45 flex items-center justify-center">
+              <div class="logo-inner w-5 h-5 bg-white transform -rotate-45"></div>
+            </div>
+            <div class="leading-none flex flex-col justify-center">
+              <div class="font-head font-bold text-3xl tracking-tighter text-white leading-none">SYNTRA</div>
+              <div class="font-head text-[0.7rem] font-bold text-syntra-accent tracking-[0.2em] uppercase leading-none mt-1">REFINING CORP</div>
+            </div>
+          </a>
+          <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+            North America's Critical Minerals Infrastructure.<br>Dartmouth, NS, Canada.
+          </p>
+        </div>
+
+        <div class="md:col-span-4 space-y-6">
+          <h4 class="font-head font-bold uppercase tracking-widest text-sm text-white">Corporate</h4>
+          <ul class="space-y-4 text-slate-400 text-sm">
+            <li><a href="index.html#about" class="hover:text-syntra-accent transition-colors">Leadership</a></li>
+            <li><a href="careers.html" class="hover:text-syntra-accent transition-colors">Careers</a></li>
+            <li><a href="#" class="hover:text-syntra-accent transition-colors">Investor Relations</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-4 space-y-6">
+          <h4 class="font-head font-bold uppercase tracking-widest text-sm text-white">Commercial</h4>
+          <ul class="space-y-4 text-slate-400 text-sm">
+            <li><a href="index.html#contact" class="hover:text-syntra-accent transition-colors">Commercial Inquiries</a></li>
+            <li><a href="supplier.html" class="hover:text-syntra-accent transition-colors">Supplier Portal</a></li>
+            <li><a href="observer.html" class="hover:text-syntra-accent transition-colors">Observer Portal</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 font-mono">
+        <p>&copy; 2026 Syntra Refining Corp. All Rights Reserved.</p>
+        <div class="flex gap-8">
+          <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+          <a href="index.html" class="hover:text-white transition-colors">Back to Site</a>
+        </div>
       </div>
     </div>
   </footer>
-
-  <script>lucide.createIcons();</script>
 </body>
 </html>
