@@ -148,7 +148,7 @@
         <p class="font-mono text-xs text-slate-400 tracking-widest uppercase mb-4">Contact</p>
         <p class="text-xl mb-8">careers@syntrarefining.com</p>
         <p class="font-mono text-xs text-slate-400 tracking-widest uppercase mb-4">Location</p>
-        <p class="text-xl">Dartmouth, Nova Scotia<br>Canada</p>
+        <p class="text-xl">Halifax, Nova Scotia<br>Canada</p>
       </div>
     </div>
   </div>
@@ -180,9 +180,9 @@
             <a href="#roles" class="px-8 py-4 bg-syntra-accent text-syntra-text font-head font-bold text-lg uppercase tracking-wide hover:bg-yellow-400 transition-colors flex items-center justify-center gap-3">
               View Open Roles
             </a>
-            <a href="mailto:careers@syntrarefining.com?subject=General%20Application" class="px-8 py-4 bg-white border border-syntra-border text-syntra-text font-head font-bold text-lg uppercase tracking-wide hover:bg-slate-50 transition-colors flex items-center justify-center gap-3">
+            <button onclick="openApplicationModal('General Application')" class="px-8 py-4 bg-white border border-syntra-border text-syntra-text font-head font-bold text-lg uppercase tracking-wide hover:bg-slate-50 transition-colors flex items-center justify-center gap-3">
               General Application
-            </a>
+            </button>
           </div>
         </div>
 
@@ -277,37 +277,54 @@
       </div>
 
       <div class="space-y-6">
-        <!-- Role 1 -->
+        <!-- Role 1: Mechanical Engineer -->
         <article class="bg-syntra-base border border-syntra-border rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <h3 class="font-head text-2xl font-bold uppercase">Process Development Engineer</h3>
-            <p class="font-mono text-[11px] text-syntra-muted uppercase mt-1">Full-time • Dartmouth, NS • Hybrid</p>
+            <h3 class="font-head text-2xl font-bold uppercase">Mechanical Engineer</h3>
+            <p class="font-mono text-[11px] text-syntra-muted uppercase mt-1">Full-time • Halifax, NS • Hybrid</p>
             <p class="text-sm text-slate-600 mt-3 max-w-xl">
-              Lead bench and pilot-scale experiments, support flowsheet design for Li / Ni / Co systems, and work closely with the SynCore™ digital twin team to translate lab data into operating windows.
+              Design and oversee mechanical systems for hydrometallurgical processing equipment, piping systems, and material handling infrastructure. Support facility expansion projects and equipment commissioning.
             </p>
           </div>
           <div class="flex flex-col items-start md:items-end gap-2">
-            <span class="text-[11px] font-mono text-slate-500 uppercase">Process & Chemistry</span>
-            <a href="mailto:careers@syntrarefining.com?subject=Application%20-%20Process%20Development%20Engineer" class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors">
-              Apply via Email
-            </a>
+            <span class="text-[11px] font-mono text-slate-500 uppercase">Engineering</span>
+            <button onclick="openApplicationModal('Mechanical Engineer')" class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors">
+              Apply Now
+            </button>
           </div>
         </article>
 
-        <!-- Role 2 -->
+        <!-- Role 2: Control Systems Technologist -->
         <article class="bg-syntra-base border border-syntra-border rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <h3 class="font-head text-2xl font-bold uppercase">Automation & Controls Engineer</h3>
-            <p class="font-mono text-[11px] text-syntra-muted uppercase mt-1">Full-time • Dartmouth, NS • Hybrid</p>
+            <h3 class="font-head text-2xl font-bold uppercase">Control Systems Technologist</h3>
+            <p class="font-mono text-[11px] text-syntra-muted uppercase mt-1">Full-time • Halifax, NS • Hybrid</p>
             <p class="text-sm text-slate-600 mt-3 max-w-xl">
-              Own PLC/DCS configuration, instrumentation integration, and controls logic for pilot and production systems. Experience with industrial networking and safety systems is an asset.
+              Implement and maintain PLC/DCS systems, configure SCADA interfaces, and support integration with the SynCore™ digital twin platform. Troubleshoot instrumentation and control loops for pilot and production operations.
             </p>
           </div>
           <div class="flex flex-col items-start md:items-end gap-2">
             <span class="text-[11px] font-mono text-slate-500 uppercase">Controls & SynCore™</span>
-            <a href="mailto:careers@syntrarefining.com?subject=Application%20-%20Automation%20%26%20Controls%20Engineer" class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors">
-              Apply via Email
-            </a>
+            <button onclick="openApplicationModal('Control Systems Technologist')" class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors">
+              Apply Now
+            </button>
+          </div>
+        </article>
+
+        <!-- Role 3: Mechanical Designer (3D) -->
+        <article class="bg-syntra-base border border-syntra-border rounded-lg p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h3 class="font-head text-2xl font-bold uppercase">Mechanical Designer (3D)</h3>
+            <p class="font-mono text-[11px] text-syntra-muted uppercase mt-1">Full-time • Halifax, NS • Hybrid</p>
+            <p class="text-sm text-slate-600 mt-3 max-w-xl">
+              Create detailed 3D models and drawings for process equipment, piping layouts, and facility infrastructure using CAD software. Support engineering team with design documentation and as-built drawings for refining operations.
+            </p>
+          </div>
+          <div class="flex flex-col items-start md:items-end gap-2">
+            <span class="text-[11px] font-mono text-slate-500 uppercase">Design & Engineering</span>
+            <button onclick="openApplicationModal('Mechanical Designer (3D)')" class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors">
+              Apply Now
+            </button>
           </div>
         </article>
 
@@ -319,9 +336,9 @@
               We regularly build roles around exceptional people. If you've shipped real systems in mining, refining, industrial software, or robotics, we'd still like to hear from you.
             </p>
           </div>
-          <a href="mailto:careers@syntrarefining.com?subject=General%20Application" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-syntra-text text-xs font-mono uppercase rounded hover:bg-syntra-accent transition-colors">
+          <button onclick="openApplicationModal('General Application')" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-syntra-text text-xs font-mono uppercase rounded hover:bg-syntra-accent transition-colors">
             Share your profile
-          </a>
+          </button>
         </article>
       </div>
     </div>
@@ -371,7 +388,7 @@
             </div>
           </a>
           <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
-            North America's Critical Minerals Infrastructure.<br>Dartmouth, NS, Canada.
+            North America's Critical Minerals Infrastructure.<br>Halifax, NS, Canada.
           </p>
         </div>
 
@@ -404,12 +421,111 @@
     </div>
   </footer>
 
+  <!-- APPLICATION MODAL -->
+  <div id="applicationModal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-lg shadow-2xl max-w-2xl w-full my-8">
+      <div class="border-b border-syntra-border p-6 flex justify-between items-center bg-syntra-midnight text-white">
+        <div>
+          <h3 class="font-head text-2xl font-bold uppercase" id="modalRoleTitle">Apply for Position</h3>
+          <p class="font-mono text-xs text-slate-400 mt-1">Fill out the form below to submit your application</p>
+        </div>
+        <button onclick="closeApplicationModal()" class="text-white hover:text-syntra-accent transition-colors p-2" aria-label="Close modal">
+          <div class="close-x"></div>
+        </button>
+      </div>
+
+      <form id="applicationForm" action="https://formspree.io/f/YOUR_FORM_ID_CAREERS" method="POST" enctype="multipart/form-data" class="p-6 space-y-4">
+        <input type="hidden" id="roleInput" name="role" />
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label for="firstName" class="block text-sm font-mono uppercase text-slate-600 mb-2">First Name *</label>
+            <input type="text" id="firstName" name="firstName" required
+              class="w-full px-4 py-3 border border-syntra-border rounded focus:outline-none focus:ring-2 focus:ring-syntra-accent text-sm">
+          </div>
+          <div>
+            <label for="lastName" class="block text-sm font-mono uppercase text-slate-600 mb-2">Last Name *</label>
+            <input type="text" id="lastName" name="lastName" required
+              class="w-full px-4 py-3 border border-syntra-border rounded focus:outline-none focus:ring-2 focus:ring-syntra-accent text-sm">
+          </div>
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-mono uppercase text-slate-600 mb-2">Email Address *</label>
+          <input type="email" id="email" name="email" required
+            class="w-full px-4 py-3 border border-syntra-border rounded focus:outline-none focus:ring-2 focus:ring-syntra-accent text-sm">
+        </div>
+
+        <div>
+          <label for="phone" class="block text-sm font-mono uppercase text-slate-600 mb-2">Phone Number</label>
+          <input type="tel" id="phone" name="phone"
+            class="w-full px-4 py-3 border border-syntra-border rounded focus:outline-none focus:ring-2 focus:ring-syntra-accent text-sm">
+        </div>
+
+        <div>
+          <label for="linkedin" class="block text-sm font-mono uppercase text-slate-600 mb-2">LinkedIn Profile</label>
+          <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile"
+            class="w-full px-4 py-3 border border-syntra-border rounded focus:outline-none focus:ring-2 focus:ring-syntra-accent text-sm">
+        </div>
+
+        <div>
+          <label for="resume" class="block text-sm font-mono uppercase text-slate-600 mb-2">Resume/CV *</label>
+          <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required
+            class="w-full px-4 py-3 border border-syntra-border rounded focus:outline-none focus:ring-2 focus:ring-syntra-accent text-sm file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-mono file:bg-syntra-accent file:text-syntra-text hover:file:bg-yellow-400 file:cursor-pointer">
+          <p class="text-xs text-slate-500 mt-1">Upload your resume (PDF, DOC, or DOCX - max 5MB)</p>
+        </div>
+
+        <div>
+          <label for="coverLetter" class="block text-sm font-mono uppercase text-slate-600 mb-2">Cover Letter / Why Syntra? *</label>
+          <textarea id="coverLetter" name="coverLetter" rows="6" required
+            class="w-full px-4 py-3 border border-syntra-border rounded focus:outline-none focus:ring-2 focus:ring-syntra-accent text-sm resize-none"
+            placeholder="Tell us why you're interested in this role and what you'd bring to Syntra..."></textarea>
+        </div>
+
+        <div class="flex gap-4 pt-4">
+          <button type="button" onclick="closeApplicationModal()"
+            class="flex-1 px-6 py-3 border border-syntra-border text-syntra-text font-mono text-sm uppercase rounded hover:bg-slate-50 transition-colors">
+            Cancel
+          </button>
+          <button type="submit" id="submitBtn"
+            class="flex-1 px-6 py-3 bg-syntra-accent text-syntra-text font-head font-bold text-sm uppercase rounded hover:bg-yellow-400 transition-colors">
+            Submit Application
+          </button>
+        </div>
+
+        <div id="formMessage" class="hidden p-4 rounded text-sm"></div>
+      </form>
+    </div>
+  </div>
+
   <script>
     function toggleMobileMenu() {
       const menu = document.getElementById('mobileMenu');
       menu.classList.toggle('hidden');
       menu.classList.toggle('flex');
     }
+
+    function openApplicationModal(roleName) {
+      document.getElementById('modalRoleTitle').textContent = `Apply for ${roleName}`;
+      document.getElementById('roleInput').value = roleName;
+      document.getElementById('applicationModal').classList.remove('hidden');
+      document.getElementById('applicationModal').classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeApplicationModal() {
+      document.getElementById('applicationModal').classList.add('hidden');
+      document.getElementById('applicationModal').classList.remove('flex');
+      document.body.style.overflow = '';
+      document.getElementById('applicationForm').reset();
+      document.getElementById('formMessage').classList.add('hidden');
+    }
+
+    document.getElementById('applicationModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeApplicationModal();
+      }
+    });
   </script>
 </body>
 </html>

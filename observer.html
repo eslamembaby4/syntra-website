@@ -90,33 +90,28 @@
           <p class="text-sm text-slate-500 mt-2">Enter your access token to continue</p>
         </div>
 
-        <form onsubmit="handleLogin(event)" class="space-y-4">
+        <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
           <div>
             <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Access Token</label>
             <input
               type="text"
-              id="accessToken"
-              class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors font-mono"
+              id="loginToken"
+              class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm font-mono focus:border-syntra-accent focus:outline-none transition-colors"
               placeholder="Enter your token..."
               required
             />
           </div>
 
-          <div id="errorMessage" class="hidden text-sm text-red-600 bg-red-50 border border-red-200 rounded p-3">
-            Invalid access token. Please try again.
-          </div>
+          <div id="loginError" class="hidden bg-red-50 border border-red-200 rounded p-3 text-sm text-red-600"></div>
 
           <button type="submit" class="w-full bg-syntra-text text-white font-head font-bold uppercase py-3 hover:bg-black transition-colors">
             Enter Portal
           </button>
         </form>
 
-        <div class="mt-6 pt-6 border-t border-syntra-border">
-          <p class="text-xs text-slate-500 text-center">
-            Need access? <a href="index.html#contact" class="text-syntra-tech hover:text-syntra-amber underline">Request Observer Status</a>
-          </p>
-          <p class="text-[10px] text-slate-400 text-center mt-4">
-            Demo tokens: <span class="font-mono">OBSERVER123</span> or <span class="font-mono">SYNTRA2027</span>
+        <div class="mt-6 pt-6 border-t border-syntra-border text-center">
+          <p class="text-xs text-slate-500">
+            Need access? <a href="index.html#partner-ecosystem-access" class="text-syntra-tech hover:underline font-semibold">Request Observer Status</a>
           </p>
         </div>
       </div>
@@ -152,29 +147,30 @@
         </div>
 
         <div class="bg-white border border-syntra-border rounded-lg p-6">
-          <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center justify-between mb-2">
             <h3 class="font-mono text-xs uppercase text-syntra-muted">Current Capacity</h3>
           </div>
+          <p class="text-xs font-mono text-syntra-accent uppercase mb-2">Planned Demonstration Capacity</p>
           <p class="font-head text-3xl font-bold">1,000 <span class="text-lg text-slate-500">MT/YR</span></p>
-          <p class="text-sm text-slate-500 mt-2">Dartmouth facility</p>
+          <p class="text-sm text-slate-500 mt-2">Demonstration facility (planned)</p>
         </div>
 
         <div class="bg-white border border-syntra-border rounded-lg p-6">
           <div class="flex items-center justify-between mb-4">
             <h3 class="font-mono text-xs uppercase text-syntra-muted">Target Expansion</h3>
           </div>
-          <p class="font-head text-3xl font-bold">10,000 <span class="text-lg text-slate-500">MT/YR</span></p>
-          <p class="text-sm text-slate-500 mt-2">By Q2 2027</p>
+          <p class="font-head text-3xl font-bold">50,000 <span class="text-lg text-slate-500">MT/YR</span></p>
+          <p class="text-sm text-slate-500 mt-2">By 2030</p>
         </div>
       </div>
 
-      <!-- Facility Overview -->
+      <!-- Demonstration Facility Overview -->
       <div class="bg-white border border-syntra-border rounded-lg p-8 mb-12">
-        <h2 class="font-head text-2xl font-bold uppercase mb-6">Facility Overview</h2>
+        <h2 class="font-head text-2xl font-bold uppercase mb-6">Demonstration Facility Overview</h2>
         <div class="space-y-4 text-sm">
           <div class="flex justify-between py-3 border-b border-syntra-border">
             <span class="font-mono text-syntra-muted">Location</span>
-            <span class="font-semibold">Dartmouth, Nova Scotia, Canada</span>
+            <span class="font-semibold">Halifax, Nova Scotia, Canada</span>
           </div>
           <div class="flex justify-between py-3 border-b border-syntra-border">
             <span class="font-mono text-syntra-muted">Technology Platform</span>
@@ -190,7 +186,7 @@
           </div>
           <div class="flex justify-between py-3">
             <span class="font-mono text-syntra-muted">Environmental Approach</span>
-            <span class="font-semibold">Zero Liquid Discharge</span>
+            <span class="font-semibold">Proprietary zero-waste closed-loop system</span>
           </div>
         </div>
       </div>
@@ -218,7 +214,7 @@
         <h2 class="font-head text-2xl font-bold uppercase mb-6">ESG & Compliance Notes</h2>
         <div class="prose prose-sm max-w-none">
           <p class="text-slate-600 mb-4">
-            Syntra operates in full compliance with Canadian federal and provincial environmental regulations. Our zero liquid discharge approach eliminates wastewater concerns, and all process emissions are monitored in real-time via the SynCore™ platform.
+            Syntra operates in full compliance with Canadian federal and provincial environmental regulations. Our proprietary zero-waste closed-loop system eliminates wastewater concerns, and all process emissions are monitored in real-time via the SynCore™ platform.
           </p>
           <ul class="list-disc pl-6 text-slate-600 space-y-2">
             <li>Permitting: Active permits in Nova Scotia for hydrometallurgical processing</li>
@@ -226,7 +222,7 @@
             <li>Community: Ongoing engagement with local stakeholders and Indigenous communities</li>
           </ul>
           <p class="text-xs text-slate-500 mt-6">
-            For detailed ESG reports and audit documentation, contact <a href="mailto:commercial@syntrarefining.com" class="text-syntra-tech underline">commercial@syntrarefining.com</a>.
+            For detailed ESG reports and audit documentation, submit an inquiry through the contact form.
           </p>
         </div>
       </div>
@@ -245,41 +241,43 @@
     </div>
   </footer>
 
+  <!-- Supabase JS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-client.js"></script>
+
   <script>
-    // Demo tokens (hardcoded for front-end demo)
-    const VALID_TOKENS = ['OBSERVER123', 'SYNTRA2027', 'DEMO2026'];
+    const VALID_TOKENS = ['OBSERVER2025', 'OBS-DEMO-001', 'OBS-2025-DEMO'];
 
     function handleLogin(event) {
       event.preventDefault();
-      const token = document.getElementById('accessToken').value.trim().toUpperCase();
-      const errorMsg = document.getElementById('errorMessage');
+
+      const token = document.getElementById('loginToken').value.trim();
+      const errorDiv = document.getElementById('loginError');
 
       if (VALID_TOKENS.includes(token)) {
-        // Valid token - show dashboard
+        sessionStorage.setItem('observer_authenticated', 'true');
+
         document.getElementById('loginSection').classList.add('hidden');
         document.getElementById('dashboardSection').classList.remove('hidden');
-        errorMsg.classList.add('hidden');
-
-        // Store session (for demo purposes only)
-        sessionStorage.setItem('observerToken', token);
       } else {
-        // Invalid token - show error
-        errorMsg.classList.remove('hidden');
+        errorDiv.textContent = 'Invalid access token. Please check your credentials and try again.';
+        errorDiv.classList.remove('hidden');
       }
     }
 
     function handleLogout() {
-      sessionStorage.removeItem('observerToken');
-      document.getElementById('loginSection').classList.remove('hidden');
+      sessionStorage.removeItem('observer_authenticated');
+
       document.getElementById('dashboardSection').classList.add('hidden');
-      document.getElementById('accessToken').value = '';
-      document.getElementById('errorMessage').classList.add('hidden');
+      document.getElementById('loginSection').classList.remove('hidden');
+
+      document.getElementById('loginForm').reset();
+      document.getElementById('loginError').classList.add('hidden');
     }
 
-    // Check if already logged in on page load
     window.addEventListener('DOMContentLoaded', () => {
-      const storedToken = sessionStorage.getItem('observerToken');
-      if (storedToken && VALID_TOKENS.includes(storedToken)) {
+      const isAuthenticated = sessionStorage.getItem('observer_authenticated');
+      if (isAuthenticated === 'true') {
         document.getElementById('loginSection').classList.add('hidden');
         document.getElementById('dashboardSection').classList.remove('hidden');
       }

@@ -87,23 +87,23 @@
         <div class="text-center mb-6">
           <div class="inline-block w-12 h-12 bg-syntra-accent rounded-full flex items-center justify-center text-syntra-text font-mono font-bold text-xl mb-3">S</div>
           <h1 class="font-head text-3xl font-bold uppercase">Supplier Portal</h1>
-          <p class="text-sm text-slate-500 mt-2">Enter your supplier access code</p>
+          <p class="text-sm text-slate-500 mt-2">Enter your access token to continue</p>
         </div>
 
         <form onsubmit="handleLogin(event)" class="space-y-4">
           <div>
-            <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Access Code</label>
+            <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Access Token</label>
             <input
               type="text"
               id="accessCode"
               class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors font-mono"
-              placeholder="Enter your code..."
+              placeholder="Enter your token..."
               required
             />
           </div>
 
           <div id="errorMessage" class="hidden text-sm text-red-600 bg-red-50 border border-red-200 rounded p-3">
-            Invalid access code. Please try again.
+            Invalid access token. Please try again.
           </div>
 
           <button type="submit" class="w-full bg-syntra-text text-white font-head font-bold uppercase py-3 hover:bg-black transition-colors">
@@ -111,12 +111,9 @@
           </button>
         </form>
 
-        <div class="mt-6 pt-6 border-t border-syntra-border">
-          <p class="text-xs text-slate-500 text-center">
-            New supplier? <a href="index.html#contact" class="text-syntra-tech hover:text-syntra-amber underline">Register Your Organization</a>
-          </p>
-          <p class="text-[10px] text-slate-400 text-center mt-4">
-            Demo codes: <span class="font-mono">SUPPLIER001</span> or <span class="font-mono">DEMO2026</span>
+        <div class="mt-6 pt-6 border-t border-syntra-border text-center">
+          <p class="text-xs text-slate-500">
+            Need access? <a href="index.html#partner-ecosystem-access" class="text-syntra-tech hover:underline font-semibold">Register as Supplier</a>
           </p>
         </div>
       </div>
@@ -152,7 +149,7 @@
           <div class="border border-syntra-border rounded-lg p-6">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div>
-                <h3 class="font-head text-xl font-bold uppercase mb-2">Li-ion Black Mass Supply</h3>
+                <h3 class="font-head text-xl font-bold uppercase mb-2">LI-ION BLACK MASS SUPPLY</h3>
                 <p class="text-sm text-slate-600 mb-2">Seeking consistent black mass feedstock, 50-200 MT/month</p>
                 <div class="flex gap-3 text-xs font-mono">
                   <span class="px-2 py-1 bg-slate-100 rounded">BLACK MASS</span>
@@ -162,12 +159,12 @@
               </div>
               <div class="flex flex-col gap-2">
                 <p class="text-xs text-slate-500 mb-1">Closes: Feb 28, 2027</p>
-                <a
-                  href="mailto:commercial@syntrarefining.com?subject=RFQ%20Response%3A%20Black%20Mass%20Supply&body=Company%20Name%3A%0A%0AContact%20Person%3A%0A%0AProposed%20Volume%20(MT%2Fmonth)%3A%0A%0AIndicative%20Pricing%3A%0A%0AAdditional%20Notes%3A"
-                  class="px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors text-center"
+                <button
+                  onclick="openRFQModal('LI-ION BLACK MASS SUPPLY')"
+                  class="px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors"
                 >
                   Submit Response
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -176,7 +173,7 @@
           <div class="border border-syntra-border rounded-lg p-6">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div>
-                <h3 class="font-head text-xl font-bold uppercase mb-2">Nickel Sulfate Concentrates</h3>
+                <h3 class="font-head text-xl font-bold uppercase mb-2">NICKEL SULFATE CONCENTRATES</h3>
                 <p class="text-sm text-slate-600 mb-2">Spot purchases available, min 10 MT per shipment</p>
                 <div class="flex gap-3 text-xs font-mono">
                   <span class="px-2 py-1 bg-slate-100 rounded">CONCENTRATES</span>
@@ -186,12 +183,12 @@
               </div>
               <div class="flex flex-col gap-2">
                 <p class="text-xs text-slate-500 mb-1">Ongoing</p>
-                <a
-                  href="mailto:commercial@syntrarefining.com?subject=RFQ%20Response%3A%20Nickel%20Concentrates&body=Company%20Name%3A%0A%0AContact%20Person%3A%0A%0AAvailable%20Volume%20(MT)%3A%0A%0AChemistry%20%26%20Grade%3A%0A%0AIndicative%20Pricing%3A"
-                  class="px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors text-center"
+                <button
+                  onclick="openRFQModal('NICKEL SULFATE CONCENTRATES')"
+                  class="px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-black transition-colors"
                 >
                   Submit Response
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -201,7 +198,7 @@
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div>
                 <h3 class="font-head text-xl font-bold uppercase mb-2">Process Scrap — Cathode Manufacturing</h3>
-                <p class="text-sm text-slate-600 mb-2">Closed for review, awarded Q4 2026</p>
+                <p class="text-sm text-slate-600 mb-2">Closed for review, coming in Q4 2026</p>
                 <div class="flex gap-3 text-xs font-mono">
                   <span class="px-2 py-1 bg-slate-200 rounded">PROCESS SCRAP</span>
                   <span class="px-2 py-1 bg-slate-400 text-white rounded">CLOSED</span>
@@ -220,12 +217,12 @@
             Send spec sheets, assay reports, or other documentation to our commercial team.
           </p>
 
-          <form onsubmit="handleDocSubmit(event)" class="space-y-4">
+          <form action="https://formspree.io/f/YOUR_FORM_ID_SUPPLIER_DOCS" method="POST" class="space-y-4">
             <div>
               <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Company Name</label>
               <input
                 type="text"
-                id="companyName"
+                name="companyName"
                 class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
                 placeholder="Your company"
                 required
@@ -236,7 +233,7 @@
               <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Contact Email</label>
               <input
                 type="email"
-                id="contactEmail"
+                name="email"
                 class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
                 placeholder="you@company.com"
                 required
@@ -246,7 +243,7 @@
             <div>
               <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Document Type</label>
               <select
-                id="docType"
+                name="documentType"
                 class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
                 required
               >
@@ -262,7 +259,7 @@
             <div>
               <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Notes</label>
               <textarea
-                id="notes"
+                name="notes"
                 rows="3"
                 class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
                 placeholder="Brief description or notes..."
@@ -270,12 +267,12 @@
             </div>
 
             <button type="submit" class="w-full bg-syntra-text text-white font-head font-bold uppercase py-3 hover:bg-black transition-colors">
-              Send via Email
+              Submit Document Request
             </button>
           </form>
 
           <p class="text-xs text-slate-500 mt-4">
-            This will open your email client. Attach your documents to the email before sending.
+            Our team will contact you within 2 business days to arrange document exchange.
           </p>
         </div>
 
@@ -305,7 +302,7 @@
               <div>
                 <p class="font-mono text-xs text-syntra-accent uppercase mb-1">Location</p>
                 <p class="text-white">
-                  Dartmouth, Nova Scotia<br>Canada
+                  Halifax, Nova Scotia<br>Canada
                 </p>
               </div>
             </div>
@@ -354,6 +351,159 @@
     </div>
   </div>
 
+  <!-- RFQ RESPONSE MODAL -->
+  <div id="rfqModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-6">
+    <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="sticky top-0 bg-white border-b border-syntra-border p-6 flex justify-between items-start">
+        <div>
+          <h2 class="font-head text-2xl font-bold uppercase" id="rfqModalTitle">Submit Response</h2>
+          <p class="text-sm text-slate-500 mt-1">Provide your supply details and Syntra will follow up.</p>
+        </div>
+        <button onclick="closeRFQModal()" class="text-slate-400 hover:text-slate-600 text-2xl leading-none">&times;</button>
+      </div>
+
+      <form id="rfqResponseForm" action="https://formspree.io/f/YOUR_FORM_ID_SUPPLIER_RFQ" method="POST" class="p-6 space-y-4">
+        <input type="hidden" id="rfqName" name="rfqName" />
+
+        <div>
+          <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Company Name</label>
+          <input
+            type="text"
+            name="company"
+            class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+            placeholder="Your company"
+            required
+          />
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Contact Name</label>
+          <input
+            type="text"
+            name="contactName"
+            class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+            placeholder="John Smith"
+            required
+          />
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Email</label>
+          <input
+            type="email"
+            name="email"
+            class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+            placeholder="you@company.com"
+            required
+          />
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Phone</label>
+          <input
+            type="tel"
+            name="phone"
+            class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+            placeholder="+1 (555) 123-4567"
+          />
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Material / Product</label>
+          <input
+            type="text"
+            id="rfqMaterial"
+            name="material"
+            class="w-full bg-slate-100 border border-slate-200 rounded p-3 text-sm text-slate-600"
+            readonly
+          />
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Available Quantity</label>
+          <div class="flex gap-2">
+            <input
+              type="number"
+              name="quantity"
+              class="flex-1 bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+              placeholder="100"
+              required
+            />
+            <select
+              name="quantityUnit"
+              class="w-40 bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+              required
+            >
+              <option value="MT/month">MT/month</option>
+              <option value="MT/shipment">MT/shipment</option>
+              <option value="MT/year">MT/year</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Grade / Specs</label>
+          <textarea
+            name="grade"
+            rows="2"
+            class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+            placeholder="Material specifications, assay details..."
+          ></textarea>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Location / Origin</label>
+          <input
+            type="text"
+            name="location"
+            class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+            placeholder="City, Country"
+            required
+          />
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Pricing Structure</label>
+          <textarea
+            name="pricing"
+            rows="2"
+            class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+            placeholder="Your pricing details (optional)..."
+          ></textarea>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Lead Time</label>
+          <input
+            type="text"
+            name="leadTime"
+            class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+            placeholder="e.g., 30 days, immediate"
+          />
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Notes</label>
+          <textarea
+            name="notes"
+            rows="3"
+            class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors"
+            placeholder="Additional information, certifications, terms..."
+          ></textarea>
+        </div>
+
+        <div class="flex gap-3 pt-4">
+          <button type="submit" class="flex-1 bg-syntra-text text-white font-head font-bold uppercase py-3 hover:bg-black transition-colors">
+            Submit Response
+          </button>
+          <button type="button" onclick="closeRFQModal()" class="px-6 py-3 border border-syntra-border rounded font-head uppercase text-sm hover:bg-slate-50 transition-colors">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="bg-syntra-midnight text-white py-16 border-t-4 border-syntra-accent">
     <div class="container mx-auto px-6 text-center">
@@ -397,22 +547,35 @@
       document.getElementById('errorMessage').classList.add('hidden');
     }
 
-    function handleDocSubmit(event) {
-      event.preventDefault();
-
-      const company = document.getElementById('companyName').value;
-      const email = document.getElementById('contactEmail').value;
-      const docType = document.getElementById('docType').value;
-      const notes = document.getElementById('notes').value;
-
-      // Build mailto link with pre-filled content
-      const subject = encodeURIComponent(`Document Submission: ${docType}`);
-      const body = encodeURIComponent(
-        `Company Name: ${company}\n\nContact Email: ${email}\n\nDocument Type: ${docType}\n\nNotes:\n${notes}\n\n---\nPlease attach your documents to this email before sending.`
-      );
-
-      window.location.href = `mailto:commercial@syntrarefining.com?subject=${subject}&body=${body}`;
+    // RFQ Modal Functions
+    function openRFQModal(rfqName) {
+      document.getElementById('rfqName').value = rfqName;
+      document.getElementById('rfqModalTitle').textContent = `Submit Response — ${rfqName}`;
+      document.getElementById('rfqMaterial').value = rfqName;
+      document.getElementById('rfqModal').classList.remove('hidden');
+      document.getElementById('rfqResponseForm').reset();
+      document.getElementById('rfqName').value = rfqName;
+      document.getElementById('rfqMaterial').value = rfqName;
+      document.body.style.overflow = 'hidden';
     }
+
+    function closeRFQModal() {
+      document.getElementById('rfqModal').classList.add('hidden');
+      document.getElementById('rfqResponseForm').reset();
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !document.getElementById('rfqModal').classList.contains('hidden')) {
+        closeRFQModal();
+      }
+    });
+
+    document.getElementById('rfqModal').addEventListener('click', (e) => {
+      if (e.target.id === 'rfqModal') {
+        closeRFQModal();
+      }
+    });
 
     // Check if already logged in on page load
     window.addEventListener('DOMContentLoaded', () => {
