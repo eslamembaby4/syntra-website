@@ -1595,13 +1595,17 @@
 
                 const referenceId = data.reference_id;
 
-                await supabase.functions.invoke('send-form-notification', {
+                const emailResult = await supabase.functions.invoke('send-form-notification', {
                     body: {
                         formType,
                         referenceId,
                         formData
                     }
                 });
+
+                if (emailResult.error) {
+                    console.warn('Email notification failed:', emailResult.error);
+                }
 
                 formElement.innerHTML = `
                     <div class="bg-green-50 border-2 border-green-500 rounded-lg p-8 text-center">
