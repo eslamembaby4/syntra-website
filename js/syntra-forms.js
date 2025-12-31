@@ -1,359 +1,295 @@
 /**
- * Syntra Refining - Unified Form Submission Handler
+ * Syntra Refining - Universal Form Handler
+ * Auto-binds to all forms with [data-syntra-form] attribute
  *
- * This module provides a universal form submission system for all forms
- * across the Syntra Refining website. It handles:
- * - Form validation
- * - Loading states
- * - Database submission (Supabase)
- * - File uploads (for career applications)
- * - Email notifications (via Edge Function)
- * - Success/error messaging
+ * STRICT VALIDATION - Required fields matching database NOT NULL constraints:
+ * - form_type (from data-syntra-form attribute)
+ * - first_name (required)
+ * - email (required)
+ * - organization (required)
+ * - interest_type (required - from input OR data-interest attribute)
  *
- * Dependencies:
- * - Supabase JS SDK (loaded via CDN)
- * - supabase-client.js (provides window.syntraSupabase)
- *
- * Usage:
- *   SyntraForms.init('formId', {
- *     formType: 'partner_inquiry',
- *     interestType: 'Commercial Partnership',
- *     onSuccess: (data) => { ... },
- *     onError: (error) => { ... }
- *   });
+ * Standardized form_type values:
+ * - partner_inquiry
+ * - investor_inquiry
+ * - career_application
+ * - supplier_inquiry
+ * - supplier_document
+ * - tds_request
+ * - sds_inquiry
+ * - newsletter
  */
 
-(function(window) {
+(function() {
   'use strict';
 
-  const SyntraForms = {
+  const VALID_FORM_TYPES = [
+    'partner_inquiry',
+    'investor_inquiry',
+    'career_application',
+    'supplier_inquiry',
+    'supplier_document',
+    'tds_request',
+    'sds_inquiry',
+    'newsletter'
+  ];
 
-    /**
-     * Initialize form handler
-     * @param {string} formId - The form element ID
-     * @param {object} options - Configuration options
-     */
-    init: function(formId, options = {}) {
-      const form = document.getElementById(formId);
-      if (!form) {
-        console.error(`Form not found: ${formId}`);
+  function initForms() {
+    const forms = document.querySelectorAll('form[data-syntra-form]');
+
+    if (forms.length === 0) {
+      console.log('[Syntra Forms] No forms found with [data-syntra-form] attribute');
+      return;
+    }
+
+    console.log(`[Syntra Forms] Initializing ${forms.length} form(s)...`);
+
+    forms.forEach(form => {
+      const formType = form.getAttribute('data-syntra-form');
+      const defaultInterest = form.getAttribute('data-interest');
+
+      if (!formType) {
+        console.warn('[Syntra Forms] Form missing data-syntra-form value:', form);
         return;
       }
 
-      const config = {
-        formType: options.formType || 'contact_inquiry',
-        interestType: options.interestType || null,
-        hasFileUpload: options.hasFileUpload || false,
-        fileInputId: options.fileInputId || 'resume',
-        messageContainerId: options.messageContainerId || 'formMessage',
-        onSuccess: options.onSuccess || null,
-        onError: options.onError || null,
-        successMessage: options.successMessage || null,
-        customFieldMapping: options.customFieldMapping || {},
-      };
-
-      form.addEventListener('submit', (e) => this.handleSubmit(e, form, config));
-
-      console.log(`✓ Form initialized: ${formId} (type: ${config.formType})`);
-    },
-
-    /**
-     * Handle form submission
-     */
-    handleSubmit: async function(event, form, config) {
-      event.preventDefault();
-
-      const submitButton = form.querySelector('button[type="submit"]');
-      const originalButtonText = submitButton ? submitButton.textContent : '';
-
-      try {
-        // 1. Validate form
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
-
-        // 2. Set loading state
-        this.setLoadingState(submitButton, true);
-
-        // 3. Extract form data
-        const formData = this.extractFormData(form, config);
-
-        // 4. Handle file upload (for career applications)
-        if (config.hasFileUpload) {
-          const fileUploadResult = await this.handleFileUpload(form, config);
-          if (fileUploadResult.error) {
-            throw new Error(fileUploadResult.error);
-          }
-          formData.additional_data.resume_url = fileUploadResult.url;
-          formData.additional_data.resume_path = fileUploadResult.path;
-          formData.additional_data.resume_filename = fileUploadResult.filename;
-        }
-
-        // 5. Submit to database
-        const submissionResult = await this.submitToDatabase(formData);
-        if (submissionResult.error) {
-          throw new Error(submissionResult.error);
-        }
-
-        const referenceId = submissionResult.reference_id;
-
-        // 6. Send email notification (non-blocking)
-        this.sendEmailNotification(config.formType, referenceId, formData).catch(err => {
-          console.warn('Email notification failed (non-critical):', err);
-        });
-
-        // 7. Show success message
-        this.showSuccess(form, config, referenceId);
-
-        // 8. Call custom success callback
-        if (config.onSuccess) {
-          config.onSuccess({ referenceId, formData });
-        }
-
-      } catch (error) {
-        console.error('Form submission error:', error);
-
-        // Reset loading state
-        this.setLoadingState(submitButton, false, originalButtonText);
-
-        // Show error message
-        this.showError(form, config, error.message);
-
-        // Call custom error callback
-        if (config.onError) {
-          config.onError(error);
-        }
-      }
-    },
-
-    /**
-     * Extract form data into submission object
-     */
-    extractFormData: function(form, config) {
-      const formDataObj = new FormData(form);
-      const data = {
-        form_type: config.formType,
-        interest_type: config.interestType,
-        additional_data: {},
-      };
-
-      // Map form fields to database columns
-      const fieldMap = {
-        firstName: 'first_name',
-        first_name: 'first_name',
-        name: 'first_name', // For forms with single name field
-        lastName: 'last_name',
-        last_name: 'last_name',
-        email: 'email',
-        phone: 'phone',
-        organization: 'organization',
-        company: 'organization',
-        companyName: 'organization',
-        message: 'message',
-        notes: 'message',
-        coverLetter: 'message',
-        ...config.customFieldMapping,
-      };
-
-      // Process each form field
-      for (const [key, value] of formDataObj.entries()) {
-        if (value && key !== 'resume') { // Skip file inputs
-          const mappedKey = fieldMap[key];
-
-          if (mappedKey) {
-            // Map to core column
-            data[mappedKey] = value;
-          } else {
-            // Store in additional_data
-            data.additional_data[key] = value;
-          }
-        }
+      if (!VALID_FORM_TYPES.includes(formType)) {
+        console.warn(`[Syntra Forms] Invalid form_type "${formType}". Must be one of:`, VALID_FORM_TYPES);
       }
 
-      // Handle single name field (split into first/last)
-      if (data.first_name && data.first_name.includes(' ') && !data.last_name) {
-        const nameParts = data.first_name.split(' ');
-        data.first_name = nameParts[0];
-        data.last_name = nameParts.slice(1).join(' ');
+      form.addEventListener('submit', (e) => handleFormSubmit(e, form, formType, defaultInterest));
+      console.log(`[Syntra Forms] ✓ Initialized: ${formType}`);
+    });
+  }
+
+  async function handleFormSubmit(event, form, formType, defaultInterest) {
+    event.preventDefault();
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton ? submitButton.textContent : 'SUBMIT';
+    const messageContainer = getOrCreateMessageContainer(form);
+
+    try {
+      clearMessages(messageContainer);
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
       }
 
-      // Set interest_type from form if available
-      if (formDataObj.get('interestType')) {
-        data.interest_type = formDataObj.get('interestType');
-      } else if (formDataObj.get('role')) {
-        data.interest_type = formDataObj.get('role');
-      } else if (formDataObj.get('investmentInterest')) {
-        data.interest_type = formDataObj.get('investmentInterest');
+      setLoadingState(submitButton, true);
+
+      const formData = extractFormData(form, formType, defaultInterest);
+
+      validateRequiredFields(formData);
+
+      console.log('[Syntra Forms] Submitting form:', formType);
+      console.log('[Syntra Forms] Payload:', formData);
+
+      if (typeof window.submitFormToDatabase !== 'function') {
+        throw new Error('Form submission function not available. Ensure supabase-client.js is loaded.');
       }
 
-      return data;
-    },
+      const result = await window.submitFormToDatabase(formData);
 
-    /**
-     * Handle file upload to Supabase Storage
-     */
-    handleFileUpload: async function(form, config) {
-      const fileInput = document.getElementById(config.fileInputId);
+      console.log('[Syntra Forms] Submission successful. Reference ID:', result.referenceId);
 
-      if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
-        return { error: 'No file selected' };
-      }
+      showSuccess(form, messageContainer, result.referenceId, formType);
 
-      const file = fileInput.files[0];
+    } catch (error) {
+      console.error('[Syntra Forms] Submission error:', error);
+      setLoadingState(submitButton, false, originalButtonText);
+      showError(messageContainer, error.message);
+    }
+  }
 
-      // Validate file size (5MB max)
-      if (file.size > 5 * 1024 * 1024) {
-        return { error: 'File size exceeds 5MB limit' };
-      }
+  function extractFormData(form, formType, defaultInterest) {
+    const formDataObj = new FormData(form);
+    const data = {
+      form_type: formType,
+      first_name: null,
+      last_name: null,
+      email: null,
+      phone: null,
+      organization: null,
+      interest_type: null,
+      message: null,
+      additional_data: {}
+    };
 
-      // Validate file type
-      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-      if (!allowedTypes.includes(file.type)) {
-        return { error: 'Invalid file type. Only PDF, DOC, and DOCX files are allowed.' };
-      }
+    const fieldMap = {
+      firstName: 'first_name',
+      first_name: 'first_name',
+      name: 'first_name',
+      lastName: 'last_name',
+      last_name: 'last_name',
+      email: 'email',
+      phone: 'phone',
+      organization: 'organization',
+      company: 'organization',
+      companyName: 'organization',
+      firm: 'organization',
+      message: 'message',
+      notes: 'message',
+      coverLetter: 'message',
+      comments: 'message',
+      interestType: 'interest_type',
+      interest_type: 'interest_type',
+      role: 'interest_type',
+      topic: 'interest_type',
+      primaryInterest: 'interest_type'
+    };
 
-      try {
-        // Generate unique filename
-        const timestamp = Date.now();
-        const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '-').toLowerCase();
-        const filePath = `resumes/${timestamp}-${sanitizedName}`;
-
-        // Upload to Supabase Storage
-        const { data, error } = await window.syntraSupabase.storage
-          .from('career-applications')
-          .upload(filePath, file);
-
-        if (error) {
-          return { error: `File upload failed: ${error.message}` };
+    for (const [key, value] of formDataObj.entries()) {
+      if (!value || key === 'resume' || key === 'consent') {
+        if (key === 'consent') {
+          data.additional_data[key] = formDataObj.get(key) === 'on' || formDataObj.get(key) === 'true';
         }
-
-        // Get public URL
-        const { data: urlData } = window.syntraSupabase.storage
-          .from('career-applications')
-          .getPublicUrl(filePath);
-
-        return {
-          path: filePath,
-          url: urlData.publicUrl,
-          filename: file.name,
-        };
-      } catch (error) {
-        return { error: `Upload error: ${error.message}` };
+        continue;
       }
-    },
 
-    /**
-     * Submit form data to Supabase database
-     */
-    submitToDatabase: async function(formData) {
-      try {
-        const { data, error } = await window.syntraSupabase
-          .from('form_submissions')
-          .insert([formData])
-          .select('reference_id')
-          .maybeSingle();
+      const mappedKey = fieldMap[key];
 
-        if (error) {
-          return { error: error.message };
-        }
-
-        if (!data || !data.reference_id) {
-          return { error: 'No reference ID returned from database' };
-        }
-
-        return { reference_id: data.reference_id };
-      } catch (error) {
-        return { error: error.message };
-      }
-    },
-
-    /**
-     * Send email notification via Edge Function
-     */
-    sendEmailNotification: async function(formType, referenceId, formData) {
-      try {
-        const { data, error } = await window.syntraSupabase.functions.invoke('send-form-notification', {
-          body: {
-            formType: formType,
-            referenceId: referenceId,
-            formData: formData,
-          },
-        });
-
-        if (error) {
-          console.warn('Email notification error:', error);
-        }
-
-        return data;
-      } catch (error) {
-        console.warn('Email notification exception:', error);
-      }
-    },
-
-    /**
-     * Set loading state on submit button
-     */
-    setLoadingState: function(button, isLoading, originalText = '') {
-      if (!button) return;
-
-      if (isLoading) {
-        button.disabled = true;
-        button.dataset.originalText = button.textContent;
-        button.textContent = 'SUBMITTING...';
+      if (mappedKey) {
+        data[mappedKey] = value;
       } else {
-        button.disabled = false;
-        button.textContent = originalText || button.dataset.originalText || 'SUBMIT';
+        data.additional_data[key] = value;
       }
-    },
+    }
 
-    /**
-     * Show success message
-     */
-    showSuccess: function(form, config, referenceId) {
-      const successHTML = config.successMessage || `
-        <div class="bg-green-50 border-2 border-green-500 rounded-lg p-8 text-center">
-          <div class="text-green-600 text-6xl mb-4">✓</div>
-          <h3 class="text-2xl font-bold text-green-800 mb-3">Submission Successful!</h3>
-          <p class="text-green-700 mb-4">Thank you for your submission. We'll be in touch shortly.</p>
-          <p class="text-sm text-green-600 font-mono">Reference ID: <strong>${referenceId}</strong></p>
+    if (data.first_name && data.first_name.includes(' ') && !data.last_name) {
+      const nameParts = data.first_name.split(' ');
+      data.first_name = nameParts[0];
+      data.last_name = nameParts.slice(1).join(' ');
+    }
+
+    if (!data.interest_type && defaultInterest) {
+      data.interest_type = defaultInterest;
+    }
+
+    return data;
+  }
+
+  function validateRequiredFields(formData) {
+    const errors = [];
+
+    if (!formData.form_type) {
+      errors.push('form_type is required');
+    }
+
+    if (!formData.first_name || formData.first_name.trim() === '') {
+      errors.push('First name is required');
+    }
+
+    if (!formData.email || formData.email.trim() === '') {
+      errors.push('Email is required');
+    }
+
+    if (!formData.organization || formData.organization.trim() === '') {
+      errors.push('Organization is required');
+    }
+
+    if (!formData.interest_type || formData.interest_type.trim() === '') {
+      errors.push('Interest type is required');
+    }
+
+    if (errors.length > 0) {
+      throw new Error(errors.join(', '));
+    }
+  }
+
+  function getOrCreateMessageContainer(form) {
+    let container = form.querySelector('[data-form-msg]');
+
+    if (!container) {
+      container = document.createElement('div');
+      container.setAttribute('data-form-msg', '');
+      form.insertBefore(container, form.firstChild);
+    }
+
+    return container;
+  }
+
+  function clearMessages(container) {
+    if (container) {
+      container.innerHTML = '';
+      container.className = '';
+      container.style.display = 'none';
+    }
+  }
+
+  function setLoadingState(button, isLoading, originalText = '') {
+    if (!button) return;
+
+    if (isLoading) {
+      button.disabled = true;
+      button.dataset.originalText = button.textContent;
+      button.textContent = 'SUBMITTING...';
+      button.style.opacity = '0.6';
+      button.style.cursor = 'not-allowed';
+    } else {
+      button.disabled = false;
+      button.textContent = originalText || button.dataset.originalText || 'SUBMIT';
+      button.style.opacity = '1';
+      button.style.cursor = 'pointer';
+    }
+  }
+
+  function showSuccess(form, container, referenceId, formType) {
+    const successHTML = `
+      <div class="bg-green-50 border-2 border-green-500 rounded-lg p-8 text-center mb-6">
+        <div class="text-green-600 text-6xl mb-4">✓</div>
+        <h3 class="text-2xl font-bold text-green-800 mb-3 uppercase tracking-wider">SUBMISSION SUCCESSFUL</h3>
+        <p class="text-green-700 mb-4">Thank you for contacting Syntra Refining. We'll be in touch shortly.</p>
+        <div class="bg-white border border-green-200 rounded p-3 inline-block">
+          <p class="text-xs text-green-600 font-mono uppercase mb-1">Reference ID</p>
+          <p class="text-lg font-bold text-green-800 font-mono">${referenceId}</p>
         </div>
-      `;
+      </div>
+    `;
 
+    if (container) {
+      container.innerHTML = successHTML;
+      container.style.display = 'block';
+      container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      form.querySelectorAll('input, textarea, select, button').forEach(el => {
+        el.style.display = 'none';
+      });
+    } else {
       form.innerHTML = successHTML;
-    },
+    }
+  }
 
-    /**
-     * Show error message
-     */
-    showError: function(form, config, errorMessage) {
-      let messageContainer = document.getElementById(config.messageContainerId);
+  function showError(container, errorMessage) {
+    if (!container) return;
 
-      if (!messageContainer) {
-        messageContainer = document.createElement('div');
-        messageContainer.id = config.messageContainerId;
-        form.insertBefore(messageContainer, form.firstChild);
-      }
+    container.className = 'bg-red-50 border-2 border-red-500 rounded-lg p-4 mb-6';
+    container.style.display = 'block';
+    container.innerHTML = `
+      <div class="flex items-start gap-3">
+        <div class="text-red-500 text-2xl">⚠</div>
+        <div class="flex-1">
+          <p class="text-red-700 font-semibold mb-1">SUBMISSION ERROR</p>
+          <p class="text-red-600 text-sm">${errorMessage}</p>
+          <p class="text-red-500 text-xs mt-2">Please check all required fields and try again.</p>
+        </div>
+      </div>
+    `;
 
-      messageContainer.className = 'bg-red-50 border-2 border-red-500 rounded-lg p-4 mb-4';
-      messageContainer.innerHTML = `
-        <p class="text-red-700 font-semibold">Error: ${errorMessage}</p>
-        <p class="text-red-600 text-sm mt-2">Please try again or contact us directly.</p>
-      `;
+    container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-      // Auto-hide after 8 seconds
-      setTimeout(() => {
-        if (messageContainer && messageContainer.parentNode) {
-          messageContainer.remove();
-        }
-      }, 8000);
-    },
+    setTimeout(() => {
+      clearMessages(container);
+    }, 10000);
+  }
 
-  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initForms);
+  } else {
+    initForms();
+  }
 
-  // Export to window
-  window.SyntraForms = SyntraForms;
+  console.log('[Syntra Forms] syntra-forms.js loaded');
 
-  console.log('✓ Syntra Forms module loaded');
-
-})(window);
+})();
