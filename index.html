@@ -1564,11 +1564,18 @@
 
     <!-- Form Submission Handler -->
     <script>
-        const SUPABASE_URL = 'https://rhwsiuchfmtbpeljaaoj.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJod3NpdWNoZm10YnBlbGphYW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxNDU1ODIsImV4cCI6MjA4MjcyMTU4Mn0.CI6hWI0AnREP-jY6g1GKL1MEpiE1MdlFH4QMKyF9WVY';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        document.addEventListener('DOMContentLoaded', function() {
+            const SUPABASE_URL = 'https://rhwsiuchfmtbpeljaaoj.supabase.co';
+            const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJod3NpdWNoZm10YnBlbGphYW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxNDU1ODIsImV4cCI6MjA4MjcyMTU4Mn0.CI6hWI0AnREP-jY6g1GKL1MEpiE1MdlFH4QMKyF9WVY';
 
-        async function handleFormSubmit(formType, formData, formElement) {
+            if (!window.supabase) {
+                console.error('Supabase SDK not loaded');
+                return;
+            }
+
+            const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+            async function handleFormSubmit(formType, formData, formElement) {
             const submitButton = formElement.querySelector('button[type="submit"]');
             const originalButtonText = submitButton.textContent;
 
@@ -1713,6 +1720,7 @@
                 }
             };
             await handleFormSubmit('investor_inquiry', formData, form);
+        });
         });
     </script>
 </body>

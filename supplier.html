@@ -586,11 +586,18 @@
       }
     });
 
-    const SUPABASE_URL = 'https://rhwsiuchfmtbpeljaaoj.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJod3NpdWNoZm10YnBlbGphYW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxNDU1ODIsImV4cCI6MjA4MjcyMTU4Mn0.CI6hWI0AnREP-jY6g1GKL1MEpiE1MdlFH4QMKyF9WVY';
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    document.addEventListener('DOMContentLoaded', function() {
+      const SUPABASE_URL = 'https://rhwsiuchfmtbpeljaaoj.supabase.co';
+      const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJod3NpdWNoZm10YnBlbGphYW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxNDU1ODIsImV4cCI6MjA4MjcyMTU4Mn0.CI6hWI0AnREP-jY6g1GKL1MEpiE1MdlFH4QMKyF9WVY';
 
-    document.getElementById('supplierDocsForm')?.addEventListener('submit', async (e) => {
+      if (!window.supabase) {
+        console.error('Supabase SDK not loaded');
+        return;
+      }
+
+      const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      document.getElementById('supplierDocsForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.target;
       const submitButton = form.querySelector('button[type="submit"]');
@@ -745,6 +752,7 @@
         form.insertBefore(errorDiv, form.firstChild);
         setTimeout(() => errorDiv.remove(), 5000);
       }
+    });
     });
   </script>
 
