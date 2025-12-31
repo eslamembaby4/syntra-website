@@ -434,7 +434,7 @@
         </button>
       </div>
 
-      <form id="applicationForm" action="https://formspree.io/f/mjgkbkal" method="POST" enctype="multipart/form-data" class="p-6 space-y-4">
+      <form id="applicationForm" class="p-6 space-y-4">
         <input type="hidden" id="roleInput" name="role" />
 
         <div class="grid md:grid-cols-2 gap-4">
@@ -524,6 +524,87 @@
     document.getElementById('applicationModal').addEventListener('click', function(e) {
       if (e.target === this) {
         closeApplicationModal();
+      }
+    });
+
+    const SUPABASE_URL = 'https://rhwsiuchfmtbpeljaaoj.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJod3NpdWNoZm10YnBlbGphYW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxNDU1ODIsImV4cCI6MjA4MjcyMTU4Mn0.CI6hWI0AnREP-jY6g1GKL1MEpiE1MdlFH4QMKyF9WVY';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    document.getElementById('applicationForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.textContent;
+
+      try {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+
+        const formData = {
+          first_name: form.firstName.value,
+          last_name: form.lastName.value,
+          email: form.email.value,
+          phone: form.phone.value,
+          message: form.additionalInfo?.value,
+          additional_data: {
+            role: form.role.value,
+            linkedin: form.linkedin?.value,
+            portfolio: form.portfolio?.value,
+            start_date: form.startDate?.value
+          }
+        };
+
+        const { data, error } = await supabase
+          .from('form_submissions')
+          .insert([{
+            form_type: 'career_application',
+            first_name: formData.first_name,
+            last_name: formData.last_name,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+            additional_data: formData.additional_data
+          }])
+          .select('reference_id')
+          .single();
+
+        if (error) throw error;
+
+        const referenceId = data.reference_id;
+
+        await supabase.functions.invoke('send-form-notification', {
+          body: {
+            formType: 'career_application',
+            referenceId,
+            formData
+          }
+        });
+
+        form.innerHTML = `
+          <div class="bg-green-50 border-2 border-green-500 rounded-lg p-8 text-center">
+            <div class="text-green-600 text-6xl mb-4">✓</div>
+            <h3 class="text-2xl font-bold text-green-800 mb-3">Application Submitted!</h3>
+            <p class="text-green-700 mb-4">Thank you for applying. We'll review your application and get back to you soon.</p>
+            <p class="text-sm text-green-600 font-mono">Reference ID: <strong>${referenceId}</strong></p>
+            <button onclick="closeApplicationModal()" class="mt-6 bg-green-600 text-white px-6 py-3 rounded font-bold hover:bg-green-700 transition">
+              Close
+            </button>
+          </div>
+        `;
+      } catch (error) {
+        console.error('Form submission error:', error);
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'bg-red-50 border-2 border-red-500 rounded-lg p-4 mt-4';
+        errorDiv.innerHTML = `
+          <p class="text-red-700 font-semibold">Error: ${error.message}</p>
+          <p class="text-red-600 text-sm mt-2">Please try again or email us directly at careers@syntrarefining.com</p>
+        `;
+        form.insertBefore(errorDiv, form.firstChild);
+        setTimeout(() => errorDiv.remove(), 5000);
       }
     });
   </script>

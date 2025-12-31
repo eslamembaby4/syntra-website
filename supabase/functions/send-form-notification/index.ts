@@ -72,36 +72,67 @@ Deno.serve(async (req: Request) => {
     body += `\n\n--- END ---\n\n`;
     body += `View in admin dashboard: ${req.headers.get('origin') || 'https://syntrarefining.com'}/admin.html\n`;
 
-    // In production, you would integrate with an email service like Resend, SendGrid, etc.
-    // For now, we'll log it and return success
-    console.log('Email notification:', {
-      to: toEmail,
-      subject,
-      body,
+    const resendApiKey = Deno.env.get('RESEND_API_KEY');
+
+    if (!resendApiKey) {
+      console.error('RESEND_API_KEY not configured');
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: 'Email service not configured'
+        }),
+        {
+          status: 500,
+          headers: {
+            ...corsHeaders,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    }
+
+    const emailResponse = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${resendApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'Syntra Refining <onboarding@resend.dev>',
+        to: toEmail,
+        subject: subject,
+        text: body,
+      }),
     });
 
-    // TODO: Integrate with actual email service
-    // Example with Resend:
-    // const resendApiKey = Deno.env.get('RESEND_API_KEY');
-    // const response = await fetch('https://api.resend.com/emails', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Authorization': `Bearer ${resendApiKey}`,
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     from: 'notifications@syntrarefining.com',
-    //     to: toEmail,
-    //     subject: subject,
-    //     text: body,
-    //   }),
-    // });
+    const emailResult = await emailResponse.json();
+
+    if (!emailResponse.ok) {
+      console.error('Failed to send email:', emailResult);
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: 'Failed to send email notification',
+          details: emailResult
+        }),
+        {
+          status: 500,
+          headers: {
+            ...corsHeaders,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    }
+
+    console.log('Email sent successfully:', emailResult);
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
-        message: 'Notification queued',
-        destinationEmail: toEmail 
+      JSON.stringify({
+        success: true,
+        message: 'Email sent successfully',
+        destinationEmail: toEmail,
+        emailId: emailResult.id
       }),
       {
         headers: {

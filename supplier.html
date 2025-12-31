@@ -217,7 +217,7 @@
             Send spec sheets, assay reports, or other documentation to our commercial team.
           </p>
 
-          <form action="https://formspree.io/f/xaqnwnpz" method="POST" class="space-y-4">
+          <form id="supplierDocsForm" class="space-y-4">
             <div>
               <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Company Name</label>
               <input
@@ -362,7 +362,7 @@
         <button onclick="closeRFQModal()" class="text-slate-400 hover:text-slate-600 text-2xl leading-none">&times;</button>
       </div>
 
-      <form id="rfqResponseForm" action="https://formspree.io/f/mlgdrdpq" method="POST" class="p-6 space-y-4">
+      <form id="rfqResponseForm" class="p-6 space-y-4">
         <input type="hidden" id="rfqName" name="rfqName" />
 
         <div>
@@ -585,6 +585,162 @@
         document.getElementById('dashboardSection').classList.remove('hidden');
       }
     });
+
+    const SUPABASE_URL = 'https://rhwsiuchfmtbpeljaaoj.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJod3NpdWNoZm10YnBlbGphYW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxNDU1ODIsImV4cCI6MjA4MjcyMTU4Mn0.CI6hWI0AnREP-jY6g1GKL1MEpiE1MdlFH4QMKyF9WVY';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    document.getElementById('supplierDocsForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.textContent;
+
+      try {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+
+        const formData = {
+          company: form.companyName.value,
+          email: form.email.value,
+          message: form.notes.value,
+          additional_data: {
+            document_type: form.documentType.value
+          }
+        };
+
+        const { data, error } = await supabase
+          .from('form_submissions')
+          .insert([{
+            form_type: 'supplier_document_submission',
+            email: formData.email,
+            company: formData.company,
+            message: formData.message,
+            additional_data: formData.additional_data
+          }])
+          .select('reference_id')
+          .single();
+
+        if (error) throw error;
+
+        const referenceId = data.reference_id;
+
+        await supabase.functions.invoke('send-form-notification', {
+          body: {
+            formType: 'supplier_document_submission',
+            referenceId,
+            formData
+          }
+        });
+
+        form.innerHTML = `
+          <div class="bg-green-50 border-2 border-green-500 rounded-lg p-8 text-center">
+            <div class="text-green-600 text-6xl mb-4">✓</div>
+            <h3 class="text-2xl font-bold text-green-800 mb-3">Documents Submitted!</h3>
+            <p class="text-green-700 mb-4">Thank you for your submission. Our team will review and respond shortly.</p>
+            <p class="text-sm text-green-600 font-mono">Reference ID: <strong>${referenceId}</strong></p>
+            <button onclick="location.reload()" class="mt-6 bg-green-600 text-white px-6 py-3 rounded font-bold hover:bg-green-700 transition">
+              Submit Another
+            </button>
+          </div>
+        `;
+      } catch (error) {
+        console.error('Form submission error:', error);
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'bg-red-50 border-2 border-red-500 rounded-lg p-4 mt-4';
+        errorDiv.innerHTML = `
+          <p class="text-red-700 font-semibold">Error: ${error.message}</p>
+          <p class="text-red-600 text-sm mt-2">Please try again or email us at commercial@syntrarefining.com</p>
+        `;
+        form.insertBefore(errorDiv, form.firstChild);
+        setTimeout(() => errorDiv.remove(), 5000);
+      }
+    });
+
+    document.getElementById('rfqResponseForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.textContent;
+
+      try {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+
+        const formData = {
+          company: form.company.value,
+          name: form.contactName.value,
+          email: form.email.value,
+          phone: form.phone.value,
+          message: form.supplyDetails.value,
+          additional_data: {
+            rfq_name: form.rfqName.value,
+            material_grade: form.materialGrade?.value,
+            quantity_available: form.quantityAvailable?.value,
+            price_per_ton: form.pricePerTon?.value,
+            delivery_timeframe: form.deliveryTimeframe?.value
+          }
+        };
+
+        const { data, error } = await supabase
+          .from('form_submissions')
+          .insert([{
+            form_type: 'supplier_rfq_response',
+            first_name: formData.name.split(' ')[0] || formData.name,
+            last_name: formData.name.split(' ').slice(1).join(' ') || null,
+            email: formData.email,
+            company: formData.company,
+            phone: formData.phone,
+            message: formData.message,
+            additional_data: formData.additional_data
+          }])
+          .select('reference_id')
+          .single();
+
+        if (error) throw error;
+
+        const referenceId = data.reference_id;
+
+        await supabase.functions.invoke('send-form-notification', {
+          body: {
+            formType: 'supplier_rfq_response',
+            referenceId,
+            formData
+          }
+        });
+
+        form.innerHTML = `
+          <div class="bg-green-50 border-2 border-green-500 rounded-lg p-8 text-center">
+            <div class="text-green-600 text-6xl mb-4">✓</div>
+            <h3 class="text-2xl font-bold text-green-800 mb-3">RFQ Response Submitted!</h3>
+            <p class="text-green-700 mb-4">Thank you for your response. We'll review your offer and be in touch soon.</p>
+            <p class="text-sm text-green-600 font-mono">Reference ID: <strong>${referenceId}</strong></p>
+            <button onclick="closeRFQModal()" class="mt-6 bg-green-600 text-white px-6 py-3 rounded font-bold hover:bg-green-700 transition">
+              Close
+            </button>
+          </div>
+        `;
+      } catch (error) {
+        console.error('Form submission error:', error);
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'bg-red-50 border-2 border-red-500 rounded-lg p-4 mt-4';
+        errorDiv.innerHTML = `
+          <p class="text-red-700 font-semibold">Error: ${error.message}</p>
+          <p class="text-red-600 text-sm mt-2">Please try again or email us at commercial@syntrarefining.com</p>
+        `;
+        form.insertBefore(errorDiv, form.firstChild);
+        setTimeout(() => errorDiv.remove(), 5000);
+      }
+    });
   </script>
+
+  <!-- Supabase JS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </body>
 </html>
