@@ -8,13 +8,14 @@ const corsHeaders = {
 
 // Email routing configuration
 // Maps form_type to destination email address
+// Must match form types in syntra-forms.js
 const EMAIL_ROUTES: Record<string, string> = {
   // Commercial / Partnership Forms
   partner_inquiry: "commercial@syntrarefining.com",
-  supplier_document_submission: "commercial@syntrarefining.com",
-  supplier_rfq_response: "commercial@syntrarefining.com",
-  tds_package_request: "commercial@syntrarefining.com",
-  newsletter_subscription: "commercial@syntrarefining.com",
+  supplier_inquiry: "commercial@syntrarefining.com",
+  supplier_document: "commercial@syntrarefining.com",
+  tds_request: "commercial@syntrarefining.com",
+  newsletter: "commercial@syntrarefining.com",
 
   // Investor Relations
   investor_inquiry: "investors@syntrarefining.com",
@@ -24,12 +25,6 @@ const EMAIL_ROUTES: Record<string, string> = {
 
   // HSE / Safety
   sds_inquiry: "hse@syntrarefining.com",
-
-  // Legacy / Deprecated (kept for backwards compatibility)
-  observer_access_request: "commercial@syntrarefining.com",
-  supplier_registration: "commercial@syntrarefining.com",
-  supplier_document: "commercial@syntrarefining.com",
-  rfq_response: "commercial@syntrarefining.com",
 };
 
 Deno.serve(async (req: Request) => {
