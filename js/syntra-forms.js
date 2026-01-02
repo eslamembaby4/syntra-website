@@ -247,8 +247,10 @@
       container.style.display = 'block';
       container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-      form.querySelectorAll('input, textarea, select, button').forEach(el => {
-        el.style.display = 'none';
+      Array.from(form.children).forEach(child => {
+        if (!child.hasAttribute('data-form-msg')) {
+          child.style.display = 'none';
+        }
       });
     } else {
       form.innerHTML = successHTML;
