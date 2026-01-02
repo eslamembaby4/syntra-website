@@ -48,27 +48,21 @@ async function submitFormToDatabase(formData) {
 
   console.log('[Syntra Forms] Submitting payload:', payload);
 
-  const { data, error } = await client
+  const { error } = await client
     .from('form_submissions')
-    .insert([payload])
-    .select('reference_id')
-    .single();
+    .insert([payload]);
 
   if (error) {
     console.error('[Syntra Forms] Database error:', error);
     throw new Error(error.message || 'Failed to submit form to database');
   }
 
-  if (!data || !data.reference_id) {
-    throw new Error('No reference ID returned from database');
-  }
-
-  const referenceId = data.reference_id;
+  const referenceId = 'SR-REQ-' + Date.now().toString().slice(-6);
   console.log('[Syntra Forms] Form submitted successfully. Reference ID:', referenceId);
 
   sendEmailNotification(formData.form_type, referenceId, formData);
 
-  return { referenceId, data };
+  return { referenceId };
 }
 
 function sendEmailNotification(formType, referenceId, formData) {

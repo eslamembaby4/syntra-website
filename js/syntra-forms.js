@@ -105,57 +105,36 @@
 
   function extractFormData(form, formType, defaultInterest) {
     const formDataObj = new FormData(form);
+
     const data = {
-      form_type: formType,
-      first_name: null,
-      last_name: null,
-      email: null,
-      phone: null,
-      organization: null,
-      interest_type: null,
-      message: null,
+      form_type: formType || form.dataset.syntraForm || form.id || 'unknown',
+      first_name: '',
+      last_name: '',
+      email: '',
+      phone: '',
+      organization: '',
+      interest_type: '',
+      message: '',
       additional_data: {}
     };
 
-    const fieldMap = {
-      firstName: 'first_name',
-      first_name: 'first_name',
-      name: 'first_name',
-      lastName: 'last_name',
-      last_name: 'last_name',
-      email: 'email',
-      phone: 'phone',
-      organization: 'organization',
-      company: 'organization',
-      companyName: 'organization',
-      firm: 'organization',
-      message: 'message',
-      notes: 'message',
-      coverLetter: 'message',
-      comments: 'message',
-      interestType: 'interest_type',
-      interest_type: 'interest_type',
-      role: 'interest_type',
-      topic: 'interest_type',
-      primaryInterest: 'interest_type'
+    const getFieldValue = (names) => {
+      for (const name of names) {
+        const input = form.querySelector(`[name="${name}"]`);
+        if (input && input.value && input.value.trim()) {
+          return input.value.trim();
+        }
+      }
+      return '';
     };
 
-    for (const [key, value] of formDataObj.entries()) {
-      if (!value || key === 'resume' || key === 'consent') {
-        if (key === 'consent') {
-          data.additional_data[key] = formDataObj.get(key) === 'on' || formDataObj.get(key) === 'true';
-        }
-        continue;
-      }
-
-      const mappedKey = fieldMap[key];
-
-      if (mappedKey) {
-        data[mappedKey] = value;
-      } else {
-        data.additional_data[key] = value;
-      }
-    }
+    data.first_name = getFieldValue(['firstName', 'first_name', 'name']);
+    data.last_name = getFieldValue(['lastName', 'last_name']);
+    data.email = getFieldValue(['email']);
+    data.phone = getFieldValue(['phone']);
+    data.organization = getFieldValue(['organization', 'company', 'companyName', 'firm']);
+    data.interest_type = getFieldValue(['interestType', 'interest_type', 'role', 'topic', 'primaryInterest']);
+    data.message = getFieldValue(['message', 'notes', 'coverLetter', 'comments']);
 
     if (data.first_name && data.first_name.includes(' ') && !data.last_name) {
       const nameParts = data.first_name.split(' ');
@@ -166,6 +145,21 @@
     if (!data.interest_type && defaultInterest) {
       data.interest_type = defaultInterest;
     }
+
+    for (const [key, value] of formDataObj.entries()) {
+      if (key === 'consent') {
+        data.additional_data[key] = value === 'on' || value === 'true';
+      } else if (key !== 'resume' && key !== 'firstName' && key !== 'first_name' &&
+                 key !== 'lastName' && key !== 'last_name' && key !== 'email' &&
+                 key !== 'phone' && key !== 'organization' && key !== 'company' &&
+                 key !== 'message' && key !== 'interestType' && key !== 'interest_type') {
+        if (value && value.trim()) {
+          data.additional_data[key] = value.trim();
+        }
+      }
+    }
+
+    console.log('[Syntra Forms] formData', data);
 
     return data;
   }
