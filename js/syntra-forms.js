@@ -90,7 +90,7 @@
         throw new Error('Form submission function not available. Ensure supabase-client.js is loaded.');
       }
 
-      const result = await window.submitFormToDatabase(formData);
+      const result = await window.submitFormToDatabase(formData, form);
 
       console.log('[Syntra Forms] Submission successful. Reference ID:', result.referenceId);
 

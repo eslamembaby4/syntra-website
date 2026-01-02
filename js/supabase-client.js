@@ -34,10 +34,64 @@ function initSupabase() {
   return supabaseClient;
 }
 
-async function submitFormToDatabase(formData) {
+async function uploadFileToStorage(file, referenceId) {
   const client = initSupabase();
   if (!client) {
     throw new Error('Supabase client not initialized');
+  }
+
+  const fileExt = file.name.split('.').pop();
+  const fileName = `${Date.now()}-${referenceId}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
+  const filePath = `resumes/${fileName}`;
+
+  console.log('[Syntra Forms] Uploading file to storage:', filePath);
+
+  const { data, error } = await client.storage
+    .from('career-applications')
+    .upload(filePath, file, {
+      cacheControl: '3600',
+      upsert: false
+    });
+
+  if (error) {
+    console.error('[Syntra Forms] Storage upload error:', error);
+    throw new Error('Failed to upload resume: ' + error.message);
+  }
+
+  const { data: urlData } = client.storage
+    .from('career-applications')
+    .getPublicUrl(filePath);
+
+  console.log('[Syntra Forms] File uploaded successfully:', urlData.publicUrl);
+  return urlData.publicUrl;
+}
+
+async function submitFormToDatabase(formData, formElement) {
+  const client = initSupabase();
+  if (!client) {
+    throw new Error('Supabase client not initialized');
+  }
+
+  const referenceId = 'SR-REQ-' + Date.now().toString().slice(-6);
+
+  let resumeUrl = null;
+  if (formElement && formData.form_type === 'career_application') {
+    const fileInput = formElement.querySelector('input[type="file"][name="resume"]');
+    if (fileInput && fileInput.files && fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+
+      if (file.size > 5 * 1024 * 1024) {
+        throw new Error('Resume file size must be less than 5MB');
+      }
+
+      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      if (!allowedTypes.includes(file.type)) {
+        throw new Error('Resume must be PDF, DOC, or DOCX format');
+      }
+
+      console.log('[Syntra Forms] Uploading resume file...');
+      resumeUrl = await uploadFileToStorage(file, referenceId);
+    }
   }
 
   const payload = {
@@ -53,6 +107,10 @@ async function submitFormToDatabase(formData) {
     additional_data: formData.additional_data || {}
   };
 
+  if (resumeUrl) {
+    payload.additional_data.resume_url = resumeUrl;
+  }
+
   console.log('[Syntra Forms] Submitting payload:', payload);
 
   const { error } = await client
@@ -64,7 +122,6 @@ async function submitFormToDatabase(formData) {
     throw new Error(error.message || 'Failed to submit form to database');
   }
 
-  const referenceId = 'SR-REQ-' + Date.now().toString().slice(-6);
   console.log('[Syntra Forms] Form submitted successfully. Reference ID:', referenceId);
 
   sendEmailNotification(formData.form_type, referenceId, formData);
