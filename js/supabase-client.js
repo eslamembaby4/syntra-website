@@ -3,13 +3,20 @@
  * Unified form submission handler for all forms across syntrarefining.com
  *
  * Configuration:
- * - URL: https://woailjjdiamgvahcxnrj.supabase.co
- * - Key: Publishable Key (sb_publishable_*)
- * - Edge Function: send-form-notification (JWT verify OFF)
+ * Set window.SYNTRA_CONFIG before loading this script, or it will use defaults
+ *
+ * Example:
+ * <script>
+ *   window.SYNTRA_CONFIG = {
+ *     supabaseUrl: 'https://your-project.supabase.co',
+ *     supabaseKey: 'your-anon-key'
+ *   };
+ * </script>
+ * <script src="/js/supabase-client.js"></script>
  */
 
-const SUPABASE_URL = 'https://woailjjdiamgvahcxnrj.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_-z87K81PBPmGNHHpyLlsWg_ii6jMHd1';
+const SUPABASE_URL = window.SYNTRA_CONFIG?.supabaseUrl || 'https://woailjjdiamgvahcxnrj.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = window.SYNTRA_CONFIG?.supabaseKey || 'sb_publishable_-z87K81PBPmGNHHpyLlsWg_ii6jMHd1';
 
 let supabaseClient = null;
 
