@@ -99,5 +99,6 @@ function sendEmailNotification(formType, referenceId, formData) {
 
 window.submitFormToDatabase = submitFormToDatabase;
 window.initSupabase = initSupabase;
+window.supabaseClient = initSupabase();
 
 console.log('[Syntra Forms] supabase-client.js loaded');
