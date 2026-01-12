@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company | Syntra Refining</title>
+    <meta name="description" content="About Syntra Refining — Building North America's critical minerals infrastructure from Halifax, Nova Scotia.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        syntra: {
+                            base: '#F8FAFC',
+                            surface: '#FFFFFF',
+                            text: '#0F172A',
+                            deep: '#020617',
+                            midnight: '#0B1120',
+                            accent: '#FFD700',
+                            amber: '#D97706',
+                            tech: '#0891B2',
+                            muted: '#64748B',
+                            border: '#E2E8F0',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        head: ['Oswald', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .logo-container { cursor: pointer; }
+        .logo-outer {
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        .logo-inner { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s; }
+        .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #D97706; }
+
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #FFD700;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .close-x {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+        .close-x::before,
+        .close-x::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 2px;
+            background: currentColor;
+            top: 9px;
+            left: 0;
+        }
+        .close-x::before { transform: rotate(45deg); }
+        .close-x::after { transform: rotate(-45deg); }
+
+        .content-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .content-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-divider {
+            background: linear-gradient(90deg, transparent, #E2E8F0 20%, #E2E8F0 80%, transparent);
+            height: 1px;
+        }
+
+        .leadership-highlight {
+            background: linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%);
+        }
+
+        .stat-border {
+            border-left: 3px solid #FFD700;
+            padding-left: 1.5rem;
+            transition: border-color 0.3s ease;
+        }
+        .stat-border:hover {
+            border-left-color: #D97706;
+        }
+
+        .syntra-animate-in {
+            animation: fadeSlideIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        [data-card-hover] {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .syntra-ambient-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .syntra-ambient-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .syntra-ambient-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .syntra-ambient-bg {
+            background: linear-gradient(to bottom, #020617 0%, #0B1120 100%);
+            background-image:
+                linear-gradient(to bottom, #020617 0%, #0B1120 100%),
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255, 215, 0, 0.03) 39px, rgba(255, 215, 0, 0.03) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255, 215, 0, 0.03) 39px, rgba(255, 215, 0, 0.03) 40px);
+        }
+
+        /* Hero Grid Layout - Centered Tables */
+        .hero-grid-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 48px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-content h1,
+        .hero-content p,
+        .hero-content .inline-block {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-metrics-card {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* Mobile: reduce gaps */
+        @media (max-width: 768px) {
+            .hero-grid-layout {
+                gap: 32px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-syntra-base text-syntra-text font-sans antialiased">
+
+    <!-- TOP TICKER -->
+    <div class="bg-syntra-text text-white py-1.5 border-b border-white/10 text-[10px] md:text-xs font-mono tracking-wide z-50 relative">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-2 text-syntra-accent font-bold">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+                    </span>
+                    GRID STATUS: ONLINE
+                </span>
+                <span class="hidden md:block text-slate-400">LOC: NOVA SCOTIA, CA</span>
+                <span class="hidden md:block text-slate-400">CURRENT CAP: 1,000 MT/YR</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="observer.html" class="text-syntra-accent hover:text-white transition-colors font-bold">
+                    OBSERVER LOGIN
+                </a>
+                <span class="text-slate-600">|</span>
+                <a href="supplier.html" class="hover:text-syntra-accent transition-colors">
+                    SUPPLIER PORTAL
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVIGATION -->
+    <nav id="navbar" class="sticky top-0 z-40 bg-white border-b border-syntra-border">
+        <div class="container mx-auto px-6 h-24 flex justify-between items-center">
+            <a href="index.html" class="logo-container flex items-center gap-4 group">
+                <div class="logo-outer w-12 h-12 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
+                    <div class="logo-inner w-5 h-5 bg-syntra-accent transform -rotate-45"></div>
+                </div>
+                <div class="leading-none flex flex-col justify-center">
+                    <div class="font-head font-bold text-3xl tracking-tighter text-syntra-text leading-none">SYNTRA</div>
+                    <div class="font-head text-[0.7rem] font-bold text-syntra-amber tracking-[0.2em] uppercase leading-none mt-1">REFINING CORP</div>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-[0.18em]">
+                <a href="commercial.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Commercial</a>
+                <a href="technology.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Technology</a>
+                <a href="network.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Network</a>
+                <a href="company.html" class="relative nav-link text-slate-900">Company</a>
+                <a href="careers.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Careers</a>
+                <a href="index.html#partner-ecosystem-access" class="relative nav-link text-slate-600 hover:text-syntra-text">Contact</a>
+            </div>
+
+            <button class="text-syntra-text p-2 hover:text-syntra-amber transition-colors md:hidden" onclick="toggleMobileMenu()" aria-label="Open menu">
+                <div class="flex flex-col gap-[6px] items-end">
+                    <span class="block w-8 h-[3px] bg-current rounded-full"></span>
+                    <span class="block w-8 h-[3px] bg-current rounded-full"></span>
+                    <span class="block w-8 h-[3px] bg-current rounded-full"></span>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" class="fixed inset-0 bg-white z-50 hidden flex-col pt-32 px-12 space-y-8" role="dialog" aria-modal="true">
+        <button class="absolute top-8 right-6 p-4" onclick="toggleMobileMenu()" aria-label="Close menu">
+            <div class="close-x text-syntra-text"></div>
+        </button>
+        <div class="container mx-auto grid md:grid-cols-2 gap-12">
+            <div class="flex flex-col gap-6">
+                <a href="commercial.html" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Commercial</a>
+                <a href="technology.html" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Technology</a>
+                <a href="network.html" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Network</a>
+                <a href="company.html" class="text-4xl md:text-6xl font-head font-bold uppercase text-syntra-amber">Company</a>
+                <a href="careers.html" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Careers</a>
+                <a href="index.html#partner-ecosystem-access" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Contact</a>
+            </div>
+            <div class="hidden md:block border-l border-syntra-border pl-12">
+                <p class="font-mono text-xs text-slate-400 tracking-widest uppercase mb-4">Contact</p>
+                <p class="text-xl mb-8">info@syntrarefining.com</p>
+                <p class="font-mono text-xs text-slate-400 tracking-widest uppercase mb-4">Location</p>
+                <p class="text-xl">Halifax, Nova Scotia<br>Canada</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header data-animate class="relative min-h-[75vh] flex items-center bg-white">
+        <div class="absolute inset-0 z-0 opacity-5">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="black" stroke-width="1"/>
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 py-20 w-full">
+            <div class="hero-grid-layout">
+                <div class="hero-content">
+                    <div class="inline-block px-3 py-1 bg-slate-100 border border-slate-200 text-slate-500 font-mono text-[10px] font-bold mb-6">
+                        ABOUT SYNTRA REFINING
+                    </div>
+
+                    <h1 class="font-head text-6xl md:text-7xl lg:text-8xl font-bold text-syntra-text uppercase leading-[0.9] mb-8 tracking-tight">
+                        Building Refining<br>
+                        Infrastructure<br>
+                        <span class="text-syntra-muted">For North America.</span>
+                    </h1>
+
+                    <p class="text-xl text-slate-600 max-w-3xl leading-relaxed font-light mb-10 border-l-4 border-syntra-accent pl-6">
+                        Syntra Refining is deploying modular, AI-driven refining infrastructure to solve the midstream bottleneck in North America's critical minerals supply chain. We are operators building repeatable systems, not research experiments.
+                    </p>
+                </div>
+
+                <!-- Right Column: Metrics Card -->
+                <div class="hero-metrics-card" data-animate>
+                    <div id="metrics-header-card" data-metrics-config="company"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- THE MIDSTREAM GAP SECTION -->
+    <section data-animate class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-12">
+                    <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">The Refining Bottleneck</p>
+                    <h2 class="font-head text-5xl md:text-6xl font-bold text-syntra-text uppercase leading-tight mb-6">
+                        The Missing Link in<br>North America's Supply Chain
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div data-card-hover class="bg-white border border-syntra-border p-8 rounded-sm content-card">
+                        <div class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-3">UPSTREAM</div>
+                        <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-4">Mining Solved</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            North America has abundant critical mineral deposits. Extraction technology is mature. Mines are being permitted and developed.
+                        </p>
+                    </div>
+
+                    <div data-card-hover class="bg-syntra-text text-white border border-syntra-accent p-8 rounded-sm content-card">
+                        <div class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-3">MIDSTREAM</div>
+                        <h3 class="font-head text-2xl font-bold uppercase mb-4">Refining Bottleneck</h3>
+                        <p class="text-slate-300 leading-relaxed">
+                            Refining capacity is concentrated offshore. Domestic infrastructure is fragmented, outdated, and insufficient to meet demand. This is the constraint.
+                        </p>
+                    </div>
+
+                    <div data-card-hover class="bg-white border border-syntra-border p-8 rounded-sm content-card">
+                        <div class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-3">DOWNSTREAM</div>
+                        <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-4">Demand Secured</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Battery manufacturers and OEMs are investing billions. Demand for refined materials is guaranteed. Supply is the challenge.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white border-l-4 border-syntra-accent p-10 rounded-sm shadow-sm">
+                    <p class="text-2xl text-slate-700 font-light leading-relaxed mb-6">
+                        Syntra Refining exists to eliminate this bottleneck. We deploy modular refining systems that process complex feedstocks domestically, delivering battery-grade materials at the scale and speed the market requires.
+                    </p>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        This is infrastructure, not innovation theater. We are building the systems that make North American supply chains viable.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AMBIENT VISUAL BAND A -->
+    <div class="syntra-ambient-container syntra-ambient-bg py-24" data-animate>
+        <canvas class="syntra-ambient-canvas"
+                data-variant="company"
+                data-density="low"
+                data-speed="slow"
+                data-accent="gold"></canvas>
+        <div class="syntra-ambient-content container mx-auto px-6">
+            <div class="max-w-2xl mx-auto text-center">
+                <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-4">Strategic Infrastructure</p>
+                <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4">Building North America's Critical Minerals Network</h3>
+                <p class="text-slate-300 text-lg">From Halifax to the continent</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- STRATEGIC LOCATION SECTION -->
+    <section data-animate class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-12">
+                    <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Strategic Location</p>
+                    <h2 class="font-head text-5xl md:text-6xl font-bold text-syntra-text uppercase leading-tight mb-6">
+                        Halifax: North America's<br>Strategic Gateway
+                    </h2>
+                </div>
+
+                <div class="max-w-4xl">
+                    <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light border-l-4 border-syntra-accent pl-6">
+                        Syntra Refining is strategically headquartered in Halifax, Nova Scotia—positioning us at the nexus of North America's emerging critical minerals infrastructure and transatlantic supply chains.
+                    </p>
+
+                    <div class="space-y-6 mb-8">
+                        <div class="stat-border">
+                            <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-2">Unmatched Port Infrastructure</h3>
+                            <p class="text-slate-600 leading-relaxed">
+                                Halifax Harbor provides direct, ice-free access year-round to both European and North American markets, ensuring uninterrupted supply chain operations with one of the continent's deepest natural harbors.
+                            </p>
+                        </div>
+
+                        <div class="stat-border">
+                            <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-2">Advanced Industrial Ecosystem</h3>
+                            <p class="text-slate-600 leading-relaxed">
+                                Our location leverages Nova Scotia's rich industrial heritage alongside a growing innovation economy, combining world-class engineering talent with proven chemical processing expertise.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="text-lg text-slate-700 font-medium">
+                        From Canada's Atlantic coast, we are establishing the critical minerals infrastructure that will power North America's energy transition.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AMBIENT VISUAL BAND B -->
+    <div class="syntra-ambient-container syntra-ambient-bg py-16" data-animate>
+        <canvas class="syntra-ambient-canvas"
+                data-variant="company"
+                data-density="low"
+                data-speed="slow"
+                data-accent="gold"></canvas>
+        <div class="syntra-ambient-content container mx-auto px-6">
+            <div class="max-w-2xl mx-auto text-center">
+                <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase">Precision Chemistry, Strategic Impact</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MISSION SECTION -->
+    <section data-animate class="py-24 bg-syntra-base">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col lg:flex-row items-start gap-8 lg:gap-12 mb-16">
+                    <div class="flex-1">
+                        <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Our Mission</p>
+                        <h2 class="font-head text-5xl md:text-6xl font-bold text-syntra-text uppercase leading-tight mb-6">
+                            Deploying Modular<br>Refining Infrastructure
+                        </h2>
+                        <p class="text-xl text-slate-600 leading-relaxed font-light">
+                            Monolithic smelters are capital-intensive, inflexible, and environmentally problematic. Syntra deploys modular hydrometallurgical systems that can be rapidly installed, scaled incrementally, and optimized continuously through AI-driven process control.
+                        </p>
+                    </div>
+
+                    <!-- Data Table -->
+                    <div class="w-full lg:w-auto lg:min-w-[500px]">
+                        <div data-syntra-table="company"></div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div data-card-hover class="bg-white border border-syntra-border p-10 rounded-sm content-card">
+                        <h3 class="font-head text-3xl font-bold text-syntra-text uppercase mb-6">Repeatable Systems</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            Our SynHub™ platform is a standardized, modular refining system designed for rapid deployment. Each installation follows proven design templates, enabling predictable timelines, cost structures, and performance metrics.
+                        </p>
+                        <p class="text-slate-700 font-medium">
+                            This is not custom engineering. We replicate what works, reducing execution risk and accelerating time to production.
+                        </p>
+                    </div>
+
+                    <div data-card-hover class="bg-white border border-syntra-border p-10 rounded-sm content-card">
+                        <h3 class="font-head text-3xl font-bold text-syntra-text uppercase mb-6">Operational Excellence</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            We are operators, not experimenters. Our systems incorporate AI-driven process control that continuously optimizes yield, purity, and efficiency based on real-time data from feedstock analysis and downstream specifications.
+                        </p>
+                        <p class="text-slate-700 font-medium">
+                            Industrial reliability and qualification-ready output are non-negotiable requirements. We deliver both.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-syntra-text text-white p-12 rounded-sm shadow-lg">
+                    <blockquote class="text-2xl md:text-3xl font-light leading-relaxed text-center">
+                        "The supply chain crisis is a refining crisis. Solve midstream, and everything else follows."
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEADERSHIP SECTION -->
+    <section data-animate class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-16 text-center">
+                    <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Leadership</p>
+                    <h2 class="font-head text-5xl md:text-6xl font-bold text-syntra-text uppercase leading-tight">
+                        Executive Leadership
+                    </h2>
+                </div>
+
+                <div data-card-hover class="leadership-highlight border border-syntra-border rounded-sm overflow-hidden shadow-sm">
+                    <div class="p-10 md:p-12">
+                            <div class="mb-8">
+                                <h3 class="font-head text-4xl font-bold text-syntra-text uppercase mb-2">Nifemi Oguntuase</h3>
+                                <p class="font-mono text-sm text-syntra-amber tracking-widest uppercase">Founder & Chief Executive Officer</p>
+                            </div>
+
+                            <div class="space-y-4 text-slate-600 leading-relaxed mb-8">
+                                <p>
+                                    Nifemi Oguntuase brings expertise in mineral process chemistry, resource finance, and exploration consulting to her role as Founder and CEO of Syntra Refining. Her technical background and industry experience revealed a critical market inefficiency: while mining operations have achieved global scale, refining infrastructure remains fragmented and technologically outdated.
+                                </p>
+                                <p>
+                                    Recognizing this strategic gap, she founded Syntra Refining to develop advanced hydrometallurgical solutions that replace energy-intensive smelting with precision chemical processes, establishing a new standard for both economic efficiency and environmental performance in critical mineral refining.
+                                </p>
+                            </div>
+
+                            <div class="border-l-4 border-syntra-accent pl-6 py-4 bg-white rounded-sm">
+                                <p class="text-lg text-slate-700 leading-relaxed mb-3">
+                                    "Achieving true sustainability in the energy transition demands fundamental innovation in process chemistry. Our approach replaces thermal intensity with chemical precision, delivering superior purity while minimizing environmental impact."
+                                </p>
+                                <p class="text-slate-600 text-base">
+                                    By advancing hydrometallurgical technology and building integrated refining infrastructure, Syntra is establishing the foundation for a sustainable, domestically-secured critical minerals supply chain.
+                                </p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AMBIENT VISUAL BAND C -->
+    <div class="syntra-ambient-container syntra-ambient-bg py-24" data-animate>
+        <canvas class="syntra-ambient-canvas"
+                data-variant="company"
+                data-density="low"
+                data-speed="slow"
+                data-accent="gold"></canvas>
+        <div class="syntra-ambient-content container mx-auto px-6">
+            <div class="max-w-2xl mx-auto text-center">
+                <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-4">Infrastructure Operations</p>
+                <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4">Deploying Systems That Scale</h3>
+                <p class="text-slate-300 text-lg">Modular. Repeatable. Industrial-grade.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-syntra-midnight text-white py-16 border-t-4 border-syntra-accent">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-12 mb-16">
+                <div class="md:col-span-4 space-y-6">
+                    <a href="index.html" class="logo-container flex items-center gap-4 group">
+                        <div class="logo-outer w-12 h-12 border-[3px] border-white transform rotate-45 flex items-center justify-center">
+                            <div class="logo-inner w-5 h-5 bg-white transform -rotate-45"></div>
+                        </div>
+                        <div class="leading-none flex flex-col justify-center">
+                            <div class="font-head font-bold text-3xl tracking-tighter text-white leading-none">SYNTRA</div>
+                            <div class="font-head text-[0.7rem] font-bold text-syntra-accent tracking-[0.2em] uppercase leading-none mt-1">REFINING CORP</div>
+                        </div>
+                    </a>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+                        North America's Critical Minerals Infrastructure.<br>
+                        Halifax, NS, Canada.
+                    </p>
+                </div>
+
+                <div class="md:col-span-4 space-y-6">
+                    <h4 class="font-head font-bold uppercase tracking-widest text-sm text-white">Corporate</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="company.html" class="hover:text-syntra-accent transition-colors">Leadership</a></li>
+                        <li><a href="careers.html" class="hover:text-syntra-accent transition-colors">Careers</a></li>
+                        <li><a href="investor.html" class="hover:text-syntra-accent transition-colors">Investor Relations</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-4 space-y-6">
+                    <h4 class="font-head font-bold uppercase tracking-widest text-sm text-white">Commercial</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="index.html#partner-ecosystem-access" class="hover:text-syntra-accent transition-colors">Commercial Inquiries</a></li>
+                        <li><a href="supplier.html" class="hover:text-syntra-accent transition-colors">Supplier Portal</a></li>
+                        <li><a href="observer.html" class="hover:text-syntra-accent transition-colors">Observer Portal</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 font-mono">
+                <p>&copy; 2026 Syntra Refining Corp. All Rights Reserved.</p>
+                <div class="flex gap-8">
+                    <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        }
+    </script>
+
+    <script src="js/syntra-motion.js"></script>
+    <script src="js/syntra-ambient.js"></script>
+    <script src="js/syntra-table-configs.js"></script>
+    <script src="js/syntra-data-tables.js"></script>
+    <script src="js/syntra-metrics-header.js"></script>
+
+  <script src="/js/syntra-contact-modal.js?v=203"></script>
+</body>
+</html>

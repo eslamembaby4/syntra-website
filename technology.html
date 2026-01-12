@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology | Syntra Refining</title>
+    <meta name="description" content="SynCore technology and smart refining process at Syntra Refining.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        syntra: {
+                            base: '#F8FAFC',
+                            surface: '#FFFFFF',
+                            text: '#0F172A',
+                            deep: '#020617',
+                            midnight: '#0B1120',
+                            accent: '#FFD700',
+                            amber: '#D97706',
+                            tech: '#0891B2',
+                            muted: '#64748B',
+                            border: '#E2E8F0',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        head: ['Oswald', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .logo-container { cursor: pointer; }
+        .logo-outer { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s; }
+        .logo-inner { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s; }
+        .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #D97706; }
+
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #FFD700;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .close-x {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+        .close-x::before,
+        .close-x::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 2px;
+            background: currentColor;
+            top: 9px;
+            left: 0;
+        }
+        .close-x::before { transform: rotate(45deg); }
+        .close-x::after { transform: rotate(-45deg); }
+
+        /* Professional enhancements */
+        .tech-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(180deg, #FFD700 0%, #D97706 100%);
+            transition: height 0.3s ease;
+        }
+        .tech-card:hover::before {
+            height: 100%;
+        }
+        .tech-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .stat-badge {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .process-highlight {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(8, 145, 178, 0.05) 100%);
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #E2E8F0 50%, transparent 100%);
+        }
+
+        /* Motion System */
+        .syntra-animate-in {
+            animation: fadeSlideIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        [data-card-hover] {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        [data-animate] {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .tech-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .tech-image img {
+            transition: transform 0.5s ease;
+        }
+
+        .tech-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .syntra-ambient-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .syntra-ambient-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .syntra-ambient-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .syntra-ambient-bg {
+            background: linear-gradient(to bottom, #020617 0%, #0B1120 100%);
+            background-image:
+                linear-gradient(to bottom, #020617 0%, #0B1120 100%),
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(8, 145, 178, 0.04) 39px, rgba(8, 145, 178, 0.04) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(8, 145, 178, 0.04) 39px, rgba(8, 145, 178, 0.04) 40px);
+        }
+
+        /* Hero Grid Layout - Centered Tables */
+        .hero-grid-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 48px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-content h1,
+        .hero-content p,
+        .hero-content .inline-block {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-metrics-card {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* Mobile: reduce gaps */
+        @media (max-width: 768px) {
+            .hero-grid-layout {
+                gap: 32px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-syntra-base text-syntra-text font-sans antialiased">
+
+    <!-- TOP TICKER -->
+    <div class="bg-syntra-text text-white py-1.5 border-b border-white/10 text-[10px] md:text-xs font-mono tracking-wide z-50 relative">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-2 text-syntra-accent font-bold">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+                    </span>
+                    GRID STATUS: ONLINE
+                </span>
+                <span class="hidden md:block text-slate-400">LOC: NOVA SCOTIA, CA</span>
+                <span class="hidden md:block text-slate-400">CURRENT CAP: 1,000 MT/YR</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="observer.html" class="text-syntra-accent hover:text-white transition-colors font-bold">
+                    OBSERVER LOGIN
+                </a>
+                <span class="text-slate-600">|</span>
+                <a href="supplier.html" class="hover:text-syntra-accent transition-colors">
+                    SUPPLIER PORTAL
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVIGATION -->
+    <nav id="navbar" class="sticky top-0 z-40 bg-white border-b border-syntra-border">
+        <div class="container mx-auto px-6 h-24 flex justify-between items-center">
+            <a href="index.html" class="logo-container flex items-center gap-4 group">
+                <div class="logo-outer w-12 h-12 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
+                    <div class="logo-inner w-5 h-5 bg-syntra-accent transform -rotate-45"></div>
+                </div>
+                <div class="leading-none flex flex-col justify-center">
+                    <div class="font-head font-bold text-3xl tracking-tighter text-syntra-text leading-none">SYNTRA</div>
+                    <div class="font-head text-[0.7rem] font-bold text-syntra-amber tracking-[0.2em] uppercase leading-none mt-1">REFINING CORP</div>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-[0.18em]">
+                <a href="commercial.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Commercial</a>
+                <a href="technology.html" class="relative nav-link text-slate-900">Technology</a>
+                <a href="network.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Network</a>
+                <a href="company.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Company</a>
+                <a href="careers.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Careers</a>
+                <a href="index.html#partner-ecosystem-access" class="relative nav-link text-slate-600 hover:text-syntra-text">Contact</a>
+            </div>
+
+            <button class="text-syntra-text p-2 hover:text-syntra-amber transition-colors md:hidden" onclick="toggleMobileMenu()" aria-label="Open menu">
+                <div class="flex flex-col gap-[6px] items-end">
+                    <span class="block w-8 h-[3px] bg-current rounded-full"></span>
+                    <span class="block w-8 h-[3px] bg-current rounded-full"></span>
+                    <span class="block w-8 h-[3px] bg-current rounded-full"></span>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" class="fixed inset-0 bg-white z-50 hidden flex-col pt-32 px-12 space-y-8" role="dialog" aria-modal="true">
+        <button class="absolute top-8 right-6 p-4" onclick="toggleMobileMenu()" aria-label="Close menu">
+            <div class="close-x text-syntra-text"></div>
+        </button>
+        <div class="container mx-auto grid md:grid-cols-2 gap-12">
+            <div class="flex flex-col gap-6">
+                <a href="commercial.html" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Commercial</a>
+                <a href="technology.html" class="text-4xl md:text-6xl font-head font-bold uppercase text-syntra-amber">Technology</a>
+                <a href="network.html" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Network</a>
+                <a href="company.html" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Company</a>
+                <a href="careers.html" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Careers</a>
+                <a href="index.html#partner-ecosystem-access" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Contact</a>
+            </div>
+            <div class="hidden md:block border-l border-syntra-border pl-12">
+                <p class="font-mono text-xs text-slate-400 tracking-widest uppercase mb-4">Contact</p>
+                <p class="text-xl mb-8">tech@syntrarefining.com</p>
+                <p class="font-mono text-xs text-slate-400 tracking-widest uppercase mb-4">Location</p>
+                <p class="text-xl">Halifax, Nova Scotia<br>Canada</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header class="relative min-h-[75vh] flex items-center bg-white" data-animate>
+        <div class="absolute inset-0 z-0 opacity-5">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="black" stroke-width="1"/>
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 py-20 w-full">
+            <div class="hero-grid-layout">
+                <!-- Left Column: Hero Content -->
+                <div class="hero-content">
+                    <div class="inline-block px-3 py-1 bg-slate-100 border border-slate-200 text-slate-500 font-mono text-[10px] font-bold mb-6" data-animate>
+                        TECHNOLOGY
+                    </div>
+
+                    <h1 class="font-head text-6xl md:text-7xl lg:text-8xl font-bold text-syntra-text uppercase leading-[0.9] mb-8 tracking-tight" data-animate>
+                        SynCore™<br>
+                        Modular Refining<br>
+                        <span class="text-syntra-muted">Platform.</span>
+                    </h1>
+
+                    <p class="text-xl text-slate-600 leading-relaxed mb-10 font-light border-l-4 border-syntra-accent pl-6" data-animate>
+                        SynCore™ is a feedstock-agnostic, closed-loop hydrometallurgical platform optimized for complex mineral inputs. AI-driven process control continuously adjusts chemistry parameters to maximize yield, maintain multi-output purity specifications, and ensure industrial-grade operational reliability.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4" data-animate>
+                        <a href="index.html#partner-ecosystem-access" class="px-8 py-4 bg-syntra-accent text-syntra-text font-head font-bold text-lg uppercase tracking-wide hover:bg-yellow-400 transition-colors shadow-xl shadow-yellow-500/20 flex items-center justify-center gap-3">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Metrics Card -->
+                <div class="hero-metrics-card" data-animate>
+                    <div id="metrics-header-card" data-metrics-config="technology"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- TECHNOLOGY PHILOSOPHY -->
+    <section class="py-24 bg-white" data-animate>
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-12" data-animate>
+                    <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Core Technology Platform</p>
+                    <h2 class="font-head text-5xl md:text-6xl font-bold text-syntra-text uppercase leading-tight mb-6">
+                        Feedstock-Agnostic,<br>Closed-Loop Chemistry
+                    </h2>
+                </div>
+
+                <div class="mb-12">
+                    <div class="space-y-6 text-lg text-slate-700 leading-relaxed border-l-4 border-syntra-accent pl-8" data-animate>
+                        <p>
+                            SynCore™ processes complex, heterogeneous mineral inputs that traditional smelters cannot handle economically. Primary concentrates, intermediate refining products, mixed-metal streams, and end-of-life battery materials all flow through the same hydrometallurgical architecture. Chemistry adjustments are parametric, not structural.
+                        </p>
+                        <p>
+                            The closed-loop system design eliminates liquid discharge entirely. All process water recirculates continuously. Residual solid streams are stabilized for compliant storage or converted to industrial by-products. Operating temperatures between ambient and 90°C reduce energy consumption by 60-75% compared to pyrometallurgical baselines.
+                        </p>
+                        <p>
+                            Multi-output purity is engineered through sequential separation stages. Controlled precipitation, solvent extraction, and crystallization each target specific elements, removing impurities systematically to deliver battery-grade specifications across lithium, nickel, cobalt, and manganese product streams simultaneously.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 border-l-4 border-syntra-accent p-10 rounded-sm" data-animate>
+                    <p class="text-xl text-slate-800 font-medium leading-relaxed">
+                        SynCore™ is standardized, modular, and AI-controlled. Every refining node uses identical unit operations, enabling predictable deployment timelines, capital costs, and operational performance regardless of installation location or feedstock source.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AMBIENT VISUAL BAND 1 -->
+    <div class="syntra-ambient-container syntra-ambient-bg py-24" data-animate>
+        <canvas class="syntra-ambient-canvas"
+                data-variant="technology"
+                data-density="med"
+                data-speed="med"
+                data-accent="teal"></canvas>
+        <div class="syntra-ambient-content container mx-auto px-6">
+            <div class="max-w-2xl mx-auto text-center">
+                <p class="font-mono text-xs text-syntra-tech tracking-widest uppercase mb-4">Modular Platform</p>
+                <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4">Standardized Systems, Distributed Deployment</h3>
+                <p class="text-slate-300 text-lg">AI-controlled chemistry at every node</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROCESS ADVANTAGES -->
+    <section class="py-24 bg-syntra-base" data-animate>
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-12" data-animate>
+                    <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Competitive Advantages</p>
+                    <h2 class="font-head text-4xl md:text-5xl font-bold text-syntra-text uppercase leading-tight mb-8">
+                        Technical Differentiation Through Process Design
+                    </h2>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-white border border-syntra-border p-10 rounded-sm tech-card" data-card-hover data-animate>
+                        <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-4 tracking-wide">Feedstock Agnostic Processing</h3>
+                        <p class="text-slate-700 leading-relaxed mb-4 text-base">
+                            SynCore is designed to process multiple feedstock categories through a unified process architecture. Primary concentrates, intermediate refining products, and end-of-life battery materials all flow through the same core unit operations, with chemistry adjustments managed via process control parameters rather than infrastructure modifications.
+                        </p>
+                        <p class="text-slate-800 font-medium text-base">
+                            This operational flexibility mitigates supply chain concentration risk, enables dynamic feedstock blending to optimize economics, and positions the platform to capture value from the emerging battery recycling market as post-consumer material volumes increase.
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-syntra-border p-10 rounded-sm tech-card" data-card-hover data-animate>
+                        <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-4 tracking-wide">Battery-Grade Purity Assurance</h3>
+                        <p class="text-slate-700 leading-relaxed mb-4 text-base">
+                            Hydrometallurgical processing delivers precision impurity control that pyrometallurgical routes cannot consistently achieve. Each separation stage—leaching, precipitation, solvent extraction, and crystallization—targets specific contaminant removal, with inline analytical monitoring ensuring specification compliance before material advances to subsequent processing steps.
+                        </p>
+                        <p class="text-slate-800 font-medium text-base">
+                            Product output consistently meets or exceeds original equipment manufacturer specifications for lithium hydroxide monohydrate, nickel sulfate hexahydrate, cobalt sulfate heptahydrate, and manganese sulfate monohydrate. This reliability eliminates the need for additional downstream purification and reduces offtake counterparty qualification timelines.
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-syntra-border p-10 rounded-sm tech-card" data-card-hover data-animate>
+                        <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-4 tracking-wide">Closed-Loop Environmental Systems</h3>
+                        <p class="text-slate-700 leading-relaxed mb-4 text-base">
+                            Zero liquid discharge is engineered into the core process design. All process water is continuously recycled through the refining circuit, with water losses limited to product moisture content and atmospheric evaporation. Residual solid streams are either stabilized for environmentally compliant long-term storage or converted into saleable industrial by-products.
+                        </p>
+                        <p class="text-slate-800 font-medium text-base">
+                            Operating temperatures ranging from ambient to 90°C reduce thermal energy requirements by approximately 60-75% relative to pyrometallurgical baselines. Additional efficiency gains are captured through systematic waste heat recovery and cross-process thermal integration, further reducing the carbon intensity of final products.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULAR DESIGN -->
+    <section class="py-24 bg-white" data-animate>
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-12" data-animate>
+                    <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Deployment Architecture</p>
+                    <h2 class="font-head text-4xl md:text-5xl font-bold text-syntra-text uppercase leading-tight mb-6">
+                        Modular Infrastructure for Rapid Capacity Scaling
+                    </h2>
+                </div>
+
+                <div class="mb-12">
+                    <div class="space-y-6 text-lg text-slate-700 leading-relaxed" data-animate>
+                        <p>
+                            SynCore is architected as a standardized modular platform designed for incremental capacity expansion. Individual refining modules are engineered for optimal throughput efficiency at 500 to 2,000 tonnes per annum of refined product output, with specific capacity determined by feedstock mineralogy, target product specifications, and recovery rate assumptions.
+                        </p>
+                        <p>
+                            Capacity growth is achieved through module replication rather than facility redesign. Each additional module follows identical engineering specifications, procurement schedules, and commissioning protocols, substantially compressing project development timelines and reducing per-unit capital expenditure through equipment standardization and volume purchasing agreements.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-6 text-lg text-slate-700 leading-relaxed mb-12" data-animate>
+                    <p>
+                        All refining nodes are connected to a centralized process control and data acquisition system, enabling real-time performance monitoring, predictive maintenance scheduling, and network-wide process optimization. Operational learnings from any individual node are immediately accessible across the entire facility network, creating a continuous improvement feedback loop that enhances system-wide efficiency over time.
+                    </p>
+                </div>
+
+                <div class="border-l-4 border-syntra-tech pl-8 py-6 bg-syntra-base process-highlight rounded-sm" data-animate>
+                    <p class="text-slate-800 font-semibold leading-relaxed text-base">
+                        The standardized chemistry and equipment configuration across all nodes de-risks expansion capital deployment, accelerates permitting and commissioning timelines, and ensures predictable operating performance as the refining network scales to meet contracted offtake volumes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI OPERATIONAL CONTROL -->
+    <section class="py-24 bg-slate-50" data-animate>
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-12" data-animate>
+                    <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Operational Intelligence</p>
+                    <h2 class="font-head text-4xl md:text-5xl font-bold text-syntra-text uppercase leading-tight mb-6">
+                        AI-Driven Process Control Layer
+                    </h2>
+                </div>
+
+                <div class="mb-12">
+                    <div class="space-y-6 text-lg text-slate-700 leading-relaxed border-l-4 border-syntra-tech pl-8" data-animate>
+                        <p>
+                            SynCore™ integrates machine learning models directly into operational control systems. Real-time feedstock composition analysis triggers parametric adjustments across leaching pH, temperature profiles, reagent dosing rates, and residence times—optimizing recovery and purity without manual intervention.
+                        </p>
+                        <p>
+                            This is not analytics or reporting. This is closed-loop operational control where AI makes continuous process decisions based on live sensor data, historical performance patterns, and target product specifications.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-white border border-syntra-border p-8 rounded-sm tech-card" data-card-hover data-animate>
+                        <div class="font-mono text-xs text-syntra-tech tracking-widest uppercase mb-3">ADAPTIVE CHEMISTRY</div>
+                        <h3 class="font-head text-xl font-bold text-syntra-text uppercase mb-4">Dynamic Parameter Optimization</h3>
+                        <p class="text-slate-600 leading-relaxed text-base">
+                            Feed mineralogy varies batch-to-batch. AI models predict optimal process conditions for each feedstock profile, adjusting chemistry in real-time to maintain consistent output quality despite input variability.
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-syntra-border p-8 rounded-sm tech-card" data-card-hover data-animate>
+                        <div class="font-mono text-xs text-syntra-tech tracking-widest uppercase mb-3">PREDICTIVE MAINTENANCE</div>
+                        <h3 class="font-head text-xl font-bold text-syntra-text uppercase mb-4">Equipment Health Monitoring</h3>
+                        <p class="text-slate-600 leading-relaxed text-base">
+                            Sensor arrays track equipment performance metrics. Machine learning identifies degradation patterns before failures occur, enabling scheduled maintenance during planned downtime and maintaining target uptime above 95%.
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-syntra-border p-8 rounded-sm tech-card" data-card-hover data-animate>
+                        <div class="font-mono text-xs text-syntra-tech tracking-widest uppercase mb-3">NETWORK LEARNING</div>
+                        <h3 class="font-head text-xl font-bold text-syntra-text uppercase mb-4">Cross-Facility Optimization</h3>
+                        <p class="text-slate-600 leading-relaxed text-base">
+                            Process improvements identified at any SynHub™ facility are immediately available network-wide. Every refining node benefits from operational learnings across the entire system, creating compounding efficiency gains over time.
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-syntra-border p-8 rounded-sm tech-card" data-card-hover data-animate>
+                        <div class="font-mono text-xs text-syntra-tech tracking-widest uppercase mb-3">QUALIFICATION ASSURANCE</div>
+                        <h3 class="font-head text-xl font-bold text-syntra-text uppercase mb-4">Specification Compliance</h3>
+                        <p class="text-slate-600 leading-relaxed text-base">
+                            AI-controlled quality gates prevent off-spec material from advancing through processing stages. Inline analytics verify impurity levels before crystallization, ensuring every batch meets or exceeds customer specifications.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-syntra-text text-white border-l-4 border-syntra-tech p-10 rounded-sm shadow-lg" data-animate>
+                    <p class="text-xl font-light leading-relaxed mb-4">
+                        Traditional refining relies on human operators adjusting process parameters based on periodic sampling and experience. SynCore™ makes those decisions automatically, continuously, and with precision impossible through manual control.
+                    </p>
+                    <p class="text-base text-slate-300 leading-relaxed">
+                        This operational intelligence layer is what enables rapid deployment, consistent performance, and continuous improvement across distributed facilities.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTION OUTPUT CAPABILITIES -->
+    <section class="py-24 bg-syntra-base" data-animate>
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col lg:flex-row items-start gap-16">
+                    <!-- Left: Description -->
+                    <div class="flex-1 lg:max-w-xl" data-animate>
+                        <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Active Production</p>
+                        <h2 class="font-head text-4xl md:text-5xl font-bold text-syntra-text uppercase leading-tight mb-6">
+                            Battery-Grade<br>Materials Output
+                        </h2>
+                        <div class="space-y-4 text-slate-700 leading-relaxed">
+                            <p class="text-lg">
+                                Our hydrometallurgical platform delivers precision-refined critical minerals that meet the stringent purity requirements of modern battery manufacturing. Each material stream undergoes rigorous quality control and analytical verification before release.
+                            </p>
+                            <p class="text-base">
+                                From lithium compounds to transition metals, SynCore produces battery-grade outputs consistently exceeding industry purity standards. Technical data sheets are available for qualified offtake partners and original equipment manufacturers.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right: Production Output Card -->
+                    <div class="flex justify-end lg:justify-end shrink-0" data-animate>
+                        <div id="production-output-card"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AMBIENT VISUAL BAND 2 -->
+    <div class="syntra-ambient-container syntra-ambient-bg py-24" data-animate>
+        <canvas class="syntra-ambient-canvas"
+                data-variant="technology"
+                data-density="med"
+                data-speed="med"
+                data-accent="teal"></canvas>
+        <div class="syntra-ambient-content container mx-auto px-6">
+            <div class="max-w-2xl mx-auto text-center">
+                <p class="font-mono text-xs text-syntra-tech tracking-widest uppercase mb-4">Modular Architecture</p>
+                <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4">Standardized Nodes, Scalable Network</h3>
+                <p class="text-slate-300 text-lg">Proven chemistry, rapid deployment</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TECHNICAL INTEGRITY -->
+    <section class="py-24 bg-syntra-text text-white relative overflow-hidden" data-animate>
+        <div class="absolute inset-0 opacity-5">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="tech-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+                        <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="1"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#tech-grid)" />
+            </svg>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <div class="inline-block px-3 py-1 bg-white/10 border border-white/20 text-white font-mono text-[10px] font-bold mb-6" data-animate>
+                    ENGINEERING PHILOSOPHY
+                </div>
+                <h2 class="font-head text-4xl md:text-5xl font-bold uppercase leading-tight mb-8" data-animate>
+                    Industrial-Grade Technology for Multi-Decade Operations
+                </h2>
+                <p class="text-xl text-slate-200 leading-relaxed mb-8" data-animate>
+                    SynCore is engineered for long-term operational reliability in demanding industrial environments. Our technology foundation is built on proven hydrometallurgical unit operations with documented performance histories spanning multiple decades across global refining operations. We do not deploy experimental chemistry, unvalidated process configurations, or equipment lacking established operational track records.
+                </p>
+                <p class="text-lg text-slate-300 leading-relaxed mb-8" data-animate>
+                    Every process design decision prioritizes three non-negotiable criteria: sustained operational uptime exceeding 95% annually, full compliance with environmental discharge regulations across all jurisdictions, and economic returns that justify capital deployment over 20+ year facility lifespans.
+                </p>
+                <p class="text-base text-slate-400 leading-relaxed font-medium" data-animate>
+                    Critical mineral refining infrastructure must deliver consistent performance for decades, not quarters. SynCore is designed, engineered, and operated to meet that standard.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AMBIENT VISUAL BAND 3 -->
+    <div class="syntra-ambient-container syntra-ambient-bg py-24" data-animate>
+        <canvas class="syntra-ambient-canvas"
+                data-variant="technology"
+                data-density="med"
+                data-speed="med"
+                data-accent="teal"></canvas>
+        <div class="syntra-ambient-content container mx-auto px-6">
+            <div class="max-w-2xl mx-auto text-center">
+                <p class="font-mono text-xs text-syntra-tech tracking-widest uppercase mb-4">Engineering Excellence</p>
+                <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4">Industrial-Grade Technology</h3>
+                <p class="text-slate-300 text-lg">Proven systems for multi-decade operations</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-syntra-midnight text-white py-16 border-t-4 border-syntra-accent">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-12 mb-16">
+                <div class="md:col-span-4 space-y-6">
+                    <a href="index.html" class="logo-container flex items-center gap-4 group">
+                        <div class="logo-outer w-12 h-12 border-[3px] border-white transform rotate-45 flex items-center justify-center">
+                            <div class="logo-inner w-5 h-5 bg-white transform -rotate-45"></div>
+                        </div>
+                        <div class="leading-none flex flex-col justify-center">
+                            <div class="font-head font-bold text-3xl tracking-tighter text-white leading-none">SYNTRA</div>
+                            <div class="font-head text-[0.7rem] font-bold text-syntra-accent tracking-[0.2em] uppercase leading-none mt-1">REFINING CORP</div>
+                        </div>
+                    </a>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+                        North America's Critical Minerals Infrastructure.<br>
+                        Halifax, NS, Canada.
+                    </p>
+                </div>
+
+                <div class="md:col-span-4 space-y-6">
+                    <h4 class="font-head font-bold uppercase tracking-widest text-sm text-white">Corporate</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="company.html" class="hover:text-syntra-accent transition-colors">Leadership</a></li>
+                        <li><a href="careers.html" class="hover:text-syntra-accent transition-colors">Careers</a></li>
+                        <li><a href="investor.html" class="hover:text-syntra-accent transition-colors">Investor Relations</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-4 space-y-6">
+                    <h4 class="font-head font-bold uppercase tracking-widest text-sm text-white">Commercial</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="index.html#partner-ecosystem-access" class="hover:text-syntra-accent transition-colors">Commercial Inquiries</a></li>
+                        <li><a href="supplier.html" class="hover:text-syntra-accent transition-colors">Supplier Portal</a></li>
+                        <li><a href="observer.html" class="hover:text-syntra-accent transition-colors">Observer Portal</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 font-mono">
+                <p>&copy; 2026 Syntra Refining Corp. All Rights Reserved.</p>
+                <div class="flex gap-8">
+                    <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        }
+    </script>
+
+    <script src="js/syntra-motion.js"></script>
+    <script src="js/syntra-ambient.js"></script>
+    <script src="js/syntra-table-configs.js"></script>
+    <script src="js/syntra-data-tables.js"></script>
+    <script src="js/syntra-metrics-header.js"></script>
+    <script src="js/syntra-production-output.js"></script>
+
+  <script src="/js/syntra-contact-modal.js?v=203"></script>
+</body>
+</html>
