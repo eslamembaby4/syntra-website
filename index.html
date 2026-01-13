@@ -359,9 +359,9 @@
                         </div>
 
                         <div class="pt-4 border-t border-syntra-border">
-                            <a href="#partner-ecosystem-access" class="text-xs font-mono text-syntra-tech hover:text-syntra-amber flex items-center gap-2 justify-center transition-colors">
+                            <button onclick="window.openContactModal('Technical Data Request')" class="w-full text-xs font-mono text-syntra-tech hover:text-syntra-amber flex items-center gap-2 justify-center transition-colors cursor-pointer">
                                 REQUEST TECHNICAL DATA SHEETS
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -522,19 +522,19 @@
                     <h3 class="font-head text-2xl font-bold uppercase mb-4 group-hover:text-syntra-amber transition-colors">Merchant Refining</h3>
                     <p class="font-mono text-xs text-slate-400 mb-6">BUY &amp; SELL</p>
                     <p class="text-slate-600 mb-6 text-sm">We purchase feedstock (Black mass, Concentrates) directly and sell purified battery-grade salts.</p>
-                    <a href="#partner-ecosystem-access" class="text-sm font-bold uppercase underline hover:text-syntra-amber">Submit Offer</a>
+                    <button onclick="window.openContactModal('Product Offtake')" class="text-sm font-bold uppercase underline hover:text-syntra-amber cursor-pointer">Submit Offer</button>
                 </div>
                 <div class="border-t-4 border-syntra-text pt-8 group p-6 bg-white shadow-sm hover:shadow-xl transition-all">
                     <h3 class="font-head text-2xl font-bold uppercase mb-4 group-hover:text-syntra-amber transition-colors">Tolling Services</h3>
                     <p class="font-mono text-xs text-slate-400 mb-6">REFINING AS A SERVICE (RaaS)</p>
                     <p class="text-slate-600 mb-6 text-sm">You maintain ownership of the material. We process your feedstock into battery-grade salts for a fixed fee.</p>
-                    <a href="#partner-ecosystem-access" class="text-sm font-bold uppercase underline hover:text-syntra-amber">Request Tolling Quote</a>
+                    <button onclick="window.openContactModal('Tolling Services')" class="text-sm font-bold uppercase underline hover:text-syntra-amber cursor-pointer">Request Tolling Quote</button>
                 </div>
                 <div class="border-t-4 border-syntra-accent pt-8 group p-6 bg-white shadow-sm hover:shadow-xl transition-all">
                     <h3 class="font-head text-2xl font-bold uppercase mb-4 group-hover:text-syntra-amber transition-colors">Strategic Partnerships</h3>
                     <p class="font-mono text-xs text-slate-400 mb-6">INFRASTRUCTURE DEVELOPMENT</p>
                     <p class="text-slate-600 mb-6 text-sm">Collaborate with Syntra to develop bespoke refining solutions at your site.</p>
-                    <a href="#partner-ecosystem-access" class="text-sm font-bold uppercase underline hover:text-syntra-amber">Discuss Partnership</a>
+                    <button onclick="window.openContactModal('Strategic Partnership')" class="text-sm font-bold uppercase underline hover:text-syntra-amber cursor-pointer">Discuss Partnership</button>
                 </div>
             </div>
         </div>
@@ -704,9 +704,9 @@
                     <div class="bg-white/5 border border-white/10 p-8 rounded backdrop-blur-sm shadow-2xl">
                         <h4 class="font-head text-xl font-bold uppercase mb-2">Apply for Status</h4>
                         <p class="text-xs text-slate-400 mb-6">Strict NDA required.</p>
-                        <a href="#partner-ecosystem-access" class="block w-full bg-white text-syntra-text font-bold uppercase text-center py-4 hover:bg-syntra-accent transition-colors">
+                        <button onclick="window.openContactModal('Observer Status')" class="block w-full bg-white text-syntra-text font-bold uppercase text-center py-4 hover:bg-syntra-accent transition-colors cursor-pointer">
                             Request Access Application
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1245,17 +1245,9 @@
            GO TO PARTNER FORM WITH PREFILL
            =========================== */
         function goToPartnerForm(interestType) {
-            const section = document.getElementById('partner-ecosystem-access');
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-
-                setTimeout(() => {
-                    const select = document.getElementById('interestType');
-                    if (select) {
-                        select.value = interestType;
-                        select.focus();
-                    }
-                }, 600);
+            // Use the contact modal instead of scrolling to form
+            if (window.openContactModal) {
+                window.openContactModal(interestType);
             }
         }
 
