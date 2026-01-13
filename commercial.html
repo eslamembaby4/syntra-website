@@ -130,6 +130,33 @@
         }
 
         /* Ambient Visual System */
+        .syntra-ambient-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .syntra-ambient-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .syntra-ambient-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .syntra-ambient-bg {
+            background: linear-gradient(to bottom, #020617 0%, #0B1120 100%);
+            background-image:
+                linear-gradient(to bottom, #020617 0%, #0B1120 100%),
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255, 215, 0, 0.03) 39px, rgba(255, 215, 0, 0.03) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255, 215, 0, 0.03) 39px, rgba(255, 215, 0, 0.03) 40px);
+        }
 
         /* Hero Grid Layout - Centered Tables */
         .hero-grid-layout {
@@ -408,7 +435,7 @@
     </section>
 
     <!-- AMBIENT VISUAL BAND 2 -->
-    <div class="syntra-ambient-container syntra-ambient-bg py-24" data-animate>
+    <div class="syntra-ambient-container syntra-ambient-bg py-20" data-animate>
         <canvas class="syntra-ambient-canvas"
                 data-variant="commercial"
                 data-density="med"
