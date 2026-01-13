@@ -17,14 +17,12 @@
 
     const modalHTML = `
       <div id="contactModal" style="display: none; position: fixed; inset: 0; z-index: 9999; align-items: center; justify-content: center; padding: 1rem;">
-        <div onclick="window.closeContactModal()" style="position: absolute; inset: 0; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(8px);"></div>
+        <div class="modal-backdrop" style="position: absolute; inset: 0; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(8px);"></div>
         <div style="position: relative; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; background: white; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);">
 
           <!-- Close Button -->
-          <button onclick="window.closeContactModal()" style="position: absolute; top: 1.5rem; right: 1.5rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: #F1F5F9; border-radius: 50%; border: none; color: #64748B; cursor: pointer; z-index: 10;">
-            <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
+          <button class="modal-close-btn" type="button" style="position: absolute; top: 1rem; right: 1rem; padding: 0.5rem 1rem; background: transparent; border: 1px solid #E2E8F0; color: #64748B; cursor: pointer; z-index: 10; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 4px; transition: all 0.2s;">
+            CLOSE
           </button>
 
           <!-- Header -->
@@ -85,9 +83,14 @@
               <textarea rows="3" name="message" required style="width: 100%; padding: 0.875rem 1rem; background: #F8FAFC; border: 2px solid #E2E8F0; border-radius: 8px; font-size: 14px; resize: vertical;" placeholder="Brief details about your inquiry..."></textarea>
             </div>
 
-            <button type="submit" style="width: 100%; padding: 1rem 1.5rem; background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); color: white; border: none; border-radius: 8px; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; margin-top: 1.5rem;">
-              Submit Inquiry
-            </button>
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+              <button type="submit" style="flex: 1; padding: 1rem 1.5rem; background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); color: white; border: none; border-radius: 8px; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">
+                Submit Inquiry
+              </button>
+              <button type="button" class="modal-cancel-btn" style="padding: 1rem 1.5rem; background: transparent; color: #64748B; border: 2px solid #E2E8F0; border-radius: 8px; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">
+                Cancel
+              </button>
+            </div>
           </form>
 
           <!-- Footer -->
@@ -124,6 +127,66 @@
     document.body.insertAdjacentHTML('beforeend', modalHTML);
     modalCreated = true;
     console.log('[Syntra Modal] Modal created and added to DOM');
+
+    // Attach close button handler
+    const closeBtn = document.querySelector('.modal-close-btn');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('[Syntra Modal] Close button clicked');
+        window.closeContactModal();
+      });
+      console.log('[Syntra Modal] Close button handler attached');
+    }
+
+    // Attach cancel button handler
+    const cancelBtn = document.querySelector('.modal-cancel-btn');
+    if (cancelBtn) {
+      cancelBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('[Syntra Modal] Cancel button clicked');
+        window.closeContactModal();
+      });
+      console.log('[Syntra Modal] Cancel button handler attached');
+    }
+
+    // Attach backdrop handler
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) {
+      backdrop.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('[Syntra Modal] Backdrop clicked');
+        window.closeContactModal();
+      });
+      console.log('[Syntra Modal] Backdrop handler attached');
+    }
+
+    // Add hover effects
+    if (closeBtn) {
+      closeBtn.addEventListener('mouseenter', function() {
+        this.style.background = '#0F172A';
+        this.style.color = 'white';
+        this.style.borderColor = '#0F172A';
+      });
+      closeBtn.addEventListener('mouseleave', function() {
+        this.style.background = 'transparent';
+        this.style.color = '#64748B';
+        this.style.borderColor = '#E2E8F0';
+      });
+    }
+    if (cancelBtn) {
+      cancelBtn.addEventListener('mouseenter', function() {
+        this.style.background = '#F1F5F9';
+        this.style.borderColor = '#CBD5E1';
+      });
+      cancelBtn.addEventListener('mouseleave', function() {
+        this.style.background = 'transparent';
+        this.style.borderColor = '#E2E8F0';
+      });
+    }
   }
 
   // Open modal
