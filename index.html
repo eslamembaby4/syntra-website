@@ -406,112 +406,47 @@
         <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.15)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20"></div>
 
         <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-16 max-w-4xl mx-auto">
-                <div class="inline-block px-3 py-1 bg-syntra-accent/10 text-syntra-accent mb-6 font-mono text-xs font-bold">POWERED BY SYNCORE™</div>
-                <h2 class="font-head text-4xl md:text-6xl font-bold uppercase mb-6">Modular Platform</h2>
-                <p class="text-slate-300 text-xl mb-4 leading-relaxed">
-                    Standardized Systems, Distributed Deployment
-                </p>
-                <p class="text-slate-400 text-base">
-                    AI-controlled chemistry at every node
-                </p>
-            </div>
-
-            <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Node 1 -->
-                <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-8 hover:border-syntra-tech transition-all">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="w-12 h-12 rounded-full bg-syntra-tech/20 flex items-center justify-center">
-                            <span class="text-syntra-tech font-mono font-bold text-xl">AI</span>
-                        </div>
-                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    </div>
-                    <h3 class="font-head text-2xl font-bold uppercase mb-3">Process Control</h3>
-                    <p class="text-slate-400 text-sm mb-4">Real-time adjustment of reagent levels, temperature, and flow rates.</p>
-                    <div class="space-y-2">
-                        <div class="flex justify-between text-xs">
-                            <span class="text-slate-500">OPTIMIZATION</span>
-                            <span class="text-syntra-accent font-mono">ACTIVE</span>
-                        </div>
-                        <div class="flex justify-between text-xs">
-                            <span class="text-slate-500">YIELD MAX</span>
-                            <span class="text-syntra-accent font-mono">AUTO</span>
-                        </div>
-                    </div>
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <div class="inline-block px-3 py-1 border border-syntra-tech text-syntra-tech mb-6 font-mono text-xs font-bold">POWERED BY SYNCORE™</div>
+                    <h2 class="font-head text-4xl md:text-6xl font-bold uppercase mb-6">The Digital Twin<br>Advantage.</h2>
+                    <p class="text-slate-300 text-lg mb-8 leading-relaxed">
+                        <strong class="text-white">SynCore™</strong> utilizes a Digital Twin architecture to continuously adjust reagent levels, temperature, and flow rates in real-time.
+                    </p>
+                    <ul class="space-y-6">
+                        <li class="flex gap-4">
+                            <div class="mt-1 w-6 h-6 rounded-full border border-syntra-accent flex items-center justify-center text-syntra-accent text-xs font-bold">1</div>
+                            <div>
+                                <h4 class="font-head font-bold text-xl">Process Optimization</h4>
+                                <p class="text-sm text-slate-400">Automated yield maximization.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="mt-1 w-6 h-6 rounded-full border border-syntra-accent flex items-center justify-center text-syntra-accent text-xs font-bold">2</div>
+                            <div>
+                                <h4 class="font-head font-bold text-xl">Exploration Support</h4>
+                                <p class="text-sm text-slate-400">Predictive processing modeling.</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
 
-                <!-- Node 2 -->
-                <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-8 hover:border-syntra-tech transition-all">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="w-12 h-12 rounded-full bg-syntra-tech/20 flex items-center justify-center">
-                            <span class="text-syntra-tech font-mono font-bold text-xl">AI</span>
+                <div class="bg-black/50 border border-slate-700 rounded-lg p-1 shadow-2xl relative overflow-hidden h-[500px]">
+                    <div class="absolute top-4 left-4 z-20 bg-black/80 px-3 py-1 rounded text-xs font-mono text-syntra-tech border border-syntra-tech/30">LIVE SIMULATION</div>
+                    <canvas id="twinCanvas"></canvas>
+                    <div class="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-2 z-20">
+                        <div class="bg-slate-900/90 p-2 border border-slate-700 rounded">
+                            <p class="text-[10px] text-slate-500 font-mono">FLOW</p>
+                            <p class="text-white font-mono font-bold" id="sim-flow">120 L/m</p>
                         </div>
-                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    </div>
-                    <h3 class="font-head text-2xl font-bold uppercase mb-3">Digital Twin</h3>
-                    <p class="text-slate-400 text-sm mb-4">Predictive modeling and simulation for process optimization.</p>
-                    <div class="space-y-2">
-                        <div class="flex justify-between text-xs">
-                            <span class="text-slate-500">SIMULATION</span>
-                            <span class="text-syntra-accent font-mono">LIVE</span>
+                        <div class="bg-slate-900/90 p-2 border border-slate-700 rounded">
+                            <p class="text-[10px] text-slate-500 font-mono">PURITY</p>
+                            <p class="text-syntra-accent font-mono font-bold" id="sim-purity">99.9%</p>
                         </div>
-                        <div class="flex justify-between text-xs">
-                            <span class="text-slate-500">PREDICTION</span>
-                            <span class="text-syntra-accent font-mono">ENABLED</span>
+                        <div class="bg-slate-900/90 p-2 border border-slate-700 rounded">
+                            <p class="text-[10px] text-slate-500 font-mono">PH</p>
+                            <p class="text-syntra-tech font-mono font-bold" id="sim-ph">4.2</p>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Node 3 -->
-                <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-8 hover:border-syntra-tech transition-all">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="w-12 h-12 rounded-full bg-syntra-tech/20 flex items-center justify-center">
-                            <span class="text-syntra-tech font-mono font-bold text-xl">AI</span>
-                        </div>
-                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    </div>
-                    <h3 class="font-head text-2xl font-bold uppercase mb-3">Quality Assurance</h3>
-                    <p class="text-slate-400 text-sm mb-4">Continuous monitoring and validation of output specifications.</p>
-                    <div class="space-y-2">
-                        <div class="flex justify-between text-xs">
-                            <span class="text-slate-500">PURITY CHECK</span>
-                            <span class="text-syntra-accent font-mono">99.9%</span>
-                        </div>
-                        <div class="flex justify-between text-xs">
-                            <span class="text-slate-500">COMPLIANCE</span>
-                            <span class="text-syntra-accent font-mono">VERIFIED</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Network Status Bar -->
-            <div class="mt-16 max-w-4xl mx-auto bg-slate-950/50 border border-slate-700 rounded-lg p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <h4 class="font-head text-lg font-bold uppercase mb-1">Network Status</h4>
-                        <p class="text-xs text-slate-400 font-mono">SYNCORE™ DISTRIBUTED CONTROL SYSTEM</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="relative flex h-3 w-3">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                        </span>
-                        <span class="text-green-400 font-mono text-sm font-bold">ALL NODES ONLINE</span>
-                    </div>
-                </div>
-                <div class="grid grid-cols-3 gap-4">
-                    <div>
-                        <p class="text-[10px] text-slate-500 font-mono uppercase mb-1">Active Nodes</p>
-                        <p class="text-2xl font-mono font-bold text-white">3/3</p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] text-slate-500 font-mono uppercase mb-1">Uptime</p>
-                        <p class="text-2xl font-mono font-bold text-white">99.8%</p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] text-slate-500 font-mono uppercase mb-1">Processing</p>
-                        <p class="text-2xl font-mono font-bold text-syntra-accent">OPTIMIZED</p>
                     </div>
                 </div>
             </div>
