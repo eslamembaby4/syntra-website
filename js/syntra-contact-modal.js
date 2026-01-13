@@ -6,6 +6,14 @@
 
   // Create modal HTML
   function createModal() {
+    console.log('[Syntra Modal] Creating modal HTML...');
+
+    // Check if modal already exists
+    if (document.getElementById('contactModal')) {
+      console.log('[Syntra Modal] Modal already exists');
+      return;
+    }
+
     const modalHTML = `
       <div id="contactModal" class="contact-modal-overlay">
         <div class="contact-modal-backdrop" onclick="SyntraContactModal.close()"></div>
@@ -121,10 +129,19 @@
     // Insert modal into body
     const modalContainer = document.createElement('div');
     modalContainer.innerHTML = modalHTML;
-    document.body.appendChild(modalContainer.firstElementChild);
+    const modalElement = modalContainer.firstElementChild;
+
+    if (modalElement) {
+      document.body.appendChild(modalElement);
+      console.log('[Syntra Modal] Modal element added to DOM');
+    } else {
+      console.error('[Syntra Modal] Failed to create modal element');
+      return;
+    }
 
     // Add styles
     addStyles();
+    console.log('[Syntra Modal] Styles added');
 
     // Setup escape key
     document.addEventListener('keydown', (e) => {
@@ -132,6 +149,8 @@
         SyntraContactModal.close();
       }
     });
+
+    console.log('[Syntra Modal] Modal creation complete');
   }
 
   function addStyles() {
@@ -388,41 +407,74 @@
   // Public API
   window.SyntraContactModal = {
     open: function() {
+      console.log('[Syntra Modal] Opening modal...');
       const modal = document.getElementById('contactModal');
       if (!modal) {
+        console.log('[Syntra Modal] Modal not found, creating...');
         createModal();
       }
       setTimeout(() => {
-        document.getElementById('contactModal')?.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        const modalElement = document.getElementById('contactModal');
+        if (modalElement) {
+          modalElement.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          console.log('[Syntra Modal] Modal opened successfully');
+        } else {
+          console.error('[Syntra Modal] Failed to find modal element');
+        }
       }, 10);
     },
 
     close: function() {
+      console.log('[Syntra Modal] Closing modal...');
       const modal = document.getElementById('contactModal');
       modal?.classList.remove('active');
       document.body.style.overflow = '';
     },
 
     init: function() {
-      // Update all contact links to open modal
+      console.log('[Syntra Modal] Initializing contact modal system...');
+
+      // Update all contact links to open modal - using capture phase to intercept early
+      document.addEventListener('click', (e) => {
+        // Check if the click target or any parent is a contact link
+        const link = e.target.closest('a[href*="#partner-ecosystem-access"], a[href*="contact-modal"], a[href="#partner-ecosystem-access"]');
+        if (link) {
+          console.log('[Syntra Modal] Contact link clicked:', link.href);
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          SyntraContactModal.open();
+          return false;
+        }
+      }, true); // Use capture phase
+
+      // Also add a regular listener as fallback
       document.addEventListener('click', (e) => {
         const link = e.target.closest('a[href*="#partner-ecosystem-access"], a[href*="contact-modal"]');
         if (link) {
           e.preventDefault();
+          e.stopPropagation();
           SyntraContactModal.open();
         }
       });
 
       // Create modal on page load
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', createModal);
+        document.addEventListener('DOMContentLoaded', () => {
+          console.log('[Syntra Modal] DOM loaded, creating modal');
+          createModal();
+        });
       } else {
+        console.log('[Syntra Modal] DOM already loaded, creating modal');
         createModal();
       }
+
+      console.log('[Syntra Modal] Initialization complete');
     }
   };
 
   // Auto-initialize
+  console.log('[Syntra Modal] Auto-initializing...');
   SyntraContactModal.init();
 })();
