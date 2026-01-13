@@ -15,23 +15,25 @@
  * <script src="/js/supabase-client.js"></script>
  */
 
-const SUPABASE_URL = window.SYNTRA_CONFIG?.supabaseUrl || 'https://rhwsiuchfmtbpeljaaoj.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = window.SYNTRA_CONFIG?.supabaseKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJod3NpdWNoZm10YnBlbGphYW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxNDU1ODIsImV4cCI6MjA4MjcyMTU4Mn0.CI6hWI0AnREP-jY6g1GKL1MEpiE1MdlFH4QMKyF9WVY';
+// Frontend-safe, static-site-safe configuration (no .env)
+// IMPORTANT: Use ONLY the publishable/anon key here. Never use sb_secret_... or service role keys in frontend code.
+const SUPABASE_URL = "https://woailjjdiamgvahcxnrj.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_-z87K81PBPmGNHHpyLlsWg_ii6jMHd1";
 
-let supabaseClient = null;
+// Create the client (frontend-safe)
+// Requires: <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+window.supabase = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
 
 function initSupabase() {
-  if (!window.supabase) {
-    console.error('[Syntra Forms] Supabase SDK not loaded. Include CDN script first.');
+  // Keep existing behavior: other scripts call initSupabase() and/or use window.supabase
+  if (!window.supabase || typeof window.supabase.from !== 'function') {
+    console.error('[Syntra Forms] Supabase client not initialized. Check script load order.');
     return null;
   }
-
-  if (!supabaseClient) {
-    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-    console.log('[Syntra Forms] Supabase client initialized');
-  }
-
-  return supabaseClient;
+  return window.supabase;
 }
 
 async function uploadFileToStorage(file, referenceId) {
