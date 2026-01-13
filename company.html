@@ -364,13 +364,11 @@
     </section>
 
     <!-- AMBIENT VISUAL BAND A -->
-    <div class="syntra-ambient-container syntra-ambient-bg py-24" data-animate>
-        <canvas class="syntra-ambient-canvas"
-                data-variant="company"
-                data-density="low"
-                data-speed="slow"
-                data-accent="gold"></canvas>
-        <div class="syntra-ambient-content container mx-auto px-6">
+    <div class="relative min-h-[420px] md:min-h-[480px] lg:min-h-[520px] overflow-hidden syntra-ambient-bg py-24" data-animate>
+        <div class="syntra-bg">
+            <canvas id="syntraBg1"></canvas>
+        </div>
+        <div class="relative z-10 container mx-auto px-6">
             <div class="max-w-2xl mx-auto text-center">
                 <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-4">Strategic Infrastructure</p>
                 <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4">Building North America's Critical Minerals Network</h3>
@@ -420,13 +418,11 @@
     </section>
 
     <!-- AMBIENT VISUAL BAND B -->
-    <div class="syntra-ambient-container syntra-ambient-bg py-24" data-animate>
-        <canvas class="syntra-ambient-canvas"
-                data-variant="company"
-                data-density="med"
-                data-speed="med"
-                data-accent="gold"></canvas>
-        <div class="syntra-ambient-content container mx-auto px-6">
+    <div class="relative min-h-[420px] md:min-h-[480px] lg:min-h-[520px] overflow-hidden syntra-ambient-bg py-24" data-animate>
+        <div class="syntra-bg">
+            <canvas id="syntraBg2"></canvas>
+        </div>
+        <div class="relative z-10 container mx-auto px-6">
             <div class="max-w-2xl mx-auto text-center">
                 <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-4">Strategic Infrastructure</p>
                 <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4">Precision Chemistry, Strategic Impact</h3>
@@ -593,5 +589,11 @@
   <script src="/js/syntra-forms.js?v=202"></script>
 
   <script src="/js/syntra-contact-modal.js?v=203"></script>
+
+  <script src="/js/syntra-shared-background.js"></script>
+  <script>
+    initSyntraBackground('syntraBg1');
+    initSyntraBackground('syntraBg2');
+  </script>
 </body>
 </html>

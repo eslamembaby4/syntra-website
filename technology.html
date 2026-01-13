@@ -372,13 +372,11 @@
     </section>
 
     <!-- AMBIENT VISUAL BAND 1 -->
-    <div class="syntra-ambient-container syntra-ambient-bg py-24" data-animate>
-        <canvas class="syntra-ambient-canvas"
-                data-variant="technology"
-                data-density="med"
-                data-speed="med"
-                data-accent="teal"></canvas>
-        <div class="syntra-ambient-content container mx-auto px-6">
+    <div class="relative min-h-[420px] md:min-h-[480px] lg:min-h-[520px] overflow-hidden syntra-ambient-bg py-24" data-animate>
+        <div class="syntra-bg">
+            <canvas id="syntraBg1"></canvas>
+        </div>
+        <div class="relative z-10 container mx-auto px-6">
             <div class="max-w-2xl mx-auto text-center">
                 <p class="font-mono text-xs text-syntra-tech tracking-widest uppercase mb-4">Modular Platform</p>
                 <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4">Standardized Systems, Distributed Deployment</h3>
@@ -609,5 +607,10 @@
   <script src="/js/syntra-forms.js?v=202"></script>
 
   <script src="/js/syntra-contact-modal.js?v=203"></script>
+
+  <script src="/js/syntra-shared-background.js"></script>
+  <script>
+    initSyntraBackground('syntraBg1');
+  </script>
 </body>
 </html>

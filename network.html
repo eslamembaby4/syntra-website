@@ -350,13 +350,11 @@
     </header>
 
     <!-- AMBIENT VISUAL BAND 1 -->
-    <div class="syntra-ambient-container syntra-ambient-bg py-24" data-animate>
-        <canvas class="syntra-ambient-canvas"
-                data-variant="network"
-                data-density="high"
-                data-speed="fast"
-                data-accent="mixed"></canvas>
-        <div class="syntra-ambient-content container mx-auto px-6">
+    <div class="relative min-h-[420px] md:min-h-[480px] lg:min-h-[520px] overflow-hidden syntra-ambient-bg py-24" data-animate>
+        <div class="syntra-bg">
+            <canvas id="syntraBg1"></canvas>
+        </div>
+        <div class="relative z-10 container mx-auto px-6">
             <div class="max-w-2xl mx-auto text-center">
                 <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-4">Distributed Infrastructure</p>
                 <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4">Repeatable Facilities, Regional Resilience</h3>
@@ -466,13 +464,11 @@
     </section>
 
     <!-- AMBIENT VISUAL BAND 2 -->
-    <div class="syntra-ambient-container syntra-ambient-bg py-20" data-animate>
-        <canvas class="syntra-ambient-canvas"
-                data-variant="network"
-                data-density="med"
-                data-speed="med"
-                data-accent="gold"></canvas>
-        <div class="syntra-ambient-content container mx-auto px-6">
+    <div class="relative min-h-[420px] md:min-h-[480px] lg:min-h-[520px] overflow-hidden syntra-ambient-bg py-20" data-animate>
+        <div class="syntra-bg">
+            <canvas id="syntraBg2"></canvas>
+        </div>
+        <div class="relative z-10 container mx-auto px-6">
             <div class="max-w-2xl mx-auto text-center">
                 <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-4">Rapid Deployment</p>
                 <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4">18-24 Months to Production</h3>
@@ -720,5 +716,11 @@
   <script src="/js/syntra-forms.js?v=202"></script>
 
   <script src="/js/syntra-contact-modal.js?v=203"></script>
+
+  <script src="/js/syntra-shared-background.js"></script>
+  <script>
+    initSyntraBackground('syntraBg1');
+    initSyntraBackground('syntraBg2');
+  </script>
 </body>
 </html>
