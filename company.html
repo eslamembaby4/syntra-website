@@ -420,15 +420,17 @@
     </section>
 
     <!-- AMBIENT VISUAL BAND B -->
-    <div class="syntra-ambient-container syntra-ambient-bg py-16" data-animate>
+    <div class="syntra-ambient-container syntra-ambient-bg py-24" data-animate>
         <canvas class="syntra-ambient-canvas"
                 data-variant="company"
-                data-density="low"
-                data-speed="slow"
+                data-density="med"
+                data-speed="med"
                 data-accent="gold"></canvas>
         <div class="syntra-ambient-content container mx-auto px-6">
             <div class="max-w-2xl mx-auto text-center">
-                <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase">Precision Chemistry, Strategic Impact</p>
+                <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-4">Strategic Infrastructure</p>
+                <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4">Precision Chemistry, Strategic Impact</h3>
+                <p class="text-slate-300 text-lg">From Halifax to the continent</p>
             </div>
         </div>
     </div>
@@ -583,6 +585,12 @@
     <script src="js/syntra-table-configs.js"></script>
     <script src="js/syntra-data-tables.js"></script>
     <script src="js/syntra-metrics-header.js"></script>
+
+  <!-- Syntra Forms System -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/js/syntra-config.js?v=202"></script>
+  <script src="/js/supabase-client.js?v=202"></script>
+  <script src="/js/syntra-forms.js?v=202"></script>
 
   <script src="/js/syntra-contact-modal.js?v=203"></script>
 </body>
