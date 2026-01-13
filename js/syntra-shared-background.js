@@ -25,8 +25,8 @@ function initSyntraBackground(canvasId) {
     constructor() {
       this.x = Math.random() * LOGICAL_WIDTH;
       this.y = Math.random() * LOGICAL_HEIGHT;
-      this.r = Math.random() * 0.5 + 0.3;
-      this.vy = Math.random() * 0.07 + 0.05;
+      this.r = Math.random() * 2 + 1;
+      this.vy = Math.random() * 0.5 + 0.2;
       this.color = Math.random() > 0.5 ? '#FFD700' : '#0891B2';
     }
 
