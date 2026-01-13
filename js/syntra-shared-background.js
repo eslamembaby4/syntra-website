@@ -9,7 +9,7 @@ function initSyntraBackground(canvasId) {
   const ctx = canvas.getContext('2d');
 
   const LOGICAL_WIDTH = 1440;
-  const LOGICAL_HEIGHT = 160;
+  const LOGICAL_HEIGHT = 80;
 
   function resize() {
     canvas.width = LOGICAL_WIDTH;
@@ -19,14 +19,14 @@ function initSyntraBackground(canvasId) {
   resize();
 
   const particles = [];
-  const PARTICLE_COUNT = 18;
+  const PARTICLE_COUNT = 9;
 
   class Particle {
     constructor() {
       this.x = Math.random() * LOGICAL_WIDTH;
       this.y = Math.random() * LOGICAL_HEIGHT;
-      this.r = Math.random() * 0.8 + 0.35;
-      this.vy = Math.random() * 0.15 + 0.08;
+      this.r = Math.random() * 0.5 + 0.3;
+      this.vy = Math.random() * 0.07 + 0.05;
       this.color = Math.random() > 0.5 ? '#FFD700' : '#0891B2';
     }
 
