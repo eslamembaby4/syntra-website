@@ -128,64 +128,64 @@
     modalCreated = true;
     console.log('[Syntra Modal] Modal created and added to DOM');
 
-    // Attach close button handler
-    const closeBtn = document.querySelector('.modal-close-btn');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('[Syntra Modal] Close button clicked');
-        window.closeContactModal();
-      });
-      console.log('[Syntra Modal] Close button handler attached');
-    }
+    // Use event delegation on the modal element
+    const modal = document.getElementById('contactModal');
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        // Check if close button was clicked
+        if (e.target.closest('.modal-close-btn')) {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('[Syntra Modal] Close button clicked');
+          window.closeContactModal();
+          return;
+        }
 
-    // Attach cancel button handler
-    const cancelBtn = document.querySelector('.modal-cancel-btn');
-    if (cancelBtn) {
-      cancelBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('[Syntra Modal] Cancel button clicked');
-        window.closeContactModal();
-      });
-      console.log('[Syntra Modal] Cancel button handler attached');
-    }
+        // Check if cancel button was clicked
+        if (e.target.closest('.modal-cancel-btn')) {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('[Syntra Modal] Cancel button clicked');
+          window.closeContactModal();
+          return;
+        }
 
-    // Attach backdrop handler
-    const backdrop = document.querySelector('.modal-backdrop');
-    if (backdrop) {
-      backdrop.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('[Syntra Modal] Backdrop clicked');
-        window.closeContactModal();
-      });
-      console.log('[Syntra Modal] Backdrop handler attached');
-    }
+        // Check if backdrop was clicked
+        if (e.target.classList.contains('modal-backdrop')) {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('[Syntra Modal] Backdrop clicked');
+          window.closeContactModal();
+          return;
+        }
+      }, true);
 
-    // Add hover effects
-    if (closeBtn) {
-      closeBtn.addEventListener('mouseenter', function() {
-        this.style.background = '#0F172A';
-        this.style.color = 'white';
-        this.style.borderColor = '#0F172A';
-      });
-      closeBtn.addEventListener('mouseleave', function() {
-        this.style.background = 'transparent';
-        this.style.color = '#64748B';
-        this.style.borderColor = '#E2E8F0';
-      });
-    }
-    if (cancelBtn) {
-      cancelBtn.addEventListener('mouseenter', function() {
-        this.style.background = '#F1F5F9';
-        this.style.borderColor = '#CBD5E1';
-      });
-      cancelBtn.addEventListener('mouseleave', function() {
-        this.style.background = 'transparent';
-        this.style.borderColor = '#E2E8F0';
-      });
+      // Add hover effects using event delegation
+      modal.addEventListener('mouseenter', function(e) {
+        if (e.target.classList.contains('modal-close-btn')) {
+          e.target.style.background = '#0F172A';
+          e.target.style.color = 'white';
+          e.target.style.borderColor = '#0F172A';
+        }
+        if (e.target.classList.contains('modal-cancel-btn')) {
+          e.target.style.background = '#F1F5F9';
+          e.target.style.borderColor = '#CBD5E1';
+        }
+      }, true);
+
+      modal.addEventListener('mouseleave', function(e) {
+        if (e.target.classList.contains('modal-close-btn')) {
+          e.target.style.background = 'transparent';
+          e.target.style.color = '#64748B';
+          e.target.style.borderColor = '#E2E8F0';
+        }
+        if (e.target.classList.contains('modal-cancel-btn')) {
+          e.target.style.background = 'transparent';
+          e.target.style.borderColor = '#E2E8F0';
+        }
+      }, true);
+
+      console.log('[Syntra Modal] Event delegation handlers attached');
     }
   }
 
