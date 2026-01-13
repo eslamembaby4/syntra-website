@@ -62,7 +62,7 @@
         colors: variantColors[this.variant] || variantColors.default,
         connectionDistance: 120,
         glowPulseSpeed: 0.02,
-        particleSize: { min: 0.9, max: 1.8 }
+        particleSize: { min: 2.2, max: 4.0 }
       };
     }
 
@@ -117,7 +117,7 @@
     drawParticles() {
       this.particles.forEach(particle => {
         const glowIntensity = (Math.sin(particle.glowPhase) + 1) / 2;
-        const alpha = 0.55 + glowIntensity * 0.6;
+        const alpha = 0.65 + glowIntensity * 0.6;
 
         this.ctx.beginPath();
         this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
