@@ -8,6 +8,10 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
+    
+
+    <link rel="stylesheet" href="/syntra-unified.css?v=203">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -331,7 +335,7 @@
                     </h1>
 
                     <p class="text-xl text-slate-600 max-w-3xl leading-relaxed mb-10 font-light border-l-4 border-syntra-accent pl-6">
-                        SynHub™ is Syntra's repeatable refining infrastructure platform. Each facility uses standardized design, modular construction, and AI-controlled operations. Deploy rapidly, co-locate with feedstock or demand centers, integrate seamlessly with upstream and downstream partners.
+                        SYNHUB™ is Syntra's repeatable refining infrastructure platform. Each facility uses standardized design, modular construction, and AI-controlled operations. Deploy rapidly, co-locate with feedstock or demand centers, integrate seamlessly with upstream and downstream partners.
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-4">
@@ -350,7 +354,7 @@
     </header>
 
     <!-- AMBIENT VISUAL BAND 1 -->
-    <div class="syntra-ambient-container syntra-ambient-bg py-24" data-animate>
+    <div class="syntra-ambient-container syntra-ambient-bg syntra-bg-band" data-animate>
         <canvas class="syntra-ambient-canvas"
                 data-variant="network"
                 data-density="high"
@@ -365,121 +369,6 @@
         </div>
     </div>
 
-    <!-- NETWORK CONNECTIVITY MAP -->
-    <section class="py-24 bg-syntra-base relative overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="max-w-7xl mx-auto">
-                <div class="mb-12" data-animate>
-                    <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Global Connectivity</p>
-                    <h2 class="font-head text-4xl md:text-5xl font-bold text-syntra-text uppercase leading-tight mb-4">
-                        Halifax-Centered Network
-                    </h2>
-                    <p class="text-lg text-slate-600 max-w-3xl">
-                        Strategic positioning at the intersection of North American and European supply chains, providing optimal access to critical feedstock sources and manufacturing demand centers
-                    </p>
-                </div>
-
-                <!-- Map Container -->
-                <div class="bg-white border-2 border-syntra-border rounded-sm p-8 md:p-12 shadow-xl hover:shadow-2xl transition-shadow duration-300" data-animate data-card-hover>
-                    <svg viewBox="0 0 1200 600" class="w-full h-auto" preserveAspectRatio="xMidYMid meet">
-                        <!-- Background -->
-                        <rect width="1200" height="600" fill="#f8fafc"/>
-
-                        <!-- Subtle grid pattern -->
-                        <defs>
-                            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
-                            </pattern>
-                        </defs>
-                        <rect width="1200" height="600" fill="url(#grid)" opacity="0.5"/>
-
-                        <!-- Simplified landmasses (abstract shapes) -->
-                        <path d="M 50,100 Q 200,80 350,120 L 350,500 Q 200,480 50,500 Z" fill="#cbd5e1" opacity="0.3"/>
-                        <path d="M 380,150 Q 580,100 780,180 L 780,450 Q 580,500 380,450 Z" fill="#cbd5e1" opacity="0.3"/>
-                        <path d="M 820,80 Q 1000,60 1150,100 L 1150,400 Q 1000,420 820,380 Z" fill="#cbd5e1" opacity="0.3"/>
-
-                        <!-- Connection lines (curved paths) -->
-                        <!-- North American connections -->
-                        <path d="M 550,300 Q 300,200 150,250" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.6"/>
-                        <path d="M 550,300 Q 350,150 200,180" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.6"/>
-                        <path d="M 550,300 Q 400,420 250,450" fill="none" stroke="#fb923c" stroke-width="2" opacity="0.6"/>
-                        <path d="M 550,300 Q 450,380 350,400" fill="none" stroke="#fb923c" stroke-width="2" opacity="0.6"/>
-
-                        <!-- European connections -->
-                        <path d="M 550,300 Q 700,180 850,200" fill="none" stroke="#84cc16" stroke-width="2" opacity="0.6"/>
-                        <path d="M 550,300 Q 750,220 950,250" fill="none" stroke="#84cc16" stroke-width="2" opacity="0.6"/>
-                        <path d="M 550,300 Q 780,260 1000,280" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.6"/>
-                        <path d="M 550,300 Q 720,340 900,360" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.6"/>
-
-                        <!-- Halifax hub (center point) -->
-                        <circle cx="550" cy="300" r="12" fill="#fde047" stroke="#1e293b" stroke-width="3"/>
-                        <circle cx="550" cy="300" r="18" fill="none" stroke="#fde047" stroke-width="2" opacity="0.4"/>
-                        <circle cx="550" cy="300" r="24" fill="none" stroke="#fde047" stroke-width="1" opacity="0.2"/>
-
-                        <!-- City markers -->
-                        <!-- North America -->
-                        <circle cx="150" cy="250" r="5" fill="#3b82f6"/>
-                        <circle cx="200" cy="180" r="5" fill="#3b82f6"/>
-                        <circle cx="250" cy="450" r="5" fill="#fb923c"/>
-                        <circle cx="350" cy="400" r="5" fill="#fb923c"/>
-
-                        <!-- Europe -->
-                        <circle cx="850" cy="200" r="5" fill="#84cc16"/>
-                        <circle cx="950" cy="250" r="5" fill="#84cc16"/>
-                        <circle cx="1000" cy="280" r="5" fill="#3b82f6"/>
-                        <circle cx="900" cy="360" r="5" fill="#3b82f6"/>
-
-                        <!-- City labels -->
-                        <text x="550" y="335" text-anchor="middle" class="font-head font-bold" font-size="14" fill="#1e293b">HALIFAX</text>
-
-                        <!-- North America labels -->
-                        <text x="150" y="240" text-anchor="middle" class="font-mono" font-size="10" fill="#64748b">Vancouver</text>
-                        <text x="200" y="170" text-anchor="middle" class="font-mono" font-size="10" fill="#64748b">Toronto</text>
-                        <text x="250" y="470" text-anchor="middle" class="font-mono" font-size="10" fill="#64748b">Houston</text>
-                        <text x="350" y="420" text-anchor="middle" class="font-mono" font-size="10" fill="#64748b">Charlotte</text>
-
-                        <!-- Europe labels -->
-                        <text x="850" y="190" text-anchor="middle" class="font-mono" font-size="10" fill="#64748b">London</text>
-                        <text x="950" y="240" text-anchor="middle" class="font-mono" font-size="10" fill="#64748b">Amsterdam</text>
-                        <text x="1000" y="270" text-anchor="middle" class="font-mono" font-size="10" fill="#64748b">Frankfurt</text>
-                        <text x="900" y="380" text-anchor="middle" class="font-mono" font-size="10" fill="#64748b">Barcelona</text>
-                    </svg>
-
-                    <!-- Legend -->
-                    <div class="flex flex-wrap justify-center gap-8 mt-10 pt-8 border-t-2 border-syntra-border">
-                        <div class="flex items-center gap-3">
-                            <div class="w-16 h-1.5 bg-blue-500 rounded-full"></div>
-                            <span class="font-mono text-xs text-slate-700 uppercase tracking-wide font-medium">Primary Routes</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-16 h-1.5 bg-orange-400 rounded-full"></div>
-                            <span class="font-mono text-xs text-slate-700 uppercase tracking-wide font-medium">Regional Links</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-16 h-1.5 bg-lime-500 rounded-full"></div>
-                            <span class="font-mono text-xs text-slate-700 uppercase tracking-wide font-medium">Transatlantic</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick stats -->
-                <div class="grid md:grid-cols-3 gap-6 mt-12">
-                    <div class="stat-card bg-white border border-syntra-border p-6 rounded-sm text-center" data-animate data-card-hover>
-                        <div class="font-head text-3xl font-bold text-syntra-text mb-2">8+</div>
-                        <div class="font-mono text-xs text-slate-600 uppercase tracking-wider">Strategic Connections</div>
-                    </div>
-                    <div class="stat-card bg-white border border-syntra-border p-6 rounded-sm text-center" data-animate data-card-hover>
-                        <div class="font-head text-3xl font-bold text-syntra-text mb-2">2</div>
-                        <div class="font-mono text-xs text-slate-600 uppercase tracking-wider">Continental Markets</div>
-                    </div>
-                    <div class="stat-card bg-white border border-syntra-border p-6 rounded-sm text-center" data-animate data-card-hover>
-                        <div class="font-head text-3xl font-bold text-syntra-text mb-2">24/7</div>
-                        <div class="font-mono text-xs text-slate-600 uppercase tracking-wider">Port Access</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- SYNHUB PLATFORM SECTION -->
     <section class="py-24 bg-white">
@@ -488,19 +377,19 @@
                 <div class="mb-16" data-animate>
                     <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Repeatable Infrastructure</p>
                     <h2 class="font-head text-5xl md:text-6xl font-bold text-syntra-text uppercase leading-tight mb-6">
-                        SynHub™:<br>Standardized Facilities,<br>Rapid Deployment
+                        SYNHUB™:<br>Standardized Facilities,<br>Rapid Deployment
                     </h2>
                 </div>
 
                 <div class="space-y-6 text-lg text-slate-700 leading-relaxed border-l-4 border-syntra-accent pl-8 mb-16" data-animate>
                     <p>
-                        SynHub™ is not a custom-engineered facility. It is a standardized refining platform designed for rapid, repeatable deployment. Every SynHub™ uses identical unit operations, equipment specifications, and control systems. This standardization compresses development timelines from years to months.
+                        SYNHUB™ is not a custom-engineered facility. It is a standardized refining platform designed for rapid, repeatable deployment. Every SYNHUB™ uses identical unit operations, equipment specifications, and control systems. This standardization compresses development timelines from years to months.
                     </p>
                     <p>
                         Modular construction enables co-location with mines, battery plants, or port infrastructure. Each facility integrates directly with upstream feedstock providers and downstream offtakers through standardized material specifications and logistics protocols. No custom integration required.
                     </p>
                     <p>
-                        Speed matters. Traditional greenfield refineries require 4-7 years from site selection to first production. SynHub™ facilities reach operational status in 18-24 months through prefabricated modules, proven engineering designs, and streamlined permitting enabled by standardized environmental controls.
+                        Speed matters. Traditional greenfield refineries require 4-7 years from site selection to first production. SYNHUB™ facilities reach operational status in 18-24 months through prefabricated modules, proven engineering designs, and streamlined permitting enabled by standardized environmental controls.
                     </p>
                 </div>
 
@@ -581,7 +470,7 @@
     </section>
 
     <!-- AMBIENT VISUAL BAND 2 -->
-    <div class="syntra-ambient-container syntra-ambient-bg py-20" data-animate>
+    <div class="syntra-ambient-container syntra-ambient-bg syntra-bg-band" data-animate>
         <canvas class="syntra-ambient-canvas"
                 data-variant="network"
                 data-density="med"
@@ -640,51 +529,130 @@
         </div>
     </section>
 
-    <!-- PLATFORM DEPLOYMENT STRATEGY -->
-    <section class="py-32 bg-syntra-text text-white relative overflow-hidden">
-        <div class="syntra-ambient" data-variant="network" data-density="med" data-speed="med" data-accent="mixed"></div>
-        <div class="absolute inset-0 opacity-5">
+    <!-- GLOBAL SUPPLY CHAIN MAP -->
+    <section class="py-32 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
+        <!-- Background Grid -->
+        <div class="absolute inset-0 opacity-[0.03]">
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <pattern id="expansion-grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                    <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="1"/>
+                <pattern id="supply-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/>
                 </pattern>
-                <rect width="100%" height="100%" fill="url(#expansion-grid)" />
+                <rect width="100%" height="100%" fill="url(#supply-grid)" />
             </svg>
         </div>
+
         <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-4xl mx-auto" data-animate>
-                <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-6">Platform Deployment</p>
-                <h2 class="font-head text-4xl md:text-5xl font-bold uppercase leading-tight mb-8">
-                    Infrastructure Follows Demand
-                </h2>
-                <p class="text-xl text-slate-300 leading-relaxed mb-8">
-                    SynHub™ facilities are deployed where commercial relationships justify capital allocation. Offtake agreements with battery manufacturers, strategic partnerships with miners, and proximity to industrial infrastructure determine site selection—not speculation.
-                </p>
-                <p class="text-lg text-slate-300 leading-relaxed mb-6">
-                    Every facility uses the same engineering specifications, procurement schedules, and commissioning protocols. This repeatability enables parallel development across multiple sites, compressing network-wide capacity ramp timelines and reducing execution risk.
-                </p>
-                <p class="text-base text-slate-400 leading-relaxed">
-                    Regional resilience requires distributed infrastructure. SynHub™ makes that economically viable.
-                </p>
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16" data-animate>
+                    <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-6">Global Supply Chain</p>
+                    <h2 class="font-head text-4xl md:text-5xl lg:text-6xl font-bold uppercase leading-tight mb-8 text-syntra-text">
+                        Material Flow Network
+                    </h2>
+                    <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+                        Integrated supply chain from mine to market, connecting raw material sources to end-use manufacturing
+                    </p>
+                </div>
+
+                <!-- Key Markets Map -->
+                <div class="relative w-full h-[500px] bg-gradient-to-br from-slate-100 to-slate-50 rounded-lg border-2 border-slate-200 overflow-hidden shadow-xl" data-animate>
+                    <svg class="w-full h-full" viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background Grid -->
+                        <defs>
+                            <pattern id="mapgrid" width="30" height="30" patternUnits="userSpaceOnUse">
+                                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(30,41,59,0.03)" stroke-width="1"/>
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#mapgrid)"/>
+
+                        <!-- North America Outline -->
+                        <path d="M 100 150 L 150 130 L 250 140 L 350 160 L 400 200 L 390 280 L 350 320 L 280 340 L 200 330 L 150 290 L 110 230 Z"
+                              fill="rgba(30,41,59,0.04)" stroke="rgba(30,41,59,0.12)" stroke-width="2"/>
+
+                        <!-- Europe Outline -->
+                        <path d="M 700 180 L 780 170 L 860 185 L 920 210 L 930 260 L 900 300 L 840 310 L 770 300 L 710 270 L 695 220 Z"
+                              fill="rgba(30,41,59,0.04)" stroke="rgba(30,41,59,0.12)" stroke-width="2"/>
+
+                        <!-- Market Location 1: Detroit -->
+                        <g>
+                            <circle cx="300" cy="220" r="18" fill="rgb(250,204,21)" stroke="white" stroke-width="3">
+                                <animate attributeName="r" values="18;22;18" dur="2.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="300" cy="220" r="28" fill="none" stroke="rgba(250,204,21,0.4)" stroke-width="2">
+                                <animate attributeName="r" values="28;38;28" dur="2.5s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.8;0;0.8" dur="2.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <text x="300" y="195" text-anchor="middle" class="text-[16px] font-bold fill-slate-900">Detroit</text>
+                            <text x="300" y="255" text-anchor="middle" class="text-[12px] fill-slate-600">North America</text>
+                        </g>
+
+                        <!-- Market Location 2: Charlotte -->
+                        <g>
+                            <circle cx="320" cy="300" r="18" fill="rgb(250,204,21)" stroke="white" stroke-width="3">
+                                <animate attributeName="r" values="18;22;18" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="320" cy="300" r="28" fill="none" stroke="rgba(250,204,21,0.4)" stroke-width="2">
+                                <animate attributeName="r" values="28;38;28" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.8;0;0.8" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <text x="320" y="275" text-anchor="middle" class="text-[16px] font-bold fill-slate-900">Charlotte</text>
+                            <text x="320" y="335" text-anchor="middle" class="text-[12px] fill-slate-600">North America</text>
+                        </g>
+
+                        <!-- Market Location 3: Europe -->
+                        <g>
+                            <circle cx="820" cy="240" r="18" fill="rgb(250,204,21)" stroke="white" stroke-width="3">
+                                <animate attributeName="r" values="18;22;18" dur="2.5s" begin="1s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="820" cy="240" r="28" fill="none" stroke="rgba(250,204,21,0.4)" stroke-width="2">
+                                <animate attributeName="r" values="28;38;28" dur="2.5s" begin="1s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.8;0;0.8" dur="2.5s" begin="1s" repeatCount="indefinite"/>
+                            </circle>
+                            <text x="820" y="215" text-anchor="middle" class="text-[16px] font-bold fill-slate-900">Europe</text>
+                            <text x="820" y="275" text-anchor="middle" class="text-[12px] fill-slate-600">European Market</text>
+                        </g>
+                    </svg>
+
+                    <!-- Market Info Card -->
+                    <div class="absolute top-8 right-8 bg-white/95 backdrop-blur-sm rounded-lg border-2 border-syntra-accent/30 p-5 shadow-lg max-w-xs">
+                        <div class="font-mono text-xs text-syntra-accent font-bold mb-3">KEY MARKETS</div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-start gap-2">
+                                <div class="w-2 h-2 rounded-full bg-syntra-accent mt-1.5 flex-shrink-0"></div>
+                                <span class="text-slate-700 font-semibold">Detroit, Charlotte</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <div class="w-2 h-2 rounded-full bg-syntra-accent mt-1.5 flex-shrink-0"></div>
+                                <span class="text-slate-700 font-semibold">European Market</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supply Chain Stages -->
+                <div class="grid md:grid-cols-4 gap-6 mt-16">
+                    <div class="bg-white rounded-lg border-2 border-slate-200 p-6 hover:border-syntra-accent transition-all duration-300 hover:shadow-lg" data-animate>
+                        <h3 class="font-head text-lg font-bold uppercase mb-2 text-syntra-text">Extraction</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Mine-to-port logistics from global lithium, cobalt, and nickel sources</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg border-2 border-slate-200 p-6 hover:border-syntra-accent transition-all duration-300 hover:shadow-lg" data-animate>
+                        <h3 class="font-head text-lg font-bold uppercase mb-2 text-syntra-text">Refining</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Advanced hydrometallurgical processing at SYNHUB™ facilities</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg border-2 border-slate-200 p-6 hover:border-syntra-accent transition-all duration-300 hover:shadow-lg" data-animate>
+                        <h3 class="font-head text-lg font-bold uppercase mb-2 text-syntra-text">Distribution</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Direct delivery to battery manufacturers and chemical customers</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg border-2 border-slate-200 p-6 hover:border-syntra-accent transition-all duration-300 hover:shadow-lg" data-animate>
+                        <h3 class="font-head text-lg font-bold uppercase mb-2 text-syntra-text">Circularity</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Battery recycling and material recovery closing the loop</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- AMBIENT VISUAL BAND 3 -->
-    <div class="syntra-ambient-container syntra-ambient-bg py-24" data-animate>
-        <canvas class="syntra-ambient-canvas"
-                data-variant="network"
-                data-density="high"
-                data-speed="fast"
-                data-accent="mixed"></canvas>
-        <div class="syntra-ambient-content container mx-auto px-6">
-            <div class="max-w-2xl mx-auto text-center">
-                <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-4">Network Resilience</p>
-                <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4">Distributed Infrastructure Architecture</h3>
-                <p class="text-slate-300 text-lg">Multiple nodes ensuring supply chain security and operational continuity</p>
-            </div>
-        </div>
-    </div>
 
     <!-- FOOTER -->
     <footer class="bg-syntra-midnight text-white py-16 border-t-4 border-syntra-accent">

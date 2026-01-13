@@ -15,8 +15,8 @@
  * <script src="/js/supabase-client.js"></script>
  */
 
-const SUPABASE_URL = window.SYNTRA_CONFIG?.supabaseUrl || 'https://woailjjdiamgvahcxnrj.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = window.SYNTRA_CONFIG?.supabaseKey || 'sb_publishable_-z87K81PBPmGNHHpyLlsWg_ii6jMHd1';
+const SUPABASE_URL = window.SYNTRA_CONFIG?.supabaseUrl || 'https://rhwsiuchfmtbpeljaaoj.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = window.SYNTRA_CONFIG?.supabaseKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJod3NpdWNoZm10YnBlbGphYW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxNDU1ODIsImV4cCI6MjA4MjcyMTU4Mn0.CI6hWI0AnREP-jY6g1GKL1MEpiE1MdlFH4QMKyF9WVY';
 
 let supabaseClient = null;
 
@@ -72,7 +72,7 @@ async function submitFormToDatabase(formData, formElement) {
     throw new Error('Supabase client not initialized');
   }
 
-  const referenceId = 'SR-REQ-' + Date.now().toString().slice(-6);
+  const tempReferenceId = 'SR-REQ-' + Date.now().toString().slice(-6);
 
   let resumeUrl = null;
   if (formElement && formData.form_type === 'career_application') {
@@ -90,7 +90,7 @@ async function submitFormToDatabase(formData, formElement) {
       }
 
       console.log('[Syntra Forms] Uploading resume file...');
-      resumeUrl = await uploadFileToStorage(file, referenceId);
+      resumeUrl = await uploadFileToStorage(file, tempReferenceId);
     }
   }
 
@@ -113,14 +113,17 @@ async function submitFormToDatabase(formData, formElement) {
 
   console.log('[Syntra Forms] Submitting payload:', payload);
 
-  const { error } = await client
+  const { data, error } = await client
     .from('form_submissions')
-    .insert([payload]);
+    .insert([payload])
+    .select('reference_id');
 
   if (error) {
     console.error('[Syntra Forms] Database error:', error);
     throw new Error(error.message || 'Failed to submit form to database');
   }
+
+  const referenceId = data && data[0] && data[0].reference_id ? data[0].reference_id : tempReferenceId;
 
   console.log('[Syntra Forms] Form submitted successfully. Reference ID:', referenceId);
 

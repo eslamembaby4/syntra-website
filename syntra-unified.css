@@ -1,0 +1,43 @@
+/* Syntra unified cross-page layout normalization (v203) */
+
+/*
+  Background band consistency:
+  - Add .syntra-bg-band to full-width background bands (ambient canvas bands, dark interstitial sections)
+  - Add .syntra-banner when the band is meant to read like a hero/banner and should share a minimum height
+*/
+
+.syntra-bg-band {
+  padding-top: 6rem !important; /* Tailwind py-24 */
+  padding-bottom: 6rem !important;
+}
+
+@media (max-width: 768px) {
+  .syntra-bg-band {
+    padding-top: 4.5rem !important;
+    padding-bottom: 4.5rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .syntra-bg-band {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+}
+
+.syntra-banner {
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .syntra-banner {
+    min-height: 420px;
+  }
+}
+
+.syntra-banner > .container,
+.syntra-banner > .syntra-ambient-content {
+  width: 100%;
+}

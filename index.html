@@ -9,6 +9,10 @@
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    
+
+    <link rel="stylesheet" href="/syntra-unified.css?v=203">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -288,7 +292,7 @@
                             Secure Capacity
                         </a>
                         <a href="#technology" class="px-8 py-4 bg-white border border-syntra-border text-syntra-text font-head font-bold text-lg uppercase tracking-wide hover:bg-slate-50 transition-colors flex items-center justify-center gap-3">
-                            Explore SynCore™
+                            Explore SYNCORE™
                         </a>
                     </div>
                 </div>
@@ -413,7 +417,7 @@
                     <div class="inline-block px-3 py-1 border border-syntra-tech text-syntra-tech mb-6 font-mono text-xs font-bold">POWERED BY SYNCORE™</div>
                     <h2 class="font-head text-4xl md:text-6xl font-bold uppercase mb-6">The Digital Twin<br>Advantage.</h2>
                     <p class="text-slate-300 text-lg mb-8 leading-relaxed">
-                        <strong class="text-white">SynCore™</strong> utilizes a Digital Twin architecture to continuously adjust reagent levels, temperature, and flow rates in real-time.
+                        <strong class="text-white">SYNCORE™</strong> utilizes a Digital Twin architecture to continuously adjust reagent levels, temperature, and flow rates in real-time.
                     </p>
                     <ul class="space-y-6">
                         <li class="flex gap-4">
@@ -488,7 +492,7 @@
                     <div class="w-full lg:w-1/3 bg-slate-950 border-2 border-syntra-accent p-12 rounded-xl text-center shadow-[0_0_40px_rgba(255,215,0,0.15)] relative z-20">
                         <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-syntra-accent text-slate-900 px-3 py-1 font-mono text-xs font-bold rounded uppercase">Processing Node</div>
                         <h3 class="font-head text-5xl font-bold text-white mb-2">SYNHUB™</h3>
-                        <p class="font-mono text-xs text-syntra-tech">POWERED BY SYNCORE</p>
+                        <p class="font-mono text-xs text-syntra-tech">POWERED BY SYNCORE™</p>
                     </div>
                     <div class="text-slate-600 transform lg:rotate-270 lg:-ml-8 lg:-mr-8 z-10 flow-arrow">
                         <div class="text-6xl font-bold lg:hidden">↓</div>
@@ -813,176 +817,6 @@
       </div>
     </section>
 
-    <!-- NEWSLETTER -->
-    <section id="newsletter" class="py-24 bg-syntra-base border-t border-syntra-border">
-      <div class="container mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <span class="font-mono text-xs text-syntra-amber font-bold tracking-widest uppercase mb-2 block">
-              Stay in the Loop
-            </span>
-            <h2 class="font-head text-4xl md:text-5xl font-bold uppercase mb-4 text-syntra-text">
-              Syntra Refining<br />Briefing List
-            </h2>
-            <p class="text-slate-600 text-sm md:text-base max-w-xl mb-6">
-              Subscribe for quarterly updates on SynHub™ deployments, SynCore™ pilots, and
-              commercial capacity announcements. No spam, no noise — only bankable milestones.
-            </p>
-            <ul class="space-y-2 text-sm text-slate-500">
-              <li class="flex items-center gap-2">
-                <span class="text-emerald-500">✓</span>
-                <span>Facility expansion and commissioning updates</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-emerald-500">✓</span>
-                <span>New offtake / feedstock program announcements</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-emerald-500">✓</span>
-                <span>Observer Program and data room openings</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="bg-white border border-syntra-border rounded-lg shadow-xl p-8">
-            <div class="flex justify-between items-center mb-6">
-              <h3 class="font-head text-2xl font-bold uppercase">Subscribe</h3>
-              <span class="text-[10px] font-mono bg-slate-100 px-2 py-1 rounded text-slate-500">
-                LOW TRAFFIC • HIGH SIGNAL
-              </span>
-            </div>
-
-            <form id="newsletterForm" data-syntra-form="newsletter" data-interest="Newsletter Subscription" class="space-y-4">
-              <div data-form-msg></div>
-              <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">First Name</label>
-                  <input type="text" name="first_name" class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors" placeholder="Jane" required />
-                </div>
-                <div>
-                  <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Last Name</label>
-                  <input type="text" name="last_name" class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors" placeholder="Doe" required />
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Work Email</label>
-                <input type="email" name="email" class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors" placeholder="you@company.com" required />
-              </div>
-
-              <div>
-                <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Organization</label>
-                <input type="text" name="organization" class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors" placeholder="Company Name" />
-              </div>
-
-              <div>
-                <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Primary Interest</label>
-                <select name="interest_type" class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors" required>
-                  <option value="">Select one...</option>
-                  <option>Feedstock Supply</option>
-                  <option>Product Offtake</option>
-                  <option>Strategic Partnerships</option>
-                  <option>Observer / Investor Updates</option>
-                  <option>General Industry Insight</option>
-                </select>
-              </div>
-
-              <button type="submit" class="w-full bg-syntra-text text-white font-head font-bold uppercase py-3 mt-2 hover:bg-black transition-colors">
-                Join Briefing List
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TECHNICAL DOCUMENTATION -->
-    <section id="resources" class="py-24 bg-syntra-midnight text-white relative overflow-hidden border-t border-white/5">
-      <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.15)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20"></div>
-
-      <div class="container mx-auto px-6 relative z-10">
-        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
-          <div>
-            <span class="font-mono text-xs text-syntra-accent font-bold tracking-widest uppercase mb-2 block">
-              Documentation Hub
-            </span>
-            <h2 class="font-head text-4xl md:text-5xl font-bold uppercase mb-4">
-              Technical Library
-            </h2>
-            <p class="text-slate-300 text-sm md:text-base max-w-xl">
-              Centralized access to Syntra's technical and commercial documents. Dataset access and pilot
-              reports are available under NDA via the Observer or Partner Portal.
-            </p>
-          </div>
-          <div class="flex flex-wrap gap-3 text-[11px] font-mono uppercase">
-            <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-slate-200">TDS</span>
-            <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-slate-200">SDS</span>
-            <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-slate-200">Process Overviews</span>
-            <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-slate-200">Investor One-Pagers</span>
-          </div>
-        </div>
-
-        <div class="grid lg:grid-cols-3 gap-8">
-          <div class="bg-white/5 border border-white/10 rounded-lg p-6 backdrop-blur-sm flex flex-col">
-            <div class="flex items-center justify-between mb-4">
-              <div>
-                <p class="font-mono text-[11px] text-syntra-accent uppercase mb-1">Chemistry Suite</p>
-                <h3 class="font-head text-xl font-bold uppercase">Product Data Sheets</h3>
-              </div>
-            </div>
-            <ul class="text-sm text-slate-200 space-y-1 mb-4">
-              <li>• Lithium carbonate / hydroxide TDS</li>
-              <li>• Ni / Co intermediates spec windows</li>
-              <li>• Mn / Al / Cu product summaries</li>
-            </ul>
-            <button onclick="openModal('tdsModal')"
-               class="mt-auto inline-flex items-center justify-center gap-2 text-xs font-mono uppercase px-4 py-2 rounded bg-white text-syntra-text hover:bg-syntra-accent transition-colors">
-              Request TDS Package
-            </button>
-          </div>
-
-          <div class="bg-white/5 border border-emerald-400/30 rounded-lg p-6 backdrop-blur-sm flex flex-col">
-            <div class="flex items-center justify-between mb-4">
-              <div>
-                <p class="font-mono text-[11px] text-emerald-300 uppercase mb-1">Safety &amp; ESG</p>
-                <h3 class="font-head text-xl font-bold uppercase">SDS &amp; Compliance</h3>
-              </div>
-            </div>
-            <ul class="text-sm text-slate-200 space-y-1 mb-4">
-              <li>• Safety data sheets (SDS) for key products</li>
-              <li>• Handling &amp; storage guidelines</li>
-              <li>• Environmental and permitting summaries</li>
-            </ul>
-            <p class="text-[11px] text-slate-400 mb-3">
-              SDS access is available to verified partners under standard terms.
-            </p>
-            <button onclick="openModal('sdsModal')"
-               class="mt-auto inline-flex items-center justify-center gap-2 text-xs font-mono uppercase px-4 py-2 rounded border border-white/40 hover:border-syntra-accent hover:text-syntra-accent transition-colors">
-              Contact HSE Team
-            </button>
-          </div>
-
-          <div class="bg-white/5 border border-white/10 rounded-lg p-6 backdrop-blur-sm flex flex-col">
-            <div class="flex items-center justify-between mb-4">
-              <div>
-                <p class="font-mono text-[11px] text-slate-400 uppercase mb-1">Capital &amp; Strategy</p>
-                <h3 class="font-head text-xl font-bold uppercase">Investor Materials</h3>
-              </div>
-            </div>
-            <ul class="text-sm text-slate-200 space-y-1 mb-4">
-              <li>• Syntra overview one-pager (PDF)</li>
-              <li>• Facility expansion roadmap highlights</li>
-              <li>• Observer Program briefing deck</li>
-            </ul>
-            <button onclick="openModal('investorDocsModal')"
-               class="mt-auto inline-flex items-center justify-center gap-2 text-xs font-mono uppercase px-4 py-2 rounded bg-syntra-accent text-syntra-text hover:bg-yellow-400 transition-colors">
-              Apply for Observer Access
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- PARTNER ECOSYSTEM ACCESS FORM -->
     <section id="partner-ecosystem-access" class="py-24 bg-syntra-midnight text-white relative overflow-hidden">
         <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.15)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20"></div>
@@ -1012,52 +846,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white text-syntra-text p-8 rounded shadow-2xl">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="font-head text-2xl font-bold uppercase">Contact Us</h3>
-                        <span class="text-[10px] font-mono bg-slate-100 px-2 py-1 rounded text-slate-500">SECURE SSL</span>
-                    </div>
-                    <form id="partnerForm" data-syntra-form="partner_inquiry" class="space-y-4">
-                        <div data-form-msg></div>
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">First Name</label>
-                                <input type="text" name="first_name" class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors" placeholder="Jane" required>
-                            </div>
-                            <div>
-                                <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Last Name</label>
-                                <input type="text" name="last_name" class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors" placeholder="Doe" required>
-                            </div>
+                <div class="bg-gradient-to-br from-white to-slate-50 text-syntra-text p-10 rounded-xl shadow-2xl border-2 border-slate-200 relative overflow-hidden">
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -ml-32 -mb-32"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="mb-8">
+                            <h3 class="font-head text-3xl font-bold uppercase mb-4">Contact Us</h3>
+                            <span class="inline-block text-[10px] font-mono bg-emerald-100 px-3 py-1.5 rounded-full text-emerald-700 font-bold border border-emerald-200">SECURE SSL</span>
                         </div>
-                        <div>
-                            <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Organization</label>
-                            <input type="text" name="organization" class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors" placeholder="Company Name" required>
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Email</label>
-                            <input type="email" name="email" class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors" placeholder="you@company.com" required>
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Interest Type</label>
-                            <select name="interest_type" class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors" required>
-                                <option value="">Select Interest...</option>
-                                <option value="Observer Status">Observer Status</option>
-                                <option value="Investor Relations">Investor Relations</option>
-                                <option value="Supplier / Vendor">Supplier / Vendor</option>
-                                <option value="Feedstock Supply">Feedstock Supply</option>
-                                <option value="Product Offtake">Product Offtake</option>
-                                <option value="Strategic Partnership">Strategic Partnership</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-1">Message</label>
-                            <textarea rows="3" name="message" class="w-full bg-slate-50 border border-slate-200 rounded p-3 text-sm focus:border-syntra-accent focus:outline-none transition-colors" placeholder="Brief details..." required></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-syntra-text text-white font-head font-bold uppercase py-4 hover:bg-black transition-colors">
-                            Submit Inquiry
+                        <p class="text-slate-600 mb-8 leading-relaxed">
+                            Reach out for partnership inquiries, commercial discussions, or general information.
+                        </p>
+                        <button onclick="openModal('contactModal')" class="w-full bg-syntra-text text-white font-head font-bold uppercase py-5 hover:bg-black transition-all duration-300 rounded-lg shadow-lg hover:shadow-xl hover:scale-[1.02] transform">
+                            Send Inquiry
                         </button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1289,6 +1091,74 @@
                 Submit Investor Inquiry
               </button>
               <button type="button" onclick="closeModal('investorDocsModal')" class="px-6 bg-slate-100 text-syntra-text font-head font-bold uppercase py-3 hover:bg-slate-200 transition-colors">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+            <div>
+
+
+    <!-- CONTACT US MODAL -->
+    <div id="contactModal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4">
+      <div class="bg-white max-w-2xl w-full rounded-xl shadow-2xl border-2 border-slate-200 max-h-[90vh] overflow-y-auto">
+        <div class="p-10">
+          <div class="flex justify-between items-start mb-8">
+            <div>
+              <h3 class="font-head text-4xl font-bold uppercase text-syntra-text mb-2">Contact Us</h3>
+              <p class="text-sm text-slate-500 font-mono">PARTNERSHIP INQUIRIES</p>
+            </div>
+            <button onclick="closeModal('contactModal')" class="text-slate-400 hover:text-syntra-text font-mono text-sm uppercase transition-colors">
+              Close
+            </button>
+          </div>
+
+          <form id="partnerForm" data-syntra-form="partner_inquiry" class="space-y-5">
+            <div data-form-msg></div>
+            <div class="grid md:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-2 text-syntra-text">First Name</label>
+                <input type="text" name="first_name" class="w-full bg-white border-2 border-slate-200 rounded-lg p-4 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-all shadow-sm hover:border-slate-300" placeholder="Jane" required>
+              </div>
+              <div>
+                <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-2 text-syntra-text">Last Name</label>
+                <input type="text" name="last_name" class="w-full bg-white border-2 border-slate-200 rounded-lg p-4 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-all shadow-sm hover:border-slate-300" placeholder="Doe" required>
+              </div>
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-2 text-syntra-text">Organization</label>
+              <input type="text" name="organization" class="w-full bg-white border-2 border-slate-200 rounded-lg p-4 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-all shadow-sm hover:border-slate-300" placeholder="Company Name" required>
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-2 text-syntra-text">Email</label>
+              <input type="email" name="email" class="w-full bg-white border-2 border-slate-200 rounded-lg p-4 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-all shadow-sm hover:border-slate-300" placeholder="you@company.com" required>
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-2 text-syntra-text">Interest Type</label>
+              <select name="interest_type" class="w-full bg-white border-2 border-slate-200 rounded-lg p-4 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-all shadow-sm hover:border-slate-300" required>
+                <option value="">Select Interest...</option>
+                <option value="Observer Status">Observer Status</option>
+                <option value="Investor Relations">Investor Relations</option>
+                <option value="Supplier / Vendor">Supplier / Vendor</option>
+                <option value="Feedstock Supply">Feedstock Supply</option>
+                <option value="Product Offtake">Product Offtake</option>
+                <option value="Strategic Partnership">Strategic Partnership</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono font-bold tracking-[0.18em] uppercase mb-2 text-syntra-text">Message</label>
+              <textarea rows="4" name="message" class="w-full bg-white border-2 border-slate-200 rounded-lg p-4 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-all shadow-sm hover:border-slate-300 resize-none" placeholder="Brief details..." required></textarea>
+            </div>
+
+            <div class="flex gap-4 pt-4">
+              <button type="submit" class="flex-1 bg-syntra-text text-white font-head font-bold uppercase py-4 hover:bg-black transition-all duration-300 rounded-lg shadow-lg">
+                Submit Inquiry
+              </button>
+              <button type="button" onclick="closeModal('contactModal')" class="px-8 bg-slate-100 text-syntra-text font-head font-bold uppercase py-4 hover:bg-slate-200 transition-colors rounded-lg">
                 Cancel
               </button>
             </div>

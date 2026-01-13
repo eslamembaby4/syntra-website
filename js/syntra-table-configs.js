@@ -1,6 +1,6 @@
 /**
  * Unified Metrics Card Configurations for All Syntra Pages
- * Standardized format: CATEGORY | CURRENT | YOY GROWTH | DETAILS
+ * Standardized format: CATEGORY | CURRENT | CAPACITY | DETAILS
  */
 
 window.SYNTRA_METRICS_CONFIGS = {
@@ -11,25 +11,25 @@ window.SYNTRA_METRICS_CONFIGS = {
       {
         category: 'Annual Capacity',
         current: '1000 MT',
-        yoyGrowth: '125.0%',
+        yoyGrowth: '5000 MT Target',
         details: 'Scaling execution'
       },
       {
         category: 'Active Partnerships',
-        current: '12.0',
-        yoyGrowth: '50.0%',
+        current: '12',
+        yoyGrowth: '40% Capacity',
         details: 'Offtake & OEMs'
       },
       {
         category: 'Feedstock Sources',
-        current: '8.00',
-        yoyGrowth: '30.0%',
+        current: '8',
+        yoyGrowth: '85% Utilized',
         details: 'Diversifying supply'
       },
       {
         category: 'Product Grades',
-        current: '4.00',
-        yoyGrowth: '20.0%',
+        current: '4',
+        yoyGrowth: '8 Planned',
         details: 'Battery-grade focus'
       }
     ]
@@ -37,24 +37,24 @@ window.SYNTRA_METRICS_CONFIGS = {
 
   technology: {
     title: 'TECHNOLOGY PLATFORM',
-    subtitle: 'SYNCORE PERFORMANCE METRICS',
+    subtitle: 'SYNCORE™ PERFORMANCE METRICS',
     metrics: [
       {
         category: 'Process Yield',
         current: '96%',
-        yoyGrowth: '+8.0%',
+        yoyGrowth: '98% Target',
         details: 'Optimized chemistry'
       },
       {
         category: 'Purity Targets Met',
         current: '99.5%',
-        yoyGrowth: '+5.0%',
+        yoyGrowth: '99.9% Capable',
         details: 'Battery-grade output'
       },
       {
         category: 'Energy Intensity',
         current: '-35%',
-        yoyGrowth: '-12.0%',
+        yoyGrowth: 'vs. Baseline',
         details: 'Reduced consumption'
       },
       {
@@ -73,25 +73,25 @@ window.SYNTRA_METRICS_CONFIGS = {
       {
         category: 'Sites Planned',
         current: '6',
-        yoyGrowth: '+50.0%',
+        yoyGrowth: '12 Capacity',
         details: 'Regional hubs'
       },
       {
         category: 'Sites Active',
         current: '1',
-        yoyGrowth: '+100.0%',
+        yoyGrowth: '100% Utilized',
         details: 'Nova Scotia pilot'
       },
       {
         category: 'Partner Regions',
         current: '4',
-        yoyGrowth: '+33.0%',
+        yoyGrowth: '8 Target',
         details: 'North America'
       },
       {
         category: 'Throughput Routing',
         current: '92%',
-        yoyGrowth: '+10.0%',
+        yoyGrowth: '95% Target',
         details: 'Logistics optimized'
       }
     ]
@@ -104,25 +104,25 @@ window.SYNTRA_METRICS_CONFIGS = {
       {
         category: 'Team Members',
         current: '45',
-        yoyGrowth: '+125.0%',
+        yoyGrowth: '80 Capacity',
         details: 'Engineering-focused'
       },
       {
         category: 'Patents Filed',
         current: '8',
-        yoyGrowth: '+300.0%',
+        yoyGrowth: '15 Planned',
         details: 'Process IP'
       },
       {
-        category: 'Strategic Partners',
+        category: 'Active Partnerships',
         current: '12',
-        yoyGrowth: '+50.0%',
+        yoyGrowth: '70% Capacity',
         details: 'Global reach'
       },
       {
         category: 'Years in R&D',
         current: '7',
-        yoyGrowth: '+17.0%',
+        yoyGrowth: 'Continuous',
         details: 'Tech development'
       }
     ]
