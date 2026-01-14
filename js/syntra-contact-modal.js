@@ -27,17 +27,13 @@
 
           <!-- Header -->
           <div style="padding: 3rem 2.5rem 1.5rem; text-align: center;">
-            <div style="width: 48px; height: 48px; margin: 0 auto 1.5rem; position: relative;">
-              <svg viewBox="0 0 100 100" style="width: 100%; height: 100%;">
-                <style>
-                  @keyframes syntraRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-                  @keyframes syntraPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-                  .mark-ring { stroke: #FFD700; fill: none; stroke-width: 2.5; animation: syntraRotate 8s linear infinite; transform-origin: 50% 50%; }
-                  .mark-core { fill: #0891B2; stroke: none; animation: syntraPulse 3s ease-in-out infinite; }
-                </style>
-                <circle class="mark-ring" cx="50" cy="50" r="38" />
-                <circle class="mark-core" cx="50" cy="50" r="8" />
-              </svg>
+            <div style="display: flex; justify-content: center; align-items: center; margin: 0 auto 1.5rem;">
+              <div style="width: 44px; height: 44px; border: 3px solid #FFD700; transform: rotate(45deg); display: flex; justify-content: center; align-items: center; animation: syntraModalSpin 10s linear infinite;">
+                <div style="width: 18px; height: 18px; background: #0891B2; transform: rotate(-45deg);"></div>
+              </div>
+              <style>
+                @keyframes syntraModalSpin { from { transform: rotate(45deg); } to { transform: rotate(405deg); } }
+              </style>
             </div>
             <h2 style="font-family: 'Oswald', sans-serif; font-size: 1.875rem; font-weight: 700; text-transform: uppercase; color: #0F172A; margin-bottom: 0.5rem;">Get in Touch</h2>
             <p style="color: #64748B; font-size: 0.875rem;">Syntra Refining is currently onboarding strategic partners for the 2027 production cycle.</p>

@@ -1,53 +1,50 @@
-/* Syntra Animated Logo Mark Component */
+/* ============================
+   SYNTRA LOGO MARK (diamond + square)
+   ============================ */
 .syntra-logo-mark {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 1.5rem;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 16px;
 }
 
-.syntra-mark-svg {
-  width: 100%;
-  height: 100%;
+/* Outer diamond (rotated square outline) */
+.syntra-mark-outer {
+  width: 44px;
+  height: 44px;
+  border: 3px solid #FFD700;
+  transform: rotate(45deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Continuous rotation animation */
+  animation: syntraMarkSpin 10s linear infinite;
 }
 
-.syntra-mark-svg circle {
-  fill: none;
-  stroke-width: 2.5;
+/* Inner square */
+.syntra-mark-inner {
+  width: 18px;
+  height: 18px;
+  background: #0891B2;
+  transform: rotate(-45deg);
 }
 
-/* Outer rotating ring */
-.syntra-mark-svg .mark-ring {
-  stroke: #FFD700;
-  animation: syntra-rotate 8s linear infinite;
-  transform-origin: 50% 50%;
-}
-
-/* Inner core */
-.syntra-mark-svg .mark-core {
-  fill: #0891B2;
-  stroke: none;
-}
-
-/* Subtle pulse on core */
-.syntra-mark-svg .mark-core {
-  animation: syntra-pulse 3s ease-in-out infinite;
-}
-
-@keyframes syntra-rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes syntra-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+@keyframes syntraMarkSpin {
+  from { transform: rotate(45deg); }
+  to { transform: rotate(405deg); }
 }
 
 /* Responsive sizing */
 @media (min-width: 768px) {
-  .syntra-logo-mark {
-    width: 56px;
-    height: 56px;
+  .syntra-mark-outer {
+    width: 52px;
+    height: 52px;
+    border-width: 3.5px;
+  }
+
+  .syntra-mark-inner {
+    width: 22px;
+    height: 22px;
   }
 }
