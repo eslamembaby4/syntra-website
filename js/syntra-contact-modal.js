@@ -27,9 +27,7 @@
 
           <!-- Header -->
           <div style="padding: 3rem 2.5rem 1.5rem; text-align: center;">
-            <div style="margin: 0 auto 1.5rem; display: inline-block; background: #0F172A; padding: 1rem 1.5rem; border-radius: 0.5rem;">
-              <img src="/assets/images/SYNTRA REFINING WHITE LOGO KIT - SBG.png" alt="Syntra Refining" style="height: 2.5rem; width: auto; display: block;">
-            </div>
+            <img src="/assets/images/SYNTRA REFINING WHITE LOGO KIT - SBG.png" alt="Syntra Refining" style="height: 2.5rem; width: auto; margin: 0 auto 1.5rem; display: block;">
             <h2 style="font-family: 'Oswald', sans-serif; font-size: 1.875rem; font-weight: 700; text-transform: uppercase; color: #0F172A; margin-bottom: 0.5rem;">Get in Touch</h2>
             <p style="color: #64748B; font-size: 0.875rem;">Syntra Refining is currently onboarding strategic partners for the 2027 production cycle.</p>
           </div>
