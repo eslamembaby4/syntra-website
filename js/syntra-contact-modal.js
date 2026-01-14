@@ -29,7 +29,7 @@
           <div style="padding: 3rem 2.5rem 1.5rem; text-align: center;">
             <div style="display: flex; justify-content: center; align-items: center; margin: 0 auto 1.5rem;">
               <div style="width: 44px; height: 44px; border: 3px solid #FFD700; transform: rotate(45deg); display: flex; justify-content: center; align-items: center; animation: syntraModalSpin 10s linear infinite;">
-                <div style="width: 18px; height: 18px; background: #0891B2; transform: rotate(-45deg);"></div>
+                <div style="width: 18px; height: 18px; background: #FFD700; transform: rotate(-45deg);"></div>
               </div>
               <style>
                 @keyframes syntraModalSpin { from { transform: rotate(45deg); } to { transform: rotate(405deg); } }
