@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/syntra-logo-mark.css">
 
   <script>
     tailwind.config = {
@@ -427,7 +428,12 @@
     <div class="bg-white rounded-lg shadow-2xl max-w-2xl w-full my-8">
       <div class="border-b border-syntra-border p-6 flex justify-between items-center bg-syntra-midnight text-white">
         <div class="flex items-center gap-4">
-          <img src="/assets/images/SYNTRA REFINING WHITE LOGO KIT - SBG.png" alt="Syntra Refining" class="h-10 md:h-12 w-auto">
+          <div class="syntra-logo-mark" style="margin: 0;">
+            <svg viewBox="0 0 100 100" class="syntra-mark-svg">
+              <circle class="mark-ring" cx="50" cy="50" r="38" />
+              <circle class="mark-core" cx="50" cy="50" r="8" />
+            </svg>
+          </div>
           <div>
             <h3 class="font-head text-2xl font-bold uppercase" id="modalRoleTitle">Apply for Position</h3>
             <p class="font-mono text-xs text-slate-400 mt-1">Fill out the form below to submit your application</p>

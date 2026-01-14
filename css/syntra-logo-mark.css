@@ -1,0 +1,53 @@
+/* Syntra Animated Logo Mark Component */
+.syntra-logo-mark {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1.5rem;
+  position: relative;
+}
+
+.syntra-mark-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.syntra-mark-svg circle {
+  fill: none;
+  stroke-width: 2.5;
+}
+
+/* Outer rotating ring */
+.syntra-mark-svg .mark-ring {
+  stroke: #FFD700;
+  animation: syntra-rotate 8s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+/* Inner core */
+.syntra-mark-svg .mark-core {
+  fill: #0891B2;
+  stroke: none;
+}
+
+/* Subtle pulse on core */
+.syntra-mark-svg .mark-core {
+  animation: syntra-pulse 3s ease-in-out infinite;
+}
+
+@keyframes syntra-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes syntra-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Responsive sizing */
+@media (min-width: 768px) {
+  .syntra-logo-mark {
+    width: 56px;
+    height: 56px;
+  }
+}
