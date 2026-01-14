@@ -7,21 +7,27 @@
 
 **New to this project? Start here:**
 
-1. Open `preview.html` in your browser to see the signature
-2. Read `README.md` for an overview
-3. Follow `DEPLOYMENT_GUIDE.md` for setup
-4. Reference `TEMPLATE_VARIABLES.md` for variable mapping
+1. **[Open Download Center](download.html)** - Download all files easily
+2. Open `preview.html` in your browser to see the signature
+3. Read `README.md` for an overview
+4. Follow `DEPLOYMENT_GUIDE.md` for setup
+5. Reference `TEMPLATE_VARIABLES.md` for variable mapping
 
 ---
 
 ## 📁 File Directory
+
+### Download & Preview
+| File | Purpose | Use When |
+|------|---------|----------|
+| **download.html** | Download center for all files | Downloading signature files and docs |
+| **preview.html** | Interactive browser preview | Viewing signatures before deployment |
 
 ### Core Signature Files
 | File | Purpose | Use When |
 |------|---------|----------|
 | **signature-static.html** | Production-ready static signature | Deploying to Microsoft 365 (recommended) |
 | **signature-animated.html** | Enhanced signature with subtle motion | Testing advanced version (optional) |
-| **preview.html** | Interactive browser preview | Viewing signatures before deployment |
 
 ### Documentation Files
 | File | Purpose | Read When |
@@ -365,7 +371,7 @@ Before starting deployment, ensure you have:
 
 **Complete Beginner (Never deployed email signature)**
 ```
-Day 1: README.md → preview.html → SUMMARY.md
+Day 1: download.html (download files) → README.md → preview.html → SUMMARY.md
 Day 2: DEPLOYMENT_GUIDE.md (read fully)
 Day 3: Practice with test environment
 Day 4: Deploy to test group
@@ -374,7 +380,7 @@ Day 5: Deploy organization-wide
 
 **Experienced IT Admin (Deployed signatures before)**
 ```
-Hour 1: README.md → preview.html
+Hour 1: download.html (download files) → README.md → preview.html
 Hour 2: DEPLOYMENT_GUIDE.md (skim, focus on M365 specifics)
 Hour 3: Deploy to test group
 Hour 4: Deploy organization-wide
@@ -382,7 +388,7 @@ Hour 4: Deploy organization-wide
 
 **Executive Decision Maker**
 ```
-15 minutes: preview.html → SUMMARY.md (executive overview)
+15 minutes: download.html → preview.html → SUMMARY.md (executive overview)
 15 minutes: VERSION_COMPARISON.md (decision framework)
 5 minutes: Approve and delegate to IT
 ```
@@ -403,6 +409,7 @@ Your deployment is successful when:
 ---
 
 **Ready to get started?**
+→ [Open Download Center](download.html) to download all files
 → Open `preview.html` to see the signature
 → Read `README.md` for overview
 → Follow `DEPLOYMENT_GUIDE.md` for setup

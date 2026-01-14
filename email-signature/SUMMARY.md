@@ -10,6 +10,12 @@ A standardized, professional email signature system has been created for Syntra 
 
 ---
 
+## Download Center
+
+**[Open Download Center](download.html)** - Download all signature files and documentation with one click.
+
+---
+
 ## Deliverables
 
 ### 1. Email Signature Files
