@@ -426,9 +426,14 @@
   <div id="applicationModal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4 overflow-y-auto">
     <div class="bg-white rounded-lg shadow-2xl max-w-2xl w-full my-8">
       <div class="border-b border-syntra-border p-6 flex justify-between items-center bg-syntra-midnight text-white">
-        <div>
-          <h3 class="font-head text-2xl font-bold uppercase" id="modalRoleTitle">Apply for Position</h3>
-          <p class="font-mono text-xs text-slate-400 mt-1">Fill out the form below to submit your application</p>
+        <div class="flex items-center gap-4">
+          <div style="width: 48px; height: 48px; border: 3px solid #FFD700; transform: rotate(45deg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <div style="width: 20px; height: 20px; background: #FFD700; transform: rotate(-45deg);"></div>
+          </div>
+          <div>
+            <h3 class="font-head text-2xl font-bold uppercase" id="modalRoleTitle">Apply for Position</h3>
+            <p class="font-mono text-xs text-slate-400 mt-1">Fill out the form below to submit your application</p>
+          </div>
         </div>
         <button onclick="closeApplicationModal()" class="text-white hover:text-syntra-accent transition-colors p-2" aria-label="Close modal">
           <div class="close-x"></div>
