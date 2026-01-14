@@ -111,7 +111,8 @@ async function submitFormToDatabase(formData, formElement) {
     payload.additional_data.resume_url = resumeUrl;
   }
 
-  console.log('[Syntra Forms] Submitting payload:', payload);
+  console.log('[Syntra Forms] Submitting payload to database:', payload);
+  console.log('[Syntra Forms] Using Supabase URL:', SUPABASE_URL);
 
   const { data, error } = await client
     .from('form_submissions')
@@ -119,13 +120,21 @@ async function submitFormToDatabase(formData, formElement) {
     .select('reference_id');
 
   if (error) {
-    console.error('[Syntra Forms] Database error:', error);
+    console.error('[Syntra Forms] ❌ Database insertion error:', error);
+    console.error('[Syntra Forms] Error details:', {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code
+    });
     throw new Error(error.message || 'Failed to submit form to database');
   }
 
+  console.log('[Syntra Forms] ✅ Database response:', data);
+
   const referenceId = data && data[0] && data[0].reference_id ? data[0].reference_id : tempReferenceId;
 
-  console.log('[Syntra Forms] Form submitted successfully. Reference ID:', referenceId);
+  console.log('[Syntra Forms] ✅ Form submitted successfully. Reference ID:', referenceId);
 
   sendEmailNotification(formData.form_type, referenceId, formData);
 

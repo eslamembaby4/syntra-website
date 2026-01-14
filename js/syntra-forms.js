@@ -65,6 +65,8 @@
   async function handleFormSubmit(event, form, formType, defaultInterest) {
     event.preventDefault();
 
+    console.log('[Syntra Forms] 📝 Form submission started for:', formType);
+
     const submitButton = form.querySelector('button[type="submit"]');
     const originalButtonText = submitButton ? submitButton.textContent : 'SUBMIT';
     const messageContainer = getOrCreateMessageContainer(form);
@@ -73,31 +75,37 @@
       clearMessages(messageContainer);
 
       if (!form.checkValidity()) {
+        console.warn('[Syntra Forms] ⚠️ Form validation failed');
         form.reportValidity();
         return;
       }
 
+      console.log('[Syntra Forms] ✓ Form validation passed');
       setLoadingState(submitButton, true);
 
       const formData = extractFormData(form, formType, defaultInterest);
 
+      console.log('[Syntra Forms] 📋 Extracted form data:', formData);
+
       validateRequiredFields(formData);
 
-      console.log('[Syntra Forms] Submitting form:', formType);
-      console.log('[Syntra Forms] Payload:', formData);
+      console.log('[Syntra Forms] ✓ Required fields validation passed');
 
       if (typeof window.submitFormToDatabase !== 'function') {
         throw new Error('Form submission function not available. Ensure supabase-client.js is loaded.');
       }
 
+      console.log('[Syntra Forms] 🚀 Calling submitFormToDatabase...');
+
       const result = await window.submitFormToDatabase(formData, form);
 
-      console.log('[Syntra Forms] Submission successful. Reference ID:', result.referenceId);
+      console.log('[Syntra Forms] ✅ Submission successful. Reference ID:', result.referenceId);
 
       showSuccess(form, messageContainer, result.referenceId, formType);
 
     } catch (error) {
-      console.error('[Syntra Forms] Submission error:', error);
+      console.error('[Syntra Forms] ❌ Submission error:', error);
+      console.error('[Syntra Forms] Error stack:', error.stack);
       setLoadingState(submitButton, false, originalButtonText);
       showError(messageContainer, error.message);
     }
@@ -231,13 +239,26 @@
 
   function showSuccess(form, container, referenceId, formType) {
     const successHTML = `
-      <div class="bg-green-50 border-2 border-green-500 rounded-lg p-8 text-center mb-6">
-        <div class="text-green-600 text-6xl mb-4">✓</div>
-        <h3 class="text-2xl font-bold text-green-800 mb-3 uppercase tracking-wider">SUBMISSION SUCCESSFUL</h3>
-        <p class="text-green-700 mb-4">Thank you for contacting Syntra Refining. We'll be in touch shortly.</p>
-        <div class="bg-white border border-green-200 rounded p-3 inline-block">
-          <p class="text-xs text-green-600 font-mono uppercase mb-1">Reference ID</p>
-          <p class="text-lg font-bold text-green-800 font-mono">${referenceId}</p>
+      <div class="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-500 rounded-xl p-10 text-center mb-6 shadow-lg">
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-green-500 rounded-full mb-6 animate-bounce">
+          <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <h3 class="text-3xl font-bold text-green-800 mb-4 uppercase tracking-wider">SUBMISSION SUCCESSFUL</h3>
+        <p class="text-green-700 text-lg mb-6 max-w-md mx-auto">
+          Thank you for contacting Syntra Refining. Your inquiry has been received and our team will review it shortly.
+        </p>
+        <div class="bg-white border-2 border-green-300 rounded-lg p-6 inline-block shadow-md">
+          <p class="text-xs text-green-600 font-mono uppercase mb-2 tracking-widest">Your Reference ID</p>
+          <p class="text-2xl font-bold text-green-800 font-mono tracking-wider">${referenceId}</p>
+          <p class="text-xs text-green-600 mt-3">Please save this reference number for your records</p>
+        </div>
+        <div class="mt-8 pt-6 border-t border-green-200">
+          <p class="text-sm text-green-700">
+            <strong>What's Next?</strong><br>
+            Our team typically responds within 24-48 business hours.
+          </p>
         </div>
       </div>
     `;
@@ -245,7 +266,7 @@
     if (container) {
       container.innerHTML = successHTML;
       container.style.display = 'block';
-      container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      container.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
       Array.from(form.children).forEach(child => {
         if (!child.hasAttribute('data-form-msg')) {
@@ -255,6 +276,8 @@
     } else {
       form.innerHTML = successHTML;
     }
+
+    console.log('[Syntra Forms] ✅ Success message displayed with Reference ID:', referenceId);
   }
 
   function showError(container, errorMessage) {
