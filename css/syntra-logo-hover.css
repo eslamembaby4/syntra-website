@@ -24,7 +24,7 @@
     position: absolute;
     width: 56px;
     height: 56px;
-    border: 3px solid #FFD700;
+    border: 3px solid #F97316;
     transform: rotate(45deg);
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -33,7 +33,7 @@
     transform: rotate(405deg);
 }
 
-/* Square (Inner) - STAYS STATIC - Yellow Filled */
+/* Square (Inner) - STAYS STATIC - Orange Filled */
 .syntra-logo-square {
     position: absolute;
     top: 50%;
@@ -41,7 +41,7 @@
     transform: translate(-50%, -50%);
     width: 24px;
     height: 24px;
-    background-color: #FFD700;
+    background-color: #F97316;
     z-index: 1;
 }
 
@@ -63,23 +63,23 @@
     text-transform: uppercase;
 }
 
-/* REFINING CORP. text - Yellow */
+/* REFINING CORP. text - Orange */
 .syntra-logo-subtitle {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 0.1em;
-    color: #FFD700;
+    color: #F97316;
     text-transform: uppercase;
 }
 
 /* Light variant (for dark backgrounds) */
 .syntra-logo-hover-wrapper.light .syntra-logo-diamond {
-    border-color: #FFD700;
+    border-color: #F97316;
 }
 
 .syntra-logo-hover-wrapper.light .syntra-logo-square {
-    background-color: #FFD700;
+    background-color: #F97316;
 }
 
 .syntra-logo-hover-wrapper.light .syntra-logo-title {
@@ -87,7 +87,7 @@
 }
 
 .syntra-logo-hover-wrapper.light .syntra-logo-subtitle {
-    color: #FFD700;
+    color: #F97316;
 }
 
 /* Responsive adjustments */
