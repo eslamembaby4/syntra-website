@@ -1,0 +1,405 @@
+/*
+  SYNTRA REFINING CORP. — BRAND THEME 2026
+  ==========================================
+  Single source of truth for all brand elements.
+  Based on: SYNTRA Brand Guidelines 2026 (Jan 2026)
+*/
+
+/* ============================
+   TYPOGRAPHY
+   ============================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@300;500&family=JetBrains+Mono:wght@300;700&display=swap');
+
+:root {
+  /* Brand Colors - Primary */
+  --syntra-midnight-navy: #0B1120;
+  --syntra-signal-yellow: #FFD700;
+  --syntra-deep-slate: #0F172A;
+  --syntra-slate-50: #F9FAFC;
+  --syntra-white: #FFFFFF;
+
+  /* Brand Colors - Secondary (use sparingly) */
+  --syntra-cyan: #0891B2;
+  --syntra-slate-300: #CBD5E1;
+  --syntra-slate-400: #94A3B8;
+  --syntra-slate-500: #64748B;
+  --syntra-slate-800: #1E293B;
+
+  /* Typography */
+  --font-heading: 'Oswald', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Font Weights */
+  --weight-heading: 700;
+  --weight-body-light: 300;
+  --weight-body-medium: 500;
+  --weight-mono-light: 300;
+  --weight-mono-bold: 700;
+
+  /* Spacing Scale */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  /* Border Radius (Sharp Premium Feel) */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ============================
+   BASE TYPOGRAPHY
+   ============================ */
+
+body {
+  font-family: var(--font-body);
+  font-weight: var(--weight-body-light);
+  color: var(--syntra-deep-slate);
+  background-color: var(--syntra-slate-50);
+  line-height: 1.7;
+}
+
+/* Headings: Oswald Bold Only */
+h1, h2, h3, h4, h5, h6,
+.heading {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-heading);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+h1 { font-size: 3rem; line-height: 1.1; }
+h2 { font-size: 2.25rem; line-height: 1.2; }
+h3 { font-size: 1.875rem; line-height: 1.25; }
+h4 { font-size: 1.5rem; line-height: 1.3; }
+h5 { font-size: 1.25rem; line-height: 1.35; }
+h6 { font-size: 1.125rem; line-height: 1.4; }
+
+@media (max-width: 768px) {
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.875rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+  h5 { font-size: 1.125rem; }
+  h6 { font-size: 1rem; }
+}
+
+/* Body Text: Inter Light (Medium for Emphasis) */
+p, li, a, span {
+  font-family: var(--font-body);
+  font-weight: var(--weight-body-light);
+}
+
+strong, b, .emphasis {
+  font-weight: var(--weight-body-medium);
+}
+
+/* Data/Specs/Nav: JetBrains Mono Light */
+.mono, .spec, .data-label, nav,
+[class*="nav-"], [class*="metric"], [class*="stat"] {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-mono-light);
+}
+
+.mono strong, .spec strong, .data-label strong {
+  font-weight: var(--weight-mono-bold);
+}
+
+/* ============================
+   ALIGNMENT (ALWAYS LEFT)
+   ============================ */
+
+.text-left-forced,
+.hero-content,
+.section-content,
+.cta-content,
+main p,
+main h1, main h2, main h3, main h4, main h5, main h6 {
+  text-align: left !important;
+}
+
+/* Remove any center alignment */
+.text-center {
+  text-align: left !important;
+}
+
+/* ============================
+   SHARP GEOMETRY
+   ============================ */
+
+/* Buttons */
+.btn,
+button,
+[class*="button"],
+input[type="submit"],
+input[type="button"] {
+  border-radius: var(--radius-sm);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-mono);
+  font-weight: var(--weight-mono-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-normal);
+}
+
+.btn-primary {
+  background-color: var(--syntra-signal-yellow);
+  color: var(--syntra-midnight-navy);
+}
+
+.btn-primary:hover {
+  background-color: var(--syntra-midnight-navy);
+  color: var(--syntra-signal-yellow);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--syntra-signal-yellow);
+  border: 2px solid var(--syntra-signal-yellow);
+}
+
+.btn-secondary:hover {
+  background-color: var(--syntra-signal-yellow);
+  color: var(--syntra-midnight-navy);
+}
+
+/* Cards */
+.card,
+[class*="card"] {
+  border-radius: var(--radius-md);
+  background-color: var(--syntra-white);
+  border: 1px solid var(--syntra-slate-300);
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+textarea,
+select {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--syntra-slate-300);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-weight: var(--weight-body-light);
+  transition: border-color var(--transition-fast);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--syntra-signal-yellow);
+}
+
+/* ============================
+   LOGO USAGE
+   ============================ */
+
+.syntra-logo-container {
+  display: inline-block;
+  position: relative;
+}
+
+.syntra-logo-diamond {
+  position: relative;
+}
+
+.syntra-logo-square {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Animation: Diamond rotates, Square stays static */
+@keyframes diamond-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.syntra-logo-diamond.animated {
+  animation: diamond-rotate 20s linear infinite;
+}
+
+.syntra-logo-square.animated {
+  animation: none;
+}
+
+/* ============================
+   BRAND COLORS
+   ============================ */
+
+.bg-midnight-navy { background-color: var(--syntra-midnight-navy); }
+.bg-signal-yellow { background-color: var(--syntra-signal-yellow); }
+.bg-deep-slate { background-color: var(--syntra-deep-slate); }
+.bg-slate-50 { background-color: var(--syntra-slate-50); }
+.bg-white { background-color: var(--syntra-white); }
+
+.text-midnight-navy { color: var(--syntra-midnight-navy); }
+.text-signal-yellow { color: var(--syntra-signal-yellow); }
+.text-deep-slate { color: var(--syntra-deep-slate); }
+.text-slate-50 { color: var(--syntra-slate-50); }
+.text-white { color: var(--syntra-white); }
+
+.border-midnight-navy { border-color: var(--syntra-midnight-navy); }
+.border-signal-yellow { border-color: var(--syntra-signal-yellow); }
+.border-slate-300 { border-color: var(--syntra-slate-300); }
+
+/* ============================
+   TECHNICAL GRID OVERLAY
+   (Optional, use sparingly)
+   ============================ */
+
+.syntra-grid-overlay {
+  position: relative;
+}
+
+.syntra-grid-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(0deg, transparent 49%, var(--syntra-slate-300) 49%, var(--syntra-slate-300) 51%, transparent 51%),
+    linear-gradient(90deg, transparent 49%, var(--syntra-slate-300) 49%, var(--syntra-slate-300) 51%, transparent 51%);
+  background-size: 20px 20px;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.syntra-grid-overlay > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================
+   UTILITIES
+   ============================ */
+
+.container-brand {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .container-brand {
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
+  }
+}
+
+.section-spacing {
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+}
+
+@media (max-width: 768px) {
+  .section-spacing {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+}
+
+/* ============================
+   VOICE & TONE HELPERS
+   ============================ */
+
+.brand-wordmark::after {
+  content: 'SYNTRA';
+  font-family: var(--font-heading);
+  font-weight: var(--weight-heading);
+}
+
+.brand-syncore::after {
+  content: 'SYNCORE™';
+  font-family: var(--font-heading);
+  font-weight: var(--weight-heading);
+}
+
+.brand-synhub::after {
+  content: 'SYNHUB™';
+  font-family: var(--font-heading);
+  font-weight: var(--weight-heading);
+}
+
+/* ============================
+   ANIMATION & MOTION
+   ============================ */
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fade-in 0.6s ease forwards;
+}
+
+.transition-brand {
+  transition: all var(--transition-normal);
+}
+
+/* ============================
+   ACCESSIBILITY
+   ============================ */
+
+:focus-visible {
+  outline: 2px solid var(--syntra-signal-yellow);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================
+   BRAND COMPLIANCE HELPERS
+   ============================ */
+
+/* Ensure no centered text in main content */
+main [class*="center"],
+main [style*="text-align: center"] {
+  text-align: left !important;
+}
+
+/* Ensure sharp corners everywhere */
+* {
+  border-radius: 0;
+}
+
+.btn, button, input, textarea, select, .card {
+  border-radius: var(--radius-sm);
+}
+
+img {
+  border-radius: 0;
+}
+
+/* ============================
+   END BRAND THEME
+   ============================ */

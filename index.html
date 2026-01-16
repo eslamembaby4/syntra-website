@@ -20,7 +20,17 @@
                 extend: {
                     colors: {
                         syntra: {
-                            base: '#F8FAFC',
+                            'midnight-navy': '#0B1120',
+                            'signal-yellow': '#FFD700',
+                            'deep-slate': '#0F172A',
+                            'slate-50': '#F9FAFC',
+                            'white': '#FFFFFF',
+                            'cyan': '#0891B2',
+                            'slate-300': '#CBD5E1',
+                            'slate-400': '#94A3B8',
+                            'slate-500': '#64748B',
+                            'slate-800': '#1E293B',
+                            base: '#F9FAFC',
                             surface: '#FFFFFF',
                             text: '#0F172A',
                             deep: '#020617',
@@ -29,13 +39,18 @@
                             amber: '#D97706',
                             tech: '#0891B2',
                             muted: '#64748B',
-                            border: '#E2E8F0',
+                            border: '#CBD5E1',
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         head: ['Oswald', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    borderRadius: {
+                        'brand-sm': '2px',
+                        'brand-md': '4px',
+                        'brand-lg': '6px',
                     },
                     animation: {
                         'spin-slow': 'spin 12s linear infinite',
@@ -278,7 +293,7 @@
                     </h1>
 
                     <p class="text-xl text-slate-600 max-w-xl leading-relaxed mb-10 font-light border-l-4 border-syntra-accent pl-6">
-                        Syntra Refining Corp is deploying <strong class="text-syntra-text font-semibold">modular, AI-driven refining infrastructure</strong> to solve the midstream bottleneck in North America's critical minerals supply chain. <span class="block mt-3 text-base">Feedstock agnostic. Zero liquid discharge. Building bankable refining infrastructure for North America.</span>
+                        Syntra Refining Corp operates <strong class="text-syntra-text font-semibold">modular, SYNCORE™-powered refining infrastructure</strong> delivering battery-grade critical minerals at industrial scale. <span class="block mt-3 text-base">Feedstock agnostic. Zero liquid discharge. Bankable refining infrastructure for North America.</span>
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-4">
@@ -293,7 +308,7 @@
 
                 <!-- Right Column: Product Dashboard Widget -->
                 <div class="hero-metrics-card">
-                    <div class="relative bg-white p-8 rounded-sm shadow-2xl border-t-4 border-syntra-accent border border-syntra-border">
+                    <div class="relative bg-white p-8 shadow-2xl border-t-4 border-syntra-accent border border-syntra-border">
                         <div class="flex justify-between items-end mb-6 border-b border-syntra-border pb-4">
                             <div>
                                 <h3 class="font-head text-2xl font-bold uppercase text-syntra-text">Production Output</h3>
@@ -306,7 +321,7 @@
                         </div>
 
                         <div class="hero-product-grid font-mono text-sm mb-6">
-                            <div class="hero-product-item p-3 border border-syntra-border bg-syntra-base rounded group cursor-pointer hover:border-syntra-accent hover:shadow-md transition-all">
+                            <div class="hero-product-item p-3 border border-syntra-border bg-syntra-base group cursor-pointer hover:border-syntra-accent hover:shadow-md transition-all">
                                 <div class="flex justify-between">
                                     <span class="font-bold text-lg text-syntra-text group-hover:text-syntra-amber transition-colors">Li</span>
                                     <span class="text-xs text-syntra-amber group-hover:text-syntra-accent transition-colors">99.5%</span>
@@ -314,7 +329,7 @@
                                 <p class="text-[10px] text-syntra-tech mt-1">LITHIUM</p>
                                 <p class="text-[10px] text-syntra-muted">Battery Grade</p>
                             </div>
-                            <div class="hero-product-item p-3 border border-syntra-border bg-syntra-base rounded group cursor-pointer hover:border-syntra-accent hover:shadow-md transition-all">
+                            <div class="hero-product-item p-3 border border-syntra-border bg-syntra-base group cursor-pointer hover:border-syntra-accent hover:shadow-md transition-all">
                                 <div class="flex justify-between">
                                     <span class="font-bold text-lg text-syntra-text group-hover:text-syntra-amber transition-colors">Ni</span>
                                     <span class="text-xs text-syntra-amber group-hover:text-syntra-accent transition-colors">High</span>
@@ -322,7 +337,7 @@
                                 <p class="text-[10px] text-syntra-tech mt-1">NICKEL</p>
                                 <p class="text-[10px] text-syntra-muted">Purity</p>
                             </div>
-                            <div class="hero-product-item p-3 border border-syntra-border bg-syntra-base rounded group cursor-pointer hover:border-syntra-accent hover:shadow-md transition-all">
+                            <div class="hero-product-item p-3 border border-syntra-border bg-syntra-base group cursor-pointer hover:border-syntra-accent hover:shadow-md transition-all">
                                 <div class="flex justify-between">
                                     <span class="font-bold text-lg text-syntra-text group-hover:text-syntra-amber transition-colors">Co</span>
                                     <span class="text-xs text-syntra-amber group-hover:text-syntra-accent transition-colors">High</span>
@@ -330,7 +345,7 @@
                                 <p class="text-[10px] text-syntra-tech mt-1">COBALT</p>
                                 <p class="text-[10px] text-syntra-muted">Purity</p>
                             </div>
-                            <div class="hero-product-item p-3 border border-syntra-border bg-syntra-base rounded group cursor-pointer hover:border-syntra-accent hover:shadow-md transition-all">
+                            <div class="hero-product-item p-3 border border-syntra-border bg-syntra-base group cursor-pointer hover:border-syntra-accent hover:shadow-md transition-all">
                                 <div class="flex justify-between">
                                     <span class="font-bold text-lg text-syntra-text group-hover:text-syntra-amber transition-colors">Mn</span>
                                     <span class="text-xs text-syntra-amber group-hover:text-syntra-accent transition-colors">High</span>
@@ -338,7 +353,7 @@
                                 <p class="text-[10px] text-syntra-tech mt-1">MANGANESE</p>
                                 <p class="text-[10px] text-syntra-muted">Purity</p>
                             </div>
-                            <div class="hero-product-item p-3 border border-syntra-border bg-syntra-base rounded group cursor-pointer hover:border-syntra-accent hover:shadow-md transition-all">
+                            <div class="hero-product-item p-3 border border-syntra-border bg-syntra-base group cursor-pointer hover:border-syntra-accent hover:shadow-md transition-all">
                                 <div class="flex justify-between">
                                     <span class="font-bold text-lg text-syntra-text group-hover:text-syntra-amber transition-colors">Al</span>
                                     <span class="text-xs text-syntra-amber group-hover:text-syntra-accent transition-colors">&gt;99%</span>
@@ -346,7 +361,7 @@
                                 <p class="text-[10px] text-syntra-tech mt-1">ALUMINUM</p>
                                 <p class="text-[10px] text-syntra-muted">Precursor</p>
                             </div>
-                            <div class="hero-product-item p-3 border border-syntra-border bg-syntra-base rounded group cursor-pointer hover:border-syntra-accent hover:shadow-md transition-all">
+                            <div class="hero-product-item p-3 border border-syntra-border bg-syntra-base group cursor-pointer hover:border-syntra-accent hover:shadow-md transition-all">
                                 <div class="flex justify-between">
                                     <span class="font-bold text-lg text-syntra-text group-hover:text-syntra-amber transition-colors">Cu</span>
                                     <span class="text-xs text-syntra-amber group-hover:text-syntra-accent transition-colors">&gt;99%</span>
@@ -419,7 +434,7 @@
             </h2>
 
             <p class="text-slate-300 text-lg mb-8 leading-relaxed">
-              <strong class="text-white">SynCore™</strong> utilizes a Digital Twin architecture to continuously adjust reagent levels, temperature, and flow rates in real-time.
+              <strong class="text-white">SYNCORE™</strong> utilizes a Digital Twin architecture to continuously adjust reagent levels, temperature, and flow rates in real-time.
             </p>
 
             <ul class="space-y-6 mb-8">
@@ -445,29 +460,29 @@
             </ul>
 
             <a href="technology.html" class="inline-flex items-center gap-2 bg-syntra-accent text-syntra-text px-6 py-3 font-head font-bold uppercase text-sm hover:bg-white hover:text-syntra-tech transition-colors">
-              Learn More About SynCore™
+              Learn More About SYNCORE™
             </a>
           </div>
 
-          <div class="bg-black/50 border border-slate-700 rounded-lg p-1 shadow-2xl relative overflow-hidden h-[500px]">
-            <div class="absolute top-4 left-4 z-20 bg-black/80 px-3 py-1 rounded text-xs font-mono text-syntra-tech border border-syntra-tech/30">
+          <div class="bg-black/50 border border-slate-700 p-1 shadow-2xl relative overflow-hidden h-[500px]">
+            <div class="absolute top-4 left-4 z-20 bg-black/80 px-3 py-1 text-xs font-mono text-syntra-tech border border-syntra-tech/30">
               LIVE SIMULATION
             </div>
 
             <canvas id="twinCanvas"></canvas>
 
             <div class="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-2 z-20">
-              <div class="bg-slate-900/90 p-2 border border-slate-700 rounded">
+              <div class="bg-slate-900/90 p-2 border border-slate-700">
                 <p class="text-[10px] text-slate-500 font-mono">FLOW</p>
                 <p class="text-white font-mono font-bold" id="sim-flow">120 L/m</p>
               </div>
 
-              <div class="bg-slate-900/90 p-2 border border-slate-700 rounded">
+              <div class="bg-slate-900/90 p-2 border border-slate-700">
                 <p class="text-[10px] text-slate-500 font-mono">PURITY</p>
                 <p class="text-syntra-accent font-mono font-bold" id="sim-purity">99.9%</p>
               </div>
 
-              <div class="bg-slate-900/90 p-2 border border-slate-700 rounded">
+              <div class="bg-slate-900/90 p-2 border border-slate-700">
                 <p class="text-[10px] text-slate-500 font-mono">PH</p>
                 <p class="text-syntra-tech font-mono font-bold" id="sim-ph">4.2</p>
               </div>
@@ -482,10 +497,10 @@
         <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.15)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20"></div>
 
         <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-16">
+            <div class="mb-16">
                 <span class="font-mono text-xs text-syntra-accent font-bold tracking-widest uppercase mb-2 block">The Architecture</span>
-                <h2 class="font-head text-4xl md:text-5xl font-bold text-white uppercase">The SynHub™ Ecosystem</h2>
-                <p class="text-slate-300 mt-4 max-w-2xl mx-auto">Modular refining network connecting diverse feedstock sources to battery-grade outputs.</p>
+                <h2 class="font-head text-4xl md:text-5xl font-bold text-white uppercase">The SYNHUB™ Ecosystem</h2>
+                <p class="text-slate-300 mt-4 max-w-2xl">Modular refining network connecting diverse feedstock sources to battery-grade outputs.</p>
             </div>
 
             <div class="relative max-w-7xl mx-auto">
@@ -508,8 +523,8 @@
                         <div class="text-6xl font-bold lg:hidden">↓</div>
                         <div class="text-6xl font-bold hidden lg:block">→</div>
                     </div>
-                    <div class="w-full lg:w-1/3 bg-slate-950 border-2 border-syntra-accent p-12 rounded-xl text-center shadow-[0_0_40px_rgba(255,215,0,0.15)] relative z-20">
-                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-syntra-accent text-slate-900 px-3 py-1 font-mono text-xs font-bold rounded uppercase">Processing Node</div>
+                    <div class="w-full lg:w-1/3 bg-slate-950 border-2 border-syntra-accent p-12 text-center shadow-[0_0_40px_rgba(255,215,0,0.15)] relative z-20">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-syntra-accent text-slate-900 px-3 py-1 font-mono text-xs font-bold uppercase">Processing Node</div>
                         <h3 class="font-head text-5xl font-bold text-white mb-2">SYNHUB™</h3>
                         <p class="font-mono text-xs text-syntra-accent">POWERED BY SYNCORE™</p>
                     </div>
@@ -545,7 +560,7 @@
     <!-- ENGAGEMENT MODELS -->
     <section id="services" class="py-24 bg-white border-t border-syntra-border">
         <div class="container mx-auto px-6">
-            <h2 class="font-head text-4xl font-bold uppercase mb-16 text-center">Engagement Models</h2>
+            <h2 class="font-head text-4xl font-bold uppercase mb-16">Engagement Models</h2>
             <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <div class="border-t-4 border-syntra-text pt-8 group p-6 bg-white shadow-sm hover:shadow-xl transition-all">
                     <h3 class="font-head text-2xl font-bold uppercase mb-4 group-hover:text-syntra-amber transition-colors">Merchant Refining</h3>
@@ -683,11 +698,11 @@
     <section class="py-24 bg-syntra-base border-t border-syntra-border">
       <div class="container mx-auto px-6">
         <div class="max-w-5xl mx-auto">
-          <div class="bg-white border border-syntra-border rounded-lg shadow-xl overflow-hidden">
+          <div class="bg-white border border-syntra-border shadow-xl overflow-hidden">
             <div class="grid md:grid-cols-5 gap-8 p-8 md:p-12">
-              <div class="md:col-span-2 flex flex-col items-center md:items-start">
-                <img src="assets/images/leadership/nifemi.png" alt="Nifemi Oguntuase" class="w-48 h-48 rounded-full object-cover border-4 border-syntra-accent shadow-lg mb-6">
-                <div class="text-center md:text-left">
+              <div class="md:col-span-2 flex flex-col md:items-start">
+                <img src="assets/images/leadership/nifemi.png" alt="Nifemi Oguntuase" class="w-48 h-48 object-cover border-4 border-syntra-accent shadow-lg mb-6">
+                <div>
                   <h3 class="font-head text-3xl font-bold uppercase text-syntra-text mb-1">Nifemi Oguntuase</h3>
                   <p class="font-mono text-sm text-syntra-accent uppercase tracking-wider mb-4">Chief Executive Officer</p>
                   <a href="https://www.linkedin.com/in/nifemi-o-lab4/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-syntra-tech hover:text-syntra-accent text-sm font-semibold transition-colors">
@@ -701,7 +716,7 @@
                   Mineral-process chemist and finance professional with extensive experience in mining consulting, critical minerals processing, and infrastructure development. Nifemi brings a unique combination of technical depth and commercial acumen, focused on delivering scalable, bankable solutions for North America's industrial minerals supply chain. Her background spans process engineering, automation systems, and financial structuring for capital-intensive projects.
                 </p>
 
-                <div class="border-l-4 border-syntra-accent pl-6 py-4 bg-slate-50 rounded-r">
+                <div class="border-l-4 border-syntra-accent pl-6 py-4 bg-slate-50">
                   <p class="text-syntra-text text-lg md:text-xl leading-relaxed font-medium mb-4">
                     "We're building bankable critical-minerals infrastructure by combining rigorous process chemistry with disciplined execution, automation, and scalable delivery."
                   </p>
@@ -732,10 +747,10 @@
                     </p>
                 </div>
                 <div class="lg:w-1/3 w-full">
-                    <div class="bg-white/5 border border-white/10 p-8 rounded backdrop-blur-sm shadow-2xl">
+                    <div class="bg-white/5 border border-white/10 p-8 backdrop-blur-sm shadow-2xl">
                         <h4 class="font-head text-xl font-bold uppercase mb-2">Apply for Status</h4>
                         <p class="text-xs text-slate-400 mb-6">Strict NDA required.</p>
-                        <button onclick="window.openContactModal('Observer Status')" class="block w-full bg-white text-syntra-text font-bold uppercase text-center py-4 hover:bg-syntra-accent transition-colors cursor-pointer">
+                        <button onclick="window.openContactModal('Observer Status')" class="block w-full bg-white text-syntra-text font-bold uppercase py-4 hover:bg-syntra-accent transition-colors cursor-pointer">
                             Request Access Application
                         </button>
                     </div>
@@ -747,7 +762,7 @@
     <!-- THREE CARDS SECTION -->
     <section class="py-16 bg-white border-t border-syntra-border">
       <div class="container mx-auto px-6">
-        <div class="max-w-3xl mx-auto text-center mb-10">
+        <div class="max-w-3xl mb-10">
           <span class="font-mono text-xs text-syntra-amber font-bold tracking-widest uppercase mb-2 block">
             Ecosystem Hub
           </span>
@@ -761,7 +776,7 @@
 
         <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           <!-- Observer Status -->
-          <div class="bg-syntra-base border border-syntra-border rounded p-6">
+          <div class="bg-syntra-base border border-syntra-border p-6">
             <h3 class="font-head text-xl font-bold uppercase mb-2">Observer Status</h3>
             <p class="text-xs text-slate-600">
               Verified visibility into capacity expansion and pilot data under NDA.
@@ -769,7 +784,7 @@
           </div>
 
           <!-- Investor Relations -->
-          <div class="bg-syntra-base border border-syntra-accent rounded p-6">
+          <div class="bg-syntra-base border border-syntra-accent p-6">
             <h3 class="font-head text-xl font-bold uppercase mb-2">Investor Relations</h3>
             <p class="text-xs text-slate-600">
               Equity and project finance partners supporting infrastructure buildout.
@@ -777,7 +792,7 @@
           </div>
 
           <!-- Supplier Portal -->
-          <div class="bg-syntra-base border border-syntra-border rounded p-6">
+          <div class="bg-syntra-base border border-syntra-border p-6">
             <h3 class="font-head text-xl font-bold uppercase mb-2">Supplier Portal</h3>
             <p class="text-xs text-slate-600">
               Feedstock suppliers and technical service providers for our refining network.
@@ -817,16 +832,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-gradient-to-br from-white to-slate-50 text-syntra-text p-10 rounded-xl shadow-2xl border-2 border-slate-200 relative overflow-hidden">
-                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -ml-32 -mb-32"></div>
-                    <div class="relative z-10 text-center">
+                <div class="bg-gradient-to-br from-white to-slate-50 text-syntra-text p-10 shadow-2xl border-2 border-slate-200 relative overflow-hidden">
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 blur-3xl -ml-32 -mb-32"></div>
+                    <div class="relative z-10">
                         <div class="mb-8">
                             <h3 class="font-head text-3xl font-bold uppercase mb-4">Contact Us</h3>
                         </div>
                         <p class="text-slate-600 mb-8 leading-relaxed">
                             Reach out for partnership inquiries, commercial discussions, or general information.
                         </p>
-                        <button onclick="window.openContactModal('Strategic Partnership')" class="w-full bg-syntra-text text-white font-head font-bold uppercase py-5 hover:bg-black transition-all duration-300 rounded-lg shadow-lg hover:shadow-xl hover:scale-[1.02] transform">
+                        <button onclick="window.openContactModal('Strategic Partnership')" class="w-full bg-syntra-text text-white font-head font-bold uppercase py-5 hover:bg-black transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] transform">
                             Send Inquiry
                         </button>
                     </div>
