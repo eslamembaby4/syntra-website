@@ -17,7 +17,6 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    overflow: hidden;
 }
 
 /* Diamond (Outer) - ROTATES on hover */
@@ -97,7 +96,6 @@
     .syntra-logo-mark {
         width: 44px;
         height: 44px;
-        overflow: hidden;
     }
 
     .syntra-logo-diamond {
