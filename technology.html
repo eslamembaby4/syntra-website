@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/syntra-animated-logo.css">
 
     <script>
         tailwind.config = {
@@ -255,8 +256,15 @@
     <!-- MAIN NAVIGATION -->
     <nav id="navbar" class="sticky top-0 z-40 bg-white border-b border-syntra-border">
         <div class="container mx-auto px-6 h-24 flex justify-between items-center">
-            <a href="index.html" class="flex items-center">
-                <img src="assets/images/syntra-logo-full.png" alt="SYNTRA Refining Corp" class="h-16 w-auto">
+            <a href="index.html" class="syntra-logo-animated">
+                <div class="syntra-logo-mark">
+                    <div class="syntra-logo-diamond"></div>
+                    <div class="syntra-logo-square"></div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="syntra-logo-wordmark">SYNTRA</span>
+                    <span class="syntra-logo-tagline">REFINING CORP</span>
+                </div>
             </a>
 
             <div class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-[0.18em]">
@@ -535,8 +543,15 @@
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-12 gap-12 mb-16">
                 <div class="md:col-span-4 space-y-6">
-                    <a href="index.html" class="flex items-center">
-                        <img src="assets/images/syntra-logo-refiningcorp_on_navy.png" alt="SYNTRA Refining Corp" class="h-16 w-auto">
+                    <a href="index.html" class="syntra-logo-animated light">
+                        <div class="syntra-logo-mark">
+                            <div class="syntra-logo-diamond"></div>
+                            <div class="syntra-logo-square"></div>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="syntra-logo-wordmark">SYNTRA</span>
+                            <span class="syntra-logo-tagline">REFINING CORP</span>
+                        </div>
                     </a>
                     <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
                         North America's Critical Minerals Infrastructure.<br>
