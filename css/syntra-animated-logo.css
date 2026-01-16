@@ -37,8 +37,8 @@
 /* Square (Inner) - STAYS STATIC */
 .syntra-logo-square {
     position: absolute;
-    top: 65%;
-    left: 65%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     width: 20px;
     height: 20px;
