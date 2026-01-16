@@ -31,7 +31,7 @@
 
 .syntra-logo-animated:hover .syntra-logo-diamond {
     transform: rotate(405deg); /* 360 + 45 = one full rotation plus original 45deg */
-    border-color: #F97316;
+    border-color: #FFD700;
 }
 
 /* Square (Inner) - STAYS STATIC */
@@ -48,7 +48,7 @@
 }
 
 .syntra-logo-animated:hover .syntra-logo-square {
-    background-color: #F97316;
+    background-color: #FFD700;
 }
 
 /* Wordmark */
@@ -92,11 +92,11 @@
 }
 
 .syntra-logo-animated.light:hover .syntra-logo-diamond {
-    border-color: #F97316;
+    border-color: #FFD700;
 }
 
 .syntra-logo-animated.light:hover .syntra-logo-square {
-    background-color: #F97316;
+    background-color: #FFD700;
 }
 
 .syntra-logo-animated.light .syntra-logo-tagline {
@@ -172,7 +172,7 @@
 
 .syntra-logo-mark-only:hover .syntra-logo-diamond {
     transform: rotate(405deg);
-    border-color: #F97316;
+    border-color: #FFD700;
 }
 
 .syntra-logo-mark-only .syntra-logo-square {
@@ -187,7 +187,7 @@
 }
 
 .syntra-logo-mark-only:hover .syntra-logo-square {
-    background-color: #F97316;
+    background-color: #FFD700;
 }
 
 /* Responsive adjustments */
