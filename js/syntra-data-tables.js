@@ -57,7 +57,7 @@ class SyntraDataTable {
                     const isHighlight = col.highlight && row[col.key + '_highlight'];
 
                     return `
-                      <td class="px-3 py-2 text-sm ${colIndex === 0 ? 'font-semibold' : ''} ${theme === 'dark' ? 'text-slate-200' : 'text-slate-700'}">
+                      <td class="px-3 py-2 text-sm text-left ${colIndex === 0 ? 'font-semibold' : ''} ${theme === 'dark' ? 'text-slate-200' : 'text-slate-700'}">
                         ${isNumeric
                           ? `<span class="syntra-counter font-head text-sm font-bold ${isHighlight ? 'text-syntra-accent' : theme === 'dark' ? 'text-white' : 'text-syntra-text'}" data-target="${value}" data-suffix="${col.suffix || ''}" data-prefix="${col.prefix || ''}">0</span>`
                           : `<span class="inline-flex items-center gap-1.5">${value}</span>`
