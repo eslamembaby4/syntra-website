@@ -6,6 +6,10 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto 16px;
+  width: 44px;
+  height: 44px;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Outer diamond (rotated square outline) */
@@ -37,6 +41,11 @@
 
 /* Responsive sizing */
 @media (min-width: 768px) {
+  .syntra-logo-mark {
+    width: 52px;
+    height: 52px;
+  }
+
   .syntra-mark-outer {
     width: 52px;
     height: 52px;
