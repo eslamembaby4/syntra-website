@@ -34,17 +34,23 @@
     'newsletter'
   ];
 
-  function initForms() {
-    const forms = document.querySelectorAll('form[data-syntra-form]');
+  // Track which forms have already been bound to prevent duplicate listeners
+  const BOUND_FORMS = new WeakSet();
+
+  function bindForms(root = document) {
+    const forms = root.querySelectorAll('form[data-syntra-form]');
 
     if (forms.length === 0) {
       console.log('[Syntra Forms] No forms found with [data-syntra-form] attribute');
-      return;
+      return 0;
     }
 
-    console.log(`[Syntra Forms] Initializing ${forms.length} form(s)...`);
+    let boundCount = 0;
+    console.log(`[Syntra Forms] Scanning ${forms.length} form(s)...`);
 
     forms.forEach(form => {
+      if (BOUND_FORMS.has(form)) return;
+
       const formType = form.getAttribute('data-syntra-form');
       const defaultInterest = form.getAttribute('data-interest');
 
@@ -58,8 +64,44 @@
       }
 
       form.addEventListener('submit', (e) => handleFormSubmit(e, form, formType, defaultInterest));
-      console.log(`[Syntra Forms] ✓ Initialized: ${formType}`);
+      BOUND_FORMS.add(form);
+      boundCount += 1;
+      console.log(`[Syntra Forms] ✓ Bound: ${formType}`, form);
     });
+
+    if (boundCount > 0) {
+      console.log(`[Syntra Forms] ✅ Bound ${boundCount} new form(s).`);
+    }
+
+    return boundCount;
+  }
+
+  function initForms() {
+    // Always try binding once on init
+    bindForms(document);
+
+    // Watch for dynamically injected forms (e.g., modal forms)
+    if (document.body) {
+      const observer = new MutationObserver((mutations) => {
+        for (const m of mutations) {
+          for (const node of m.addedNodes) {
+            if (!(node instanceof HTMLElement)) continue;
+            // If a form was added directly, bind it; otherwise bind any nested forms
+            if (node.matches && node.matches('form[data-syntra-form]')) {
+              bindForms(node.parentElement || document);
+            } else if (node.querySelector) {
+              const hasForms = node.querySelector('form[data-syntra-form]');
+              if (hasForms) bindForms(node);
+            }
+          }
+        }
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+      console.log('[Syntra Forms] MutationObserver active (dynamic forms supported)');
+    } else {
+      console.warn('[Syntra Forms] document.body not ready; dynamic form binding disabled');
+    }
   }
 
   async function handleFormSubmit(event, form, formType, defaultInterest) {
@@ -534,10 +576,13 @@
     }, 15000);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initForms);
-  } else {
-    initForms();
+  // IMPORTANT:
+  // Prefer DOMContentLoaded so page forms exist, but also handle cases where this script
+  // is loaded after DOMContentLoaded (e.g., injected bundles).
+  document.addEventListener('DOMContentLoaded', initForms);
+  if (document.readyState !== 'loading') {
+    // Queue to avoid running twice within the same tick.
+    setTimeout(() => initForms(), 0);
   }
 
   console.log('[Syntra Forms] syntra-forms.js loaded');
