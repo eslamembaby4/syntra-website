@@ -249,7 +249,13 @@
     console.log('[Syntra Forms] Form type:', formType);
     console.log('[Syntra Forms] Calling showThankYouModal...');
 
-    showThankYouModal(referenceId);
+    try {
+      showThankYouModal(referenceId);
+    } catch (modalError) {
+      console.error('[Syntra Forms] ❌ Error showing modal:', modalError);
+      // Fallback: show alert if modal fails
+      alert(`✅ Thank You!\n\nYour submission has been received.\n\nReference ID: ${referenceId}\n\nPlease save this reference number for your records.\n\nOur team will review your submission within 24-48 business hours.`);
+    }
 
     const submitButton = form.querySelector('button[type="submit"]');
     if (submitButton) {
@@ -280,7 +286,7 @@
     console.log('[Syntra Forms] Creating modal HTML...');
 
     const modalHTML = `
-      <div id="${modalId}" class="syntra-modal-overlay" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.75); z-index: 9999; display: flex; align-items: center; justify-content: center; animation: fadeIn 0.3s ease-out; padding: 20px; overflow-y: auto;">
+      <div id="${modalId}" class="syntra-modal-overlay" style="position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; width: 100vw !important; height: 100vh !important; background: rgba(0, 0, 0, 0.75) !important; z-index: 999999 !important; display: flex !important; align-items: center !important; justify-content: center !important; animation: fadeIn 0.3s ease-out; padding: 20px; overflow-y: auto;">
         <style>
           @keyframes fadeIn {
             from { opacity: 0; }
@@ -474,6 +480,10 @@
     `;
 
     console.log('[Syntra Forms] Inserting modal into DOM...');
+
+    // Ensure body is scrollable and not hidden
+    document.body.style.overflow = 'auto';
+
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 
     console.log('[Syntra Forms] Setting up copy functionality...');
@@ -484,15 +494,34 @@
       console.log('[Syntra Forms] ✅ Modal element found in DOM');
       console.log('[Syntra Forms] Modal display style:', modal.style.display);
       console.log('[Syntra Forms] Modal z-index:', modal.style.zIndex);
+      console.log('[Syntra Forms] Modal position:', modal.style.position);
+      console.log('[Syntra Forms] Modal visibility:', window.getComputedStyle(modal).visibility);
+      console.log('[Syntra Forms] Modal opacity:', window.getComputedStyle(modal).opacity);
+
+      // Force a reflow to ensure modal appears
+      modal.offsetHeight;
 
       modal.addEventListener('click', (e) => {
         if (e.target === modal) {
           console.log('[Syntra Forms] Background clicked, closing modal');
           modal.remove();
+          document.body.style.overflow = '';
         }
       });
+
+      // Add escape key handler
+      const escapeHandler = (e) => {
+        if (e.key === 'Escape') {
+          modal.remove();
+          document.body.style.overflow = '';
+          document.removeEventListener('keydown', escapeHandler);
+        }
+      };
+      document.addEventListener('keydown', escapeHandler);
+
     } else {
       console.error('[Syntra Forms] ❌ Modal element NOT found in DOM after insertion!');
+      throw new Error('Modal failed to insert into DOM');
     }
 
     console.log('[Syntra Forms] ✅ Thank you modal displayed with Reference ID:', referenceId);
