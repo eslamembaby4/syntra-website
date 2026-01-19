@@ -65,6 +65,11 @@
   async function handleFormSubmit(event, form, formType, defaultInterest) {
     event.preventDefault();
 
+    console.log('[Syntra Forms] ========================================');
+    console.log('[Syntra Forms] 📝 FORM SUBMIT EVENT TRIGGERED');
+    console.log('[Syntra Forms] Form type:', formType);
+    console.log('[Syntra Forms] ========================================');
+
     if (form.dataset.submitting === 'true') {
       console.log('[Syntra Forms] ⏸️ Duplicate submission prevented');
       return;
@@ -102,12 +107,19 @@
       }
 
       console.log('[Syntra Forms] 🚀 Calling submitFormToDatabase...');
+      console.log('[Syntra Forms] submitFormToDatabase function exists:', typeof window.submitFormToDatabase);
 
       const result = await window.submitFormToDatabase(formData, form);
 
-      console.log('[Syntra Forms] ✅ Submission successful. Reference ID:', result.referenceId);
+      console.log('[Syntra Forms] ========================================');
+      console.log('[Syntra Forms] ✅ DATABASE SUBMISSION SUCCESSFUL');
+      console.log('[Syntra Forms] Result object:', result);
+      console.log('[Syntra Forms] Reference ID:', result.referenceId);
+      console.log('[Syntra Forms] ========================================');
 
+      console.log('[Syntra Forms] 🎯 NOW CALLING showSuccess...');
       showSuccess(form, messageContainer, result.referenceId, formType);
+      console.log('[Syntra Forms] ✅ showSuccess COMPLETED');
 
     } catch (error) {
       console.error('[Syntra Forms] ❌ Submission error:', error);
@@ -245,14 +257,37 @@
   }
 
   function showSuccess(form, container, referenceId, formType) {
-    console.log('[Syntra Forms] 🎉 showSuccess called with referenceId:', referenceId);
+    console.log('[Syntra Forms] ========================================');
+    console.log('[Syntra Forms] 🎉 showSuccess FUNCTION ENTERED');
+    console.log('[Syntra Forms] referenceId:', referenceId);
     console.log('[Syntra Forms] Form type:', formType);
-    console.log('[Syntra Forms] Calling showThankYouModal...');
+    console.log('[Syntra Forms] ========================================');
+
+    // ADD VISUAL TEST RIGHT HERE
+    const earlyTestBox = document.createElement('div');
+    earlyTestBox.style.cssText = `
+      position: fixed !important;
+      top: 10px !important;
+      left: 10px !important;
+      padding: 15px !important;
+      background: #00ff00 !important;
+      color: #000000 !important;
+      font-weight: bold !important;
+      z-index: 2147483647 !important;
+      border: 3px solid #000000 !important;
+    `;
+    earlyTestBox.textContent = 'showSuccess() RUNNING!';
+    document.body.appendChild(earlyTestBox);
+
+    console.log('[Syntra Forms] About to call showThankYouModal...');
+    console.log('[Syntra Forms] showThankYouModal exists:', typeof showThankYouModal);
 
     try {
       showThankYouModal(referenceId);
+      console.log('[Syntra Forms] ✅ showThankYouModal call completed');
     } catch (modalError) {
       console.error('[Syntra Forms] ❌ Error showing modal:', modalError);
+      console.error('[Syntra Forms] Modal error stack:', modalError.stack);
       // Fallback: show alert if modal fails
       alert(`✅ Thank You!\n\nYour submission has been received.\n\nReference ID: ${referenceId}\n\nPlease save this reference number for your records.\n\nOur team will review your submission within 24-48 business hours.`);
     }
