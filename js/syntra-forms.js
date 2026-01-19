@@ -269,308 +269,152 @@
   }
 
   function showThankYouModal(referenceId) {
-    console.log('[Syntra Forms] 🎨 showThankYouModal started');
-    console.log('[Syntra Forms] Reference ID to display:', referenceId);
+    console.log('[Syntra Forms] 🎨 Creating simple success modal');
+    console.log('[Syntra Forms] Reference ID:', referenceId);
 
-    const uniqueId = `ref-${Date.now()}`;
-    const modalId = `syntra-modal-${uniqueId}`;
-
-    console.log('[Syntra Forms] Modal ID:', modalId);
-
-    const existingModal = document.getElementById(modalId);
-    if (existingModal) {
-      console.log('[Syntra Forms] Removing existing modal');
-      existingModal.remove();
+    if (!referenceId) {
+      console.error('[Syntra Forms] ❌ No reference ID provided!');
+      alert('Form submitted successfully! However, no reference ID was generated.');
+      return;
     }
 
-    console.log('[Syntra Forms] Creating modal HTML...');
+    // Remove any existing modals
+    const existingModals = document.querySelectorAll('.syntra-success-modal-overlay');
+    existingModals.forEach(m => m.remove());
 
-    const modalHTML = `
-      <div id="${modalId}" class="syntra-modal-overlay" style="position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; width: 100vw !important; height: 100vh !important; background: rgba(0, 0, 0, 0.75) !important; z-index: 999999 !important; display: flex !important; align-items: center !important; justify-content: center !important; animation: fadeIn 0.3s ease-out; padding: 20px; overflow-y: auto;">
-        <style>
-          @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-          }
+    // Create overlay using createElement (more reliable than innerHTML)
+    const overlay = document.createElement('div');
+    overlay.className = 'syntra-success-modal-overlay';
+    Object.assign(overlay.style, {
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      width: '100vw',
+      height: '100vh',
+      backgroundColor: 'rgba(0, 0, 0, 0.85)',
+      zIndex: '999999',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px',
+      boxSizing: 'border-box'
+    });
 
-          @keyframes slideInUp {
-            from {
-              opacity: 0;
-              transform: translateY(30px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
+    // Create modal container
+    const modalBox = document.createElement('div');
+    Object.assign(modalBox.style, {
+      background: 'white',
+      borderRadius: '16px',
+      maxWidth: '600px',
+      width: '100%',
+      maxHeight: '90vh',
+      overflowY: 'auto',
+      boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+      position: 'relative',
+      padding: '40px 30px',
+      textAlign: 'center'
+    });
 
-          @keyframes scaleIn {
-            from {
-              opacity: 0;
-              transform: scale(0.8);
-            }
-            to {
-              opacity: 1;
-              transform: scale(1);
-            }
-          }
+    // Build content using DOM elements
+    modalBox.innerHTML = `
+      <button class="close-x" style="position: absolute; top: 15px; right: 15px; width: 35px; height: 35px; border: none; background: #1f2937; color: white; border-radius: 50%; cursor: pointer; font-size: 24px; line-height: 1;">×</button>
 
-          @keyframes pulseGlow {
-            0%, 100% {
-              box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
-            }
-            50% {
-              box-shadow: 0 0 40px rgba(34, 197, 94, 0.6);
-            }
-          }
+      <div style="margin: 0 auto 25px; width: 80px; height: 80px; background: linear-gradient(135deg, #22c55e, #10b981); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+        <svg style="width: 45px; height: 45px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
 
-          .syntra-modal-content {
-            animation: scaleIn 0.4s ease-out;
-            max-height: 90vh;
-            overflow-y: auto;
-          }
+      <h2 style="font-size: 32px; font-weight: bold; color: #111827; margin: 0 0 15px; text-transform: uppercase; letter-spacing: 1px;">THANK YOU</h2>
 
-          .success-icon {
-            animation: scaleIn 0.5s ease-out 0.2s backwards;
-          }
+      <p style="font-size: 16px; color: #4b5563; margin: 0 0 30px; line-height: 1.6;">Your submission has been received successfully.</p>
 
-          .success-title {
-            animation: slideInUp 0.6s ease-out 0.3s backwards;
-          }
+      <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #22c55e; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+        <div style="background: #16a34a; color: white; padding: 5px 15px; border-radius: 20px; font-size: 11px; font-weight: bold; text-transform: uppercase; display: inline-block; margin-bottom: 15px;">REFERENCE NUMBER</div>
 
-          .success-message {
-            animation: slideInUp 0.6s ease-out 0.4s backwards;
-          }
+        <div style="background: white; padding: 20px; border-radius: 8px; border: 2px solid #86efac; margin-bottom: 15px;">
+          <p style="font-size: 28px; font-weight: bold; color: #166534; font-family: monospace; margin: 0; word-break: break-all;" class="ref-id-text">${referenceId}</p>
+        </div>
 
-          .reference-card {
-            animation: scaleIn 0.6s ease-out 0.5s backwards, pulseGlow 3s ease-in-out infinite;
-          }
+        <button class="copy-btn" style="width: 100%; background: #22c55e; color: white; border: none; padding: 15px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer;">
+          📋 COPY REFERENCE ID
+        </button>
 
-          .copy-button {
-            transition: all 0.3s ease;
-          }
+        <p style="font-size: 12px; color: #166534; margin: 15px 0 0; font-weight: 500;">Please keep this reference for your records.</p>
+      </div>
 
-          .copy-button:hover {
-            transform: scale(1.05);
-            background: #16a34a;
-          }
-
-          .copy-button:active {
-            transform: scale(0.95);
-          }
-
-          .close-modal-btn {
-            transition: all 0.2s ease;
-          }
-
-          .close-modal-btn:hover {
-            transform: scale(1.05);
-            background: #0f172a;
-          }
-        </style>
-
-        <div class="syntra-modal-content bg-white rounded-2xl shadow-2xl w-full max-w-2xl relative">
-          <!-- Close Button -->
-          <button
-            onclick="document.getElementById('${modalId}').remove()"
-            class="close-modal-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 hover:bg-gray-900 text-white rounded-full flex items-center justify-center shadow-lg z-10"
-            type="button"
-            aria-label="Close"
-          >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      <div style="background: #f9fafb; border-radius: 12px; padding: 20px; text-align: left; margin-bottom: 20px;">
+        <div style="display: flex; gap: 15px; align-items: start;">
+          <div style="flex-shrink: 0; width: 40px; height: 40px; background: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <svg style="width: 20px; height: 20px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-          </button>
-
-          <!-- Modal Content -->
-          <div class="p-8 md:p-12">
-            <!-- Success Icon -->
-            <div class="success-icon inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full mb-6 shadow-lg relative mx-auto">
-              <svg class="w-14 h-14 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <div class="absolute inset-0 rounded-full animate-ping opacity-30 bg-green-400"></div>
-            </div>
-
-            <!-- Title -->
-            <h3 class="success-title text-4xl font-bold text-gray-900 mb-4 text-center uppercase tracking-wider">
-              Thank You
-            </h3>
-
-            <!-- Message -->
-            <p class="success-message text-gray-700 text-lg mb-8 text-center leading-relaxed">
-              Your submission has been received successfully.
-            </p>
-
-            <!-- Reference ID Card -->
-            <div class="reference-card bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-400 rounded-xl p-6 shadow-xl relative mb-6">
-              <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
-                Reference Number
-              </div>
-
-              <p class="text-xs text-green-700 font-semibold uppercase mb-3 tracking-widest text-center mt-2">
-                Your Reference ID
-              </p>
-
-              <div class="relative">
-                <p id="${uniqueId}" class="text-3xl md:text-4xl font-bold text-green-900 font-mono tracking-wider mb-4 text-center select-all bg-white px-6 py-4 rounded-lg border-2 border-green-300 shadow-inner">
-                  ${referenceId}
-                </p>
-
-                <button
-                  onclick="window.copyReferenceId('${uniqueId}', '${referenceId}')"
-                  class="copy-button w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-md flex items-center justify-center gap-2"
-                  type="button"
-                >
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                  </svg>
-                  Copy Reference
-                </button>
-
-                <div id="tooltip-${uniqueId}" class="hidden absolute -top-12 left-1/2 transform -translate-x-1/2 bg-green-800 text-white px-4 py-2 rounded-lg shadow-lg text-sm font-semibold whitespace-nowrap">
-                  ✓ Copied!
-                </div>
-              </div>
-
-              <p class="text-xs text-green-700 mt-4 text-center font-medium">
-                Please keep this reference for your records.
-              </p>
-            </div>
-
-            <!-- What Happens Next -->
-            <div class="bg-gray-50 rounded-xl p-6 mb-6">
-              <div class="flex items-start gap-4">
-                <div class="flex-shrink-0 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <h4 class="text-lg font-bold text-gray-900 mb-2">What Happens Next?</h4>
-                  <ul class="text-sm text-gray-700 space-y-2">
-                    <li class="flex items-start gap-2">
-                      <span class="text-green-500 font-bold text-lg leading-none">•</span>
-                      <span>Our team will review your submission within 24-48 business hours</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <span class="text-green-500 font-bold text-lg leading-none">•</span>
-                      <span>You'll receive a response via email with next steps</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <span class="text-green-500 font-bold text-lg leading-none">•</span>
-                      <span>Use your reference ID for any follow-up communications</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- Close Button -->
-            <button
-              onclick="document.getElementById('${modalId}').remove()"
-              class="close-modal-btn w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-4 px-6 rounded-lg shadow-lg text-lg uppercase tracking-wider"
-              type="button"
-            >
-              Close
-            </button>
+          </div>
+          <div style="flex: 1;">
+            <h4 style="font-size: 16px; font-weight: bold; color: #111827; margin: 0 0 10px;">What Happens Next?</h4>
+            <ul style="margin: 0; padding: 0; list-style: none; font-size: 14px; color: #4b5563; line-height: 1.8;">
+              <li style="margin-bottom: 8px;">• Our team will review your submission within 24-48 business hours</li>
+              <li style="margin-bottom: 8px;">• You'll receive a response via email with next steps</li>
+              <li>• Use your reference ID for any follow-up communications</li>
+            </ul>
           </div>
         </div>
       </div>
+
+      <button class="close-btn" style="width: 100%; background: #1f2937; color: white; border: none; padding: 15px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;">CLOSE</button>
     `;
 
-    console.log('[Syntra Forms] Inserting modal into DOM...');
+    overlay.appendChild(modalBox);
+    document.body.appendChild(overlay);
 
-    // Ensure body is scrollable and not hidden
-    document.body.style.overflow = 'auto';
+    console.log('[Syntra Forms] ✅ Modal added to DOM');
 
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    // Set up close handlers
+    const closeX = modalBox.querySelector('.close-x');
+    const closeBtn = modalBox.querySelector('.close-btn');
+    const copyBtn = modalBox.querySelector('.copy-btn');
 
-    console.log('[Syntra Forms] Setting up copy functionality...');
-    setupCopyFunctionality();
+    const closeModal = () => {
+      console.log('[Syntra Forms] Closing modal');
+      overlay.remove();
+    };
 
-    const modal = document.getElementById(modalId);
-    if (modal) {
-      console.log('[Syntra Forms] ✅ Modal element found in DOM');
-      console.log('[Syntra Forms] Modal display style:', modal.style.display);
-      console.log('[Syntra Forms] Modal z-index:', modal.style.zIndex);
-      console.log('[Syntra Forms] Modal position:', modal.style.position);
-      console.log('[Syntra Forms] Modal visibility:', window.getComputedStyle(modal).visibility);
-      console.log('[Syntra Forms] Modal opacity:', window.getComputedStyle(modal).opacity);
+    closeX.addEventListener('click', closeModal);
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
 
-      // Force a reflow to ensure modal appears
-      modal.offsetHeight;
+    // ESC key handler
+    const escHandler = (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+        document.removeEventListener('keydown', escHandler);
+      }
+    };
+    document.addEventListener('keydown', escHandler);
 
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          console.log('[Syntra Forms] Background clicked, closing modal');
-          modal.remove();
-          document.body.style.overflow = '';
-        }
-      });
+    // Copy button handler
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(referenceId);
+        copyBtn.textContent = '✓ COPIED!';
+        copyBtn.style.background = '#16a34a';
+        setTimeout(() => {
+          copyBtn.textContent = '📋 COPY REFERENCE ID';
+          copyBtn.style.background = '#22c55e';
+        }, 2000);
+        console.log('[Syntra Forms] ✅ Copied:', referenceId);
+      } catch (err) {
+        console.error('[Syntra Forms] Copy failed:', err);
+        alert(`Your Reference ID:\n\n${referenceId}\n\nPlease copy this manually.`);
+      }
+    });
 
-      // Add escape key handler
-      const escapeHandler = (e) => {
-        if (e.key === 'Escape') {
-          modal.remove();
-          document.body.style.overflow = '';
-          document.removeEventListener('keydown', escapeHandler);
-        }
-      };
-      document.addEventListener('keydown', escapeHandler);
-
-    } else {
-      console.error('[Syntra Forms] ❌ Modal element NOT found in DOM after insertion!');
-      throw new Error('Modal failed to insert into DOM');
-    }
-
-    console.log('[Syntra Forms] ✅ Thank you modal displayed with Reference ID:', referenceId);
+    console.log('[Syntra Forms] ✅ Modal fully initialized');
   }
 
   window.showThankYouModal = showThankYouModal;
-
-  function setupCopyFunctionality() {
-    if (window.copyReferenceId) return;
-
-    window.copyReferenceId = function(elementId, referenceId) {
-      const element = document.getElementById(elementId);
-      const tooltip = document.getElementById(`tooltip-${elementId}`);
-
-      navigator.clipboard.writeText(referenceId).then(() => {
-        if (tooltip) {
-          tooltip.classList.remove('hidden');
-
-          setTimeout(() => {
-            tooltip.classList.add('hidden');
-          }, 2000);
-        }
-
-        console.log('[Syntra Forms] 📋 Reference ID copied to clipboard:', referenceId);
-      }).catch(err => {
-        console.error('[Syntra Forms] Failed to copy:', err);
-
-        const textArea = document.createElement('textarea');
-        textArea.value = referenceId;
-        textArea.style.position = 'fixed';
-        textArea.style.opacity = '0';
-        document.body.appendChild(textArea);
-        textArea.select();
-
-        try {
-          document.execCommand('copy');
-          if (tooltip) {
-            tooltip.classList.remove('hidden');
-            setTimeout(() => tooltip.classList.add('hidden'), 2000);
-          }
-          console.log('[Syntra Forms] 📋 Reference ID copied (fallback method)');
-        } catch (fallbackErr) {
-          console.error('[Syntra Forms] Fallback copy failed:', fallbackErr);
-        }
-
-        document.body.removeChild(textArea);
-      });
-    };
-  }
 
   function showError(container, errorMessage) {
     if (!container) return;
