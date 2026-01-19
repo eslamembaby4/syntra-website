@@ -93,3 +93,17 @@
   z-index: 10;
   width: 100%;
 }
+
+/* ============================
+   TABLE CONTENT CENTERING
+   ============================ */
+
+.syntra-table-center th,
+.syntra-table-center td {
+  text-align: center !important;
+}
+
+/* Override any text-left classes from table generator */
+.syntra-table-center .text-left {
+  text-align: center !important;
+}
