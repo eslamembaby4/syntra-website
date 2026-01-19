@@ -80,7 +80,7 @@ window.SYNTRA_METRICS_CONFIGS = {
         category: 'Sites Active',
         current: '1',
         yoyGrowth: '100% Utilized',
-        details: 'Nova Scotia pilot'
+        details: 'Nova Scotia facility'
       },
       {
         category: 'Partner Regions',
