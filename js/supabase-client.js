@@ -72,7 +72,7 @@ async function submitFormToDatabase(formData, formElement) {
     throw new Error('Supabase client not initialized');
   }
 
-  const tempReferenceId = 'SR-REQ-' + Date.now().toString().slice(-6);
+  const tempReferenceId = 'REF-SYN-' + Date.now().toString().slice(-6);
 
   let resumeUrl = null;
   if (formElement && formData.form_type === 'career_application') {
@@ -117,7 +117,8 @@ async function submitFormToDatabase(formData, formElement) {
   const { data, error } = await client
     .from('form_submissions')
     .insert([payload])
-    .select('reference_id');
+    .select()
+    .single();
 
   if (error) {
     console.error('[Syntra Forms] ❌ Database insertion error:', error);
@@ -132,7 +133,7 @@ async function submitFormToDatabase(formData, formElement) {
 
   console.log('[Syntra Forms] ✅ Database response:', data);
 
-  const referenceId = data && data[0] && data[0].reference_id ? data[0].reference_id : tempReferenceId;
+  const referenceId = data?.reference_id || tempReferenceId;
 
   console.log('[Syntra Forms] ✅ Form submitted successfully. Reference ID:', referenceId);
 

@@ -339,13 +339,12 @@
 
         <!-- Title -->
         <h3 class="success-title text-4xl font-bold text-green-800 mb-4 uppercase tracking-wider">
-          Submission Successful!
+          Thank You
         </h3>
 
         <!-- Message -->
         <p class="success-message text-green-700 text-lg mb-8 max-w-lg mx-auto leading-relaxed">
-          Thank you for contacting <span class="font-semibold text-green-900">Syntra Refining</span>.<br>
-          Your inquiry has been received and our team will review it shortly.
+          Your submission has been received.
         </p>
 
         <!-- Reference ID Card -->
