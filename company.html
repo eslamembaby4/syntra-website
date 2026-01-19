@@ -148,16 +148,11 @@
             z-index: 1;
         }
 
-        .syntra-table-wrap-center table {
-            margin-left: auto !important;
-            margin-right: auto !important;
+        .syntra-centered-card {
             max-width: 680px;
-            width: 100%;
-        }
-
-        .syntra-table-wrap-center > * {
             margin-left: auto;
             margin-right: auto;
+            width: 100%;
         }
 
         .syntra-ambient-bg {
@@ -461,10 +456,8 @@
                     </div>
 
                     <!-- Data Table -->
-                    <div class="w-full lg:w-auto lg:min-w-[500px] flex justify-center">
-                        <div class="w-full max-w-[680px] mx-auto">
-                            <div class="syntra-table-wrap-center" data-syntra-table="company"></div>
-                        </div>
+                    <div class="syntra-centered-card">
+                        <div data-syntra-table="company"></div>
                     </div>
                 </div>
 
