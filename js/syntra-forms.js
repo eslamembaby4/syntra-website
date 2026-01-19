@@ -245,6 +245,10 @@
   }
 
   function showSuccess(form, container, referenceId, formType) {
+    console.log('[Syntra Forms] 🎉 showSuccess called with referenceId:', referenceId);
+    console.log('[Syntra Forms] Form type:', formType);
+    console.log('[Syntra Forms] Calling showThankYouModal...');
+
     showThankYouModal(referenceId);
 
     const submitButton = form.querySelector('button[type="submit"]');
@@ -252,19 +256,28 @@
       submitButton.disabled = true;
       submitButton.textContent = 'SUBMITTED';
       submitButton.style.opacity = '0.5';
+      console.log('[Syntra Forms] Submit button updated to SUBMITTED state');
     }
 
     console.log('[Syntra Forms] ✅ Success modal displayed with Reference ID:', referenceId);
   }
 
   function showThankYouModal(referenceId) {
+    console.log('[Syntra Forms] 🎨 showThankYouModal started');
+    console.log('[Syntra Forms] Reference ID to display:', referenceId);
+
     const uniqueId = `ref-${Date.now()}`;
     const modalId = `syntra-modal-${uniqueId}`;
 
+    console.log('[Syntra Forms] Modal ID:', modalId);
+
     const existingModal = document.getElementById(modalId);
     if (existingModal) {
+      console.log('[Syntra Forms] Removing existing modal');
       existingModal.remove();
     }
+
+    console.log('[Syntra Forms] Creating modal HTML...');
 
     const modalHTML = `
       <div id="${modalId}" class="syntra-modal-overlay" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.75); z-index: 9999; display: flex; align-items: center; justify-content: center; animation: fadeIn 0.3s ease-out; padding: 20px; overflow-y: auto;">
@@ -460,16 +473,27 @@
       </div>
     `;
 
+    console.log('[Syntra Forms] Inserting modal into DOM...');
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 
+    console.log('[Syntra Forms] Setting up copy functionality...');
     setupCopyFunctionality();
 
     const modal = document.getElementById(modalId);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.remove();
-      }
-    });
+    if (modal) {
+      console.log('[Syntra Forms] ✅ Modal element found in DOM');
+      console.log('[Syntra Forms] Modal display style:', modal.style.display);
+      console.log('[Syntra Forms] Modal z-index:', modal.style.zIndex);
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          console.log('[Syntra Forms] Background clicked, closing modal');
+          modal.remove();
+        }
+      });
+    } else {
+      console.error('[Syntra Forms] ❌ Modal element NOT found in DOM after insertion!');
+    }
 
     console.log('[Syntra Forms] ✅ Thank you modal displayed with Reference ID:', referenceId);
   }

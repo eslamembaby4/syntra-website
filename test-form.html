@@ -45,6 +45,13 @@
             </button>
         </form>
 
+        <div class="mt-6">
+            <button onclick="testModal()" class="bg-green-600 text-white px-6 py-3 rounded font-semibold hover:bg-green-700">
+                Test Modal Directly
+            </button>
+            <p class="text-sm text-gray-600 mt-2">Click this to test if the modal displays without submitting the form</p>
+        </div>
+
         <div id="console-log" class="mt-8 p-4 bg-gray-800 text-green-400 font-mono text-xs rounded overflow-auto max-h-96">
             <div class="font-bold mb-2">Console Output:</div>
         </div>
@@ -88,6 +95,24 @@
         console.log('Test page loaded');
         console.log('SYNTRA_CONFIG:', window.SYNTRA_CONFIG);
         console.log('Supabase client:', window.supabaseClient);
+
+        // Test modal function
+        function testModal() {
+            console.log('Testing modal display...');
+            if (typeof window.showThankYouModal === 'function') {
+                window.showThankYouModal('REF-SYN-TEST123');
+                console.log('Modal function called successfully');
+            } else {
+                console.error('showThankYouModal function not available');
+            }
+        }
+
+        // Check if modal function is available after page loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                console.log('showThankYouModal available:', typeof window.showThankYouModal);
+            }, 1000);
+        });
     </script>
 </body>
 </html>
