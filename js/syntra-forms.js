@@ -269,8 +269,30 @@
   }
 
   function showThankYouModal(referenceId) {
-    console.log('[Syntra Forms] 🎨 Creating simple success modal');
+    console.log('[Syntra Forms] 🎨 ===== MODAL FUNCTION CALLED =====');
     console.log('[Syntra Forms] Reference ID:', referenceId);
+
+    // SUPER VISIBLE TEST: Add a bright red box to the page FIRST
+    const testBox = document.createElement('div');
+    testBox.id = 'test-visual';
+    testBox.style.cssText = `
+      position: fixed !important;
+      top: 10px !important;
+      right: 10px !important;
+      width: 200px !important;
+      padding: 20px !important;
+      background: #ff0000 !important;
+      color: #ffffff !important;
+      font-size: 18px !important;
+      font-weight: bold !important;
+      z-index: 2147483647 !important;
+      border: 5px solid #ffff00 !important;
+      border-radius: 10px !important;
+      text-align: center !important;
+    `;
+    testBox.textContent = 'FUNCTION IS RUNNING!';
+    document.body.appendChild(testBox);
+    console.log('[Syntra Forms] Red test box added');
 
     if (!referenceId) {
       console.error('[Syntra Forms] ❌ No reference ID provided!');
@@ -285,35 +307,41 @@
     // Create overlay using createElement (more reliable than innerHTML)
     const overlay = document.createElement('div');
     overlay.className = 'syntra-success-modal-overlay';
-    Object.assign(overlay.style, {
-      position: 'fixed',
-      top: '0',
-      left: '0',
-      width: '100vw',
-      height: '100vh',
-      backgroundColor: 'rgba(0, 0, 0, 0.85)',
-      zIndex: '999999',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '20px',
-      boxSizing: 'border-box'
-    });
+    overlay.id = 'syntra-modal-overlay';
+    overlay.style.cssText = `
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background-color: rgba(0, 0, 0, 0.9) !important;
+      z-index: 2147483646 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 20px !important;
+      box-sizing: border-box !important;
+    `;
+    console.log('[Syntra Forms] Overlay created');
 
     // Create modal container
     const modalBox = document.createElement('div');
-    Object.assign(modalBox.style, {
-      background: 'white',
-      borderRadius: '16px',
-      maxWidth: '600px',
-      width: '100%',
-      maxHeight: '90vh',
-      overflowY: 'auto',
-      boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
-      position: 'relative',
-      padding: '40px 30px',
-      textAlign: 'center'
-    });
+    modalBox.id = 'syntra-modal-box';
+    modalBox.style.cssText = `
+      background: white !important;
+      border-radius: 16px !important;
+      max-width: 600px !important;
+      width: 100% !important;
+      max-height: 90vh !important;
+      overflow-y: auto !important;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5) !important;
+      position: relative !important;
+      padding: 40px 30px !important;
+      text-align: center !important;
+    `;
+    console.log('[Syntra Forms] Modal box created');
 
     // Build content using DOM elements
     modalBox.innerHTML = `
@@ -365,7 +393,23 @@
     `;
 
     overlay.appendChild(modalBox);
+    console.log('[Syntra Forms] Modal box appended to overlay');
+
     document.body.appendChild(overlay);
+    console.log('[Syntra Forms] Overlay appended to body');
+
+    // Verify it was added
+    const checkOverlay = document.getElementById('syntra-modal-overlay');
+    const checkBox = document.getElementById('syntra-modal-box');
+    console.log('[Syntra Forms] Overlay in DOM:', !!checkOverlay);
+    console.log('[Syntra Forms] Modal box in DOM:', !!checkBox);
+
+    if (checkOverlay) {
+      const computedStyle = window.getComputedStyle(checkOverlay);
+      console.log('[Syntra Forms] Overlay computed display:', computedStyle.display);
+      console.log('[Syntra Forms] Overlay computed z-index:', computedStyle.zIndex);
+      console.log('[Syntra Forms] Overlay computed position:', computedStyle.position);
+    }
 
     console.log('[Syntra Forms] ✅ Modal added to DOM');
 
