@@ -69,77 +69,95 @@ async function uploadFileToStorage(file, referenceId) {
 async function submitFormToDatabase(formData, formElement) {
   const client = initSupabase();
   if (!client) {
-    throw new Error('Supabase client not initialized');
+    throw new Error('Database connection failed. Please refresh the page and try again.');
   }
 
   const tempReferenceId = 'REF-SYN-' + Date.now().toString().slice(-6);
 
-  let resumeUrl = null;
-  if (formElement && formData.form_type === 'career_application') {
-    const fileInput = formElement.querySelector('input[type="file"][name="resume"]');
-    if (fileInput && fileInput.files && fileInput.files.length > 0) {
-      const file = fileInput.files[0];
+  try {
+    let resumeUrl = null;
+    if (formElement && formData.form_type === 'career_application') {
+      const fileInput = formElement.querySelector('input[type="file"][name="resume"]');
+      if (fileInput && fileInput.files && fileInput.files.length > 0) {
+        const file = fileInput.files[0];
 
-      if (file.size > 5 * 1024 * 1024) {
-        throw new Error('Resume file size must be less than 5MB');
+        if (file.size > 5 * 1024 * 1024) {
+          throw new Error('Resume file size must be less than 5MB');
+        }
+
+        const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+        if (!allowedTypes.includes(file.type)) {
+          throw new Error('Resume must be PDF, DOC, or DOCX format');
+        }
+
+        console.log('[Syntra Forms] Uploading resume file...');
+        resumeUrl = await uploadFileToStorage(file, tempReferenceId);
       }
-
-      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-      if (!allowedTypes.includes(file.type)) {
-        throw new Error('Resume must be PDF, DOC, or DOCX format');
-      }
-
-      console.log('[Syntra Forms] Uploading resume file...');
-      resumeUrl = await uploadFileToStorage(file, tempReferenceId);
     }
+
+    const payload = {
+      form_type: formData.form_type,
+      first_name: formData.first_name,
+      last_name: formData.last_name || null,
+      email: formData.email,
+      phone: formData.phone || null,
+      organization: formData.organization,
+      company: formData.organization,
+      interest_type: formData.interest_type,
+      message: formData.message || null,
+      additional_data: formData.additional_data || {}
+    };
+
+    if (resumeUrl) {
+      payload.additional_data.resume_url = resumeUrl;
+    }
+
+    console.log('[Syntra Forms] Submitting payload to database:', payload);
+    console.log('[Syntra Forms] Using Supabase URL:', SUPABASE_URL);
+
+    const { data, error } = await client
+      .from('form_submissions')
+      .insert([payload])
+      .select()
+      .single();
+
+    if (error) {
+      console.error('[Syntra Forms] ❌ Database insertion error:', error);
+      console.error('[Syntra Forms] Error details:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code
+      });
+
+      if (error.code === 'PGRST116') {
+        throw new Error('Database connection error. Please check your internet connection and try again.');
+      } else if (error.message.includes('violates')) {
+        throw new Error('Invalid data provided. Please check all fields and try again.');
+      } else {
+        throw new Error(error.message || 'Database error occurred. Please try again.');
+      }
+    }
+
+    if (!data) {
+      throw new Error('No response received from server. Please try again.');
+    }
+
+    console.log('[Syntra Forms] ✅ Database response:', data);
+
+    const referenceId = data?.reference_id || tempReferenceId;
+
+    console.log('[Syntra Forms] ✅ Form submitted successfully. Reference ID:', referenceId);
+
+    sendEmailNotification(formData.form_type, referenceId, formData);
+
+    return { referenceId };
+  } catch (error) {
+    if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+      throw new Error('Network error. Please check your internet connection and try again.');
+    }
+    throw error;
   }
-
-  const payload = {
-    form_type: formData.form_type,
-    first_name: formData.first_name,
-    last_name: formData.last_name || null,
-    email: formData.email,
-    phone: formData.phone || null,
-    organization: formData.organization,
-    company: formData.organization,
-    interest_type: formData.interest_type,
-    message: formData.message || null,
-    additional_data: formData.additional_data || {}
-  };
-
-  if (resumeUrl) {
-    payload.additional_data.resume_url = resumeUrl;
-  }
-
-  console.log('[Syntra Forms] Submitting payload to database:', payload);
-  console.log('[Syntra Forms] Using Supabase URL:', SUPABASE_URL);
-
-  const { data, error } = await client
-    .from('form_submissions')
-    .insert([payload])
-    .select()
-    .single();
-
-  if (error) {
-    console.error('[Syntra Forms] ❌ Database insertion error:', error);
-    console.error('[Syntra Forms] Error details:', {
-      message: error.message,
-      details: error.details,
-      hint: error.hint,
-      code: error.code
-    });
-    throw new Error(error.message || 'Failed to submit form to database');
-  }
-
-  console.log('[Syntra Forms] ✅ Database response:', data);
-
-  const referenceId = data?.reference_id || tempReferenceId;
-
-  console.log('[Syntra Forms] ✅ Form submitted successfully. Reference ID:', referenceId);
-
-  sendEmailNotification(formData.form_type, referenceId, formData);
-
-  return { referenceId };
 }
 
 function sendEmailNotification(formType, referenceId, formData) {

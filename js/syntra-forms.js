@@ -65,6 +65,11 @@
   async function handleFormSubmit(event, form, formType, defaultInterest) {
     event.preventDefault();
 
+    if (form.dataset.submitting === 'true') {
+      console.log('[Syntra Forms] ⏸️ Duplicate submission prevented');
+      return;
+    }
+
     console.log('[Syntra Forms] 📝 Form submission started for:', formType);
 
     const submitButton = form.querySelector('button[type="submit"]');
@@ -81,6 +86,7 @@
       }
 
       console.log('[Syntra Forms] ✓ Form validation passed');
+      form.dataset.submitting = 'true';
       setLoadingState(submitButton, true);
 
       const formData = extractFormData(form, formType, defaultInterest);
@@ -106,6 +112,7 @@
     } catch (error) {
       console.error('[Syntra Forms] ❌ Submission error:', error);
       console.error('[Syntra Forms] Error stack:', error.stack);
+      form.dataset.submitting = 'false';
       setLoadingState(submitButton, false, originalButtonText);
       showError(messageContainer, error.message);
     }
@@ -373,7 +380,7 @@
 
             <!-- Message -->
             <p class="success-message text-gray-700 text-lg mb-8 text-center leading-relaxed">
-              Your submission has been received.
+              Your submission has been received successfully.
             </p>
 
             <!-- Reference ID Card -->
@@ -515,24 +522,40 @@
   function showError(container, errorMessage) {
     if (!container) return;
 
-    container.className = 'bg-red-50 border-2 border-red-500 rounded-lg p-4 mb-6';
+    const isValidationError = errorMessage.includes('required') ||
+                              errorMessage.includes('validation') ||
+                              errorMessage.includes('invalid');
+
+    const userFriendlyMessage = isValidationError
+      ? errorMessage
+      : 'Something went wrong while submitting the form.';
+
+    container.className = 'bg-red-50 border-2 border-red-500 rounded-lg p-6 mb-6 shadow-lg';
     container.style.display = 'block';
     container.innerHTML = `
-      <div class="flex items-start gap-3">
-        <div class="text-red-500 text-2xl">⚠</div>
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0 w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
         <div class="flex-1">
-          <p class="text-red-700 font-semibold mb-1">SUBMISSION ERROR</p>
-          <p class="text-red-600 text-sm">${errorMessage}</p>
-          <p class="text-red-500 text-xs mt-2">Please check all required fields and try again.</p>
+          <p class="text-red-900 font-bold text-lg mb-2 uppercase tracking-wide">Submission Failed</p>
+          <p class="text-red-700 text-base mb-3 leading-relaxed">${userFriendlyMessage}</p>
+          <p class="text-red-600 text-sm font-medium">
+            ${isValidationError
+              ? 'Please check all required fields and try again.'
+              : 'Please try again or contact us at <a href="mailto:info@syntrarefining.com" class="underline hover:text-red-800">info@syntrarefining.com</a> if the issue persists.'}
+          </p>
         </div>
       </div>
     `;
 
-    container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
     setTimeout(() => {
       clearMessages(container);
-    }, 10000);
+    }, 15000);
   }
 
   if (document.readyState === 'loading') {
