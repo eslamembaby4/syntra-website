@@ -238,212 +238,236 @@
   }
 
   function showSuccess(form, container, referenceId, formType) {
+    showThankYouModal(referenceId);
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'SUBMITTED';
+      submitButton.style.opacity = '0.5';
+    }
+
+    console.log('[Syntra Forms] ✅ Success modal displayed with Reference ID:', referenceId);
+  }
+
+  function showThankYouModal(referenceId) {
     const uniqueId = `ref-${Date.now()}`;
+    const modalId = `syntra-modal-${uniqueId}`;
 
-    const successHTML = `
-      <style>
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
+    const existingModal = document.getElementById(modalId);
+    if (existingModal) {
+      existingModal.remove();
+    }
+
+    const modalHTML = `
+      <div id="${modalId}" class="syntra-modal-overlay" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.75); z-index: 9999; display: flex; align-items: center; justify-content: center; animation: fadeIn 0.3s ease-out; padding: 20px; overflow-y: auto;">
+        <style>
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
           }
-          to {
-            opacity: 1;
-            transform: translateY(0);
+
+          @keyframes slideInUp {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
           }
-        }
 
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.8);
+          @keyframes scaleIn {
+            from {
+              opacity: 0;
+              transform: scale(0.8);
+            }
+            to {
+              opacity: 1;
+              transform: scale(1);
+            }
           }
-          to {
-            opacity: 1;
-            transform: scale(1);
+
+          @keyframes pulseGlow {
+            0%, 100% {
+              box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+            }
+            50% {
+              box-shadow: 0 0 40px rgba(34, 197, 94, 0.6);
+            }
           }
-        }
 
-        @keyframes pulseGlow {
-          0%, 100% {
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+          .syntra-modal-content {
+            animation: scaleIn 0.4s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
           }
-          50% {
-            box-shadow: 0 0 40px rgba(34, 197, 94, 0.6);
+
+          .success-icon {
+            animation: scaleIn 0.5s ease-out 0.2s backwards;
           }
-        }
 
-        @keyframes floatBadge {
-          0%, 100% {
-            transform: translateY(0px);
+          .success-title {
+            animation: slideInUp 0.6s ease-out 0.3s backwards;
           }
-          50% {
-            transform: translateY(-10px);
+
+          .success-message {
+            animation: slideInUp 0.6s ease-out 0.4s backwards;
           }
-        }
 
-        .success-container {
-          animation: slideInUp 0.6s ease-out;
-        }
+          .reference-card {
+            animation: scaleIn 0.6s ease-out 0.5s backwards, pulseGlow 3s ease-in-out infinite;
+          }
 
-        .success-icon {
-          animation: scaleIn 0.5s ease-out 0.2s backwards;
-        }
+          .copy-button {
+            transition: all 0.3s ease;
+          }
 
-        .success-title {
-          animation: slideInUp 0.6s ease-out 0.3s backwards;
-        }
+          .copy-button:hover {
+            transform: scale(1.05);
+            background: #16a34a;
+          }
 
-        .success-message {
-          animation: slideInUp 0.6s ease-out 0.4s backwards;
-        }
+          .copy-button:active {
+            transform: scale(0.95);
+          }
 
-        .reference-card {
-          animation: scaleIn 0.6s ease-out 0.5s backwards, pulseGlow 3s ease-in-out infinite;
-        }
+          .close-modal-btn {
+            transition: all 0.2s ease;
+          }
 
-        .next-steps {
-          animation: slideInUp 0.6s ease-out 0.6s backwards;
-        }
+          .close-modal-btn:hover {
+            transform: scale(1.05);
+            background: #0f172a;
+          }
+        </style>
 
-        .copy-button {
-          transition: all 0.3s ease;
-        }
+        <div class="syntra-modal-content bg-white rounded-2xl shadow-2xl w-full max-w-2xl relative">
+          <!-- Close Button -->
+          <button
+            onclick="document.getElementById('${modalId}').remove()"
+            class="close-modal-btn absolute top-4 right-4 w-10 h-10 bg-gray-800 hover:bg-gray-900 text-white rounded-full flex items-center justify-center shadow-lg z-10"
+            type="button"
+            aria-label="Close"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
 
-        .copy-button:hover {
-          transform: scale(1.05);
-          background: #16a34a;
-        }
+          <!-- Modal Content -->
+          <div class="p-8 md:p-12">
+            <!-- Success Icon -->
+            <div class="success-icon inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full mb-6 shadow-lg relative mx-auto">
+              <svg class="w-14 h-14 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <div class="absolute inset-0 rounded-full animate-ping opacity-30 bg-green-400"></div>
+            </div>
 
-        .copy-button:active {
-          transform: scale(0.95);
-        }
+            <!-- Title -->
+            <h3 class="success-title text-4xl font-bold text-gray-900 mb-4 text-center uppercase tracking-wider">
+              Thank You
+            </h3>
 
-        .copied-tooltip {
-          animation: slideInUp 0.3s ease-out;
-        }
-      </style>
-
-      <div class="success-container bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 border-2 border-green-500 rounded-2xl p-12 text-center mb-6 shadow-2xl relative overflow-hidden">
-        <!-- Decorative Background Elements -->
-        <div class="absolute top-0 left-0 w-32 h-32 bg-green-400 rounded-full opacity-10 -translate-x-16 -translate-y-16"></div>
-        <div class="absolute bottom-0 right-0 w-40 h-40 bg-emerald-400 rounded-full opacity-10 translate-x-20 translate-y-20"></div>
-
-        <!-- Success Icon -->
-        <div class="success-icon inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full mb-8 shadow-lg relative">
-          <svg class="w-14 h-14 text-white animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-          </svg>
-          <div class="absolute inset-0 rounded-full animate-ping opacity-30 bg-green-400"></div>
-        </div>
-
-        <!-- Title -->
-        <h3 class="success-title text-4xl font-bold text-green-800 mb-4 uppercase tracking-wider">
-          Thank You
-        </h3>
-
-        <!-- Message -->
-        <p class="success-message text-green-700 text-lg mb-8 max-w-lg mx-auto leading-relaxed">
-          Your submission has been received.
-        </p>
-
-        <!-- Reference ID Card -->
-        <div class="reference-card bg-white border-2 border-green-400 rounded-xl p-8 inline-block shadow-xl max-w-md mx-auto relative">
-          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
-            Track Your Inquiry
-          </div>
-
-          <p class="text-xs text-green-600 font-mono uppercase mb-3 tracking-widest font-bold">
-            Your Reference ID
-          </p>
-
-          <div class="relative group">
-            <p id="${uniqueId}" class="text-3xl font-bold text-green-900 font-mono tracking-wider mb-4 select-all bg-green-50 px-6 py-4 rounded-lg border border-green-200">
-              ${referenceId}
+            <!-- Message -->
+            <p class="success-message text-gray-700 text-lg mb-8 text-center leading-relaxed">
+              Your submission has been received.
             </p>
 
+            <!-- Reference ID Card -->
+            <div class="reference-card bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-400 rounded-xl p-6 shadow-xl relative mb-6">
+              <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
+                Reference Number
+              </div>
+
+              <p class="text-xs text-green-700 font-semibold uppercase mb-3 tracking-widest text-center mt-2">
+                Your Reference ID
+              </p>
+
+              <div class="relative">
+                <p id="${uniqueId}" class="text-3xl md:text-4xl font-bold text-green-900 font-mono tracking-wider mb-4 text-center select-all bg-white px-6 py-4 rounded-lg border-2 border-green-300 shadow-inner">
+                  ${referenceId}
+                </p>
+
+                <button
+                  onclick="window.copyReferenceId('${uniqueId}', '${referenceId}')"
+                  class="copy-button w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-md flex items-center justify-center gap-2"
+                  type="button"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                  </svg>
+                  Copy Reference
+                </button>
+
+                <div id="tooltip-${uniqueId}" class="hidden absolute -top-12 left-1/2 transform -translate-x-1/2 bg-green-800 text-white px-4 py-2 rounded-lg shadow-lg text-sm font-semibold whitespace-nowrap">
+                  ✓ Copied!
+                </div>
+              </div>
+
+              <p class="text-xs text-green-700 mt-4 text-center font-medium">
+                Please keep this reference for your records.
+              </p>
+            </div>
+
+            <!-- What Happens Next -->
+            <div class="bg-gray-50 rounded-xl p-6 mb-6">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <h4 class="text-lg font-bold text-gray-900 mb-2">What Happens Next?</h4>
+                  <ul class="text-sm text-gray-700 space-y-2">
+                    <li class="flex items-start gap-2">
+                      <span class="text-green-500 font-bold text-lg leading-none">•</span>
+                      <span>Our team will review your submission within 24-48 business hours</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-green-500 font-bold text-lg leading-none">•</span>
+                      <span>You'll receive a response via email with next steps</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-green-500 font-bold text-lg leading-none">•</span>
+                      <span>Use your reference ID for any follow-up communications</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Close Button -->
             <button
-              onclick="window.copyReferenceId('${uniqueId}', '${referenceId}')"
-              class="copy-button w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-md flex items-center justify-center gap-2 active:scale-95"
+              onclick="document.getElementById('${modalId}').remove()"
+              class="close-modal-btn w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-4 px-6 rounded-lg shadow-lg text-lg uppercase tracking-wider"
               type="button"
             >
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-              </svg>
-              Copy Reference ID
+              Close
             </button>
-
-            <div id="tooltip-${uniqueId}" class="copied-tooltip hidden absolute -top-12 left-1/2 transform -translate-x-1/2 bg-green-800 text-white px-4 py-2 rounded-lg shadow-lg text-sm font-semibold whitespace-nowrap">
-              ✓ Copied to Clipboard!
-            </div>
           </div>
-
-          <p class="text-xs text-green-600 mt-4 flex items-center justify-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            Please save this reference number for your records
-          </p>
-        </div>
-
-        <!-- Next Steps -->
-        <div class="next-steps mt-10 pt-8 border-t-2 border-green-200 max-w-lg mx-auto">
-          <div class="bg-white/50 backdrop-blur-sm rounded-xl p-6 shadow-md">
-            <div class="flex items-start gap-4 text-left">
-              <div class="flex-shrink-0 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mt-1">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <div class="flex-1">
-                <h4 class="text-lg font-bold text-green-900 mb-2">What Happens Next?</h4>
-                <ul class="text-sm text-green-700 space-y-2">
-                  <li class="flex items-start gap-2">
-                    <span class="text-green-500 font-bold">•</span>
-                    <span>Our team will review your inquiry within <strong>24-48 business hours</strong></span>
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <span class="text-green-500 font-bold">•</span>
-                    <span>You'll receive a response via email with next steps</span>
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <span class="text-green-500 font-bold">•</span>
-                    <span>Use your reference ID for any follow-up communications</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Form Type Badge -->
-        <div class="mt-8 text-xs text-green-600 font-mono opacity-70">
-          Submission Type: ${formType.toUpperCase().replace(/_/g, ' ')}
         </div>
       </div>
     `;
 
-    if (container) {
-      container.innerHTML = successHTML;
-      container.style.display = 'block';
-
-      setTimeout(() => {
-        container.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 100);
-
-      Array.from(form.children).forEach(child => {
-        if (!child.hasAttribute('data-form-msg')) {
-          child.style.display = 'none';
-        }
-      });
-    } else {
-      form.innerHTML = successHTML;
-    }
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
 
     setupCopyFunctionality();
 
-    console.log('[Syntra Forms] ✅ Success message displayed with Reference ID:', referenceId);
+    const modal = document.getElementById(modalId);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.remove();
+      }
+    });
+
+    console.log('[Syntra Forms] ✅ Thank you modal displayed with Reference ID:', referenceId);
   }
+
+  window.showThankYouModal = showThankYouModal;
 
   function setupCopyFunctionality() {
     if (window.copyReferenceId) return;
