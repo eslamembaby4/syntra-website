@@ -15,8 +15,8 @@
  * <script src="/js/supabase-client.js"></script>
  */
 
-const SUPABASE_URL = window.SYNTRA_CONFIG?.supabaseUrl || 'https://dsmlfwllnhwyawftwuto.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = window.SYNTRA_CONFIG?.supabaseKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzbWxmd2xsbmh3eWF3ZnR3dXRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzNjY3NDYsImV4cCI6MjA4Mzk0Mjc0Nn0.mzppDLxBQtYy3Hla-Ggl2K3b4R_2IT7kOC7Y4lKXsmg';
+const SUPABASE_URL = window.SYNTRA_CONFIG?.supabaseUrl || 'https://woailjjdiamgvahcxnrj.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = window.SYNTRA_CONFIG?.supabaseKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndvYWlsampkaWFtZ3ZhaGN4bnJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxOTQxODAsImV4cCI6MjA4Mjc3MDE4MH0.M7F-J8Ael6RwEuHy9XmJUYNXLhaVSo7ra_YWZGjeF9Y';
 
 let supabaseClient = null;
 
