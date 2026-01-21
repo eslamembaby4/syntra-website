@@ -13,11 +13,11 @@
 window.SYNTRA_CONFIG = {
   // Your Supabase project URL
   // Example: https://abcdefghijklmnop.supabase.co
-  supabaseUrl: 'https://dsmlfwllnhwyawftwuto.supabase.co',
+  supabaseUrl: 'https://woailjjdiamgvahcxnrj.supabase.co',
 
   // Your Supabase anon/public key (safe to use in client-side code)
   // Example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-  supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzbWxmd2xsbmh3eWF3ZnR3dXRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzNjY3NDYsImV4cCI6MjA4Mzk0Mjc0Nn0.mzppDLxBQtYy3Hla-Ggl2K3b4R_2IT7kOC7Y4lKXsmg'
+  supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndvYWlsampkaWFtZ3ZhaGN4bnJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxOTQxODAsImV4cCI6MjA4Mjc3MDE4MH0.M7F-J8Ael6RwEuHy9XmJUYNXLhaVSo7ra_YWZGjeF9Y'
 };
 
 console.log('[Syntra Config] Configuration loaded:', {
