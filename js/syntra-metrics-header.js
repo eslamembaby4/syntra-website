@@ -14,8 +14,8 @@ class MetricsHeaderCard {
         return [
             {
                 category: 'Team Members',
-                current: '45.0',
-                yoyGrowth: '125.0%',
+                current: '16',
+                yoyGrowth: '80 Capacity',
                 details: 'Engineering-focused'
             },
             {

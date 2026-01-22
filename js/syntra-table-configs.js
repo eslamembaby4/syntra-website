@@ -103,8 +103,8 @@ window.SYNTRA_METRICS_CONFIGS = {
     metrics: [
       {
         category: 'Team Members',
-        current: '45',
-        yoyGrowth: '80 Capacity',
+        current: '16',
+        yoyGrowth: '40 Capacity',
         details: 'Engineering-focused'
       },
       {
