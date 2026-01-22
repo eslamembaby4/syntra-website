@@ -3,481 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syntra Refining Email Signature - Preview</title>
+    <title>Syntra Brand Email Signature Preview - January 2026</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: #f5f5f5;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            margin: 0;
             padding: 40px 20px;
-            line-height: 1.6;
+            background: #F9FAFC;
+            color: #0F172A;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .header {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-            color: white;
-            padding: 40px;
-            border-radius: 12px 12px 0 0;
-            margin-bottom: 0;
+            text-align: left;
+            margin-bottom: 48px;
+            border-left: 4px solid #FFD700;
+            padding-left: 24px;
         }
 
-        .header h1 {
-            font-size: 32px;
-            font-weight: 600;
-            margin-bottom: 10px;
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+            color: #0B1120;
             letter-spacing: -0.02em;
         }
 
-        .header p {
+        .brand-mark {
+            color: #FFD700;
+            font-size: 48px;
+            line-height: 1;
+        }
+
+        .subtitle {
             font-size: 16px;
-            opacity: 0.8;
-            font-weight: 400;
+            color: #64748B;
+            margin: 8px 0 0 0;
+            font-weight: 500;
         }
 
-        .controls {
-            background: white;
-            padding: 30px 40px;
-            border-bottom: 2px solid #e5e5e5;
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            flex-wrap: wrap;
+        .brand-info {
+            background: #0B1120;
+            color: #F9FAFC;
+            padding: 24px;
+            margin-bottom: 40px;
+            border-left: 4px solid #FFD700;
         }
 
-        .controls label {
-            font-weight: 600;
+        .brand-info h3 {
+            margin: 0 0 12px 0;
             font-size: 14px;
-            color: #1a1a1a;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            padding: 10px 20px;
-            border: 2px solid #e5e5e5;
-            border-radius: 8px;
-            transition: all 0.2s;
+            font-weight: 700;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .controls label:hover {
-            border-color: #1a1a1a;
-            background: #f9f9f9;
+        .brand-info p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #CBD5E1;
         }
 
-        .controls input[type="radio"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-
-        .preview-section {
-            background: white;
-            padding: 60px 40px;
-            border-radius: 0 0 12px 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-
-        .email-mockup {
-            background: #ffffff;
-            border: 1px solid #e5e5e5;
-            border-radius: 8px;
-            overflow: hidden;
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 40px;
             margin-bottom: 40px;
         }
 
-        .email-header {
-            background: #f9f9f9;
-            padding: 20px 30px;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        .email-header p {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 8px;
-        }
-
-        .email-header p strong {
-            color: #1a1a1a;
-            font-weight: 600;
-        }
-
-        .email-body {
-            padding: 30px;
+        .preview-card {
             background: white;
+            padding: 32px;
+            box-shadow: 0 1px 3px rgba(11, 17, 32, 0.1);
+            border-left: 3px solid #FFD700;
         }
 
-        .email-content {
+        .preview-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+            color: #0B1120;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .preview-card .badge {
+            display: inline-block;
+            background: #FFD700;
+            color: #0B1120;
+            padding: 4px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .preview-card p {
             font-size: 14px;
-            color: #333;
-            line-height: 1.8;
-            margin-bottom: 30px;
+            color: #64748B;
+            margin: 0 0 24px 0;
+            line-height: 1.6;
         }
 
-        .signature-wrapper {
-            margin-top: 20px;
-            padding-top: 20px;
+        .signature-container {
+            background: #F9FAFC;
+            padding: 32px;
+            border: 1px solid #CBD5E1;
+            min-height: 280px;
         }
 
         .info-box {
-            background: #f0f9ff;
-            border-left: 4px solid #0284c7;
-            padding: 20px;
+            background: white;
+            border-left: 4px solid #0891B2;
+            padding: 32px;
             margin-top: 40px;
-            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(11, 17, 32, 0.1);
         }
 
         .info-box h3 {
-            font-size: 16px;
-            color: #0c4a6e;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .info-box p, .info-box ul {
-            font-size: 14px;
-            color: #0c4a6e;
-            line-height: 1.6;
+            margin: 0 0 16px 0;
+            font-size: 18px;
+            font-weight: 700;
+            color: #0B1120;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
         .info-box ul {
-            margin-top: 10px;
-            padding-left: 20px;
+            margin: 0;
+            padding-left: 24px;
         }
 
         .info-box li {
-            margin-bottom: 6px;
-        }
-
-        .warning-box {
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 4px;
-        }
-
-        .warning-box h3 {
-            font-size: 16px;
-            color: #78350f;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .warning-box p {
+            margin-bottom: 12px;
+            color: #0F172A;
+            line-height: 1.7;
             font-size: 14px;
-            color: #78350f;
-            line-height: 1.6;
         }
 
-        .success-box {
-            background: #f0fdf4;
-            border-left: 4px solid #22c55e;
-            padding: 20px;
+        .info-box strong {
+            color: #0B1120;
+            font-weight: 700;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: #0B1120;
+            color: #FFD700;
+            padding: 14px 28px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
             margin-top: 20px;
-            border-radius: 4px;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .success-box h3 {
-            font-size: 16px;
-            color: #14532d;
-            margin-bottom: 10px;
-            font-weight: 600;
+        .btn-primary:hover {
+            background: #1E293B;
+            box-shadow: 0 4px 12px rgba(11, 17, 32, 0.3);
         }
 
-        .success-box p {
-            font-size: 14px;
-            color: #14532d;
-            line-height: 1.6;
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
         }
 
-        /* Subtle gradient animation for divider - Industrial precision indicator */
-        @keyframes syntraGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .color-swatch {
+            text-align: center;
+            padding: 16px;
+            border: 1px solid #CBD5E1;
         }
 
-        .syntra-divider-animated {
-            background: linear-gradient(90deg, #1a1a1a 0%, #3a3a3a 25%, #4a4a4a 50%, #3a3a3a 75%, #1a1a1a 100%) !important;
-            background-size: 200% 100% !important;
-            animation: syntraGradient 8s ease-in-out infinite !important;
+        .color-box {
+            width: 100%;
+            height: 60px;
+            margin-bottom: 8px;
         }
 
-        /* Subtle pulse for logo container - System active indicator */
-        @keyframes syntraPulse {
-            0%, 100% { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05); }
-            50% { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12); }
+        .color-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: #0B1120;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
-        .syntra-logo-container {
-            animation: syntraPulse 6s ease-in-out infinite;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 24px;
-            }
-
-            .controls {
-                padding: 20px;
-            }
-
-            .preview-section {
-                padding: 30px 20px;
-            }
-
-            .email-body {
-                padding: 20px;
-            }
+        .color-hex {
+            font-size: 11px;
+            color: #64748B;
+            font-family: 'Courier New', monospace;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Syntra Refining Email Signature</h1>
-            <p>Preview & Testing Interface</p>
+            <h1>SYNTRA<span class="brand-mark">■</span></h1>
+            <div class="subtitle">Brand-Compliant Email Signatures | January 2026</div>
         </div>
 
-        <div class="controls">
-            <label>
-                <input type="radio" name="version" value="static" checked onchange="switchVersion(this.value)">
-                Static Version (Recommended)
-            </label>
-            <label>
-                <input type="radio" name="version" value="animated" onchange="switchVersion(this.value)">
-                Animated Version (Optional)
-            </label>
+        <div class="brand-info">
+            <h3>Brand Positioning Statement</h3>
+            <p>SMART REFINING ■ UNIVERSAL INTAKE ■ DISTRIBUTED NETWORK</p>
         </div>
 
-        <div class="preview-section">
-            <div class="email-mockup">
-                <div class="email-header">
-                    <p><strong>From:</strong> John Smith &lt;john.smith@syntrarefining.com&gt;</p>
-                    <p><strong>To:</strong> External Client &lt;client@example.com&gt;</p>
-                    <p><strong>Subject:</strong> Re: Project Update</p>
+        <div class="preview-grid">
+            <!-- Static Version -->
+            <div class="preview-card">
+                <div class="badge">Static Version</div>
+                <h2>Maximum Compatibility</h2>
+                <p>Clean, professional signature with embedded SVG logo. Recommended for all email clients including Outlook, Gmail, and mobile devices.</p>
+                <div class="signature-container">
+                    <iframe src="signature-static.html" width="100%" height="280" frameborder="0" style="border: none; display: block;"></iframe>
                 </div>
-                <div class="email-body">
-                    <div class="email-content">
-                        <p>Hello,</p>
-                        <p>Thank you for your inquiry. I'm pleased to provide you with the requested information regarding our refining capabilities and project timeline.</p>
-                        <p>Our team will be in touch shortly to schedule a detailed consultation.</p>
-                        <p>Best regards,</p>
-                    </div>
+                <a href="signature-static.html" class="btn-primary" target="_blank">View Full Size ■</a>
+            </div>
 
-                    <div class="signature-wrapper" id="signatureContainer">
-                        <!-- Static signature will be injected here -->
-                    </div>
+            <!-- Animated Version -->
+            <div class="preview-card">
+                <div class="badge">Animated Version</div>
+                <h2>Enhanced Experience</h2>
+                <p>Features rotating diamond logo (stability amidst variability), glowing accent line, and animated top divider. Best for modern email clients.</p>
+                <div class="signature-container">
+                    <iframe src="signature-animated.html" width="100%" height="280" frameborder="0" style="border: none; display: block;"></iframe>
+                </div>
+                <a href="signature-animated.html" class="btn-primary" target="_blank">View Full Size ■</a>
+            </div>
+        </div>
+
+        <!-- Brand Colors -->
+        <div class="info-box">
+            <h3>Brand Colors Used</h3>
+            <div class="color-palette">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #FFD700;"></div>
+                    <div class="color-name">Signal Yellow</div>
+                    <div class="color-hex">#FFD700</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #0B1120;"></div>
+                    <div class="color-name">Midnight Navy</div>
+                    <div class="color-hex">#0B1120</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #0F172A;"></div>
+                    <div class="color-name">Deep Slate</div>
+                    <div class="color-hex">#0F172A</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #0891B2;"></div>
+                    <div class="color-name">Accent Blue</div>
+                    <div class="color-hex">#0891B2</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #F9FAFC; border: 1px solid #CBD5E1;"></div>
+                    <div class="color-name">Slate-50</div>
+                    <div class="color-hex">#F9FAFC</div>
                 </div>
             </div>
+        </div>
 
-            <div class="info-box">
-                <h3>📋 About This Signature</h3>
-                <p><strong>Design Philosophy:</strong> Industrial · Secure · Executive · Advanced</p>
-                <ul>
-                    <li><strong>Static Version:</strong> Maximum compatibility across all email clients including Outlook</li>
-                    <li><strong>Animated Version:</strong> Subtle motion effects (gradient shift + logo pulse) - conveys precision and advanced technology</li>
-                    <li><strong>Logo Background:</strong> Dark industrial (#1a1a1a) reflects security-focused, high-tech identity</li>
-                    <li><strong>Layout:</strong> Left-aligned, structured, mobile-responsive</li>
-                </ul>
-            </div>
+        <!-- Implementation Guide -->
+        <div class="info-box" style="border-left-color: #FFD700;">
+            <h3>Implementation Guide</h3>
+            <ul>
+                <li><strong>Replace Placeholders:</strong> Update <code>{{FULL_NAME}}</code>, <code>{{JOB_TITLE}}</code>, and <code>{{EMAIL}}</code> with actual employee information</li>
+                <li><strong>Optional Phone Number:</strong> Uncomment the phone section in the HTML if contact number is required</li>
+                <li><strong>Embedded Logo:</strong> Diamond and square logo is embedded as SVG - no external image hosting needed</li>
+                <li><strong>Microsoft 365 Deployment:</strong> See <strong>M365-SETUP-GUIDE.md</strong> for detailed deployment instructions</li>
+                <li><strong>Brand Compliance:</strong> These signatures follow Syntra Brand Brief January 2026 specifications</li>
+                <li><strong>Testing Required:</strong> Always send test emails to verify rendering across Outlook Desktop, Outlook Web, and mobile clients</li>
+            </ul>
+        </div>
 
-            <div class="warning-box">
-                <h3>⚠️ Before Deployment</h3>
-                <p><strong>Critical Step:</strong> You must host the Syntra logo on a publicly accessible server with HTTPS. Update the image URL in both HTML files from <code>https://your-domain.com/assets/syntra-logo-white.png</code> to your actual logo URL.</p>
-            </div>
-
-            <div class="success-box">
-                <h3>✅ Next Steps</h3>
-                <p>1. Host the logo file publicly<br>
-                2. Update image URLs in the HTML files<br>
-                3. Review the DEPLOYMENT_GUIDE.md for Microsoft 365 setup<br>
-                4. Test on all email clients before organization-wide deployment</p>
-            </div>
+        <!-- Brand Elements -->
+        <div class="info-box" style="border-left-color: #0B1120;">
+            <h3>Brand Elements Included</h3>
+            <ul>
+                <li><strong>Diamond & Square:</strong> Syntra's iconic logo in Signal Yellow representing protection, durability, and core stability</li>
+                <li><strong>Square Period (■):</strong> Used throughout to maintain brand consistency and sharp, precise aesthetic</li>
+                <li><strong>Typography:</strong> Inter font family with system fallbacks for broad compatibility</li>
+                <li><strong>Left-Aligned Layout:</strong> Follows brand guideline for technical precision over centered aesthetics</li>
+                <li><strong>Sharp Angles:</strong> No rounded corners - reflects brand focus on precision and scientific proficiency</li>
+                <li><strong>Tagline:</strong> Positioning statement integrated into signature design</li>
+            </ul>
         </div>
     </div>
-
-    <script>
-        // Static signature template
-        const staticSignature = `
-            <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; max-width: 500px; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;">
-                <tr>
-                    <td style="padding: 0 0 12px 0;">
-                        <div style="height: 2px; width: 100%; background: linear-gradient(90deg, #1a1a1a 0%, #4a4a4a 100%);"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding: 0;">
-                        <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
-                            <tr>
-                                <td style="padding: 0 20px 0 0; vertical-align: top; background: #1a1a1a; border-radius: 4px; width: 140px;">
-                                    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; width: 140px;">
-                                        <tr>
-                                            <td style="padding: 16px 12px; text-align: center;">
-                                                <img src="../assets/images/SYNTRA REFINING WHITE LOGO KIT - SBG.png"
-                                                     alt="Syntra Refining Corporation"
-                                                     width="116"
-                                                     height="auto"
-                                                     style="display: block; margin: 0 auto; max-width: 116px; height: auto; border: 0;">
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                                <td style="padding: 0 0 0 20px; vertical-align: top;">
-                                    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
-                                        <tr>
-                                            <td style="padding: 0 0 4px 0; font-size: 16px; font-weight: 600; color: #1a1a1a; line-height: 1.3; letter-spacing: -0.01em;">
-                                                John Smith
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0 0 12px 0; font-size: 13px; font-weight: 400; color: #4a4a4a; line-height: 1.4;">
-                                                Chief Technology Officer
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0 0 12px 0; font-size: 14px; font-weight: 600; color: #1a1a1a; line-height: 1.4; letter-spacing: 0.02em; text-transform: uppercase;">
-                                                Syntra Refining Corporation
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0 0 12px 0;">
-                                                <div style="height: 1px; width: 40px; background: #d0d0d0;"></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0 0 6px 0; font-size: 13px; color: #4a4a4a; line-height: 1.5;">
-                                                <a href="mailto:john.smith@syntrarefining.com" style="color: #1a1a1a; text-decoration: none; font-weight: 500;">john.smith@syntrarefining.com</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0 0 6px 0; font-size: 13px; color: #4a4a4a; line-height: 1.5;">
-                                                <a href="https://www.syntrarefining.com" style="color: #1a1a1a; text-decoration: none; font-weight: 500;">www.syntrarefining.com</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0; font-size: 12px; color: #6a6a6a; line-height: 1.5;">
-                                                Halifax, Nova Scotia, Canada
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding: 16px 0 0 0;">
-                        <div style="height: 1px; width: 100%; background: #e5e5e5;"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding: 12px 0 0 0; font-size: 10px; color: #8a8a8a; line-height: 1.5;">
-                        This email and any attachments are confidential and may be privileged. If you are not the intended recipient, please notify the sender immediately and delete this message.
-                    </td>
-                </tr>
-            </table>
-        `;
-
-        // Animated signature template
-        const animatedSignature = `
-            <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; max-width: 500px; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;">
-                <tr>
-                    <td style="padding: 0 0 12px 0;">
-                        <div class="syntra-divider-animated" style="height: 2px; width: 100%; background: linear-gradient(90deg, #1a1a1a 0%, #4a4a4a 100%);"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding: 0;">
-                        <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
-                            <tr>
-                                <td style="padding: 0 20px 0 0; vertical-align: top; width: 140px;">
-                                    <div class="syntra-logo-container" style="background: #1a1a1a; border-radius: 4px; padding: 16px 12px; text-align: center;">
-                                        <img src="../assets/images/SYNTRA REFINING WHITE LOGO KIT - SBG.png"
-                                             alt="Syntra Refining Corporation"
-                                             width="116"
-                                             height="auto"
-                                             style="display: block; margin: 0 auto; max-width: 116px; height: auto; border: 0;">
-                                    </div>
-                                </td>
-                                <td style="padding: 0 0 0 20px; vertical-align: top;">
-                                    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
-                                        <tr>
-                                            <td style="padding: 0 0 4px 0; font-size: 16px; font-weight: 600; color: #1a1a1a; line-height: 1.3; letter-spacing: -0.01em;">
-                                                John Smith
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0 0 12px 0; font-size: 13px; font-weight: 400; color: #4a4a4a; line-height: 1.4;">
-                                                Chief Technology Officer
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0 0 12px 0; font-size: 14px; font-weight: 600; color: #1a1a1a; line-height: 1.4; letter-spacing: 0.02em; text-transform: uppercase;">
-                                                Syntra Refining Corporation
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0 0 12px 0;">
-                                                <div style="height: 1px; width: 40px; background: #d0d0d0;"></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0 0 6px 0; font-size: 13px; color: #4a4a4a; line-height: 1.5;">
-                                                <a href="mailto:john.smith@syntrarefining.com" style="color: #1a1a1a; text-decoration: none; font-weight: 500;">john.smith@syntrarefining.com</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0 0 6px 0; font-size: 13px; color: #4a4a4a; line-height: 1.5;">
-                                                <a href="https://www.syntrarefining.com" style="color: #1a1a1a; text-decoration: none; font-weight: 500;">www.syntrarefining.com</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0; font-size: 12px; color: #6a6a6a; line-height: 1.5;">
-                                                Halifax, Nova Scotia, Canada
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding: 16px 0 0 0;">
-                        <div style="height: 1px; width: 100%; background: #e5e5e5;"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding: 12px 0 0 0; font-size: 10px; color: #8a8a8a; line-height: 1.5;">
-                        This email and any attachments are confidential and may be privileged. If you are not the intended recipient, please notify the sender immediately and delete this message.
-                    </td>
-                </tr>
-            </table>
-        `;
-
-        // Initialize with static version
-        document.getElementById('signatureContainer').innerHTML = staticSignature;
-
-        // Switch between versions
-        function switchVersion(version) {
-            const container = document.getElementById('signatureContainer');
-            if (version === 'animated') {
-                container.innerHTML = animatedSignature;
-            } else {
-                container.innerHTML = staticSignature;
-            }
-        }
-    </script>
 </body>
 </html>
