@@ -187,6 +187,25 @@
                 repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255, 215, 0, 0.03) 39px, rgba(255, 215, 0, 0.03) 40px);
         }
 
+        .syntra-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: auto;
+        }
+
+        .syntra-bg canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
         /* Hero Grid Layout */
         .hero-grid-layout {
             display: flex;
@@ -794,10 +813,26 @@
 
   <script src="/js/syntra-contact-modal.js?v=203"></script>
 
-  <script src="/js/syntra-shared-background.js"></script>
+  <script src="/js/syntra-professional-background.js"></script>
   <script>
-    initSyntraBackground('syntraBg1');
-    initSyntraBackground('syntraBg2');
+    initSyntraProfessionalBg('syntraBg1', {
+      particleCount: 88,
+      primaryColor: '#FFD700',
+      secondaryColor: '#0891B2',
+      tertiaryColor: '#D97706',
+      showConnections: true,
+      connectionDistance: 165,
+      mouseInteraction: true
+    });
+    initSyntraProfessionalBg('syntraBg2', {
+      particleCount: 72,
+      primaryColor: '#FFD700',
+      secondaryColor: '#D97706',
+      tertiaryColor: '#0891B2',
+      showConnections: true,
+      connectionDistance: 145,
+      mouseInteraction: true
+    });
   </script>
 </body>
 </html>
