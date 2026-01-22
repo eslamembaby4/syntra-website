@@ -490,21 +490,10 @@
 
     <!-- MODULAR PLATFORM -->
     <section class="py-32 bg-syntra-midnight text-white relative overflow-hidden">
-        <!-- Animated Background Stars -->
+        <!-- Professional Dynamic Background -->
         <div class="absolute inset-0 overflow-hidden">
-            <div class="star-field">
-                <div class="star" style="left: 10%; top: 15%; animation-delay: 0s;"></div>
-                <div class="star" style="left: 20%; top: 60%; animation-delay: 0.5s;"></div>
-                <div class="star" style="left: 35%; top: 25%; animation-delay: 1s;"></div>
-                <div class="star" style="left: 50%; top: 75%; animation-delay: 1.5s;"></div>
-                <div class="star" style="left: 65%; top: 40%; animation-delay: 2s;"></div>
-                <div class="star" style="left: 75%; top: 80%; animation-delay: 2.5s;"></div>
-                <div class="star" style="left: 85%; top: 20%; animation-delay: 3s;"></div>
-                <div class="star" style="left: 90%; top: 55%; animation-delay: 3.5s;"></div>
-                <div class="star star-accent" style="left: 15%; top: 45%; animation-delay: 0.3s;"></div>
-                <div class="star star-accent" style="left: 45%; top: 10%; animation-delay: 1.8s;"></div>
-                <div class="star star-accent" style="left: 70%; top: 65%; animation-delay: 2.8s;"></div>
-                <div class="star star-accent" style="left: 95%; top: 35%; animation-delay: 3.8s;"></div>
+            <div class="syntra-bg">
+                <canvas id="syntraBgModular"></canvas>
             </div>
         </div>
 
@@ -519,30 +508,6 @@
                 </p>
             </div>
         </div>
-
-        <style>
-            .star-field {
-                width: 100%;
-                height: 100%;
-                position: relative;
-            }
-            .star {
-                position: absolute;
-                width: 3px;
-                height: 3px;
-                background: white;
-                border-radius: 50%;
-                animation: twinkle 4s infinite;
-            }
-            .star-accent {
-                background: #fbbf24;
-                box-shadow: 0 0 4px #fbbf24;
-            }
-            @keyframes twinkle {
-                0%, 100% { opacity: 0.3; transform: scale(1); }
-                50% { opacity: 1; transform: scale(1.2); }
-            }
-        </style>
     </section>
 
     <!-- NETWORK DEPLOYMENT -->
@@ -663,6 +628,15 @@
       tertiaryColor: '#D97706',
       showConnections: true,
       connectionDistance: 155,
+      mouseInteraction: true
+    });
+    initSyntraProfessionalBg('syntraBgModular', {
+      particleCount: 95,
+      primaryColor: '#FFD700',
+      secondaryColor: '#0891B2',
+      tertiaryColor: '#D97706',
+      showConnections: true,
+      connectionDistance: 170,
       mouseInteraction: true
     });
   </script>
