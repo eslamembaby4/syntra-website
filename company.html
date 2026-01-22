@@ -607,6 +607,45 @@
         </div>
     </section>
 
+    <!-- BUILDING THE FUTURE -->
+    <section class="py-32 bg-syntra-midnight text-white relative overflow-hidden">
+        <!-- Professional Dynamic Background -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="syntra-bg">
+                <canvas id="syntraBgCompany"></canvas>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center" data-animate>
+                <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-4">Our Vision</p>
+                <h3 class="font-head text-3xl md:text-5xl font-bold text-white uppercase mb-6">
+                    <span class="text-syntra-accent">Building</span> Infrastructure, <span class="text-syntra-accent">Securing</span> Supply Chains
+                </h3>
+                <p class="text-slate-300 text-lg mb-12 max-w-3xl mx-auto">
+                    Syntra Refining is establishing <span class="text-syntra-accent font-semibold">North America's critical minerals infrastructure</span> through advanced hydrometallurgical refining. By delivering battery-grade materials at industrial scale, we're enabling the energy transition while strengthening domestic supply chain security.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-white/5 border border-white/10 p-8 rounded">
+                        <div class="font-head text-5xl font-bold text-syntra-accent mb-3">2021</div>
+                        <div class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-3 font-bold">Founded</div>
+                        <p class="text-base text-slate-300 leading-relaxed">Established to address North America's refining capacity gap</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 p-8 rounded">
+                        <div class="font-head text-5xl font-bold text-white mb-3">2023</div>
+                        <div class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-3 font-bold">First Operations</div>
+                        <p class="text-base text-slate-300 leading-relaxed">Halifax SYNHUB™ commissioned and producing battery-grade lithium</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 p-8 rounded">
+                        <div class="font-head text-5xl font-bold text-white mb-3">2027</div>
+                        <div class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-3 font-bold">Network Expansion</div>
+                        <p class="text-base text-slate-300 leading-relaxed">Strategic deployment of multiple nodes across North America</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="bg-syntra-midnight text-white py-16 border-t-4 border-syntra-accent">
         <div class="container mx-auto px-6">
@@ -697,6 +736,15 @@
       tertiaryColor: '#D97706',
       showConnections: true,
       connectionDistance: 148,
+      mouseInteraction: true
+    });
+    initSyntraProfessionalBg('syntraBgCompany', {
+      particleCount: 100,
+      primaryColor: '#D97706',
+      secondaryColor: '#FFD700',
+      tertiaryColor: '#0891B2',
+      showConnections: true,
+      connectionDistance: 170,
       mouseInteraction: true
     });
   </script>
