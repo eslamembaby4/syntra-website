@@ -78,6 +78,144 @@
         }
         .close-x::before { transform: rotate(45deg); }
         .close-x::after { transform: rotate(-45deg); }
+
+        /* Dynamic Background Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(3deg); }
+            66% { transform: translateY(10px) rotate(-3deg); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.05); }
+        }
+
+        @keyframes slide-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slide-in-left {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+            opacity: 0.1;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .input-focus-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #FFD700, #D97706);
+            transition: width 0.3s ease;
+        }
+
+        .group:focus-within .input-focus-line {
+            width: 100%;
+        }
+
+        .submit-loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid currentColor;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @keyframes spin {
+            to { transform: translateY(-50%) rotate(360deg); }
+        }
+
+        .success-checkmark {
+            animation: scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes scale-in {
+            from { transform: scale(0) rotate(-180deg); }
+            to { transform: scale(1) rotate(0deg); }
+        }
+
+        .form-progress {
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #D97706);
+            transition: width 0.3s ease;
+        }
+
+        .character-count {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            transition: color 0.3s;
+        }
+
+        .character-count.warning {
+            color: #D97706;
+        }
+
+        .card-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-shimmer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .card-shimmer:hover::before {
+            left: 100%;
+        }
+
+        @keyframes ticker-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
     </style>
 </head>
 <body class="bg-syntra-base text-syntra-text font-sans antialiased">
@@ -165,7 +303,7 @@
     </div>
 
     <!-- HERO SECTION -->
-    <header class="relative py-16 bg-white overflow-hidden">
+    <header class="relative py-16 bg-gradient-to-br from-white via-slate-50 to-white overflow-hidden">
         <div class="absolute inset-0 z-0 opacity-5">
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                 <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -175,19 +313,43 @@
             </svg>
         </div>
 
+        <!-- Animated Floating Shapes -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <div class="floating-shape bg-syntra-accent" style="width: 100px; height: 100px; top: 10%; left: 5%; animation-delay: 0s;"></div>
+            <div class="floating-shape bg-syntra-amber" style="width: 60px; height: 60px; top: 60%; right: 10%; animation-delay: 2s;"></div>
+            <div class="floating-shape bg-syntra-tech" style="width: 80px; height: 80px; bottom: 20%; left: 15%; animation-delay: 4s;"></div>
+            <div class="floating-shape bg-syntra-accent" style="width: 40px; height: 40px; top: 30%; right: 20%; animation-delay: 1s;"></div>
+        </div>
+
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-3xl mx-auto">
-                <div class="inline-block px-3 py-1 bg-slate-100 border border-slate-200 text-slate-500 font-mono text-[10px] font-bold mb-6">
+                <div class="inline-block px-3 py-1 bg-slate-100 border border-slate-200 text-slate-500 font-mono text-[10px] font-bold mb-6 animate-on-scroll" style="animation: slide-in-up 0.6s ease forwards;">
                     CONTACT
                 </div>
 
-                <h1 class="font-head text-3xl sm:text-4xl lg:text-5xl md:text-6xl font-bold text-syntra-text uppercase leading-tight mb-6 tracking-tight">
+                <h1 class="font-head text-3xl sm:text-4xl lg:text-5xl md:text-6xl font-bold text-syntra-text uppercase leading-tight mb-6 tracking-tight animate-on-scroll" style="animation: slide-in-up 0.6s ease forwards 0.1s; opacity: 0;">
                     Get in Touch
                 </h1>
 
-                <p class="text-lg text-slate-600 leading-relaxed font-light">
+                <p class="text-lg text-slate-600 leading-relaxed font-light animate-on-scroll" style="animation: slide-in-up 0.6s ease forwards 0.2s; opacity: 0;">
                     Interested in securing capacity, exploring partnerships, or learning more about Syntra? We'd love to hear from you.
                 </p>
+
+                <!-- Stats Counter -->
+                <div class="grid grid-cols-3 gap-6 mt-12 animate-on-scroll" style="animation: fade-in 0.6s ease forwards 0.3s; opacity: 0;">
+                    <div class="text-center p-4 bg-white/50 backdrop-blur-sm rounded-lg border border-slate-200">
+                        <div class="text-2xl font-head font-bold text-syntra-amber" data-counter="24">0</div>
+                        <div class="text-xs text-slate-500 font-mono mt-1">AVG RESPONSE (HRS)</div>
+                    </div>
+                    <div class="text-center p-4 bg-white/50 backdrop-blur-sm rounded-lg border border-slate-200">
+                        <div class="text-2xl font-head font-bold text-syntra-amber" data-counter="500">0</div>
+                        <div class="text-xs text-slate-500 font-mono mt-1">INQUIRIES/YEAR</div>
+                    </div>
+                    <div class="text-center p-4 bg-white/50 backdrop-blur-sm rounded-lg border border-slate-200">
+                        <div class="text-2xl font-head font-bold text-syntra-amber" data-counter="98">0</div>
+                        <div class="text-xs text-slate-500 font-mono mt-1">SATISFACTION %</div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -196,7 +358,17 @@
     <section class="py-16 bg-syntra-base">
         <div class="container mx-auto px-6">
             <div class="max-w-3xl mx-auto">
-                <div class="bg-white border-2 border-syntra-border rounded-lg shadow-xl shadow-slate-200/50 p-8 md:p-12" data-syntra-form-container>
+                <!-- Form Progress Bar -->
+                <div class="mb-6">
+                    <div class="h-1 bg-slate-200 rounded-full overflow-hidden">
+                        <div id="formProgress" class="form-progress" style="width: 0%;"></div>
+                    </div>
+                    <p class="text-xs text-slate-500 font-mono mt-2 text-center">
+                        <span id="progressText">Start filling out the form</span>
+                    </p>
+                </div>
+
+                <div class="bg-white border-2 border-syntra-border rounded-lg shadow-xl shadow-slate-200/50 p-8 md:p-12 card-shimmer animate-on-scroll" data-syntra-form-container style="transform: translateY(30px);">
                     <!-- Logo Header -->
                     <div class="mb-10 pb-8 border-b border-slate-100">
                         <div class="syntra-form-logo-mark mx-auto mb-4" aria-label="Syntra mark" style="width: 36px; height: 36px; position: relative; cursor: pointer;">
@@ -204,67 +376,95 @@
                             <div class="syntra-form-square" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; background-color: #FFD700;"></div>
                         </div>
                         <h2 class="font-head text-4xl font-bold uppercase text-syntra-text mb-3 tracking-tight text-center">Contact Syntra</h2>
-                        <p class="text-slate-600 text-base font-light text-center" data-response-time>We'll respond within 2 business days</p>
+                        <p class="text-slate-600 text-base font-light text-center" data-response-time>
+                            <span class="inline-flex items-center gap-2">
+                                <svg class="w-4 h-4 text-syntra-accent animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                </svg>
+                                We'll respond within 2 business days
+                            </span>
+                        </p>
                     </div>
 
                     <form data-syntra-form="partner_inquiry" data-interest="general_inquiry">
                         <!-- Name Fields -->
                         <div class="grid md:grid-cols-2 gap-6 mb-8">
-                            <div class="group">
+                            <div class="group relative">
                                 <label for="first_name" class="block font-mono text-xs text-slate-700 uppercase tracking-wider mb-3 font-medium group-focus-within:text-syntra-amber transition-colors">
                                     First Name <span class="text-red-500">*</span>
                                 </label>
-                                <input
-                                    type="text"
-                                    id="first_name"
-                                    name="first_name"
-                                    required
-                                    class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-slate-400 hover:border-slate-300"
-                                    placeholder="John"
-                                >
+                                <div class="relative">
+                                    <input
+                                        type="text"
+                                        id="first_name"
+                                        name="first_name"
+                                        required
+                                        data-form-field
+                                        class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-slate-400 hover:border-slate-300 hover:scale-[1.01]"
+                                        placeholder="John"
+                                    >
+                                    <div class="input-focus-line rounded-b-md"></div>
+                                </div>
                             </div>
-                            <div class="group">
+                            <div class="group relative">
                                 <label for="last_name" class="block font-mono text-xs text-slate-700 uppercase tracking-wider mb-3 font-medium group-focus-within:text-syntra-amber transition-colors">
                                     Last Name
                                 </label>
-                                <input
-                                    type="text"
-                                    id="last_name"
-                                    name="last_name"
-                                    class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-slate-400 hover:border-slate-300"
-                                    placeholder="Doe"
-                                >
+                                <div class="relative">
+                                    <input
+                                        type="text"
+                                        id="last_name"
+                                        name="last_name"
+                                        data-form-field
+                                        class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-slate-400 hover:border-slate-300 hover:scale-[1.01]"
+                                        placeholder="Doe"
+                                    >
+                                    <div class="input-focus-line rounded-b-md"></div>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Email -->
-                        <div class="mb-8 group">
+                        <div class="mb-8 group relative">
                             <label for="email" class="block font-mono text-xs text-slate-700 uppercase tracking-wider mb-3 font-medium group-focus-within:text-syntra-amber transition-colors">
                                 Email Address <span class="text-red-500">*</span>
                             </label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                required
-                                class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-slate-400 hover:border-slate-300"
-                                placeholder="john.doe@company.com"
-                            >
+                            <div class="relative">
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    required
+                                    data-form-field
+                                    class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-slate-400 hover:border-slate-300 hover:scale-[1.01]"
+                                    placeholder="john.doe@company.com"
+                                >
+                                <div class="input-focus-line rounded-b-md"></div>
+                                <div class="absolute right-4 top-1/2 -translate-y-1/2 hidden" id="emailValid">
+                                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Organization -->
-                        <div class="mb-8 group">
+                        <div class="mb-8 group relative">
                             <label for="organization" class="block font-mono text-xs text-slate-700 uppercase tracking-wider mb-3 font-medium group-focus-within:text-syntra-amber transition-colors">
                                 Organization <span class="text-red-500">*</span>
                             </label>
-                            <input
-                                type="text"
-                                id="organization"
-                                name="organization"
-                                required
-                                class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-slate-400 hover:border-slate-300"
-                                placeholder="Company Name"
-                            >
+                            <div class="relative">
+                                <input
+                                    type="text"
+                                    id="organization"
+                                    name="organization"
+                                    required
+                                    data-form-field
+                                    class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-slate-400 hover:border-slate-300 hover:scale-[1.01]"
+                                    placeholder="Company Name"
+                                >
+                                <div class="input-focus-line rounded-b-md"></div>
+                            </div>
                         </div>
 
                         <!-- Interest Type -->
@@ -290,17 +490,24 @@
                         </div>
 
                         <!-- Message -->
-                        <div class="mb-8 group">
-                            <label for="message" class="block font-mono text-xs text-slate-700 uppercase tracking-wider mb-3 font-medium group-focus-within:text-syntra-amber transition-colors">
-                                Message <span class="text-slate-400 font-normal normal-case">(Optional)</span>
-                            </label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                rows="6"
-                                class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 resize-none placeholder-slate-400 hover:border-slate-300"
-                                placeholder="Tell us more about your inquiry..."
-                            ></textarea>
+                        <div class="mb-8 group relative">
+                            <div class="flex justify-between items-center mb-3">
+                                <label for="message" class="font-mono text-xs text-slate-700 uppercase tracking-wider font-medium group-focus-within:text-syntra-amber transition-colors">
+                                    Message <span class="text-slate-400 font-normal normal-case">(Optional)</span>
+                                </label>
+                                <span class="character-count font-mono text-xs" id="charCount">0 / 1000</span>
+                            </div>
+                            <div class="relative">
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="6"
+                                    maxlength="1000"
+                                    class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 resize-none placeholder-slate-400 hover:border-slate-300 hover:scale-[1.01]"
+                                    placeholder="Tell us more about your inquiry..."
+                                ></textarea>
+                                <div class="input-focus-line rounded-b-md"></div>
+                            </div>
                         </div>
 
                         <!-- Submit Button -->
@@ -321,9 +528,9 @@
 
                 <!-- Contact Information -->
                 <div class="mt-16 grid md:grid-cols-3 gap-6">
-                    <div data-contact-card class="bg-white border-2 border-slate-200 p-8 rounded-lg hover:border-syntra-accent transition-all duration-300 hover:shadow-lg group cursor-pointer" onclick="window.location.href='mailto:info@syntrarefining.com'">
-                        <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-syntra-accent/10 transition-colors">
-                            <svg class="w-6 h-6 text-syntra-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div data-contact-card class="bg-white border-2 border-slate-200 p-8 rounded-lg hover:border-syntra-accent transition-all duration-300 hover:shadow-lg hover:shadow-syntra-accent/20 group cursor-pointer card-shimmer hover:-translate-y-1 animate-on-scroll" style="transform: translateY(30px);" onclick="window.location.href='mailto:info@syntrarefining.com'">
+                        <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-syntra-accent/10 group-hover:scale-110 transition-all duration-300">
+                            <svg class="w-6 h-6 text-syntra-amber group-hover:text-syntra-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
                         </div>
@@ -331,12 +538,12 @@
                         <a href="mailto:info@syntrarefining.com" class="text-syntra-text hover:text-syntra-accent transition-colors font-medium block">
                             info@syntrarefining.com
                         </a>
-                        <p class="text-xs text-slate-400 mt-3 font-mono">Click to send email</p>
+                        <p class="text-xs text-slate-400 mt-3 font-mono group-hover:text-syntra-accent transition-colors">Click to send email →</p>
                     </div>
 
-                    <div data-contact-card class="bg-white border-2 border-slate-200 p-8 rounded-lg hover:border-syntra-accent transition-all duration-300 hover:shadow-lg group">
-                        <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-syntra-accent/10 transition-colors">
-                            <svg class="w-6 h-6 text-syntra-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div data-contact-card class="bg-white border-2 border-slate-200 p-8 rounded-lg hover:border-syntra-accent transition-all duration-300 hover:shadow-lg hover:shadow-syntra-accent/20 group card-shimmer hover:-translate-y-1 animate-on-scroll" style="transform: translateY(30px); animation-delay: 0.1s;">
+                        <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-syntra-accent/10 group-hover:scale-110 transition-all duration-300">
+                            <svg class="w-6 h-6 text-syntra-amber group-hover:text-syntra-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
@@ -348,9 +555,9 @@
                         <p class="text-xs text-slate-400 mt-3 font-mono">Atlantic Time Zone (AST)</p>
                     </div>
 
-                    <div data-contact-card class="bg-white border-2 border-slate-200 p-8 rounded-lg hover:border-syntra-accent transition-all duration-300 hover:shadow-lg group">
-                        <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-syntra-accent/10 transition-colors">
-                            <svg class="w-6 h-6 text-syntra-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div data-contact-card class="bg-white border-2 border-slate-200 p-8 rounded-lg hover:border-syntra-accent transition-all duration-300 hover:shadow-lg hover:shadow-syntra-accent/20 group card-shimmer hover:-translate-y-1 animate-on-scroll" style="transform: translateY(30px); animation-delay: 0.2s;">
+                        <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-syntra-accent/10 group-hover:scale-110 transition-all duration-300">
+                            <svg class="w-6 h-6 text-syntra-amber group-hover:text-syntra-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
                             </svg>
                         </div>
@@ -429,6 +636,152 @@
             menu.classList.toggle('hidden');
             menu.classList.toggle('flex');
         }
+
+        // Counter Animation
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    // Trigger counter animation if element has data-counter
+                    const counter = entry.target.querySelector('[data-counter]');
+                    if (counter && !counter.classList.contains('counted')) {
+                        counter.classList.add('counted');
+                        const target = parseInt(counter.getAttribute('data-counter'));
+                        animateCounter(counter, target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animate-on-scroll elements
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                scrollObserver.observe(el);
+            });
+
+            // Character Counter for Message Field
+            const messageField = document.getElementById('message');
+            const charCount = document.getElementById('charCount');
+
+            if (messageField && charCount) {
+                messageField.addEventListener('input', () => {
+                    const length = messageField.value.length;
+                    charCount.textContent = `${length} / 1000`;
+
+                    if (length > 800) {
+                        charCount.classList.add('warning');
+                    } else {
+                        charCount.classList.remove('warning');
+                    }
+                });
+            }
+
+            // Email Validation Indicator
+            const emailField = document.getElementById('email');
+            const emailValid = document.getElementById('emailValid');
+
+            if (emailField && emailValid) {
+                emailField.addEventListener('input', () => {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (emailRegex.test(emailField.value)) {
+                        emailValid.classList.remove('hidden');
+                    } else {
+                        emailValid.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Form Progress Tracking
+            const form = document.querySelector('[data-syntra-form]');
+            const formProgress = document.getElementById('formProgress');
+            const progressText = document.getElementById('progressText');
+            const formFields = document.querySelectorAll('[data-form-field]');
+            const requiredFields = document.querySelectorAll('[data-form-field][required]');
+
+            function updateFormProgress() {
+                let filledRequired = 0;
+                let totalRequired = requiredFields.length;
+
+                requiredFields.forEach(field => {
+                    if (field.value.trim() !== '') {
+                        filledRequired++;
+                    }
+                });
+
+                const progress = (filledRequired / totalRequired) * 100;
+                formProgress.style.width = `${progress}%`;
+
+                if (progress === 0) {
+                    progressText.textContent = 'Start filling out the form';
+                } else if (progress < 50) {
+                    progressText.textContent = 'Keep going...';
+                } else if (progress < 100) {
+                    progressText.textContent = 'Almost there!';
+                } else {
+                    progressText.textContent = 'Ready to submit!';
+                }
+            }
+
+            formFields.forEach(field => {
+                field.addEventListener('input', updateFormProgress);
+                field.addEventListener('blur', updateFormProgress);
+            });
+
+            // Add submit button animation
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (submitButton) {
+                form.addEventListener('submit', (e) => {
+                    submitButton.classList.add('submit-loading');
+                    submitButton.disabled = true;
+                });
+            }
+
+            // Parallax effect on floating shapes
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const shapes = document.querySelectorAll('.floating-shape');
+
+                shapes.forEach((shape, index) => {
+                    const speed = 0.1 + (index * 0.05);
+                    const yPos = -(scrolled * speed);
+                    shape.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.05}deg)`;
+                });
+            });
+
+            // Add pulse effect to status indicator
+            const statusIndicator = document.querySelector('.animate-ping');
+            if (statusIndicator) {
+                setInterval(() => {
+                    statusIndicator.style.opacity = '0';
+                    setTimeout(() => {
+                        statusIndicator.style.opacity = '0.75';
+                    }, 500);
+                }, 2000);
+            }
+        });
     </script>
 
 </body>
