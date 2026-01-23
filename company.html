@@ -205,43 +205,6 @@
             left: 0;
         }
 
-        /* Hero Grid Layout */
-        .hero-grid-layout {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 48px;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .hero-content {
-            width: 100%;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .hero-content h1,
-        .hero-content p,
-        .hero-content .inline-block {
-            margin-left: 0;
-            margin-right: 0;
-        }
-
-        .hero-metrics-card {
-            width: 100%;
-            max-width: 680px;
-        }
-
-        /* Mobile: reduce gaps */
-        @media (max-width: 768px) {
-            .hero-grid-layout {
-                gap: 32px;
-            }
-        }
 
         /* Strategic Location Animations */
         @keyframes location-pulse {
@@ -461,29 +424,20 @@
             </svg>
         </div>
 
-        <div class="container mx-auto px-6 relative z-10 py-20 w-full">
-            <div class="hero-grid-layout">
-                <div class="hero-content">
-                    <div class="inline-block px-3 py-1 bg-slate-100 border border-slate-200 text-slate-500 font-mono text-[10px] font-bold mb-6">
-                        ABOUT SYNTRA REFINING
-                    </div>
-
-                    <h1 class="font-head text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-syntra-text uppercase leading-[0.9] mb-8 tracking-tight">
-                        Reshaping <span class="text-syntra-accent">North America's</span><br>
-                        <span class="text-syntra-accent">Critical Minerals</span><br>
-                        Supply Chain.
-                    </h1>
-
-                    <p class="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl leading-relaxed font-light mb-10 border-l-4 border-syntra-accent pl-6">
-                        Syntra Refining is deploying <span class="text-syntra-accent font-semibold">advanced hydrometallurgical refining infrastructure</span> to eliminate the <span class="text-syntra-accent font-semibold">midstream bottleneck</span> that constrains North America's energy transition. We deliver <span class="text-syntra-accent font-semibold">battery-grade materials at industrial scale</span> with domestic security and economic efficiency.
-                    </p>
-                </div>
-
-                <!-- Right Column: Metrics Card -->
-                <div class="hero-metrics-card" data-animate>
-                    <div id="metrics-header-card" data-metrics-config="company"></div>
-                </div>
+        <div class="container mx-auto px-6 relative z-10 py-20 w-full max-w-7xl">
+            <div class="inline-block px-3 py-1 bg-slate-100 border border-slate-200 text-slate-500 font-mono text-[10px] font-bold mb-6">
+                ABOUT SYNTRA REFINING
             </div>
+
+            <h1 class="font-head text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-syntra-text uppercase leading-[0.9] mb-8 tracking-tight">
+                Reshaping <span class="text-syntra-accent">North America's</span><br>
+                <span class="text-syntra-accent">Critical Minerals</span><br>
+                Supply Chain.
+            </h1>
+
+            <p class="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl leading-relaxed font-light mb-10 border-l-4 border-syntra-accent pl-6">
+                Syntra Refining is deploying <span class="text-syntra-accent font-semibold">advanced hydrometallurgical refining infrastructure</span> to eliminate the <span class="text-syntra-accent font-semibold">midstream bottleneck</span> that constrains North America's energy transition. We deliver <span class="text-syntra-accent font-semibold">battery-grade materials at industrial scale</span> with domestic security and economic efficiency.
+            </p>
         </div>
     </header>
 
