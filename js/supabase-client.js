@@ -119,7 +119,7 @@ async function submitFormToDatabase(formData, formElement) {
       .from('form_submissions')
       .insert([payload])
       .select()
-      .single();
+      .maybeSingle();
 
     if (error) {
       console.error('[Syntra Forms] ❌ Database insertion error:', error);
