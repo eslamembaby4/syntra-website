@@ -44,77 +44,190 @@
     .logo-outer { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s; }
     .logo-inner { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s; }
     .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #D97706; }
+
+    #loginScreen { display: flex; }
+    #adminPanel { display: none; }
+    .authenticated #loginScreen { display: none; }
+    .authenticated #adminPanel { display: block; }
   </style>
 </head>
 <body class="bg-syntra-base text-syntra-text font-sans antialiased">
 
-  <!-- NAV -->
-  <nav class="bg-white border-b border-syntra-border">
-    <div class="container mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="index.html" class="logo-container flex items-center gap-3 group">
-        <div class="logo-outer w-10 h-10 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
-          <div class="logo-inner w-4 h-4 bg-syntra-accent transform -rotate-45"></div>
+  <!-- LOGIN SCREEN -->
+  <div id="loginScreen" class="min-h-screen items-center justify-center bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight">
+    <div class="w-full max-w-md p-8">
+      <div class="bg-white rounded-lg shadow-2xl p-8">
+        <div class="text-center mb-8">
+          <div class="logo-container inline-flex items-center gap-3 mb-4">
+            <div class="logo-outer w-12 h-12 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
+              <div class="logo-inner w-5 h-5 bg-syntra-accent transform -rotate-45"></div>
+            </div>
+          </div>
+          <h1 class="font-head text-2xl font-bold uppercase mb-2">Admin Access</h1>
+          <p class="text-sm text-syntra-muted">Enter your access token to continue</p>
         </div>
-        <div class="leading-none">
-          <div class="font-head font-bold text-2xl tracking-tight text-syntra-text">SYNTRA</div>
-          <div class="font-head text-[0.65rem] font-bold text-syntra-amber tracking-[0.2em] uppercase mt-1">REFINING CORP</div>
-        </div>
-      </a>
-      <div class="text-xs font-mono uppercase text-syntra-muted">Form Submissions</div>
-    </div>
-  </nav>
 
-  <!-- MAIN CONTENT -->
-  <div class="container mx-auto px-6 py-12">
-    <!-- Header with Stats -->
-    <div class="mb-8">
-      <h1 class="font-head text-4xl font-bold uppercase mb-4">Form Submissions</h1>
-      <div class="grid md:grid-cols-4 gap-4">
-        <div class="bg-white border border-syntra-border rounded-lg p-4">
-          <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Total</p>
-          <p id="totalCount" class="font-head text-3xl font-bold">0</p>
-        </div>
-        <div class="bg-white border border-syntra-border rounded-lg p-4">
-          <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Unread</p>
-          <p id="unreadCount" class="font-head text-3xl font-bold text-syntra-amber">0</p>
-        </div>
-        <div class="bg-white border border-syntra-border rounded-lg p-4">
-          <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Partner Inquiries</p>
-          <p id="partnerCount" class="font-head text-3xl font-bold">0</p>
-        </div>
-        <div class="bg-white border border-syntra-border rounded-lg p-4">
-          <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Investor Inquiries</p>
-          <p id="investorCount" class="font-head text-3xl font-bold">0</p>
+        <form id="loginForm" class="space-y-4" onsubmit="handleLogin(event)">
+          <div>
+            <label for="accessToken" class="block text-sm font-mono uppercase text-syntra-muted mb-2">Access Token</label>
+            <input
+              type="password"
+              id="accessToken"
+              class="w-full px-4 py-3 border-2 border-syntra-border rounded-lg focus:border-syntra-accent focus:outline-none font-mono"
+              placeholder="Enter your token"
+              required
+            />
+          </div>
+
+          <div id="loginError" class="hidden bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm"></div>
+
+          <button
+            type="submit"
+            class="w-full bg-syntra-text hover:bg-black text-white font-mono uppercase py-3 rounded-lg transition-colors"
+          >
+            Login
+          </button>
+        </form>
+
+        <div class="mt-6 pt-6 border-t border-syntra-border">
+          <p class="text-xs text-syntra-muted text-center">
+            Authorized access only. All activities are logged.
+          </p>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Filters -->
-    <div class="bg-white border border-syntra-border rounded-lg p-4 mb-6">
-      <div class="flex flex-wrap gap-4 items-center">
-        <label class="flex items-center gap-2">
-          <span class="text-sm font-mono uppercase text-syntra-muted">Filter:</span>
-        </label>
-        <select id="filterType" class="bg-slate-50 border border-slate-200 rounded px-4 py-2 text-sm font-mono" onchange="loadSubmissions()">
-          <option value="all">All Types</option>
-          <option value="partner_inquiry">Partner Inquiries</option>
-          <option value="investor_inquiry">Investor Inquiries</option>
-        </select>
-        <select id="filterStatus" class="bg-slate-50 border border-slate-200 rounded px-4 py-2 text-sm font-mono" onchange="loadSubmissions()">
-          <option value="all">All Status</option>
-          <option value="unread">Unread Only</option>
-          <option value="read">Read Only</option>
-        </select>
-        <button onclick="loadSubmissions()" class="ml-auto px-4 py-2 bg-syntra-text text-white text-sm font-mono uppercase rounded hover:bg-black transition-colors">
-          Refresh
+  <!-- ADMIN PANEL -->
+  <div id="adminPanel">
+    <!-- NAV -->
+    <nav class="bg-white border-b border-syntra-border">
+      <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+        <a href="index.html" class="logo-container flex items-center gap-3 group">
+          <div class="logo-outer w-10 h-10 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
+            <div class="logo-inner w-4 h-4 bg-syntra-accent transform -rotate-45"></div>
+          </div>
+          <div class="leading-none">
+            <div class="font-head font-bold text-2xl tracking-tight text-syntra-text">SYNTRA</div>
+            <div class="font-head text-[0.65rem] font-bold text-syntra-amber tracking-[0.2em] uppercase mt-1">REFINING CORP</div>
+          </div>
+        </a>
+        <div class="flex items-center gap-4">
+          <div class="text-xs font-mono uppercase text-syntra-muted">Form Submissions</div>
+          <button onclick="handleLogout()" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-mono uppercase rounded transition-colors">
+            Logout
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container mx-auto px-6 py-12">
+      <!-- Header with Stats -->
+      <div class="mb-8">
+        <h1 class="font-head text-4xl font-bold uppercase mb-4">Form Submissions</h1>
+        <div class="grid md:grid-cols-4 gap-4">
+          <div class="bg-white border border-syntra-border rounded-lg p-4">
+            <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Total</p>
+            <p id="totalCount" class="font-head text-3xl font-bold">0</p>
+          </div>
+          <div class="bg-white border border-syntra-border rounded-lg p-4">
+            <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Unread</p>
+            <p id="unreadCount" class="font-head text-3xl font-bold text-syntra-amber">0</p>
+          </div>
+          <div class="bg-white border border-syntra-border rounded-lg p-4">
+            <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Partner Inquiries</p>
+            <p id="partnerCount" class="font-head text-3xl font-bold">0</p>
+          </div>
+          <div class="bg-white border border-syntra-border rounded-lg p-4">
+            <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Investor Inquiries</p>
+            <p id="investorCount" class="font-head text-3xl font-bold">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="bg-white border border-syntra-border rounded-lg p-4 mb-6">
+        <div class="flex flex-wrap gap-4 items-center">
+          <label class="flex items-center gap-2">
+            <span class="text-sm font-mono uppercase text-syntra-muted">Filter:</span>
+          </label>
+          <select id="filterType" class="bg-slate-50 border border-slate-200 rounded px-4 py-2 text-sm font-mono" onchange="loadSubmissions()">
+            <option value="all">All Types</option>
+            <option value="partner_inquiry">Partner Inquiries</option>
+            <option value="investor_inquiry">Investor Inquiries</option>
+            <option value="career_application">Career Applications</option>
+          </select>
+          <select id="filterStatus" class="bg-slate-50 border border-slate-200 rounded px-4 py-2 text-sm font-mono" onchange="loadSubmissions()">
+            <option value="all">All Status</option>
+            <option value="unread">Unread Only</option>
+            <option value="read">Read Only</option>
+          </select>
+          <button onclick="loadSubmissions()" class="ml-auto px-4 py-2 bg-syntra-text text-white text-sm font-mono uppercase rounded hover:bg-black transition-colors">
+            Refresh
+          </button>
+        </div>
+      </div>
+
+      <!-- Submissions List -->
+      <div id="submissionsList" class="space-y-4">
+        <div class="py-12 text-slate-500">
+          <p class="font-mono text-sm">Loading submissions...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Microsoft Calendar Modal -->
+  <div id="calendarModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-head text-xl font-bold uppercase">Add to Calendar</h3>
+        <button onclick="closeCalendarModal()" class="text-syntra-muted hover:text-syntra-text">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
         </button>
       </div>
-    </div>
 
-    <!-- Submissions List -->
-    <div id="submissionsList" class="space-y-4">
-      <div class="py-12 text-slate-500">
-        <p class="font-mono text-sm">Loading submissions...</p>
+      <form id="calendarForm" onsubmit="addToCalendar(event)">
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-mono uppercase text-syntra-muted mb-2">Event Title</label>
+            <input type="text" id="eventTitle" class="w-full px-4 py-2 border border-syntra-border rounded" required />
+          </div>
+
+          <div>
+            <label class="block text-sm font-mono uppercase text-syntra-muted mb-2">Start Date & Time</label>
+            <input type="datetime-local" id="eventStart" class="w-full px-4 py-2 border border-syntra-border rounded" required />
+          </div>
+
+          <div>
+            <label class="block text-sm font-mono uppercase text-syntra-muted mb-2">End Date & Time</label>
+            <input type="datetime-local" id="eventEnd" class="w-full px-4 py-2 border border-syntra-border rounded" required />
+          </div>
+
+          <div>
+            <label class="block text-sm font-mono uppercase text-syntra-muted mb-2">Description</label>
+            <textarea id="eventDescription" rows="3" class="w-full px-4 py-2 border border-syntra-border rounded"></textarea>
+          </div>
+
+          <input type="hidden" id="eventAttendee" />
+        </div>
+
+        <div class="mt-6 flex gap-3">
+          <button type="button" onclick="closeCalendarModal()" class="flex-1 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-mono uppercase rounded transition-colors">
+            Cancel
+          </button>
+          <button type="submit" class="flex-1 px-4 py-2 bg-syntra-text hover:bg-black text-white font-mono uppercase rounded transition-colors">
+            Add to Calendar
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded text-xs text-blue-800">
+        <p class="font-semibold mb-1">Microsoft 365/Outlook Integration</p>
+        <p>This will generate a calendar event that you can add to Microsoft Outlook or Office 365.</p>
       </div>
     </div>
   </div>
@@ -125,6 +238,47 @@
   <script src="/js/supabase-client.js?v=202"></script>
 
   <script>
+    const ACCESS_TOKEN = '777';
+    const TOKEN_KEY = 'syntra_admin_token';
+
+    let currentSubmissionForCalendar = null;
+
+    function checkAuth() {
+      const token = localStorage.getItem(TOKEN_KEY);
+      if (token === ACCESS_TOKEN) {
+        document.body.classList.add('authenticated');
+        loadSubmissions();
+        return true;
+      }
+      return false;
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const token = document.getElementById('accessToken').value;
+      const errorDiv = document.getElementById('loginError');
+
+      if (token === ACCESS_TOKEN) {
+        localStorage.setItem(TOKEN_KEY, token);
+        document.body.classList.add('authenticated');
+        loadSubmissions();
+        errorDiv.classList.add('hidden');
+      } else {
+        errorDiv.textContent = 'Invalid access token. Please try again.';
+        errorDiv.classList.remove('hidden');
+        document.getElementById('accessToken').value = '';
+        document.getElementById('accessToken').focus();
+      }
+    }
+
+    function handleLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem(TOKEN_KEY);
+        document.body.classList.remove('authenticated');
+        document.getElementById('accessToken').value = '';
+      }
+    }
+
     async function loadSubmissions() {
       const filterType = document.getElementById('filterType').value;
       const filterStatus = document.getElementById('filterStatus').value;
@@ -156,7 +310,7 @@
         document.getElementById('submissionsList').innerHTML = `
           <div class="bg-red-50 border border-red-200 rounded-lg p-6">
             <p class="text-red-600 font-bold mb-2">Error Loading Submissions</p>
-            <p class="text-sm text-red-500">Please make sure you're authenticated and have the proper permissions.</p>
+            <p class="text-sm text-red-500">${error.message}</p>
           </div>
         `;
       }
@@ -213,16 +367,18 @@
                     <a href="tel:${sub.phone}" class="text-syntra-tech hover:underline ml-2">${sub.phone}</a>
                   </div>
                   ` : ''}
-                  ${sub.form_type !== 'career_application' ? `
+                  ${sub.form_type !== 'career_application' && sub.organization ? `
                   <div>
                     <span class="font-mono text-syntra-muted text-xs">Organization:</span>
                     <span class="ml-2 font-semibold">${sub.organization}</span>
                   </div>
                   ` : ''}
+                  ${sub.interest_type ? `
                   <div>
                     <span class="font-mono text-syntra-muted text-xs">${sub.form_type === 'career_application' ? 'Position' : 'Interest'}:</span>
                     <span class="ml-2">${sub.interest_type}</span>
                   </div>
+                  ` : ''}
                   <div>
                     <span class="font-mono text-syntra-muted text-xs">Date:</span>
                     <span class="ml-2">${new Date(sub.created_at).toLocaleString()}</span>
@@ -253,7 +409,13 @@
                 ` : ''}
               </div>
             </div>
-            <div class="flex gap-2 ml-4">
+            <div class="flex flex-col gap-2 ml-4">
+              <button onclick="openCalendarModal(${JSON.stringify(sub).replace(/"/g, '&quot;')})" class="px-3 py-1 bg-blue-600 text-white text-xs font-mono uppercase rounded hover:bg-blue-700 transition-colors inline-flex items-center gap-1">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                Calendar
+              </button>
               ${sub.read_status
                 ? `<button onclick="markAsUnread('${sub.id}')" class="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-mono uppercase rounded hover:bg-slate-200 transition-colors">Mark Unread</button>`
                 : `<button onclick="markAsRead('${sub.id}')" class="px-3 py-1 bg-syntra-accent text-syntra-text text-xs font-mono uppercase rounded hover:bg-yellow-400 transition-colors">Mark Read</button>`
@@ -296,7 +458,109 @@
       }
     }
 
-    loadSubmissions();
+    function openCalendarModal(submission) {
+      currentSubmissionForCalendar = submission;
+
+      const formType = submission.form_type === 'partner_inquiry' ? 'Partner' :
+                      submission.form_type === 'investor_inquiry' ? 'Investor' : 'Career';
+
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(10, 0, 0, 0);
+
+      const endTime = new Date(tomorrow);
+      endTime.setHours(11, 0, 0, 0);
+
+      document.getElementById('eventTitle').value = `Follow-up: ${formType} - ${submission.first_name} ${submission.last_name || ''}`;
+      document.getElementById('eventStart').value = formatDateTimeLocal(tomorrow);
+      document.getElementById('eventEnd').value = formatDateTimeLocal(endTime);
+      document.getElementById('eventDescription').value =
+        `Follow-up meeting with ${submission.first_name} ${submission.last_name || ''}\n` +
+        `Reference: ${submission.reference_id || 'N/A'}\n` +
+        `Email: ${submission.email}\n` +
+        `Phone: ${submission.phone || 'N/A'}\n` +
+        `Organization: ${submission.organization || 'N/A'}\n\n` +
+        `Original Message:\n${submission.message || 'No message provided'}`;
+
+      document.getElementById('eventAttendee').value = submission.email;
+
+      document.getElementById('calendarModal').classList.remove('hidden');
+    }
+
+    function closeCalendarModal() {
+      document.getElementById('calendarModal').classList.add('hidden');
+      currentSubmissionForCalendar = null;
+    }
+
+    function formatDateTimeLocal(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      return `${year}-${month}-${day}T${hours}:${minutes}`;
+    }
+
+    function addToCalendar(event) {
+      event.preventDefault();
+
+      const title = document.getElementById('eventTitle').value;
+      const startDateTime = new Date(document.getElementById('eventStart').value);
+      const endDateTime = new Date(document.getElementById('eventEnd').value);
+      const description = document.getElementById('eventDescription').value;
+      const attendee = document.getElementById('eventAttendee').value;
+
+      const icsContent = generateICS(title, startDateTime, endDateTime, description, attendee);
+
+      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = `syntra-followup-${Date.now()}.ics`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      closeCalendarModal();
+
+      alert('Calendar event downloaded! Open the .ics file to add it to Microsoft Outlook or Office 365.');
+    }
+
+    function generateICS(title, startDate, endDate, description, attendee) {
+      const formatICSDate = (date) => {
+        return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+      };
+
+      const icsContent = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Syntra Refining//Form Follow-up//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:REQUEST',
+        'BEGIN:VEVENT',
+        `DTSTART:${formatICSDate(startDate)}`,
+        `DTEND:${formatICSDate(endDate)}`,
+        `DTSTAMP:${formatICSDate(new Date())}`,
+        `UID:${Date.now()}@syntrarefining.com`,
+        `SUMMARY:${title}`,
+        `DESCRIPTION:${description.replace(/\n/g, '\\n')}`,
+        `LOCATION:Microsoft Teams / Office`,
+        `STATUS:CONFIRMED`,
+        `SEQUENCE:0`,
+        `ORGANIZER;CN=Syntra Refining:mailto:support@syntrarefining.com`,
+        attendee ? `ATTENDEE;CN=${attendee};RSVP=TRUE:mailto:${attendee}` : '',
+        'BEGIN:VALARM',
+        'TRIGGER:-PT15M',
+        'ACTION:DISPLAY',
+        'DESCRIPTION:Reminder',
+        'END:VALARM',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].filter(line => line).join('\r\n');
+
+      return icsContent;
+    }
+
+    checkAuth();
   </script>
   <script src="/js/syntra-contact-modal.js?v=203"></script>
 </body>
