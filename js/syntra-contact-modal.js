@@ -21,11 +21,11 @@
         <div style="position: relative; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; background: white; border-radius: 4px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);">
 
           <!-- Close Button -->
-          <button class="modal-close-btn" type="button" style="position: absolute; top: 1.5rem; right: 1.5rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: white; border: 2px solid #E2E8F0; color: #64748B; cursor: pointer; z-index: 10; border-radius: 50%; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-              <line x1="3" y1="3" x2="13" y2="13"></line>
-              <line x1="13" y1="3" x2="3" y2="13"></line>
+          <button class="modal-close-btn" type="button" style="position: absolute; top: 1rem; right: 1rem; min-width: 90px; height: 36px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: none; color: white; cursor: pointer; z-index: 10; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; padding: 0 14px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6L6 18M6 6l12 12"></path>
             </svg>
+            <span style="text-transform: uppercase;">ESC</span>
           </button>
 
           <!-- Header -->
@@ -184,18 +184,14 @@
 
       if (closeBtn) {
         closeBtn.addEventListener('mouseenter', function() {
-          this.style.setProperty('background', '#FEF2F2');
-          this.style.setProperty('border-color', '#FCA5A5');
-          this.style.setProperty('color', '#DC2626');
-          this.style.setProperty('transform', 'rotate(90deg) scale(1.1)');
-          this.style.setProperty('box-shadow', '0 4px 12px rgba(220, 38, 38, 0.15)');
+          this.style.setProperty('background', 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)');
+          this.style.setProperty('transform', 'translateY(-2px) scale(1.02)');
+          this.style.setProperty('box-shadow', '0 4px 16px rgba(220, 38, 38, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)');
         });
         closeBtn.addEventListener('mouseleave', function() {
-          this.style.setProperty('background', 'white');
-          this.style.setProperty('border-color', '#E2E8F0');
-          this.style.setProperty('color', '#64748B');
-          this.style.setProperty('transform', 'rotate(0deg) scale(1)');
-          this.style.setProperty('box-shadow', '0 2px 8px rgba(0, 0, 0, 0.04)');
+          this.style.setProperty('background', 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)');
+          this.style.setProperty('transform', 'translateY(0) scale(1)');
+          this.style.setProperty('box-shadow', '0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)');
         });
       }
 
