@@ -21,8 +21,11 @@
         <div style="position: relative; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; background: white; border-radius: 4px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);">
 
           <!-- Close Button -->
-          <button class="modal-close-btn" type="button" style="position: absolute; top: 1rem; right: 1rem; padding: 0.5rem 1rem; background: transparent; border: 1px solid #E2E8F0; color: #64748B; cursor: pointer; z-index: 10; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; transition: all 0.2s;">
-            CLOSE
+          <button class="modal-close-btn" type="button" style="position: absolute; top: 1.5rem; right: 1.5rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: white; border: 2px solid #E2E8F0; color: #64748B; cursor: pointer; z-index: 10; border-radius: 50%; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <line x1="3" y1="3" x2="13" y2="13"></line>
+              <line x1="13" y1="3" x2="3" y2="13"></line>
+            </svg>
           </button>
 
           <!-- Header -->
@@ -181,14 +184,18 @@
 
       if (closeBtn) {
         closeBtn.addEventListener('mouseenter', function() {
-          this.style.setProperty('background', '#0F172A');
-          this.style.setProperty('color', 'white');
-          this.style.setProperty('border-color', '#0F172A');
+          this.style.setProperty('background', '#FEF2F2');
+          this.style.setProperty('border-color', '#FCA5A5');
+          this.style.setProperty('color', '#DC2626');
+          this.style.setProperty('transform', 'rotate(90deg) scale(1.1)');
+          this.style.setProperty('box-shadow', '0 4px 12px rgba(220, 38, 38, 0.15)');
         });
         closeBtn.addEventListener('mouseleave', function() {
-          this.style.setProperty('background', 'transparent');
-          this.style.setProperty('color', '#64748B');
+          this.style.setProperty('background', 'white');
           this.style.setProperty('border-color', '#E2E8F0');
+          this.style.setProperty('color', '#64748B');
+          this.style.setProperty('transform', 'rotate(0deg) scale(1)');
+          this.style.setProperty('box-shadow', '0 2px 8px rgba(0, 0, 0, 0.04)');
         });
       }
 
