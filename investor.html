@@ -47,6 +47,23 @@
     .logo-inner { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s; }
     .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #D97706; }
 
+    .nav-link {
+        position: relative;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+    }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #FFD700;
+        transition: width 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; }
+
     /* Enhanced professional styling */
     .material-card {
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -109,9 +126,36 @@
 </head>
 <body class="bg-syntra-base text-syntra-text font-sans antialiased">
 
-  <!-- NAV -->
-  <nav class="bg-white border-b border-syntra-border">
-    <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+  <!-- TOP TICKER -->
+  <div class="bg-syntra-text text-white py-1.5 border-b border-white/10 text-[10px] md:text-xs font-mono tracking-wide z-50 relative">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <div class="flex items-center gap-6">
+        <span class="flex items-center gap-2 text-syntra-accent font-bold">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+          </span>
+          GRID STATUS: ONLINE
+        </span>
+        <span class="hidden md:block text-slate-400">LOC: NOVA SCOTIA, CA</span>
+        <span class="hidden md:block text-slate-400">CURRENT CAP: 1,000 MT/YR</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="observer.html" class="text-syntra-accent hover:text-white transition-colors font-bold">
+          OBSERVER LOGIN
+        </a>
+        <span class="text-slate-600">|</span>
+        <a href="supplier.html" class="hover:text-syntra-accent transition-colors">
+          SUPPLIER PORTAL
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN NAVIGATION -->
+  <nav id="navbar" class="sticky top-0 z-40 bg-white border-b border-syntra-border">
+    <div class="container mx-auto px-6 h-24 flex justify-between items-center">
+      <!-- Logo Block -->
       <a href="index.html" class="syntra-logo-hover-wrapper">
         <div class="syntra-logo-mark">
           <div class="syntra-logo-diamond"></div>
@@ -122,9 +166,52 @@
           <div class="syntra-logo-subtitle">REFINING CORP.</div>
         </div>
       </a>
-      <div class="text-xs font-mono uppercase text-syntra-muted">Investor Relations</div>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-[0.18em]">
+        <a href="commercial.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Commercial</a>
+        <a href="technology.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Technology</a>
+        <a href="network.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Network</a>
+        <a href="company.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Company</a>
+        <a href="careers.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Careers</a>
+        <a href="contact.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Contact</a>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="text-syntra-text p-2 hover:text-syntra-amber transition-colors md:hidden" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
+        <div class="flex flex-col gap-[6px] items-end">
+          <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
+          <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
+          <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
+        </div>
+      </button>
     </div>
   </nav>
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div id="mobileMenu" class="fixed inset-0 bg-white z-50 hidden flex-col pt-32 px-4 sm:px-12 space-y-8" role="dialog" aria-modal="true">
+    <button class="absolute top-8 right-6 p-2 rounded-md hover:bg-slate-100 transition-all hover:rotate-90 duration-200" onclick="toggleMobileMenu()" aria-label="Close navigation menu">
+      <svg class="w-6 h-6 text-syntra-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <div class="container mx-auto grid md:grid-cols-2 gap-12">
+      <div class="flex flex-col gap-6">
+        <a href="commercial.html" class="text-3xl sm:text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Commercial</a>
+        <a href="technology.html" class="text-3xl sm:text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Technology</a>
+        <a href="network.html" class="text-3xl sm:text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Network</a>
+        <a href="company.html" class="text-3xl sm:text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Company</a>
+        <a href="careers.html" class="text-3xl sm:text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Careers</a>
+        <a href="contact.html" class="text-3xl sm:text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Contact</a>
+      </div>
+      <div class="hidden md:block border-l border-syntra-border pl-12">
+        <p class="font-mono text-xs text-slate-400 tracking-widest uppercase mb-4">Contact</p>
+        <p class="text-xl mb-8">commercial@syntrarefining.com</p>
+        <p class="font-mono text-xs text-slate-400 tracking-widest uppercase mb-4">Location</p>
+        <p class="text-xl">Halifax, Nova Scotia<br>Canada</p>
+      </div>
+    </div>
+  </div>
 
   <!-- HERO SECTION -->
   <div class="bg-syntra-midnight text-white py-20 md:py-32 border-b border-white/10 relative overflow-hidden">
@@ -307,18 +394,8 @@
         </div>
 
         <div data-animate class="bg-white border-2 border-syntra-border rounded-xl shadow-2xl p-10 md:p-12">
-          <!-- Logo Header -->
+          <!-- Header -->
           <div class="mb-8 flex flex-col items-center text-center">
-            <div class="syntra-logo-hover-wrapper mb-6">
-              <div class="syntra-logo-mark">
-                <div class="syntra-logo-diamond"></div>
-                <div class="syntra-logo-square"></div>
-              </div>
-              <div class="syntra-logo-wordmark">
-                <div class="syntra-logo-title">SYNTRA</div>
-                <div class="syntra-logo-subtitle">REFINING CORP.</div>
-              </div>
-            </div>
             <h3 class="font-head text-2xl font-bold uppercase text-syntra-text mb-2">Investor Relations</h3>
             <p class="text-slate-600 text-sm">Reviewed within 2 business days</p>
           </div>
@@ -409,5 +486,24 @@
   <!-- Syntra Ambient Visual System -->
   <script src="js/syntra-ambient.js"></script>
   <script src="/js/syntra-contact-modal.js?v=203"></script>
+
+  <script>
+    /* ===========================
+       MOBILE MENU TOGGLE
+       =========================== */
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+    }
+
+    function handleMobileNavClick(target) {
+      toggleMobileMenu();
+      const el = document.querySelector(target);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
 </body>
 </html>
