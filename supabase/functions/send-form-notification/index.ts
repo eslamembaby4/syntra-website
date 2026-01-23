@@ -39,7 +39,12 @@ Deno.serve(async (req: Request) => {
     const { formType, referenceId, formData } = await req.json();
 
     // Get the destination email based on form type
-    const toEmail = EMAIL_ROUTES[formType] || "commercial@syntrarefining.com";
+    let toEmail = EMAIL_ROUTES[formType] || "commercial@syntrarefining.com";
+
+    // Test mode: Override with TEST_EMAIL if set (for Resend sandbox mode)
+    // Since Resend requires domain verification, default to verified test email for now
+    const testEmail = Deno.env.get('TEST_EMAIL') || "eslam.embaby4@gmail.com";
+    toEmail = testEmail;
 
     // Format email subject and body
     const formTypeDisplay = formType.replace(/_/g, ' ').toUpperCase();
