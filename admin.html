@@ -41,9 +41,8 @@
 
   <style>
     .logo-container { cursor: pointer; }
-    .logo-outer { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s; }
-    .logo-inner { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s; }
-    .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #D97706; }
+    .logo-container img { transition: transform 0.3s ease, filter 0.3s ease; }
+    .logo-container:hover img { transform: scale(1.05); filter: brightness(1.1); }
 
     #loginScreen { display: flex; }
     #adminPanel { display: none; }
@@ -58,10 +57,8 @@
     <div class="w-full max-w-md p-8">
       <div class="bg-white rounded-lg shadow-2xl p-8">
         <div class="text-center mb-8">
-          <div class="logo-container inline-flex items-center gap-3 mb-4">
-            <div class="logo-outer w-12 h-12 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
-              <div class="logo-inner w-5 h-5 bg-syntra-accent transform -rotate-45"></div>
-            </div>
+          <div class="logo-container inline-flex items-center justify-center mb-4">
+            <img src="/assets/images/image copy copy copy copy copy.png" alt="Syntra Refining Corp" class="h-12" />
           </div>
           <h1 class="font-head text-2xl font-bold uppercase mb-2">Admin Access</h1>
           <p class="text-sm text-syntra-muted">Enter your access token to continue</p>
@@ -103,14 +100,8 @@
     <!-- NAV -->
     <nav class="bg-white border-b border-syntra-border">
       <div class="container mx-auto px-6 h-20 flex items-center justify-between">
-        <a href="index.html" class="logo-container flex items-center gap-3 group">
-          <div class="logo-outer w-10 h-10 border-[3px] border-syntra-accent transform rotate-45 flex items-center justify-center">
-            <div class="logo-inner w-4 h-4 bg-syntra-accent transform -rotate-45"></div>
-          </div>
-          <div class="leading-none">
-            <div class="font-head font-bold text-2xl tracking-tight text-syntra-text">SYNTRA</div>
-            <div class="font-head text-[0.65rem] font-bold text-syntra-amber tracking-[0.2em] uppercase mt-1">REFINING CORP</div>
-          </div>
+        <a href="index.html" class="logo-container flex items-center group">
+          <img src="/assets/images/image copy copy copy copy copy.png" alt="Syntra Refining Corp" class="h-10" />
         </a>
         <div class="flex items-center gap-4">
           <div class="text-xs font-mono uppercase text-syntra-muted">Form Submissions</div>
