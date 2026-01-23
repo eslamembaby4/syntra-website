@@ -162,25 +162,38 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
 
-        /* Simple X close button */
-        .close-x {
-            width: 20px;
-            height: 20px;
-            position: relative;
-            cursor: pointer;
+        /* Professional close button */
+        .modal-close-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 4px;
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          cursor: pointer;
+          transition: all 0.2s ease;
+          position: relative;
+          overflow: hidden;
         }
-        .close-x::before,
-        .close-x::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 2px;
-            background: currentColor;
-            top: 9px;
-            left: 0;
+        .modal-close-btn:hover {
+          background: rgba(255, 215, 0, 0.15);
+          border-color: #FFD700;
+          transform: scale(1.05);
         }
-        .close-x::before { transform: rotate(45deg); }
-        .close-x::after { transform: rotate(-45deg); }
+        .modal-close-btn:active {
+          transform: scale(0.95);
+        }
+        .modal-close-btn svg {
+          width: 20px;
+          height: 20px;
+          stroke-width: 2;
+          transition: transform 0.2s ease;
+        }
+        .modal-close-btn:hover svg {
+          transform: rotate(90deg);
+        }
     </style>
 </head>
 <body class="bg-syntra-base text-syntra-text font-sans antialiased scroll-pt-24">
@@ -249,8 +262,10 @@
 
     <!-- MOBILE MENU OVERLAY -->
     <div id="mobileMenu" class="fixed inset-0 bg-white z-50 hidden flex-col pt-32 px-4 sm:px-12 space-y-8" role="dialog" aria-modal="true">
-        <button class="absolute top-8 right-6 p-4" onclick="toggleMobileMenu()" aria-label="Close navigation menu">
-            <div class="close-x text-syntra-text"></div>
+        <button class="absolute top-8 right-6 p-2 rounded-md hover:bg-slate-100 transition-all hover:rotate-90 duration-200" onclick="toggleMobileMenu()" aria-label="Close navigation menu">
+            <svg class="w-6 h-6 text-syntra-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
         </button>
         <div class="container mx-auto grid md:grid-cols-2 gap-12">
             <div class="flex flex-col gap-6">
