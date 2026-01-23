@@ -1073,7 +1073,7 @@
 
     // Observe all animate-on-scroll elements
     document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        document.querySelectorAll('.animate-on-scroll, [data-animate]').forEach(el => {
             scrollObserver.observe(el);
         });
     });
