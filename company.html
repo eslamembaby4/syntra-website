@@ -219,6 +219,128 @@
                 gap: 32px;
             }
         }
+
+        /* Strategic Location Animations */
+        @keyframes location-pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.4);
+                opacity: 1;
+                box-shadow: 0 0 30px currentColor;
+            }
+        }
+
+        .location-marker {
+            animation: location-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes route-draw {
+            0% {
+                stroke-dashoffset: 1000;
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                stroke-dashoffset: 0;
+                opacity: 0.3;
+            }
+        }
+
+        .route-line {
+            stroke-dasharray: 1000;
+            animation: route-draw 4s ease-in-out infinite;
+        }
+
+        @keyframes ship-movement {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100px) translateY(-30px);
+                opacity: 0;
+            }
+        }
+
+        .ship-indicator {
+            animation: ship-movement 6s ease-in-out infinite;
+        }
+
+        @keyframes stat-appear {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-item {
+            opacity: 0;
+            animation: stat-appear 0.6s ease-out forwards;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0.1s; }
+        .stat-item:nth-child(2) { animation-delay: 0.2s; }
+        .stat-item:nth-child(3) { animation-delay: 0.3s; }
+        .stat-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes connection-flow {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        .connection-dot {
+            animation: connection-flow 2s ease-in-out infinite;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0) !important;
+        }
+
+        @keyframes info-slide {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .info-card {
+            animation: info-slide 0.8s ease-out forwards;
+        }
     </style>
 </head>
 <body class="bg-syntra-base text-syntra-text font-sans antialiased">
@@ -424,53 +546,149 @@
     </div>
 
     <!-- STRATEGIC LOCATION SECTION -->
-    <section data-animate class="py-24 bg-white">
-        <div class="container mx-auto px-6">
+    <section class="py-24 bg-gradient-to-b from-syntra-midnight to-slate-900 relative overflow-hidden" data-animate>
+        <!-- Animated Background Grid -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.3)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-6xl mx-auto">
-                <div class="mb-12">
+                <!-- Header -->
+                <div class="mb-16 text-center">
                     <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Strategic Location</p>
-                    <h2 class="font-head text-3xl sm:text-4xl lg:text-5xl md:text-6xl font-bold text-syntra-text uppercase leading-tight mb-6">
+                    <h2 class="font-head text-3xl sm:text-4xl lg:text-5xl font-bold text-white uppercase leading-tight mb-6">
                         <span class="text-syntra-accent">Halifax</span>: North America's<br>Strategic Gateway
                     </h2>
-                    <p class="text-lg text-slate-600 max-w-3xl leading-relaxed">
+                    <p class="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
                         Geography matters. Halifax sits at the intersection of <span class="text-syntra-accent font-semibold">North American demand and transatlantic supply</span>, with direct access to European and North American markets via one of the continent's deepest natural harbors.
                     </p>
                 </div>
 
-                <div class="max-w-4xl">
-                    <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light border-l-4 border-syntra-accent pl-6">
-                        Syntra Refining is strategically headquartered in Halifax, Nova Scotia—positioning us at the nexus of North America's emerging critical minerals infrastructure and transatlantic supply chains.
-                    </p>
+                <!-- Geographic Visualization -->
+                <div class="mb-16">
+                    <div class="relative bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-xl p-12 overflow-hidden">
+                        <!-- Geographic Connection Map -->
+                        <div class="relative h-64 mb-8">
+                            <!-- Halifax Central Position -->
+                            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                                <div class="relative">
+                                    <!-- Syntra Logo Mark at Center -->
+                                    <a href="index.html" class="syntra-logo-hover-wrapper light block">
+                                        <div class="syntra-logo-mark scale-150">
+                                            <div class="syntra-logo-diamond"></div>
+                                            <div class="syntra-logo-square"></div>
+                                        </div>
+                                    </a>
+                                    <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                                        <p class="font-head text-sm font-bold text-syntra-accent uppercase">Halifax</p>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <div class="space-y-6 mb-8">
-                        <div class="stat-border">
-                            <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-2"><span class="text-syntra-accent">Unmatched</span> Port Infrastructure</h3>
-                            <p class="text-slate-600 leading-relaxed mb-3">
-                                Halifax Harbor provides direct, <span class="text-syntra-accent font-semibold">ice-free access year-round</span> to both European and North American markets, ensuring uninterrupted supply chain operations with one of the continent's deepest natural harbors.
-                            </p>
-                            <p class="text-sm text-slate-500 font-semibold">
-                                → 365-day ice-free deep-water port<br>
-                                → 16m draft accommodates Panamax vessels<br>
-                                → 48-hour transit to European markets<br>
-                                → Class 1 rail connectivity to North American markets
-                            </p>
+                            <!-- Connection Lines (SVG for smooth curves) -->
+                            <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Europe Connection -->
+                                <path class="route-line" d="M 320,130 Q 240,80 160,60" stroke="#0891B2" stroke-width="2" fill="none" style="animation-delay: 0s;"/>
+                                <!-- North America East -->
+                                <path class="route-line" d="M 320,130 Q 380,100 440,80" stroke="#FFD700" stroke-width="2" fill="none" style="animation-delay: 0.5s;"/>
+                                <!-- North America South -->
+                                <path class="route-line" d="M 320,130 Q 340,180 360,230" stroke="#D97706" stroke-width="2" fill="none" style="animation-delay: 1s;"/>
+                                <!-- North America West -->
+                                <path class="route-line" d="M 320,130 Q 260,160 200,190" stroke="#0891B2" stroke-width="2" fill="none" style="animation-delay: 1.5s;"/>
+                            </svg>
+
+                            <!-- Destination Markers -->
+                            <div class="absolute left-[25%] top-[23%]">
+                                <div class="w-4 h-4 bg-syntra-tech rounded-full location-marker" style="animation-delay: 0.2s;"></div>
+                                <p class="text-xs text-slate-400 mt-1 whitespace-nowrap">Europe</p>
+                            </div>
+                            <div class="absolute right-[30%] top-[31%]">
+                                <div class="w-4 h-4 bg-syntra-accent rounded-full location-marker" style="animation-delay: 0.4s;"></div>
+                                <p class="text-xs text-slate-400 mt-1 whitespace-nowrap">NE USA</p>
+                            </div>
+                            <div class="absolute right-[43.5%] bottom-[10%]">
+                                <div class="w-4 h-4 bg-syntra-amber rounded-full location-marker" style="animation-delay: 0.6s;"></div>
+                                <p class="text-xs text-slate-400 mt-1 whitespace-nowrap">SE USA</p>
+                            </div>
+                            <div class="absolute left-[31%] bottom-[26%]">
+                                <div class="w-4 h-4 bg-syntra-tech rounded-full location-marker" style="animation-delay: 0.8s;"></div>
+                                <p class="text-xs text-slate-400 mt-1 whitespace-nowrap">Central NA</p>
+                            </div>
                         </div>
 
-                        <div class="stat-border">
-                            <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-2"><span class="text-syntra-accent">Advanced</span> Industrial Ecosystem</h3>
-                            <p class="text-slate-600 leading-relaxed mb-3">
-                                Our location leverages Nova Scotia's <span class="text-syntra-accent font-semibold">rich industrial heritage</span> alongside a growing innovation economy, combining world-class engineering talent with proven chemical processing expertise.
+                        <p class="text-center text-slate-300 text-lg leading-relaxed max-w-3xl mx-auto">
+                            Syntra Refining is strategically headquartered in Halifax, Nova Scotia—positioning us at the nexus of North America's emerging critical minerals infrastructure and transatlantic supply chains.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Info Cards Grid -->
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <!-- Port Infrastructure -->
+                    <div class="info-card bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-xl p-8 hover:border-syntra-accent transition-all duration-500" style="animation-delay: 0.2s;">
+                        <div class="mb-6">
+                            <h3 class="font-head text-2xl font-bold text-white uppercase mb-3">
+                                <span class="text-syntra-accent">Unmatched</span> Port Infrastructure
+                            </h3>
+                            <p class="text-slate-400 leading-relaxed mb-4">
+                                Halifax Harbor provides direct, <span class="text-syntra-accent font-semibold">ice-free access year-round</span> to both European and North American markets, ensuring uninterrupted supply chain operations with one of the continent's deepest natural harbors.
                             </p>
-                            <p class="text-sm text-slate-500 font-semibold">
-                                → 200+ years of industrial processing history<br>
-                                → Top-tier engineering universities (Dalhousie, MSVU)<br>
-                                → Established chemical processing workforce<br>
-                                → Competitive power rates and industrial incentives
-                            </p>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="stat-item flex items-start gap-3">
+                                <div class="w-2 h-2 bg-syntra-accent rounded-full mt-1.5 flex-shrink-0"></div>
+                                <p class="text-slate-300 text-sm">365-day ice-free deep-water port</p>
+                            </div>
+                            <div class="stat-item flex items-start gap-3">
+                                <div class="w-2 h-2 bg-syntra-tech rounded-full mt-1.5 flex-shrink-0"></div>
+                                <p class="text-slate-300 text-sm">16m draft accommodates Panamax vessels</p>
+                            </div>
+                            <div class="stat-item flex items-start gap-3">
+                                <div class="w-2 h-2 bg-syntra-amber rounded-full mt-1.5 flex-shrink-0"></div>
+                                <p class="text-slate-300 text-sm">48-hour transit to European markets</p>
+                            </div>
+                            <div class="stat-item flex items-start gap-3">
+                                <div class="w-2 h-2 bg-syntra-accent rounded-full mt-1.5 flex-shrink-0"></div>
+                                <p class="text-slate-300 text-sm">Class 1 rail connectivity to North American markets</p>
+                            </div>
                         </div>
                     </div>
 
-                    <p class="text-lg text-slate-700 font-medium">
+                    <!-- Industrial Ecosystem -->
+                    <div class="info-card bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-xl p-8 hover:border-syntra-tech transition-all duration-500" style="animation-delay: 0.4s;">
+                        <div class="mb-6">
+                            <h3 class="font-head text-2xl font-bold text-white uppercase mb-3">
+                                <span class="text-syntra-accent">Advanced</span> Industrial Ecosystem
+                            </h3>
+                            <p class="text-slate-400 leading-relaxed mb-4">
+                                Our location leverages Nova Scotia's <span class="text-syntra-accent font-semibold">rich industrial heritage</span> alongside a growing innovation economy, combining world-class engineering talent with proven chemical processing expertise.
+                            </p>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="stat-item flex items-start gap-3">
+                                <div class="w-2 h-2 bg-syntra-tech rounded-full mt-1.5 flex-shrink-0"></div>
+                                <p class="text-slate-300 text-sm">200+ years of industrial processing history</p>
+                            </div>
+                            <div class="stat-item flex items-start gap-3">
+                                <div class="w-2 h-2 bg-syntra-accent rounded-full mt-1.5 flex-shrink-0"></div>
+                                <p class="text-slate-300 text-sm">Top-tier engineering universities (Dalhousie, MSVU)</p>
+                            </div>
+                            <div class="stat-item flex items-start gap-3">
+                                <div class="w-2 h-2 bg-syntra-amber rounded-full mt-1.5 flex-shrink-0"></div>
+                                <p class="text-slate-300 text-sm">Established chemical processing workforce</p>
+                            </div>
+                            <div class="stat-item flex items-start gap-3">
+                                <div class="w-2 h-2 bg-syntra-tech rounded-full mt-1.5 flex-shrink-0"></div>
+                                <p class="text-slate-300 text-sm">Competitive power rates and industrial incentives</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Closing Statement -->
+                <div class="text-center">
+                    <p class="text-xl text-white font-medium max-w-3xl mx-auto leading-relaxed">
                         From Canada's Atlantic coast, we are establishing the <span class="text-syntra-accent font-semibold">critical minerals infrastructure that will power North America's energy transition</span>.
                     </p>
                 </div>
