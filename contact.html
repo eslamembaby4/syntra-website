@@ -217,6 +217,184 @@
             100% { transform: translateX(-50%); }
         }
 
+        /* Floating Label Styles */
+        .floating-label-group {
+            position: relative;
+        }
+
+        .floating-label {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            color: #94a3b8;
+            font-size: 1rem;
+            background: transparent;
+            padding: 0 4px;
+        }
+
+        .floating-label-group input:focus ~ .floating-label,
+        .floating-label-group input:not(:placeholder-shown) ~ .floating-label,
+        .floating-label-group textarea:focus ~ .floating-label,
+        .floating-label-group textarea:not(:placeholder-shown) ~ .floating-label,
+        .floating-label-group select:focus ~ .floating-label,
+        .floating-label-group select:not([value=""]) ~ .floating-label {
+            top: 0;
+            transform: translateY(-50%);
+            font-size: 0.75rem;
+            color: #FFD700;
+            background: white;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+        }
+
+        .floating-label-group.has-value .floating-label {
+            top: 0;
+            transform: translateY(-50%);
+            font-size: 0.75rem;
+            color: #64748b;
+            background: white;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+        }
+
+        /* Field Icon Indicators */
+        .field-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%) scale(0);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0;
+        }
+
+        .field-icon.show {
+            transform: translateY(-50%) scale(1);
+            opacity: 1;
+        }
+
+        /* Input Field Enhancements */
+        .dynamic-input {
+            transition: all 0.3s ease;
+        }
+
+        .dynamic-input:focus {
+            transform: scale(1.01);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.15);
+        }
+
+        .dynamic-input.valid {
+            border-color: #10b981 !important;
+            background-color: #ecfdf5;
+        }
+
+        .dynamic-input.invalid {
+            border-color: #ef4444 !important;
+            background-color: #fef2f2;
+        }
+
+        /* Shake animation for validation errors */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .shake {
+            animation: shake 0.4s ease-in-out;
+        }
+
+        /* Field typing indicator */
+        @keyframes typing-pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .typing-indicator {
+            position: absolute;
+            left: -2px;
+            top: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 2px solid #FFD700;
+            border-radius: 0.375rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            animation: typing-pulse 1.5s ease-in-out infinite;
+        }
+
+        .is-typing .typing-indicator {
+            opacity: 1;
+        }
+
+        /* Ripple effect on focus */
+        @keyframes ripple {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0;
+            }
+        }
+
+        .ripple-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            pointer-events: none;
+            border-radius: 0.375rem;
+        }
+
+        .ripple {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            animation: ripple 0.6s ease-out;
+        }
+
+        /* Submit button states */
+        .submit-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .submit-btn:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+
+        @keyframes button-success {
+            0% { background-color: #FFD700; }
+            50% { background-color: #10b981; transform: scale(1.05); }
+            100% { background-color: #FFD700; transform: scale(1); }
+        }
+
+        .submit-success {
+            animation: button-success 0.8s ease-in-out;
+        }
+
     </style>
 </head>
 <body class="bg-syntra-base text-syntra-text font-sans antialiased">
@@ -390,123 +568,162 @@
                     <form data-syntra-form="partner_inquiry" data-interest="general_inquiry">
                         <!-- Name Fields -->
                         <div class="grid md:grid-cols-2 gap-6 mb-8">
-                            <div class="group relative">
-                                <label for="first_name" class="block font-mono text-xs text-slate-700 uppercase tracking-wider mb-3 font-medium group-focus-within:text-syntra-amber transition-colors">
-                                    First Name <span class="text-red-500">*</span>
-                                </label>
+                            <div class="group floating-label-group">
                                 <div class="relative">
+                                    <div class="ripple-container"></div>
+                                    <div class="typing-indicator"></div>
                                     <input
                                         type="text"
                                         id="first_name"
                                         name="first_name"
                                         required
                                         data-form-field
-                                        class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-slate-400 hover:border-slate-300 hover:scale-[1.01]"
-                                        placeholder="John"
+                                        data-validate="name"
+                                        class="dynamic-input w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-transparent"
+                                        placeholder="First Name"
                                     >
+                                    <label for="first_name" class="floating-label font-mono uppercase tracking-wider">
+                                        First Name <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="field-icon">
+                                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
                                     <div class="input-focus-line rounded-b-md"></div>
                                 </div>
                             </div>
-                            <div class="group relative">
-                                <label for="last_name" class="block font-mono text-xs text-slate-700 uppercase tracking-wider mb-3 font-medium group-focus-within:text-syntra-amber transition-colors">
-                                    Last Name
-                                </label>
+                            <div class="group floating-label-group">
                                 <div class="relative">
+                                    <div class="ripple-container"></div>
+                                    <div class="typing-indicator"></div>
                                     <input
                                         type="text"
                                         id="last_name"
                                         name="last_name"
                                         data-form-field
-                                        class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-slate-400 hover:border-slate-300 hover:scale-[1.01]"
-                                        placeholder="Doe"
+                                        data-validate="name"
+                                        class="dynamic-input w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-transparent"
+                                        placeholder="Last Name"
                                     >
+                                    <label for="last_name" class="floating-label font-mono uppercase tracking-wider">
+                                        Last Name
+                                    </label>
+                                    <div class="field-icon">
+                                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
                                     <div class="input-focus-line rounded-b-md"></div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Email -->
-                        <div class="mb-8 group relative">
-                            <label for="email" class="block font-mono text-xs text-slate-700 uppercase tracking-wider mb-3 font-medium group-focus-within:text-syntra-amber transition-colors">
-                                Email Address <span class="text-red-500">*</span>
-                            </label>
+                        <div class="mb-8 group floating-label-group">
                             <div class="relative">
+                                <div class="ripple-container"></div>
+                                <div class="typing-indicator"></div>
                                 <input
                                     type="email"
                                     id="email"
                                     name="email"
                                     required
                                     data-form-field
-                                    class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-slate-400 hover:border-slate-300 hover:scale-[1.01]"
-                                    placeholder="john.doe@company.com"
+                                    data-validate="email"
+                                    class="dynamic-input w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-transparent"
+                                    placeholder="Email Address"
                                 >
-                                <div class="input-focus-line rounded-b-md"></div>
-                                <div class="absolute right-4 top-1/2 -translate-y-1/2 hidden" id="emailValid">
+                                <label for="email" class="floating-label font-mono uppercase tracking-wider">
+                                    Email Address <span class="text-red-500">*</span>
+                                </label>
+                                <div class="field-icon" id="emailValid">
                                     <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                     </svg>
                                 </div>
+                                <div class="input-focus-line rounded-b-md"></div>
                             </div>
                         </div>
 
                         <!-- Organization -->
-                        <div class="mb-8 group relative">
-                            <label for="organization" class="block font-mono text-xs text-slate-700 uppercase tracking-wider mb-3 font-medium group-focus-within:text-syntra-amber transition-colors">
-                                Organization <span class="text-red-500">*</span>
-                            </label>
+                        <div class="mb-8 group floating-label-group">
                             <div class="relative">
+                                <div class="ripple-container"></div>
+                                <div class="typing-indicator"></div>
                                 <input
                                     type="text"
                                     id="organization"
                                     name="organization"
                                     required
                                     data-form-field
-                                    class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-slate-400 hover:border-slate-300 hover:scale-[1.01]"
-                                    placeholder="Company Name"
+                                    data-validate="text"
+                                    class="dynamic-input w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 placeholder-transparent"
+                                    placeholder="Organization"
                                 >
+                                <label for="organization" class="floating-label font-mono uppercase tracking-wider">
+                                    Organization <span class="text-red-500">*</span>
+                                </label>
+                                <div class="field-icon">
+                                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
                                 <div class="input-focus-line rounded-b-md"></div>
                             </div>
                         </div>
 
                         <!-- Interest Type -->
-                        <div class="mb-8 group">
-                            <label for="interest_type" class="block font-mono text-xs text-slate-700 uppercase tracking-wider mb-3 font-medium group-focus-within:text-syntra-amber transition-colors">
-                                I'm Interested In <span class="text-red-500">*</span>
-                            </label>
-                            <select
-                                id="interest_type"
-                                name="interest_type"
-                                required
-                                class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 cursor-pointer hover:border-slate-300 appearance-none bg-[length:20px] bg-[right_1rem_center] bg-no-repeat"
-                                style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%2364748B%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpolyline points=%276 9 12 15 18 9%27%3E%3C/polyline%3E%3C/svg%3E');"
-                            >
-                                <option value="">Select an option</option>
-                                <option value="offtake_agreement">Offtake Agreement</option>
-                                <option value="strategic_partnership">Strategic Partnership</option>
-                                <option value="technology_licensing">Technology Licensing</option>
-                                <option value="investment_opportunity">Investment Opportunity</option>
-                                <option value="media_inquiry">Media Inquiry</option>
-                                <option value="general_inquiry">General Inquiry</option>
-                            </select>
+                        <div class="mb-8 group floating-label-group">
+                            <div class="relative">
+                                <div class="ripple-container"></div>
+                                <select
+                                    id="interest_type"
+                                    name="interest_type"
+                                    required
+                                    data-form-field
+                                    class="dynamic-input w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 cursor-pointer appearance-none bg-[length:20px] bg-[right_1rem_center] bg-no-repeat"
+                                    style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%2364748B%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpolyline points=%276 9 12 15 18 9%27%3E%3C/polyline%3E%3C/svg%3E');"
+                                >
+                                    <option value="">Select an option</option>
+                                    <option value="offtake_agreement">Offtake Agreement</option>
+                                    <option value="strategic_partnership">Strategic Partnership</option>
+                                    <option value="technology_licensing">Technology Licensing</option>
+                                    <option value="investment_opportunity">Investment Opportunity</option>
+                                    <option value="media_inquiry">Media Inquiry</option>
+                                    <option value="general_inquiry">General Inquiry</option>
+                                </select>
+                                <label for="interest_type" class="floating-label font-mono uppercase tracking-wider">
+                                    I'm Interested In <span class="text-red-500">*</span>
+                                </label>
+                                <div class="field-icon">
+                                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                </div>
+                                <div class="input-focus-line rounded-b-md"></div>
+                            </div>
                         </div>
 
                         <!-- Message -->
-                        <div class="mb-8 group relative">
-                            <div class="flex justify-between items-center mb-3">
-                                <label for="message" class="font-mono text-xs text-slate-700 uppercase tracking-wider font-medium group-focus-within:text-syntra-amber transition-colors">
-                                    Message <span class="text-slate-400 font-normal normal-case">(Optional)</span>
-                                </label>
+                        <div class="mb-8 group floating-label-group">
+                            <div class="flex justify-between items-center mb-2">
                                 <span class="character-count font-mono text-xs" id="charCount">0 / 1000</span>
                             </div>
                             <div class="relative">
+                                <div class="ripple-container"></div>
+                                <div class="typing-indicator"></div>
                                 <textarea
                                     id="message"
                                     name="message"
                                     rows="6"
                                     maxlength="1000"
-                                    class="w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 resize-none placeholder-slate-400 hover:border-slate-300 hover:scale-[1.01]"
-                                    placeholder="Tell us more about your inquiry..."
+                                    class="dynamic-input w-full px-5 py-4 border-2 border-slate-200 rounded-md bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-syntra-accent/20 focus:border-syntra-accent transition-all duration-200 resize-none placeholder-transparent"
+                                    placeholder="Message"
                                 ></textarea>
+                                <label for="message" class="floating-label font-mono uppercase tracking-wider">
+                                    Message <span class="text-slate-400 font-normal normal-case">(Optional)</span>
+                                </label>
                                 <div class="input-focus-line rounded-b-md"></div>
                             </div>
                         </div>
@@ -518,10 +735,14 @@
                             </p>
                             <button
                                 type="submit"
-                                class="w-full sm:w-auto order-1 sm:order-2 px-10 py-4 bg-syntra-accent text-syntra-text font-head font-bold text-base uppercase tracking-wide hover:bg-yellow-400 active:bg-yellow-500 transition-all duration-200 shadow-lg shadow-yellow-500/30 hover:shadow-xl hover:shadow-yellow-500/40 hover:-translate-y-0.5 rounded-md group relative overflow-hidden"
+                                class="submit-btn w-full sm:w-auto order-1 sm:order-2 px-10 py-4 bg-syntra-accent text-syntra-text font-head font-bold text-base uppercase tracking-wide hover:bg-yellow-400 active:bg-yellow-500 transition-all duration-200 shadow-lg shadow-yellow-500/30 hover:shadow-xl hover:shadow-yellow-500/40 hover:-translate-y-0.5 rounded-md group relative"
                             >
-                                <span class="relative z-10">Submit Inquiry</span>
-                                <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-syntra-accent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                                <span class="relative z-10 flex items-center justify-center gap-2">
+                                    <span class="button-text">Submit Inquiry</span>
+                                    <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                    </svg>
+                                </span>
                             </button>
                         </div>
                     </form>
@@ -684,7 +905,7 @@
                 scrollObserver.observe(el);
             });
 
-            // Character Counter for Message Field
+            // Enhanced Character Counter for Message Field
             const messageField = document.getElementById('message');
             const charCount = document.getElementById('charCount');
 
@@ -701,22 +922,133 @@
                 });
             }
 
-            // Email Validation Indicator
-            const emailField = document.getElementById('email');
-            const emailValid = document.getElementById('emailValid');
+            // Dynamic Field Interactions
+            const dynamicInputs = document.querySelectorAll('.dynamic-input');
 
-            if (emailField && emailValid) {
-                emailField.addEventListener('input', () => {
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (emailRegex.test(emailField.value)) {
-                        emailValid.classList.remove('hidden');
+            dynamicInputs.forEach(input => {
+                let typingTimer;
+                const typingDelay = 500;
+                const container = input.closest('.floating-label-group');
+                const fieldIcon = container?.querySelector('.field-icon');
+                const typingIndicator = container?.querySelector('.typing-indicator');
+                const rippleContainer = container?.querySelector('.ripple-container');
+
+                // Typing indicator
+                input.addEventListener('input', () => {
+                    if (typingIndicator && input.value.length > 0) {
+                        container.classList.add('is-typing');
+                        clearTimeout(typingTimer);
+
+                        typingTimer = setTimeout(() => {
+                            container.classList.remove('is-typing');
+                            validateField(input, fieldIcon);
+                        }, typingDelay);
+                    }
+
+                    // Update floating label state
+                    if (input.value.length > 0) {
+                        container.classList.add('has-value');
                     } else {
-                        emailValid.classList.add('hidden');
+                        container.classList.remove('has-value');
+                    }
+                });
+
+                // Ripple effect on focus
+                input.addEventListener('focus', (e) => {
+                    if (rippleContainer) {
+                        const ripple = document.createElement('div');
+                        ripple.className = 'ripple';
+                        rippleContainer.appendChild(ripple);
+
+                        setTimeout(() => {
+                            ripple.remove();
+                        }, 600);
+                    }
+                });
+
+                // Validate on blur
+                input.addEventListener('blur', () => {
+                    container.classList.remove('is-typing');
+                    if (input.value.length > 0) {
+                        validateField(input, fieldIcon);
+                    }
+                });
+
+                // Clear validation state on focus
+                input.addEventListener('focus', () => {
+                    input.classList.remove('valid', 'invalid', 'shake');
+                    if (fieldIcon && !input.value) {
+                        fieldIcon.classList.remove('show');
+                    }
+                });
+            });
+
+            // Field Validation Function
+            function validateField(input, icon) {
+                const validateType = input.getAttribute('data-validate');
+                let isValid = false;
+
+                if (!validateType || input.value.length === 0) {
+                    return;
+                }
+
+                switch(validateType) {
+                    case 'email':
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        isValid = emailRegex.test(input.value);
+                        break;
+                    case 'name':
+                        isValid = input.value.trim().length >= 2;
+                        break;
+                    case 'text':
+                        isValid = input.value.trim().length >= 2;
+                        break;
+                    default:
+                        isValid = input.value.trim().length > 0;
+                }
+
+                if (isValid) {
+                    input.classList.remove('invalid');
+                    input.classList.add('valid');
+                    if (icon) {
+                        icon.classList.add('show');
+                    }
+                } else {
+                    input.classList.remove('valid');
+                    input.classList.add('invalid', 'shake');
+                    if (icon) {
+                        icon.classList.remove('show');
+                    }
+                    setTimeout(() => {
+                        input.classList.remove('shake');
+                    }, 400);
+                }
+            }
+
+            // Handle select field special case
+            const selectField = document.getElementById('interest_type');
+            if (selectField) {
+                const container = selectField.closest('.floating-label-group');
+                const fieldIcon = container?.querySelector('.field-icon');
+
+                selectField.addEventListener('change', () => {
+                    if (selectField.value !== '') {
+                        container.classList.add('has-value');
+                        selectField.classList.add('valid');
+                        if (fieldIcon) {
+                            fieldIcon.classList.add('show');
+                        }
+                    } else {
+                        container.classList.remove('has-value');
+                        selectField.classList.remove('valid');
+                        if (fieldIcon) {
+                            fieldIcon.classList.remove('show');
+                        }
                     }
                 });
             }
 
-            // Form Progress Tracking
+            // Enhanced Form Progress Tracking
             const form = document.querySelector('[data-syntra-form]');
             const formProgress = document.getElementById('formProgress');
             const progressText = document.getElementById('progressText');
@@ -739,25 +1071,56 @@
                 if (progress === 0) {
                     progressText.textContent = 'Start filling out the form';
                 } else if (progress < 50) {
-                    progressText.textContent = 'Keep going...';
+                    progressText.textContent = `${Math.round(progress)}% complete - Keep going...`;
                 } else if (progress < 100) {
-                    progressText.textContent = 'Almost there!';
+                    progressText.textContent = `${Math.round(progress)}% complete - Almost there!`;
                 } else {
-                    progressText.textContent = 'Ready to submit!';
+                    progressText.textContent = '100% complete - Ready to submit! ✓';
                 }
             }
 
             formFields.forEach(field => {
                 field.addEventListener('input', updateFormProgress);
+                field.addEventListener('change', updateFormProgress);
                 field.addEventListener('blur', updateFormProgress);
             });
 
-            // Add submit button animation
+            // Enhanced Submit Button with Animation
             const submitButton = form.querySelector('button[type="submit"]');
+            const buttonText = submitButton?.querySelector('.button-text');
+
             if (submitButton) {
+                // Ripple effect on click
+                submitButton.addEventListener('click', function(e) {
+                    if (!submitButton.disabled) {
+                        const rect = submitButton.getBoundingClientRect();
+                        const ripple = document.createElement('div');
+                        ripple.style.cssText = `
+                            position: absolute;
+                            width: 20px;
+                            height: 20px;
+                            background: rgba(255, 255, 255, 0.5);
+                            border-radius: 50%;
+                            transform: translate(-50%, -50%) scale(0);
+                            animation: ripple 0.6s ease-out;
+                            pointer-events: none;
+                            left: ${e.clientX - rect.left}px;
+                            top: ${e.clientY - rect.top}px;
+                        `;
+                        submitButton.appendChild(ripple);
+
+                        setTimeout(() => {
+                            ripple.remove();
+                        }, 600);
+                    }
+                });
+
                 form.addEventListener('submit', (e) => {
                     submitButton.classList.add('submit-loading');
                     submitButton.disabled = true;
+                    if (buttonText) {
+                        buttonText.textContent = 'Submitting...';
+                    }
                 });
             }
 
