@@ -410,15 +410,21 @@
               </div>
             </div>
             <div class="flex flex-col gap-2 ml-4">
-              <button onclick="openCalendarModal(${JSON.stringify(sub).replace(/"/g, '&quot;')})" class="px-3 py-1 bg-blue-600 text-white text-xs font-mono uppercase rounded hover:bg-blue-700 transition-colors inline-flex items-center gap-1">
-                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <button onclick="sendEmailOutlook(${JSON.stringify(sub).replace(/"/g, '&quot;')})" class="px-3 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-xs font-mono uppercase rounded-md hover:from-blue-700 hover:to-blue-800 transition-all duration-200 inline-flex items-center gap-2 shadow-sm hover:shadow-md hover:-translate-y-0.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                Outlook
+              </button>
+              <button onclick="openCalendarModal(${JSON.stringify(sub).replace(/"/g, '&quot;')})" class="px-3 py-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white text-xs font-mono uppercase rounded-md hover:from-purple-700 hover:to-purple-800 transition-all duration-200 inline-flex items-center gap-2 shadow-sm hover:shadow-md hover:-translate-y-0.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                 </svg>
                 Calendar
               </button>
               ${sub.read_status
-                ? `<button onclick="markAsUnread('${sub.id}')" class="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-mono uppercase rounded hover:bg-slate-200 transition-colors">Mark Unread</button>`
-                : `<button onclick="markAsRead('${sub.id}')" class="px-3 py-1 bg-syntra-accent text-syntra-text text-xs font-mono uppercase rounded hover:bg-yellow-400 transition-colors">Mark Read</button>`
+                ? `<button onclick="markAsUnread('${sub.id}')" class="px-3 py-2 bg-slate-200 text-slate-700 text-xs font-mono uppercase rounded-md hover:bg-slate-300 transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5">Mark Unread</button>`
+                : `<button onclick="markAsRead('${sub.id}')" class="px-3 py-2 bg-gradient-to-r from-syntra-accent to-yellow-400 text-syntra-text text-xs font-mono uppercase rounded-md hover:from-yellow-400 hover:to-yellow-500 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 font-bold">Mark Read</button>`
               }
             </div>
           </div>
@@ -499,6 +505,42 @@
       const hours = String(date.getHours()).padStart(2, '0');
       const minutes = String(date.getMinutes()).padStart(2, '0');
       return `${year}-${month}-${day}T${hours}:${minutes}`;
+    }
+
+    function sendEmailOutlook(submission) {
+      const subject = encodeURIComponent(`Follow-up: ${submission.first_name} ${submission.last_name || ''} - ${submission.reference_id || ''}`);
+
+      const formType = submission.form_type === 'partner_inquiry' ? 'Partner Inquiry' :
+                      submission.form_type === 'investor_inquiry' ? 'Investor Inquiry' : 'Career Application';
+
+      const bodyLines = [
+        `Dear ${submission.first_name},`,
+        '',
+        `Thank you for your interest in Syntra Refining.`,
+        '',
+        `We have received your ${formType.toLowerCase()} (Reference: ${submission.reference_id || 'N/A'}).`,
+        '',
+        `---`,
+        `Original Submission Details:`,
+        `Name: ${submission.first_name} ${submission.last_name || ''}`,
+        `Email: ${submission.email}`,
+        submission.phone ? `Phone: ${submission.phone}` : '',
+        submission.organization ? `Organization: ${submission.organization}` : '',
+        submission.interest_type ? `Interest: ${submission.interest_type}` : '',
+        `Submitted: ${new Date(submission.created_at).toLocaleString()}`,
+        '',
+        submission.message ? `Original Message:\n${submission.message}` : '',
+        '',
+        `---`,
+        '',
+        `Best regards,`,
+        `Syntra Refining Team`,
+        `info@syntrarefining.com`
+      ].filter(line => line !== false);
+
+      const body = encodeURIComponent(bodyLines.join('\n'));
+
+      window.location.href = `mailto:${submission.email}?subject=${subject}&body=${body}`;
     }
 
     function addToCalendar(event) {
