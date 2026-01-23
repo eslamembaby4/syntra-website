@@ -90,7 +90,7 @@
               <button type="submit" style="flex: 1; padding: 1rem 1.5rem; background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); color: white; border: none; border-radius: 2px; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">
                 Submit Inquiry
               </button>
-              <button type="button" class="modal-cancel-btn" style="padding: 1rem 1.5rem; background: transparent; color: #64748B; border: 2px solid #E2E8F0; border-radius: 2px; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">
+              <button type="button" class="modal-cancel-btn" style="padding: 1rem 1.5rem; background: transparent; color: #64748B; border: 2px solid #E2E8F0; border-radius: 2px; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; transition: all 0.2s;">
                 Cancel
               </button>
             </div>
@@ -175,31 +175,31 @@
         }
       }, true);
 
-      // Add proper hover effects to buttons
+      // Add proper hover effects to buttons with smooth transitions
       const closeBtn = modal.querySelector('.modal-close-btn');
       const cancelBtn = modal.querySelector('.modal-cancel-btn');
 
       if (closeBtn) {
         closeBtn.addEventListener('mouseenter', function() {
-          this.style.background = '#0F172A';
-          this.style.color = 'white';
-          this.style.borderColor = '#0F172A';
+          this.style.setProperty('background', '#0F172A');
+          this.style.setProperty('color', 'white');
+          this.style.setProperty('border-color', '#0F172A');
         });
         closeBtn.addEventListener('mouseleave', function() {
-          this.style.background = 'transparent';
-          this.style.color = '#64748B';
-          this.style.borderColor = '#E2E8F0';
+          this.style.setProperty('background', 'transparent');
+          this.style.setProperty('color', '#64748B');
+          this.style.setProperty('border-color', '#E2E8F0');
         });
       }
 
       if (cancelBtn) {
         cancelBtn.addEventListener('mouseenter', function() {
-          this.style.background = '#F1F5F9';
-          this.style.borderColor = '#CBD5E1';
+          this.style.setProperty('background', '#F1F5F9');
+          this.style.setProperty('border-color', '#CBD5E1');
         });
         cancelBtn.addEventListener('mouseleave', function() {
-          this.style.background = 'transparent';
-          this.style.borderColor = '#E2E8F0';
+          this.style.setProperty('background', 'transparent');
+          this.style.setProperty('border-color', '#E2E8F0');
         });
       }
 
