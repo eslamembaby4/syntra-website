@@ -326,6 +326,21 @@
             opacity: 1;
             transform: translateY(0) !important;
         }
+
+        @keyframes line-grow {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .network-line-css {
+            animation: line-grow 1.5s ease-in-out infinite;
+        }
     </style>
 </head>
 <body class="bg-syntra-base text-syntra-text font-sans antialiased">
@@ -584,11 +599,12 @@
                             <div class="absolute inset-2 border-2 border-syntra-accent/40 rounded-full" style="animation: network-pulse 2s ease-in-out infinite 0.3s;"></div>
                             <div class="absolute inset-4 border-2 border-syntra-accent/50 rounded-full" style="animation: network-pulse 2s ease-in-out infinite 0.6s;"></div>
 
-                            <!-- Center Icon - Location Pin -->
+                            <!-- Center Pin (CSS only) -->
                             <div class="absolute inset-0 flex items-center justify-center">
-                                <svg class="w-8 h-8 text-syntra-accent" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                                </svg>
+                                <div class="relative">
+                                    <div class="w-5 h-5 bg-syntra-accent rounded-full"></div>
+                                    <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-t-[8px] border-l-transparent border-r-transparent border-t-syntra-accent"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -644,12 +660,18 @@
                                 </div>
                             </div>
 
-                            <!-- Truck/Delivery Icon -->
+                            <!-- Truck (CSS only) -->
                             <div class="absolute inset-0 flex items-center justify-center">
-                                <svg class="w-10 h-10 text-syntra-amber" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
-                                    <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"></path>
-                                </svg>
+                                <div class="relative">
+                                    <!-- Truck body -->
+                                    <div class="w-10 h-6 bg-syntra-amber rounded-sm relative">
+                                        <!-- Cabin -->
+                                        <div class="absolute -left-3 bottom-0 w-3 h-4 bg-syntra-amber rounded-tl-sm"></div>
+                                        <!-- Wheels -->
+                                        <div class="absolute -bottom-1.5 left-1 w-2 h-2 bg-syntra-amber border-2 border-white rounded-full"></div>
+                                        <div class="absolute -bottom-1.5 right-1 w-2 h-2 bg-syntra-amber border-2 border-white rounded-full"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -696,25 +718,26 @@
                     <!-- Animated Icon -->
                     <div class="relative mb-6">
                         <div class="w-20 h-20 mx-auto relative">
-                            <!-- Infrastructure Grid -->
-                            <svg class="absolute inset-0 w-full h-full opacity-40" viewBox="0 0 80 80">
+                            <!-- Infrastructure Grid (CSS only) -->
+                            <div class="absolute inset-0 opacity-40">
                                 <!-- Vertical Lines -->
-                                <line x1="20" y1="0" x2="20" y2="80" stroke="#0891B2" stroke-width="1.5" class="network-line"/>
-                                <line x1="40" y1="0" x2="40" y2="80" stroke="#0891B2" stroke-width="2" class="network-line" style="animation-delay: 0.2s;"/>
-                                <line x1="60" y1="0" x2="60" y2="80" stroke="#0891B2" stroke-width="1.5" class="network-line" style="animation-delay: 0.4s;"/>
+                                <div class="absolute top-0 h-full w-px bg-syntra-tech network-line-css" style="left: 25%;"></div>
+                                <div class="absolute top-0 h-full w-0.5 bg-syntra-tech network-line-css" style="left: 50%; animation-delay: 0.2s;"></div>
+                                <div class="absolute top-0 h-full w-px bg-syntra-tech network-line-css" style="left: 75%; animation-delay: 0.4s;"></div>
                                 <!-- Horizontal Lines -->
-                                <line x1="0" y1="20" x2="80" y2="20" stroke="#0891B2" stroke-width="1.5" class="network-line" style="animation-delay: 0.6s;"/>
-                                <line x1="0" y1="40" x2="80" y2="40" stroke="#0891B2" stroke-width="2" class="network-line" style="animation-delay: 0.8s;"/>
-                                <line x1="0" y1="60" x2="80" y2="60" stroke="#0891B2" stroke-width="1.5" class="network-line" style="animation-delay: 1s;"/>
-                            </svg>
+                                <div class="absolute left-0 w-full h-px bg-syntra-tech network-line-css" style="top: 25%; animation-delay: 0.6s;"></div>
+                                <div class="absolute left-0 w-full h-0.5 bg-syntra-tech network-line-css" style="top: 50%; animation-delay: 0.8s;"></div>
+                                <div class="absolute left-0 w-full h-px bg-syntra-tech network-line-css" style="top: 75%; animation-delay: 1s;"></div>
+                            </div>
 
-                            <!-- Center Icon - Port/Ship -->
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <svg class="w-10 h-10 text-syntra-tech z-10" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z"></path>
-                                    <path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z"></path>
-                                    <path d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z"></path>
-                                </svg>
+                            <!-- Center Icon - Stacked Layers (CSS only) -->
+                            <div class="absolute inset-0 flex items-center justify-center z-10">
+                                <div class="relative">
+                                    <!-- Three stacked elliptical layers representing port/infrastructure -->
+                                    <div class="w-10 h-2.5 bg-syntra-tech rounded-full opacity-60"></div>
+                                    <div class="w-10 h-2.5 bg-syntra-tech rounded-full opacity-70 mt-1"></div>
+                                    <div class="w-10 h-2.5 bg-syntra-tech rounded-full opacity-90 mt-1"></div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -326,6 +326,32 @@
             animation: network-line-dash 2s linear infinite;
         }
 
+        @keyframes droplet-pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes line-grow {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .network-line-css {
+            animation: line-grow 1.5s ease-in-out infinite;
+        }
+
         @keyframes progress-fill {
             from { width: 0%; }
             to { width: 85%; }
@@ -571,11 +597,9 @@
                             <div class="absolute inset-2 border-2 border-syntra-amber/40 rounded-full rotating-ring-reverse"></div>
                             <div class="absolute inset-4 border-2 border-syntra-tech/30 rounded-full rotating-ring" style="animation-delay: 0.5s;"></div>
 
-                            <!-- Center Icon -->
+                            <!-- Center Droplet -->
                             <div class="absolute inset-0 flex items-center justify-center">
-                                <svg class="w-8 h-8 text-syntra-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                                </svg>
+                                <div class="w-4 h-5 bg-syntra-accent rounded-b-full" style="border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; animation: droplet-pulse 2s ease-in-out infinite;"></div>
                             </div>
                         </div>
                     </div>
@@ -613,11 +637,9 @@
                                 <div class="w-2 bg-syntra-amber/60 rounded-t pulse-bar" style="height: 55%; animation-delay: 0.8s;"></div>
                             </div>
 
-                            <!-- Arrow Up -->
+                            <!-- Arrow Up (CSS only) -->
                             <div class="absolute top-0 left-1/2 -translate-x-1/2 arrow-up">
-                                <svg class="w-6 h-6 text-syntra-accent" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                                </svg>
+                                <div class="w-0 h-0 border-l-[6px] border-r-[6px] border-b-[8px] border-l-transparent border-r-transparent border-b-syntra-accent"></div>
                             </div>
                         </div>
                     </div>
@@ -655,13 +677,13 @@
                                 <div class="network-node network-node-center" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
                             </div>
 
-                            <!-- Connecting Lines -->
-                            <svg class="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 80 80">
-                                <line x1="24" y1="16" x2="40" y2="40" stroke="#0891B2" stroke-width="1" class="network-line"/>
-                                <line x1="56" y1="16" x2="40" y2="40" stroke="#0891B2" stroke-width="1" class="network-line" style="animation-delay: 0.3s;"/>
-                                <line x1="24" y1="64" x2="40" y2="40" stroke="#0891B2" stroke-width="1" class="network-line" style="animation-delay: 0.6s;"/>
-                                <line x1="56" y1="64" x2="40" y2="40" stroke="#0891B2" stroke-width="1" class="network-line" style="animation-delay: 0.9s;"/>
-                            </svg>
+                            <!-- Connecting Lines (CSS only) -->
+                            <div class="absolute inset-0 opacity-30">
+                                <div class="absolute w-px bg-syntra-tech origin-top-left network-line-css" style="height: 35px; top: 16px; left: 24px; transform: rotate(45deg);"></div>
+                                <div class="absolute w-px bg-syntra-tech origin-top-right network-line-css" style="height: 35px; top: 16px; right: 24px; transform: rotate(-45deg); animation-delay: 0.3s;"></div>
+                                <div class="absolute w-px bg-syntra-tech origin-bottom-left network-line-css" style="height: 35px; bottom: 16px; left: 24px; transform: rotate(-45deg); animation-delay: 0.6s;"></div>
+                                <div class="absolute w-px bg-syntra-tech origin-bottom-right network-line-css" style="height: 35px; bottom: 16px; right: 24px; transform: rotate(45deg); animation-delay: 0.9s;"></div>
+                            </div>
                         </div>
                     </div>
 
