@@ -6,21 +6,6 @@ window.showThankYouModal = function(referenceId) {
   console.log('[Syntra Success Modal] Reference ID:', referenceId);
   console.log('[Syntra Success Modal] ========================================');
 
-  const testBox = document.createElement('div');
-  testBox.style.cssText = `
-    position: fixed !important;
-    top: 10px !important;
-    right: 10px !important;
-    padding: 15px !important;
-    background: #ff0000 !important;
-    color: #ffffff !important;
-    font-weight: bold !important;
-    z-index: 2147483647 !important;
-    border: 3px solid #000000 !important;
-  `;
-  testBox.textContent = 'showThankYouModal() CALLED!';
-  document.body.appendChild(testBox);
-
   const existingModal = document.getElementById('successModal');
   if (existingModal) {
     existingModal.remove();

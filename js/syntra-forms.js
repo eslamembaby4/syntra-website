@@ -305,22 +305,6 @@
     console.log('[Syntra Forms] Form type:', formType);
     console.log('[Syntra Forms] ========================================');
 
-    // ADD VISUAL TEST RIGHT HERE
-    const earlyTestBox = document.createElement('div');
-    earlyTestBox.style.cssText = `
-      position: fixed !important;
-      top: 10px !important;
-      left: 10px !important;
-      padding: 15px !important;
-      background: #00ff00 !important;
-      color: #000000 !important;
-      font-weight: bold !important;
-      z-index: 2147483647 !important;
-      border: 3px solid #000000 !important;
-    `;
-    earlyTestBox.textContent = 'showSuccess() RUNNING!';
-    document.body.appendChild(earlyTestBox);
-
     console.log('[Syntra Forms] About to call showThankYouModal...');
     console.log('[Syntra Forms] showThankYouModal exists:', typeof showThankYouModal);
 
@@ -330,7 +314,6 @@
     } catch (modalError) {
       console.error('[Syntra Forms] ❌ Error showing modal:', modalError);
       console.error('[Syntra Forms] Modal error stack:', modalError.stack);
-      // Fallback: show alert if modal fails
       alert(`✅ Thank You!\n\nYour submission has been received.\n\nReference ID: ${referenceId}\n\nPlease save this reference number for your records.\n\nOur team will review your submission within 24-48 business hours.`);
     }
 
@@ -348,28 +331,6 @@
   function showThankYouModal(referenceId) {
     console.log('[Syntra Forms] 🎨 ===== MODAL FUNCTION CALLED =====');
     console.log('[Syntra Forms] Reference ID:', referenceId);
-
-    // SUPER VISIBLE TEST: Add a bright red box to the page FIRST
-    const testBox = document.createElement('div');
-    testBox.id = 'test-visual';
-    testBox.style.cssText = `
-      position: fixed !important;
-      top: 10px !important;
-      right: 10px !important;
-      width: 200px !important;
-      padding: 20px !important;
-      background: #ff0000 !important;
-      color: #ffffff !important;
-      font-size: 18px !important;
-      font-weight: bold !important;
-      z-index: 2147483647 !important;
-      border: 5px solid #ffff00 !important;
-      border-radius: 10px !important;
-      text-align: center !important;
-    `;
-    testBox.textContent = 'FUNCTION IS RUNNING!';
-    document.body.appendChild(testBox);
-    console.log('[Syntra Forms] Red test box added');
 
     if (!referenceId) {
       console.error('[Syntra Forms] ❌ No reference ID provided!');

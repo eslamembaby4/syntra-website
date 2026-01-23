@@ -175,30 +175,33 @@
         }
       }, true);
 
-      // Add hover effects using event delegation
-      modal.addEventListener('mouseenter', function(e) {
-        if (e.target.classList.contains('modal-close-btn')) {
-          e.target.style.background = '#0F172A';
-          e.target.style.color = 'white';
-          e.target.style.borderColor = '#0F172A';
-        }
-        if (e.target.classList.contains('modal-cancel-btn')) {
-          e.target.style.background = '#F1F5F9';
-          e.target.style.borderColor = '#CBD5E1';
-        }
-      }, true);
+      // Add proper hover effects to buttons
+      const closeBtn = modal.querySelector('.modal-close-btn');
+      const cancelBtn = modal.querySelector('.modal-cancel-btn');
 
-      modal.addEventListener('mouseleave', function(e) {
-        if (e.target.classList.contains('modal-close-btn')) {
-          e.target.style.background = 'transparent';
-          e.target.style.color = '#64748B';
-          e.target.style.borderColor = '#E2E8F0';
-        }
-        if (e.target.classList.contains('modal-cancel-btn')) {
-          e.target.style.background = 'transparent';
-          e.target.style.borderColor = '#E2E8F0';
-        }
-      }, true);
+      if (closeBtn) {
+        closeBtn.addEventListener('mouseenter', function() {
+          this.style.background = '#0F172A';
+          this.style.color = 'white';
+          this.style.borderColor = '#0F172A';
+        });
+        closeBtn.addEventListener('mouseleave', function() {
+          this.style.background = 'transparent';
+          this.style.color = '#64748B';
+          this.style.borderColor = '#E2E8F0';
+        });
+      }
+
+      if (cancelBtn) {
+        cancelBtn.addEventListener('mouseenter', function() {
+          this.style.background = '#F1F5F9';
+          this.style.borderColor = '#CBD5E1';
+        });
+        cancelBtn.addEventListener('mouseleave', function() {
+          this.style.background = 'transparent';
+          this.style.borderColor = '#E2E8F0';
+        });
+      }
 
       console.log('[Syntra Modal] Event delegation handlers attached');
     }
