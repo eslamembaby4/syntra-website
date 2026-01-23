@@ -383,7 +383,12 @@
 
     // Build content using DOM elements
     modalBox.innerHTML = `
-      <button class="close-x" style="position: absolute; top: 15px; right: 15px; width: 35px; height: 35px; border: none; background: #1f2937; color: white; border-radius: 50%; cursor: pointer; font-size: 24px; line-height: 1;">×</button>
+      <button class="close-x" type="button" style="position: absolute; top: 15px; right: 15px; min-width: 90px; height: 36px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: none; color: white; cursor: pointer; z-index: 10; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; padding: 0 14px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6L6 18M6 6l12 12"></path>
+        </svg>
+        <span style="text-transform: uppercase;">ESC</span>
+      </button>
 
       <div style="margin: 0 auto 25px; width: 80px; height: 80px; background: linear-gradient(135deg, #22c55e, #10b981); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
         <svg style="width: 45px; height: 45px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -460,6 +465,20 @@
       console.log('[Syntra Forms] Closing modal');
       overlay.remove();
     };
+
+    // Add hover effects to close button
+    if (closeX) {
+      closeX.addEventListener('mouseenter', function() {
+        this.style.background = 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)';
+        this.style.transform = 'translateY(-2px) scale(1.02)';
+        this.style.boxShadow = '0 4px 16px rgba(220, 38, 38, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+      });
+      closeX.addEventListener('mouseleave', function() {
+        this.style.background = 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)';
+        this.style.transform = 'translateY(0) scale(1)';
+        this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)';
+      });
+    }
 
     closeX.addEventListener('click', closeModal);
     closeBtn.addEventListener('click', closeModal);
