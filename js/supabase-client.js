@@ -76,6 +76,7 @@ async function submitFormToDatabase(formData, formElement) {
 
   try {
     let resumeUrl = null;
+    let fileMetadata = null;
     if (formElement && formData.form_type === 'career_application') {
       const fileInput = formElement.querySelector('input[type="file"][name="resume"]');
       if (fileInput && fileInput.files && fileInput.files.length > 0) {
@@ -92,6 +93,14 @@ async function submitFormToDatabase(formData, formElement) {
 
         console.log('[Syntra Forms] Uploading resume file...');
         resumeUrl = await uploadFileToStorage(file, tempReferenceId);
+
+        // Store file metadata
+        fileMetadata = {
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          lastModified: file.lastModified
+        };
       }
     }
 
@@ -110,6 +119,9 @@ async function submitFormToDatabase(formData, formElement) {
 
     if (resumeUrl) {
       payload.additional_data.resume_url = resumeUrl;
+      if (fileMetadata) {
+        payload.additional_data.resume_metadata = fileMetadata;
+      }
     }
 
     console.log('[Syntra Forms] Submitting payload to database:', payload);

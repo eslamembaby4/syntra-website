@@ -406,14 +406,23 @@
                   </div>
                   ` : ''}
                   ${sub.additional_data?.resume_url ? `
-                  <div>
+                  <div class="col-span-2">
                     <span class="font-mono text-syntra-muted text-xs">Resume:</span>
-                    <a href="${sub.additional_data.resume_url}" target="_blank" class="text-syntra-tech hover:underline ml-2 inline-flex items-center gap-1">
-                      Download Resume
-                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
-                      </svg>
-                    </a>
+                    <div class="ml-2 inline-flex flex-col gap-1">
+                      <a href="${sub.additional_data.resume_url}" target="_blank" class="text-syntra-tech hover:underline inline-flex items-center gap-1 font-semibold">
+                        Download Resume
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                        </svg>
+                      </a>
+                      ${sub.additional_data?.resume_metadata ? `
+                      <div class="text-[10px] font-mono text-slate-500 space-y-0.5">
+                        <div><strong>File:</strong> ${sub.additional_data.resume_metadata.name || 'Unknown'}</div>
+                        <div><strong>Size:</strong> ${(sub.additional_data.resume_metadata.size / 1024 / 1024).toFixed(2)} MB</div>
+                        <div><strong>Type:</strong> ${sub.additional_data.resume_metadata.type === 'application/pdf' ? 'PDF' : sub.additional_data.resume_metadata.type === 'application/msword' ? 'DOC' : sub.additional_data.resume_metadata.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ? 'DOCX' : sub.additional_data.resume_metadata.type || 'Unknown'}</div>
+                      </div>
+                      ` : ''}
+                    </div>
                   </div>
                   ` : ''}
                 </div>
