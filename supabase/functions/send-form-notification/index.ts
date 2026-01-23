@@ -7,25 +7,8 @@ const corsHeaders = {
 };
 
 // Email routing configuration
-// Maps form_type to destination email address
-// Must match form types in syntra-forms.js
-const EMAIL_ROUTES: Record<string, string> = {
-  // Commercial / Partnership Forms
-  partner_inquiry: "commercial@syntrarefining.com",
-  supplier_inquiry: "commercial@syntrarefining.com",
-  supplier_document: "commercial@syntrarefining.com",
-  tds_request: "commercial@syntrarefining.com",
-  newsletter: "commercial@syntrarefining.com",
-
-  // Investor Relations
-  investor_inquiry: "investors@syntrarefining.com",
-
-  // Careers / Talent
-  career_application: "careers@syntrarefining.com",
-
-  // HSE / Safety
-  sds_inquiry: "hse@syntrarefining.com",
-};
+// All form submissions are routed to support@syntrarefining.com
+const SUPPORT_EMAIL = "support@syntrarefining.com";
 
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
@@ -38,13 +21,10 @@ Deno.serve(async (req: Request) => {
   try {
     const { formType, referenceId, formData } = await req.json();
 
-    // Get the destination email based on form type
-    let toEmail = EMAIL_ROUTES[formType] || "commercial@syntrarefining.com";
-
-    // Test mode: Override with TEST_EMAIL if set (for Resend sandbox mode)
-    // Since Resend requires domain verification, default to verified test email for now
-    const testEmail = Deno.env.get('TEST_EMAIL') || "eslam.embaby4@gmail.com";
-    toEmail = testEmail;
+    // Route all emails to support@syntrarefining.com
+    // Test mode: Use verified test email for Resend sandbox mode
+    // Once domain is verified, remove this override
+    const toEmail = "eslam.embaby4@gmail.com";
 
     // Format email subject and body
     const formTypeDisplay = formType.replace(/_/g, ' ').toUpperCase();
@@ -55,7 +35,7 @@ Deno.serve(async (req: Request) => {
     body += `Reference ID: ${referenceId}\n`;
     body += `Form Type: ${formTypeDisplay}\n`;
     body += `Submitted: ${new Date().toLocaleString('en-US', { timeZone: 'America/Halifax' })} AST\n`;
-    body += `Routed to: ${toEmail}\n\n`;
+    body += `Routed to: ${SUPPORT_EMAIL}\n\n`;
     body += `${'='.repeat(60)}\n`;
     body += `SUBMISSION DETAILS\n`;
     body += `${'='.repeat(60)}\n\n`;
