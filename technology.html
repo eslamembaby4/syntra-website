@@ -242,6 +242,114 @@
                 gap: 32px;
             }
         }
+
+        /* AI Operational Intelligence Animations */
+        @keyframes data-flow {
+            0% {
+                left: 0;
+                opacity: 0;
+                transform: translateY(-50%) scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50%) scale(1);
+            }
+            100% {
+                left: 50%;
+                opacity: 0;
+                transform: translateY(-50%) scale(0.5);
+            }
+        }
+
+        .data-particle {
+            animation: data-flow 2s ease-in-out infinite;
+        }
+
+        @keyframes processing-pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        .processing-pulse {
+            animation: processing-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes twin-pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        .twin-sync {
+            animation: twin-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes sync-flow {
+            0% {
+                transform: scaleX(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scaleX(0);
+                opacity: 0;
+            }
+        }
+
+        .sync-line {
+            transform-origin: left;
+            animation: sync-flow 2s ease-in-out infinite;
+        }
+
+        @keyframes node-pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 1;
+                box-shadow: 0 0 20px currentColor;
+            }
+        }
+
+        .network-node-pulse {
+            animation: node-pulse 2s ease-in-out infinite;
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0) !important;
+        }
+
+        @keyframes progress-fill {
+            from { width: 0%; }
+            to { width: 85%; }
+        }
+
+        .capability-progress {
+            animation: progress-fill 2s ease-out forwards;
+        }
     </style>
 </head>
 <body class="bg-syntra-base text-syntra-text font-sans antialiased">
@@ -463,26 +571,125 @@
 
 
     <!-- AI OPERATIONAL CONTROL -->
-    <section class="py-24 bg-white" data-animate>
-        <div class="container mx-auto px-6">
+    <section class="py-24 bg-gradient-to-b from-syntra-midnight to-slate-900 relative overflow-hidden" data-animate>
+        <!-- Animated Background Grid -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.3)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-6xl mx-auto">
-                <div class="mb-8" data-animate>
+                <div class="mb-16 text-center" data-animate>
                     <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Operational Intelligence</p>
-                    <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold text-syntra-text uppercase leading-tight mb-6">
+                    <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase leading-tight mb-6">
                         <span class="text-syntra-accent">AI-Driven</span> Process Control
                     </h2>
-                </div>
-
-                <div class="space-y-8 text-lg text-slate-700 leading-relaxed border-l-4 border-syntra-tech pl-8" data-animate>
-                    <p class="font-medium text-xl text-syntra-text">
+                    <p class="text-slate-300 text-lg max-w-3xl mx-auto leading-relaxed">
                         Machine learning models integrated into operational control. <span class="text-syntra-accent font-semibold">Real-time adjustments</span> optimize recovery and purity across the distributed network.
                     </p>
-                    <p>
-                        Digital twin architecture creates virtual representations of each refining stage. Sensor data flows continuously into predictive models that calculate optimal reagent concentrations, flow rates, temperature, and pH levels. The system responds to feedstock variability without manual operator intervention.
-                    </p>
-                    <p>
-                        Data from all nodes feeds centralized machine learning infrastructure. Process improvements validated at one facility deploy automatically across the network. This distributed learning approach accelerates optimization beyond what single-site operations can achieve.
-                    </p>
+                </div>
+
+                <!-- Animated Intelligence Cards -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Real-Time Processing -->
+                    <div class="capability-card group relative bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-xl p-8 hover:border-syntra-accent transition-all duration-500 overflow-hidden animate-on-scroll" style="transform: translateY(30px);">
+                        <div class="absolute inset-0 bg-gradient-to-br from-syntra-accent/0 to-syntra-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                        <!-- Animated Data Flow -->
+                        <div class="relative mb-6 h-20">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <!-- Data Particles Flowing -->
+                                <div class="relative w-full h-full">
+                                    <div class="absolute left-0 top-1/2 w-2 h-2 bg-syntra-accent rounded-full data-particle" style="animation-delay: 0s;"></div>
+                                    <div class="absolute left-0 top-1/2 w-2 h-2 bg-syntra-tech rounded-full data-particle" style="animation-delay: 0.5s;"></div>
+                                    <div class="absolute left-0 top-1/2 w-2 h-2 bg-syntra-amber rounded-full data-particle" style="animation-delay: 1s;"></div>
+                                    <!-- Processing Center -->
+                                    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 border-2 border-syntra-accent rounded processing-pulse"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="font-head text-xl font-bold text-white uppercase mb-3 text-center relative z-10">Real-Time Processing</h3>
+                        <p class="text-slate-400 text-sm text-center leading-relaxed relative z-10">
+                            Sensor data flows continuously into predictive models that calculate optimal parameters in real-time.
+                        </p>
+
+                        <!-- Animated Progress Bar -->
+                        <div class="mt-6 relative z-10">
+                            <div class="h-1 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-syntra-accent to-syntra-tech capability-progress" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Digital Twin -->
+                    <div class="capability-card group relative bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-xl p-8 hover:border-syntra-tech transition-all duration-500 overflow-hidden animate-on-scroll" style="transform: translateY(30px); animation-delay: 0.1s;">
+                        <div class="absolute inset-0 bg-gradient-to-br from-syntra-tech/0 to-syntra-tech/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                        <!-- Twin Synchronization -->
+                        <div class="relative mb-6 h-20">
+                            <div class="absolute inset-0 flex items-center justify-center gap-8">
+                                <!-- Physical System -->
+                                <div class="relative">
+                                    <div class="w-10 h-10 border-2 border-syntra-tech rounded twin-sync"></div>
+                                    <div class="absolute inset-2 bg-syntra-tech/30 rounded"></div>
+                                </div>
+                                <!-- Sync Lines -->
+                                <div class="flex flex-col gap-1">
+                                    <div class="w-6 h-0.5 bg-syntra-accent sync-line" style="animation-delay: 0s;"></div>
+                                    <div class="w-6 h-0.5 bg-syntra-tech sync-line" style="animation-delay: 0.3s;"></div>
+                                    <div class="w-6 h-0.5 bg-syntra-amber sync-line" style="animation-delay: 0.6s;"></div>
+                                </div>
+                                <!-- Digital Twin -->
+                                <div class="relative">
+                                    <div class="w-10 h-10 border-2 border-syntra-accent rounded twin-sync" style="animation-delay: 0.2s;"></div>
+                                    <div class="absolute inset-2 bg-syntra-accent/30 rounded"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="font-head text-xl font-bold text-white uppercase mb-3 text-center relative z-10">Digital Twin</h3>
+                        <p class="text-slate-400 text-sm text-center leading-relaxed relative z-10">
+                            Virtual representations of each refining stage synchronized with physical operations for predictive control.
+                        </p>
+
+                        <!-- Animated Progress Bar -->
+                        <div class="mt-6 relative z-10">
+                            <div class="h-1 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-syntra-tech to-syntra-accent capability-progress" style="width: 0%; animation-delay: 0.5s;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network Learning -->
+                    <div class="capability-card group relative bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-xl p-8 hover:border-syntra-amber transition-all duration-500 overflow-hidden animate-on-scroll" style="transform: translateY(30px); animation-delay: 0.2s;">
+                        <div class="absolute inset-0 bg-gradient-to-br from-syntra-amber/0 to-syntra-amber/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                        <!-- Network Nodes -->
+                        <div class="relative mb-6 h-20">
+                            <div class="absolute inset-0">
+                                <!-- Central Node -->
+                                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-syntra-amber rounded-full network-node-pulse"></div>
+                                <!-- Surrounding Nodes -->
+                                <div class="absolute left-1/4 top-1/4 w-3 h-3 bg-syntra-accent rounded-full network-node-pulse" style="animation-delay: 0.2s;"></div>
+                                <div class="absolute right-1/4 top-1/4 w-3 h-3 bg-syntra-tech rounded-full network-node-pulse" style="animation-delay: 0.4s;"></div>
+                                <div class="absolute left-1/4 bottom-1/4 w-3 h-3 bg-syntra-tech rounded-full network-node-pulse" style="animation-delay: 0.6s;"></div>
+                                <div class="absolute right-1/4 bottom-1/4 w-3 h-3 bg-syntra-accent rounded-full network-node-pulse" style="animation-delay: 0.8s;"></div>
+                            </div>
+                        </div>
+
+                        <h3 class="font-head text-xl font-bold text-white uppercase mb-3 text-center relative z-10">Distributed Learning</h3>
+                        <p class="text-slate-400 text-sm text-center leading-relaxed relative z-10">
+                            Process improvements from all nodes deploy automatically across the network, accelerating optimization.
+                        </p>
+
+                        <!-- Animated Progress Bar -->
+                        <div class="mt-6 relative z-10">
+                            <div class="h-1 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-syntra-amber to-syntra-accent capability-progress" style="width: 0%; animation-delay: 1s;"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -687,6 +894,26 @@
       showConnections: true,
       connectionDistance: 170,
       mouseInteraction: true
+    });
+
+    // Scroll animation for capability cards
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      animatedElements.forEach(el => observer.observe(el));
     });
   </script>
 </body>
