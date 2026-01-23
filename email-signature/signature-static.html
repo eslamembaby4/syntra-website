@@ -117,6 +117,24 @@
             </td>
         </tr>
 
+        <!-- Rotating Information Section 1 -->
+        <tr>
+            <td style="padding: 12px 0 0 0;">
+                <div id="rotatingSection1" style="background: #0B1120; padding: 12px 16px; font-size: 11px; color: #FFD700; line-height: 1.5; font-family: 'Inter', Arial, sans-serif; font-weight: 500;">
+                    Partner Ecosystem Access: Syntra Refining is currently onboarding strategic partners for the 2027 production cycle.
+                </div>
+            </td>
+        </tr>
+
+        <!-- Rotating Information Section 2 -->
+        <tr>
+            <td style="padding: 8px 0 0 0;">
+                <div id="rotatingSection2" style="background: #0B1120; padding: 12px 16px; font-size: 11px; color: #FFD700; line-height: 1.5; font-family: 'Inter', Arial, sans-serif; font-weight: 500;">
+                    LOC: Syntra Hub - Halifax, Nova Scotia, Canada
+                </div>
+            </td>
+        </tr>
+
         <!-- Confidentiality Notice -->
         <tr>
             <td style="padding: 10px 0 0 0; font-size: 9px; color: #94A3B8; line-height: 1.4; font-family: 'Inter', Arial, sans-serif;">
@@ -125,6 +143,37 @@
         </tr>
 
     </table>
+
+    <script>
+        // Rotating messages for section 1
+        const messages1 = [
+            'Partner Ecosystem Access: Syntra Refining is currently onboarding strategic partners for the 2027 production cycle.',
+            'Production Capacity: First feedstock-agnostic smart refinery network in North America.',
+            'Technology Platform: Advanced processing for lithium, cobalt, nickel, and rare earth elements.'
+        ];
+
+        // Rotating messages for section 2
+        const messages2 = [
+            'LOC: Syntra Hub - Halifax, Nova Scotia, Canada',
+            'COM: Commercial Inquiries - commercial@syntrarefining.com',
+            'WEB: syntrarefining.com | Securing the battery supply chain'
+        ];
+
+        let index1 = 0;
+        let index2 = 0;
+
+        // Rotate section 1 every 2 seconds
+        setInterval(() => {
+            index1 = (index1 + 1) % messages1.length;
+            document.getElementById('rotatingSection1').textContent = messages1[index1];
+        }, 2000);
+
+        // Rotate section 2 every 2 seconds (offset by 1 second for visual variety)
+        setInterval(() => {
+            index2 = (index2 + 1) % messages2.length;
+            document.getElementById('rotatingSection2').textContent = messages2[index2];
+        }, 2000);
+    </script>
 
 </body>
 </html>
