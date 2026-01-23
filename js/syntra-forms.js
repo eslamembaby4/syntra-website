@@ -18,6 +18,7 @@
  * - tds_request
  * - sds_inquiry
  * - newsletter
+ * - ceo_meeting
  */
 
 (function() {
@@ -31,7 +32,8 @@
     'supplier_document',
     'tds_request',
     'sds_inquiry',
-    'newsletter'
+    'newsletter',
+    'ceo_meeting'
   ];
 
   // Track which forms have already been bound to prevent duplicate listeners
