@@ -70,14 +70,14 @@
 
         <form id="loginForm" class="space-y-4" onsubmit="handleLogin(event)">
           <div>
-            <label for="username" class="block text-sm font-mono uppercase text-syntra-muted mb-2">Username</label>
+            <label for="username" class="block text-sm font-mono uppercase text-syntra-muted mb-2">Email Address</label>
             <input
-              type="text"
+              type="email"
               id="username"
               class="w-full px-4 py-3 border-2 border-syntra-border rounded-lg focus:border-syntra-accent focus:outline-none font-mono"
-              placeholder="Enter your username"
+              placeholder="Enter your email"
               required
-              autocomplete="username"
+              autocomplete="email"
             />
           </div>
 
@@ -250,48 +250,123 @@
   <script src="/js/supabase-client.js?v=202"></script>
 
   <script>
-    const ADMIN_USERNAME = 'admin';
-    const ADMIN_PASSWORD = 'Esther2010@@';
-    const AUTH_KEY = 'syntra_admin_auth';
-
+    const SESSION_TIMEOUT = 30 * 60 * 1000;
     let currentSubmissionForCalendar = null;
+    let sessionTimeoutId = null;
+    let currentUser = null;
 
-    function checkAuth() {
-      const auth = localStorage.getItem(AUTH_KEY);
-      if (auth === 'authenticated') {
+    async function checkAuth() {
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+
+        if (error || !session) {
+          return false;
+        }
+
+        const userRole = session.user?.app_metadata?.role;
+        if (userRole !== 'admin') {
+          console.error('User is not an admin');
+          await supabase.auth.signOut();
+          return false;
+        }
+
+        currentUser = session.user;
         document.body.classList.add('authenticated');
+        startSessionTimeout();
         loadSubmissions();
         return true;
+      } catch (error) {
+        console.error('Auth check error:', error);
+        return false;
       }
-      return false;
     }
 
-    function handleLogin(event) {
+    async function handleLogin(event) {
       event.preventDefault();
-      const username = document.getElementById('username').value;
+      const email = document.getElementById('username').value;
       const password = document.getElementById('password').value;
       const errorDiv = document.getElementById('loginError');
+      const submitBtn = event.target.querySelector('button[type="submit"]');
 
-      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-        localStorage.setItem(AUTH_KEY, 'authenticated');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Logging in...';
+
+      try {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+        if (error) throw error;
+
+        const userRole = data.user?.app_metadata?.role;
+        if (userRole !== 'admin') {
+          await supabase.auth.signOut();
+          throw new Error('Access denied. Admin privileges required.');
+        }
+
+        currentUser = data.user;
         document.body.classList.add('authenticated');
-        loadSubmissions();
         errorDiv.classList.add('hidden');
-      } else {
-        errorDiv.textContent = 'Invalid username or password. Please try again.';
+        startSessionTimeout();
+        loadSubmissions();
+
+        await logAdminAction('LOGIN', 'admin_audit_log', null, {
+          email: data.user.email,
+          timestamp: new Date().toISOString()
+        });
+
+      } catch (error) {
+        console.error('Login error:', error);
+        errorDiv.textContent = error.message || 'Invalid email or password. Please try again.';
         errorDiv.classList.remove('hidden');
         document.getElementById('username').value = '';
         document.getElementById('password').value = '';
         document.getElementById('username').focus();
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Login';
       }
     }
 
-    function handleLogout() {
+    async function handleLogout() {
       if (confirm('Are you sure you want to logout?')) {
-        localStorage.removeItem(AUTH_KEY);
-        document.body.classList.remove('authenticated');
-        document.getElementById('username').value = '';
-        document.getElementById('password').value = '';
+        try {
+          await logAdminAction('LOGOUT', 'admin_audit_log', null, {
+            email: currentUser?.email,
+            timestamp: new Date().toISOString()
+          });
+
+          await supabase.auth.signOut();
+          clearTimeout(sessionTimeoutId);
+          currentUser = null;
+          document.body.classList.remove('authenticated');
+          document.getElementById('username').value = '';
+          document.getElementById('password').value = '';
+        } catch (error) {
+          console.error('Logout error:', error);
+        }
+      }
+    }
+
+    function startSessionTimeout() {
+      clearTimeout(sessionTimeoutId);
+      sessionTimeoutId = setTimeout(async () => {
+        alert('Your session has expired for security reasons. Please log in again.');
+        await handleLogout();
+      }, SESSION_TIMEOUT);
+    }
+
+    async function logAdminAction(action, tableName, recordId = null, details = {}) {
+      try {
+        await supabase.rpc('log_admin_action', {
+          p_action: action,
+          p_table_name: tableName,
+          p_record_id: recordId,
+          p_details: details
+        });
+      } catch (error) {
+        console.warn('Failed to log admin action:', error);
       }
     }
 
@@ -300,6 +375,8 @@
       const filterStatus = document.getElementById('filterStatus').value;
 
       try {
+        startSessionTimeout();
+
         let query = supabase
           .from('form_submissions')
           .select('*')
@@ -317,7 +394,14 @@
 
         const { data, error } = await query;
 
-        if (error) throw error;
+        if (error) {
+          if (error.message.includes('JWT') || error.code === 'PGRST301') {
+            alert('Session expired. Please log in again.');
+            await handleLogout();
+            return;
+          }
+          throw error;
+        }
 
         displaySubmissions(data);
         updateStats(data);
@@ -465,6 +549,8 @@
 
     async function markAsRead(id) {
       try {
+        startSessionTimeout();
+
         const { error } = await supabase
           .from('form_submissions')
           .update({ read_status: true })
@@ -472,15 +558,21 @@
 
         if (error) throw error;
 
+        await logAdminAction('MARK_READ', 'form_submissions', id, {
+          action: 'marked as read'
+        });
+
         loadSubmissions();
       } catch (error) {
         console.error('Error updating submission:', error);
-        alert('Failed to update submission status.');
+        alert('Failed to update submission status: ' + error.message);
       }
     }
 
     async function markAsUnread(id) {
       try {
+        startSessionTimeout();
+
         const { error } = await supabase
           .from('form_submissions')
           .update({ read_status: false })
@@ -488,10 +580,14 @@
 
         if (error) throw error;
 
+        await logAdminAction('MARK_UNREAD', 'form_submissions', id, {
+          action: 'marked as unread'
+        });
+
         loadSubmissions();
       } catch (error) {
         console.error('Error updating submission:', error);
-        alert('Failed to update submission status.');
+        alert('Failed to update submission status: ' + error.message);
       }
     }
 
@@ -501,6 +597,14 @@
       }
 
       try {
+        startSessionTimeout();
+
+        const { data: submission } = await supabase
+          .from('form_submissions')
+          .select('reference_id, email, first_name, last_name')
+          .eq('id', id)
+          .maybeSingle();
+
         const { error } = await supabase
           .from('form_submissions')
           .delete()
@@ -508,9 +612,14 @@
 
         if (error) throw error;
 
+        await logAdminAction('DELETE', 'form_submissions', id, {
+          reference_id: submission?.reference_id,
+          email: submission?.email,
+          name: `${submission?.first_name} ${submission?.last_name || ''}`
+        });
+
         loadSubmissions();
 
-        // Show success message
         const successMsg = document.createElement('div');
         successMsg.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 font-mono text-sm';
         successMsg.textContent = 'Submission deleted successfully';
