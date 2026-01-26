@@ -29,24 +29,24 @@
           </button>
 
           <!-- Header -->
-          <div style="padding: 3rem 2.5rem 1.5rem;">
-            <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-              <div style="width: 44px; height: 44px; position: relative; margin-right: 1rem;">
-                <div style="position: absolute; width: 44px; height: 44px; border: 3px solid #FFD700; transform: rotate(45deg); transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);" class="modal-diamond"></div>
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 18px; height: 18px; background: #FFD700;"></div>
+          <div style="padding: 2rem 1.5rem 1.5rem;">
+            <div style="display: flex; align-items: center; margin-bottom: 1.5rem; gap: 1rem;">
+              <div style="width: 44px; height: 44px; min-width: 44px; position: relative; flex-shrink: 0;">
+                <div style="position: absolute; inset: 0; width: 44px; height: 44px; border: 3px solid #FFD700; transform: rotate(45deg); transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); box-sizing: border-box;" class="modal-diamond"></div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 18px; height: 18px; background: #FFD700; box-sizing: border-box;"></div>
               </div>
-              <div>
-                <h2 style="font-family: 'Oswald', sans-serif; font-size: 1.875rem; font-weight: 700; text-transform: uppercase; color: #0F172A; margin-bottom: 0.25rem;">Get in Touch</h2>
-                <p style="color: #64748B; font-size: 0.875rem;">Strategic partners for the 2027 production cycle</p>
+              <div style="flex: 1; min-width: 0;">
+                <h2 style="font-family: 'Oswald', sans-serif; font-size: clamp(1.25rem, 4vw, 1.875rem); font-weight: 700; text-transform: uppercase; color: #0F172A; margin-bottom: 0.25rem; line-height: 1.2;">Get in Touch</h2>
+                <p style="color: #64748B; font-size: clamp(0.75rem, 2.5vw, 0.875rem); line-height: 1.4;">Strategic partners for the 2027 production cycle</p>
               </div>
             </div>
           </div>
 
           <!-- Form -->
-          <form id="modalPartnerForm" data-syntra-form="partner_inquiry" style="padding: 0 2.5rem 2rem;">
+          <form id="modalPartnerForm" data-syntra-form="partner_inquiry" style="padding: 0 1.5rem 2rem;">
             <div data-form-msg></div>
 
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.25rem;">
+            <div class="modal-form-grid" style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.25rem;">
               <div>
                 <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #0F172A; margin-bottom: 0.5rem;">First Name</label>
                 <input type="text" name="first_name" required style="width: 100%; padding: 0.875rem 1rem; background: #F8FAFC; border: 2px solid #E2E8F0; border-radius: 2px; font-size: 14px; font-family: 'Inter', sans-serif; font-weight: 300;" placeholder="Jane">
@@ -100,7 +100,7 @@
           </form>
 
           <!-- Footer -->
-          <div style="padding: 1.5rem 2.5rem 2rem; background: linear-gradient(180deg, transparent 0%, #F8FAFC 100%); border-top: 1px solid #E2E8F0; display: flex; gap: 2rem; flex-wrap: wrap;">
+          <div style="padding: 1.5rem; background: linear-gradient(180deg, transparent 0%, #F8FAFC 100%); border-top: 1px solid #E2E8F0; display: flex; gap: 1rem; flex-wrap: wrap;">
             <div style="display: flex; align-items: center; gap: 0.75rem;">
               <div style="width: 32px; height: 32px; background: white; border: 1px solid #E2E8F0; border-radius: 2px; display: flex; align-items: center; justify-content: center; color: #D97706;">
                 <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -292,6 +292,23 @@
 
   // Auto-initialize
   init();
+
+  // Add responsive CSS for modal
+  const style = document.createElement('style');
+  style.textContent = `
+    @media (min-width: 640px) {
+      .modal-form-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+
+    @media (max-width: 639px) {
+      #contactModal > div:nth-child(2) {
+        margin: 0 !important;
+      }
+    }
+  `;
+  document.head.appendChild(style);
 
   console.log('[Syntra Modal] Script execution complete');
 })();
