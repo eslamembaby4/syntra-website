@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Cybersecurity Program - Syntra Refining</title>
+    <title>Master Cybersecurity Program - Syntra Refining Corporation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -32,6 +32,12 @@
             }
             .no-print {
                 display: none;
+            }
+            .section {
+                page-break-inside: avoid;
+            }
+            h2, h3 {
+                page-break-after: avoid;
             }
         }
 
@@ -175,9 +181,9 @@
 
         .document-title {
             font-family: 'Oswald', sans-serif;
-            font-size: 56px;
+            font-size: 48px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             letter-spacing: 2px;
             position: relative;
             line-height: 1.2;
@@ -185,11 +191,18 @@
         }
 
         .document-subtitle {
-            font-size: 24px;
+            font-size: 20px;
             color: var(--syntra-teal);
             font-weight: 500;
-            margin-bottom: 35px;
+            margin-bottom: 10px;
             text-shadow: 0 2px 10px rgba(0, 206, 209, 0.3);
+        }
+
+        .document-subsubtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            margin-bottom: 35px;
         }
 
         .document-meta {
@@ -210,25 +223,13 @@
         }
 
         .content {
-            padding: 80px;
+            padding: 60px 80px;
             background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
         }
 
         .section {
-            margin-bottom: 70px;
+            margin-bottom: 50px;
             animation: fadeIn 0.6s ease-out;
-            background: white;
-            padding: 45px;
-            border-radius: 12px;
-            box-shadow: 0 4px 25px rgba(10, 35, 66, 0.08);
-            border-left: 6px solid var(--syntra-teal);
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .section:hover {
-            box-shadow: 0 8px 35px rgba(10, 35, 66, 0.12);
-            transform: translateY(-2px);
         }
 
         @keyframes fadeIn {
@@ -244,69 +245,54 @@
 
         .section-title {
             font-family: 'Oswald', sans-serif;
-            font-size: 40px;
+            font-size: 32px;
             font-weight: 700;
             color: var(--syntra-navy);
-            margin-bottom: 30px;
-            padding-bottom: 25px;
-            border-bottom: 3px solid transparent;
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--syntra-gold) 0%, var(--syntra-teal) 100%);
-        }
-
-        .section-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--syntra-teal), #00a8aa);
-            color: white;
-            font-size: 28px;
-            font-weight: 700;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            box-shadow: 0 6px 20px rgba(0, 206, 209, 0.3);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--syntra-teal);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .subsection-title {
             font-family: 'Oswald', sans-serif;
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 600;
             color: var(--syntra-navy);
-            margin: 35px 0 20px;
-            padding-left: 25px;
-            border-left: 5px solid var(--syntra-teal);
+            margin: 30px 0 15px;
+            padding-left: 20px;
+            border-left: 4px solid var(--syntra-teal);
+        }
+
+        .subsubsection-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--syntra-navy);
+            margin: 20px 0 10px;
+            padding-left: 15px;
+            border-left: 3px solid var(--syntra-gold);
         }
 
         .content p {
-            margin-bottom: 18px;
+            margin-bottom: 15px;
             text-align: justify;
-            font-size: 17px;
-            line-height: 1.8;
+            font-size: 15px;
+            line-height: 1.7;
             color: #334155;
         }
 
         .content ul, .content ol {
-            margin-bottom: 25px;
-            padding-left: 45px;
+            margin-bottom: 20px;
+            padding-left: 40px;
         }
 
         .content li {
-            margin-bottom: 14px;
-            line-height: 1.8;
+            margin-bottom: 10px;
+            line-height: 1.7;
             color: #334155;
+            font-size: 15px;
         }
 
         .content strong {
@@ -316,142 +302,25 @@
 
         .highlight-box {
             background: linear-gradient(135deg, rgba(0, 206, 209, 0.08) 0%, rgba(0, 206, 209, 0.15) 100%);
-            border-left: 6px solid var(--syntra-teal);
-            padding: 35px;
-            margin: 40px 0;
-            border-radius: 0 12px 12px 0;
-            box-shadow: 0 6px 25px rgba(0, 206, 209, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .highlight-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 6px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--syntra-teal), var(--syntra-gold));
+            border-left: 5px solid var(--syntra-teal);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 4px 15px rgba(0, 206, 209, 0.15);
         }
 
         .warning-box {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.08) 0%, rgba(255, 215, 0, 0.15) 100%);
-            border-left: 6px solid var(--syntra-gold);
-            padding: 35px;
-            margin: 40px 0;
-            border-radius: 0 12px 12px 0;
-            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .warning-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 6px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--syntra-gold), var(--syntra-teal));
-        }
-
-        .table-container {
-            overflow-x: auto;
-            margin: 40px 0;
-            border-radius: 12px;
-            box-shadow: 0 6px 30px rgba(10, 35, 66, 0.1);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 16px;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        th {
-            background: linear-gradient(135deg, var(--syntra-navy) 0%, #1a3a5f 100%);
-            color: white;
-            padding: 20px 25px;
-            text-align: left;
-            font-family: 'Oswald', sans-serif;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-size: 14px;
-            position: relative;
-        }
-
-        th::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--syntra-gold), var(--syntra-teal));
-        }
-
-        td {
-            padding: 18px 25px;
-            border-bottom: 1px solid #E2E8F0;
-            color: #334155;
-        }
-
-        tbody tr {
-            transition: all 0.3s ease;
-        }
-
-        tbody tr:hover {
-            background: linear-gradient(to right, rgba(0, 206, 209, 0.05), rgba(255, 215, 0, 0.05));
-            transform: scale(1.005);
-        }
-
-        tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .code {
-            font-family: 'JetBrains Mono', monospace;
-            background: var(--syntra-navy);
-            color: var(--syntra-teal);
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .footer {
-            background: linear-gradient(135deg, var(--syntra-navy) 0%, #1a3a5f 100%);
-            color: white;
-            padding: 50px 70px;
-            text-align: center;
-            font-size: 15px;
-            position: relative;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--syntra-gold) 0%, var(--syntra-teal) 50%, var(--syntra-gold) 100%);
-        }
-
-        .footer-divider {
-            width: 120px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--syntra-teal), var(--syntra-gold));
-            margin: 25px auto;
-            border-radius: 2px;
+            border-left: 5px solid var(--syntra-gold);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
         }
 
         .button-container {
             text-align: center;
-            padding: 50px;
+            padding: 40px;
             background: linear-gradient(135deg, rgba(0, 206, 209, 0.05), rgba(255, 215, 0, 0.05));
             border-top: 2px solid rgba(0, 206, 209, 0.2);
             border-bottom: 2px solid rgba(0, 206, 209, 0.2);
@@ -461,11 +330,11 @@
             background: linear-gradient(135deg, var(--syntra-teal), #00a8aa);
             color: white;
             border: none;
-            padding: 20px 60px;
+            padding: 18px 50px;
             font-family: 'Oswald', sans-serif;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             cursor: pointer;
             border-radius: 50px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -498,41 +367,35 @@
             box-shadow: 0 12px 40px rgba(0, 206, 209, 0.6);
         }
 
-        .print-button:active {
-            transform: translateY(-2px) scale(1.01);
-        }
-
         .confidential-banner {
             background: linear-gradient(135deg, var(--syntra-gold) 0%, #ffd700 50%, var(--syntra-gold) 100%);
             color: var(--syntra-navy);
             text-align: center;
-            padding: 18px;
+            padding: 15px;
             font-weight: 700;
             font-family: 'Oswald', sans-serif;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
-            position: relative;
-            overflow: hidden;
+            font-size: 14px;
         }
 
-        .confidential-banner::before {
+        .footer {
+            background: linear-gradient(135deg, var(--syntra-navy) 0%, #1a3a5f 100%);
+            color: white;
+            padding: 40px 60px;
+            text-align: center;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .footer::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: slide 3s infinite;
-        }
-
-        @keyframes slide {
-            0% {
-                left: -100%;
-            }
-            100% {
-                left: 100%;
-            }
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--syntra-gold) 0%, var(--syntra-teal) 50%, var(--syntra-gold) 100%);
         }
 
         @media (max-width: 768px) {
@@ -541,40 +404,27 @@
             }
 
             .header {
-                padding: 50px 30px;
-            }
-
-            .document-title {
-                font-size: 36px;
-            }
-
-            .document-subtitle {
-                font-size: 18px;
-            }
-
-            .content {
                 padding: 40px 30px;
             }
 
-            .section {
+            .document-title {
+                font-size: 28px;
+            }
+
+            .document-subtitle {
+                font-size: 16px;
+            }
+
+            .content {
                 padding: 30px 25px;
             }
 
             .section-title {
-                font-size: 28px;
+                font-size: 24px;
             }
 
-            .document-meta {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .table-container {
-                font-size: 14px;
-            }
-
-            th, td {
-                padding: 12px 15px;
+            .subsection-title {
+                font-size: 18px;
             }
         }
     </style>
@@ -588,10 +438,11 @@
         <div class="header">
             <div class="logo-section">
                 <div class="logo-mark"></div>
-                <div class="company-name">SYNTRA REFINING</div>
+                <div class="company-name">SYNTRA REFINING CORPORATION</div>
             </div>
-            <h1 class="document-title">Master Cybersecurity Program</h1>
-            <div class="document-subtitle">Critical Infrastructure Protection & Security Operations</div>
+            <h1 class="document-title">MASTER CYBERSECURITY PROGRAM</h1>
+            <div class="document-subtitle">Zero-Trust, Offline-First, Critical-Infrastructure Security Standard</div>
+            <div class="document-subsubtitle">Ultra-Detailed Industrial Edition</div>
             <div class="document-meta">
                 <div class="meta-item">
                     <span>📅</span>
@@ -603,7 +454,11 @@
                 </div>
                 <div class="meta-item">
                     <span>🔒</span>
-                    <span>Classification: Internal</span>
+                    <span>Classification: Confidential</span>
+                </div>
+                <div class="meta-item">
+                    <span>📄</span>
+                    <span>Pages: 44 | Words: 14,204</span>
                 </div>
             </div>
         </div>
@@ -613,555 +468,397 @@
         </div>
 
         <div class="content">
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="section-number">1</span>
-                    Executive Overview
-                </h2>
-                <p>
-                    In the critical minerals refining industry, cybersecurity is not just an IT concern—it's a matter of operational continuity, safety, and national security. Syntra Refining's Master Cybersecurity Program establishes a comprehensive framework to protect our industrial control systems, operational technology, and business systems from evolving cyber threats.
-                </p>
-                <div class="highlight-box">
-                    <strong>Program Mission:</strong> To establish and maintain a robust cybersecurity posture that protects Syntra's critical refining operations, safeguards proprietary technology, ensures regulatory compliance, and maintains stakeholder trust while enabling secure operational excellence.
-                </div>
-            </div>
+            <div class="section print-break">
+                <h2 class="section-title">SECTION 1 — EXECUTIVE OVERVIEW</h2>
 
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="section-number">2</span>
-                    Program Governance
-                </h2>
+                <h3 class="subsection-title">1.1 Purpose of This Program</h3>
+                <p>The purpose of the Master Cybersecurity Program is to establish a comprehensive, enforceable and operationally safe security architecture for Syntra Refining Corporation. This document defines the principles, controls, processes and responsibilities required to protect Syntra Refining industrial facilities, information systems, operational environments and critical intellectual property. The program applies to all personnel, all contractors and third parties, all internal and external systems, all physical and digital infrastructure and all cyber-physical equipment including refining equipment, instrumentation, sensors and safety systems. The program does not rely on external connectivity for core operations and is specifically engineered for fully offline, critical-infrastructure environments.</p>
 
-                <h3 class="subsection-title">2.1 Organizational Structure</h3>
-                <p>
-                    Cybersecurity responsibilities at Syntra are distributed across multiple organizational levels to ensure comprehensive coverage and clear accountability:
-                </p>
+                <h3 class="subsection-title">1.2 The Offline Facility Security Principle</h3>
+                <p>All Syntra Refining industrial facilities are designed and operated as offline sites. No internet connectivity exists inside any production, laboratory or refining network. No outbound or inbound traffic traverses the public internet. No Virtual Private Network tunnels, cloud management channels or Software-as-a-Service dependencies exist within facility systems. All essential operations—including refining, analytics, safety systems, quality control, Supervisory Control and Data Acquisition and Programmable Logic Controller control processes—function independently from any external network. This offline model eliminates remote ransomware, external exploitation, cloud mis-configuration incidents that rely on internet-delivered payloads.</p>
 
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Role</th>
-                                <th>Responsibility</th>
-                                <th>Authority Level</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Chief Information Security Officer (CISO)</strong></td>
-                                <td>Overall program governance, risk management, and strategic direction</td>
-                                <td>Executive</td>
-                            </tr>
-                            <tr>
-                                <td><strong>OT Security Manager</strong></td>
-                                <td>Industrial control systems, SCADA security, and operational technology protection</td>
-                                <td>Management</td>
-                            </tr>
-                            <tr>
-                                <td><strong>IT Security Manager</strong></td>
-                                <td>Enterprise IT systems, network security, and business applications</td>
-                                <td>Management</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Security Operations Center (SOC)</strong></td>
-                                <td>24/7 monitoring, incident detection, and response coordination</td>
-                                <td>Operational</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Facility Security Coordinators</strong></td>
-                                <td>Site-specific security implementation and compliance</td>
-                                <td>Operational</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <h3 class="subsection-title">1.3 Zero-Trust Security Approach</h3>
+                <p>Even within an offline environment Zero-Trust Architecture is applied. Zero-Trust assumes that every user must be continuously authenticated, every device must be verified and compliant, every action must be authorised based on role and context, every system must enforce least-privilege and segmentation, and every data movement must be controlled and monitored. Zero-Trust is implemented across identity, device, network, application, data, Operational Technology, Internet of Things and physical systems. The combination of Zero-Trust Architecture and offline facility design forms a hardened, safety-driven security environment suitable for refining operations.</p>
 
-                <h3 class="subsection-title">2.2 Compliance Framework</h3>
-                <p>
-                    Syntra's cybersecurity program aligns with and exceeds requirements from:
-                </p>
-                <ul>
-                    <li><strong>NIST Cybersecurity Framework (CSF) 2.0</strong> - Comprehensive security controls</li>
-                    <li><strong>IEC 62443</strong> - Industrial automation and control systems security</li>
-                    <li><strong>NERC CIP</strong> - Critical Infrastructure Protection standards</li>
-                    <li><strong>ISO/IEC 27001</strong> - Information security management</li>
-                    <li><strong>CMMC</strong> - Cybersecurity Maturity Model Certification (Level 2+)</li>
-                </ul>
+                <h3 class="subsection-title">1.4 Alignment with Industrial Safety</h3>
+                <p>Cyber-security controls must never compromise industrial safety. Human safety is prioritised above all other objectives. Safety interlocks, Safety Programmable Logic Controllers and emergency-shutdown logic operate independently. Operational processes remain stable during security events. No cyber-security measure may disable essential equipment or interfere with regulatory safety requirements.</p>
+
+                <h3 class="subsection-title">1.5 Security Objectives</h3>
+                <p><strong>Rejection of External Attack Vectors:</strong> isolation from the internet and cloud systems removes remote attack surfaces. <strong>Protection of Critical Data:</strong> all data—operational, scientific, financial and strategic—is retained within controlled environments. <strong>Preservation of Industrial Continuity:</strong> no outage of external services can disrupt Syntra Refining industrial facilities. <strong>Assurance of Controlled Change:</strong> no software, firmware or configuration changes may occur without documented, approved and supervised processes. <strong>Incident Prevention and Containment:</strong> threats are detected, contained and resolved while maintaining safe plant operation.</p>
             </div>
 
             <div class="section print-break">
-                <h2 class="section-title">
-                    <span class="section-number">3</span>
-                    Critical Asset Protection
-                </h2>
+                <h2 class="section-title">SECTION 2 — FOUNDATIONAL SECURITY PRINCIPLES</h2>
 
-                <h3 class="subsection-title">3.1 Asset Classification</h3>
-                <p>
-                    Syntra categorizes information and system assets into four security tiers:
-                </p>
+                <h3 class="subsection-title">2.1 Principle 1 — Offline Industrial Environment</h3>
+                <p>All Syntra Refining industrial facilities operate without any public network access. There is no public Domain Name System resolution, no public Internet Protocol routing, no cloud Application Programming Interfaces, no external email services, no external messaging systems and no service requiring real-time cloud connection. Facilities run entirely on local servers, local authentication systems, local network routing, local storage and local Safety and Distributed Control Systems. This environment cannot be bridged to the internet without physical re-configuration and executive authorization.</p>
 
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Tier</th>
-                                <th>Asset Type</th>
-                                <th>Examples</th>
-                                <th>Security Controls</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Critical</strong></td>
-                                <td>Safety & Operations</td>
-                                <td>SCADA systems, Process controls, Safety systems</td>
-                                <td>Air-gapped, Multi-factor auth, Continuous monitoring</td>
-                            </tr>
-                            <tr>
-                                <td><strong>High</strong></td>
-                                <td>Proprietary Tech</td>
-                                <td>Refining processes, R&D data, Supply chain systems</td>
-                                <td>Encryption, Access controls, Data loss prevention</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Medium</strong></td>
-                                <td>Business Systems</td>
-                                <td>ERP, Financial systems, HR databases</td>
-                                <td>Standard encryption, Role-based access, Regular audits</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Standard</strong></td>
-                                <td>General IT</td>
-                                <td>Email, Collaboration tools, Public website</td>
-                                <td>Basic security controls, User authentication</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <h3 class="subsection-title">2.2 Principle 2 — Segmented Architecture</h3>
+                <p>Facilities are divided into independent networks: Information Technology, Operational Technology, Internet of Things, Industrial Demilitarized Zone and Physical Security Network. Segmentation is enforced with hardware firewalls, Access Control Lists, physical cable separation, restricted routing tables and one-way data-transfer mechanisms.</p>
+
+                <h3 class="subsection-title">2.3 Principle 3 — Identity Assurance</h3>
+                <p>Authentication depends on hardware-based Multifactor Authentication tokens, local directory services, Tier-0 identity controls for senior and privileged accounts and device posture validation that is enforced offline through Group Policy Objects or Mobile Device Management policies applied prior to facility deployment.</p>
+
+                <h3 class="subsection-title">2.4 Principle 4 — Device Trust and Hardening</h3>
+                <p>Every authorised device must be fully encrypted, enable Secure Boot, contain approved configurations only, display no unauthorised ports or services and be registered in the offline asset inventory.</p>
+
+                <h3 class="subsection-title">2.5 Principle 5 — Operational Safety Priority</h3>
+                <p>The cyber-security program shall never override safety relay function, Safety Programmable Logic Controller logic, Emergency-Stop behaviour or hazardous-equipment shutdown rules. Cyber-security follows the requirement: "Do not introduce new hazards."</p>
+
+                <h3 class="subsection-title">2.6 Principle 6 — Controlled Information Movement</h3>
+                <p>Because facilities are fully offline, all data movement must occur through encrypted offline media, one-way data diodes, controlled export points with dual authorization and documented transfer logs. No information may exit or enter without explicit approval.</p>
+
+                <h3 class="subsection-title">2.7 Principle 7 — Continuous Monitoring and Auditing</h3>
+                <p>Even offline systems require strong monitoring through local logging servers, local Security Information and Event Management ingestion nodes, physical security logs, Operational Technology historian logs and offline integrity-analysis tools. Aggregated logs may be exported periodically for external analysis.</p>
+            </div>
+
+            <div class="section print-break">
+                <h2 class="section-title">SECTION 3 — ENTERPRISE SECURITY ARCHITECTURE</h2>
+
+                <h3 class="subsection-title">3.1 Overview</h3>
+                <p>The Enterprise Security Architecture describes how Syntra Refining industrial facilities enforce operational safety, data integrity and cyber-resilience while remaining completely isolated from the public internet. It incorporates full offline operation, Zero-Trust controls, segmentation of every technology domain, physical and logical isolation of critical workloads, local-only authentication, compute and storage and controlled data export using encrypted offline mechanisms. The purpose is to reduce cyber-security risks to the lowest possible level while ensuring uninterrupted refining operations during cyber events failure.</p>
+
+                <h3 class="subsection-title">3.2 Enterprise Architectural Domains</h3>
+
+                <h4 class="subsubsection-title">3.2.1 Information Technology Domain</h4>
+                <p>Local intranet services, authentication and directory services, administrative workstations, data-storage servers, internal document management, facility-management applications, offline collaboration services and local printing and shared resources. The Information Technology environment operates strictly offline with no access to the public internet or cloud services.</p>
+
+                <h4 class="subsubsection-title">3.2.2 Operational Technology Domain</h4>
+                <p>All industrial control systems: Supervisory Control and Data Acquisition systems, Programmable Logic Controllers, Safety Programmable Logic Controllers, Human-Machine Interface terminals, distributed sensors and actuators, industrial network switches and historian data servers. Must physically and logically isolated from all other systems and must maintain continuous operation independently of the Information Technology domain or external systems.</p>
+
+                <h4 class="subsubsection-title">3.2.3 Internet of Things Domain</h4>
+                <p>Environmental sensors, temperature and humidity sensors, vibration and equipment-maintenance sensors, access-control sensors, on-site camera systems and local monitoring gateways. All Internet of Things systems operate locally and do not communicate with cloud platforms; they report only to internal Intranet of Things gateways within the industrial facility.</p>
+
+                <h4 class="subsubsection-title">3.2.4 Physical Security Domain</h4>
+                <p>Camera systems and Network Video Recorder servers, door-access systems, badge readers, environmental controls and alarms, fire-suppression monitoring systems and visitor-management systems. Physical security is tightly integrated with cyber controls to ensure complete situational awareness across the facility.</p>
+
+                <h4 class="subsubsection-title">3.2.5 Industrial Demilitarized Zone Domain</h4>
+                <p>Separates Information Technology and Operational Technology networks. Contains jump servers, patch-staging servers, log-aggregation servers, offline update-distribution nodes and controlled one-way data-transfer systems. The Industrial Demilitarized Zone does not route to the internet and does not accept inbound or outbound external traffic.</p>
+
+                <h4 class="subsubsection-title">3.2.6 Executive and Administrative Domain</h4>
+                <p>Executive computing devices, administrative review systems, document vaults and high-sensitivity data storage. These systems operate using Tier-0 identity protections and must comply with the highest internal security standards.</p>
+
+                <h3 class="subsection-title">3.3 Separation of Network Environments</h3>
+                <p>Strict segmentation model: no routable pathways between domains unless explicitly defined, firewalls enforce deny-by-default rules, Access Control Lists enforce least-privilege routing, physical cable isolation for sensitive networks, wireless connectivity restricted to permitted local-only channels. Segmentation ensures that compromise in one environment cannot spread into another.</p>
+
+                <div class="highlight-box">
+                    <strong>Key Architecture Principle:</strong> Complete isolation strategy ensures that all networks—Information Technology, Operational Technology, Internet of Things, physical security and management infrastructure—are prevented from communicating with external networks including the public internet and external cloud platforms.
                 </div>
+            </div>
 
-                <h3 class="subsection-title">3.2 Network Segmentation</h3>
-                <p>
-                    Syntra implements a defense-in-depth network architecture with strict segmentation:
-                </p>
-                <ul>
-                    <li><strong>Level 0 (Process Layer)</strong> - Physical sensors and actuators</li>
-                    <li><strong>Level 1 (Control Layer)</strong> - PLCs, RTUs, and DCS controllers</li>
-                    <li><strong>Level 2 (Supervisory Layer)</strong> - SCADA and HMI systems</li>
-                    <li><strong>Level 3 (Operations Layer)</strong> - MES and plant-level operations</li>
-                    <li><strong>Level 4 (Enterprise Layer)</strong> - ERP and business systems</li>
-                    <li><strong>DMZ (Demilitarized Zone)</strong> - External-facing services</li>
-                </ul>
+            <div class="section print-break">
+                <h2 class="section-title">SECTION 4 — OPERATIONAL SECURITY MANAGEMENT</h2>
+
+                <h3 class="subsection-title">4.1 Overview</h3>
+                <p>Operational Security Management defines how Syntra Refining Corporation governs cyber-security and ensures disciplined, repeatable execution of all security processes across Syntra Refining industrial facilities. The purpose is to establish clear authority, defined roles and responsibilities, standardised security procedures, continuous operational readiness and coordination between Information Technology, Operational Technology and physical-security teams.</p>
+
+                <h3 class="subsection-title">4.2 Governance Structure</h3>
+                <p>Executive leadership is responsible for approving cyber-security policies, allocating resources, reviewing audit reports, assessing risk exposures and ensuring regulatory compliance. The Chief Executive Officer and the Technology Director maintain ultimate accountability. The Technology Director oversees cyber-security strategy, security architecture, offline facility protections, identity and access management, operational-safety integration, vendor and contractor security validation and incident escalation and communication.</p>
+
+                <p>The Information Technology Security Team is responsible for workstation and server security, logging and monitoring, patch and update validation, offline directory services, local-only backup infrastructure and configuration-baseline enforcement and must maintain strict segmentation from Operational Technology.</p>
+
+                <p>The Operational Technology Engineering Team is responsible for Programmable Logic Controller logic integrity, Supervisory Control and Data Acquisition platform operation, process historian reliability, Human-Machine Interface configuration, industrial-network stability and Safety Programmable Logic Controller validation and must coordinate all security changes with the Information Technology Security Team.</p>
+
+                <p>The Physical Security Team is responsible for access-control systems, video surveillance, badge issuance, intrusion-detection sensors, visitor control and escorting and facility perimeter security and must collaborate with Information Technology and Operational Technology teams to protect cyber-physical assets.</p>
+
+                <h3 class="subsection-title">4.3 Roles and Responsibilities</h3>
+                <p><strong>Executive staff</strong> must use Privileged Access Workstations for sensitive tasks, approve high-risk security changes, participate in security-awareness training and protect sensitive data stored in the Executive Vault.</p>
+
+                <p><strong>Engineering staff</strong> must use engineering workstations for Programmable Logic Controller and Supervisory Control and Data Acquisition work only, follow strict offline update processes, document all changes and comply with safety protocols and cyber-security instructions.</p>
+
+                <p><strong>Technicians and operators</strong> must use Human-Machine Interface terminals within the Operational Technology environment, follow authentication procedures, report irregular equipment behaviour and participate in periodic safety and security drills.</p>
+
+                <p><strong>Contractors and temporary personnel</strong> must work on-site only, use approved facility-owned devices, follow supervision protocols, not introduce personal devices into the facility and not connect any removable media without authorisation. Contractor access may be revoked at any time.</p>
+
+                <h3 class="subsection-title">4.4 Policy Framework</h3>
+                <p>Syntra Refining implements a complete cyber-security policy framework composed of the Master Cybersecurity Program, Access Control and Identity Policy, Offline Facility Network Policy, Operational Technology Change Management Policy, Removable Media Governance Policy, Backup and Recovery Policy, Physical Security Policy, Incident Response Policy and Executive Cybersecurity Policy. Policies must be reviewed annually, after major incidents, after regulatory updates and when new technologies are introduced.</p>
+
+                <h3 class="subsection-title">4.5 Workforce Security Requirements</h3>
+                <p>All staff must undergo identity verification, background checks, reference verification and skills validation for technical roles. Security training must include offline facility security principles, Zero-Trust requirements, removable media handling, Supervisory Control and Data Acquisition and Programmable Logic Controller security basics, social-engineering awareness, physical access controls and incident-reporting procedures.</p>
+
+                <p>Training must occur during on-boarding, quarterly for operators, semi-annually for Information Technology and Operational Technology staff and annually for all personnel. Users with privileged access must complete specialised cyber-security certification training, Operational Technology safety training, secure coding and configuration training where applicable and hands-on assessment in test environments; privileges may be revoked if certification lapses.</p>
 
                 <div class="warning-box">
-                    <strong>⚠ Critical Control:</strong> All traffic between OT (Levels 0-2) and IT (Levels 3-4) must pass through security inspection zones with mandatory deep packet inspection, protocol filtering, and behavioral analysis.
+                    <strong>Critical Control:</strong> Because Syntra Refining industrial facilities operate offline and contain safety-critical systems, mismanaged changes can cause disruptions, safety failures or data corruption. Every change must follow documented approval processes.
                 </div>
             </div>
 
             <div class="section print-break">
-                <h2 class="section-title">
-                    <span class="section-number">4</span>
-                    Security Operations
-                </h2>
+                <h2 class="section-title">SECTION 5 — MONITORING AND INCIDENT RESPONSE</h2>
 
-                <h3 class="subsection-title">4.1 Threat Detection & Monitoring</h3>
-                <p>
-                    Syntra operates a 24/7 Security Operations Center (SOC) utilizing:
-                </p>
-                <ul>
-                    <li><strong>SIEM Platform</strong> - Centralized log aggregation and correlation</li>
-                    <li><strong>Network Traffic Analysis</strong> - Anomaly detection and baseline monitoring</li>
-                    <li><strong>Endpoint Detection & Response (EDR)</strong> - Host-based threat detection</li>
-                    <li><strong>OT Security Monitoring</strong> - Industrial protocol analysis and asset tracking</li>
-                    <li><strong>Threat Intelligence</strong> - Real-time feeds on APTs targeting critical infrastructure</li>
-                </ul>
+                <h3 class="subsection-title">5.1 Overview</h3>
+                <p>Monitoring and Incident Response ensure that Syntra Refining Corporation can detect security events, contain incidents quickly, preserve evidence, protect industrial processes and maintain safe and continuous operation. Because Syntra Refining industrial facilities operate fully offline all monitoring solutions must function without external connectivity, retain logs locally, operate autonomously and support offline analysis. Incident response must prioritise human safety, protection of Safety Programmable Logic Controllers, protection of Operational Technology integrity, containment of malicious activity and preservation of forensic evidence.</p>
 
-                <h3 class="subsection-title">4.2 Incident Response</h3>
-                <p>
-                    The incident response process follows these defined phases:
-                </p>
-                <ol>
-                    <li><strong>Preparation</strong> - Readiness activities, playbook development, team training</li>
-                    <li><strong>Detection & Analysis</strong> - Event triage, severity classification, impact assessment</li>
-                    <li><strong>Containment</strong> - Immediate isolation, threat neutralization, evidence preservation</li>
-                    <li><strong>Eradication</strong> - Root cause removal, system hardening, vulnerability remediation</li>
-                    <li><strong>Recovery</strong> - System restoration, validation testing, normal operations resumption</li>
-                    <li><strong>Post-Incident Activity</strong> - Lessons learned, documentation, process improvement</li>
-                </ol>
+                <h3 class="subsection-title">5.2 Local Security Operations Center Model</h3>
+                <p>Syntra Refining uses a hybrid Security Operations Center model designed for offline environments. Local facility Security Operations Center analysts must review Security Information and Event Management alerts, conduct offline threat analysis, investigate suspicious events, respond to Operational Technology and Information Technology anomalies, coordinate with Operational Technology Engineering during incidents and escalate critical issues to the Technology Director.</p>
 
-                <div class="highlight-box">
-                    <strong>Response Time Objectives:</strong>
-                    <ul style="margin-top: 10px; margin-bottom: 0;">
-                        <li>Critical incidents: Initial response within 15 minutes</li>
-                        <li>High-priority incidents: Initial response within 1 hour</li>
-                        <li>Medium-priority incidents: Initial response within 4 hours</li>
-                        <li>Low-priority incidents: Initial response within 24 hours</li>
-                    </ul>
-                </div>
+                <p>The external Security Operations Center operates outside the facility using offline-exported logs, scheduled data transfers and manual ingestion of facility incident reports. External Security Operations Center analysts perform deep forensic review, conduct correlation across facilities, analyse patterns of attempted sabotage and support investigations and compliance reviews. The external Security Operations Center has no direct access to facility networks.</p>
+
+                <h3 class="subsection-title">5.3 Offline Security Information and Event Management Architecture</h3>
+                <p>All Security Information and Event Management capabilities must operate without internet connectivity. Security Information and Event Management must ingest logs from Information Technology domain controllers, Information Technology servers, Operational Technology historian systems, Supervisory Control and Data Acquisition servers, Programmable Logic Controller communication gateways, network switches and firewalls, Internet of Things gateways, physical access-control systems and camera Network Video Recorder systems.</p>
+
+                <p>The Security Information and Event Management must perform local correlation, generate alerts autonomously, retain logs locally for extended periods, support offline report generation and operate without external licensing or cloud validation. Log exports must follow approved removable media, offline malware scanning, encryption prior to transport, chain-of-custody documentation and dual authorisation. Exports occur weekly or after incidents, not continuously.</p>
+
+                <h3 class="subsection-title">5.4 Detection Standards for Offline Facilities</h3>
+                <p>Detection rules tailored for offline industrial environments. <strong>Information Technology detection</strong> must detect privilege-escalation attempts, unauthorised workstation changes, offline malware signatures, unexpected logins outside approved schedules and unauthorised removable-media events.</p>
+
+                <p><strong>Operational Technology detection</strong> critical and must detect deviations from expected Programmable Logic Controller command sequences, unauthorised Programmable Logic Controller programming attempts, Supervisory Control and Data Acquisition alarm overrides, unexpected changes to historian data and unusual device-scan patterns on Operational Technology networks.</p>
+
+                <p><strong>Internet of Things detection</strong> must detect unauthorised sensor behaviour, abnormal network traffic, loss of communication with critical Internet of Things devices and suspicious access attempts to Internet of Things gateways.</p>
+
+                <p><strong>Physical-security detection</strong> must detect unexpected badge attempts, door forced-open events, camera mass-failure or blackout and environmental-sensor tampering.</p>
+
+                <h3 class="subsection-title">5.5 Incident Categories</h3>
+                <p><strong>Level 1 – Minor Incident:</strong> failed login attempts, misconfigured workstation, non-critical alarm. Action: local review and documentation.</p>
+
+                <p><strong>Level 2 – Moderate Incident:</strong> suspicious Operational Technology device behaviour, unauthorised removable-media use, unexpected Programmable Logic Controller network scan. Action: investigation by local Security Operations Center, escalation to Technology Director if needed.</p>
+
+                <p><strong>Level 3 – High Severity Incident:</strong> unauthorised Programmable Logic Controller logic modification, Supervisory Control and Data Acquisition configuration tampering, suspicious intermittent disconnection of sensors, detection of malware on Information Technology servers. Action: containment, joint Information Technology/Operational Technology response, notification to executive leadership.</p>
+
+                <p><strong>Level 4 – Critical Industrial Incident:</strong> compromise of Safety Programmable Logic Controller logic, ongoing manipulation of Operational Technology control traffic, attempted sabotage of refining operations, physical intrusion targeting control equipment. Action: immediate activation of emergency-response protocols including facility lockdown if required, Operational Technology Engineering takeover, safety-interlock verification, executive-team engagement and preservation of evidence.</p>
+
+                <h3 class="subsection-title">5.6 Incident Response Workflow</h3>
+                <p><strong>Step 1 Detection:</strong> may originate from Security Information and Event Management alert, Supervisory Control and Data Acquisition anomaly, operator observation, physical-security sensor or Operational Technology Engineering awareness.</p>
+
+                <p><strong>Step 2 Validation:</strong> Security Operations Center and responsible technical teams validate whether event is legitimate, which systems affected and whether safety at risk.</p>
+
+                <p><strong>Step 3 Classification:</strong> incident assigned severity level (1 to 4).</p>
+
+                <p><strong>Step 4 Containment:</strong> actions may include isolating specific network segments, revoking credentials, locking down Programmable Logic Controller programming mode, blocking removable-media usage or suspending access for impacted personnel; containment must never compromise safety controls.</p>
+
+                <p><strong>Step 5 Investigation:</strong> includes log analysis, Programmable Logic Controller logic checksum verification, Supervisory Control and Data Acquisition audit-trail review, network-traffic reconstruction and physical inspection of equipment; no system rebooted until investigation determines safe.</p>
+
+                <p><strong>Step 6 Eradication:</strong> removing malicious code, restoring authorised configurations, re-imaging compromised systems and invalidating compromised certificates.</p>
+
+                <p><strong>Step 7 Recovery:</strong> restore service without disrupting safety logic, validate all Operational Technology processes, re-test safety interlocks, re-enable access in controlled manner and verify historian and Supervisory Control and Data Acquisition integrity.</p>
+
+                <p><strong>Step 8 Post-Incident Review:</strong> timeline reconstruction, root-cause analysis, assessment of gaps, remediation planning and lessons-learned documentation; executive leadership receives formal summary.</p>
             </div>
 
             <div class="section print-break">
-                <h2 class="section-title">
-                    <span class="section-number">5</span>
-                    Access Control & Identity Management
-                </h2>
+                <h2 class="section-title">SECTION 6 — OPERATIONAL TECHNOLOGY & INDUSTRIAL CONTROL SYSTEMS</h2>
 
-                <h3 class="subsection-title">5.1 Authentication Standards</h3>
-                <p>
-                    All Syntra systems implement layered authentication controls:
-                </p>
-                <ul>
-                    <li><strong>Multi-Factor Authentication (MFA)</strong> - Required for all remote access and privileged accounts</li>
-                    <li><strong>Privileged Access Management (PAM)</strong> - Just-in-time access for administrative functions</li>
-                    <li><strong>Single Sign-On (SSO)</strong> - Centralized identity management for enterprise systems</li>
-                    <li><strong>Biometric Authentication</strong> - Required for critical facility access and OT system modifications</li>
-                </ul>
+                <h3 class="subsection-title">6.1 Purpose and Scope</h3>
+                <p>This section defines all security, safety and operational requirements for Operational Technology and Industrial Control Systems in all Syntra Refining industrial facilities. It applies to Programmable Logic Controllers, Safety Programmable Logic Controllers, Supervisory Control and Data Acquisition systems, Human-Machine Interface systems, industrial instrumentation, sensors and actuators, industrial networking equipment, historian systems, engineering workstations, alarm-management systems and batch-processing systems.</p>
 
-                <h3 class="subsection-title">5.2 Least Privilege Principle</h3>
-                <p>
-                    Access rights are granted based on strict need-to-know and need-to-do principles:
-                </p>
-                <ul>
-                    <li>Default deny posture for all systems and data</li>
-                    <li>Role-based access control (RBAC) with regular reviews</li>
-                    <li>Time-limited privileged access with approval workflows</li>
-                    <li>Automated de-provisioning upon role changes or separation</li>
-                    <li>Quarterly access certification by data owners</li>
-                </ul>
-            </div>
+                <p>This section ensures that Operational Technology systems remain secure, deterministic, predictable and fail-safe even during cyber-security incidents, equipment malfunction, network segmentation, power instability or physical-tampering attempts.</p>
 
-            <div class="section print-break">
-                <h2 class="section-title">
-                    <span class="section-number">6</span>
-                    Security Awareness & Training
-                </h2>
+                <h3 class="subsection-title">6.2 Operational Technology Architectural Principles</h3>
+                <p><strong>Safety First:</strong> no cyber-security control may interfere with emergency shutdown, hardwired interlocks, Safety Programmable Logic Controller logic execution, operator-alarm visibility or Safety Instrumented Systems.</p>
 
-                <h3 class="subsection-title">6.1 Training Requirements</h3>
+                <p><strong>Deterministic Behaviour:</strong> Operational Technology systems must produce predictable outputs, must not exhibit timing beyond acceptable tolerance, must not depend on remote resources and must not alter execution without authorised intervention.</p>
 
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Role Category</th>
-                                <th>Training Program</th>
-                                <th>Frequency</th>
-                                <th>Duration</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>All Employees</strong></td>
-                                <td>Security Awareness Fundamentals</td>
-                                <td>Annual</td>
-                                <td>2 hours</td>
-                            </tr>
-                            <tr>
-                                <td><strong>OT Personnel</strong></td>
-                                <td>Industrial Control System Security</td>
-                                <td>Semi-annual</td>
-                                <td>4 hours</td>
-                            </tr>
-                            <tr>
-                                <td><strong>IT Staff</strong></td>
-                                <td>Advanced Security Operations</td>
-                                <td>Quarterly</td>
-                                <td>8 hours</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Developers</strong></td>
-                                <td>Secure Coding & DevSecOps</td>
-                                <td>Quarterly</td>
-                                <td>6 hours</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Executives</strong></td>
-                                <td>Cyber Risk & Governance</td>
-                                <td>Annual</td>
-                                <td>3 hours</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <p><strong>Offline Autonomy:</strong> Operational Technology systems must continue operating indefinitely without internet, retain full functionality during Information Technology outages and maintain all supervisory and safety behaviour offline.</p>
 
-                <h3 class="subsection-title">6.2 Phishing & Social Engineering Defense</h3>
-                <p>
-                    Syntra conducts regular simulated attacks to test and improve employee awareness:
-                </p>
-                <ul>
-                    <li>Monthly phishing simulation campaigns</li>
-                    <li>Quarterly social engineering tests (phone, email, physical)</li>
-                    <li>Immediate micro-training for users who click simulated threats</li>
-                    <li>Recognition program for vigilant reporting</li>
-                    <li>Executive impersonation scenario testing</li>
-                </ul>
-            </div>
+                <p><strong>Segmentation:</strong> Operational Technology networks must be physically isolated, logically isolated, protected by firewalls and free of unnecessary pathways; no cross-domain communication permitted unless explicitly authorised.</p>
 
-            <div class="section print-break">
-                <h2 class="section-title">
-                    <span class="section-number">7</span>
-                    Vendor & Supply Chain Security
-                </h2>
+                <h3 class="subsection-title">6.3 Programmable Logic Controller Governance and Control</h3>
+                <p>Programmable Logic Controllers must use industrial-grade hardware, support deterministic execution cycles, log diagnostic and fault states, support offline firmware validation, support redundant modules where required and not include Wi-Fi, Bluetooth or cellular interfaces.</p>
 
-                <h3 class="subsection-title">7.1 Third-Party Risk Management</h3>
-                <p>
-                    All vendors with access to Syntra systems or data must meet security requirements:
-                </p>
-                <ul>
-                    <li><strong>Pre-engagement Assessment</strong> - Security questionnaires, certifications review, financial stability</li>
-                    <li><strong>Contract Requirements</strong> - Security controls, audit rights, incident notification, insurance</li>
-                    <li><strong>Ongoing Monitoring</strong> - Quarterly attestations, annual audits, continuous threat intelligence</li>
-                    <li><strong>Access Controls</strong> - VPN/zero-trust access, activity logging, privileged session recording</li>
-                    <li><strong>Incident Response</strong> - Joint response procedures, communication protocols, liability terms</li>
-                </ul>
+                <p>Programmable Logic Controller networks must exist on isolated virtual local-area networks, must not connect directly to Information Technology networks, must be reachable only from approved engineering workstations, must never be accessible from Internet of Things networks and must use hardened industrial switches.</p>
 
-                <h3 class="subsection-title">7.2 Software & Hardware Supply Chain</h3>
-                <p>
-                    Critical systems undergo rigorous supply chain security validation:
-                </p>
-                <ul>
-                    <li>Software Bill of Materials (SBOM) review for all industrial software</li>
-                    <li>Hardware integrity verification and anti-tampering measures</li>
-                    <li>Trusted supplier programs with facility audits</li>
-                    <li>Secure delivery and chain-of-custody protocols</li>
-                    <li>Component authenticity verification</li>
-                </ul>
-            </div>
+                <p>Logic changes must be performed only by authorised engineers, require hardware-backed Multifactor Authentication, be carried out from approved engineering laptops, follow formal Operational Technology Change Management processes and be logged and documented.</p>
 
-            <div class="section print-break">
-                <h2 class="section-title">
-                    <span class="section-number">8</span>
-                    Data Protection & Privacy
-                </h2>
+                <p>Every Programmable Logic Controller logic file must be stored offline in an encrypted repository, hashed using Secure Hash Algorithm 256, version-controlled, validated against deployed logic weekly and tested in the air-gapped test environment before deployment. If checksum mismatch occurs investigation begins immediately.</p>
 
-                <h3 class="subsection-title">8.1 Data Classification & Handling</h3>
-                <p>
-                    Syntra implements comprehensive data protection controls:
-                </p>
-                <ul>
-                    <li><strong>Encryption at Rest</strong> - AES-256 for all stored data</li>
-                    <li><strong>Encryption in Transit</strong> - TLS 1.3 for all network communications</li>
-                    <li><strong>Data Loss Prevention (DLP)</strong> - Automated scanning and blocking of unauthorized transfers</li>
-                    <li><strong>Secure Disposal</strong> - DoD 5220.22-M standard for data destruction</li>
-                    <li><strong>Backup & Recovery</strong> - Encrypted, geographically distributed, tested quarterly</li>
-                </ul>
+                <h3 class="subsection-title">6.4 Safety Programmable Logic Controller Governance</h3>
+                <p>Safety Programmable Logic Controllers protect human life and equipment and must be treated with the highest security classification. Safety Programmable Logic Controllers must operate independently of all other Programmable Logic Controllers, use dedicated safety-rated hardware, have redundant channels, use hardwired inputs from safety sensors, not be programmable without dual authorisation and not be programmable while equipment is active.</p>
 
-                <h3 class="subsection-title">8.2 Intellectual Property Protection</h3>
+                <p>Safety logic must be immutable except through controlled procedures, reviewed annually by a certified safety engineer, stored in offline evidence vaults and protected by two-person rule for changes. Safety Programmable Logic Controller networks must use Red/Black separation, have no routing to Supervisory Control and Data Acquisition or Information Technology networks, operate independently of network failures and use shielded wiring to reduce electromagnetic-interference impact.</p>
+
+                <h3 class="subsection-title">6.5 Supervisory Control and Data Acquisition Security</h3>
+                <p>Supervisory Control and Data Acquisition systems supervise plant operations and must remain fully functional offline. Supervisory Control and Data Acquisition must operate on redundant servers, have independent graphical Human-Machine Interfaces, use local-only authentication, retain local historical data, connect only to Operational Technology networks and not use internet-connected drivers.</p>
+
+                <p>Supervisory Control and Data Acquisition workstations must use hardened operating systems, have no web browsers enabled, use static Internet Protocol addresses, disable all wireless communication and not accept removable media without approval. Supervisory Control and Data Acquisition alarms must always display accurately, never be suppressed by cyber-security controls, be logged and time-stamped locally and trigger escalation for safety-related anomalies.</p>
+
                 <div class="warning-box">
-                    <strong>⚠ Critical Asset:</strong> Syntra's proprietary refining processes and critical minerals processing technology represent strategic national assets. Unauthorized disclosure could compromise competitive advantage and national security interests.
+                    <strong>Critical Safety Rule:</strong> No Operational Technology system may be rebooted during an incident without engineering approval because reboots may interrupt industrial processes, trigger unexpected behaviour or disrupt safety logic.
                 </div>
-                <p>
-                    Enhanced protection measures for IP include:
-                </p>
-                <ul>
-                    <li>Need-to-know compartmentalization of sensitive R&D data</li>
-                    <li>Digital rights management (DRM) for technical documentation</li>
-                    <li>Watermarking and tracking of all proprietary documents</li>
-                    <li>Insider threat monitoring program</li>
-                    <li>Exit interviews and equipment sanitization for departing employees</li>
-                </ul>
             </div>
 
             <div class="section print-break">
-                <h2 class="section-title">
-                    <span class="section-number">9</span>
-                    Business Continuity & Disaster Recovery
-                </h2>
+                <h2 class="section-title">SECTION 7 — EXECUTIVE CYBERSECURITY PROGRAM</h2>
 
-                <h3 class="subsection-title">9.1 Recovery Objectives</h3>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>System Category</th>
-                                <th>Recovery Time Objective (RTO)</th>
-                                <th>Recovery Point Objective (RPO)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Safety Systems</strong></td>
-                                <td>&lt; 1 hour</td>
-                                <td>Zero data loss</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Production Control</strong></td>
-                                <td>&lt; 4 hours</td>
-                                <td>&lt; 15 minutes</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Business Critical</strong></td>
-                                <td>&lt; 24 hours</td>
-                                <td>&lt; 1 hour</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Standard Systems</strong></td>
-                                <td>&lt; 72 hours</td>
-                                <td>&lt; 24 hours</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <h3 class="subsection-title">7.1 Purpose</h3>
+                <p>The Executive Cybersecurity Program ensures that high-level personnel at Syntra Refining Corporation—including executive leadership, board members, senior engineers and senior administrators—are protected against credential theft, device compromise, targeted attacks, insider threats, social engineering, sensitive data exposure and physical risks. Executives have elevated access and decision-making authority; therefore, their cyber-security controls must meet the highest internal standard.</p>
 
-                <h3 class="subsection-title">9.2 Backup Strategy</h3>
-                <p>
-                    Syntra implements a comprehensive 3-2-1 backup strategy:
-                </p>
-                <ul>
-                    <li><strong>3</strong> copies of critical data (production + 2 backups)</li>
-                    <li><strong>2</strong> different media types (disk + tape/cloud)</li>
-                    <li><strong>1</strong> offsite copy in geographically separated facility</li>
-                </ul>
-                <p>
-                    Additional measures include:
-                </p>
-                <ul>
-                    <li>Immutable backups protected from ransomware encryption</li>
-                    <li>Quarterly full restoration tests</li>
-                    <li>Air-gapped backup copies for critical OT configurations</li>
-                    <li>Automated backup monitoring and alerting</li>
-                </ul>
+                <h3 class="subsection-title">7.2 Tier-0 Identity Classification</h3>
+                <p>Tier-0 identities are accounts with the highest administrative access and control directory services, Certificate Authority, offline Key Management System, Supervisory Control and Data Acquisition administrative functions, Operational Technology configuration privileges and Executive Vault access. Tier-0 identities must have unrestricted administrative rights within their authorised domain and access the most sensitive systems.</p>
+
+                <p>All Tier-0 identities must use hardware-backed Multifactor Authentication, unique passphrases, local-only authentication paths, Privileged Access Workstations, session isolation and dedicated security monitoring. Tier-0 credentials must never be used on general-purpose devices, must never access external networks or internet-connected systems, must never use unsecured removable media and must never be delegated to unauthorised staff.</p>
+
+                <h3 class="subsection-title">7.3 Privileged Access Workstations</h3>
+                <p>Privileged Access Workstations are dedicated machines used exclusively for privileged tasks. A Privileged Access Workstation must operate offline, run hardened operating-system images, disable all wireless interfaces, enforce full-disk encryption, block installation of unauthorised software, permit administrative tools only and maintain tamper-evident casing and seals.</p>
+
+                <p>A Privileged Access Workstation must never be used for email, document browsing, web browsing, file downloads or external communications. Privileged Access Workstations must be stored in secured rooms, checked out using access logs, used only by authorised personnel and audited monthly. If a Privileged Access Workstation shows signs of tampering it must be immediately quarantined.</p>
+
+                <h3 class="subsection-title">7.4 Executive Device Hardening Standards</h3>
+                <p>Executive workstations must use full-disk encryption (Advanced Encryption Standard 256), enforce Multifactor Authentication, use Secure Boot with firmware password protection, disable unnecessary services, operate in a restricted execution environment, enable offline security baselines and restrict physical ports where possible.</p>
+
+                <p>Executive mobile devices used outside industrial facilities (never inside production zones) must use encrypted storage, enforce strong authentication, have remote wipe enabled, not store Tier-0 or Operational Technology-relevant information and may not connect to facility networks under any circumstance.</p>
+
+                <h3 class="subsection-title">7.5 Executive Vault Security</h3>
+                <p>The Executive Vault is the most sensitive data-storage location at Syntra Refining and stores strategic documents, proprietary refining formulas, financial models, legal documents, regulatory compliance filings, global operational directives, emergency-shutdown protocols and Tier-0 credentials.</p>
+
+                <p>Access requires hardware-backed Multifactor Authentication, Privileged Access Workstation, dedicated Vault identity and dual authorisation for high-risk files; access is offline only. The Vault must be hosted on internal servers without internet, encrypted at rest using Advanced Encryption Standard 256 and inside a physically secured room.</p>
+
+                <p>Vault operations must be logged, reviewed monthly, protected from unauthorised copying and recorded in a chain-of-custody ledger for any exported documents; any discrepancy must trigger immediate investigation.</p>
+
+                <h3 class="subsection-title">7.6 Executive Travel Security Program</h3>
+                <p>Executives must travel with a dedicated travel laptop with restricted privileges, no Tier-0 credentials stored on the device, no Operational Technology or sensitive files stored locally, mandatory full-disk encryption and temporary accounts used only during travel.</p>
+
+                <p>Executives must adhere to no use of public Wi-Fi for business communication, mandatory use of virtual private communication channels, avoidance of untrusted Bluetooth connections and no shared charging devices. Travel devices must undergo post-travel inspection before being allowed back into internal environments.</p>
+
+                <h3 class="subsection-title">7.7 Executive Briefing and Cyber-Readiness Reviews</h3>
+                <p>Executives must participate in quarterly cyber-readiness briefings covering threat-landscape updates, offline facility protections, Operational Technology incident analysis, audit findings and policy changes. Each executive must complete annual executive security certification including training, re-certification on Tier-0 account handling, identity-hygiene review and device-compliance review.</p>
             </div>
 
             <div class="section print-break">
-                <h2 class="section-title">
-                    <span class="section-number">10</span>
-                    Continuous Improvement
-                </h2>
+                <h2 class="section-title">SECTION 8 — ARTIFICIAL INTELLIGENCE INTEGRATION</h2>
 
-                <h3 class="subsection-title">10.1 Security Metrics & KPIs</h3>
-                <p>
-                    Syntra tracks the following key performance indicators:
-                </p>
-                <ul>
-                    <li><strong>Mean Time to Detect (MTTD)</strong> - Target: &lt; 15 minutes for critical threats</li>
-                    <li><strong>Mean Time to Respond (MTTR)</strong> - Target: &lt; 1 hour for critical incidents</li>
-                    <li><strong>Phishing Click Rate</strong> - Target: &lt; 5% organization-wide</li>
-                    <li><strong>Patch Compliance</strong> - Target: 95% within 30 days for critical patches</li>
-                    <li><strong>Vulnerability Remediation</strong> - Target: Critical vulns closed within 7 days</li>
-                    <li><strong>User Training Completion</strong> - Target: 100% annual completion</li>
-                </ul>
+                <h3 class="subsection-title">8.1 Artificial Intelligence Philosophy for Syntra Refining</h3>
+                <p>Syntra Refining Corporation uses Artificial Intelligence and Machine Learning to support human operators, engineers and analysts, enhance detection of anomalies, faults and risks and optimise maintenance and operations. Artificial Intelligence never replaces Safety Programmable Logic Controllers, hardwired interlocks, emergency-shutdown systems or human safety decisions. Artificial Intelligence is advisory only, not a control authority.</p>
 
-                <h3 class="subsection-title">10.2 Audit & Assessment Schedule</h3>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Activity</th>
-                                <th>Frequency</th>
-                                <th>Scope</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Internal Security Audit</strong></td>
-                                <td>Quarterly</td>
-                                <td>All systems and controls</td>
-                            </tr>
-                            <tr>
-                                <td><strong>External Penetration Testing</strong></td>
-                                <td>Annual</td>
-                                <td>External and internal networks</td>
-                            </tr>
-                            <tr>
-                                <td><strong>OT Security Assessment</strong></td>
-                                <td>Semi-annual</td>
-                                <td>SCADA, DCS, and control systems</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Vulnerability Scanning</strong></td>
-                                <td>Weekly</td>
-                                <td>All network-connected assets</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Compliance Review</strong></td>
-                                <td>Annual</td>
-                                <td>Regulatory requirements</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <p>Artificial Intelligence must comply with the offline industrial facility principle (no internet connectivity inside facilities), Zero-Trust Architecture, Operational Technology safety requirements and data-classification rules.</p>
 
-                <h3 class="subsection-title">10.3 Red Team Exercises</h3>
-                <p>
-                    Syntra conducts annual red team exercises to validate defense capabilities:
-                </p>
-                <ul>
-                    <li>Advanced persistent threat (APT) simulations</li>
-                    <li>Physical and cyber combined attack scenarios</li>
-                    <li>Supply chain compromise simulations</li>
-                    <li>Insider threat scenarios</li>
-                    <li>Ransomware and destructive malware exercises</li>
-                </ul>
-            </div>
+                <h3 class="subsection-title">8.2 Artificial Intelligence Use Cases</h3>
 
-            <div class="section print-break">
-                <h2 class="section-title">
-                    <span class="section-number">11</span>
-                    Emerging Threats & Future Readiness
-                </h2>
+                <h4 class="subsubsection-title">8.2.1 Operational Technology Process Anomaly Detection</h4>
+                <p>Detect unusual trends in process variables (pressure, temperature, flows), compare real-time patterns to historical normal behaviour, generate advisory alerts for operators and Operational Technology engineers, never issue direct control commands to Programmable Logic Controllers. Output: anomaly score and explainable indicators.</p>
 
-                <h3 class="subsection-title">11.1 Threat Landscape Monitoring</h3>
-                <p>
-                    Syntra maintains active awareness of evolving threats specific to critical minerals refining:
-                </p>
-                <ul>
-                    <li><strong>Nation-State APTs</strong> - Groups targeting critical infrastructure and industrial secrets</li>
-                    <li><strong>Ransomware-as-a-Service</strong> - Commoditized attacks targeting OT environments</li>
-                    <li><strong>Supply Chain Attacks</strong> - Compromises targeting industrial software and hardware</li>
-                    <li><strong>Insider Threats</strong> - Economic espionage and IP theft</li>
-                    <li><strong>AI-Enhanced Attacks</strong> - Deepfakes, automated reconnaissance, adaptive malware</li>
-                </ul>
+                <h4 class="subsubsection-title">8.2.2 Predictive Maintenance and Asset Health</h4>
+                <p>Analyse vibration, temperature and current sensor data, predict bearing wear, pump fatigue or motor failures, suggest maintenance windows and priorities. Output: maintenance recommendations, not commands.</p>
 
-                <h3 class="subsection-title">11.2 Technology Roadmap</h3>
-                <p>
-                    Syntra's cybersecurity technology evolution includes:
-                </p>
-                <ul>
-                    <li><strong>Zero Trust Architecture</strong> - Full implementation by 2027</li>
-                    <li><strong>AI-Powered Detection</strong> - Machine learning for anomaly detection</li>
-                    <li><strong>Quantum-Safe Cryptography</strong> - Preparing for post-quantum threats</li>
-                    <li><strong>Blockchain for Integrity</strong> - Immutable audit trails for critical systems</li>
-                    <li><strong>Automated Response</strong> - SOAR platforms for rapid threat mitigation</li>
-                </ul>
-            </div>
+                <h4 class="subsubsection-title">8.2.3 Security Analytics and Anomaly Detection</h4>
+                <p>Assist Security Information and Event Management correlation, detect unusual authentication patterns, identify suspicious Operational Technology network-traffic patterns, flag potential configuration drift or unauthorised behaviour. Artificial Intelligence never blocks traffic or disables access by itself; it recommends actions to Security Operations Center analysts.</p>
 
-            <div class="section">
-                <h2 class="section-title">
-                    <span class="section-number">12</span>
-                    Conclusion
-                </h2>
-                <p>
-                    Syntra Refining's Master Cybersecurity Program represents our unwavering commitment to protecting the critical infrastructure that supports America's energy independence and national security. Through continuous vigilance, investment in advanced security technologies, and a culture of security awareness, we ensure that our operations remain resilient against evolving cyber threats.
-                </p>
+                <h3 class="subsection-title">8.3 Artificial Intelligence Deployment Zones</h3>
+
+                <h4 class="subsubsection-title">8.3.1 Facility Artificial Intelligence Inference Cluster</h4>
+                <p>Purpose: run real-time inference for Operational Technology/Information Technology/Internet of Things anomaly detection, host local models that consume historian and telemetry data. Requirements: hosted on local graphics-processing-unit or high-performance central-processing-unit servers, no internet connectivity, read-only access to Operational Technology/Information Technology telemetry—no write/control into Operational Technology.</p>
+
+                <h4 class="subsubsection-title">8.3.2 Corporate Artificial Intelligence Training Environment</h4>
+                <p>Purpose: train and re-train models using exported, sanitised data from facilities, run heavier experiments and research, simulate process and security scenarios. Requirements: never directly connected to facility Operational Technology networks, receives data by one-way data diode from facility or periodic offline media export.</p>
+
+                <h3 class="subsection-title">8.4 Safety Constraints for Artificial Intelligence</h3>
+                <p>Artificial Intelligence must never directly generate control signals for Programmable Logic Controllers or Safety Programmable Logic Controllers, override safety logic, automatically change set-points or proportional-integral-derivative controller parameters, make decisions without human acknowledgment in Operational Technology contexts.</p>
+
+                <p>Artificial Intelligence may suggest set-point adjustments, recommend process changes, prioritise alarms, highlight unusual conditions but final action belongs to Operational Technology engineers, operators and safety-engineering teams.</p>
+
                 <div class="highlight-box">
-                    <strong>Program Success Depends On:</strong>
-                    <ul style="margin-top: 10px; margin-bottom: 0;">
-                        <li>Executive leadership and board-level oversight</li>
-                        <li>Adequate budget allocation and resource commitment</li>
-                        <li>Employee engagement and security-first culture</li>
-                        <li>Continuous adaptation to emerging threats</li>
-                        <li>Industry collaboration and information sharing</li>
-                    </ul>
+                    <strong>AI Governance:</strong> Syntra Refining forms an Artificial Intelligence Governance Committee consisting of Technology Director and representative from the Executive Team to approve new Artificial Intelligence use cases, review Artificial Intelligence risk assessments and ensure alignment with safety and regulatory expectations.
                 </div>
-                <p style="margin-top: 30px; font-style: italic;">
-                    This program is a living document that will evolve as threats change, technologies advance, and our operations expand. Regular reviews and updates ensure continued effectiveness in protecting Syntra's critical assets and operations.
+            </div>
+
+            <div class="section print-break">
+                <h2 class="section-title">SECTION 9 — APPENDICES</h2>
+
+                <h3 class="subsection-title">9.1 Glossary of Technical Terms</h3>
+                <p><strong>Operational Technology:</strong> technology used to monitor or control physical industrial processes including Programmable Logic Controllers, Safety Programmable Logic Controllers, Supervisory Control and Data Acquisition and Human-Machine Interface systems.</p>
+
+                <p><strong>Information Technology:</strong> digital systems supporting business administration, document management and computing systems inside a facility.</p>
+
+                <p><strong>Programmable Logic Controller:</strong> robust industrial computer used to control machinery and processes in real time.</p>
+
+                <p><strong>Safety Programmable Logic Controller:</strong> specialised Programmable Logic Controller used exclusively for safety-critical functions designed to meet high Safety Integrity Level requirements.</p>
+
+                <p><strong>Supervisory Control and Data Acquisition:</strong> centralised interface for operators to monitor plant processes, visualise sensor data, control equipment and respond to alarms.</p>
+
+                <p><strong>Privileged Access Workstation:</strong> hardened offline workstation used exclusively for privileged administrative tasks.</p>
+
+                <p><strong>Certificate Authority:</strong> local offline authority responsible for creating and managing cryptographic certificates.</p>
+
+                <h3 class="subsection-title">9.2 Security Role and Responsibility Matrix</h3>
+                <p><strong>Identity Management:</strong> Information Technology Security primary, Operational Technology Engineering support, Safety Engineering support, Technology Director oversight, Executive Team oversight.</p>
+
+                <p><strong>Network Security:</strong> Information Technology Security primary, Operational Technology Engineering support, Safety Engineering support, Physical Security support, Technology Director oversight.</p>
+
+                <p><strong>Programmable Logic Controller Logic Security:</strong> Operational Technology Engineering primary, Safety Engineering support, Information Technology Security support, Technology Director oversight.</p>
+
+                <p><strong>Safety Logic Security:</strong> Safety Engineering primary, Operational Technology Engineering support, Information Technology Security support, Technology Director oversight.</p>
+
+                <p><strong>Incident Response:</strong> Information Technology Security primary (Information Technology events), Operational Technology Engineering primary (Operational Technology events), Safety Engineering primary (safety events), Technology Director oversight.</p>
+
+                <h3 class="subsection-title">9.3 Daily Operational Security Checklist</h3>
+                <p><strong>Information Technology:</strong> verify domain-controller health, review local Security Information and Event Management alerts, validate file-server integrity, check workstation compliance.</p>
+
+                <p><strong>Operational Technology:</strong> validate Programmable Logic Controller heartbeats, validate Safety Programmable Logic Controller channel redundancy, review Supervisory Control and Data Acquisition alarms, verify historian data capture, check industrial-switch health.</p>
+
+                <p><strong>Physical Security:</strong> confirm camera-network status, validate badge-reader logs, check intrusion-alarm sensors.</p>
+
+                <h3 class="subsection-title">9.4 Weekly Operational Security Checklist</h3>
+                <p>Review firewall Access Control Lists, validate Programmable Logic Controller logic against golden copies, inspect Human-Machine Interface panels for tampering, review Internet of Things gateway sensor readings, validate backup-job success, conduct network-anomaly scan, review environmental sensors.</p>
+
+                <h3 class="subsection-title">9.5 Monthly Operational Security Checklist</h3>
+                <p>Validate offline Certificate Authority status, rotate removable media used for backups, conduct workstation patch deployment (offline-tested), perform physical-perimeter inspection, check Safety Programmable Logic Controller interlock performance, conduct Operational Technology redundancy failover testing, conduct staff access-privilege review.</p>
+
+                <h3 class="subsection-title">9.6 Quarterly Security Audit Checklist</h3>
+                <p>Validate no unintended cross-domain connectivity, audit Programmable Logic Controller firmware versions, audit Safety Programmable Logic Controller firmware versions, validate Supervisory Control and Data Acquisition server checksums, perform historian integrity verification, validate that no device can reach the internet, review configuration-drift reports, review removable-media chain-of-custody logs, conduct red-team simulation exercises.</p>
+
+                <h3 class="subsection-title">9.7 Annual Cybersecurity Requirements</h3>
+                <p><strong>Facility-wide audit:</strong> comprehensive security review, full inventory validation, full logic integrity validation, review and renew all policies.</p>
+
+                <p><strong>Disaster-recovery drill:</strong> full restoration simulation, Programmable Logic Controller backup restoration test, Supervisory Control and Data Acquisition server recovery test, offline log recovery test.</p>
+
+                <p><strong>Executive re-certification:</strong> Tier-0 identity review, device validation, updated training for new risks.</p>
+
+                <div class="highlight-box">
+                    <strong>Continuous Improvement:</strong> This Master Cybersecurity Program represents Syntra Refining's unwavering commitment to protecting critical infrastructure through continuous vigilance, investment in advanced security technologies, and a culture of security awareness. The program ensures our operations remain resilient against evolving cyber threats while maintaining operational excellence and industrial safety.
+                </div>
+            </div>
+
+            <div class="section print-break">
+                <h2 class="section-title">PROGRAM IMPLEMENTATION SUMMARY</h2>
+                <p>This comprehensive Master Cybersecurity Program establishes Syntra Refining Corporation as a leader in critical infrastructure protection. Through the integration of Zero-Trust Architecture, offline-first operations, and rigorous safety protocols, we ensure that our refining operations remain secure, compliant, and resilient.</p>
+
+                <p>The program's success depends on continuous commitment from all stakeholders, adequate resource allocation, regular training and awareness, ongoing monitoring and improvement, and unwavering dedication to both cybersecurity and operational safety.</p>
+
+                <div class="warning-box">
+                    <strong>Living Document Notice:</strong> This program is a living document that will evolve as threats change, technologies advance, and operations expand. Regular reviews and updates ensure continued effectiveness in protecting Syntra's critical assets and operations.
+                </div>
+
+                <p style="margin-top: 30px; font-style: italic; text-align: center; font-size: 16px;">
+                    <strong>Security is not a destination—it is a continuous journey of vigilance, adaptation, and commitment to excellence.</strong>
                 </p>
             </div>
         </div>
 
         <div class="footer">
-            <div class="logo-mark" style="width: 45px; height: 45px; margin: 0 auto 25px;"></div>
-            <div style="font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 3px; margin-bottom: 10px;">
+            <div class="logo-mark" style="width: 45px; height: 45px; margin: 0 auto 20px;"></div>
+            <div style="font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 3px; margin-bottom: 8px;">
                 SYNTRA REFINING CORPORATION
             </div>
-            <div class="footer-divider"></div>
-            <div style="color: rgba(255, 255, 255, 0.8); line-height: 1.9;">
-                Master Cybersecurity Program | Version 1.0<br>
+            <div style="color: rgba(255, 255, 255, 0.8); line-height: 1.8;">
+                Master Cybersecurity Program | Version 1.0 | Ultra-Detailed Industrial Edition<br>
                 Internal Use Only - Confidential and Proprietary<br>
-                © 2026 Syntra Refining Corporation. All Rights Reserved.<br>
+                Copyright 2026 Syntra Refining Corporation. All Rights Reserved.<br>
                 <br>
                 <em>Securing America's Critical Minerals Supply Chain</em>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
