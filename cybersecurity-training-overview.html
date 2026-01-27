@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Program Overview - Syntra Refining</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --syntra-navy: #0A2342;
+            --syntra-teal: #00CED1;
+            --syntra-gold: #FFD700;
+            --light-gray: #F8FAFC;
+            --medium-gray: #64748B;
+        }
+
+        @media print {
+            body { background: white; }
+            .no-print { display: none; }
+            .page-break { page-break-before: always; }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--syntra-navy);
+            background: linear-gradient(135deg, #0A2342 0%, #1a3a5f 100%);
+            padding: 40px 20px;
+        }
+
+        .document-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--syntra-navy) 0%, #1a3a5f 100%);
+            color: white;
+            padding: 50px 50px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--syntra-teal) 0%, transparent 70%);
+            opacity: 0.15;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .logo-mark {
+            width: 50px;
+            height: 50px;
+            background: var(--syntra-gold);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-mark::after {
+            content: '';
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background: var(--syntra-navy);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        .company-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .document-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .document-subtitle {
+            font-size: 18px;
+            color: var(--syntra-teal);
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--syntra-gold);
+            color: var(--syntra-navy);
+            padding: 8px 20px;
+            font-weight: 700;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        .intro-box {
+            background: linear-gradient(135deg, rgba(0, 206, 209, 0.08) 0%, rgba(0, 206, 209, 0.12) 100%);
+            border-left: 5px solid var(--syntra-teal);
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .intro-box p {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--syntra-navy);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--syntra-gold);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--syntra-teal), #00a8aa);
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        .subsection {
+            margin-bottom: 25px;
+        }
+
+        .subsection-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--syntra-navy);
+            margin-bottom: 12px;
+            padding-left: 15px;
+            border-left: 4px solid var(--syntra-teal);
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .key-point {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 3px solid var(--syntra-teal);
+        }
+
+        .key-point-title {
+            font-weight: 700;
+            color: var(--syntra-navy);
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .key-point-text {
+            font-size: 14px;
+            color: var(--medium-gray);
+            line-height: 1.6;
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        li strong {
+            color: var(--syntra-navy);
+            font-weight: 600;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .metric {
+            background: var(--syntra-navy);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .metric-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--syntra-gold);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .compliance-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .compliance-badge {
+            background: white;
+            border: 2px solid var(--syntra-teal);
+            color: var(--syntra-navy);
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        .footer {
+            background: var(--syntra-navy);
+            color: white;
+            padding: 35px 50px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .footer-logo {
+            width: 35px;
+            height: 35px;
+            margin: 0 auto 15px;
+        }
+
+        .footer-divider {
+            width: 80px;
+            height: 3px;
+            background: var(--syntra-gold);
+            margin: 15px auto;
+        }
+
+        .button-container {
+            text-align: center;
+            padding: 25px;
+            background: var(--light-gray);
+        }
+
+        .print-button {
+            background: linear-gradient(135deg, var(--syntra-teal), #00a8aa);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 206, 209, 0.3);
+        }
+
+        .print-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 206, 209, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="document-container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo-mark"></div>
+                <div class="company-name">SYNTRA REFINING</div>
+            </div>
+            <h1 class="document-title">Cybersecurity Program Overview</h1>
+            <div class="document-subtitle">Executive Summary - Critical Infrastructure Protection</div>
+            <div class="badge">HIGH-LEVEL OVERVIEW</div>
+        </div>
+
+        <div class="button-container no-print">
+            <button class="print-button" onclick="window.print()">DOWNLOAD AS PDF</button>
+        </div>
+
+        <div class="content">
+            <div class="intro-box">
+                <p>
+                    <strong>Mission:</strong> Syntra Refining's Master Cybersecurity Program protects critical refining operations, safeguards proprietary technology, ensures regulatory compliance, and maintains stakeholder trust through comprehensive security controls and continuous monitoring.
+                </p>
+            </div>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">1</span>
+                    Program Governance
+                </h2>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <div class="key-point-title">Leadership Structure</div>
+                        <div class="key-point-text">CISO-led program with dedicated OT and IT security managers, 24/7 SOC operations</div>
+                    </div>
+                    <div class="key-point">
+                        <div class="key-point-title">Compliance Framework</div>
+                        <div class="key-point-text">Aligned with NIST CSF 2.0, IEC 62443, NERC CIP, ISO 27001, and CMMC Level 2+</div>
+                    </div>
+                    <div class="key-point">
+                        <div class="key-point-title">Board Oversight</div>
+                        <div class="key-point-text">Quarterly cyber risk reporting to executive leadership and board committees</div>
+                    </div>
+                </div>
+
+                <div class="compliance-badges">
+                    <div class="compliance-badge">NIST CSF 2.0</div>
+                    <div class="compliance-badge">IEC 62443</div>
+                    <div class="compliance-badge">NERC CIP</div>
+                    <div class="compliance-badge">ISO/IEC 27001</div>
+                    <div class="compliance-badge">CMMC Level 2+</div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">2</span>
+                    Critical Asset Protection
+                </h2>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">4-Tier Asset Classification</h3>
+                    <ul>
+                        <li><strong>Critical:</strong> SCADA, process controls, safety systems (air-gapped, continuous monitoring)</li>
+                        <li><strong>High:</strong> Proprietary refining processes, R&D data (encryption, DLP, strict access controls)</li>
+                        <li><strong>Medium:</strong> ERP, financial systems, HR databases (standard encryption, RBAC)</li>
+                        <li><strong>Standard:</strong> Email, collaboration tools, public website (basic security controls)</li>
+                    </ul>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">Network Segmentation</h3>
+                    <ul>
+                        <li>6-layer architecture from process sensors to enterprise systems</li>
+                        <li>Mandatory security inspection zones between OT and IT networks</li>
+                        <li>Deep packet inspection and protocol filtering at all boundaries</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">3</span>
+                    Security Operations
+                </h2>
+
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <span class="metric-value">&lt;15 min</span>
+                        <span class="metric-label">Critical Incident Response</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">24/7</span>
+                        <span class="metric-label">SOC Monitoring</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">&lt;1 hr</span>
+                        <span class="metric-label">Safety System Recovery</span>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">Detection & Response Capabilities</h3>
+                    <ul>
+                        <li><strong>SIEM Platform:</strong> Centralized log aggregation and threat correlation</li>
+                        <li><strong>Network Analysis:</strong> Anomaly detection and behavioral baseline monitoring</li>
+                        <li><strong>EDR Solutions:</strong> Host-based threat detection and automated response</li>
+                        <li><strong>OT Monitoring:</strong> Industrial protocol analysis and asset tracking</li>
+                        <li><strong>Threat Intelligence:</strong> Real-time APT feeds targeting critical infrastructure</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">4</span>
+                    Access Control & Identity
+                </h2>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <div class="key-point-title">Multi-Factor Authentication</div>
+                        <div class="key-point-text">Required for all remote access and privileged accounts</div>
+                    </div>
+                    <div class="key-point">
+                        <div class="key-point-title">Privileged Access Management</div>
+                        <div class="key-point-text">Just-in-time access with approval workflows and session recording</div>
+                    </div>
+                    <div class="key-point">
+                        <div class="key-point-title">Biometric Authentication</div>
+                        <div class="key-point-text">Required for critical facility access and OT system modifications</div>
+                    </div>
+                    <div class="key-point">
+                        <div class="key-point-title">Least Privilege</div>
+                        <div class="key-point-text">Default deny posture with quarterly access certification reviews</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">5</span>
+                    Training & Awareness
+                </h2>
+
+                <div class="subsection">
+                    <ul>
+                        <li><strong>All Employees:</strong> Annual security awareness fundamentals (2 hours)</li>
+                        <li><strong>OT Personnel:</strong> Semi-annual ICS security training (4 hours)</li>
+                        <li><strong>IT Staff:</strong> Quarterly advanced security operations (8 hours)</li>
+                        <li><strong>Developers:</strong> Quarterly secure coding and DevSecOps (6 hours)</li>
+                        <li><strong>Executives:</strong> Annual cyber risk and governance (3 hours)</li>
+                    </ul>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">Continuous Testing</h3>
+                    <ul>
+                        <li>Monthly phishing simulations with immediate micro-training</li>
+                        <li>Quarterly social engineering tests (phone, email, physical)</li>
+                        <li>Executive impersonation scenario testing</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">6</span>
+                    Data Protection
+                </h2>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <div class="key-point-title">Encryption Standards</div>
+                        <div class="key-point-text">AES-256 at rest, TLS 1.3 in transit for all data</div>
+                    </div>
+                    <div class="key-point">
+                        <div class="key-point-title">Backup Strategy</div>
+                        <div class="key-point-text">3-2-1 backup with quarterly full restoration tests</div>
+                    </div>
+                    <div class="key-point">
+                        <div class="key-point-title">IP Protection</div>
+                        <div class="key-point-text">Compartmentalized R&D access with DRM and watermarking</div>
+                    </div>
+                    <div class="key-point">
+                        <div class="key-point-title">Data Loss Prevention</div>
+                        <div class="key-point-text">Automated scanning and blocking of unauthorized transfers</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">7</span>
+                    Third-Party Risk
+                </h2>
+
+                <div class="subsection">
+                    <ul>
+                        <li><strong>Pre-Engagement:</strong> Security assessments, certifications review, financial stability checks</li>
+                        <li><strong>Contractual Controls:</strong> Security requirements, audit rights, incident notification, insurance</li>
+                        <li><strong>Ongoing Monitoring:</strong> Quarterly attestations, annual audits, continuous threat intelligence</li>
+                        <li><strong>Supply Chain Security:</strong> SBOM reviews, hardware integrity verification, trusted supplier programs</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">8</span>
+                    Continuous Improvement
+                </h2>
+
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <span class="metric-value">&lt;5%</span>
+                        <span class="metric-label">Phishing Click Rate Target</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">95%</span>
+                        <span class="metric-label">30-Day Patch Compliance</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">7 Days</span>
+                        <span class="metric-label">Critical Vuln Remediation</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">100%</span>
+                        <span class="metric-label">Training Completion Target</span>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">Assessment & Testing</h3>
+                    <ul>
+                        <li>Quarterly internal security audits</li>
+                        <li>Annual external penetration testing</li>
+                        <li>Semi-annual OT security assessments</li>
+                        <li>Weekly vulnerability scanning</li>
+                        <li>Annual red team exercises with APT simulations</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">9</span>
+                    Future Readiness
+                </h2>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">Technology Roadmap</h3>
+                    <ul>
+                        <li><strong>Zero Trust Architecture:</strong> Full implementation by 2027</li>
+                        <li><strong>AI-Powered Detection:</strong> Machine learning for real-time anomaly detection</li>
+                        <li><strong>Quantum-Safe Cryptography:</strong> Preparing for post-quantum threat landscape</li>
+                        <li><strong>Automated Response:</strong> SOAR platforms for rapid threat mitigation</li>
+                        <li><strong>Blockchain Integrity:</strong> Immutable audit trails for critical systems</li>
+                    </ul>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">Threat Monitoring</h3>
+                    <ul>
+                        <li>Nation-state APTs targeting critical infrastructure</li>
+                        <li>Ransomware-as-a-Service attacks on OT environments</li>
+                        <li>Supply chain compromises and insider threats</li>
+                        <li>AI-enhanced attacks (deepfakes, adaptive malware)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="intro-box" style="margin-top: 40px;">
+                <p>
+                    <strong>Program Success Factors:</strong> Executive oversight, adequate resource allocation, security-first culture, continuous threat adaptation, and industry collaboration ensure Syntra's cybersecurity program protects critical operations and national security interests.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="logo-mark footer-logo"></div>
+            <div style="font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px;">
+                SYNTRA REFINING CORPORATION
+            </div>
+            <div class="footer-divider"></div>
+            <div style="color: rgba(255, 255, 255, 0.8); line-height: 1.8;">
+                Cybersecurity Program Overview | Version 1.0<br>
+                Internal Use Only - Confidential and Proprietary<br>
+                © 2026 Syntra Refining Corporation. All Rights Reserved.<br>
+                <br>
+                <em>Securing America's Critical Minerals Supply Chain</em>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
