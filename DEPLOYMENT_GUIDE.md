@@ -1,6 +1,6 @@
 # Deployment Guide
 
-This guide will help you deploy your application outside of the Bolt environment to platforms like Vercel, Netlify, GitHub Pages, or your own server.
+This guide will help you deploy your application to platforms like Vercel, Netlify, GitHub Pages, or your own server.
 
 ## Prerequisites
 
