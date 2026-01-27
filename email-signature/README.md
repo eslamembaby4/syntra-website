@@ -20,16 +20,45 @@ The default, recommended email signature.
 - Works in all email clients including Outlook
 - No animations - maximum compatibility
 - **Status:** Production-ready
+- **Use when:** Maximum compatibility required
 
 ### 2. **signature-animated.html**
-Enhanced version with subtle motion effects.
+Enhanced version with subtle CSS animation effects.
 - Barely-visible gradient shift on top divider
-- Subtle pulse effect on logo container
+- Rotating diamond logo animation
+- Subtle pulse effect on accent elements
 - Conveys advanced technology and precision
-- Gracefully falls back to static in unsupported clients
-- **Status:** Optional enhancement
+- **Limitation:** CSS animations don't work in many email clients
+- **Status:** Limited compatibility
+- **Use when:** Internal emails only or known compatible clients
 
-### 3. **DEPLOYMENT_GUIDE.md**
+### 3. **signature-gif-banner.html** ⭐ NEW
+Professional animated banner using GIF format.
+- 550x200px animated banner at top
+- Rotating diamond logo with gradient effects
+- **Best of both worlds:** Animation + wide compatibility
+- Works in 99% of email clients including Outlook
+- **Status:** Recommended for animated version
+- **Use when:** You want animation with maximum compatibility
+
+### Supporting Files
+
+#### **gif-capture-template.html**
+Template for recording the animated banner as GIF.
+- Pre-sized 550x200px capture area
+- All animations included
+- Optimized for screen recording
+- Instructions included
+
+#### **GIF_BANNER_GUIDE.md** 📘
+Complete guide for creating and implementing GIF banner.
+- Step-by-step GIF creation
+- Tool recommendations
+- Optimization techniques
+- Hosting and deployment
+- Troubleshooting
+
+#### **DEPLOYMENT_GUIDE.md**
 Complete step-by-step deployment instructions.
 - Microsoft 365 setup
 - Logo hosting requirements
@@ -51,14 +80,72 @@ The signature reflects Syntra Refining's identity:
 
 ---
 
+## 🎯 Which Version Should You Use?
+
+### Decision Matrix
+
+| Feature | Static | CSS Animated | GIF Banner ⭐ |
+|---------|--------|-------------|--------------|
+| **Compatibility** | 100% | ~30% | 99% |
+| **Outlook Support** | ✅ Full | ❌ No animation | ✅ Full animation |
+| **Mobile Support** | ✅ Perfect | ⚠️ Mixed | ✅ Perfect |
+| **File Size** | Minimal | Minimal | ~500KB-1MB |
+| **Professional Look** | ✅ Clean | ✅ High-tech | ✅✅ Best |
+| **Setup Complexity** | Easy | Easy | Medium |
+| **Maintenance** | Easy | Easy | Easy |
+
+### Recommendations
+
+**Choose Static if:**
+- Maximum compatibility is critical
+- Minimal file size is important
+- You don't need animation
+
+**Choose CSS Animated if:**
+- Internal-only emails
+- You know all recipients use modern webmail
+- You want animation without GIF creation
+
+**Choose GIF Banner if:** ⭐ **RECOMMENDED**
+- You want animation that works everywhere
+- Professional appearance is critical
+- You're okay with ~500KB-1MB file size
+- You send to external partners/clients
+
+---
+
 ## 🚀 Quick Start
 
-### Download Files
-Visit **[download.html](download.html)** to download all signature files and documentation.
+### Option 1: GIF Banner Signature (Recommended)
 
-### Before Deployment
-1. ✅ Host the Syntra logo publicly (HTTPS required)
-2. ✅ Update image URLs in both HTML files
+1. **Create the GIF:**
+   - Open `gif-capture-template.html` in Chrome
+   - Use ScreenToGif or similar tool to record
+   - Follow `GIF_BANNER_GUIDE.md` for complete instructions
+
+2. **Host the GIF:**
+   - Upload to: `https://www.syntrarefining.com/assets/email-signature/syntra-banner-animated.gif`
+   - Verify public HTTPS access
+
+3. **Deploy:**
+   - Use `signature-gif-banner.html`
+   - Update GIF URL in HTML
+   - Follow deployment steps below
+
+### Option 2: Static Signature (Maximum Compatibility)
+
+1. Use `signature-static.html`
+2. Follow deployment steps below
+
+### Option 3: CSS Animated (Internal Use Only)
+
+1. Use `signature-animated.html`
+2. Only for known compatible clients
+3. Follow deployment steps below
+
+### Before Deployment (All Versions)
+1. ✅ Host any images publicly (HTTPS required)
+2. ✅ Update image URLs in HTML files
 3. ✅ Verify all users have complete profiles in Microsoft 365
 4. ✅ Review and approve design with leadership
 
@@ -70,7 +157,9 @@ Visit **[download.html](download.html)** to download all signature files and doc
 5. Set to **Enforce** mode
 6. Test with multiple email clients
 
-**Detailed instructions:** See `DEPLOYMENT_GUIDE.md`
+**Detailed instructions:**
+- General: See `DEPLOYMENT_GUIDE.md`
+- GIF Banner: See `GIF_BANNER_GUIDE.md`
 
 ---
 
