@@ -1,0 +1,43 @@
+# Syntra Refining Corporation
+# Robots.txt - Search Engine Crawling Rules
+
+User-agent: *
+# Allow public pages
+Allow: /
+Allow: /index.html
+Allow: /careers.html
+Allow: /contact.html
+Allow: /technology.html
+Allow: /company.html
+Allow: /commercial.html
+Allow: /supplier.html
+Allow: /investor.html
+Allow: /network.html
+Allow: /observer.html
+Allow: /privacy.html
+Allow: /terms.html
+
+# Disallow admin and test pages
+Disallow: /admin
+Disallow: /admin.html
+Disallow: /test-*.html
+Disallow: /diagnostic-*.html
+Disallow: /email-signature/
+
+# Disallow sensitive files
+Disallow: /*.env
+Disallow: /*.sql
+Disallow: /*.md
+Disallow: /supabase/
+
+# Allow CSS, JS, and images for proper indexing
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+
+# Sitemap location
+Sitemap: https://www.syntrarefining.com/sitemap.xml
+
+# Crawl-delay for aggressive bots
+User-agent: *
+Crawl-delay: 1
