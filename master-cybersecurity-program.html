@@ -23,41 +23,59 @@
 
         .doc-header {
             text-align: center;
-            padding: 60px 20px;
-            background: rgba(255, 215, 0, 0.05);
-            border: 2px solid #FFD700;
-            border-radius: 8px;
-            margin-bottom: 60px;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #0B1120 0%, #1E293B 100%);
+            border-bottom: 3px solid #FFD700;
+            margin-bottom: 0;
+        }
+
+        .logo-section {
+            margin-bottom: 24px;
+        }
+
+        .company-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFD700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
         }
 
         .doc-header h1 {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: 700;
-            color: #FFD700;
-            margin: 0 0 16px 0;
-            letter-spacing: -0.02em;
+            color: #F9FAFC;
+            margin: 0 0 20px 0;
+            letter-spacing: 0.02em;
             text-transform: uppercase;
         }
 
         .doc-header .subtitle {
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: 500;
             color: #0891B2;
-            margin: 0 0 12px 0;
+            margin: 0 0 10px 0;
         }
 
-        .doc-header .version {
-            font-size: 14px;
+        .document-meta {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            font-size: 13px;
             color: #94A3B8;
-            font-family: 'Courier New', monospace;
-            margin-top: 20px;
+            font-weight: 500;
         }
 
         .toc {
             background: rgba(8, 145, 178, 0.1);
             border-left: 4px solid #0891B2;
             padding: 30px;
-            margin-bottom: 60px;
+            margin: 60px 0;
             border-radius: 4px;
         }
 
@@ -389,10 +407,17 @@
 
     <div class="doc-container">
         <div class="doc-header">
-            <h1>Master Cybersecurity Program</h1>
-            <div class="subtitle">For Syntra Refining Corporation</div>
+            <div class="logo-section">
+                <div class="company-name">SYNTRA REFINING CORPORATION</div>
+            </div>
+            <h1>MASTER CYBERSECURITY PROGRAM</h1>
             <div class="subtitle">Zero-Trust, Offline-First, Critical-Infrastructure Security Standard</div>
-            <div class="version">Ultra-Detailed Industrial Edition</div>
+            <div class="subtitle">Ultra-Detailed Industrial Edition</div>
+            <div class="document-meta">
+                <div class="meta-item">Effective Date: January 2026</div>
+                <div class="meta-item">Document Version: 1.0</div>
+                <div class="meta-item">Classification: Confidential</div>
+            </div>
         </div>
 
         <div class="toc" id="toc">
@@ -418,7 +443,7 @@
             <div class="subsection">
                 <h3>1.1 Purpose of This Program</h3>
                 <div class="content-block">
-                    <p>The purpose of the Master Cybersecurity Program is to establish a comprehensive, enforceable and operationally safe security architecture for Syntra Refining Corporation. This document defines the principles, controls, processes and responsibilities required to protect Syntra Refining industrial facilities, information systems, operational environments and critical intellectual property.</p>
+                    <p>The purpose of the Master Cybersecurity Program is to establish a comprehensive, enforceable and operationally safe security architecture for Syntra Refining Corporation. This document defines the principles, controls, processes and responsibilities required to protect Syntra Refining industrial facility, its information systems, operational environments and critical intellectual property.</p>
                     <p>The program applies to all personnel, all contractors and third parties, all internal and external systems, all physical and digital infrastructure and all cyber-physical equipment including refining equipment, instrumentation, sensors and safety systems. The program does not rely on external connectivity for core operations and is specifically engineered for fully offline, critical-infrastructure environments.</p>
                 </div>
             </div>
@@ -426,7 +451,7 @@
             <div class="subsection">
                 <h3>1.2 The Offline Facility Security Principle</h3>
                 <div class="content-block">
-                    <p>All Syntra Refining industrial facilities are designed and operated as offline sites. No internet connectivity exists inside any production, laboratory or refining network. No outbound or inbound traffic traverses the public internet. No Virtual Private Network tunnels, cloud management channels or Software-as-a-Service dependencies exist within facility systems.</p>
+                    <p>The Syntra Refining industrial facility is designed and operated as offline sites. No internet connectivity exists inside any production, laboratory or refining network. No outbound or inbound traffic traverses the public internet. No Virtual Private Network tunnels, cloud management channels or Software-as-a-Service dependencies exist within facility systems.</p>
                     <p>All essential operations—including refining, analytics, safety systems, quality control, Supervisory Control and Data Acquisition and Programmable Logic Controller control processes—function independently from any external network. This offline model eliminates remote ransomware, external exploitation, cloud mis-configuration incidents that rely on internet-delivered payloads.</p>
                 </div>
             </div>
@@ -467,7 +492,7 @@
                     <ul>
                         <li><strong>Rejection of External Attack Vectors:</strong> Isolation from the internet and cloud systems removes remote attack surfaces</li>
                         <li><strong>Protection of Critical Data:</strong> All data—operational, scientific, financial and strategic—is retained within controlled environments</li>
-                        <li><strong>Preservation of Industrial Continuity:</strong> No outage of external services can disrupt Syntra Refining industrial facilities</li>
+                        <li><strong>Preservation of Industrial Continuity:</strong> No outage of external services can disrupt Syntra Refining industrial facility</li>
                         <li><strong>Assurance of Controlled Change:</strong> No software, firmware or configuration changes may occur without documented, approved and supervised processes</li>
                         <li><strong>Incident Prevention and Containment:</strong> Threats are detected, contained and resolved while maintaining safe plant operation</li>
                     </ul>
@@ -483,15 +508,15 @@
             <div class="subsection">
                 <h3>2.1 Principle 1 — Offline Industrial Environment</h3>
                 <div class="content-block">
-                    <p>All Syntra Refining industrial facilities operate without any public network access. There is no public Domain Name System resolution, no public Internet Protocol routing, no cloud Application Programming Interfaces, no external email services, no external messaging systems and no service requiring real-time cloud connection.</p>
-                    <p>Facilities run entirely on local servers, local authentication systems, local network routing, local storage and local Safety and Distributed Control Systems. This environment cannot be bridged to the internet without physical re-configuration and executive authorization.</p>
+                    <p>The Syntra Refining industrial facility operates without any public network access. There is no public Domain Name System resolution, no public Internet Protocol routing, no cloud Application Programming Interfaces, no external email services, no external messaging systems and no service requiring real-time cloud connection.</p>
+                    <p>The facility runs entirely on local servers, local authentication systems, local network routing, local storage and local Safety and Distributed Control Systems. This environment cannot be bridged to the internet without physical re-configuration and executive authorization.</p>
                 </div>
             </div>
 
             <div class="subsection">
                 <h3>2.2 Principle 2 — Segmented Architecture</h3>
                 <div class="content-block">
-                    <p>Facilities are divided into independent networks: Information Technology, Operational Technology, Internet of Things, Industrial Demilitarized Zone and Physical Security Network. Segmentation is enforced with hardware firewalls, Access Control Lists, physical cable separation, restricted routing tables and one-way data-transfer mechanisms.</p>
+                    <p>The facility is divided into independent networks: Information Technology, Operational Technology, Internet of Things, Industrial Demilitarized Zone and Physical Security Network. Segmentation is enforced with hardware firewalls, Access Control Lists, physical cable separation, restricted routing tables and one-way data-transfer mechanisms.</p>
                 </div>
             </div>
 
@@ -520,7 +545,7 @@
             <div class="subsection">
                 <h3>2.6 Principle 6 — Controlled Information Movement</h3>
                 <div class="content-block">
-                    <p>Because facilities are fully offline, all data movement must occur through encrypted offline media, one-way data diodes, controlled export points with dual authorization and documented transfer logs. No information may exit or enter without explicit approval.</p>
+                    <p>Because the facility is fully offline, all data movement must occur through encrypted offline media, one-way data diodes, controlled export points with dual authorization and documented transfer logs. No information may exit or enter without explicit approval.</p>
                 </div>
             </div>
 
@@ -540,7 +565,7 @@
             <div class="subsection">
                 <h3>3.1 Overview</h3>
                 <div class="content-block">
-                    <p>The Enterprise Security Architecture describes how Syntra Refining industrial facilities enforce operational safety, data integrity and cyber-resilience while remaining completely isolated from the public internet. It incorporates full offline operation, Zero-Trust controls, segmentation of every technology domain, physical and logical isolation of critical workloads, local-only authentication, compute and storage and controlled data export using encrypted offline mechanisms.</p>
+                    <p>The Enterprise Security Architecture describes how Syntra Refining industrial facility enforce operational safety, data integrity and cyber-resilience while remaining completely isolated from the public internet. It incorporates full offline operation, Zero-Trust controls, segmentation of every technology domain, physical and logical isolation of critical workloads, local-only authentication, compute and storage and controlled data export using encrypted offline mechanisms.</p>
                 </div>
             </div>
 
@@ -625,7 +650,7 @@
             <div class="subsection">
                 <h3>4.1 Overview</h3>
                 <div class="content-block">
-                    <p>Operational Security Management defines how Syntra Refining Corporation governs cyber-security and ensures disciplined, repeatable execution of all security processes across Syntra Refining industrial facilities. The purpose is to establish clear authority, defined roles and responsibilities, standardised security procedures, continuous operational readiness and coordination between Information Technology, Operational Technology and physical-security teams.</p>
+                    <p>Operational Security Management defines how Syntra Refining Corporation governs cyber-security and ensures disciplined, repeatable execution of all security processes across the Syntra Refining industrial facility. The purpose is to establish clear authority, defined roles and responsibilities, standardised security procedures, continuous operational readiness and coordination between Information Technology, Operational Technology and physical-security teams.</p>
                 </div>
             </div>
 
@@ -639,7 +664,7 @@
             <div class="subsection">
                 <h3>4.6 Change Management Framework</h3>
                 <div class="highlight-box">
-                    <p><strong>Because Syntra Refining industrial facilities operate offline and contain safety-critical systems, mismanaged changes can cause disruptions, safety failures or data corruption.</strong></p>
+                    <p><strong>Because the Syntra Refining industrial facility operates offline and contain safety-critical systems, mismanaged changes can cause disruptions, safety failures or data corruption.</strong></p>
                 </div>
                 <div class="requirement-list">
                     <h4>Every Change Must Include</h4>
@@ -666,7 +691,7 @@
             <div class="subsection">
                 <h3>5.1 Overview</h3>
                 <div class="content-block">
-                    <p>Monitoring and Incident Response ensure that Syntra Refining Corporation can detect security events, contain incidents quickly, preserve evidence, protect industrial processes and maintain safe and continuous operation. Because Syntra Refining industrial facilities operate fully offline all monitoring solutions must function without external connectivity, retain logs locally, operate autonomously and support offline analysis.</p>
+                    <p>Monitoring and Incident Response ensure that Syntra Refining Corporation can detect security events, contain incidents quickly, preserve evidence, protect industrial processes and maintain safe and continuous operation. Because the Syntra Refining industrial facility operates fully offline all monitoring solutions must function without external connectivity, retain logs locally, operate autonomously and support offline analysis.</p>
                 </div>
             </div>
 
@@ -703,7 +728,7 @@
             <div class="subsection">
                 <h3>6.1 Purpose and Scope</h3>
                 <div class="content-block">
-                    <p>This binder defines all security, safety and operational requirements for Operational Technology and Industrial Control Systems in all Syntra Refining industrial facilities. It applies to Programmable Logic Controllers, Safety Programmable Logic Controllers, Supervisory Control and Data Acquisition systems, Human-Machine Interface systems, industrial instrumentation, sensors and actuators, industrial networking equipment, historian systems, engineering workstations, alarm-management systems and batch-processing systems.</p>
+                    <p>This binder defines all security, safety and operational requirements for Operational Technology and Industrial Control Systems in all Syntra Refining industrial facility. It applies to Programmable Logic Controllers, Safety Programmable Logic Controllers, Supervisory Control and Data Acquisition systems, Human-Machine Interface systems, industrial instrumentation, sensors and actuators, industrial networking equipment, historian systems, engineering workstations, alarm-management systems and batch-processing systems.</p>
                 </div>
             </div>
 

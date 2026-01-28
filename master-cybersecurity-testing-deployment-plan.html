@@ -23,41 +23,59 @@
 
         .doc-header {
             text-align: center;
-            padding: 60px 20px;
-            background: rgba(255, 215, 0, 0.05);
-            border: 2px solid #FFD700;
-            border-radius: 8px;
-            margin-bottom: 60px;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #0B1120 0%, #1E293B 100%);
+            border-bottom: 3px solid #FFD700;
+            margin-bottom: 0;
+        }
+
+        .logo-section {
+            margin-bottom: 24px;
+        }
+
+        .company-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFD700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
         }
 
         .doc-header h1 {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: 700;
-            color: #FFD700;
-            margin: 0 0 16px 0;
-            letter-spacing: -0.02em;
+            color: #F9FAFC;
+            margin: 0 0 20px 0;
+            letter-spacing: 0.02em;
             text-transform: uppercase;
         }
 
         .doc-header .subtitle {
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: 500;
             color: #0891B2;
-            margin: 0 0 12px 0;
+            margin: 0 0 10px 0;
         }
 
-        .doc-header .version {
-            font-size: 14px;
+        .document-meta {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            font-size: 13px;
             color: #94A3B8;
-            font-family: 'Courier New', monospace;
-            margin-top: 20px;
+            font-weight: 500;
         }
 
         .toc {
             background: rgba(8, 145, 178, 0.1);
             border-left: 4px solid #0891B2;
             padding: 30px;
-            margin-bottom: 60px;
+            margin: 60px 0;
             border-radius: 4px;
         }
 
@@ -470,10 +488,17 @@
 
     <div class="doc-container">
         <div class="doc-header">
-            <h1>Testing & Deployment Plan</h1>
+            <div class="logo-section">
+                <div class="company-name">SYNTRA REFINING CORPORATION</div>
+            </div>
+            <h1>TESTING & DEPLOYMENT PLAN</h1>
             <div class="subtitle">Master Cybersecurity Program</div>
-            <div class="subtitle">Syntra Refining Corporation</div>
-            <div class="version">Implementation Framework | Version 1.0</div>
+            <div class="subtitle">Implementation Framework</div>
+            <div class="document-meta">
+                <div class="meta-item">Effective Date: January 2026</div>
+                <div class="meta-item">Document Version: 1.0</div>
+                <div class="meta-item">Classification: Confidential</div>
+            </div>
         </div>
 
         <div class="toc" id="toc">
@@ -500,7 +525,7 @@
             <div class="subsection">
                 <h3>1.1 Document Purpose</h3>
                 <div class="content-block">
-                    <p>This Testing and Deployment Plan provides a comprehensive framework for implementing the Master Cybersecurity Program across all Syntra Refining Corporation industrial facilities. The plan ensures systematic, controlled and safe deployment while maintaining operational continuity and industrial safety standards.</p>
+                    <p>This Testing and Deployment Plan provides a comprehensive framework for implementing the Master Cybersecurity Program across all Syntra Refining Corporation industrial facility. The plan ensures systematic, controlled and safe deployment while maintaining operational continuity and industrial safety standards.</p>
                 </div>
             </div>
 
@@ -557,7 +582,7 @@
                         <div class="timeline-phase">PHASE 4<br>Weeks 21-40</div>
                         <div class="timeline-content">
                             <h5>Full-Scale Rollout</h5>
-                            <p>Phased deployment to all facilities, continuous monitoring, optimization</p>
+                            <p>Phased deployment to the facility, continuous monitoring, optimization</p>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -653,7 +678,7 @@
             <div class="subsection">
                 <h3>2.6 Risk Assessment and Mitigation Planning</h3>
                 <div class="warning-box">
-                    <p><strong>Critical Risk Factors:</strong> Deployment activities in operational facilities present inherent risks to production continuity and industrial safety. All risks must be identified, assessed and mitigated before proceeding.</p>
+                    <p><strong>Critical Risk Factors:</strong> Deployment activities in the operational facility present inherent risks to production continuity and industrial safety. All risks must be identified, assessed and mitigated before proceeding.</p>
                 </div>
                 <div class="content-block">
                     <p>Document potential risks including operational disruption, safety system interference, data loss or corruption, production downtime, personnel safety concerns, vendor dependencies and regulatory compliance issues. For each identified risk, develop specific mitigation strategies, assign risk owners and establish monitoring criteria.</p>
@@ -695,7 +720,7 @@
             <div class="subsection">
                 <h3>3.1 Testing Philosophy</h3>
                 <div class="highlight-box">
-                    <p><strong>Test Early, Test Often, Test Offline:</strong> All cybersecurity controls must be thoroughly tested in isolated, air-gapped environments before any deployment to operational facilities.</p>
+                    <p><strong>Test Early, Test Often, Test Offline:</strong> All cybersecurity controls must be thoroughly tested in isolated, air-gapped environments before any deployment to the operational facility.</p>
                 </div>
             </div>
 
@@ -864,7 +889,7 @@
             <div class="subsection">
                 <h3>4.1 Phased Deployment Approach</h3>
                 <div class="content-block">
-                    <p>Syntra Refining Corporation follows a conservative, phased deployment strategy that minimizes risk and allows for lessons learned to be incorporated before proceeding to subsequent facilities.</p>
+                    <p>Syntra Refining Corporation follows a conservative, phased deployment strategy that minimizes risk and allows for lessons learned to be incorporated throughout the implementation process.</p>
                 </div>
             </div>
 
@@ -963,7 +988,7 @@
             <div class="subsection">
                 <h3>4.7 Pilot Facility Validation Period</h3>
                 <div class="success-box">
-                    <p><strong>Stabilization Requirement:</strong> The pilot facility must operate successfully for a minimum of 30 days with all cybersecurity controls active before proceeding to additional facilities.</p>
+                    <p><strong>Stabilization Requirement:</strong> The facility must operate successfully for a minimum of 30 days with all cybersecurity controls active before declaring full operational status.</p>
                 </div>
                 <div class="checklist">
                     <h4>Validation Period Monitoring</h4>
@@ -982,16 +1007,16 @@
             <div class="subsection">
                 <h3>4.8 Full-Scale Rollout Planning</h3>
                 <div class="content-block">
-                    <p>After successful pilot validation, deploy to remaining facilities in waves based on risk profile, operational criticality, facility complexity and resource availability.</p>
+                    <p>After successful pilot validation and stabilization period, the facility transitions to full production operations with all cybersecurity controls active and monitored.</p>
                 </div>
                 <div class="phase-card">
-                    <h4>Rollout Wave Strategy</h4>
+                    <h4>Post-Deployment Operations</h4>
                     <div class="checklist">
                         <ul>
-                            <li><strong>Wave 1:</strong> Lower-complexity facilities with experienced staff (2-3 facilities)</li>
-                            <li><strong>Wave 2:</strong> Medium-complexity facilities (3-4 facilities)</li>
-                            <li><strong>Wave 3:</strong> High-complexity or high-criticality facilities (2-3 facilities)</li>
-                            <li><strong>Wave 4:</strong> Specialized or unique facilities (remaining facilities)</li>
+                            <li><strong>Monitoring Period:</strong> Continuous monitoring for 90 days post-deployment</li>
+                            <li><strong>Performance Review:</strong> Quarterly assessments of all security controls</li>
+                            <li><strong>Optimization Phase:</strong> Fine-tuning of policies and procedures based on operational feedback</li>
+                            <li><strong>Documentation Updates:</strong> Maintaining current records of all security configurations</li>
                         </ul>
                     </div>
                 </div>
@@ -1655,7 +1680,7 @@
                 </div>
                 <div class="phase-card">
                     <h4>Maturity Level 3 — Defined (6-12 months)</h4>
-                    <p>Standardized procedures across facilities, continuous improvement active</p>
+                    <p>Standardized procedures across the facility, continuous improvement active</p>
                 </div>
                 <div class="phase-card">
                     <h4>Maturity Level 4 — Optimized (12+ months)</h4>
