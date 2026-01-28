@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Cybersecurity Program - Downloads | Syntra Refining Corporation</title>
+    <link rel="stylesheet" href="syntra-unified.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0B1120 0%, #1E293B 100%);
+            color: #F9FAFC;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #FFD700;
+            margin: 0 0 16px 0;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        .header .subtitle {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0891B2;
+            margin: 0 0 16px 0;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #CBD5E1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .nav-header {
+            background: rgba(11, 17, 32, 0.95);
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        .nav-header .logo-link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px;
+        }
+
+        .nav-header .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #F9FAFC;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-header .logo-mark {
+            color: #FFD700;
+        }
+
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .document-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid #0891B2;
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .document-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(8, 145, 178, 0.3);
+            border-color: #FFD700;
+        }
+
+        .document-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0891B2 0%, #06b6d4 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .document-icon svg {
+            width: 32px;
+            height: 32px;
+            color: white;
+        }
+
+        .document-card h3 {
+            font-size: 22px;
+            color: #FFD700;
+            margin: 0 0 12px 0;
+            font-weight: 700;
+        }
+
+        .document-card .doc-type {
+            font-size: 12px;
+            color: #0891B2;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .document-card p {
+            font-size: 14px;
+            color: #CBD5E1;
+            margin: 0 0 24px 0;
+            line-height: 1.6;
+        }
+
+        .document-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #0B1120;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(8, 145, 178, 0.2);
+            color: #0891B2;
+            border: 2px solid #0891B2;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(8, 145, 178, 0.3);
+            border-color: #FFD700;
+            color: #FFD700;
+        }
+
+        .btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .info-section {
+            background: rgba(8, 145, 178, 0.1);
+            border: 2px solid #0891B2;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .info-section h2 {
+            font-size: 28px;
+            color: #FFD700;
+            margin: 0 0 20px 0;
+        }
+
+        .info-section p {
+            font-size: 16px;
+            color: #CBD5E1;
+            margin: 0 0 16px 0;
+        }
+
+        .info-section ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .info-section li {
+            margin: 8px 0;
+            color: #CBD5E1;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .header .subtitle {
+                font-size: 20px;
+            }
+
+            .documents-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .document-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="index.html" class="logo-link">
+            <span class="logo-text">SYNTRA<span class="logo-mark">■</span></span>
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Master Cybersecurity Program</h1>
+            <div class="subtitle">Document Downloads</div>
+            <p>Access comprehensive cybersecurity documentation for Syntra Refining Corporation's industrial facilities. All documents are available for viewing online or download as PDF.</p>
+        </div>
+
+        <div class="documents-grid">
+            <div class="document-card">
+                <div class="document-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                <div class="doc-type">Framework Document</div>
+                <h3>Master Cybersecurity Program</h3>
+                <p>Comprehensive cybersecurity framework for offline industrial facilities. Covers all aspects of IT, OT, IoT and physical security integration.</p>
+                <div class="document-actions">
+                    <a href="master-cybersecurity-program.html" class="btn btn-secondary">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                        </svg>
+                        View
+                    </a>
+                    <button class="btn btn-primary" onclick="downloadDocument('master-cybersecurity-program.html')">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                        Download
+                    </button>
+                </div>
+            </div>
+
+            <div class="document-card">
+                <div class="document-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                    </svg>
+                </div>
+                <div class="doc-type">Implementation Plan</div>
+                <h3>Testing & Deployment Plan</h3>
+                <p>40-week phased deployment strategy with comprehensive testing procedures, validation requirements and rollback protocols for safe implementation.</p>
+                <div class="document-actions">
+                    <a href="master-cybersecurity-testing-deployment-plan.html" class="btn btn-secondary">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                        </svg>
+                        View
+                    </a>
+                    <button class="btn btn-primary" onclick="downloadDocument('master-cybersecurity-testing-deployment-plan.html')">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                        Download
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>How to Download Documents</h2>
+            <p>There are two ways to access these documents:</p>
+            <ul>
+                <li><strong>View Online:</strong> Click the "View" button to read the document in your browser with full navigation and interactive features.</li>
+                <li><strong>Download as PDF:</strong> Click the "Download" button to save a PDF version of the document to your computer. This will open your browser's print dialog where you can select "Save as PDF" as the destination.</li>
+            </ul>
+            <p><strong>Note:</strong> These documents contain confidential and proprietary information. Distribution is restricted to authorized Syntra Refining Corporation personnel only.</p>
+        </div>
+
+        <div class="info-section">
+            <h2>Document Status</h2>
+            <p>All documents are maintained as living frameworks and are subject to periodic updates based on operational feedback, emerging threats and technology evolution.</p>
+            <ul>
+                <li><strong>Master Cybersecurity Program:</strong> Version 1.0 - Comprehensive framework document</li>
+                <li><strong>Testing & Deployment Plan:</strong> Version 1.0 - Implementation framework</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function downloadDocument(filename) {
+            window.location.href = filename + '?download=1';
+
+            setTimeout(() => {
+                const downloadWindow = window.open(filename, '_blank');
+                if (downloadWindow) {
+                    downloadWindow.onload = function() {
+                        setTimeout(() => {
+                            downloadWindow.print();
+                        }, 500);
+                    };
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>

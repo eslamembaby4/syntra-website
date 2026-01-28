@@ -316,7 +316,43 @@
             color: #FFD700;
         }
 
+        .download-btn {
+            position: fixed;
+            top: 100px;
+            right: 40px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #0B1120;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .download-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
         @media (max-width: 768px) {
+            .download-btn {
+                top: auto;
+                bottom: 80px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
             .doc-header h1 {
                 font-size: 32px;
             }
@@ -345,6 +381,77 @@
                 height: 44px;
             }
         }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .nav-header,
+            .download-btn,
+            .back-to-top {
+                display: none !important;
+            }
+
+            .doc-container {
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .section-header {
+                page-break-after: avoid;
+            }
+
+            .phase-card,
+            .checklist,
+            .content-block {
+                page-break-inside: avoid;
+            }
+
+            .doc-header,
+            .toc,
+            .highlight-box,
+            .warning-box,
+            .success-box,
+            .phase-card,
+            .content-block,
+            .checklist {
+                border-color: #333 !important;
+                background: white !important;
+            }
+
+            .doc-header h1,
+            .section-header h2,
+            .subsection h3,
+            .subsection h4,
+            .toc h2 {
+                color: #000 !important;
+            }
+
+            .doc-header .subtitle,
+            .timeline-content h5 {
+                color: #333 !important;
+            }
+
+            p, li, td {
+                color: #000 !important;
+            }
+
+            .doc-header .version,
+            .timeline-phase {
+                color: #666 !important;
+            }
+
+            a {
+                color: #000 !important;
+                text-decoration: underline;
+            }
+        }
     </style>
 </head>
 <body>
@@ -353,6 +460,13 @@
             <span class="logo-text">SYNTRA<span class="logo-mark">■</span></span>
         </a>
     </div>
+
+    <button class="download-btn" id="downloadBtn">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+        </svg>
+        Download PDF
+    </button>
 
     <div class="doc-container">
         <div class="doc-header">
@@ -1725,6 +1839,23 @@
                 backToTop.style.opacity = '0';
                 backToTop.style.pointerEvents = 'none';
             }
+        });
+
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const downloadBtn = this;
+            const backToTop = document.querySelector('.back-to-top');
+
+            downloadBtn.style.display = 'none';
+            backToTop.style.display = 'none';
+
+            setTimeout(() => {
+                window.print();
+
+                setTimeout(() => {
+                    downloadBtn.style.display = 'flex';
+                    backToTop.style.display = 'flex';
+                }, 500);
+            }, 100);
         });
     </script>
 </body>
