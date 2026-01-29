@@ -9,7 +9,7 @@
    TYPOGRAPHY
    ============================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@300;500&family=JetBrains+Mono:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root {
   /* Brand Colors - Primary */
@@ -33,9 +33,9 @@
 
   /* Font Weights */
   --weight-heading: 700;
-  --weight-body-light: 300;
-  --weight-body-medium: 500;
-  --weight-mono-light: 300;
+  --weight-body-light: 400;
+  --weight-body-medium: 600;
+  --weight-mono-light: 400;
   --weight-mono-bold: 700;
 
   /* Spacing Scale */
