@@ -86,12 +86,12 @@ class SyntraContactPage {
 
     if (field.validity.valid) {
       field.classList.remove('error', 'border-red-500');
-      field.classList.add('border-green-500');
+      field.classList.add('border-cyan-500');
       if (errorElement) errorElement.remove();
       return true;
     } else {
       field.classList.add('error', 'border-red-500');
-      field.classList.remove('border-green-500');
+      field.classList.remove('border-cyan-500');
 
       if (!errorElement) {
         const error = document.createElement('p');
@@ -319,10 +319,10 @@ style.textContent = `
     }
   }
 
-  input.border-green-500,
-  select.border-green-500,
-  textarea.border-green-500 {
-    border-color: #10b981 !important;
+  input.border-cyan-500,
+  select.border-cyan-500,
+  textarea.border-cyan-500 {
+    border-color: #0891B2 !important;
   }
 
   input.error,

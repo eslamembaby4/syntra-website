@@ -42,12 +42,12 @@ export async function handleFormSubmission(formType, formData) {
 
 export function showSuccessMessage(container, referenceId, message) {
   container.innerHTML = `
-    <div class="bg-green-50 border-2 border-green-500 rounded-lg p-6 text-center">
-      <div class="text-green-600 text-5xl mb-4">✓</div>
-      <h3 class="text-2xl font-bold text-green-800 mb-2">Success!</h3>
-      <p class="text-green-700 mb-4">${message || 'Your submission has been received.'}</p>
-      <p class="text-sm text-green-600">Reference ID: <strong>${referenceId}</strong></p>
-      <button onclick="location.reload()" class="mt-4 bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">
+    <div class="bg-slate-50 border-2 border-cyan-600 rounded-lg p-6 text-center">
+      <div class="text-cyan-600 text-5xl mb-4">✓</div>
+      <h3 class="text-2xl font-bold text-slate-800 mb-2">Success!</h3>
+      <p class="text-slate-700 mb-4">${message || 'Your submission has been received.'}</p>
+      <p class="text-sm text-cyan-600">Reference ID: <strong>${referenceId}</strong></p>
+      <button onclick="location.reload()" class="mt-4 bg-cyan-600 text-white px-6 py-2 rounded hover:bg-cyan-700 transition">
         Submit Another
       </button>
     </div>

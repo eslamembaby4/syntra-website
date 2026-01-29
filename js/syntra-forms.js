@@ -392,40 +392,40 @@
         <span style="text-transform: uppercase;">ESC</span>
       </button>
 
-      <div style="margin: 0 auto 25px; width: 80px; height: 80px; background: linear-gradient(135deg, #22c55e, #10b981); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+      <div style="margin: 0 auto 25px; width: 80px; height: 80px; background: linear-gradient(135deg, #0891B2, #0e7490); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
         <svg style="width: 45px; height: 45px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
         </svg>
       </div>
 
-      <h2 style="font-size: 32px; font-weight: bold; color: #111827; margin: 0 0 15px; text-transform: uppercase; letter-spacing: 1px;">THANK YOU</h2>
+      <h2 style="font-size: 32px; font-weight: bold; color: #0F172A; margin: 0 0 15px; text-transform: uppercase; letter-spacing: 1px;">THANK YOU</h2>
 
-      <p style="font-size: 16px; color: #4b5563; margin: 0 0 30px; line-height: 1.6;">Your submission has been received successfully.</p>
+      <p style="font-size: 16px; color: #64748B; margin: 0 0 30px; line-height: 1.6;">Your submission has been received successfully.</p>
 
-      <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #22c55e; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
-        <div style="background: #16a34a; color: white; padding: 5px 15px; border-radius: 20px; font-size: 11px; font-weight: bold; text-transform: uppercase; display: inline-block; margin-bottom: 15px;">REFERENCE NUMBER</div>
+      <div style="background: linear-gradient(135deg, #F9FAFC, #CBD5E1); border: 2px solid #0891B2; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+        <div style="background: #0891B2; color: white; padding: 5px 15px; border-radius: 20px; font-size: 11px; font-weight: bold; text-transform: uppercase; display: inline-block; margin-bottom: 15px;">REFERENCE NUMBER</div>
 
-        <div style="background: white; padding: 20px; border-radius: 8px; border: 2px solid #86efac; margin-bottom: 15px;">
-          <p style="font-size: 28px; font-weight: bold; color: #166534; font-family: monospace; margin: 0; word-break: break-all;" class="ref-id-text">${referenceId}</p>
+        <div style="background: white; padding: 20px; border-radius: 8px; border: 2px solid #0891B2; margin-bottom: 15px;">
+          <p style="font-size: 28px; font-weight: bold; color: #0F172A; font-family: monospace; margin: 0; word-break: break-all;" class="ref-id-text">${referenceId}</p>
         </div>
 
-        <button class="copy-btn" style="width: 100%; background: #22c55e; color: white; border: none; padding: 15px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer;">
+        <button class="copy-btn" style="width: 100%; background: #FFD700; color: #0F172A; border: none; padding: 15px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer;">
           📋 COPY REFERENCE ID
         </button>
 
-        <p style="font-size: 12px; color: #166534; margin: 15px 0 0; font-weight: 500;">Please keep this reference for your records.</p>
+        <p style="font-size: 12px; color: #0F172A; margin: 15px 0 0; font-weight: 500;">Please keep this reference for your records.</p>
       </div>
 
-      <div style="background: #f9fafb; border-radius: 12px; padding: 20px; text-align: left; margin-bottom: 20px;">
+      <div style="background: #F9FAFC; border-radius: 12px; padding: 20px; text-align: left; margin-bottom: 20px;">
         <div style="display: flex; gap: 15px; align-items: start;">
-          <div style="flex-shrink: 0; width: 40px; height: 40px; background: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          <div style="flex-shrink: 0; width: 40px; height: 40px; background: #0891B2; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
             <svg style="width: 20px; height: 20px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
           <div style="flex: 1;">
-            <h4 style="font-size: 16px; font-weight: bold; color: #111827; margin: 0 0 10px;">What Happens Next?</h4>
-            <ul style="margin: 0; padding: 0; list-style: none; font-size: 14px; color: #4b5563; line-height: 1.8;">
+            <h4 style="font-size: 16px; font-weight: bold; color: #0F172A; margin: 0 0 10px;">What Happens Next?</h4>
+            <ul style="margin: 0; padding: 0; list-style: none; font-size: 14px; color: #64748B; line-height: 1.8;">
               <li style="margin-bottom: 8px;">• Our team will review your submission within 24-48 business hours</li>
               <li style="margin-bottom: 8px;">• You'll receive a response via email with next steps</li>
               <li>• Use your reference ID for any follow-up communications</li>
@@ -502,10 +502,10 @@
       try {
         await navigator.clipboard.writeText(referenceId);
         copyBtn.textContent = '✓ COPIED!';
-        copyBtn.style.background = '#16a34a';
+        copyBtn.style.background = '#0891B2';
         setTimeout(() => {
           copyBtn.textContent = '📋 COPY REFERENCE ID';
-          copyBtn.style.background = '#22c55e';
+          copyBtn.style.background = '#FFD700';
         }, 2000);
         console.log('[Syntra Forms] ✅ Copied:', referenceId);
       } catch (err) {
