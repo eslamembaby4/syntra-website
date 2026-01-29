@@ -96,6 +96,41 @@
             position: relative;
             min-height: 36px;
         }
+
+        /* Hook sentences animation */
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; transform: translateY(10px); }
+            10%, 90% { opacity: 1; transform: translateY(0); }
+        }
+
+        .hook-sentence {
+            animation: fadeInOut 6s ease-in-out infinite;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+        }
+
+        .hook-sentence:nth-child(2) {
+            animation-delay: 6s;
+        }
+
+        .hook-sentence:nth-child(3) {
+            animation-delay: 12s;
+        }
+
+        .hook-sentence:nth-child(4) {
+            animation-delay: 18s;
+        }
+
+        .hook-sentence:nth-child(5) {
+            animation-delay: 24s;
+        }
+
+        .hook-container {
+            position: relative;
+            min-height: 40px;
+        }
     </style>
 </head>
 <body style="margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;">
@@ -170,32 +205,8 @@
 
                                 <!-- Email -->
                                 <tr>
-                                    <td style="padding: 0 0 4px 0; font-size: 13px; color: #64748B; line-height: 1.4; font-family: 'Inter', Arial, sans-serif;">
+                                    <td style="padding: 0; font-size: 13px; color: #64748B; line-height: 1.4; font-family: 'Inter', Arial, sans-serif;">
                                         <a href="mailto:Nifemi@syntrarefining.com" style="color: #0B1120; text-decoration: none; font-weight: 500;">Nifemi@syntrarefining.com</a>
-                                    </td>
-                                </tr>
-
-                                <!-- Phone (Optional) -->
-                                <!-- Uncomment if phone number is required -->
-                                <!--
-                                <tr>
-                                    <td style="padding: 0 0 4px 0; font-size: 13px; color: #64748B; line-height: 1.4; font-family: 'Inter', Arial, sans-serif;">
-                                        <span style="color: #0B1120; font-weight: 500;">{{PHONE}}</span>
-                                    </td>
-                                </tr>
-                                -->
-
-                                <!-- Website -->
-                                <tr>
-                                    <td style="padding: 0 0 4px 0; font-size: 13px; color: #64748B; line-height: 1.4; font-family: 'Inter', Arial, sans-serif;">
-                                        <a href="https://www.syntrarefining.com" style="color: #0891B2; text-decoration: none; font-weight: 500;">syntrarefining.com</a>
-                                    </td>
-                                </tr>
-
-                                <!-- Location -->
-                                <tr>
-                                    <td style="padding: 0; font-size: 12px; color: #94A3B8; line-height: 1.4; font-family: 'Inter', Arial, sans-serif;">
-                                        Halifax, Nova Scotia, Canada
                                     </td>
                                 </tr>
                             </table>
@@ -208,6 +219,36 @@
         <!-- Bottom Spacer -->
         <tr>
             <td style="padding: 16px 0 0 0;">
+                <div style="height: 1px; width: 100%; background: #CBD5E1;"></div>
+            </td>
+        </tr>
+
+        <!-- Hook Sentences Section -->
+        <tr>
+            <td style="padding: 14px 0;">
+                <div class="hook-container">
+                    <div class="hook-sentence" style="font-size: 12px; color: #0891B2; line-height: 1.5; font-family: 'Inter', Arial, sans-serif; font-weight: 600; font-style: italic; letter-spacing: 0.01em;">
+                        "Transforming complexity into competitive advantage through intelligent refining."
+                    </div>
+                    <div class="hook-sentence" style="font-size: 12px; color: #0891B2; line-height: 1.5; font-family: 'Inter', Arial, sans-serif; font-weight: 600; font-style: italic; letter-spacing: 0.01em;">
+                        "The first feedstock-agnostic smart refinery network in North America."
+                    </div>
+                    <div class="hook-sentence" style="font-size: 12px; color: #0891B2; line-height: 1.5; font-family: 'Inter', Arial, sans-serif; font-weight: 600; font-style: italic; letter-spacing: 0.01em;">
+                        "Building the future of battery materials — one innovation at a time."
+                    </div>
+                    <div class="hook-sentence" style="font-size: 12px; color: #0891B2; line-height: 1.5; font-family: 'Inter', Arial, sans-serif; font-weight: 600; font-style: italic; letter-spacing: 0.01em;">
+                        "Securing critical mineral supply chains through distributed intelligence."
+                    </div>
+                    <div class="hook-sentence" style="font-size: 12px; color: #0891B2; line-height: 1.5; font-family: 'Inter', Arial, sans-serif; font-weight: 600; font-style: italic; letter-spacing: 0.01em;">
+                        "Where stability meets innovation — the digital twin advantage."
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <!-- Divider -->
+        <tr>
+            <td style="padding: 0 0 16px 0;">
                 <div style="height: 1px; width: 100%; background: #CBD5E1;"></div>
             </td>
         </tr>
