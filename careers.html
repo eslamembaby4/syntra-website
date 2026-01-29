@@ -26,7 +26,6 @@
               deep: '#020617',
               midnight: '#0B1120',
               accent: '#FFD700',
-              amber: '#D97706',
               tech: '#0891B2',
               muted: '#64748B',
               border: '#E2E8F0',
@@ -46,7 +45,7 @@
     .logo-container { cursor: pointer; }
     .logo-outer { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s; }
     .logo-inner { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s; }
-    .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #D97706; }
+    .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #FFD700; }
 
     .nav-link {
       position: relative;
@@ -149,7 +148,7 @@
       top: 0;
       width: 4px;
       height: 0;
-      background: linear-gradient(180deg, #FFD700, #D97706);
+      background: linear-gradient(180deg, #FFD700, #0891B2);
       transition: height 0.3s ease;
     }
 
@@ -188,7 +187,7 @@
       min-width: 32px;
       height: 32px;
       padding: 0 12px;
-      background: linear-gradient(135deg, #FFD700, #D97706);
+      background: #FFD700;
       color: #0F172A;
       font-weight: 700;
       border-radius: 16px;
@@ -281,7 +280,7 @@
         <a href="contact.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Contact</a>
       </div>
 
-      <button class="text-syntra-text p-2 hover:text-syntra-amber transition-colors md:hidden" onclick="toggleMobileMenu()" aria-label="Open menu">
+      <button class="text-syntra-text p-2 hover:text-syntra-accent transition-colors md:hidden" onclick="toggleMobileMenu()" aria-label="Open menu">
         <div class="flex flex-col gap-[6px] items-end">
           <span class="block w-8 h-[3px] bg-current rounded-full"></span>
           <span class="block w-8 h-[3px] bg-current rounded-full"></span>
@@ -304,7 +303,7 @@
         <a href="technology.html" class="text-3xl sm:text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Technology</a>
         <a href="network.html" class="text-3xl sm:text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Network</a>
         <a href="company.html" class="text-3xl sm:text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Company</a>
-        <a href="careers.html" class="text-3xl sm:text-4xl md:text-6xl font-head font-bold uppercase text-syntra-amber">Careers</a>
+        <a href="careers.html" class="text-3xl sm:text-4xl md:text-6xl font-head font-bold uppercase text-syntra-accent">Careers</a>
         <a href="contact.html" class="text-3xl sm:text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Contact</a>
       </div>
       <div class="hidden md:block border-l border-syntra-border pl-12">
@@ -360,7 +359,7 @@
   <section class="py-24 bg-syntra-base">
     <div class="container mx-auto px-6">
       <div class="max-w-3xl mb-10">
-        <span class="font-mono text-xs text-syntra-amber font-bold tracking-widest uppercase mb-2 block">Why Syntra</span>
+        <span class="font-mono text-xs text-syntra-tech font-bold tracking-widest uppercase mb-2 block">Why Syntra</span>
         <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase">Join a team building <span class="text-syntra-accent">real infrastructure</span>.</h2>
         <p class="text-slate-600 mt-4 text-base leading-relaxed">
           We operate with a <span class="text-syntra-accent font-semibold">high-trust, high-autonomy engineering culture</span>: clear ownership, strong technical documentation, and tight feedback loops between R&D, production operations, and digital control systems. You'll work alongside a <span class="text-syntra-accent font-semibold">lean, technical team</span> where every hire shapes the trajectory of North America's critical minerals supply chain.
@@ -413,7 +412,7 @@
     <div class="container mx-auto px-6">
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
         <div>
-          <span class="font-mono text-xs text-syntra-amber font-bold tracking-widest uppercase mb-2 block">Open Roles</span>
+          <span class="font-mono text-xs text-syntra-tech font-bold tracking-widest uppercase mb-2 block">Open Roles</span>
           <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase"><span class="text-syntra-accent">Open</span> positions</h2>
           <p class="text-slate-600 mt-4 text-base max-w-xl leading-relaxed">
             We're actively hiring for the roles below. If you have deep experience shipping production systems in <span class="text-syntra-accent font-semibold">process engineering, industrial controls, or technical operations</span>, we'd like to hear from you—even if the role isn't an exact match.
@@ -421,7 +420,7 @@
         </div>
         <div class="text-xs font-mono text-slate-500 max-w-xs">
           Don't see a perfect match? Send a short note and CV to
-          <a href="mailto:careers@syntrarefining.com" class="text-syntra-tech hover:text-syntra-amber transition-colors">careers@syntrarefining.com</a>.
+          <a href="mailto:careers@syntrarefining.com" class="text-syntra-tech hover:text-syntra-accent transition-colors">careers@syntrarefining.com</a>.
         </div>
       </div>
 
@@ -465,7 +464,7 @@
   <section class="py-24 bg-syntra-base">
     <div class="container mx-auto px-6">
       <div class="mb-8">
-        <span class="font-mono text-xs text-syntra-amber font-bold tracking-widest uppercase mb-2 block">Hiring Process</span>
+        <span class="font-mono text-xs text-syntra-tech font-bold tracking-widest uppercase mb-2 block">Hiring Process</span>
         <h2 class="font-head text-3xl md:text-4xl font-bold uppercase mb-2">Our <span class="text-syntra-accent">interview process</span></h2>
         <p class="text-slate-600 text-base leading-relaxed max-w-3xl">
           We prioritize <span class="text-syntra-accent font-semibold">technical depth and hands-on experience</span> over credentials alone. Our process is designed to be efficient and respectful of your time—most candidates complete the full cycle in <span class="text-syntra-accent font-semibold">2-3 weeks</span> from first conversation to offer.
@@ -487,7 +486,7 @@
           <h3 class="font-head font-bold uppercase mb-2 text-base"><span class="text-syntra-accent">Collaborative session</span></h3>
           <p class="text-slate-600 leading-relaxed">Work through a <span class="text-syntra-accent font-semibold">real technical problem</span> with our engineering team—design review, process analysis, or system architecture.</p>
         </div>
-        <div class="process-step border-t-4 border-syntra-accent pt-4 hover:border-syntra-amber transition-colors duration-300">
+        <div class="process-step border-t-4 border-syntra-accent pt-4 hover:border-syntra-tech transition-colors duration-300">
           <p class="font-mono text-[11px] uppercase text-syntra-accent mb-2 font-bold">04 • ~1 WEEK</p>
           <h3 class="font-head font-bold uppercase mb-2 text-base"><span class="text-syntra-accent">Offer & onboarding</span></h3>
           <p class="text-slate-600 leading-relaxed"><span class="text-syntra-accent font-semibold">Transparent compensation package</span> and structured onboarding plan connected to active production projects.</p>
@@ -613,9 +612,9 @@
 
           <div>
             <label for="resume" class="block text-xs sm:text-sm font-mono uppercase text-slate-600 mb-1.5 sm:mb-2">Resume/CV *</label>
-            <div class="mb-2 sm:mb-3 p-2 sm:p-3 bg-blue-50 border border-blue-200 rounded-sm">
-              <p class="text-[10px] sm:text-xs font-mono text-blue-800 mb-0.5 sm:mb-1 font-bold">FILE REQUIREMENTS:</p>
-              <ul class="text-[10px] sm:text-xs text-blue-700 space-y-0.5">
+            <div class="mb-2 sm:mb-3 p-2 sm:p-3 bg-slate-50 border border-slate-200 rounded-sm">
+              <p class="text-[10px] sm:text-xs font-mono text-syntra-text mb-0.5 sm:mb-1 font-bold">FILE REQUIREMENTS:</p>
+              <ul class="text-[10px] sm:text-xs text-slate-700 space-y-0.5">
                 <li>• <strong>Formats:</strong> PDF, DOC, DOCX</li>
                 <li>• <strong>Max size:</strong> 5 MB</li>
                 <li class="hidden sm:list-item">• <strong>Naming:</strong> FirstName_LastName_Resume.pdf</li>
