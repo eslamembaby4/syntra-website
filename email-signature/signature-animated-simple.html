@@ -64,6 +64,38 @@
             border-radius: 50%;
             pointer-events: none;
         }
+
+        /* Rotating tagline animation */
+        @keyframes rotateTagline {
+            0%, 30% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            33%, 100% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+
+        .syntra-tagline {
+            animation: rotateTagline 12s ease-in-out infinite;
+            position: absolute;
+            width: 100%;
+            left: 0;
+        }
+
+        .syntra-tagline:nth-child(2) {
+            animation-delay: 4s;
+        }
+
+        .syntra-tagline:nth-child(3) {
+            animation-delay: 8s;
+        }
+
+        .syntra-tagline-container {
+            position: relative;
+            min-height: 36px;
+        }
     </style>
 </head>
 <body style="margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;">
@@ -180,7 +212,7 @@
             </td>
         </tr>
 
-        <!-- Technology Section - POWERED BY SYNCORE™ (Simplified - No Rotating Content) -->
+        <!-- Technology Section - ROTATING TAGLINES -->
         <tr>
             <td style="padding: 16px 0 0 0;">
                 <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; background: #0B1120; border-collapse: collapse; position: relative; overflow: hidden;">
@@ -200,16 +232,40 @@
                         </td>
                     </tr>
 
-                    <!-- POWERED BY Header -->
+                    <!-- ROTATING TAGLINES -->
                     <tr>
-                        <td style="padding: 16px 20px 8px 20px; font-size: 9px; color: #FFD700; line-height: 1.2; font-family: 'Inter', Arial, sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; position: relative; z-index: 1;">
-                            POWERED BY SYNCORE™
-                        </td>
-                    </tr>
-                    <!-- Technology Description -->
-                    <tr>
-                        <td style="padding: 0 20px 16px 20px; font-size: 11px; color: #FFD700; line-height: 1.5; font-family: 'Inter', Arial, sans-serif; font-weight: 600; letter-spacing: 0.01em; position: relative; z-index: 1;">
-                            The Digital Twin Advantage
+                        <td style="padding: 16px 20px; position: relative; z-index: 1;">
+                            <div class="syntra-tagline-container">
+                                <!-- Tagline 1: SYNCORE -->
+                                <div class="syntra-tagline">
+                                    <div style="font-size: 9px; color: #FFD700; line-height: 1.2; font-family: 'Inter', Arial, sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding-bottom: 8px;">
+                                        POWERED BY SYNCORE™
+                                    </div>
+                                    <div style="font-size: 11px; color: #FFD700; line-height: 1.5; font-family: 'Inter', Arial, sans-serif; font-weight: 600; letter-spacing: 0.01em;">
+                                        The Digital Twin Advantage
+                                    </div>
+                                </div>
+
+                                <!-- Tagline 2: SYNHUB -->
+                                <div class="syntra-tagline">
+                                    <div style="font-size: 9px; color: #FFD700; line-height: 1.2; font-family: 'Inter', Arial, sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding-bottom: 8px;">
+                                        POWERED BY SYNHUB™
+                                    </div>
+                                    <div style="font-size: 11px; color: #FFD700; line-height: 1.5; font-family: 'Inter', Arial, sans-serif; font-weight: 600; letter-spacing: 0.01em;">
+                                        Real-Time Intelligence Network
+                                    </div>
+                                </div>
+
+                                <!-- Tagline 3: SYNTRA NETWORK -->
+                                <div class="syntra-tagline">
+                                    <div style="font-size: 9px; color: #FFD700; line-height: 1.2; font-family: 'Inter', Arial, sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding-bottom: 8px;">
+                                        SYNTRA NETWORK
+                                    </div>
+                                    <div style="font-size: 11px; color: #FFD700; line-height: 1.5; font-family: 'Inter', Arial, sans-serif; font-weight: 600; letter-spacing: 0.01em;">
+                                        Distributed Refining Ecosystem
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </table>
