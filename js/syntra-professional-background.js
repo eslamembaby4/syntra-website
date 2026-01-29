@@ -22,7 +22,7 @@
         particleCount: options.particleCount || 80,
         primaryColor: options.primaryColor || '#FFD700',
         secondaryColor: options.secondaryColor || '#0891B2',
-        tertiaryColor: options.tertiaryColor || '#D97706',
+        tertiaryColor: options.tertiaryColor || '#FFD700',
         showConnections: options.showConnections !== false,
         connectionDistance: options.connectionDistance || 150,
         mouseInteraction: options.mouseInteraction !== false,

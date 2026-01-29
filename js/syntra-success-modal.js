@@ -156,7 +156,7 @@ window.showThankYouModal = function(referenceId) {
               font-weight: 700;
               letter-spacing: 0.18em;
               text-transform: uppercase;
-              color: #D97706;
+              color: #FFD700;
               margin: 0 0 10px 0;
             ">Reference ID</p>
             <p style="
