@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntra Refining Corp — Government Overview Deck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0B1120;
+            color: #0F172A;
+            line-height: 1.6;
+        }
+
+        .deck-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .slide {
+            background: white;
+            min-height: 100vh;
+            padding: 80px;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 40px;
+            right: 80px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: #94A3B8;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 72px;
+            line-height: 0.95;
+            color: #0F172A;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 48px;
+            line-height: 1.1;
+            color: #0F172A;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 32px;
+            line-height: 1.2;
+            color: #0F172A;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #64748B;
+            margin-bottom: 60px;
+            font-weight: 400;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .accent {
+            color: #FFD700;
+        }
+
+        .visual-flow {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin: 40px 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .arrow {
+            color: #FFD700;
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .callout-box {
+            background: #F9FAFC;
+            border-left: 6px solid #FFD700;
+            padding: 30px;
+            margin: 40px 0;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin: 50px 0;
+        }
+
+        .icon-item {
+            text-align: center;
+        }
+
+        .icon-label {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 15px;
+            color: #0F172A;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin: 40px 0;
+        }
+
+        .challenge-opportunity {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 40px;
+            align-items: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: #F9FAFC;
+        }
+
+        .challenge-text, .opportunity-text {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .big-number {
+            font-family: 'Oswald', sans-serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: #FFD700;
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: 16px;
+            color: #64748B;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 20px;
+        }
+
+        .feature-bullet {
+            width: 12px;
+            height: 12px;
+            background: #FFD700;
+            flex-shrink: 0;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: #0891B2;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+
+        .process-step {
+            border-top: 6px solid #0F172A;
+            padding: 30px;
+            background: white;
+        }
+
+        .process-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: #FFD700;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .synhub-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 60px 0;
+            position: relative;
+        }
+
+        .flow-box {
+            background: #F9FAFC;
+            border: 3px solid #0F172A;
+            padding: 40px;
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .flow-box.center {
+            background: #FFD700;
+            border-color: #0F172A;
+            border-width: 4px;
+            margin: 0 -20px;
+            z-index: 2;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .value-card {
+            background: #F9FAFC;
+            padding: 30px;
+            border-left: 4px solid #FFD700;
+        }
+
+        .value-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .value-text {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #64748B;
+        }
+
+        @media print {
+            .slide {
+                page-break-after: always;
+                min-height: auto;
+            }
+        }
+
+        @page {
+            size: landscape;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="deck-container">
+
+    <!-- SLIDE 1: TITLE -->
+    <div class="slide">
+        <div class="slide-number">01</div>
+        <h1>SMART REFINING.<br>Building Canada's<br>Critical Mineral<br>Backbone</h1>
+        <div class="subtitle">Establishing North America's first decentralized,<br>feedstock-agnostic refining network</div>
+        <div class="footer">Halifax, Nova Scotia, Canada</div>
+    </div>
+
+    <!-- SLIDE 2: THE REFINING PARADOX -->
+    <div class="slide">
+        <div class="slide-number">02</div>
+        <div class="section-label">The Refining Paradox</div>
+        <h2>The bottleneck of the 21st century<br>isn't mining.<br>It's refining — cleanly,<br>locally, and at scale.</h2>
+
+        <div class="visual-flow">
+            <span>Mine</span>
+            <span class="arrow">→</span>
+            <span>Ship Overseas</span>
+            <span class="arrow">→</span>
+            <span>Refined</span>
+            <span class="arrow">→</span>
+            <span>Bought Back at Premium</span>
+        </div>
+
+        <div class="callout-box">
+            This is not a supply chain.<br>
+            It is a dependency loop.
+        </div>
+    </div>
+
+    <!-- SLIDE 3: THE INVISIBLE WAR -->
+    <div class="slide">
+        <div class="slide-number">03</div>
+        <div class="section-label">The Strategic Gap</div>
+        <h2>The world is in a silent<br>arms race — for ions.</h2>
+
+        <div class="icon-grid">
+            <div class="icon-item">
+                <div style="font-size: 64px;">🔋</div>
+                <div class="icon-label">EVs & Batteries</div>
+            </div>
+            <div class="icon-item">
+                <div style="font-size: 64px;">🛡️</div>
+                <div class="icon-label">Defense</div>
+            </div>
+            <div class="icon-item">
+                <div style="font-size: 64px;">✈️</div>
+                <div class="icon-label">Aerospace</div>
+            </div>
+            <div class="icon-item">
+                <div style="font-size: 64px;">🏭</div>
+                <div class="icon-label">Industry</div>
+            </div>
+        </div>
+
+        <div class="callout-box">
+            Governments fund mines and gigafactories.<br>
+            <span class="accent">The midstream is ignored.</span><br>
+            Refining is the strategic gap.
+        </div>
+    </div>
+
+    <!-- SLIDE 4: CANADA'S VULNERABILITY -->
+    <div class="slide">
+        <div class="slide-number">04</div>
+        <div class="section-label">Where Canada Is Exposed</div>
+        <h2>Canada's<br>Vulnerability</h2>
+
+        <div class="feature-list">
+            <div class="feature-item">
+                <div class="feature-bullet"></div>
+                <div><strong>Mined domestically</strong></div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-bullet"></div>
+                <div><strong>Refined overseas</strong></div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-bullet"></div>
+                <div><strong>Re-imported at a premium</strong></div>
+            </div>
+        </div>
+
+        <div class="callout-box">
+            Zero energy independence<br>without refining capacity
+        </div>
+    </div>
+
+    <!-- SLIDE 5: THE SMELTING DEAD-END -->
+    <div class="slide">
+        <div class="slide-number">05</div>
+        <div class="section-label">The Smelting Dead-End</div>
+        <h2>Traditional refining<br>is obsolete</h2>
+
+        <div class="two-column">
+            <div>
+                <h3 style="color: #DC2626;">❌ Pyrometallurgy</h3>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div style="width: 8px; height: 8px; background: #DC2626;"></div>
+                        <div>Energy-intensive furnaces</div>
+                    </div>
+                    <div class="feature-item">
+                        <div style="width: 8px; height: 8px; background: #DC2626;"></div>
+                        <div>Toxic slag and emissions</div>
+                    </div>
+                    <div class="feature-item">
+                        <div style="width: 8px; height: 8px; background: #DC2626;"></div>
+                        <div>Rigid, single-mineral processes</div>
+                    </div>
+                    <div class="feature-item">
+                        <div style="width: 8px; height: 8px; background: #DC2626;"></div>
+                        <div>1950s technology</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 style="color: #16A34A;">✓ Clean Refining</h3>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div style="width: 8px; height: 8px; background: #16A34A;"></div>
+                        <div>Low energy closed-loop</div>
+                    </div>
+                    <div class="feature-item">
+                        <div style="width: 8px; height: 8px; background: #16A34A;"></div>
+                        <div>Zero liquid discharge</div>
+                    </div>
+                    <div class="feature-item">
+                        <div style="width: 8px; height: 8px; background: #16A34A;"></div>
+                        <div>Multi-mineral capability</div>
+                    </div>
+                    <div class="feature-item">
+                        <div style="width: 8px; height: 8px; background: #16A34A;"></div>
+                        <div>2030 ESG-compliant</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout-box">
+            1950s tech ≠ 2030 ESG mandates
+        </div>
+    </div>
+
+    <!-- SLIDE 6: POLICY ALIGNMENT -->
+    <div class="slide">
+        <div class="slide-number">06</div>
+        <div class="section-label">Policy Alignment</div>
+        <h2>This is a policy-aligned<br>infrastructure play</h2>
+
+        <div class="two-column">
+            <div>
+                <h3 style="color: #DC2626;">🍁 Canada</h3>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div>Critical Mineral Strategy</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div>Domestic value chains</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div>Clean industrialization</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div>Circular economy</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div>Skilled job creation</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 style="color: #0891B2;">⚓ Nova Scotia</h3>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div>Clean tech leadership</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div>Tailings & legacy site solutions</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div>Battery recycling</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div>Environmental stewardship</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div>Regional economic development</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: MATCHING CHALLENGES -->
+    <div class="slide">
+        <div class="slide-number">07</div>
+        <div class="section-label">Today's Challenges → Tomorrow's Advantage</div>
+        <h2>Matching Challenges<br>to Opportunity</h2>
+
+        <div class="challenge-opportunity">
+            <div class="challenge-text">Import dependence</div>
+            <div class="arrow">→</div>
+            <div class="opportunity-text">Clean refining capacity</div>
+        </div>
+
+        <div class="challenge-opportunity">
+            <div class="challenge-text">Stagnant waste streams</div>
+            <div class="arrow">→</div>
+            <div class="opportunity-text">Circular recovery</div>
+        </div>
+
+        <div class="challenge-opportunity">
+            <div class="challenge-text">Data gaps</div>
+            <div class="arrow">→</div>
+            <div class="opportunity-text">R&D collaboration</div>
+        </div>
+
+        <div class="challenge-opportunity">
+            <div class="challenge-text">Slow processing innovation</div>
+            <div class="arrow">→</div>
+            <div class="opportunity-text">Domestic supply chains</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: INTRODUCING SYNTRA -->
+    <div class="slide">
+        <div class="slide-number">08</div>
+        <div class="section-label">The Solution</div>
+        <h2>Introducing Syntra:<br>Nova Scotia's<br>Economic Power Play</h2>
+
+        <div class="callout-box" style="font-size: 28px; margin: 60px 0;">
+            Syntra is a technology company refining pure-grade<br>
+            critical minerals from waste streams.
+        </div>
+
+        <div class="visual-flow">
+            <span>Waste Streams</span>
+            <span class="arrow">→</span>
+            <span style="color: #FFD700; font-weight: 700;">SYNTRA</span>
+            <span class="arrow">→</span>
+            <span>Battery-Grade Materials</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 9: WHAT MAKES SYNTRA DIFFERENT -->
+    <div class="slide">
+        <div class="slide-number">09</div>
+        <div class="section-label">Built for the Future, Not the Furnace</div>
+        <h2>What Makes<br>Syntra Different</h2>
+
+        <div class="icon-grid">
+            <div class="icon-item">
+                <div style="font-size: 48px; color: #16A34A; font-weight: 700;">✓</div>
+                <div class="icon-label">No toxic chemicals</div>
+            </div>
+            <div class="icon-item">
+                <div style="font-size: 48px; color: #16A34A; font-weight: 700;">✓</div>
+                <div class="icon-label">Zero liquid discharge</div>
+            </div>
+            <div class="icon-item">
+                <div style="font-size: 48px; color: #16A34A; font-weight: 700;">✓</div>
+                <div class="icon-label">Multi-mineral output</div>
+            </div>
+            <div class="icon-item">
+                <div style="font-size: 48px; color: #16A34A; font-weight: 700;">✓</div>
+                <div class="icon-label">Modular deployment</div>
+            </div>
+        </div>
+
+        <div class="callout-box" style="text-align: center;">
+            <span class="accent" style="font-size: 48px;">8×</span><br>
+            more capital-efficient than traditional refining
+        </div>
+    </div>
+
+    <!-- SLIDE 10: SYNCORE -->
+    <div class="slide">
+        <div class="slide-number">10</div>
+        <div class="section-label">SYNCORE™</div>
+        <h2>The Digital Brain<br>of Refining</h2>
+
+        <div class="feature-list" style="font-size: 24px; margin: 60px 0;">
+            <div class="feature-item">
+                <div class="feature-bullet"></div>
+                <div><strong>Automates complexity</strong></div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-bullet"></div>
+                <div><strong>Optimizes recovery</strong></div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-bullet"></div>
+                <div><strong>Learns and improves continuously</strong></div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-bullet"></div>
+                <div><strong>De-risks scale-up</strong></div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 60px;">
+            <div style="width: 300px; height: 300px; border: 6px solid #FFD700; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-family: 'Oswald', sans-serif; font-size: 48px; font-weight: 700;">
+                DIGITAL<br>TWIN
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 11: THE SYNHUB MODEL -->
+    <div class="slide">
+        <div class="slide-number">11</div>
+        <div class="section-label">The SYNHUB™ Model</div>
+        <h2>Decentralized.<br>Modular.<br>Scalable.</h2>
+
+        <div class="synhub-flow">
+            <div class="flow-box">
+                <h3 style="margin-bottom: 20px;">INPUTS</h3>
+                <div style="font-size: 18px; line-height: 2;">
+                    Miners → concentrates<br>
+                    Recyclers → black mass<br>
+                    OEMs → scrap
+                </div>
+            </div>
+
+            <div class="flow-box center">
+                <h3 style="margin-bottom: 20px; font-size: 42px;">SYNHUB™</h3>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;">
+                    POWERED BY SYNCORE™
+                </div>
+            </div>
+
+            <div class="flow-box">
+                <h3 style="margin-bottom: 20px;">OUTPUTS</h3>
+                <div style="font-size: 24px; font-weight: 700; font-family: 'JetBrains Mono', monospace;">
+                    Li • Ni • Co<br>
+                    Mn • Cu • Al
+                </div>
+                <div style="font-size: 14px; margin-top: 15px; color: #64748B;">
+                    → Global markets
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 12: WHY NOVA SCOTIA -->
+    <div class="slide">
+        <div class="slide-number">12</div>
+        <div class="section-label">Homegrown</div>
+        <h2>Why Nova Scotia</h2>
+        <h3 style="color: #FFD700; margin-bottom: 40px;">The Right Place to Build</h3>
+
+        <div class="value-grid">
+            <div class="value-card">
+                <div class="value-title">👷 Skilled Labour</div>
+                <div class="value-text">STEM talent pipeline and trades excellence</div>
+            </div>
+            <div class="value-card">
+                <div class="value-title">🎓 World-Class Academia</div>
+                <div class="value-text">Dalhousie University, Dr. Jeff Dahn</div>
+            </div>
+            <div class="value-card">
+                <div class="value-title">⚓ Deep-Water Port</div>
+                <div class="value-text">Strategic location for imports and exports</div>
+            </div>
+            <div class="value-card">
+                <div class="value-title">🌱 Environmental Values</div>
+                <div class="value-text">Strong commitment to sustainability</div>
+            </div>
+        </div>
+
+        <div class="callout-box" style="margin-top: 60px; text-align: center;">
+            Our technology was born here.<br>
+            <span class="accent">We want to build it here.</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 13: THE SIZE OF THE PRIZE -->
+    <div class="slide">
+        <div class="slide-number">13</div>
+        <div class="section-label">Market Velocity</div>
+        <h2>The Size of the Prize</h2>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 60px; margin: 80px 0;">
+            <div style="text-align: center;">
+                <div class="big-number">$500B</div>
+                <div class="metric-label">Global Battery Metals<br>Market (TAM)</div>
+            </div>
+            <div style="text-align: center;">
+                <div class="big-number">$52B</div>
+                <div class="metric-label">North American<br>Refining Gap (SAM)</div>
+            </div>
+            <div style="text-align: center;">
+                <div class="big-number">$500M</div>
+                <div class="metric-label">Syntra 5-Year<br>Revenue Target (SOM)</div>
+            </div>
+        </div>
+
+        <div class="callout-box" style="text-align: center; font-size: 32px;">
+            The demand shock is here.
+        </div>
+    </div>
+
+    <!-- SLIDE 14: FROM PILOT TO INDUSTRY -->
+    <div class="slide">
+        <div class="slide-number">14</div>
+        <div class="section-label">The Expansion Protocol</div>
+        <h2>From Pilot<br>to Industry</h2>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin: 60px 0;">
+            <div class="process-step">
+                <div class="process-number">Phase 1</div>
+                <h3 style="margin-bottom: 15px;">Pilot</h3>
+                <div style="font-size: 18px; color: #16A34A; font-weight: 700; margin-bottom: 10px;">✓ Completed</div>
+                <div style="font-size: 16px; color: #64748B;">Technology validated</div>
+            </div>
+
+            <div class="process-step" style="border-top-color: #FFD700;">
+                <div class="process-number">Phase 2</div>
+                <h3 style="margin-bottom: 15px;">Demonstration</h3>
+                <div style="font-size: 18px; color: #0891B2; font-weight: 700; margin-bottom: 10px;">→ Active</div>
+                <div style="font-size: 16px; color: #64748B;">1,000 TPA SYNHUB™</div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-number">Phase 3</div>
+                <h3 style="margin-bottom: 15px;">Full-Scale</h3>
+                <div style="font-size: 18px; color: #64748B; font-weight: 700; margin-bottom: 10px;">Next</div>
+                <div style="font-size: 16px; color: #64748B;">Supply network</div>
+            </div>
+        </div>
+
+        <div class="callout-box">
+            We have validated.<br>
+            <span class="accent">Now we scale.</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 15: WHY THIS MATTERS FOR CANADA -->
+    <div class="slide">
+        <div class="slide-number">15</div>
+        <div class="section-label">Public Value Creation</div>
+        <h2>Why This Matters<br>for Canada</h2>
+
+        <div class="value-grid">
+            <div class="value-card">
+                <div class="value-title">👷 Jobs</div>
+                <div class="value-text">Construction, STEM, skilled trades, plant operations</div>
+            </div>
+            <div class="value-card">
+                <div class="value-title">🌱 Cleaner Processing</div>
+                <div class="value-text">Zero liquid discharge, no toxic chemicals</div>
+            </div>
+            <div class="value-card">
+                <div class="value-title">🛡️ Sovereign Supply Chains</div>
+                <div class="value-text">Reduce import dependence, build domestic capacity</div>
+            </div>
+            <div class="value-card">
+                <div class="value-title">🌍 Export Capacity</div>
+                <div class="value-text">Battery-grade materials to global markets</div>
+            </div>
+            <div class="value-card">
+                <div class="value-title">♻️ Circular Economy</div>
+                <div class="value-text">Tailings recovery, battery recycling, waste valorization</div>
+            </div>
+            <div class="value-card">
+                <div class="value-title">🔬 Innovation Hub</div>
+                <div class="value-text">R&D collaboration, IP development, technology leadership</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 16: WHAT WE NEED -->
+    <div class="slide">
+        <div class="slide-number">16</div>
+        <div class="section-label">Capital Strategy</div>
+        <h2>What We Need</h2>
+        <h3 style="color: #FFD700; margin-bottom: 40px;">Partnering to Build National Infrastructure</h3>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin: 60px 0;">
+            <div>
+                <div class="big-number" style="font-size: 48px;">$8M</div>
+                <div class="metric-label" style="font-size: 18px; margin-bottom: 30px;">Grant Support (2026–2027)</div>
+
+                <div class="feature-list" style="margin-top: 30px;">
+                    <div class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div>Capital investment</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div>Strategic collaboration</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-bullet"></div>
+                        <div>R&D alignment</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center;">
+                <div class="callout-box" style="margin: 0;">
+                    We are seeking partners to establish Nova Scotia as a leader in clean critical-mineral refining.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 17: CLOSING -->
+    <div class="slide" style="justify-content: center; text-align: center;">
+        <div class="slide-number">17</div>
+
+        <h1 style="font-size: 96px; margin-bottom: 60px;">
+            Are You Ready<br>to <span class="accent">Build</span>?
+        </h1>
+
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 20px; color: #64748B; letter-spacing: 0.05em; margin-top: 80px;">
+            SYNTRA REFINING CORP<br>
+            HALIFAX, NOVA SCOTIA<br><br>
+            <span style="color: #0891B2; font-weight: 700;">SCHEDULE A BRIEFING</span>
+        </div>
+
+        <div class="footer" style="left: 50%; transform: translateX(-50%);">nifemi@syntrarefining.com • syntrarefining.com</div>
+    </div>
+
+</div>
+
+<script>
+    // Enable keyboard navigation for presentations
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            window.scrollBy(0, window.innerHeight);
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            window.scrollBy(0, -window.innerHeight);
+        }
+    });
+
+    // Print functionality
+    if (window.location.search.includes('print')) {
+        window.print();
+    }
+</script>
+
+</body>
+</html>
