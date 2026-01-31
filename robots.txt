@@ -10,12 +10,16 @@ Allow: /contact.html
 Allow: /technology.html
 Allow: /company.html
 Allow: /commercial.html
-Allow: /supplier.html
-Allow: /investor.html
 Allow: /network.html
-Allow: /observer.html
 Allow: /privacy.html
 Allow: /terms.html
+
+# Disallow sensitive pages (government, investor, observer, supplier portals)
+Disallow: /government-deck.html
+Disallow: /deck-download.html
+Disallow: /investor.html
+Disallow: /observer.html
+Disallow: /supplier.html
 
 # Disallow admin and test pages
 Disallow: /admin
