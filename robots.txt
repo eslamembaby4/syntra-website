@@ -20,6 +20,7 @@ Disallow: /deck-download.html
 Disallow: /cybersecurity-training*.html
 Disallow: /m365-security-management.html
 Disallow: /master-cybersecurity*.html
+Disallow: /secure-vm-environment.html
 Disallow: /investor.html
 Disallow: /observer.html
 Disallow: /supplier.html
