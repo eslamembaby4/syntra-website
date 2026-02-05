@@ -4,16 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canada Critical Minerals Map - SYNTRA</title>
-
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Brand CSS -->
-    <link rel="stylesheet" href="./css/syntra-brand-theme.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -25,58 +17,36 @@
             font-family: 'Inter', sans-serif;
             background: #0a1628;
             color: #e2e8f0;
+            overflow-x: hidden;
         }
 
         .header {
             background: linear-gradient(135deg, #0a1628 0%, #1e293b 100%);
             padding: 2rem;
-            border-bottom: 1px solid #FFD700;
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
+            border-bottom: 2px solid #FFD700;
         }
 
         h1 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #fff;
             margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 0.875rem;
+            color: #FFD700;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .subtitle {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            color: #FFD700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-
         .stats {
-            max-width: 1400px;
-            margin: 0 auto 2rem auto;
-            padding: 0 2rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
-        }
-
-        .map-container {
+            padding: 2rem;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem 2rem 2rem;
-        }
-
-        #map {
-            height: 80vh;
-            min-height: 600px;
-            border-radius: 8px;
-            border: 2px solid #334155;
         }
 
         .stat-card {
@@ -88,71 +58,91 @@
         }
 
         .stat-value {
-            font-family: 'Oswald', sans-serif;
             font-size: 2.5rem;
             font-weight: 700;
             color: #FFD700;
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
+            font-size: 0.875rem;
             color: #94a3b8;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 0.5rem;
+        }
+
+        .map-wrapper {
+            padding: 0 2rem 2rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        #map {
+            width: 100%;
+            height: 700px;
+            border-radius: 8px;
+            border: 2px solid #334155;
+            background: #1e293b;
+            position: relative;
         }
 
         .legend {
-            background: #1e293b;
-            border: 1px solid #334155;
+            position: absolute;
+            bottom: 30px;
+            right: 10px;
+            background: rgba(30, 41, 59, 0.95);
             padding: 1rem;
             border-radius: 8px;
-            margin-top: 1rem;
+            border: 1px solid #FFD700;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
         }
 
         .legend-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
+            font-weight: 700;
             color: #FFD700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             margin-bottom: 0.75rem;
+            font-size: 0.875rem;
         }
 
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
             margin-bottom: 0.5rem;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
         }
 
         .legend-icon {
             width: 16px;
             height: 16px;
             border-radius: 50%;
-            border: 2px solid #fff;
+            margin-right: 0.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         .loading {
-            text-align: center;
-            padding: 2rem;
-            font-family: 'JetBrains Mono', monospace;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1e293b;
+            padding: 2rem 3rem;
+            border-radius: 8px;
+            border: 2px solid #FFD700;
+            font-size: 1.25rem;
             color: #FFD700;
+            z-index: 10000;
         }
 
-        /* Custom Leaflet Popup Styling */
+        .error {
+            background: #7f1d1d;
+            color: #fecaca;
+            border-color: #dc2626;
+        }
+
         .leaflet-popup-content-wrapper {
             background: #1e293b;
             color: #e2e8f0;
             border: 1px solid #FFD700;
-            border-radius: 8px;
-        }
-
-        .leaflet-popup-content {
-            margin: 1rem;
-            font-family: 'Inter', sans-serif;
         }
 
         .leaflet-popup-tip {
@@ -160,50 +150,44 @@
         }
 
         .popup-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-weight: 700;
             color: #FFD700;
-            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .popup-detail {
-            margin: 0.5rem 0;
+            margin-bottom: 0.5rem;
             font-size: 0.875rem;
         }
 
         .popup-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
+            font-weight: 600;
             color: #94a3b8;
-            text-transform: uppercase;
         }
 
         .popup-value {
             color: #e2e8f0;
-            font-weight: 500;
+            text-transform: capitalize;
         }
 
         .mineral-tag {
             display: inline-block;
-            background: #334155;
-            color: #FFD700;
+            background: #0ea5e9;
+            color: white;
             padding: 0.25rem 0.5rem;
             border-radius: 4px;
             font-size: 0.75rem;
-            margin: 0.25rem 0.25rem 0.25rem 0;
-            font-family: 'JetBrains Mono', monospace;
+            margin-right: 0.25rem;
+            margin-top: 0.25rem;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="header-content">
-            <div class="subtitle">Network Intelligence</div>
-            <h1>Canada Critical Minerals Map</h1>
-        </div>
+        <h1>Canada Critical Minerals Map</h1>
+        <div class="subtitle">Real-time Mining Operations & Projects</div>
     </div>
-
 
     <div class="stats">
         <div class="stat-card">
@@ -212,7 +196,7 @@
         </div>
         <div class="stat-card">
             <div class="stat-value" id="totalMines">0</div>
-            <div class="stat-label">Active Mines</div>
+            <div class="stat-label">Operational Mines</div>
         </div>
         <div class="stat-card">
             <div class="stat-value" id="totalProcessing">0</div>
@@ -224,60 +208,60 @@
         </div>
     </div>
 
-    <div class="map-container">
-        <div id="map"></div>
-
-        <div class="legend">
-            <div class="legend-title">Legend</div>
-            <div class="legend-item">
-                <div class="legend-icon" style="background: #10b981;"></div>
-                <span>Operational Mine</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-icon" style="background: #3b82f6;"></div>
-                <span>Processing Facility</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-icon" style="background: #f59e0b;"></div>
-                <span>Under Development</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-icon" style="background: #8b5cf6;"></div>
-                <span>Advanced Project</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-icon" style="background: #6b7280;"></div>
-                <span>Closed/Inactive</span>
+    <div class="map-wrapper">
+        <div id="map">
+            <div class="legend">
+                <div class="legend-title">Legend</div>
+                <div class="legend-item">
+                    <div class="legend-icon" style="background: #10b981;"></div>
+                    <span>Operational Mine</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon" style="background: #3b82f6;"></div>
+                    <span>Processing Facility</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon" style="background: #f59e0b;"></div>
+                    <span>Under Development</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon" style="background: #8b5cf6;"></div>
+                    <span>Advanced Project</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon" style="background: #6b7280;"></div>
+                    <span>Closed/Inactive</span>
+                </div>
             </div>
         </div>
     </div>
 
     <div id="loading" class="loading">Loading mining locations...</div>
 
-    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <!-- Supabase Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Initialize Supabase
+        console.log('Script starting...');
+
         const SUPABASE_URL = 'https://woailjjdiamgvahcxnrj.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndvYWlsampkaWFtZ3ZhaGN4bnJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxOTQxODAsImV4cCI6MjA4Mjc3MDE4MH0.M7F-J8Ael6RwEuHy9XmJUYNXLhaVSo7ra_YWZGjeF9Y';
+
+        console.log('Initializing Supabase...');
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        console.log('Supabase initialized:', supabase);
 
-        // Initialize map
-        const map = L.map('map').setView([56.1304, -106.3468], 4); // Centered on Canada
+        console.log('Initializing map...');
+        const map = L.map('map').setView([56.1304, -106.3468], 4);
+        console.log('Map initialized:', map);
 
-        // Add tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors',
             maxZoom: 18
         }).addTo(map);
+        console.log('Tile layer added');
 
-        let allLocations = [];
         let markers = L.layerGroup().addTo(map);
 
-        // Get marker color based on type and status
         function getMarkerColor(location) {
             if (location.status === 'closed') return '#6b7280';
             if (location.status === 'under_development') return '#f59e0b';
@@ -287,7 +271,6 @@
             return '#FFD700';
         }
 
-        // Create popup content
         function createPopupContent(location) {
             const mineralsHtml = location.minerals && location.minerals.length > 0
                 ? location.minerals.map(m => `<span class="mineral-tag">${m}</span>`).join('')
@@ -296,45 +279,42 @@
             return `
                 <div class="popup-title">${location.name}</div>
                 <div class="popup-detail">
-                    <span class="popup-label">Type:</span>
-                    <span class="popup-value">${location.type.replace(/_/g, ' ').toUpperCase()}</span>
+                    <span class="popup-label">Type: </span>
+                    <span class="popup-value">${location.type.replace(/_/g, ' ')}</span>
                 </div>
                 <div class="popup-detail">
-                    <span class="popup-label">Status:</span>
-                    <span class="popup-value">${location.status.replace(/_/g, ' ').toUpperCase()}</span>
+                    <span class="popup-label">Status: </span>
+                    <span class="popup-value">${location.status.replace(/_/g, ' ')}</span>
                 </div>
                 <div class="popup-detail">
-                    <span class="popup-label">Province:</span>
+                    <span class="popup-label">Province: </span>
                     <span class="popup-value">${location.province}</span>
                 </div>
-                ${location.operator ? `
                 <div class="popup-detail">
-                    <span class="popup-label">Operator:</span>
-                    <span class="popup-value">${location.operator}</span>
-                </div>
-                ` : ''}
-                <div class="popup-detail">
-                    <span class="popup-label">Critical Minerals:</span><br>
+                    <span class="popup-label">Minerals: </span>
                     ${mineralsHtml}
                 </div>
-                ${location.description ? `
-                <div class="popup-detail" style="margin-top: 0.75rem;">
-                    <span class="popup-value">${location.description}</span>
-                </div>
-                ` : ''}
             `;
         }
 
-        // Add markers to map
         function displayLocations(locations) {
+            console.log('Displaying locations:', locations.length);
             markers.clearLayers();
 
             locations.forEach(location => {
-                const color = getMarkerColor(location);
+                const lat = parseFloat(location.latitude);
+                const lng = parseFloat(location.longitude);
 
-                const marker = L.circleMarker([location.latitude, location.longitude], {
+                if (isNaN(lat) || isNaN(lng)) {
+                    console.warn('Invalid coordinates for:', location.name);
+                    return;
+                }
+
+                console.log(`Adding marker for ${location.name} at [${lat}, ${lng}]`);
+
+                const marker = L.circleMarker([lat, lng], {
                     radius: 8,
-                    fillColor: color,
+                    fillColor: getMarkerColor(location),
                     color: '#fff',
                     weight: 2,
                     opacity: 1,
@@ -347,32 +327,10 @@
 
                 markers.addLayer(marker);
             });
+
+            console.log('All markers added');
         }
 
-        // Load locations from database
-        async function loadLocations() {
-            try {
-                const { data, error } = await supabase
-                    .from('mining_locations')
-                    .select('*')
-                    .order('name');
-
-                if (error) throw error;
-
-                allLocations = data || [];
-                displayLocations(allLocations);
-                updateStats(allLocations);
-
-                document.getElementById('loading').style.display = 'none';
-
-                console.log(`Loaded ${allLocations.length} mining locations`);
-            } catch (error) {
-                console.error('Error loading locations:', error);
-                document.getElementById('loading').textContent = 'Error loading mining locations. Please refresh the page.';
-            }
-        }
-
-        // Update statistics
         function updateStats(locations) {
             document.getElementById('totalLocations').textContent = locations.length;
             document.getElementById('totalMines').textContent = locations.filter(l => l.type === 'mine' && l.status === 'operational').length;
@@ -380,7 +338,45 @@
             document.getElementById('totalProjects').textContent = locations.filter(l => l.type === 'advanced_project').length;
         }
 
-        // Load data on page load
+        async function loadLocations() {
+            console.log('Loading locations from database...');
+            const loadingDiv = document.getElementById('loading');
+
+            try {
+                const { data, error } = await supabase
+                    .from('mining_locations')
+                    .select('*')
+                    .order('name');
+
+                console.log('Query result:', { data, error });
+
+                if (error) {
+                    console.error('Supabase error:', error);
+                    throw error;
+                }
+
+                if (!data || data.length === 0) {
+                    console.warn('No data returned from database');
+                    loadingDiv.textContent = 'No mining locations found in database';
+                    loadingDiv.classList.add('error');
+                    return;
+                }
+
+                console.log(`Successfully loaded ${data.length} locations`);
+                displayLocations(data);
+                updateStats(data);
+
+                loadingDiv.style.display = 'none';
+                console.log('Map ready!');
+
+            } catch (error) {
+                console.error('Error loading locations:', error);
+                loadingDiv.textContent = `Error: ${error.message}`;
+                loadingDiv.classList.add('error');
+            }
+        }
+
+        console.log('Starting data load...');
         loadLocations();
     </script>
 </body>
