@@ -199,6 +199,9 @@
                     <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3.5" orient="auto">
                         <polygon points="0 0, 10 3.5, 0 7" class="arrow-head" />
                     </marker>
+                    <marker id="arrowhead-mid" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                        <polygon points="0 0, 8 3, 0 6" class="arrow-head" />
+                    </marker>
                 </defs>
 
                 <!-- Linear Flow: Mining -> Processing -> Refining -->
@@ -207,29 +210,41 @@
                 <path d="M 280 500 L 450 500"
                       class="arrow-path animated-path"
                       style="animation-delay: 0.1s;"
+                      marker-start="url(#arrowhead-mid)"
+                      marker-mid="url(#arrowhead-mid)"
                       marker-end="url(#arrowhead)" />
 
                 <!-- Processing to Refining -->
                 <path d="M 570 500 L 720 500"
                       class="arrow-path animated-path"
                       style="animation-delay: 0.3s;"
+                      marker-start="url(#arrowhead-mid)"
+                      marker-mid="url(#arrowhead-mid)"
                       marker-end="url(#arrowhead)" />
 
                 <!-- Scrap Branch -->
                 <!-- Vertical line up from between Processing/Refining -->
-                <path d="M 695 500 L 695 200"
+                <path d="M 695 500 L 695 350 L 695 200"
                       class="arrow-path animated-path"
-                      style="animation-delay: 0.5s;" />
+                      style="animation-delay: 0.5s;"
+                      marker-start="url(#arrowhead-mid)"
+                      marker-mid="url(#arrowhead-mid)"
+                      marker-end="url(#arrowhead-mid)" />
 
                 <!-- Horizontal line to Dual Use -->
-                <path d="M 695 200 L 1300 200"
+                <path d="M 695 200 L 950 200 L 1300 200"
                       class="arrow-path animated-path"
-                      style="animation-delay: 0.7s;" />
+                      style="animation-delay: 0.7s;"
+                      marker-start="url(#arrowhead-mid)"
+                      marker-mid="url(#arrowhead-mid)"
+                      marker-end="url(#arrowhead-mid)" />
 
                 <!-- Small arrow down to Dual Use -->
                 <path d="M 1300 200 L 1300 250"
                       class="arrow-path animated-path"
                       style="animation-delay: 0.9s;"
+                      marker-start="url(#arrowhead-mid)"
+                      marker-mid="url(#arrowhead-mid)"
                       marker-end="url(#arrowhead)" />
 
                 <!-- Circular Loop -->
@@ -238,30 +253,40 @@
                 <path d="M 880 490 Q 1000 380, 1230 220"
                       class="arrow-path animated-path"
                       style="animation-delay: 1.1s;"
+                      marker-start="url(#arrowhead-mid)"
+                      marker-mid="url(#arrowhead-mid)"
                       marker-end="url(#arrowhead)" />
 
                 <!-- Dual Use to End Users (curved right) -->
                 <path d="M 1380 210 Q 1500 250, 1540 450"
                       class="arrow-path animated-path"
                       style="animation-delay: 1.3s;"
+                      marker-start="url(#arrowhead-mid)"
+                      marker-mid="url(#arrowhead-mid)"
                       marker-end="url(#arrowhead)" />
 
                 <!-- End Users to End of Life (curved down) -->
                 <path d="M 1600 530 Q 1620 650, 1540 710"
                       class="arrow-path animated-path"
                       style="animation-delay: 1.5s;"
+                      marker-start="url(#arrowhead-mid)"
+                      marker-mid="url(#arrowhead-mid)"
                       marker-end="url(#arrowhead)" />
 
                 <!-- End of Life to Recycle (curved left and down) -->
                 <path d="M 1460 725 Q 1350 790, 1300 750"
                       class="arrow-path animated-path"
                       style="animation-delay: 1.7s;"
+                      marker-start="url(#arrowhead-mid)"
+                      marker-mid="url(#arrowhead-mid)"
                       marker-end="url(#arrowhead)" />
 
                 <!-- Recycle back to Refining (large curve left and up, closing the loop) -->
                 <path d="M 1220 800 Q 900 880, 800 530"
                       class="arrow-path animated-path"
                       style="animation-delay: 1.9s;"
+                      marker-start="url(#arrowhead-mid)"
+                      marker-mid="url(#arrowhead-mid)"
                       marker-end="url(#arrowhead)" />
             </svg>
 
