@@ -8,19 +8,14 @@ An interactive map displaying Canadian critical minerals mines, processing facil
 
 ### Interactive Map (`critical-minerals-map.html`)
 - **Leaflet.js** powered interactive map centered on Canada
+- **All locations displayed** - comprehensive view of all mines, facilities, and projects
 - **Color-coded markers** indicating type and status:
   - 🟢 Green: Operational Mines
   - 🔵 Blue: Processing Facilities
   - 🟠 Orange: Under Development
   - 🟣 Purple: Advanced Projects
   - ⚫ Gray: Closed/Inactive
-
-### Advanced Filtering
-- Filter by **Type**: Mines, Processing Facilities, Advanced Projects
-- Filter by **Province/Territory**: All 13 provinces and territories
-- Filter by **Mineral**: Lithium, Cobalt, Nickel, Copper, Rare Earth Elements, etc.
-- Filter by **Status**: Operational, Under Development, Planned, Closed
-- **Text Search**: Search by location name or operator
+- **Interactive popups** with detailed information on each location
 
 ### Real-time Statistics
 - Total locations count
@@ -101,22 +96,10 @@ If you download the official shapefile from Natural Resources Canada:
 
 ### View the Map
 1. Open `critical-minerals-map.html` in a web browser
-2. The map loads all mining locations from the database
-3. Click markers to view detailed information
-4. Use filters to narrow down locations
-
-### Apply Filters
-```
-Type: Mine → Province: Ontario → Mineral: Nickel → Status: Operational
-```
-This shows all operational nickel mines in Ontario.
-
-### Search
-Type company names or mine names in the search box:
-```
-Search: "Vale" → Shows all Vale-operated locations
-Search: "Sudbury" → Shows Sudbury Basin mines
-```
+2. The map automatically loads and displays all mining locations from the database
+3. Click on any marker to view detailed information about that location
+4. Pan and zoom to explore different regions across Canada
+5. View the statistics dashboard at the top for an overview of all locations
 
 ## Database Schema
 
@@ -147,14 +130,15 @@ mining_locations (
 ## Future Enhancements
 
 Potential additions to the system:
-1. **Heat maps** showing mineral concentration by region
-2. **Production statistics** integration
-3. **Export functionality** (CSV, GeoJSON, KML)
-4. **Routing analysis** for supply chain optimization
-5. **Real-time status updates** from operators
-6. **Mobile responsive design** improvements
-7. **Clustering** for better visualization at low zoom levels
-8. **Time series data** showing mine openings/closures over time
+1. **Filtering and search** - Add controls to filter by type, province, mineral, or status
+2. **Heat maps** showing mineral concentration by region
+3. **Production statistics** integration
+4. **Export functionality** (CSV, GeoJSON, KML)
+5. **Routing analysis** for supply chain optimization
+6. **Real-time status updates** from operators
+7. **Mobile responsive design** improvements
+8. **Clustering** for better visualization at low zoom levels
+9. **Time series data** showing mine openings/closures over time
 
 ## Technology Stack
 

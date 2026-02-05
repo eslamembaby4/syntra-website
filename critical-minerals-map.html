@@ -56,63 +56,14 @@
             letter-spacing: 2px;
         }
 
-        .controls {
+
+        .stats {
             max-width: 1400px;
-            margin: 1.5rem auto;
+            margin: 0 auto 2rem auto;
             padding: 0 2rem;
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
-            align-items: center;
-        }
-
-        .filter-group {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .filter-group label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            color: #FFD700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        select, input {
-            background: #1e293b;
-            border: 1px solid #334155;
-            color: #e2e8f0;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.875rem;
-        }
-
-        select:focus, input:focus {
-            outline: none;
-            border-color: #FFD700;
-        }
-
-        button {
-            background: #FFD700;
-            color: #0a1628;
-            border: none;
-            padding: 0.5rem 1.5rem;
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.875rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
-
-        button:hover {
-            background: #ffd000;
-            transform: translateY(-1px);
         }
 
         .map-container {
@@ -122,18 +73,10 @@
         }
 
         #map {
-            height: 700px;
+            height: 80vh;
+            min-height: 600px;
             border-radius: 8px;
             border: 2px solid #334155;
-        }
-
-        .stats {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
         }
 
         .stat-card {
@@ -261,49 +204,6 @@
         </div>
     </div>
 
-    <div class="controls">
-        <div class="filter-group">
-            <label>Type:</label>
-            <select id="typeFilter">
-                <option value="all">All Types</option>
-                <option value="mine">Mines</option>
-                <option value="processing_facility">Processing Facilities</option>
-                <option value="advanced_project">Advanced Projects</option>
-            </select>
-        </div>
-
-        <div class="filter-group">
-            <label>Province:</label>
-            <select id="provinceFilter">
-                <option value="all">All Provinces</option>
-            </select>
-        </div>
-
-        <div class="filter-group">
-            <label>Mineral:</label>
-            <select id="mineralFilter">
-                <option value="all">All Minerals</option>
-            </select>
-        </div>
-
-        <div class="filter-group">
-            <label>Status:</label>
-            <select id="statusFilter">
-                <option value="all">All Status</option>
-                <option value="operational">Operational</option>
-                <option value="under_development">Under Development</option>
-                <option value="planned">Planned</option>
-                <option value="closed">Closed</option>
-            </select>
-        </div>
-
-        <div class="filter-group">
-            <input type="text" id="searchInput" placeholder="Search by name or operator..." style="width: 250px;">
-        </div>
-
-        <button onclick="applyFilters()">Apply Filters</button>
-        <button onclick="resetFilters()">Reset</button>
-    </div>
 
     <div class="stats">
         <div class="stat-card">
@@ -463,7 +363,6 @@
                 allLocations = data || [];
                 displayLocations(allLocations);
                 updateStats(allLocations);
-                populateFilters(allLocations);
 
                 document.getElementById('loading').style.display = 'none';
 
@@ -481,78 +380,6 @@
             document.getElementById('totalProcessing').textContent = locations.filter(l => l.type === 'processing_facility').length;
             document.getElementById('totalProjects').textContent = locations.filter(l => l.type === 'advanced_project').length;
         }
-
-        // Populate filter dropdowns
-        function populateFilters(locations) {
-            // Provinces
-            const provinces = [...new Set(locations.map(l => l.province))].sort();
-            const provinceFilter = document.getElementById('provinceFilter');
-            provinces.forEach(province => {
-                const option = document.createElement('option');
-                option.value = province;
-                option.textContent = province;
-                provinceFilter.appendChild(option);
-            });
-
-            // Minerals
-            const minerals = [...new Set(locations.flatMap(l => l.minerals || []))].sort();
-            const mineralFilter = document.getElementById('mineralFilter');
-            minerals.forEach(mineral => {
-                const option = document.createElement('option');
-                option.value = mineral;
-                option.textContent = mineral;
-                mineralFilter.appendChild(option);
-            });
-        }
-
-        // Apply filters
-        window.applyFilters = function() {
-            const typeFilter = document.getElementById('typeFilter').value;
-            const provinceFilter = document.getElementById('provinceFilter').value;
-            const mineralFilter = document.getElementById('mineralFilter').value;
-            const statusFilter = document.getElementById('statusFilter').value;
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-
-            let filtered = allLocations;
-
-            if (typeFilter !== 'all') {
-                filtered = filtered.filter(l => l.type === typeFilter);
-            }
-
-            if (provinceFilter !== 'all') {
-                filtered = filtered.filter(l => l.province === provinceFilter);
-            }
-
-            if (mineralFilter !== 'all') {
-                filtered = filtered.filter(l => l.minerals && l.minerals.includes(mineralFilter));
-            }
-
-            if (statusFilter !== 'all') {
-                filtered = filtered.filter(l => l.status === statusFilter);
-            }
-
-            if (searchTerm) {
-                filtered = filtered.filter(l =>
-                    l.name.toLowerCase().includes(searchTerm) ||
-                    (l.operator && l.operator.toLowerCase().includes(searchTerm))
-                );
-            }
-
-            displayLocations(filtered);
-            updateStats(filtered);
-        };
-
-        // Reset filters
-        window.resetFilters = function() {
-            document.getElementById('typeFilter').value = 'all';
-            document.getElementById('provinceFilter').value = 'all';
-            document.getElementById('mineralFilter').value = 'all';
-            document.getElementById('statusFilter').value = 'all';
-            document.getElementById('searchInput').value = '';
-
-            displayLocations(allLocations);
-            updateStats(allLocations);
-        };
 
         // Load data on page load
         loadLocations();
