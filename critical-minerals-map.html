@@ -258,13 +258,12 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <!-- Supabase Client -->
-    <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
         // Initialize Supabase
-        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-        const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-        const supabase = createClient(supabaseUrl, supabaseKey);
+        const SUPABASE_URL = 'https://woailjjdiamgvahcxnrj.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndvYWlsampkaWFtZ3ZhaGN4bnJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxOTQxODAsImV4cCI6MjA4Mjc3MDE4MH0.M7F-J8Ael6RwEuHy9XmJUYNXLhaVSo7ra_YWZGjeF9Y';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // Initialize map
         const map = L.map('map').setView([56.1304, -106.3468], 4); // Centered on Canada
