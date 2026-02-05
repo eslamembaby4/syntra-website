@@ -25,35 +25,14 @@
 
         .container {
             width: 100%;
-            max-width: 1800px;
-            padding: 60px 40px;
+            max-width: 1920px;
+            padding: 40px;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .header h1 {
-            font-size: 42px;
-            font-weight: 300;
-            letter-spacing: 3px;
-            margin-bottom: 16px;
-            color: #ffd700;
-            text-transform: uppercase;
-        }
-
-        .header p {
-            color: #94a3b8;
-            font-size: 16px;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .diagram-wrapper {
+        .diagram-container {
             position: relative;
             width: 100%;
-            height: 650px;
+            height: 700px;
             margin: 0 auto;
             background: #0b0f19;
         }
@@ -81,21 +60,24 @@
         .node {
             position: absolute;
             color: #ffffff;
-            padding: 12px 24px;
+            padding: 8px 16px;
             font-size: 16px;
-            font-weight: 400;
+            font-weight: 700;
             text-align: center;
             white-space: nowrap;
             z-index: 10;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             transition: all 0.3s ease;
             cursor: default;
         }
 
         .node:hover {
             color: #ffd700;
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
+
+        /* Node Positions - Mapped from matplotlib coordinates */
+        /* y_main = 5 (middle), range is 0-10 for Y, 0-20 for X */
 
         .node-mining {
             top: 50%;
@@ -115,134 +97,42 @@
             transform: translate(-50%, -50%);
         }
 
-        .node-scrap {
-            top: 15%;
-            left: 45%;
-            transform: translateX(-50%);
-        }
-
+        /* Circle center at x=13, y=5, radius=3 */
+        /* Dual Use at top of circle (y = y_main + radius = 8) */
         .node-dual-use {
             top: 20%;
             left: 65%;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
         }
 
+        /* End Users at right of circle (x = center + radius = 16) */
         .node-end-users {
-            top: 35%;
-            right: 8%;
-            transform: translateY(-50%);
+            top: 50%;
+            left: 80%;
+            transform: translate(-50%, -50%);
         }
 
+        /* End of Life at bottom-right (-45 degrees) */
         .node-end-of-life {
-            bottom: 30%;
-            right: 12%;
+            top: 71%;
+            left: 75.6%;
+            transform: translate(-50%, -50%);
         }
 
+        /* Recycle at bottom of circle (y = y_main - radius = 2) */
         .node-recycle {
-            bottom: 25%;
+            top: 80%;
             left: 65%;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
         }
 
-        .legend-box {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            padding: 20px;
-            border-radius: 4px;
-            max-width: 300px;
-        }
-
-        .legend-box h3 {
-            color: #ffd700;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 12px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        .legend-box p {
-            color: #94a3b8;
-            font-size: 13px;
-            line-height: 1.6;
-            font-weight: 300;
-        }
-
-        .materials-list {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(255, 215, 0, 0.05);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            padding: 20px;
-            border-radius: 4px;
-        }
-
-        .materials-list h3 {
-            color: #ffd700;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 12px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        .materials-list ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .materials-list li {
-            color: #94a3b8;
-            font-size: 13px;
-            padding: 4px 0;
-            font-weight: 300;
-        }
-
-        .materials-list li:before {
-            content: "▸ ";
-            color: #ffd700;
-            margin-right: 8px;
-        }
-
-        @media (max-width: 1400px) {
-            .diagram-wrapper {
-                height: 800px;
-            }
-
-            .node-mining { top: 8%; left: 15%; }
-            .node-processing { top: 18%; left: 15%; }
-            .node-refining { top: 28%; left: 15%; }
-            .node-scrap { top: 15%; left: 50%; }
-            .node-dual-use { top: 38%; left: 50%; }
-            .node-end-users { top: 50%; right: 10%; }
-            .node-end-of-life { bottom: 25%; right: 15%; }
-            .node-recycle { bottom: 15%; left: 50%; }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 40px 20px;
-            }
-
-            .header h1 {
-                font-size: 24px;
-            }
-
-            .node {
-                font-size: 13px;
-                padding: 8px 16px;
-            }
-
-            .legend-box,
-            .materials-list {
-                position: relative;
-                margin-top: 40px;
-                max-width: 100%;
-            }
+        /* Scrap label */
+        .node-scrap {
+            top: 20%;
+            left: 48.5%;
+            transform: translate(-50%, -50%);
+            background: #0b0f19;
+            padding: 4px 12px;
         }
 
         @keyframes drawPath {
@@ -265,24 +155,46 @@
 
         .animated-path {
             opacity: 0;
-            animation: fadeIn 0.3s ease-in forwards, drawPath 1.5s ease-out forwards;
+            animation: fadeIn 0.2s ease-in forwards, drawPath 1.2s ease-out forwards;
         }
 
         .animated-node {
             opacity: 0;
-            animation: fadeIn 0.6s ease-out forwards;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1400px) {
+            .diagram-container {
+                height: 600px;
+            }
+
+            .node {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .diagram-container {
+                height: 500px;
+            }
+
+            .node {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Circular Economy Process</h1>
-            <p>Critical Minerals Closed-Loop Recovery System</p>
-        </div>
-
-        <div class="diagram-wrapper">
-            <svg viewBox="0 0 1600 650" preserveAspectRatio="xMidYMid meet">
+        <div class="diagram-container">
+            <svg viewBox="0 0 2000 1000" preserveAspectRatio="xMidYMid meet">
                 <defs>
                     <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3.5" orient="auto">
                         <polygon points="0 0, 10 3.5, 0 7" class="arrow-head" />
@@ -292,100 +204,80 @@
                 <!-- Linear Flow: Mining -> Processing -> Refining -->
 
                 <!-- Mining to Processing -->
-                <path d="M 250 325 L 380 325"
+                <path d="M 280 500 L 450 500"
                       class="arrow-path animated-path"
-                      style="animation-delay: 0.2s;"
+                      style="animation-delay: 0.1s;"
                       marker-end="url(#arrowhead)" />
 
                 <!-- Processing to Refining -->
-                <path d="M 520 325 L 620 325"
+                <path d="M 570 500 L 720 500"
                       class="arrow-path animated-path"
-                      style="animation-delay: 0.4s;"
+                      style="animation-delay: 0.3s;"
                       marker-end="url(#arrowhead)" />
 
-                <!-- Scrap Branch: Goes UP from between Processing/Refining -->
-
-                <!-- Vertical line up -->
-                <path d="M 570 325 L 570 120"
+                <!-- Scrap Branch -->
+                <!-- Vertical line up from between Processing/Refining -->
+                <path d="M 695 500 L 695 200"
                       class="arrow-path animated-path"
-                      style="animation-delay: 0.6s;" />
+                      style="animation-delay: 0.5s;" />
 
-                <!-- Horizontal line to Dual Use area -->
-                <path d="M 570 120 L 1040 120"
+                <!-- Horizontal line to Dual Use -->
+                <path d="M 695 200 L 1300 200"
                       class="arrow-path animated-path"
-                      style="animation-delay: 0.8s;" />
+                      style="animation-delay: 0.7s;" />
 
-                <!-- Arrow down to Dual Use -->
-                <path d="M 1040 120 L 1040 160"
+                <!-- Small arrow down to Dual Use -->
+                <path d="M 1300 200 L 1300 250"
                       class="arrow-path animated-path"
-                      style="animation-delay: 1.0s;"
+                      style="animation-delay: 0.9s;"
                       marker-end="url(#arrowhead)" />
 
                 <!-- Circular Loop -->
 
                 <!-- Refining to Dual Use (curved up and right) -->
-                <path d="M 690 315 Q 800 250, 980 180"
+                <path d="M 880 490 Q 1000 380, 1230 220"
                       class="arrow-path animated-path"
-                      style="animation-delay: 1.2s;"
+                      style="animation-delay: 1.1s;"
                       marker-end="url(#arrowhead)" />
 
                 <!-- Dual Use to End Users (curved right) -->
-                <path d="M 1100 200 Q 1200 210, 1300 245"
+                <path d="M 1380 210 Q 1500 250, 1540 450"
                       class="arrow-path animated-path"
-                      style="animation-delay: 1.4s;"
+                      style="animation-delay: 1.3s;"
                       marker-end="url(#arrowhead)" />
 
                 <!-- End Users to End of Life (curved down) -->
-                <path d="M 1350 260 Q 1380 340, 1340 410"
+                <path d="M 1600 530 Q 1620 650, 1540 710"
                       class="arrow-path animated-path"
-                      style="animation-delay: 1.6s;"
+                      style="animation-delay: 1.5s;"
                       marker-end="url(#arrowhead)" />
 
-                <!-- End of Life to Recycle (large curve left and down) -->
-                <path d="M 1280 425 Q 1150 480, 1070 450"
+                <!-- End of Life to Recycle (curved left and down) -->
+                <path d="M 1460 725 Q 1350 790, 1300 750"
                       class="arrow-path animated-path"
-                      style="animation-delay: 1.8s;"
+                      style="animation-delay: 1.7s;"
                       marker-end="url(#arrowhead)" />
 
                 <!-- Recycle back to Refining (large curve left and up, closing the loop) -->
-                <path d="M 1000 445 Q 750 520, 660 355"
+                <path d="M 1220 800 Q 900 880, 800 530"
                       class="arrow-path animated-path"
-                      style="animation-delay: 2.0s;"
+                      style="animation-delay: 1.9s;"
                       marker-end="url(#arrowhead)" />
             </svg>
 
             <!-- Node Labels -->
-            <div class="node node-mining animated-node" style="animation-delay: 0.1s;">Mining</div>
+            <div class="node node-mining animated-node" style="animation-delay: 0.0s;">Mining</div>
             <div class="node node-processing animated-node" style="animation-delay: 0.2s;">Processing</div>
-            <div class="node node-refining animated-node" style="animation-delay: 0.3s;">Refining</div>
-            <div class="node node-scrap animated-node" style="animation-delay: 0.7s;">Scrap</div>
-            <div class="node node-dual-use animated-node" style="animation-delay: 1.1s;">Dual Use</div>
-            <div class="node node-end-users animated-node" style="animation-delay: 1.3s;">End Users</div>
-            <div class="node node-end-of-life animated-node" style="animation-delay: 1.5s;">End of Life</div>
-            <div class="node node-recycle animated-node" style="animation-delay: 1.7s;">Recycle</div>
-
-            <!-- Legend Box -->
-            <div class="legend-box">
-                <h3>Process Flow</h3>
-                <p>Materials flow from mining through processing and refining. Production scrap and end-of-life products are recycled back into the refining stage, creating a closed-loop circular economy.</p>
-            </div>
-
-            <!-- Materials List -->
-            <div class="materials-list">
-                <h3>Critical Minerals</h3>
-                <ul>
-                    <li>Cobalt</li>
-                    <li>Lithium</li>
-                    <li>Nickel</li>
-                    <li>Manganese</li>
-                    <li>Copper</li>
-                </ul>
-            </div>
+            <div class="node node-refining animated-node" style="animation-delay: 0.4s;">Refining</div>
+            <div class="node node-scrap animated-node" style="animation-delay: 0.8s;">Scrap</div>
+            <div class="node node-dual-use animated-node" style="animation-delay: 1.0s;">Dual Use</div>
+            <div class="node node-end-users animated-node" style="animation-delay: 1.2s;">End Users</div>
+            <div class="node node-end-of-life animated-node" style="animation-delay: 1.4s;">End of Life</div>
+            <div class="node node-recycle animated-node" style="animation-delay: 1.6s;">Recycle</div>
         </div>
     </div>
 
     <script>
-        // Animate paths
         document.addEventListener('DOMContentLoaded', () => {
             const paths = document.querySelectorAll('.animated-path');
 
@@ -401,7 +293,7 @@
             const pathConnections = {
                 'node-mining': ['node-processing'],
                 'node-processing': ['node-refining'],
-                'node-refining': ['node-dual-use', 'node-recycle'],
+                'node-refining': ['node-dual-use'],
                 'node-scrap': ['node-dual-use'],
                 'node-dual-use': ['node-end-users'],
                 'node-end-users': ['node-end-of-life'],
@@ -429,18 +321,20 @@
                 });
             });
 
-            // Add subtle pulse animation to arrows
+            // Subtle continuous pulse on the circular loop arrows
             setInterval(() => {
-                paths.forEach((path, index) => {
+                const circularPaths = Array.from(paths).slice(4); // Skip linear flow arrows
+                circularPaths.forEach((path, index) => {
                     setTimeout(() => {
-                        path.style.transition = 'stroke-width 0.3s ease';
+                        path.style.transition = 'stroke-width 0.4s ease, opacity 0.4s ease';
                         path.style.strokeWidth = '3.5';
+                        path.style.opacity = '1';
                         setTimeout(() => {
                             path.style.strokeWidth = '2.5';
-                        }, 300);
-                    }, index * 100);
+                        }, 400);
+                    }, index * 150);
                 });
-            }, 5000);
+            }, 6000);
         });
     </script>
 </body>
