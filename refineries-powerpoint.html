@@ -6,7 +6,8 @@
     <title>Canadian Refineries - PowerPoint Export</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script type="module" src="./js/supabase-client.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/supabase-client.js"></script>
     <style>
         * {
             margin: 0;
@@ -429,8 +430,22 @@
         </div>
     </div>
 
-    <script type="module">
-        import { supabase } from './js/supabase-client.js';
+    <script>
+        // Wait for supabase client to be initialized
+        function waitForSupabase() {
+            return new Promise((resolve) => {
+                if (window.supabase) {
+                    resolve(window.supabase);
+                } else {
+                    const checkInterval = setInterval(() => {
+                        if (window.supabase) {
+                            clearInterval(checkInterval);
+                            resolve(window.supabase);
+                        }
+                    }, 100);
+                }
+            });
+        }
 
         const PRIORITY_MINERALS = {
             aluminum: ['aluminum', 'aluminium', 'al'],
@@ -498,55 +513,75 @@
         }
 
         function initMap(mapId, locations, title) {
-            const map = L.map(mapId, {
-                zoomControl: true,
-                attributionControl: true
-            }).setView([56.1304, -106.3468], 4);
+            console.log(`Initializing map ${mapId} with ${locations.length} locations`);
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors',
-                maxZoom: 18
-            }).addTo(map);
+            try {
+                const map = L.map(mapId, {
+                    zoomControl: true,
+                    attributionControl: true
+                }).setView([56.1304, -106.3468], 4);
 
-            locations.forEach(location => {
-                const marker = L.marker([location.latitude, location.longitude], {
-                    icon: createMarkerIcon()
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors',
+                    maxZoom: 18
                 }).addTo(map);
 
-                marker.bindPopup(createPopupContent(location));
-            });
+                locations.forEach(location => {
+                    const marker = L.marker([location.latitude, location.longitude], {
+                        icon: createMarkerIcon()
+                    }).addTo(map);
 
-            setTimeout(() => map.invalidateSize(), 250);
+                    marker.bindPopup(createPopupContent(location));
+                });
 
-            return map;
+                setTimeout(() => map.invalidateSize(), 250);
+
+                console.log(`Map ${mapId} initialized successfully`);
+                return map;
+            } catch (error) {
+                console.error(`Error initializing map ${mapId}:`, error);
+                throw error;
+            }
         }
 
         async function loadData() {
             try {
+                console.log('Starting data load...');
+                const supabase = await waitForSupabase();
+                console.log('Supabase client ready:', supabase);
+
                 const { data, error } = await supabase
                     .from('mining_locations')
                     .select('*')
                     .eq('type', 'processing_facility')
                     .eq('status', 'operational');
 
-                if (error) throw error;
+                if (error) {
+                    console.error('Supabase query error:', error);
+                    throw error;
+                }
 
+                console.log('Loaded facilities:', data?.length);
                 allLocations = data || [];
 
                 const priorityLocations = allLocations.filter(loc => hasPriorityMinerals(loc.minerals));
+                console.log('Priority facilities:', priorityLocations.length);
 
                 document.getElementById('count-all').textContent = allLocations.length;
                 document.getElementById('count-priority').textContent = priorityLocations.length;
 
+                console.log('Initializing maps...');
                 initMap('map-all', allLocations, 'All Processing Facilities');
                 initMap('map-priority', priorityLocations, 'Priority Minerals Only');
 
                 buildExportTable();
 
+                console.log('Data load complete!');
+
             } catch (error) {
                 console.error('Error loading data:', error);
                 document.querySelectorAll('.map-container').forEach(el => {
-                    el.innerHTML = '<div class="loading">Error loading map data</div>';
+                    el.innerHTML = '<div class="loading">Error loading map data: ' + error.message + '</div>';
                 });
             }
         }
@@ -597,7 +632,12 @@
             }
         };
 
-        loadData();
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadData);
+        } else {
+            loadData();
+        }
     </script>
 </body>
 </html>
