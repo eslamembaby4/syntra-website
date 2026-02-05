@@ -3,381 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canada Critical Minerals Map - SYNTRA</title>
+    <title>Canada Critical Minerals Refineries</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { height: 100%; width: 100%; overflow: hidden; font-family: Arial, sans-serif; }
+
+        #map { height: 100%; width: 100%; }
+
+        .blue-square-marker {
+            width: 18px;
+            height: 18px;
+            background: #3b82f6;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #0a1628;
-            color: #e2e8f0;
-            overflow-x: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #0a1628 0%, #1e293b 100%);
-            padding: 2rem;
-            border-bottom: 2px solid #FFD700;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
-
-        .subtitle {
-            font-size: 0.875rem;
-            color: #FFD700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            padding: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .stat-card {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #FFD700;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: #94a3b8;
-            text-transform: uppercase;
-        }
-
-        .map-wrapper {
-            padding: 0 2rem 2rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        #map {
-            width: 100%;
-            height: 700px;
-            border-radius: 8px;
-            border: 2px solid #334155;
-            background: #1e293b;
-            position: relative;
-        }
-
-        .legend {
+        .controls {
             position: absolute;
-            bottom: 30px;
-            right: 10px;
-            background: rgba(30, 41, 59, 0.95);
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid #FFD700;
+            top: 20px;
+            right: 20px;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-        }
-
-        .legend-title {
-            font-weight: 700;
-            color: #FFD700;
-            margin-bottom: 0.75rem;
-            font-size: 0.875rem;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            font-size: 0.75rem;
-        }
-
-        .legend-icon {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            margin-right: 0.5rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .loading {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #1e293b;
-            padding: 2rem 3rem;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 20px;
             border-radius: 8px;
-            border: 2px solid #FFD700;
-            font-size: 1.25rem;
-            color: #FFD700;
-            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            min-width: 280px;
         }
 
-        .error {
-            background: #7f1d1d;
-            color: #fecaca;
-            border-color: #dc2626;
+        .controls h2 {
+            margin: 0 0 16px 0;
+            font-size: 18px;
+            color: #1e293b;
+        }
+
+        .filter-btn {
+            display: block;
+            width: 100%;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .filter-btn:hover {
+            background: #2563eb;
+        }
+
+        .filter-btn.active {
+            background: #f59e0b;
+        }
+
+        .count {
+            text-align: center;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px solid #e2e8f0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .count strong {
+            color: #1e293b;
+            font-size: 24px;
+            display: block;
+            margin-top: 4px;
         }
 
         .leaflet-popup-content-wrapper {
-            background: #1e293b;
-            color: #e2e8f0;
-            border: 1px solid #FFD700;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-        .leaflet-popup-tip {
-            background: #1e293b;
+        .popup-name {
+            color: #1e293b;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
         }
 
-        .popup-title {
-            font-weight: 700;
-            color: #FFD700;
-            font-size: 1rem;
-            margin-bottom: 0.75rem;
+        .popup-info {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #475569;
         }
 
-        .popup-detail {
-            margin-bottom: 0.5rem;
-            font-size: 0.875rem;
+        .popup-minerals {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #e2e8f0;
         }
 
-        .popup-label {
-            font-weight: 600;
-            color: #94a3b8;
-        }
-
-        .popup-value {
-            color: #e2e8f0;
-            text-transform: capitalize;
-        }
-
-        .mineral-tag {
+        .mineral-badge {
             display: inline-block;
-            background: #0ea5e9;
+            background: #3b82f6;
             color: white;
-            padding: 0.25rem 0.5rem;
+            padding: 3px 8px;
             border-radius: 4px;
-            font-size: 0.75rem;
-            margin-right: 0.25rem;
-            margin-top: 0.25rem;
+            font-size: 11px;
+            margin: 2px;
+        }
+
+        .mineral-badge.priority {
+            background: #f59e0b;
+            font-weight: bold;
+        }
+
+        .title-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 20px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .title-overlay h1 {
+            color: #1e293b;
+            font-size: 24px;
+            margin: 0 0 4px 0;
+        }
+
+        .title-overlay p {
+            color: #64748b;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+            background: white;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .loading.hidden { display: none; }
+
+        .info-note {
+            background: #f0f9ff;
+            border: 1px solid #3b82f6;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 16px;
+            font-size: 12px;
+            color: #1e40af;
+            line-height: 1.5;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Canada Critical Minerals Map</h1>
-        <div class="subtitle">Real-time Mining Operations & Projects</div>
+    <div class="loading" id="loading">
+        <h2>Loading refineries data...</h2>
+        <p>Please wait</p>
     </div>
 
-    <div class="stats">
-        <div class="stat-card">
-            <div class="stat-value" id="totalLocations">0</div>
-            <div class="stat-label">Total Locations</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value" id="totalMines">0</div>
-            <div class="stat-label">Operational Mines</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value" id="totalProcessing">0</div>
-            <div class="stat-label">Processing Facilities</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value" id="totalProjects">0</div>
-            <div class="stat-label">Advanced Projects</div>
-        </div>
+    <div class="title-overlay">
+        <h1>Canada Critical Minerals Refineries</h1>
+        <p>Processing facilities and refineries</p>
     </div>
 
-    <div class="map-wrapper">
-        <div id="map">
-            <div class="legend">
-                <div class="legend-title">Legend</div>
-                <div class="legend-item">
-                    <div class="legend-icon" style="background: #10b981;"></div>
-                    <span>Operational Mine</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-icon" style="background: #3b82f6;"></div>
-                    <span>Processing Facility</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-icon" style="background: #f59e0b;"></div>
-                    <span>Under Development</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-icon" style="background: #8b5cf6;"></div>
-                    <span>Advanced Project</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-icon" style="background: #6b7280;"></div>
-                    <span>Closed/Inactive</span>
-                </div>
-            </div>
+    <div id="map"></div>
+
+    <div class="controls">
+        <h2>Filter Refineries</h2>
+        <button class="filter-btn active" onclick="showAll()">Show All Refineries</button>
+        <button class="filter-btn" onclick="filterPriority()">Al, Co, Cu, Ni, Li Only</button>
+        <div class="count">
+            <span>Showing</span>
+            <strong id="markerCount">0</strong>
+            <span>refineries</span>
+        </div>
+        <div class="info-note">
+            <strong>Note:</strong> Blue squares represent refining facilities. Orange badges indicate priority minerals (Al, Co, Cu, Ni, Li).
         </div>
     </div>
-
-    <div id="loading" class="loading">Loading mining locations...</div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        console.log('Script starting...');
-
         const SUPABASE_URL = 'https://woailjjdiamgvahcxnrj.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndvYWlsampkaWFtZ3ZhaGN4bnJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxOTQxODAsImV4cCI6MjA4Mjc3MDE4MH0.M7F-J8Ael6RwEuHy9XmJUYNXLhaVSo7ra_YWZGjeF9Y';
 
-        console.log('Initializing Supabase...');
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        console.log('Supabase initialized:', supabase);
 
-        console.log('Initializing map...');
-        const map = L.map('map').setView([56.1304, -106.3468], 4);
-        console.log('Map initialized:', map);
+        // Priority minerals mapping - all variations
+        const PRIORITY_MINERALS = {
+            'aluminum': ['aluminum', 'aluminium', 'al'],
+            'cobalt': ['cobalt', 'co'],
+            'copper': ['copper', 'cu'],
+            'nickel': ['nickel', 'ni'],
+            'lithium': ['lithium', 'li']
+        };
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors',
-            maxZoom: 18
-        }).addTo(map);
-        console.log('Tile layer added');
+        let map;
+        let allLocations = [];
+        let currentMarkers = [];
+        let currentFilter = 'all';
 
-        let markers = L.layerGroup().addTo(map);
+        // Initialize map
+        function initMap() {
+            map = L.map('map', {
+                zoomControl: true,
+                scrollWheelZoom: true
+            }).setView([56.1304, -106.3468], 4);
 
-        function getMarkerColor(location) {
-            if (location.status === 'closed') return '#6b7280';
-            if (location.status === 'under_development') return '#f59e0b';
-            if (location.type === 'mine') return '#10b981';
-            if (location.type === 'processing_facility') return '#3b82f6';
-            if (location.type === 'advanced_project') return '#8b5cf6';
-            return '#FFD700';
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap',
+                maxZoom: 18,
+                minZoom: 3
+            }).addTo(map);
         }
 
-        function createPopupContent(location) {
-            const mineralsHtml = location.minerals && location.minerals.length > 0
-                ? location.minerals.map(m => `<span class="mineral-tag">${m}</span>`).join('')
-                : '<span class="mineral-tag">N/A</span>';
+        // Check if location refines priority minerals (Al, Co, Cu, Ni, Li)
+        function refinesPriorityMinerals(location) {
+            if (!location.minerals || !Array.isArray(location.minerals)) return false;
 
-            return `
-                <div class="popup-title">${location.name}</div>
-                <div class="popup-detail">
-                    <span class="popup-label">Type: </span>
-                    <span class="popup-value">${location.type.replace(/_/g, ' ')}</span>
-                </div>
-                <div class="popup-detail">
-                    <span class="popup-label">Status: </span>
-                    <span class="popup-value">${location.status.replace(/_/g, ' ')}</span>
-                </div>
-                <div class="popup-detail">
-                    <span class="popup-label">Province: </span>
-                    <span class="popup-value">${location.province}</span>
-                </div>
-                <div class="popup-detail">
-                    <span class="popup-label">Minerals: </span>
-                    ${mineralsHtml}
-                </div>
-            `;
+            return location.minerals.some(mineral => {
+                const mineralLower = mineral.toLowerCase().trim();
+                return Object.values(PRIORITY_MINERALS).some(variations =>
+                    variations.some(variation => mineralLower.includes(variation))
+                );
+            });
         }
 
-        function displayLocations(locations) {
-            console.log('Displaying locations:', locations.length);
-            markers.clearLayers();
+        // Check if a specific mineral is a priority mineral
+        function isPriorityMineral(mineral) {
+            const mineralLower = mineral.toLowerCase().trim();
+            return Object.values(PRIORITY_MINERALS).some(variations =>
+                variations.some(variation => mineralLower.includes(variation))
+            );
+        }
 
-            locations.forEach(location => {
-                const lat = parseFloat(location.latitude);
-                const lng = parseFloat(location.longitude);
-
-                if (isNaN(lat) || isNaN(lng)) {
-                    console.warn('Invalid coordinates for:', location.name);
-                    return;
-                }
-
-                console.log(`Adding marker for ${location.name} at [${lat}, ${lng}]`);
-
-                const marker = L.circleMarker([lat, lng], {
-                    radius: 8,
-                    fillColor: getMarkerColor(location),
-                    color: '#fff',
-                    weight: 2,
-                    opacity: 1,
-                    fillOpacity: 0.8
-                });
-
-                marker.bindPopup(createPopupContent(location), {
-                    maxWidth: 300
-                });
-
-                markers.addLayer(marker);
+        // Create blue square marker
+        function createMarker(location) {
+            const icon = L.divIcon({
+                className: 'blue-square-marker',
+                iconSize: [18, 18],
+                iconAnchor: [9, 9],
+                popupAnchor: [0, -9]
             });
 
-            console.log('All markers added');
+            const marker = L.marker([location.latitude, location.longitude], { icon });
+
+            const mineralBadges = (location.minerals || []).map(m => {
+                const badgeClass = isPriorityMineral(m) ? 'mineral-badge priority' : 'mineral-badge';
+                return `<span class="${badgeClass}">${m}</span>`;
+            }).join('');
+
+            marker.bindPopup(`
+                <div class="popup-name">${location.name}</div>
+                <div class="popup-info">
+                    <strong>Province:</strong> ${location.province}<br>
+                    <strong>Status:</strong> ${location.status || 'Unknown'}
+                </div>
+                <div class="popup-minerals">${mineralBadges || 'No mineral data'}</div>
+            `, { maxWidth: 300 });
+
+            return marker;
         }
 
-        function updateStats(locations) {
-            document.getElementById('totalLocations').textContent = locations.length;
-            document.getElementById('totalMines').textContent = locations.filter(l => l.type === 'mine' && l.status === 'operational').length;
-            document.getElementById('totalProcessing').textContent = locations.filter(l => l.type === 'processing_facility').length;
-            document.getElementById('totalProjects').textContent = locations.filter(l => l.type === 'advanced_project').length;
+        // Clear all markers
+        function clearMarkers() {
+            currentMarkers.forEach(marker => map.removeLayer(marker));
+            currentMarkers = [];
         }
 
-        async function loadLocations() {
-            console.log('Loading locations from database...');
-            const loadingDiv = document.getElementById('loading');
+        // Display filtered locations
+        function displayLocations(locations) {
+            clearMarkers();
 
+            locations.forEach(location => {
+                const marker = createMarker(location);
+                marker.addTo(map);
+                currentMarkers.push(marker);
+            });
+
+            document.getElementById('markerCount').textContent = locations.length;
+        }
+
+        // Show all refineries
+        window.showAll = function() {
+            currentFilter = 'all';
+            displayLocations(allLocations);
+
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        };
+
+        // Filter to priority minerals only (Al, Co, Cu, Ni, Li)
+        window.filterPriority = function() {
+            currentFilter = 'priority';
+            const filtered = allLocations.filter(loc => refinesPriorityMinerals(loc));
+            displayLocations(filtered);
+
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        };
+
+        // Load data from Supabase
+        async function loadData() {
             try {
+                // Query for processing facilities and refineries
                 const { data, error } = await supabase
                     .from('mining_locations')
                     .select('*')
+                    .or('type.eq.processing,type.eq.refinery,type.eq.processing_facility')
                     .order('name');
 
-                console.log('Query result:', { data, error });
+                if (error) throw error;
 
-                if (error) {
-                    console.error('Supabase error:', error);
-                    throw error;
-                }
+                allLocations = data || [];
 
-                if (!data || data.length === 0) {
-                    console.warn('No data returned from database');
-                    loadingDiv.textContent = 'No mining locations found in database';
-                    loadingDiv.classList.add('error');
-                    return;
-                }
+                console.log(`Loaded ${allLocations.length} refineries`);
 
-                console.log(`Successfully loaded ${data.length} locations`);
-                displayLocations(data);
-                updateStats(data);
-
-                loadingDiv.style.display = 'none';
-                console.log('Map ready!');
-
+                displayLocations(allLocations);
+                document.getElementById('loading').classList.add('hidden');
             } catch (error) {
-                console.error('Error loading locations:', error);
-                loadingDiv.textContent = `Error: ${error.message}`;
-                loadingDiv.classList.add('error');
+                console.error('Error loading data:', error);
+                document.getElementById('loading').innerHTML = `
+                    <h2>Error Loading Data</h2>
+                    <p>${error.message}</p>
+                    <p style="margin-top: 12px; font-size: 12px;">Make sure mining_locations table has refinery data.</p>
+                `;
             }
         }
 
-        console.log('Starting data load...');
-        loadLocations();
+        // Initialize
+        initMap();
+        loadData();
     </script>
 </body>
 </html>
