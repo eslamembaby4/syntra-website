@@ -39,7 +39,7 @@
 
     <style>
         body {
-            background-color: #0B1120;
+            background-color: #F5F5F5;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -49,12 +49,44 @@
         }
 
         .slide-container {
-            width: 1280px;
-            height: 720px;
-            background-color: #0B1120;
+            width: 1400px;
+            height: 800px;
+            background-color: #FFFFFF;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .stage-node {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .stage-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .leftover-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            font-weight: 600;
+            color: #333;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1.2;
         }
 
         .arrow-marker {
@@ -65,256 +97,272 @@
             fill: #FFD700;
         }
 
-        .arrow-marker-cyan {
-            fill: #00D9FF;
+        .arrow-marker-teal {
+            fill: #5FB3B3;
         }
 
         @keyframes flowPulse {
-            0%, 100% { opacity: 0.6; }
+            0%, 100% { opacity: 0.7; }
             50% { opacity: 1; }
         }
 
         .flow-animate {
             animation: flowPulse 3s ease-in-out infinite;
         }
+
+        .flow-path {
+            fill: none;
+            stroke-width: 18;
+            opacity: 0.3;
+        }
+
+        .connector-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #5FB3B3;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
 
     <div class="slide-container">
-        <!-- Header -->
-        <div class="absolute top-8 left-12 z-20">
-            <div class="font-mono text-sm text-syntra-muted tracking-widest">03 // MINE TO MARKET VALUE CHAIN</div>
+        <!-- Title -->
+        <div class="absolute top-12 right-12 z-20">
+            <h1 class="font-head text-3xl text-gray-900 font-bold" style="border-bottom: 3px solid #333; padding-bottom: 8px;">
+                Battery Metals Value Chain
+            </h1>
         </div>
 
-        <!-- Logo Top Right -->
-        <div class="absolute top-8 right-12 z-20">
-            <div class="w-10 h-10 border-2 border-syntra-accent rotate-45 flex items-center justify-center">
-                <div class="w-5 h-5 bg-syntra-accent -rotate-45"></div>
-            </div>
-        </div>
-
-        <!-- Market Metrics Cards -->
-        <div class="absolute top-20 left-1/2 transform -translate-x-1/2 flex gap-4 z-20">
-            <!-- TAM -->
-            <div class="bg-syntra-card border border-syntra-border px-8 py-4 rounded">
-                <div class="font-mono text-xs text-syntra-muted mb-1 tracking-widest">TAM</div>
-                <div class="font-head text-3xl text-white font-bold">$500B</div>
-            </div>
-
-            <!-- SAM -->
-            <div class="bg-syntra-card border border-syntra-tech px-8 py-4 rounded">
-                <div class="font-mono text-xs text-syntra-tech mb-1 tracking-widest">SAM</div>
-                <div class="font-head text-3xl text-syntra-tech font-bold">$52B</div>
-            </div>
-
-            <!-- SOM -->
-            <div class="bg-syntra-card border-2 border-syntra-accent px-8 py-4 rounded">
-                <div class="font-mono text-xs text-syntra-accent mb-1 tracking-widest">SOM</div>
-                <div class="font-head text-3xl text-syntra-accent font-bold">$500M</div>
+        <!-- Syntra Logo Bottom Left -->
+        <div class="absolute bottom-12 left-12 z-20">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 border-4 border-amber-500 rotate-45 flex items-center justify-center">
+                    <div class="w-6 h-6 bg-amber-500 -rotate-45"></div>
+                </div>
+                <div>
+                    <div class="font-head text-gray-900 text-xl font-bold tracking-tight uppercase">Syntra Refining</div>
+                    <div class="font-mono text-teal-600 text-xs tracking-widest">CIRCULAR INFRASTRUCTURE</div>
+                </div>
             </div>
         </div>
 
         <!-- SVG Flow Diagram -->
-        <svg class="absolute inset-0 w-full h-full z-10 pointer-events-none">
+        <svg class="absolute inset-0 w-full h-full z-5 pointer-events-none">
             <defs>
-                <!-- Arrow markers -->
-                <marker id="arrow-gray" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-                    <polygon points="0 0, 8 4, 0 8, 2 4" class="arrow-marker" />
+                <marker id="arrow-teal" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+                    <path d="M 0 0 L 12 6 L 0 12 L 3 6 Z" fill="#5FB3B3" />
                 </marker>
-                <marker id="arrow-accent" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-                    <polygon points="0 0, 10 5, 0 10, 2.5 5" class="arrow-marker-accent" />
+                <marker id="arrow-orange" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+                    <path d="M 0 0 L 12 6 L 0 12 L 3 6 Z" fill="#E8956F" />
                 </marker>
-                <marker id="arrow-cyan" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-                    <polygon points="0 0, 8 4, 0 8, 2 4" class="arrow-marker-cyan" />
+                <marker id="arrow-yellow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+                    <path d="M 0 0 L 12 6 L 0 12 L 3 6 Z" fill="#C4B454" />
                 </marker>
             </defs>
 
-            <!-- UPSTREAM bracket -->
-            <path d="M 100 240 L 100 230 L 350 230 L 350 240"
-                  stroke="#64748B" stroke-width="1.5" fill="none" />
-            <text x="225" y="220" class="font-mono text-xs" fill="#64748B" text-anchor="middle">UPSTREAM</text>
+            <!-- Main horizontal flow path -->
+            <path d="M 150 450 Q 250 450 350 450 T 550 450 T 750 450"
+                  stroke="#5FB3B3" class="flow-path" stroke-linecap="round" />
 
-            <!-- MIDSTREAM bracket -->
-            <path d="M 370 240 L 370 230 L 650 230 L 650 240"
-                  stroke="#64748B" stroke-width="1.5" fill="none" />
-            <text x="510" y="220" class="font-mono text-xs" fill="#64748B" text-anchor="middle">MIDSTREAM</text>
+            <!-- Circular loop path -->
+            <path d="M 780 450
+                     Q 850 450 900 420
+                     Q 950 390 1000 370
+                     Q 1080 340 1140 380
+                     Q 1200 420 1200 490
+                     Q 1200 560 1140 600
+                     Q 1080 640 1000 640
+                     Q 920 640 860 610
+                     Q 800 580 780 530
+                     Q 760 480 780 450"
+                  stroke="#5FB3B3" class="flow-path" stroke-linecap="round" />
 
-            <!-- DOWNSTREAM bracket -->
-            <path d="M 670 240 L 670 230 L 1180 230 L 1180 240"
-                  stroke="#64748B" stroke-width="1.5" fill="none" />
-            <text x="925" y="220" class="font-mono text-xs" fill="#64748B" text-anchor="middle">DOWNSTREAM</text>
+            <!-- Leftover material arrows -->
+            <!-- From Mining -->
+            <line x1="350" y1="420" x2="350" y2="200"
+                  stroke="#E8956F" stroke-width="8" marker-end="url(#arrow-orange)" opacity="0.6" />
 
-            <!-- Main flow arrows -->
-            <!-- Mine to Processing -->
-            <line x1="160" y1="340" x2="280" y2="340"
-                  stroke="#64748B" stroke-width="2" marker-end="url(#arrow-gray)" class="flow-animate" />
+            <!-- From Processing -->
+            <line x1="550" y1="420" x2="550" y2="200"
+                  stroke="#9B89B3" stroke-width="8" marker-end="url(#arrow-orange)" opacity="0.6" />
 
-            <!-- Processing to Refining -->
-            <line x1="400" y1="340" x2="490" y2="340"
-                  stroke="#FFD700" stroke-width="2.5" marker-end="url(#arrow-accent)" class="flow-animate"
-                  style="animation-delay: 0.5s" />
+            <!-- From Refining -->
+            <path d="M 750 460 L 750 500 L 800 540"
+                  stroke="#C4B454" stroke-width="6" marker-end="url(#arrow-yellow)" opacity="0.6" fill="none" />
 
-            <!-- Refining to Dual Use -->
-            <line x1="610" y1="340" x2="730" y2="340"
-                  stroke="#FFD700" stroke-width="2.5" marker-end="url(#arrow-accent)" class="flow-animate"
-                  style="animation-delay: 1s" />
+            <!-- From Raw materials -->
+            <path d="M 890 400 L 920 360"
+                  stroke="#5FB3B3" stroke-width="5" marker-end="url(#arrow-teal)" opacity="0.5" fill="none" />
 
-            <!-- Dual Use to Market -->
-            <line x1="920" y1="340" x2="1040" y2="340"
-                  stroke="#64748B" stroke-width="2" marker-end="url(#arrow-gray)" class="flow-animate"
-                  style="animation-delay: 1.5s" />
+            <!-- From Design -->
+            <path d="M 1020 390 L 1050 350"
+                  stroke="#5FB3B3" stroke-width="5" marker-end="url(#arrow-teal)" opacity="0.5" fill="none" />
 
-            <!-- Recycling Loop -->
-            <!-- Market down to End of Life -->
-            <line x1="1090" y1="365" x2="1090" y2="520"
-                  stroke="#00D9FF" stroke-width="2" marker-end="url(#arrow-cyan)" class="flow-animate"
-                  style="animation-delay: 2s" />
+            <!-- From Production -->
+            <path d="M 1150 480 L 1180 480"
+                  stroke="#5FB3B3" stroke-width="5" marker-end="url(#arrow-teal)" opacity="0.5" fill="none" />
 
-            <!-- End of Life to Recycling -->
-            <line x1="1060" y1="540" x2="740" y2="540"
-                  stroke="#00D9FF" stroke-width="2" marker-end="url(#arrow-cyan)" class="flow-animate"
-                  style="animation-delay: 2.5s" />
+            <!-- From Use/Reuse -->
+            <path d="M 1130 640 L 1130 690"
+                  stroke="#5FB3B3" stroke-width="5" marker-end="url(#arrow-teal)" opacity="0.5" fill="none" />
 
-            <!-- Recycling back up to Refining -->
-            <path d="M 700 520 Q 670 480 650 440 L 600 365"
-                  stroke="#00D9FF" stroke-width="2" fill="none" marker-end="url(#arrow-cyan)" class="flow-animate"
-                  style="animation-delay: 3s" />
+            <!-- From Collection -->
+            <path d="M 1000 670 L 1000 710"
+                  stroke="#5FB3B3" stroke-width="5" marker-end="url(#arrow-teal)" opacity="0.5" fill="none" />
 
-            <!-- Scrap connection from Dual Use to Recycling -->
-            <line x1="825" y1="365" x2="825" y2="460"
-                  stroke="#64748B" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrow-gray)"
-                  style="animation-delay: 3.5s" />
+            <!-- Connection dots -->
+            <circle cx="350" cy="450" r="6" fill="#5FB3B3" stroke="white" stroke-width="2" />
+            <circle cx="550" cy="450" r="6" fill="#5FB3B3" stroke="white" stroke-width="2" />
+            <circle cx="750" cy="450" r="6" fill="#5FB3B3" stroke="white" stroke-width="2" />
+
+            <!-- Vertical flow from Mapping to Exploration to Mining -->
+            <path d="M 212 225 L 212 355"
+                  stroke="#5FB3B3" stroke-width="12" opacity="0.3" stroke-linecap="round" />
+            <path d="M 212 355 Q 250 390 305 430"
+                  stroke="#5FB3B3" stroke-width="12" opacity="0.3" stroke-linecap="round" fill="none" />
+
+            <!-- Connection dots for vertical flow -->
+            <circle cx="212" cy="225" r="6" fill="#C4B454" stroke="white" stroke-width="2" />
+            <circle cx="212" cy="355" r="6" fill="#E8956F" stroke="white" stroke-width="2" />
         </svg>
 
-        <!-- Flow Stage Nodes -->
-        <!-- Mine -->
-        <div class="absolute left-[80px] top-[310px] z-20">
-            <div class="text-center">
-                <div class="font-head text-xl text-syntra-muted">Mine</div>
+        <!-- Stage Nodes -->
+
+        <!-- Mapping Node (Top Left) -->
+        <div class="absolute left-[150px] top-[180px] z-20 flex flex-row items-center gap-3">
+            <div class="text-right">
+                <div class="stage-label">Mapping</div>
+            </div>
+            <div class="stage-node" style="background: linear-gradient(135deg, #5FB3B3 0%, #4A9999 100%);">
+                <i data-lucide="map" class="w-10 h-10 text-white"></i>
             </div>
         </div>
 
-        <!-- Processing -->
-        <div class="absolute left-[300px] top-[310px] z-20">
-            <div class="text-center">
-                <div class="font-head text-xl text-syntra-muted">Processing</div>
+        <!-- Exploration Node (Middle Left) -->
+        <div class="absolute left-[150px] top-[310px] z-20 flex flex-row items-center gap-3">
+            <div class="text-right">
+                <div class="stage-label">Exploration</div>
+            </div>
+            <div class="stage-node" style="background: linear-gradient(135deg, #D89F6F 0%, #C07F4F 100%);">
+                <i data-lucide="search" class="w-10 h-10 text-white"></i>
             </div>
         </div>
 
-        <!-- Refining (Highlighted) -->
-        <div class="absolute left-[500px] top-[305px] z-20">
-            <div class="text-center">
-                <div class="font-head text-2xl text-syntra-accent font-bold">Refining</div>
+        <!-- Vertical connection between Mapping and Exploration -->
+
+
+        <!-- Mining Node -->
+        <div class="absolute left-[305px] top-[405px] z-20 flex flex-col items-center">
+            <div class="stage-node" style="background: linear-gradient(135deg, #E8956F 0%, #D67854 100%);">
+                <i data-lucide="pickaxe" class="w-10 h-10 text-white"></i>
+            </div>
+            <div class="stage-label">Mining</div>
+        </div>
+
+        <!-- Processing Node -->
+        <div class="absolute left-[505px] top-[405px] z-20 flex flex-col items-center">
+            <div class="stage-node" style="background: linear-gradient(135deg, #9B89B3 0%, #7D6A9A 100%);">
+                <i data-lucide="factory" class="w-10 h-10 text-white"></i>
+            </div>
+            <div class="stage-label">Processing</div>
+        </div>
+
+        <!-- Refining Node (Highlighted) -->
+        <div class="absolute left-[705px] top-[405px] z-20 flex flex-col items-center">
+            <div class="stage-node" style="background: linear-gradient(135deg, #4A6FA5 0%, #36578C 100%);">
+                <i data-lucide="flask-conical" class="w-10 h-10 text-white"></i>
+            </div>
+            <div class="stage-label font-bold">Refining</div>
+        </div>
+
+        <!-- Raw Materials Node -->
+        <div class="absolute left-[855px] top-[375px] z-20 flex flex-col items-center">
+            <div class="stage-node" style="background: linear-gradient(135deg, #5FB3B3 0%, #4A9999 100%);">
+                <i data-lucide="layers" class="w-10 h-10 text-white"></i>
+            </div>
+            <div class="stage-label text-xs">Raw materials</div>
+        </div>
+
+        <!-- Design Node -->
+        <div class="absolute left-[975px] top-[340px] z-20 flex flex-col items-center">
+            <div class="stage-node" style="background: linear-gradient(135deg, #5FB3B3 0%, #4A9999 100%);">
+                <i data-lucide="pen-tool" class="w-10 h-10 text-white"></i>
+            </div>
+            <div class="stage-label">Design</div>
+        </div>
+
+        <!-- Production Node -->
+        <div class="absolute left-[1095px] top-[445px] z-20 flex flex-col items-center">
+            <div class="stage-node" style="background: linear-gradient(135deg, #50A896 0%, #3C8E7E 100%);">
+                <i data-lucide="cog" class="w-10 h-10 text-white"></i>
+            </div>
+            <div class="stage-label">Production</div>
+        </div>
+
+        <!-- Use, Reuse Node -->
+        <div class="absolute left-[1085px] top-[595px] z-20 flex flex-col items-center">
+            <div class="stage-node" style="background: linear-gradient(135deg, #7BA05B 0%, #5F8345 100%);">
+                <i data-lucide="hand" class="w-10 h-10 text-white"></i>
+            </div>
+            <div class="stage-label text-xs">Use, reuse</div>
+        </div>
+
+        <!-- Collection Node -->
+        <div class="absolute left-[955px] top-[640px] z-20 flex flex-col items-center">
+            <div class="stage-node" style="background: linear-gradient(135deg, #A8B566 0%, #8E9952 100%);">
+                <i data-lucide="trash-2" class="w-10 h-10 text-white"></i>
+            </div>
+            <div class="stage-label">Collection</div>
+        </div>
+
+        <!-- Sorting/Separating Node -->
+        <div class="absolute left-[755px] top-[540px] z-20 flex flex-col items-center">
+            <div class="stage-node" style="background: linear-gradient(135deg, #C4B454 0%, #A89940 100%);">
+                <i data-lucide="recycle" class="w-10 h-10 text-white"></i>
+            </div>
+            <div class="stage-label text-xs">Sorting,<br>separating</div>
+        </div>
+
+        <!-- Leftover Material Labels -->
+        <div class="absolute left-[310px] top-[140px] z-20 max-w-[90px]">
+            <div class="leftover-label">Leftover<br>Material</div>
+            <div class="text-xs text-gray-600 text-center mt-1" style="font-size: 8px; line-height: 1.3;">
+                Re-used for infrastructure/<br>construction material
             </div>
         </div>
 
-        <!-- Dual Use Raw Materials -->
-        <div class="absolute left-[740px] top-[295px] z-20">
-            <div class="text-center max-w-[160px]">
-                <div class="font-head text-lg text-white leading-tight">Dual use</div>
-                <div class="font-head text-lg text-white leading-tight">raw materials</div>
+        <div class="absolute left-[510px] top-[140px] z-20 max-w-[90px]">
+            <div class="leftover-label">Leftover<br>Material</div>
+            <div class="text-xs text-gray-600 text-center mt-1" style="font-size: 8px; line-height: 1.3;">
+                Mining waste<br>material/data for<br>future generations
             </div>
         </div>
 
-        <!-- Market -->
-        <div class="absolute left-[1050px] top-[310px] z-20">
-            <div class="text-center">
-                <div class="font-head text-xl text-white">Market</div>
-            </div>
+        <div class="absolute left-[755px] top-[575px] z-20 max-w-[70px]">
+            <div class="leftover-label">Leftover<br>Material</div>
         </div>
 
-        <!-- Scrap Label -->
-        <div class="absolute left-[835px] top-[400px] z-20">
-            <div class="font-mono text-xs text-syntra-muted italic">scrap</div>
+        <div class="absolute left-[890px] top-[325px] z-20 max-w-[70px]">
+            <div class="leftover-label">Leftover<br>Material</div>
         </div>
 
-        <!-- End of Life -->
-        <div class="absolute left-[990px] top-[530px] z-20">
-            <div class="text-center">
-                <div class="font-head text-base text-syntra-muted italic">End of Life</div>
-            </div>
+        <div class="absolute left-[1020px] top-[295px] z-20 max-w-[70px]">
+            <div class="leftover-label">Leftover<br>Material</div>
         </div>
 
-        <!-- Recycling -->
-        <div class="absolute left-[650px] top-[530px] z-20">
-            <div class="text-center">
-                <div class="font-head text-lg text-syntra-tech italic">Recycling</div>
-            </div>
+        <div class="absolute left-[1180px] top-[440px] z-20 max-w-[70px]">
+            <div class="leftover-label">Leftover<br>Material</div>
         </div>
 
-        <!-- Process Cards with Icons -->
-        <div class="absolute left-[60px] top-[380px] z-20">
-            <div class="flex items-center gap-2 bg-syntra-card/50 backdrop-blur-sm px-3 py-2 rounded border border-syntra-border">
-                <i data-lucide="pickaxe" class="w-4 h-4 text-syntra-muted"></i>
-                <span class="font-mono text-xs text-syntra-muted">Primary Input</span>
-            </div>
+        <div class="absolute left-[1100px] top-[695px] z-20 max-w-[70px]">
+            <div class="leftover-label">Leftover<br>Material</div>
         </div>
 
-        <div class="absolute left-[270px] top-[380px] z-20">
-            <div class="flex items-center gap-2 bg-syntra-card/50 backdrop-blur-sm px-3 py-2 rounded border border-syntra-border">
-                <i data-lucide="factory" class="w-4 h-4 text-syntra-muted"></i>
-                <span class="font-mono text-xs text-syntra-muted">Concentration</span>
-            </div>
-        </div>
-
-        <div class="absolute left-[465px] top-[380px] z-20">
-            <div class="flex items-center gap-2 bg-syntra-card/80 backdrop-blur-sm px-3 py-2 rounded border-2 border-syntra-accent shadow-lg shadow-syntra-accent/20">
-                <i data-lucide="cpu" class="w-4 h-4 text-syntra-accent"></i>
-                <span class="font-mono text-xs text-syntra-accent font-bold">SynHub™</span>
-            </div>
-        </div>
-
-        <div class="absolute left-[725px] top-[380px] z-20">
-            <div class="flex items-center gap-2 bg-syntra-card/50 backdrop-blur-sm px-3 py-2 rounded border border-syntra-border">
-                <i data-lucide="layers" class="w-4 h-4 text-white"></i>
-                <span class="font-mono text-xs text-white">Battery Grade</span>
-            </div>
-        </div>
-
-        <div class="absolute left-[1025px] top-[380px] z-20">
-            <div class="flex items-center gap-2 bg-syntra-card/50 backdrop-blur-sm px-3 py-2 rounded border border-syntra-border">
-                <i data-lucide="zap" class="w-4 h-4 text-white"></i>
-                <span class="font-mono text-xs text-white">EVs / Grid</span>
-            </div>
-        </div>
-
-        <div class="absolute left-[615px] top-[570px] z-20">
-            <div class="flex items-center gap-2 bg-syntra-card/50 backdrop-blur-sm px-3 py-2 rounded border border-syntra-tech">
-                <i data-lucide="recycle" class="w-4 h-4 text-syntra-tech"></i>
-                <span class="font-mono text-xs text-syntra-tech">Black Mass</span>
-            </div>
-        </div>
-
-        <!-- Bottom Legend -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-            <div class="flex items-center gap-8 bg-syntra-card/80 backdrop-blur-md px-8 py-3 rounded-full border border-syntra-border">
-                <div class="flex items-center gap-2">
-                    <div class="w-6 h-0.5 bg-syntra-accent"></div>
-                    <span class="font-mono text-[10px] text-syntra-muted uppercase">Primary Flow</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <div class="w-6 h-0.5 bg-syntra-tech"></div>
-                    <span class="font-mono text-[10px] text-syntra-muted uppercase">Circular Loop</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <div class="w-6 h-0.5 bg-syntra-muted" style="stroke-dasharray: 4 4;"></div>
-                    <span class="font-mono text-[10px] text-syntra-muted uppercase">Secondary Input</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Syntra Branding Bottom Left -->
-        <div class="absolute bottom-8 left-12 z-20">
-            <div class="flex items-center gap-2">
-                <div class="w-6 h-6 border-2 border-syntra-accent rotate-45 flex items-center justify-center">
-                    <div class="w-2.5 h-2.5 bg-syntra-accent -rotate-45"></div>
-                </div>
-                <div>
-                    <div class="font-head text-white text-sm font-bold tracking-tight uppercase">Syntra Refining</div>
-                    <div class="font-mono text-syntra-tech text-[8px] tracking-widest">CIRCULAR INFRASTRUCTURE</div>
-                </div>
-            </div>
+        <div class="absolute left-[970px] top-[715px] z-20 max-w-[70px]">
+            <div class="leftover-label">Leftover<br>Material</div>
         </div>
     </div>
 
