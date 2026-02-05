@@ -894,103 +894,74 @@
             <!-- Divider -->
             <div style="margin: 50px 0 40px; border-top: 1px solid rgba(148, 163, 184, 0.2);"></div>
 
-            <!-- Traditional Linear Economy Comparison -->
+            <!-- Traditional Circular Economy (Lower Efficiency) -->
             <div style="margin-top: 40px;">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #94A3B8; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 0.1em; text-align: center;">CURRENT INDUSTRY: LINEAR ECONOMY (WITH EXISTING REFINERS)</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #94A3B8; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 0.1em; text-align: center;">CURRENT INDUSTRY: EXISTING REFINERS (PARTIAL CIRCULARITY)</div>
 
-                <!-- Top Row: Mine → Processing → Traditional Refining → Raw Materials → Market -->
-                <div style="display: flex; align-items: stretch; justify-content: center; gap: 15px; margin-bottom: 50px;">
-                    <!-- Mine -->
-                    <div style="flex: 1; border: 2px solid #64748B; border-radius: 4px; padding: 20px; background: rgba(30, 41, 59, 0.6); position: relative; opacity: 0.7;">
-                        <div style="position: absolute; top: -12px; left: 20px; background: #0F172A; padding: 0 10px;">
-                            <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #64748B; text-transform: uppercase; letter-spacing: 0.1em;">UPSTREAM</span>
+                <!-- Circular Loop Diagram for Existing Refiners -->
+                <div style="position: relative; max-width: 900px; margin: 0 auto;">
+                    <!-- Top Row -->
+                    <div style="display: flex; align-items: stretch; justify-content: center; gap: 15px; margin-bottom: 15px;">
+                        <!-- Mine -->
+                        <div style="flex: 1; border: 2px solid #64748B; border-radius: 4px; padding: 15px; background: rgba(30, 41, 59, 0.6); position: relative; opacity: 0.7;">
+                            <div style="position: absolute; top: -10px; left: 15px; background: #0F172A; padding: 0 8px;">
+                                <span style="font-family: 'JetBrains Mono', monospace; font-size: 8px; color: #64748B; text-transform: uppercase; letter-spacing: 0.1em;">UPSTREAM</span>
+                            </div>
+                            <div style="font-size: 24px; margin-bottom: 5px;">⛰</div>
+                            <div style="font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 700; color: #94A3B8; text-transform: uppercase; margin-bottom: 5px;">MINE</div>
+                            <div style="font-size: 10px; color: #64748B; line-height: 1.3;">Virgin ore extraction</div>
                         </div>
-                        <div style="font-size: 28px; margin-bottom: 8px;">⛰</div>
-                        <div style="font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: #94A3B8; text-transform: uppercase; margin-bottom: 8px;">MINE</div>
-                        <div style="font-size: 11px; color: #64748B; line-height: 1.4;">Raw ore extraction from earth. Li, Ni, Co, Cu deposits discovered and mined.</div>
+
+                        <div style="display: flex; align-items: center; color: #64748B; font-size: 24px; font-weight: 700;">→</div>
+
+                        <!-- Existing Refiners -->
+                        <div style="flex: 1; border: 2px solid #F59E0B; border-radius: 4px; padding: 15px; background: rgba(245, 158, 11, 0.1); position: relative; opacity: 0.8;">
+                            <div style="position: absolute; top: -10px; left: 15px; background: #0F172A; padding: 0 8px;">
+                                <span style="font-family: 'JetBrains Mono', monospace; font-size: 8px; color: #F59E0B; text-transform: uppercase; letter-spacing: 0.1em;">MIDSTREAM</span>
+                            </div>
+                            <div style="font-size: 24px; margin-bottom: 5px;">◇</div>
+                            <div style="font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 700; color: #F59E0B; text-transform: uppercase; margin-bottom: 5px;">EXISTING REFINERS</div>
+                            <div style="font-size: 10px; color: #94A3B8; line-height: 1.3;">Standard methods. Some scrap recovery.</div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; color: #64748B; font-size: 24px; font-weight: 700;">→</div>
+
+                        <!-- Market -->
+                        <div style="flex: 1; border: 2px solid #64748B; border-radius: 4px; padding: 15px; background: rgba(30, 41, 59, 0.6); position: relative; opacity: 0.7;">
+                            <div style="position: absolute; top: -10px; left: 15px; background: #0F172A; padding: 0 8px;">
+                                <span style="font-family: 'JetBrains Mono', monospace; font-size: 8px; color: #64748B; text-transform: uppercase; letter-spacing: 0.1em;">DOWNSTREAM</span>
+                            </div>
+                            <div style="font-size: 24px; margin-bottom: 5px;">●</div>
+                            <div style="font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 700; color: #94A3B8; text-transform: uppercase; margin-bottom: 5px;">MARKET</div>
+                            <div style="font-size: 10px; color: #64748B; line-height: 1.3;">Products in use</div>
+                        </div>
                     </div>
 
-                    <div style="display: flex; align-items: center; color: #64748B; font-size: 28px; font-weight: 700;">→</div>
+                    <!-- Return Arrow and Scrap -->
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 20px;">
+                        <!-- Left side arrow curving back -->
+                        <div style="flex: 0 0 45%; text-align: right; color: #F59E0B; font-size: 28px; font-weight: 700;">↙</div>
 
-                    <!-- Processing -->
-                    <div style="flex: 1; border: 2px solid #64748B; border-radius: 4px; padding: 20px; background: rgba(30, 41, 59, 0.6); position: relative; opacity: 0.7;">
-                        <div style="position: absolute; top: -12px; left: 20px; background: #0F172A; padding: 0 10px;">
-                            <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #64748B; text-transform: uppercase; letter-spacing: 0.1em;">MIDSTREAM</span>
+                        <!-- Scrap box -->
+                        <div style="flex: 1; border: 2px dashed #F59E0B; border-radius: 4px; padding: 15px; background: rgba(245, 158, 11, 0.05); position: relative; text-align: center;">
+                            <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #0F172A; padding: 0 8px;">
+                                <span style="font-family: 'JetBrains Mono', monospace; font-size: 8px; color: #F59E0B; text-transform: uppercase; letter-spacing: 0.1em;">PARTIAL RECOVERY</span>
+                            </div>
+                            <div style="font-size: 24px; margin-bottom: 5px;">♻</div>
+                            <div style="font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 700; color: #F59E0B; text-transform: uppercase; margin-bottom: 5px;">SCRAP RECOVERY</div>
+                            <div style="font-size: 10px; color: #94A3B8; line-height: 1.3;">Lower recovery rate. Quality degradation over cycles.</div>
                         </div>
-                        <div style="font-size: 28px; margin-bottom: 8px;">○</div>
-                        <div style="font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: #94A3B8; text-transform: uppercase; margin-bottom: 8px;">PROCESSING</div>
-                        <div style="font-size: 11px; color: #64748B; line-height: 1.4;">Ore crushing, grinding, flotation. Initial separation and concentration.</div>
+
+                        <!-- Right side arrow from market -->
+                        <div style="flex: 0 0 45%; text-align: left; color: #F59E0B; font-size: 28px; font-weight: 700;">↖</div>
                     </div>
-
-                    <div style="display: flex; align-items: center; color: #64748B; font-size: 28px; font-weight: 700;">→</div>
-
-                    <!-- Traditional Refining (Lower Grade) -->
-                    <div style="flex: 1; border: 2px solid #64748B; border-radius: 4px; padding: 20px; background: rgba(30, 41, 59, 0.6); position: relative; opacity: 0.7;">
-                        <div style="position: absolute; top: -12px; left: 20px; background: #0F172A; padding: 0 10px;">
-                            <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #F59E0B; text-transform: uppercase; letter-spacing: 0.1em;">MIDSTREAM</span>
-                        </div>
-                        <div style="font-size: 28px; margin-bottom: 8px;">◇</div>
-                        <div style="font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: #94A3B8; text-transform: uppercase; margin-bottom: 8px;">EXISTING REFINERS</div>
-                        <div style="font-size: 11px; color: #64748B; line-height: 1.4;">Current industry players. Standard methods, 95-98% purity. Linear model only.</div>
-                    </div>
-
-                    <div style="display: flex; align-items: center; color: #64748B; font-size: 28px; font-weight: 700;">→</div>
-
-                    <!-- Raw Materials -->
-                    <div style="flex: 1; border: 2px solid #64748B; border-radius: 4px; padding: 20px; background: rgba(30, 41, 59, 0.6); position: relative; opacity: 0.7;">
-                        <div style="position: absolute; top: -12px; left: 20px; background: #0F172A; padding: 0 10px;">
-                            <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #64748B; text-transform: uppercase; letter-spacing: 0.1em;">DOWNSTREAM</span>
-                        </div>
-                        <div style="font-size: 28px; margin-bottom: 8px;">◻</div>
-                        <div style="font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: #94A3B8; text-transform: uppercase; margin-bottom: 8px;">RAW MATERIALS</div>
-                        <div style="font-size: 11px; color: #64748B; line-height: 1.4;">Components manufactured from refined inputs.</div>
-                    </div>
-                </div>
-
-                <!-- Bottom Row: Waste ← Market (showing linear end) -->
-                <div style="display: flex; align-items: stretch; justify-content: flex-end; gap: 15px;">
-                    <!-- Spacer to align with top row -->
-                    <div style="flex: 1;"></div>
-                    <div style="width: 28px;"></div>
-                    <div style="flex: 1;"></div>
-                    <div style="width: 28px;"></div>
-                    <div style="flex: 1;"></div>
-                    <div style="width: 28px;"></div>
-                    <div style="flex: 1;"></div>
-
-                    <div style="display: flex; align-items: center; color: #DC2626; font-size: 28px; font-weight: 700;">↓</div>
-
-                    <!-- Market -->
-                    <div style="flex: 1; border: 2px solid #64748B; border-radius: 4px; padding: 20px; background: rgba(30, 41, 59, 0.6); position: relative; opacity: 0.7;">
-                        <div style="position: absolute; top: -12px; left: 20px; background: #0F172A; padding: 0 10px;">
-                            <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #64748B; text-transform: uppercase; letter-spacing: 0.1em;">DOWNSTREAM</span>
-                        </div>
-                        <div style="font-size: 28px; margin-bottom: 8px;">●</div>
-                        <div style="font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: #94A3B8; text-transform: uppercase; margin-bottom: 8px;">MARKET</div>
-                        <div style="font-size: 11px; color: #64748B; line-height: 1.4;">Products deployed in applications. Short lifecycle.</div>
-                    </div>
-
-                    <div style="display: flex; align-items: center; color: #DC2626; font-size: 28px; font-weight: 700;">↓</div>
-
-                    <!-- Waste -->
-                    <div style="flex: 1; border: 2px solid #DC2626; border-radius: 4px; padding: 20px; background: rgba(220, 38, 38, 0.1); position: relative;">
-                        <div style="position: absolute; top: -12px; left: 20px; background: #0F172A; padding: 0 10px;">
-                            <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #DC2626; text-transform: uppercase; letter-spacing: 0.1em;">END OF LINE</span>
-                        </div>
-                        <div style="font-size: 28px; margin-bottom: 8px;">🗑</div>
-                        <div style="font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: #DC2626; text-transform: uppercase; margin-bottom: 8px;">WASTE</div>
-                        <div style="font-size: 11px; color: #DC2626; line-height: 1.4;">Materials lost forever. No recovery loop. Linear end.</div>
-                    </div>
-
-                    <!-- No return path - dead end -->
-                    <div style="display: flex; align-items: center; color: #DC2626; font-size: 28px; font-weight: 700;">✕</div>
                 </div>
 
                 <!-- Bottom Callout -->
                 <div style="margin-top: 25px; text-align: center;">
-                    <div style="display: inline-block; padding: 15px 30px; border: 2px solid #DC2626; border-radius: 8px; background: rgba(220, 38, 38, 0.1);">
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #DC2626; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 5px;">CURRENT INDUSTRY LIMITATION</div>
-                        <div style="font-size: 13px; color: #94A3B8; line-height: 1.5;">Existing refiners operate linearly → NO SCRAP RECOVERY → Materials lost to waste → Must mine virgin ore again</div>
+                    <div style="display: inline-block; padding: 15px 30px; border: 2px solid #F59E0B; border-radius: 8px; background: rgba(245, 158, 11, 0.1);">
+                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #F59E0B; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 5px;">EXISTING INDUSTRY STATUS</div>
+                        <div style="font-size: 13px; color: #94A3B8; line-height: 1.5;">Some circularity exists → Limited scrap recovery → Quality loss over cycles → Still mining dependency → Not fully circular</div>
                     </div>
                 </div>
             </div>
