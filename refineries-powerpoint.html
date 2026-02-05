@@ -308,6 +308,20 @@
             <h1>Canadian Processing Facilities</h1>
         </div>
 
+        <div class="export-section">
+            <div class="export-buttons">
+                <button class="export-btn primary" onclick="downloadAsHTML()">
+                    📥 Download HTML
+                </button>
+                <button class="export-btn secondary" onclick="printToPDF()">
+                    📄 Print to PDF
+                </button>
+                <button class="export-btn outline" onclick="copyTableData()">
+                    📋 Copy Table Data
+                </button>
+            </div>
+        </div>
+
         <div class="views-container">
             <!-- View 1: All Refineries -->
             <div class="view-card" id="view-all">
@@ -567,7 +581,7 @@
                 });
         }
 
-        window.exportAsHTML = function() {
+        window.downloadAsHTML = function() {
             const html = document.documentElement.outerHTML;
             const blob = new Blob([html], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
@@ -578,7 +592,11 @@
             URL.revokeObjectURL(url);
         };
 
-        window.exportAsTable = function() {
+        window.printToPDF = function() {
+            window.print();
+        };
+
+        window.copyTableData = function() {
             const table = document.getElementById('export-table');
             const range = document.createRange();
             range.selectNode(table);
