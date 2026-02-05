@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canada Critical Minerals Map - SYNTRA</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Brand CSS -->
+    <link rel="stylesheet" href="./css/syntra-brand-theme.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a1628;
+            color: #e2e8f0;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0a1628 0%, #1e293b 100%);
+            padding: 2rem;
+            border-bottom: 1px solid #FFD700;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .controls {
+            max-width: 1400px;
+            margin: 1.5rem auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .filter-group label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        select, input {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #e2e8f0;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #FFD700;
+        }
+
+        button {
+            background: #FFD700;
+            color: #0a1628;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #ffd000;
+            transform: translateY(-1px);
+        }
+
+        .map-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        #map {
+            height: 700px;
+            border-radius: 8px;
+            border: 2px solid #334155;
+        }
+
+        .stats {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFD700;
+        }
+
+        .stat-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+
+        .legend {
+            background: #1e293b;
+            border: 1px solid #334155;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .legend-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .legend-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #FFD700;
+        }
+
+        /* Custom Leaflet Popup Styling */
+        .leaflet-popup-content-wrapper {
+            background: #1e293b;
+            color: #e2e8f0;
+            border: 1px solid #FFD700;
+            border-radius: 8px;
+        }
+
+        .leaflet-popup-content {
+            margin: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .leaflet-popup-tip {
+            background: #1e293b;
+        }
+
+        .popup-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+
+        .popup-detail {
+            margin: 0.5rem 0;
+            font-size: 0.875rem;
+        }
+
+        .popup-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+        }
+
+        .popup-value {
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        .mineral-tag {
+            display: inline-block;
+            background: #334155;
+            color: #FFD700;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin: 0.25rem 0.25rem 0.25rem 0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="subtitle">Network Intelligence</div>
+            <h1>Canada Critical Minerals Map</h1>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="filter-group">
+            <label>Type:</label>
+            <select id="typeFilter">
+                <option value="all">All Types</option>
+                <option value="mine">Mines</option>
+                <option value="processing_facility">Processing Facilities</option>
+                <option value="advanced_project">Advanced Projects</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Province:</label>
+            <select id="provinceFilter">
+                <option value="all">All Provinces</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Mineral:</label>
+            <select id="mineralFilter">
+                <option value="all">All Minerals</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Status:</label>
+            <select id="statusFilter">
+                <option value="all">All Status</option>
+                <option value="operational">Operational</option>
+                <option value="under_development">Under Development</option>
+                <option value="planned">Planned</option>
+                <option value="closed">Closed</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <input type="text" id="searchInput" placeholder="Search by name or operator..." style="width: 250px;">
+        </div>
+
+        <button onclick="applyFilters()">Apply Filters</button>
+        <button onclick="resetFilters()">Reset</button>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-value" id="totalLocations">0</div>
+            <div class="stat-label">Total Locations</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="totalMines">0</div>
+            <div class="stat-label">Active Mines</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="totalProcessing">0</div>
+            <div class="stat-label">Processing Facilities</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="totalProjects">0</div>
+            <div class="stat-label">Advanced Projects</div>
+        </div>
+    </div>
+
+    <div class="map-container">
+        <div id="map"></div>
+
+        <div class="legend">
+            <div class="legend-title">Legend</div>
+            <div class="legend-item">
+                <div class="legend-icon" style="background: #10b981;"></div>
+                <span>Operational Mine</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon" style="background: #3b82f6;"></div>
+                <span>Processing Facility</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon" style="background: #f59e0b;"></div>
+                <span>Under Development</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon" style="background: #8b5cf6;"></div>
+                <span>Advanced Project</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon" style="background: #6b7280;"></div>
+                <span>Closed/Inactive</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading">Loading mining locations...</div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Supabase Client -->
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        // Initialize Supabase
+        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+        const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+        const supabase = createClient(supabaseUrl, supabaseKey);
+
+        // Initialize map
+        const map = L.map('map').setView([56.1304, -106.3468], 4); // Centered on Canada
+
+        // Add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 18
+        }).addTo(map);
+
+        let allLocations = [];
+        let markers = L.layerGroup().addTo(map);
+
+        // Get marker color based on type and status
+        function getMarkerColor(location) {
+            if (location.status === 'closed') return '#6b7280';
+            if (location.status === 'under_development') return '#f59e0b';
+            if (location.type === 'mine') return '#10b981';
+            if (location.type === 'processing_facility') return '#3b82f6';
+            if (location.type === 'advanced_project') return '#8b5cf6';
+            return '#FFD700';
+        }
+
+        // Create popup content
+        function createPopupContent(location) {
+            const mineralsHtml = location.minerals && location.minerals.length > 0
+                ? location.minerals.map(m => `<span class="mineral-tag">${m}</span>`).join('')
+                : '<span class="mineral-tag">N/A</span>';
+
+            return `
+                <div class="popup-title">${location.name}</div>
+                <div class="popup-detail">
+                    <span class="popup-label">Type:</span>
+                    <span class="popup-value">${location.type.replace(/_/g, ' ').toUpperCase()}</span>
+                </div>
+                <div class="popup-detail">
+                    <span class="popup-label">Status:</span>
+                    <span class="popup-value">${location.status.replace(/_/g, ' ').toUpperCase()}</span>
+                </div>
+                <div class="popup-detail">
+                    <span class="popup-label">Province:</span>
+                    <span class="popup-value">${location.province}</span>
+                </div>
+                ${location.operator ? `
+                <div class="popup-detail">
+                    <span class="popup-label">Operator:</span>
+                    <span class="popup-value">${location.operator}</span>
+                </div>
+                ` : ''}
+                <div class="popup-detail">
+                    <span class="popup-label">Critical Minerals:</span><br>
+                    ${mineralsHtml}
+                </div>
+                ${location.description ? `
+                <div class="popup-detail" style="margin-top: 0.75rem;">
+                    <span class="popup-value">${location.description}</span>
+                </div>
+                ` : ''}
+            `;
+        }
+
+        // Add markers to map
+        function displayLocations(locations) {
+            markers.clearLayers();
+
+            locations.forEach(location => {
+                const color = getMarkerColor(location);
+
+                const marker = L.circleMarker([location.latitude, location.longitude], {
+                    radius: 8,
+                    fillColor: color,
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                });
+
+                marker.bindPopup(createPopupContent(location), {
+                    maxWidth: 300
+                });
+
+                markers.addLayer(marker);
+            });
+        }
+
+        // Load locations from database
+        async function loadLocations() {
+            try {
+                const { data, error } = await supabase
+                    .from('mining_locations')
+                    .select('*')
+                    .order('name');
+
+                if (error) throw error;
+
+                allLocations = data || [];
+                displayLocations(allLocations);
+                updateStats(allLocations);
+                populateFilters(allLocations);
+
+                document.getElementById('loading').style.display = 'none';
+
+                console.log(`Loaded ${allLocations.length} mining locations`);
+            } catch (error) {
+                console.error('Error loading locations:', error);
+                document.getElementById('loading').textContent = 'Error loading mining locations. Please refresh the page.';
+            }
+        }
+
+        // Update statistics
+        function updateStats(locations) {
+            document.getElementById('totalLocations').textContent = locations.length;
+            document.getElementById('totalMines').textContent = locations.filter(l => l.type === 'mine' && l.status === 'operational').length;
+            document.getElementById('totalProcessing').textContent = locations.filter(l => l.type === 'processing_facility').length;
+            document.getElementById('totalProjects').textContent = locations.filter(l => l.type === 'advanced_project').length;
+        }
+
+        // Populate filter dropdowns
+        function populateFilters(locations) {
+            // Provinces
+            const provinces = [...new Set(locations.map(l => l.province))].sort();
+            const provinceFilter = document.getElementById('provinceFilter');
+            provinces.forEach(province => {
+                const option = document.createElement('option');
+                option.value = province;
+                option.textContent = province;
+                provinceFilter.appendChild(option);
+            });
+
+            // Minerals
+            const minerals = [...new Set(locations.flatMap(l => l.minerals || []))].sort();
+            const mineralFilter = document.getElementById('mineralFilter');
+            minerals.forEach(mineral => {
+                const option = document.createElement('option');
+                option.value = mineral;
+                option.textContent = mineral;
+                mineralFilter.appendChild(option);
+            });
+        }
+
+        // Apply filters
+        window.applyFilters = function() {
+            const typeFilter = document.getElementById('typeFilter').value;
+            const provinceFilter = document.getElementById('provinceFilter').value;
+            const mineralFilter = document.getElementById('mineralFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+            let filtered = allLocations;
+
+            if (typeFilter !== 'all') {
+                filtered = filtered.filter(l => l.type === typeFilter);
+            }
+
+            if (provinceFilter !== 'all') {
+                filtered = filtered.filter(l => l.province === provinceFilter);
+            }
+
+            if (mineralFilter !== 'all') {
+                filtered = filtered.filter(l => l.minerals && l.minerals.includes(mineralFilter));
+            }
+
+            if (statusFilter !== 'all') {
+                filtered = filtered.filter(l => l.status === statusFilter);
+            }
+
+            if (searchTerm) {
+                filtered = filtered.filter(l =>
+                    l.name.toLowerCase().includes(searchTerm) ||
+                    (l.operator && l.operator.toLowerCase().includes(searchTerm))
+                );
+            }
+
+            displayLocations(filtered);
+            updateStats(filtered);
+        };
+
+        // Reset filters
+        window.resetFilters = function() {
+            document.getElementById('typeFilter').value = 'all';
+            document.getElementById('provinceFilter').value = 'all';
+            document.getElementById('mineralFilter').value = 'all';
+            document.getElementById('statusFilter').value = 'all';
+            document.getElementById('searchInput').value = '';
+
+            displayLocations(allLocations);
+            updateStats(allLocations);
+        };
+
+        // Load data on page load
+        loadLocations();
+    </script>
+</body>
+</html>
