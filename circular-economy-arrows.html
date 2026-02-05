@@ -164,57 +164,107 @@
                     <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1" />
                 </linearGradient>
 
-                <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-                    <polygon points="0 0, 8 4, 0 8" class="arrow-marker" />
+                <!-- Arrow Style 1: Simple -->
+                <marker id="arrow-1" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                    <polygon points="0 0, 10 5, 0 10" class="arrow-marker" />
+                </marker>
+
+                <!-- Arrow Style 2: Bold -->
+                <marker id="arrow-2" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+                    <polygon points="0 0, 12 6, 0 12, 3 6" class="arrow-marker" />
+                </marker>
+
+                <!-- Arrow Style 3: Slim -->
+                <marker id="arrow-3" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                    <polygon points="0 1, 8 4, 0 7" class="arrow-marker" />
+                </marker>
+
+                <!-- Arrow Style 4: Wide -->
+                <marker id="arrow-4" markerWidth="10" markerHeight="12" refX="8" refY="6" orient="auto">
+                    <polygon points="0 0, 10 6, 0 12, 2 6" class="arrow-marker" />
                 </marker>
             </defs>
 
             <!-- Background Track -->
             <path class="path-line" d="M 640 360 Q 800 150 980 200 T 1100 360 T 980 520 Q 800 570 640 360 Q 480 150 300 200 T 180 360 T 300 520 Q 480 570 640 360" opacity="0.3" />
 
-            <!-- RIGHT LOOP: Segmented with arrows -->
+            <!-- RIGHT LOOP: Segmented with multiple arrow styles -->
             <!-- Center to Top Right -->
-            <path class="path-active" d="M 640 360 Q 710 275 770 230" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 770 230 Q 830 190 890 205" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 890 205 Q 935 215 980 200" marker-end="url(#arrowhead)" />
+            <path class="path-active" d="M 640 360 L 675 320 L 710 280"
+                  marker-start="url(#arrow-1)" marker-mid="url(#arrow-2)" marker-end="url(#arrow-1)" />
+            <path class="path-active" d="M 710 280 Q 740 240 770 230"
+                  marker-start="url(#arrow-3)" marker-mid="url(#arrow-4)" marker-end="url(#arrow-2)" />
+            <path class="path-active" d="M 770 230 L 820 210 L 860 205"
+                  marker-start="url(#arrow-1)" marker-mid="url(#arrow-3)" marker-end="url(#arrow-4)" />
+            <path class="path-active" d="M 860 205 L 920 202 L 980 200"
+                  marker-start="url(#arrow-2)" marker-mid="url(#arrow-1)" marker-end="url(#arrow-3)" />
 
             <!-- Top Right to Far Right -->
-            <path class="path-active" d="M 980 200 Q 1020 235 1045 270" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 1045 270 Q 1070 305 1080 340" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 1080 340 Q 1090 355 1100 360" marker-end="url(#arrowhead)" />
+            <path class="path-active" d="M 980 200 L 1010 215 L 1030 240"
+                  marker-start="url(#arrow-4)" marker-mid="url(#arrow-2)" marker-end="url(#arrow-1)" />
+            <path class="path-active" d="M 1030 240 L 1055 275 L 1070 300"
+                  marker-start="url(#arrow-3)" marker-mid="url(#arrow-4)" marker-end="url(#arrow-2)" />
+            <path class="path-active" d="M 1070 300 L 1085 330 L 1100 360"
+                  marker-start="url(#arrow-1)" marker-mid="url(#arrow-3)" marker-end="url(#arrow-4)" />
 
             <!-- Far Right to Bottom Right -->
-            <path class="path-active" d="M 1100 360 Q 1090 395 1070 430" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 1070 430 Q 1050 465 1020 490" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 1020 490 Q 1000 510 980 520" marker-end="url(#arrowhead)" />
+            <path class="path-active" d="M 1100 360 L 1085 390 L 1070 420"
+                  marker-start="url(#arrow-2)" marker-mid="url(#arrow-1)" marker-end="url(#arrow-3)" />
+            <path class="path-active" d="M 1070 420 L 1045 455 L 1020 480"
+                  marker-start="url(#arrow-4)" marker-mid="url(#arrow-2)" marker-end="url(#arrow-1)" />
+            <path class="path-active" d="M 1020 480 L 1000 500 L 980 520"
+                  marker-start="url(#arrow-3)" marker-mid="url(#arrow-4)" marker-end="url(#arrow-2)" />
 
             <!-- Bottom Right back to Center -->
-            <path class="path-active" d="M 980 520 Q 920 545 860 540" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 860 540 Q 800 535 750 490" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 750 490 Q 700 445 670 405" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 670 405 Q 650 380 640 360" marker-end="url(#arrowhead)" />
+            <path class="path-active" d="M 980 520 L 940 535 L 900 540"
+                  marker-start="url(#arrow-1)" marker-mid="url(#arrow-3)" marker-end="url(#arrow-4)" />
+            <path class="path-active" d="M 900 540 L 850 537 L 800 525"
+                  marker-start="url(#arrow-2)" marker-mid="url(#arrow-1)" marker-end="url(#arrow-3)" />
+            <path class="path-active" d="M 800 525 L 750 500 L 710 470"
+                  marker-start="url(#arrow-4)" marker-mid="url(#arrow-2)" marker-end="url(#arrow-1)" />
+            <path class="path-active" d="M 710 470 L 675 430 L 655 390"
+                  marker-start="url(#arrow-3)" marker-mid="url(#arrow-4)" marker-end="url(#arrow-2)" />
+            <path class="path-active" d="M 655 390 L 645 375 L 640 360"
+                  marker-start="url(#arrow-1)" marker-mid="url(#arrow-3)" marker-end="url(#arrow-4)" />
 
-            <!-- LEFT LOOP: Segmented with arrows -->
+            <!-- LEFT LOOP: Segmented with multiple arrow styles -->
             <!-- Center to Top Left -->
-            <path class="path-active" d="M 640 360 Q 570 275 510 230" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 510 230 Q 450 190 390 205" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 390 205 Q 345 215 300 200" marker-end="url(#arrowhead)" />
+            <path class="path-active" d="M 640 360 L 605 320 L 570 280"
+                  marker-start="url(#arrow-2)" marker-mid="url(#arrow-4)" marker-end="url(#arrow-1)" />
+            <path class="path-active" d="M 570 280 Q 540 240 510 230"
+                  marker-start="url(#arrow-3)" marker-mid="url(#arrow-1)" marker-end="url(#arrow-2)" />
+            <path class="path-active" d="M 510 230 L 460 210 L 420 205"
+                  marker-start="url(#arrow-4)" marker-mid="url(#arrow-3)" marker-end="url(#arrow-1)" />
+            <path class="path-active" d="M 420 205 L 360 202 L 300 200"
+                  marker-start="url(#arrow-2)" marker-mid="url(#arrow-4)" marker-end="url(#arrow-3)" />
 
             <!-- Top Left to Far Left -->
-            <path class="path-active" d="M 300 200 Q 260 235 235 270" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 235 270 Q 210 305 200 340" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 200 340 Q 190 355 180 360" marker-end="url(#arrowhead)" />
+            <path class="path-active" d="M 300 200 L 270 215 L 250 240"
+                  marker-start="url(#arrow-1)" marker-mid="url(#arrow-2)" marker-end="url(#arrow-4)" />
+            <path class="path-active" d="M 250 240 L 225 275 L 210 300"
+                  marker-start="url(#arrow-3)" marker-mid="url(#arrow-1)" marker-end="url(#arrow-2)" />
+            <path class="path-active" d="M 210 300 L 195 330 L 180 360"
+                  marker-start="url(#arrow-4)" marker-mid="url(#arrow-3)" marker-end="url(#arrow-1)" />
 
             <!-- Far Left to Bottom Left -->
-            <path class="path-active" d="M 180 360 Q 190 395 210 430" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 210 430 Q 230 465 260 490" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 260 490 Q 280 510 300 520" marker-end="url(#arrowhead)" />
+            <path class="path-active" d="M 180 360 L 195 390 L 210 420"
+                  marker-start="url(#arrow-2)" marker-mid="url(#arrow-4)" marker-end="url(#arrow-3)" />
+            <path class="path-active" d="M 210 420 L 235 455 L 260 480"
+                  marker-start="url(#arrow-1)" marker-mid="url(#arrow-2)" marker-end="url(#arrow-4)" />
+            <path class="path-active" d="M 260 480 L 280 500 L 300 520"
+                  marker-start="url(#arrow-3)" marker-mid="url(#arrow-1)" marker-end="url(#arrow-2)" />
 
             <!-- Bottom Left back to Center -->
-            <path class="path-active" d="M 300 520 Q 360 545 420 540" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 420 540 Q 480 535 530 490" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 530 490 Q 580 445 610 405" marker-end="url(#arrowhead)" />
-            <path class="path-active" d="M 610 405 Q 630 380 640 360" marker-end="url(#arrowhead)" />
+            <path class="path-active" d="M 300 520 L 340 535 L 380 540"
+                  marker-start="url(#arrow-4)" marker-mid="url(#arrow-3)" marker-end="url(#arrow-1)" />
+            <path class="path-active" d="M 380 540 L 430 537 L 480 525"
+                  marker-start="url(#arrow-2)" marker-mid="url(#arrow-4)" marker-end="url(#arrow-3)" />
+            <path class="path-active" d="M 480 525 L 530 500 L 570 470"
+                  marker-start="url(#arrow-1)" marker-mid="url(#arrow-2)" marker-end="url(#arrow-4)" />
+            <path class="path-active" d="M 570 470 L 605 430 L 625 390"
+                  marker-start="url(#arrow-3)" marker-mid="url(#arrow-1)" marker-end="url(#arrow-2)" />
+            <path class="path-active" d="M 625 390 L 635 375 L 640 360"
+                  marker-start="url(#arrow-4)" marker-mid="url(#arrow-3)" marker-end="url(#arrow-1)" />
         </svg>
 
         <!-- CENTRAL NODE (SYNTRA) -->
