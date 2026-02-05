@@ -12,677 +12,392 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #0a1628;
-            color: white;
+            font-family: 'Courier New', monospace;
+            background: #f5f5f5;
+            color: #333;
             overflow-x: hidden;
+            padding: 40px 20px;
         }
 
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 20px;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(ellipse at center, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
-            pointer-events: none;
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 80px;
-            z-index: 1;
+            margin-bottom: 60px;
         }
 
         .header h1 {
-            font-size: 56px;
+            font-size: 48px;
             font-weight: 700;
             margin-bottom: 16px;
-            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #f97316;
         }
 
         .header p {
-            color: #94a3b8;
-            font-size: 20px;
+            color: #666;
+            font-size: 18px;
             max-width: 700px;
-        }
-
-        .comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            max-width: 1400px;
-            width: 100%;
-            margin-bottom: 100px;
-        }
-
-        .model {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .model::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #64748b 0%, #475569 100%);
-        }
-
-        .model.circular::before {
-            background: linear-gradient(90deg, #f97316 0%, #ea580c 100%);
-        }
-
-        .model-title {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .model-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            background: rgba(100, 116, 139, 0.2);
-        }
-
-        .circular .model-icon {
-            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-        }
-
-        .linear-flow {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .linear-stage {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .linear-stage:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateX(8px);
-        }
-
-        .linear-stage-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            background: rgba(100, 116, 139, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-
-        .linear-stage-content h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .linear-stage-content p {
-            font-size: 14px;
-            color: #94a3b8;
-        }
-
-        .waste-indicator {
-            margin-top: 24px;
-            padding: 20px;
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .waste-indicator span {
-            color: #ef4444;
-            font-weight: 700;
-            font-size: 18px;
-        }
-
-        .circular-container {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1;
-            max-width: 600px;
             margin: 0 auto;
         }
 
-        .svg-container {
+        .diagram {
+            position: relative;
+            width: 100%;
+            min-height: 600px;
+            margin: 60px 0;
+        }
+
+        svg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            pointer-events: none;
         }
 
-        .circle-path {
+        .arrow-line {
             fill: none;
-            stroke: rgba(249, 115, 22, 0.2);
-            stroke-width: 3;
-            stroke-dasharray: 10 5;
+            stroke: #333;
+            stroke-width: 2;
+            marker-end: url(#arrowhead);
         }
 
-        .flow-particle {
-            fill: #f97316;
-            filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.8));
-        }
-
-        .center-hub {
+        .node {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 60px rgba(249, 115, 22, 0.5);
+            background: white;
+            border: 2px solid #333;
+            padding: 20px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            white-space: nowrap;
             z-index: 10;
+            transition: all 0.3s ease;
         }
 
-        .center-hub h3 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
+        .node:hover {
+            background: #f97316;
+            color: white;
+            border-color: #f97316;
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
         }
 
-        .center-hub p {
-            font-size: 14px;
-            opacity: 0.9;
+        .node-mine {
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
         }
 
-        .circular-stage {
+        .node-processing {
+            top: 50%;
+            left: 20%;
+            transform: translateY(-50%);
+        }
+
+        .node-refining {
+            top: 50%;
+            left: 38%;
+            transform: translateY(-50%);
+        }
+
+        .node-dual-use {
+            top: 15%;
+            left: 55%;
+            transform: translateX(-50%);
+        }
+
+        .node-production-scrap {
+            top: 55%;
+            left: 55%;
+            transform: translateX(-50%);
+        }
+
+        .node-end-of-life {
+            top: 25%;
+            right: 10%;
+        }
+
+        .node-recycling {
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .materials-list {
             position: absolute;
-            width: 180px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 20px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .circular-stage:hover {
-            transform: scale(1.1);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            z-index: 20;
-        }
-
-        .circular-stage-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
-
-        .circular-stage h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .circular-stage p {
-            font-size: 13px;
-            color: #cbd5e1;
-            line-height: 1.4;
-        }
-
-        .stage-0 { top: -20px; left: 50%; transform: translateX(-50%); }
-        .stage-1 { top: 10%; right: 12%; }
-        .stage-2 { top: 35%; right: -10px; }
-        .stage-3 { bottom: 35%; right: -10px; }
-        .stage-4 { bottom: 10%; right: 12%; }
-        .stage-5 { bottom: -20px; left: 50%; transform: translateX(-50%); }
-        .stage-6 { bottom: 10%; left: 12%; }
-        .stage-7 { bottom: 35%; left: -10px; }
-        .stage-8 { top: 35%; left: -10px; }
-        .stage-9 { top: 10%; left: 12%; }
-
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            max-width: 1400px;
-            width: 100%;
-            margin-top: 80px;
-        }
-
-        .metric-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 32px 24px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .metric-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-4px);
-            border-color: rgba(249, 115, 22, 0.5);
-        }
-
-        .metric-value {
-            font-size: 48px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-        }
-
-        .metric-label {
-            font-size: 16px;
-            color: #94a3b8;
-            font-weight: 500;
-        }
-
-        .benefits-section {
-            max-width: 1400px;
-            width: 100%;
-            margin-top: 100px;
-            padding: 60px 40px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-        }
-
-        .benefits-title {
-            text-align: center;
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 60px;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-        }
-
-        .benefit-item {
-            display: flex;
-            gap: 20px;
-        }
-
-        .benefit-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            flex-shrink: 0;
-        }
-
-        .benefit-content h3 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .benefit-content p {
-            font-size: 16px;
-            color: #94a3b8;
+            top: calc(50% + 60px);
+            left: 5%;
+            font-size: 12px;
+            color: #666;
             line-height: 1.6;
         }
 
-        @media (max-width: 1200px) {
-            .comparison {
-                grid-template-columns: 1fr;
+        .industries-list {
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            text-align: left;
+            font-size: 14px;
+            line-height: 2;
+            color: #666;
+        }
+
+        .industries-list div {
+            padding: 4px 0;
+            transition: all 0.3s ease;
+        }
+
+        .industries-list div:hover {
+            color: #f97316;
+            transform: translateX(8px);
+        }
+
+        .legend {
+            margin-top: 100px;
+            padding: 40px;
+            background: white;
+            border: 2px solid #333;
+        }
+
+        .legend h2 {
+            font-size: 28px;
+            margin-bottom: 24px;
+            color: #f97316;
+        }
+
+        .legend-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .legend-item {
+            padding: 16px;
+            border-left: 4px solid #f97316;
+            background: #f9f9f9;
+        }
+
+        .legend-item h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .legend-item p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .diagram {
+                min-height: 800px;
             }
 
-            .metrics {
-                grid-template-columns: repeat(2, 1fr);
+            .node {
+                font-size: 14px;
+                padding: 15px 20px;
             }
 
-            .benefits-grid {
-                grid-template-columns: 1fr;
+            .node-mine { top: 5%; left: 50%; transform: translateX(-50%); }
+            .node-processing { top: 15%; left: 50%; transform: translateX(-50%); }
+            .node-refining { top: 25%; left: 50%; transform: translateX(-50%); }
+            .node-dual-use { top: 35%; left: 20%; }
+            .node-production-scrap { top: 35%; right: 20%; }
+            .node-end-of-life { top: 50%; right: 10%; }
+            .node-recycling { bottom: 20%; left: 50%; transform: translateX(-50%); }
+
+            .materials-list {
+                top: 10%;
+                left: 10%;
+            }
+
+            .industries-list {
+                top: 55%;
+                right: 10%;
             }
         }
 
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 36px;
-            }
-
-            .header p {
-                font-size: 16px;
-            }
-
-            .circular-stage {
-                width: 120px;
-                padding: 12px;
-            }
-
-            .circular-stage-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-
-            .circular-stage h3 {
-                font-size: 14px;
-            }
-
-            .circular-stage p {
-                font-size: 11px;
-            }
-
-            .center-hub {
-                width: 140px;
-                height: 140px;
-            }
-
-            .center-hub h3 {
-                font-size: 20px;
-            }
-
-            .metrics {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes flowParticle {
-            0% {
-                offset-distance: 0%;
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                offset-distance: 100%;
-                opacity: 0;
-            }
+            .header h1 { font-size: 32px; }
+            .header p { font-size: 14px; }
+            .node { font-size: 12px; padding: 10px 15px; }
+            .materials-list, .industries-list { font-size: 11px; }
         }
     </style>
 </head>
 <body>
-    <div class="hero">
+    <div class="container">
         <div class="header">
-            <h1>Circular Economy</h1>
-            <p>Transforming the linear "take-make-waste" model into a regenerative system that keeps materials in use</p>
+            <h1>Critical Minerals Circular Economy</h1>
+            <p>A closed-loop system that recovers and reintegrates valuable materials back into production</p>
         </div>
 
-        <div class="comparison">
-            <!-- Linear Economy -->
-            <div class="model">
-                <div class="model-title">
-                    <div class="model-icon">📉</div>
-                    Linear Economy
-                </div>
-                <div class="linear-flow">
-                    <div class="linear-stage">
-                        <div class="linear-stage-icon">⛏️</div>
-                        <div class="linear-stage-content">
-                            <h3>Extract</h3>
-                            <p>Raw materials from earth</p>
-                        </div>
-                    </div>
-                    <div class="linear-stage">
-                        <div class="linear-stage-icon">🏭</div>
-                        <div class="linear-stage-content">
-                            <h3>Produce</h3>
-                            <p>Convert to products</p>
-                        </div>
-                    </div>
-                    <div class="linear-stage">
-                        <div class="linear-stage-icon">🛒</div>
-                        <div class="linear-stage-content">
-                            <h3>Consume</h3>
-                            <p>Use once or briefly</p>
-                        </div>
-                    </div>
-                    <div class="linear-stage">
-                        <div class="linear-stage-icon">🗑️</div>
-                        <div class="linear-stage-content">
-                            <h3>Dispose</h3>
-                            <p>Discard to landfill</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="waste-indicator">
-                    <span>⚠️ 90%+ Material Loss</span>
-                </div>
+        <div class="diagram">
+            <svg viewBox="0 0 1400 600" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#333" />
+                    </marker>
+                </defs>
+
+                <!-- Mine to Processing -->
+                <path d="M 200 300 L 310 300" class="arrow-line" />
+
+                <!-- Processing to Refining -->
+                <path d="M 420 300 L 530 300" class="arrow-line" />
+
+                <!-- Refining to Dual Use (curved up) -->
+                <path d="M 620 280 Q 650 200, 700 120" class="arrow-line" />
+
+                <!-- Refining to Production Scrap (curved down) -->
+                <path d="M 620 320 Q 650 350, 700 360" class="arrow-line" />
+
+                <!-- Dual Use to End of Life (curved right) -->
+                <path d="M 820 90 Q 950 90, 1050 150" class="arrow-line" />
+
+                <!-- End of Life to Recycling (large curve down-left) -->
+                <path d="M 1100 200 Q 1100 450, 750 480" class="arrow-line" />
+
+                <!-- Production Scrap to Recycling -->
+                <path d="M 730 390 L 730 450" class="arrow-line" />
+
+                <!-- Recycling to Processing (large curve left-up) -->
+                <path d="M 650 480 Q 300 520, 330 340" class="arrow-line" />
+            </svg>
+
+            <div class="node node-mine">Mine</div>
+            <div class="node node-processing">Processing</div>
+            <div class="node node-refining">Refining</div>
+            <div class="node node-dual-use">Dual Use<br>Raw Materials</div>
+            <div class="node node-production-scrap">Production<br>Scrap</div>
+            <div class="node node-end-of-life">End of Life</div>
+            <div class="node node-recycling">Recycling</div>
+
+            <div class="materials-list">
+                Cobalt<br>
+                Lithium<br>
+                Nickel<br>
+                Manganese<br>
+                Copper
             </div>
 
-            <!-- Circular Economy -->
-            <div class="model circular">
-                <div class="model-title">
-                    <div class="model-icon">♻️</div>
-                    Circular Economy
-                </div>
-                <div class="circular-container">
-                    <svg class="svg-container" viewBox="0 0 400 400">
-                        <defs>
-                            <path id="circlePath" d="M 200,200 m -150,0 a 150,150 0 1,1 300,0 a 150,150 0 1,1 -300,0" />
-                        </defs>
-                        <use href="#circlePath" class="circle-path" />
-
-                        <!-- Animated particles -->
-                        <circle r="4" class="flow-particle" style="offset-path: path('M 200,200 m -150,0 a 150,150 0 1,1 300,0 a 150,150 0 1,1 -300,0'); animation: flowParticle 8s linear infinite;" />
-                        <circle r="4" class="flow-particle" style="offset-path: path('M 200,200 m -150,0 a 150,150 0 1,1 300,0 a 150,150 0 1,1 -300,0'); animation: flowParticle 8s linear infinite 2s;" />
-                        <circle r="4" class="flow-particle" style="offset-path: path('M 200,200 m -150,0 a 150,150 0 1,1 300,0 a 150,150 0 1,1 -300,0'); animation: flowParticle 8s linear infinite 4s;" />
-                        <circle r="4" class="flow-particle" style="offset-path: path('M 200,200 m -150,0 a 150,150 0 1,1 300,0 a 150,150 0 1,1 -300,0'); animation: flowParticle 8s linear infinite 6s;" />
-                    </svg>
-
-                    <div class="center-hub">
-                        <h3>Value</h3>
-                        <p>Retained</p>
-                    </div>
-
-                    <div class="circular-stage stage-0">
-                        <div class="circular-stage-icon">🌱</div>
-                        <h3>Design</h3>
-                        <p>Products for longevity & recyclability</p>
-                    </div>
-
-                    <div class="circular-stage stage-1">
-                        <div class="circular-stage-icon">⛏️</div>
-                        <h3>Source</h3>
-                        <p>Sustainable raw materials</p>
-                    </div>
-
-                    <div class="circular-stage stage-2">
-                        <div class="circular-stage-icon">🏭</div>
-                        <h3>Manufacture</h3>
-                        <p>Efficient production processes</p>
-                    </div>
-
-                    <div class="circular-stage stage-3">
-                        <div class="circular-stage-icon">🚚</div>
-                        <h3>Distribute</h3>
-                        <p>Optimize logistics</p>
-                    </div>
-
-                    <div class="circular-stage stage-4">
-                        <div class="circular-stage-icon">🔋</div>
-                        <h3>Use</h3>
-                        <p>Extended product life</p>
-                    </div>
-
-                    <div class="circular-stage stage-5">
-                        <div class="circular-stage-icon">🔧</div>
-                        <h3>Maintain</h3>
-                        <p>Repair & refurbish</p>
-                    </div>
-
-                    <div class="circular-stage stage-6">
-                        <div class="circular-stage-icon">📦</div>
-                        <h3>Collect</h3>
-                        <p>End-of-life recovery</p>
-                    </div>
-
-                    <div class="circular-stage stage-7">
-                        <div class="circular-stage-icon">♻️</div>
-                        <h3>Recycle</h3>
-                        <p>Extract materials</p>
-                    </div>
-
-                    <div class="circular-stage stage-8">
-                        <div class="circular-stage-icon">⚡</div>
-                        <h3>Refine</h3>
-                        <p>Restore material quality</p>
-                    </div>
-
-                    <div class="circular-stage stage-9">
-                        <div class="circular-stage-icon">🔄</div>
-                        <h3>Reintegrate</h3>
-                        <p>Back to production</p>
-                    </div>
-                </div>
+            <div class="industries-list">
+                <div>Lithium Ion Batteries</div>
+                <div>Aerospace</div>
+                <div>Defense</div>
+                <div>Agriculture</div>
+                <div>Healthcare</div>
+                <div>Telecommunications</div>
             </div>
         </div>
 
-        <div class="metrics">
-            <div class="metric-card">
-                <div class="metric-value">95%</div>
-                <div class="metric-label">Material Recovery</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-value">70%</div>
-                <div class="metric-label">Energy Savings</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-value">80%</div>
-                <div class="metric-label">Waste Reduction</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-value">$4.5T</div>
-                <div class="metric-label">Economic Opportunity</div>
-            </div>
-        </div>
-
-        <div class="benefits-section">
-            <h2 class="benefits-title">Why Circular Economy Matters</h2>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="benefit-icon">🌍</div>
-                    <div class="benefit-content">
-                        <h3>Environmental Impact</h3>
-                        <p>Dramatically reduces carbon emissions, preserves natural resources, and minimizes pollution by keeping materials in continuous use rather than extracting virgin resources.</p>
-                    </div>
+        <div class="legend">
+            <h2>Process Stages</h2>
+            <div class="legend-content">
+                <div class="legend-item">
+                    <h3>Mine</h3>
+                    <p>Extraction of critical minerals including cobalt, lithium, nickel, manganese, and copper from primary sources.</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">💰</div>
-                    <div class="benefit-content">
-                        <h3>Economic Growth</h3>
-                        <p>Creates new revenue streams through material recovery, reduces operational costs, and builds competitive advantages through sustainable business models.</p>
-                    </div>
+                <div class="legend-item">
+                    <h3>Processing</h3>
+                    <p>Initial treatment and beneficiation of raw materials to remove impurities and prepare for refining.</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🛡️</div>
-                    <div class="benefit-content">
-                        <h3>Supply Chain Security</h3>
-                        <p>Reduces dependence on imported raw materials, protects against price volatility, and ensures stable access to critical minerals through domestic recycling.</p>
-                    </div>
+                <div class="legend-item">
+                    <h3>Refining</h3>
+                    <p>Advanced purification to achieve battery-grade or industrial-grade material specifications.</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🚀</div>
-                    <div class="benefit-content">
-                        <h3>Innovation Driver</h3>
-                        <p>Spurs technological advancement in recycling, materials science, and product design while creating high-quality jobs in emerging green industries.</p>
-                    </div>
+                <div class="legend-item">
+                    <h3>Dual Use Raw Materials</h3>
+                    <p>High-quality refined materials suitable for multiple applications across various industries.</p>
+                </div>
+                <div class="legend-item">
+                    <h3>Production Scrap</h3>
+                    <p>Manufacturing waste and off-spec materials that can be immediately recycled back into the process.</p>
+                </div>
+                <div class="legend-item">
+                    <h3>End of Life</h3>
+                    <p>Products that have completed their useful life in batteries, electronics, and other applications.</p>
+                </div>
+                <div class="legend-item">
+                    <h3>Recycling</h3>
+                    <p>Recovery of valuable materials from end-of-life products and production scrap for reintegration.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Add smooth scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
+        // Add animation on scroll
+        const nodes = document.querySelectorAll('.node');
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'scale(1) translateY(0) translateX(0)';
+                    }, index * 100);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.metric-card, .benefit-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
+        nodes.forEach(node => {
+            node.style.opacity = '0';
+            node.style.transition = 'all 0.6s ease';
+            observer.observe(node);
         });
 
-        // Add click interactions to circular stages
-        document.querySelectorAll('.circular-stage').forEach(stage => {
-            stage.addEventListener('click', function() {
-                this.style.transform = 'scale(1.15)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 300);
+        // Animate arrows
+        const arrows = document.querySelectorAll('.arrow-line');
+        arrows.forEach((arrow, index) => {
+            const length = arrow.getTotalLength();
+            arrow.style.strokeDasharray = length;
+            arrow.style.strokeDashoffset = length;
+            arrow.style.animation = `drawArrow 1s ease-in-out ${index * 0.2}s forwards`;
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes drawArrow {
+                to {
+                    stroke-dashoffset: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Interactive hover effect - highlight connected nodes
+        const connections = {
+            'node-mine': ['node-processing'],
+            'node-processing': ['node-refining'],
+            'node-refining': ['node-dual-use', 'node-production-scrap'],
+            'node-dual-use': ['node-end-of-life'],
+            'node-production-scrap': ['node-recycling'],
+            'node-end-of-life': ['node-recycling'],
+            'node-recycling': ['node-processing']
+        };
+
+        nodes.forEach(node => {
+            node.addEventListener('mouseenter', function() {
+                const className = this.className.split(' ')[1];
+                const connectedNodes = connections[className] || [];
+
+                nodes.forEach(n => {
+                    if (n !== this && !connectedNodes.includes(n.className.split(' ')[1])) {
+                        n.style.opacity = '0.3';
+                    }
+                });
+            });
+
+            node.addEventListener('mouseleave', function() {
+                nodes.forEach(n => {
+                    n.style.opacity = '1';
+                });
             });
         });
     </script>
