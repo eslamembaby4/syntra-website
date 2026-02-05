@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Economy Process - Syntra Refining</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a1628;
+            color: #ffffff;
+            overflow-x: hidden;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1600px;
+            padding: 60px 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            color: #fbbf24;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        .diagram-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            margin: 0 auto;
+        }
+
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .arrow-path {
+            fill: none;
+            stroke: #fbbf24;
+            stroke-width: 2.5;
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        .arrow-head {
+            fill: #fbbf24;
+        }
+
+        .node {
+            position: absolute;
+            background: transparent;
+            color: #ffffff;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            z-index: 10;
+            opacity: 0;
+            animation: fadeInScale 0.8s ease-out forwards;
+            letter-spacing: 0.5px;
+        }
+
+        .node::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 1px;
+            background: #fbbf24;
+            transition: width 0.4s ease;
+        }
+
+        .node:hover::after {
+            width: 100%;
+        }
+
+        .node:hover {
+            color: #fbbf24;
+        }
+
+        .node-mining {
+            top: 50%;
+            left: 8%;
+            transform: translateY(-50%);
+            animation-delay: 0.1s;
+        }
+
+        .node-processing {
+            top: 50%;
+            left: 22%;
+            transform: translateY(-50%);
+            animation-delay: 0.2s;
+        }
+
+        .node-refining {
+            top: 50%;
+            left: 40%;
+            transform: translateY(-50%);
+            animation-delay: 0.3s;
+        }
+
+        .node-scrap {
+            top: 18%;
+            left: 46%;
+            animation-delay: 0.4s;
+        }
+
+        .node-dual-use {
+            top: 20%;
+            left: 62%;
+            animation-delay: 0.5s;
+        }
+
+        .node-end-users {
+            top: 25%;
+            right: 12%;
+            animation-delay: 0.6s;
+        }
+
+        .node-end-of-life {
+            bottom: 28%;
+            right: 15%;
+            animation-delay: 0.7s;
+        }
+
+        .node-recycle {
+            bottom: 35%;
+            left: 54%;
+            animation-delay: 0.8s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes drawPath {
+            from {
+                stroke-dashoffset: var(--path-length);
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .info-panel {
+            margin-top: 100px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background: rgba(251, 191, 36, 0.05);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            padding: 30px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            background: rgba(251, 191, 36, 0.08);
+            border-color: rgba(251, 191, 36, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .info-card h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #fbbf24;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .info-card p {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .metrics {
+            margin-top: 80px;
+            text-align: center;
+            padding: 40px;
+            background: rgba(251, 191, 36, 0.03);
+            border-top: 2px solid rgba(251, 191, 36, 0.2);
+            border-bottom: 2px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .metric-item {
+            padding: 20px;
+        }
+
+        .metric-value {
+            font-size: 36px;
+            font-weight: 300;
+            color: #fbbf24;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 300;
+        }
+
+        @media (max-width: 1200px) {
+            .diagram-container {
+                height: 800px;
+            }
+
+            .node-mining { top: 5%; left: 10%; transform: none; }
+            .node-processing { top: 12%; left: 10%; transform: none; }
+            .node-refining { top: 19%; left: 10%; transform: none; }
+            .node-scrap { top: 28%; left: 20%; }
+            .node-dual-use { top: 35%; left: 30%; }
+            .node-end-users { top: 45%; right: 15%; }
+            .node-end-of-life { top: 60%; right: 15%; }
+            .node-recycle { bottom: 20%; left: 50%; transform: translateX(-50%); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .node {
+                font-size: 13px;
+                padding: 8px 16px;
+            }
+
+            .info-panel {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>CIRCULAR ECONOMY PROCESS</h1>
+            <p>Closed-Loop Critical Minerals Recovery System</p>
+        </div>
+
+        <div class="diagram-container">
+            <svg viewBox="0 0 1400 600" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                    <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                        <polygon points="0 0, 8 3, 0 6" class="arrow-head" />
+                    </marker>
+                </defs>
+
+                <!-- Mining to Processing -->
+                <path d="M 180 300 L 300 300"
+                      class="arrow-path"
+                      style="animation-delay: 0.3s;"
+                      marker-end="url(#arrowhead)" />
+
+                <!-- Processing to Refining -->
+                <path d="M 380 300 L 540 300"
+                      class="arrow-path"
+                      style="animation-delay: 0.5s;"
+                      marker-end="url(#arrowhead)" />
+
+                <!-- Refining to Scrap (upper curve) -->
+                <path d="M 580 285 Q 600 220, 630 150"
+                      class="arrow-path"
+                      style="animation-delay: 0.7s;"
+                      marker-end="url(#arrowhead)" />
+
+                <!-- Scrap to Dual Use -->
+                <path d="M 700 120 L 850 140"
+                      class="arrow-path"
+                      style="animation-delay: 0.9s;"
+                      marker-end="url(#arrowhead)" />
+
+                <!-- Dual Use to End Users (curved) -->
+                <path d="M 920 150 Q 1050 150, 1100 165"
+                      class="arrow-path"
+                      style="animation-delay: 1.1s;"
+                      marker-end="url(#arrowhead)" />
+
+                <!-- End Users to End of Life -->
+                <path d="M 1140 185 Q 1140 250, 1120 310"
+                      class="arrow-path"
+                      style="animation-delay: 1.3s;"
+                      marker-end="url(#arrowhead)" />
+
+                <!-- End of Life to Recycle (large curve down-left) -->
+                <path d="M 1080 330 Q 1000 420, 830 400"
+                      class="arrow-path"
+                      style="animation-delay: 1.5s;"
+                      marker-end="url(#arrowhead)" />
+
+                <!-- Recycle back to Refining (large curve left-up) -->
+                <path d="M 750 390 Q 550 450, 560 320"
+                      class="arrow-path"
+                      style="animation-delay: 1.7s;"
+                      marker-end="url(#arrowhead)" />
+            </svg>
+
+            <div class="node node-mining">Mining</div>
+            <div class="node node-processing">Processing</div>
+            <div class="node node-refining">Refining</div>
+            <div class="node node-scrap">Scrap</div>
+            <div class="node node-dual-use">Dual Use</div>
+            <div class="node node-end-users">End Users</div>
+            <div class="node node-end-of-life">End of Life</div>
+            <div class="node node-recycle">Recycle</div>
+        </div>
+
+        <div class="info-panel">
+            <div class="info-card">
+                <h3>MINING</h3>
+                <p>Extraction of critical minerals including cobalt, lithium, nickel, manganese, and copper from primary geological sources worldwide.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>PROCESSING</h3>
+                <p>Initial treatment, crushing, and beneficiation to remove impurities and prepare raw materials for advanced refining operations.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>REFINING</h3>
+                <p>Advanced chemical and electrochemical purification to achieve battery-grade specifications and industrial quality standards.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>SCRAP RECOVERY</h3>
+                <p>Collection and processing of manufacturing waste, off-spec materials, and production byproducts for immediate reintegration.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>DUAL USE MATERIALS</h3>
+                <p>High-purity refined materials suitable for multiple applications across battery, aerospace, defense, and technology sectors.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>END USERS</h3>
+                <p>Integration into lithium-ion batteries, electronics, telecommunications, healthcare devices, and advanced manufacturing applications.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>END OF LIFE</h3>
+                <p>Products reaching end of useful life that contain recoverable critical minerals for secondary material streams.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>RECYCLING</h3>
+                <p>Advanced recovery and processing of end-of-life materials to extract and purify critical minerals for reintroduction to the supply chain.</p>
+            </div>
+        </div>
+
+        <div class="metrics">
+            <h2 style="font-size: 24px; font-weight: 300; letter-spacing: 2px; color: #fbbf24; margin-bottom: 10px;">CIRCULAR ECONOMY IMPACT</h2>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-value">95%</div>
+                    <div class="metric-label">Material Recovery Rate</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">80%</div>
+                    <div class="metric-label">Carbon Reduction</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Closed-Loop Processing</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">5+</div>
+                    <div class="metric-label">Critical Minerals</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const paths = document.querySelectorAll('.arrow-path');
+        paths.forEach(path => {
+            const length = path.getTotalLength();
+            path.style.strokeDasharray = length;
+            path.style.strokeDashoffset = length;
+            path.style.setProperty('--path-length', length);
+
+            setTimeout(() => {
+                path.style.animation = 'fadeIn 0.3s ease-in forwards, drawPath 1.5s ease-in-out forwards';
+            }, parseFloat(path.style.animationDelay) * 1000);
+        });
+
+        const nodes = document.querySelectorAll('.node');
+        let currentHighlight = null;
+
+        nodes.forEach(node => {
+            node.addEventListener('mouseenter', function() {
+                if (currentHighlight && currentHighlight !== this) {
+                    currentHighlight.style.color = '#ffffff';
+                }
+                this.style.color = '#fbbf24';
+                currentHighlight = this;
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.info-card, .metric-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
