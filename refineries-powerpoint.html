@@ -44,54 +44,6 @@
             opacity: 0.9;
         }
 
-        .export-section {
-            padding: 30px 40px;
-            background: #f8fafc;
-            border-bottom: 2px solid #e2e8f0;
-        }
-
-        .export-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        .export-btn {
-            padding: 12px 24px;
-            font-size: 14px;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .export-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .export-btn.primary {
-            background: #f97316;
-            color: white;
-        }
-
-        .export-btn.secondary {
-            background: #3b82f6;
-            color: white;
-        }
-
-        .export-btn.outline {
-            background: white;
-            color: #1e3a8a;
-            border: 2px solid #1e3a8a;
-        }
-
         .views-container {
             display: grid;
             grid-template-columns: 1fr;
@@ -306,20 +258,6 @@
     <div class="container">
         <div class="header">
             <h1>Canadian Processing Facilities</h1>
-        </div>
-
-        <div class="export-section">
-            <div class="export-buttons">
-                <button class="export-btn primary" onclick="downloadAsHTML()">
-                    📥 Download HTML
-                </button>
-                <button class="export-btn secondary" onclick="printToPDF()">
-                    📄 Print to PDF
-                </button>
-                <button class="export-btn outline" onclick="copyTableData()">
-                    📋 Copy Table Data
-                </button>
-            </div>
         </div>
 
         <div class="views-container">
@@ -580,39 +518,6 @@
                     row.insertCell(5).textContent = hasPriorityMinerals(location.minerals) ? 'Yes' : 'No';
                 });
         }
-
-        window.downloadAsHTML = function() {
-            const html = document.documentElement.outerHTML;
-            const blob = new Blob([html], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'canadian-refineries-powerpoint.html';
-            a.click();
-            URL.revokeObjectURL(url);
-        };
-
-        window.printToPDF = function() {
-            window.print();
-        };
-
-        window.copyTableData = function() {
-            const table = document.getElementById('export-table');
-            const range = document.createRange();
-            range.selectNode(table);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-
-            try {
-                document.execCommand('copy');
-                alert('Table data copied to clipboard! Paste into PowerPoint.');
-            } catch (err) {
-                alert('Please manually select and copy the table.');
-                document.getElementById('table-export').style.display = 'block';
-                window.scrollTo(0, document.body.scrollHeight);
-            }
-        };
 
         // Initialize when DOM is ready
         if (document.readyState === 'loading') {
