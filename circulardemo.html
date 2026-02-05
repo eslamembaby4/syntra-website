@@ -3,37 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syntra Refining | Circular Economy Value Chain</title>
+    <title>Syntra: Mineral Value Chain - Mine to Market & Recycling</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        syntra: {
-                            navy: '#0B1120',
-                            slate: '#1E293B',
-                            teal: '#00A693',
-                            gold: '#FFB81C',
-                            text: '#1A202C',
-                            border: '#E2E8F0'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        head: ['Oswald', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -41,7 +17,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background: #000;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -55,415 +31,277 @@
             width: 100%;
             max-width: 1600px;
             height: 900px;
-            background: white;
+            background: radial-gradient(circle at 50% 50%, #2563A0 0%, #1E3A5F 50%, #0F1E3A 100%);
             position: relative;
             overflow: hidden;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border-radius: 32px;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .stage-node {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
+        .stage-box {
+            background: linear-gradient(145deg, #1E3A5F, #0F2744);
+            border: 3px solid rgba(59, 130, 246, 0.4);
+            border-radius: 16px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: 5px solid white;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-            position: relative;
+            gap: 12px;
             transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            position: relative;
         }
 
-        .stage-node:hover {
-            transform: scale(1.08);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+        .stage-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+            border-color: rgba(59, 130, 246, 0.6);
+        }
+
+        .stage-box-bottleneck {
+            background: linear-gradient(145deg, #DC2626, #991B1B);
+            border: 4px solid #F59E0B;
+            box-shadow: 0 0 40px rgba(220, 38, 38, 0.5), 0 0 80px rgba(220, 38, 38, 0.3);
+            animation: bottleneckPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes bottleneckPulse {
+            0%, 100% {
+                box-shadow: 0 0 40px rgba(220, 38, 38, 0.5), 0 0 80px rgba(220, 38, 38, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(220, 38, 38, 0.7), 0 0 100px rgba(220, 38, 38, 0.4);
+            }
         }
 
         .stage-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            color: #1A202C;
-            margin-top: 12px;
-            text-align: center;
-            letter-spacing: 0.3px;
+            font-size: 18px;
+            font-weight: 900;
+            color: white;
             text-transform: uppercase;
-        }
-
-        .stage-label-large {
-            font-size: 15px;
-        }
-
-        .leftover-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 10px;
-            font-weight: 600;
-            color: #64748B;
+            letter-spacing: 1px;
             text-align: center;
-            line-height: 1.3;
-            background: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            line-height: 1.2;
         }
 
-        @keyframes flowAnimation {
-            0% {
-                stroke-dashoffset: 1000;
-            }
-            100% {
-                stroke-dashoffset: 0;
-            }
+        .arrow {
+            color: #FFB81C;
+            filter: drop-shadow(0 2px 8px rgba(255, 184, 28, 0.4));
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 0.4;
-            }
-            50% {
-                opacity: 0.2;
-            }
-        }
-
-        .flow-path {
+        .recycle-path {
+            stroke: #FFB81C;
+            stroke-width: 12;
             fill: none;
-            stroke-width: 20;
-            opacity: 0.25;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: flowAnimation 3s ease-in-out forwards, pulse 4s ease-in-out infinite;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 4px 12px rgba(255, 184, 28, 0.4));
         }
 
-        .flow-path-secondary {
-            stroke-width: 10;
-            opacity: 0.3;
-        }
-
-        .connector-dot {
-            transition: all 0.3s ease;
-        }
-
-        .connector-dot:hover {
-            r: 10;
-        }
-
-        .legend-item {
+        .recycle-label {
+            background: #FFB81C;
+            color: #0F1E3A;
+            padding: 12px 32px;
+            border-radius: 24px;
+            font-size: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 16px rgba(255, 184, 28, 0.4);
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #475569;
+            gap: 12px;
         }
 
-        .legend-dot {
-            width: 12px;
-            height: 12px;
+        .warning-icon {
+            position: absolute;
+            top: -16px;
+            right: -16px;
+            background: #F59E0B;
+            border: 3px solid #DC2626;
             border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: warningBlink 1.5s ease-in-out infinite;
         }
 
-        .header-badge {
-            background: linear-gradient(135deg, #00A693 0%, #008577 100%);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 12px rgba(0, 166, 147, 0.25);
+        @keyframes warningBlink {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.6);
+            animation: sparkleFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes sparkleFloat {
+            0%, 100% {
+                opacity: 0.3;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(-10px);
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="slide-container">
-        <!-- Header Section -->
-        <div class="absolute top-0 left-0 right-0 z-20 bg-gradient-to-r from-slate-50 to-white border-b border-gray-200 px-16 py-8">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <div class="w-14 h-14 border-4 border-amber-500 rotate-45 flex items-center justify-center">
-                        <div class="w-7 h-7 bg-amber-500 -rotate-45"></div>
-                    </div>
-                    <div>
-                        <div class="font-head text-2xl text-gray-900 font-bold tracking-tight uppercase">Syntra Refining</div>
-                        <div class="font-mono text-teal-600 text-xs tracking-widest">SUSTAINABLE INFRASTRUCTURE</div>
-                    </div>
+        <!-- Syntra Logo Top Left -->
+        <div class="absolute top-10 left-10 z-20 flex items-center gap-2">
+            <div class="w-10 h-10 border-3 border-teal-400 rotate-45 flex items-center justify-center">
+                <div class="w-5 h-5 bg-teal-400 -rotate-45"></div>
+            </div>
+            <div class="text-white text-3xl font-black tracking-wider">SYNTRA</div>
+        </div>
+
+        <!-- Main Title -->
+        <div class="absolute top-24 left-10 right-10 z-20">
+            <h1 class="text-white text-4xl font-black tracking-tight leading-tight">
+                SYNTRA: MINERAL VALUE CHAIN – <span class="text-amber-400">MINE TO MARKET & RECYCLING</span>
+            </h1>
+        </div>
+
+        <!-- Sparkle decoration -->
+        <div class="sparkle absolute bottom-16 right-16 z-10">
+            <i data-lucide="sparkles" class="w-12 h-12"></i>
+        </div>
+
+        <!-- Main Flow Container -->
+        <div class="absolute top-72 left-4 right-4 z-20 flex items-center justify-center">
+            <div class="flex items-center gap-4">
+                <!-- Mining -->
+                <div class="stage-box w-36 h-36">
+                    <i data-lucide="pickaxe" class="w-10 h-10 text-amber-400"></i>
+                    <div class="stage-label text-base">Mining</div>
                 </div>
-                <div class="text-right">
-                    <div class="header-badge mb-2">CIRCULAR ECONOMY</div>
-                    <h1 class="font-head text-3xl text-gray-900 font-bold tracking-tight">
-                        Battery Metals Value Chain
-                    </h1>
+
+                <!-- Arrow -->
+                <div class="arrow">
+                    <i data-lucide="arrow-right" class="w-10 h-10"></i>
+                </div>
+
+                <!-- Processing -->
+                <div class="stage-box w-36 h-36">
+                    <i data-lucide="factory" class="w-10 h-10 text-amber-400"></i>
+                    <div class="stage-label text-base">Processing</div>
+                </div>
+
+                <!-- Arrow -->
+                <div class="arrow">
+                    <i data-lucide="arrow-right" class="w-10 h-10"></i>
+                </div>
+
+                <!-- Refining (Bottleneck) -->
+                <div class="stage-box stage-box-bottleneck w-48 h-48 relative">
+                    <div class="warning-icon">
+                        <i data-lucide="alert-triangle" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <i data-lucide="flame" class="w-14 h-14 text-amber-400"></i>
+                    <div class="stage-label text-lg">Refining<br><span class="text-sm">(Bottleneck)</span></div>
+                </div>
+
+                <!-- Arrow -->
+                <div class="arrow">
+                    <i data-lucide="arrow-right" class="w-10 h-10"></i>
+                </div>
+
+                <!-- Scrap -->
+                <div class="stage-box w-36 h-36">
+                    <i data-lucide="layers" class="w-10 h-10 text-amber-400"></i>
+                    <div class="stage-label text-base">Scrap</div>
+                </div>
+
+                <!-- Arrow -->
+                <div class="arrow">
+                    <i data-lucide="arrow-right" class="w-10 h-10"></i>
+                </div>
+
+                <!-- Dual Use -->
+                <div class="stage-box w-36 h-36">
+                    <i data-lucide="settings" class="w-10 h-10 text-amber-400"></i>
+                    <div class="stage-label text-base">Dual Use</div>
+                </div>
+
+                <!-- Arrow -->
+                <div class="arrow">
+                    <i data-lucide="arrow-right" class="w-10 h-10"></i>
+                </div>
+
+                <!-- End Users -->
+                <div class="stage-box w-36 h-36">
+                    <i data-lucide="user-circle" class="w-10 h-10 text-amber-400"></i>
+                    <div class="stage-label text-base">End Users</div>
+                </div>
+
+                <!-- Arrow -->
+                <div class="arrow">
+                    <i data-lucide="arrow-right" class="w-10 h-10"></i>
+                </div>
+
+                <!-- End of Life -->
+                <div class="stage-box w-36 h-36">
+                    <i data-lucide="archive" class="w-10 h-10 text-amber-400"></i>
+                    <div class="stage-label text-base">End of Life</div>
                 </div>
             </div>
         </div>
 
-        <!-- Legend -->
-        <div class="absolute top-36 left-16 z-20 bg-white p-6 rounded-lg shadow-lg border border-gray-200">
-            <div class="text-xs font-bold text-gray-700 mb-4 uppercase tracking-wide">Process Flow</div>
-            <div class="space-y-3">
-                <div class="legend-item">
-                    <div class="legend-dot" style="background: linear-gradient(135deg, #00A693, #008577);"></div>
-                    <span>Primary Flow</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-dot" style="background: linear-gradient(135deg, #E8956F, #D67854);"></div>
-                    <span>Waste Stream</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-dot" style="background: linear-gradient(135deg, #4A6FA5, #36578C);"></div>
-                    <span>Refining Stage</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- SVG Flow Diagram -->
+        <!-- SVG Recycling Path -->
         <svg class="absolute inset-0 w-full h-full z-5 pointer-events-none">
             <defs>
-                <marker id="arrow-primary" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
-                    <path d="M 0 0 L 14 7 L 0 14 L 4 7 Z" fill="#00A693" />
+                <marker id="arrow-gold" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto">
+                    <path d="M 0 0 L 16 8 L 0 16 L 4 8 Z" fill="#FFB81C" />
                 </marker>
-                <marker id="arrow-waste" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
-                    <path d="M 0 0 L 14 7 L 0 14 L 4 7 Z" fill="#E8956F" />
-                </marker>
-                <marker id="arrow-secondary" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
-                    <path d="M 0 0 L 14 7 L 0 14 L 4 7 Z" fill="#64748B" />
-                </marker>
-
-                <!-- Glow filter for emphasis -->
-                <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feMerge>
-                        <feMergeNode in="coloredBlur"/>
-                        <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                </filter>
             </defs>
 
-            <!-- Main horizontal flow path -->
-            <path d="M 200 550 Q 300 550 400 550 T 600 550 T 800 550"
-                  stroke="#00A693" class="flow-path" stroke-linecap="round" />
+            <!-- Top Return Arrow (from Scrap back to Refining) -->
+            <path d="M 900 280
+                     Q 1050 230 1200 250
+                     Q 1250 260 1250 300
+                     Q 1240 320 650 320
+                     Q 620 320 620 340"
+                  class="recycle-path" marker-end="url(#arrow-gold)" />
 
-            <!-- Circular loop path -->
-            <path d="M 830 550
-                     Q 900 550 950 520
-                     Q 1000 490 1050 470
-                     Q 1130 440 1190 480
-                     Q 1250 520 1250 590
-                     Q 1250 660 1190 700
-                     Q 1130 740 1050 740
-                     Q 970 740 910 710
-                     Q 850 680 830 630
-                     Q 810 580 830 550"
-                  stroke="#00A693" class="flow-path" stroke-linecap="round" />
-
-            <!-- Leftover material arrows -->
-            <!-- From Mining -->
-            <line x1="400" y1="520" x2="400" y2="330"
-                  stroke="#E8956F" stroke-width="10" marker-end="url(#arrow-waste)" opacity="0.5" stroke-linecap="round" />
-
-            <!-- From Processing -->
-            <line x1="600" y1="520" x2="600" y2="330"
-                  stroke="#9B89B3" stroke-width="10" marker-end="url(#arrow-waste)" opacity="0.5" stroke-linecap="round" />
-
-            <!-- From Refining -->
-            <path d="M 800 560 L 800 600 L 850 640"
-                  stroke="#64748B" stroke-width="8" marker-end="url(#arrow-secondary)" opacity="0.5" fill="none" stroke-linecap="round" />
-
-            <!-- Recycling arrows (smaller, subtle) -->
-            <path d="M 940 500 L 970 460"
-                  stroke="#00A693" stroke-width="6" marker-end="url(#arrow-primary)" opacity="0.4" fill="none" stroke-linecap="round" />
-
-            <path d="M 1070 490 L 1100 450"
-                  stroke="#00A693" stroke-width="6" marker-end="url(#arrow-primary)" opacity="0.4" fill="none" stroke-linecap="round" />
-
-            <path d="M 1200 580 L 1230 580"
-                  stroke="#00A693" stroke-width="6" marker-end="url(#arrow-primary)" opacity="0.4" fill="none" stroke-linecap="round" />
-
-            <path d="M 1180 740 L 1180 790"
-                  stroke="#00A693" stroke-width="6" marker-end="url(#arrow-primary)" opacity="0.4" fill="none" stroke-linecap="round" />
-
-            <path d="M 1050 770 L 1050 810"
-                  stroke="#00A693" stroke-width="6" marker-end="url(#arrow-primary)" opacity="0.4" fill="none" stroke-linecap="round" />
-
-            <!-- Connection dots -->
-            <circle cx="400" cy="550" r="7" fill="#00A693" stroke="white" stroke-width="3" class="connector-dot" filter="url(#glow)" />
-            <circle cx="600" cy="550" r="7" fill="#00A693" stroke="white" stroke-width="3" class="connector-dot" filter="url(#glow)" />
-            <circle cx="800" cy="550" r="7" fill="#00A693" stroke="white" stroke-width="3" class="connector-dot" filter="url(#glow)" />
-
-            <!-- Vertical flow from Mapping to Exploration to Mining -->
-            <path d="M 262 325 L 262 455"
-                  stroke="#00A693" stroke-width="14" opacity="0.3" stroke-linecap="round" />
-            <path d="M 262 455 Q 300 490 355 530"
-                  stroke="#00A693" stroke-width="14" opacity="0.3" stroke-linecap="round" fill="none" />
-
-            <!-- Connection dots for vertical flow -->
-            <circle cx="262" cy="325" r="7" fill="#00A693" stroke="white" stroke-width="3" class="connector-dot" />
-            <circle cx="262" cy="455" r="7" fill="#E8956F" stroke="white" stroke-width="3" class="connector-dot" />
+            <!-- Bottom Long Return Loop (from End of Life back to Refining) -->
+            <path d="M 1450 450
+                     Q 1500 450 1520 480
+                     L 1520 680
+                     Q 1520 720 1480 730
+                     L 120 730
+                     Q 80 730 80 690
+                     L 80 360
+                     Q 80 320 120 320
+                     L 500 320"
+                  class="recycle-path" marker-end="url(#arrow-gold)" />
         </svg>
 
-        <!-- Stage Nodes -->
-
-        <!-- Mapping Node (Top Left) -->
-        <div class="absolute left-[200px] top-[280px] z-20 flex flex-row items-center gap-3">
-            <div class="text-right">
-                <div class="stage-label">Mapping</div>
-            </div>
-            <div class="stage-node" style="background: linear-gradient(135deg, #00A693 0%, #008577 100%);">
-                <i data-lucide="map" class="w-11 h-11 text-white"></i>
-            </div>
-        </div>
-
-        <!-- Exploration Node (Middle Left) -->
-        <div class="absolute left-[200px] top-[410px] z-20 flex flex-row items-center gap-3">
-            <div class="text-right">
-                <div class="stage-label">Exploration</div>
-            </div>
-            <div class="stage-node" style="background: linear-gradient(135deg, #D89F6F 0%, #C07F4F 100%);">
-                <i data-lucide="search" class="w-11 h-11 text-white"></i>
-            </div>
-        </div>
-
-        <!-- Mining Node -->
-        <div class="absolute left-[355px] top-[505px] z-20 flex flex-col items-center">
-            <div class="stage-node" style="background: linear-gradient(135deg, #E8956F 0%, #D67854 100%);">
-                <i data-lucide="pickaxe" class="w-11 h-11 text-white"></i>
-            </div>
-            <div class="stage-label">Mining</div>
-        </div>
-
-        <!-- Processing Node -->
-        <div class="absolute left-[555px] top-[505px] z-20 flex flex-col items-center">
-            <div class="stage-node" style="background: linear-gradient(135deg, #9B89B3 0%, #7D6A9A 100%);">
-                <i data-lucide="factory" class="w-11 h-11 text-white"></i>
-            </div>
-            <div class="stage-label">Processing</div>
-        </div>
-
-        <!-- Refining Node (Highlighted) -->
-        <div class="absolute left-[755px] top-[505px] z-20 flex flex-col items-center">
-            <div class="stage-node" style="background: linear-gradient(135deg, #4A6FA5 0%, #36578C 100%); border-width: 6px; box-shadow: 0 12px 36px rgba(74, 111, 165, 0.3);">
-                <i data-lucide="flask-conical" class="w-12 h-12 text-white"></i>
-            </div>
-            <div class="stage-label stage-label-large">Refining</div>
-        </div>
-
-        <!-- Raw Materials Node -->
-        <div class="absolute left-[905px] top-[475px] z-20 flex flex-col items-center">
-            <div class="stage-node" style="background: linear-gradient(135deg, #00A693 0%, #008577 100%);">
-                <i data-lucide="layers" class="w-11 h-11 text-white"></i>
-            </div>
-            <div class="stage-label">Raw Materials</div>
-        </div>
-
-        <!-- Design Node -->
-        <div class="absolute left-[1025px] top-[440px] z-20 flex flex-col items-center">
-            <div class="stage-node" style="background: linear-gradient(135deg, #00A693 0%, #008577 100%);">
-                <i data-lucide="pen-tool" class="w-11 h-11 text-white"></i>
-            </div>
-            <div class="stage-label">Design</div>
-        </div>
-
-        <!-- Production Node -->
-        <div class="absolute left-[1145px] top-[545px] z-20 flex flex-col items-center">
-            <div class="stage-node" style="background: linear-gradient(135deg, #50A896 0%, #3C8E7E 100%);">
-                <i data-lucide="cog" class="w-11 h-11 text-white"></i>
-            </div>
-            <div class="stage-label">Production</div>
-        </div>
-
-        <!-- Use, Reuse Node -->
-        <div class="absolute left-[1135px] top-[695px] z-20 flex flex-col items-center">
-            <div class="stage-node" style="background: linear-gradient(135deg, #7BA05B 0%, #5F8345 100%);">
-                <i data-lucide="refresh-cw" class="w-11 h-11 text-white"></i>
-            </div>
-            <div class="stage-label">Use & Reuse</div>
-        </div>
-
-        <!-- Collection Node -->
-        <div class="absolute left-[1005px] top-[740px] z-20 flex flex-col items-center">
-            <div class="stage-node" style="background: linear-gradient(135deg, #A8B566 0%, #8E9952 100%);">
-                <i data-lucide="package" class="w-11 h-11 text-white"></i>
-            </div>
-            <div class="stage-label">Collection</div>
-        </div>
-
-        <!-- Sorting/Separating Node -->
-        <div class="absolute left-[805px] top-[640px] z-20 flex flex-col items-center">
-            <div class="stage-node" style="background: linear-gradient(135deg, #C4B454 0%, #A89940 100%);">
-                <i data-lucide="recycle" class="w-11 h-11 text-white"></i>
-            </div>
-            <div class="stage-label">Sorting &<br>Separating</div>
-        </div>
-
-        <!-- Leftover Material Labels -->
-        <div class="absolute left-[355px] top-[260px] z-20 max-w-[110px]">
-            <div class="leftover-label">Waste Material</div>
-            <div class="text-xs text-gray-500 text-center mt-2" style="font-size: 9px; line-height: 1.4;">
-                Infrastructure & construction reuse
-            </div>
-        </div>
-
-        <div class="absolute left-[555px] top-[260px] z-20 max-w-[110px]">
-            <div class="leftover-label">Processing Waste</div>
-            <div class="text-xs text-gray-500 text-center mt-2" style="font-size: 9px; line-height: 1.4;">
-                Data capture for future recovery
-            </div>
-        </div>
-
-        <div class="absolute left-[805px] top-[675px] z-20 max-w-[85px]">
-            <div class="leftover-label">Residual<br>Material</div>
-        </div>
-
-        <div class="absolute left-[940px] top-[425px] z-20 max-w-[75px]">
-            <div class="leftover-label">Scrap</div>
-        </div>
-
-        <div class="absolute left-[1070px] top-[390px] z-20 max-w-[75px]">
-            <div class="leftover-label">Offcuts</div>
-        </div>
-
-        <div class="absolute left-[1230px] top-[545px] z-20 max-w-[75px]">
-            <div class="leftover-label">Waste</div>
-        </div>
-
-        <div class="absolute left-[1150px] top-[795px] z-20 max-w-[75px]">
-            <div class="leftover-label">End of Life</div>
-        </div>
-
-        <div class="absolute left-[1020px] top-[815px] z-20 max-w-[75px]">
-            <div class="leftover-label">Returns</div>
-        </div>
-
-        <!-- Bottom Info Bar -->
-        <div class="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-r from-slate-50 to-white border-t border-gray-200 px-16 py-5">
-            <div class="flex items-center justify-between">
-                <div class="text-xs text-gray-600">
-                    <span class="font-semibold text-gray-800">Syntra Refining</span> &mdash; Enabling the transition to sustainable battery metals production
-                </div>
-                <div class="text-xs text-gray-500">
-                    Last updated: February 2026
-                </div>
+        <!-- Recycle Label -->
+        <div class="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-20">
+            <div class="recycle-label">
+                <i data-lucide="recycle" class="w-7 h-7"></i>
+                <span>RECYCLE</span>
             </div>
         </div>
     </div>
 
     <script>
         lucide.createIcons();
-
-        // Add subtle hover effects
-        document.querySelectorAll('.stage-node').forEach(node => {
-            node.addEventListener('mouseenter', () => {
-                node.style.transform = 'scale(1.08)';
-            });
-            node.addEventListener('mouseleave', () => {
-                node.style.transform = 'scale(1)';
-            });
-        });
     </script>
 </body>
 </html>
