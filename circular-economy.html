@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Economy - Syntra Refining</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2942 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            color: #ffffff;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .circular-graph {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            aspect-ratio: 1;
+        }
+
+        .center-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(249, 115, 22, 0.4);
+            z-index: 10;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(249, 115, 22, 0.4);
+            }
+            50% {
+                box-shadow: 0 20px 80px rgba(249, 115, 22, 0.6);
+            }
+        }
+
+        .center-circle h2 {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .center-circle p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .orbital-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border: 3px dashed rgba(148, 163, 184, 0.3);
+            border-radius: 50%;
+        }
+
+        .stage {
+            position: absolute;
+            width: 200px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease-out backwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .stage:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .stage-1 {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 0.1s;
+        }
+
+        .stage-2 {
+            top: 15%;
+            right: 5%;
+            animation-delay: 0.2s;
+        }
+
+        .stage-3 {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            animation-delay: 0.3s;
+        }
+
+        .stage-4 {
+            bottom: 15%;
+            right: 5%;
+            animation-delay: 0.4s;
+        }
+
+        .stage-5 {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 0.5s;
+        }
+
+        .stage-6 {
+            bottom: 15%;
+            left: 5%;
+            animation-delay: 0.6s;
+        }
+
+        .stage-7 {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            animation-delay: 0.7s;
+        }
+
+        .stage-8 {
+            top: 15%;
+            left: 5%;
+            animation-delay: 0.8s;
+        }
+
+        .stage-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            font-size: 24px;
+        }
+
+        .stage h3 {
+            color: #1e293b;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stage p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .arrow {
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, rgba(249, 115, 22, 0.6), rgba(249, 115, 22, 0));
+            transform-origin: left center;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid rgba(249, 115, 22, 0.6);
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+
+        .benefits {
+            margin-top: 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .benefit-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 28px;
+        }
+
+        .benefit-card h3 {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .benefit-card p {
+            color: #94a3b8;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .header p {
+                font-size: 16px;
+            }
+
+            .circular-graph {
+                max-width: 600px;
+            }
+
+            .center-circle {
+                width: 180px;
+                height: 180px;
+            }
+
+            .center-circle h2 {
+                font-size: 22px;
+            }
+
+            .center-circle p {
+                font-size: 13px;
+            }
+
+            .stage {
+                width: 140px;
+                padding: 16px;
+            }
+
+            .stage-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+
+            .stage h3 {
+                font-size: 14px;
+            }
+
+            .stage p {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Circular Economy</h1>
+            <p>A sustainable closed-loop system that maximizes resource value and minimizes waste</p>
+        </div>
+
+        <div class="circular-graph">
+            <div class="orbital-ring"></div>
+
+            <div class="center-circle">
+                <h2>Circular</h2>
+                <p>Closed-Loop System</p>
+            </div>
+
+            <div class="stage stage-1">
+                <div class="stage-icon">🏭</div>
+                <h3>Mining</h3>
+                <p>Extract raw materials responsibly</p>
+            </div>
+
+            <div class="stage stage-2">
+                <div class="stage-icon">⚙️</div>
+                <h3>Processing</h3>
+                <p>Refine materials efficiently</p>
+            </div>
+
+            <div class="stage stage-3">
+                <div class="stage-icon">🏗️</div>
+                <h3>Manufacturing</h3>
+                <p>Create high-quality products</p>
+            </div>
+
+            <div class="stage stage-4">
+                <div class="stage-icon">📦</div>
+                <h3>Distribution</h3>
+                <p>Deliver to end users</p>
+            </div>
+
+            <div class="stage stage-5">
+                <div class="stage-icon">🔋</div>
+                <h3>Use</h3>
+                <p>Products in service</p>
+            </div>
+
+            <div class="stage stage-6">
+                <div class="stage-icon">♻️</div>
+                <h3>Collection</h3>
+                <p>Gather end-of-life materials</p>
+            </div>
+
+            <div class="stage stage-7">
+                <div class="stage-icon">🔄</div>
+                <h3>Recycling</h3>
+                <p>Recover valuable materials</p>
+            </div>
+
+            <div class="stage stage-8">
+                <div class="stage-icon">✨</div>
+                <h3>Regeneration</h3>
+                <p>Return materials to supply chain</p>
+            </div>
+        </div>
+
+        <div class="benefits">
+            <div class="benefit-card">
+                <div class="benefit-icon">🌍</div>
+                <h3>Environmental</h3>
+                <p>Reduces waste, conserves resources, and minimizes environmental impact through sustainable practices</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>Economic</h3>
+                <p>Creates new business opportunities, reduces costs, and builds resilient supply chains</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🤝</div>
+                <h3>Social</h3>
+                <p>Generates jobs, supports communities, and ensures equitable access to resources</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🎯</div>
+                <h3>Strategic</h3>
+                <p>Reduces dependence on imports, strengthens energy security, and future-proofs operations</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const stages = document.querySelectorAll('.stage');
+            stages.forEach((stage, index) => {
+                stage.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
