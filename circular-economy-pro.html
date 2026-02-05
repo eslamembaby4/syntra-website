@@ -3,364 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Circular Economy Process - Syntra Refining</title>
+    <title>Syntra Refining | Mine to Market Value Chain</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        syntra: {
+                            bg: '#0B1120',
+                            surface: '#1E293B',
+                            card: '#0F1629',
+                            accent: '#FFD700',
+                            tech: '#00D9FF',
+                            text: '#F8FAFC',
+                            muted: '#64748B',
+                            border: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        head: ['Oswald', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: #0b0f19;
-            color: #ffffff;
-            overflow-x: hidden;
-            padding: 0;
-            min-height: 100vh;
+            background-color: #0B1120;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
         }
 
-        .container {
-            width: 100%;
-            max-width: 1920px;
-            padding: 40px;
-        }
-
-        .diagram-container {
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #0B1120;
             position: relative;
-            width: 100%;
-            height: 700px;
-            margin: 0 auto;
-            background: #0b0f19;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .arrow-marker {
+            fill: #64748B;
         }
 
-        .arrow-path {
-            fill: none;
-            stroke: #ffd700;
-            stroke-width: 2.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+        .arrow-marker-accent {
+            fill: #FFD700;
         }
 
-        .arrow-head {
-            fill: #ffd700;
+        .arrow-marker-cyan {
+            fill: #00D9FF;
         }
 
-        .node {
-            position: absolute;
-            color: #ffffff;
-            padding: 8px 16px;
-            font-size: 16px;
-            font-weight: 700;
-            text-align: center;
-            white-space: nowrap;
-            z-index: 10;
-            letter-spacing: 0.3px;
-            transition: all 0.3s ease;
-            cursor: default;
+        @keyframes flowPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
         }
 
-        .node:hover {
-            color: #ffd700;
-            transform: scale(1.08);
-        }
-
-        /* Node Positions - Mapped from matplotlib coordinates */
-        /* y_main = 5 (middle), range is 0-10 for Y, 0-20 for X */
-
-        .node-mining {
-            top: 50%;
-            left: 10%;
-            transform: translate(-50%, -50%);
-        }
-
-        .node-processing {
-            top: 50%;
-            left: 25%;
-            transform: translate(-50%, -50%);
-        }
-
-        .node-refining {
-            top: 50%;
-            left: 40%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* Circle center at x=13, y=5, radius=3 */
-        /* Dual Use at top of circle (y = y_main + radius = 8) */
-        .node-dual-use {
-            top: 20%;
-            left: 65%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* End Users at right of circle (x = center + radius = 16) */
-        .node-end-users {
-            top: 50%;
-            left: 80%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* End of Life at bottom-right (-45 degrees) */
-        .node-end-of-life {
-            top: 71%;
-            left: 75.6%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* Recycle at bottom of circle (y = y_main - radius = 2) */
-        .node-recycle {
-            top: 80%;
-            left: 65%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* Scrap label */
-        .node-scrap {
-            top: 20%;
-            left: 48.5%;
-            transform: translate(-50%, -50%);
-            background: #0b0f19;
-            padding: 4px 12px;
-        }
-
-        @keyframes drawPath {
-            from {
-                stroke-dashoffset: var(--path-length);
-            }
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .animated-path {
-            opacity: 0;
-            animation: fadeIn 0.2s ease-in forwards, drawPath 1.2s ease-out forwards;
-        }
-
-        .animated-node {
-            opacity: 0;
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 1400px) {
-            .diagram-container {
-                height: 600px;
-            }
-
-            .node {
-                font-size: 14px;
-                padding: 6px 12px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-
-            .diagram-container {
-                height: 500px;
-            }
-
-            .node {
-                font-size: 12px;
-                padding: 4px 8px;
-            }
+        .flow-animate {
+            animation: flowPulse 3s ease-in-out infinite;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="diagram-container">
-            <svg viewBox="0 0 2000 1000" preserveAspectRatio="xMidYMid meet">
-                <defs>
-                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3.5" orient="auto">
-                        <polygon points="0 0, 10 3.5, 0 7" class="arrow-head" />
-                    </marker>
-                    <marker id="arrowhead-mid" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-                        <polygon points="0 0, 8 3, 0 6" class="arrow-head" />
-                    </marker>
-                </defs>
 
-                <!-- Linear Flow: Mining -> Processing -> Refining -->
+    <div class="slide-container">
+        <!-- Header -->
+        <div class="absolute top-8 left-12 z-20">
+            <div class="font-mono text-sm text-syntra-muted tracking-widest">03 // MINE TO MARKET VALUE CHAIN</div>
+        </div>
 
-                <!-- Mining to Processing -->
-                <path d="M 280 500 L 450 500"
-                      class="arrow-path animated-path"
-                      style="animation-delay: 0.1s;"
-                      marker-start="url(#arrowhead-mid)"
-                      marker-mid="url(#arrowhead-mid)"
-                      marker-end="url(#arrowhead)" />
+        <!-- Logo Top Right -->
+        <div class="absolute top-8 right-12 z-20">
+            <div class="w-10 h-10 border-2 border-syntra-accent rotate-45 flex items-center justify-center">
+                <div class="w-5 h-5 bg-syntra-accent -rotate-45"></div>
+            </div>
+        </div>
 
-                <!-- Processing to Refining -->
-                <path d="M 570 500 L 720 500"
-                      class="arrow-path animated-path"
-                      style="animation-delay: 0.3s;"
-                      marker-start="url(#arrowhead-mid)"
-                      marker-mid="url(#arrowhead-mid)"
-                      marker-end="url(#arrowhead)" />
+        <!-- Market Metrics Cards -->
+        <div class="absolute top-20 left-1/2 transform -translate-x-1/2 flex gap-4 z-20">
+            <!-- TAM -->
+            <div class="bg-syntra-card border border-syntra-border px-8 py-4 rounded">
+                <div class="font-mono text-xs text-syntra-muted mb-1 tracking-widest">TAM</div>
+                <div class="font-head text-3xl text-white font-bold">$500B</div>
+            </div>
 
-                <!-- Scrap Branch -->
-                <!-- Vertical line up from between Processing/Refining -->
-                <path d="M 695 500 L 695 350 L 695 200"
-                      class="arrow-path animated-path"
-                      style="animation-delay: 0.5s;"
-                      marker-start="url(#arrowhead-mid)"
-                      marker-mid="url(#arrowhead-mid)"
-                      marker-end="url(#arrowhead-mid)" />
+            <!-- SAM -->
+            <div class="bg-syntra-card border border-syntra-tech px-8 py-4 rounded">
+                <div class="font-mono text-xs text-syntra-tech mb-1 tracking-widest">SAM</div>
+                <div class="font-head text-3xl text-syntra-tech font-bold">$52B</div>
+            </div>
 
-                <!-- Horizontal line to Dual Use -->
-                <path d="M 695 200 L 950 200 L 1300 200"
-                      class="arrow-path animated-path"
-                      style="animation-delay: 0.7s;"
-                      marker-start="url(#arrowhead-mid)"
-                      marker-mid="url(#arrowhead-mid)"
-                      marker-end="url(#arrowhead-mid)" />
+            <!-- SOM -->
+            <div class="bg-syntra-card border-2 border-syntra-accent px-8 py-4 rounded">
+                <div class="font-mono text-xs text-syntra-accent mb-1 tracking-widest">SOM</div>
+                <div class="font-head text-3xl text-syntra-accent font-bold">$500M</div>
+            </div>
+        </div>
 
-                <!-- Small arrow down to Dual Use -->
-                <path d="M 1300 200 L 1300 250"
-                      class="arrow-path animated-path"
-                      style="animation-delay: 0.9s;"
-                      marker-start="url(#arrowhead-mid)"
-                      marker-mid="url(#arrowhead-mid)"
-                      marker-end="url(#arrowhead)" />
+        <!-- SVG Flow Diagram -->
+        <svg class="absolute inset-0 w-full h-full z-10 pointer-events-none">
+            <defs>
+                <!-- Arrow markers -->
+                <marker id="arrow-gray" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                    <polygon points="0 0, 8 4, 0 8, 2 4" class="arrow-marker" />
+                </marker>
+                <marker id="arrow-accent" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                    <polygon points="0 0, 10 5, 0 10, 2.5 5" class="arrow-marker-accent" />
+                </marker>
+                <marker id="arrow-cyan" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                    <polygon points="0 0, 8 4, 0 8, 2 4" class="arrow-marker-cyan" />
+                </marker>
+            </defs>
 
-                <!-- Circular Loop -->
+            <!-- UPSTREAM bracket -->
+            <path d="M 100 240 L 100 230 L 350 230 L 350 240"
+                  stroke="#64748B" stroke-width="1.5" fill="none" />
+            <text x="225" y="220" class="font-mono text-xs" fill="#64748B" text-anchor="middle">UPSTREAM</text>
 
-                <!-- Refining to Dual Use (curved up and right) -->
-                <path d="M 880 490 Q 1000 380, 1230 220"
-                      class="arrow-path animated-path"
-                      style="animation-delay: 1.1s;"
-                      marker-start="url(#arrowhead-mid)"
-                      marker-mid="url(#arrowhead-mid)"
-                      marker-end="url(#arrowhead)" />
+            <!-- MIDSTREAM bracket -->
+            <path d="M 370 240 L 370 230 L 650 230 L 650 240"
+                  stroke="#64748B" stroke-width="1.5" fill="none" />
+            <text x="510" y="220" class="font-mono text-xs" fill="#64748B" text-anchor="middle">MIDSTREAM</text>
 
-                <!-- Dual Use to End Users (curved right) -->
-                <path d="M 1380 210 Q 1500 250, 1540 450"
-                      class="arrow-path animated-path"
-                      style="animation-delay: 1.3s;"
-                      marker-start="url(#arrowhead-mid)"
-                      marker-mid="url(#arrowhead-mid)"
-                      marker-end="url(#arrowhead)" />
+            <!-- DOWNSTREAM bracket -->
+            <path d="M 670 240 L 670 230 L 1180 230 L 1180 240"
+                  stroke="#64748B" stroke-width="1.5" fill="none" />
+            <text x="925" y="220" class="font-mono text-xs" fill="#64748B" text-anchor="middle">DOWNSTREAM</text>
 
-                <!-- End Users to End of Life (curved down) -->
-                <path d="M 1600 530 Q 1620 650, 1540 710"
-                      class="arrow-path animated-path"
-                      style="animation-delay: 1.5s;"
-                      marker-start="url(#arrowhead-mid)"
-                      marker-mid="url(#arrowhead-mid)"
-                      marker-end="url(#arrowhead)" />
+            <!-- Main flow arrows -->
+            <!-- Mine to Processing -->
+            <line x1="160" y1="340" x2="280" y2="340"
+                  stroke="#64748B" stroke-width="2" marker-end="url(#arrow-gray)" class="flow-animate" />
 
-                <!-- End of Life to Recycle (curved left and down) -->
-                <path d="M 1460 725 Q 1350 790, 1300 750"
-                      class="arrow-path animated-path"
-                      style="animation-delay: 1.7s;"
-                      marker-start="url(#arrowhead-mid)"
-                      marker-mid="url(#arrowhead-mid)"
-                      marker-end="url(#arrowhead)" />
+            <!-- Processing to Refining -->
+            <line x1="400" y1="340" x2="490" y2="340"
+                  stroke="#FFD700" stroke-width="2.5" marker-end="url(#arrow-accent)" class="flow-animate"
+                  style="animation-delay: 0.5s" />
 
-                <!-- Recycle back to Refining (large curve left and up, closing the loop) -->
-                <path d="M 1220 800 Q 900 880, 800 530"
-                      class="arrow-path animated-path"
-                      style="animation-delay: 1.9s;"
-                      marker-start="url(#arrowhead-mid)"
-                      marker-mid="url(#arrowhead-mid)"
-                      marker-end="url(#arrowhead)" />
-            </svg>
+            <!-- Refining to Dual Use -->
+            <line x1="610" y1="340" x2="730" y2="340"
+                  stroke="#FFD700" stroke-width="2.5" marker-end="url(#arrow-accent)" class="flow-animate"
+                  style="animation-delay: 1s" />
 
-            <!-- Node Labels -->
-            <div class="node node-mining animated-node" style="animation-delay: 0.0s;">Mining</div>
-            <div class="node node-processing animated-node" style="animation-delay: 0.2s;">Processing</div>
-            <div class="node node-refining animated-node" style="animation-delay: 0.4s;">Refining</div>
-            <div class="node node-scrap animated-node" style="animation-delay: 0.8s;">Scrap</div>
-            <div class="node node-dual-use animated-node" style="animation-delay: 1.0s;">Dual Use</div>
-            <div class="node node-end-users animated-node" style="animation-delay: 1.2s;">End Users</div>
-            <div class="node node-end-of-life animated-node" style="animation-delay: 1.4s;">End of Life</div>
-            <div class="node node-recycle animated-node" style="animation-delay: 1.6s;">Recycle</div>
+            <!-- Dual Use to Market -->
+            <line x1="920" y1="340" x2="1040" y2="340"
+                  stroke="#64748B" stroke-width="2" marker-end="url(#arrow-gray)" class="flow-animate"
+                  style="animation-delay: 1.5s" />
+
+            <!-- Recycling Loop -->
+            <!-- Market down to End of Life -->
+            <line x1="1090" y1="365" x2="1090" y2="520"
+                  stroke="#00D9FF" stroke-width="2" marker-end="url(#arrow-cyan)" class="flow-animate"
+                  style="animation-delay: 2s" />
+
+            <!-- End of Life to Recycling -->
+            <line x1="1060" y1="540" x2="740" y2="540"
+                  stroke="#00D9FF" stroke-width="2" marker-end="url(#arrow-cyan)" class="flow-animate"
+                  style="animation-delay: 2.5s" />
+
+            <!-- Recycling back up to Refining -->
+            <path d="M 700 520 Q 670 480 650 440 L 600 365"
+                  stroke="#00D9FF" stroke-width="2" fill="none" marker-end="url(#arrow-cyan)" class="flow-animate"
+                  style="animation-delay: 3s" />
+
+            <!-- Scrap connection from Dual Use to Recycling -->
+            <line x1="825" y1="365" x2="825" y2="460"
+                  stroke="#64748B" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrow-gray)"
+                  style="animation-delay: 3.5s" />
+        </svg>
+
+        <!-- Flow Stage Nodes -->
+        <!-- Mine -->
+        <div class="absolute left-[80px] top-[310px] z-20">
+            <div class="text-center">
+                <div class="font-head text-xl text-syntra-muted">Mine</div>
+            </div>
+        </div>
+
+        <!-- Processing -->
+        <div class="absolute left-[300px] top-[310px] z-20">
+            <div class="text-center">
+                <div class="font-head text-xl text-syntra-muted">Processing</div>
+            </div>
+        </div>
+
+        <!-- Refining (Highlighted) -->
+        <div class="absolute left-[500px] top-[305px] z-20">
+            <div class="text-center">
+                <div class="font-head text-2xl text-syntra-accent font-bold">Refining</div>
+            </div>
+        </div>
+
+        <!-- Dual Use Raw Materials -->
+        <div class="absolute left-[740px] top-[295px] z-20">
+            <div class="text-center max-w-[160px]">
+                <div class="font-head text-lg text-white leading-tight">Dual use</div>
+                <div class="font-head text-lg text-white leading-tight">raw materials</div>
+            </div>
+        </div>
+
+        <!-- Market -->
+        <div class="absolute left-[1050px] top-[310px] z-20">
+            <div class="text-center">
+                <div class="font-head text-xl text-white">Market</div>
+            </div>
+        </div>
+
+        <!-- Scrap Label -->
+        <div class="absolute left-[835px] top-[400px] z-20">
+            <div class="font-mono text-xs text-syntra-muted italic">scrap</div>
+        </div>
+
+        <!-- End of Life -->
+        <div class="absolute left-[990px] top-[530px] z-20">
+            <div class="text-center">
+                <div class="font-head text-base text-syntra-muted italic">End of Life</div>
+            </div>
+        </div>
+
+        <!-- Recycling -->
+        <div class="absolute left-[650px] top-[530px] z-20">
+            <div class="text-center">
+                <div class="font-head text-lg text-syntra-tech italic">Recycling</div>
+            </div>
+        </div>
+
+        <!-- Process Cards with Icons -->
+        <div class="absolute left-[60px] top-[380px] z-20">
+            <div class="flex items-center gap-2 bg-syntra-card/50 backdrop-blur-sm px-3 py-2 rounded border border-syntra-border">
+                <i data-lucide="pickaxe" class="w-4 h-4 text-syntra-muted"></i>
+                <span class="font-mono text-xs text-syntra-muted">Primary Input</span>
+            </div>
+        </div>
+
+        <div class="absolute left-[270px] top-[380px] z-20">
+            <div class="flex items-center gap-2 bg-syntra-card/50 backdrop-blur-sm px-3 py-2 rounded border border-syntra-border">
+                <i data-lucide="factory" class="w-4 h-4 text-syntra-muted"></i>
+                <span class="font-mono text-xs text-syntra-muted">Concentration</span>
+            </div>
+        </div>
+
+        <div class="absolute left-[465px] top-[380px] z-20">
+            <div class="flex items-center gap-2 bg-syntra-card/80 backdrop-blur-sm px-3 py-2 rounded border-2 border-syntra-accent shadow-lg shadow-syntra-accent/20">
+                <i data-lucide="cpu" class="w-4 h-4 text-syntra-accent"></i>
+                <span class="font-mono text-xs text-syntra-accent font-bold">SynHub™</span>
+            </div>
+        </div>
+
+        <div class="absolute left-[725px] top-[380px] z-20">
+            <div class="flex items-center gap-2 bg-syntra-card/50 backdrop-blur-sm px-3 py-2 rounded border border-syntra-border">
+                <i data-lucide="layers" class="w-4 h-4 text-white"></i>
+                <span class="font-mono text-xs text-white">Battery Grade</span>
+            </div>
+        </div>
+
+        <div class="absolute left-[1025px] top-[380px] z-20">
+            <div class="flex items-center gap-2 bg-syntra-card/50 backdrop-blur-sm px-3 py-2 rounded border border-syntra-border">
+                <i data-lucide="zap" class="w-4 h-4 text-white"></i>
+                <span class="font-mono text-xs text-white">EVs / Grid</span>
+            </div>
+        </div>
+
+        <div class="absolute left-[615px] top-[570px] z-20">
+            <div class="flex items-center gap-2 bg-syntra-card/50 backdrop-blur-sm px-3 py-2 rounded border border-syntra-tech">
+                <i data-lucide="recycle" class="w-4 h-4 text-syntra-tech"></i>
+                <span class="font-mono text-xs text-syntra-tech">Black Mass</span>
+            </div>
+        </div>
+
+        <!-- Bottom Legend -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+            <div class="flex items-center gap-8 bg-syntra-card/80 backdrop-blur-md px-8 py-3 rounded-full border border-syntra-border">
+                <div class="flex items-center gap-2">
+                    <div class="w-6 h-0.5 bg-syntra-accent"></div>
+                    <span class="font-mono text-[10px] text-syntra-muted uppercase">Primary Flow</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-6 h-0.5 bg-syntra-tech"></div>
+                    <span class="font-mono text-[10px] text-syntra-muted uppercase">Circular Loop</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-6 h-0.5 bg-syntra-muted" style="stroke-dasharray: 4 4;"></div>
+                    <span class="font-mono text-[10px] text-syntra-muted uppercase">Secondary Input</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Syntra Branding Bottom Left -->
+        <div class="absolute bottom-8 left-12 z-20">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 border-2 border-syntra-accent rotate-45 flex items-center justify-center">
+                    <div class="w-2.5 h-2.5 bg-syntra-accent -rotate-45"></div>
+                </div>
+                <div>
+                    <div class="font-head text-white text-sm font-bold tracking-tight uppercase">Syntra Refining</div>
+                    <div class="font-mono text-syntra-tech text-[8px] tracking-widest">CIRCULAR INFRASTRUCTURE</div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const paths = document.querySelectorAll('.animated-path');
-
-            paths.forEach(path => {
-                const length = path.getTotalLength();
-                path.style.strokeDasharray = length;
-                path.style.strokeDashoffset = length;
-                path.style.setProperty('--path-length', length);
-            });
-
-            // Node hover interactions
-            const nodes = document.querySelectorAll('.node');
-            const pathConnections = {
-                'node-mining': ['node-processing'],
-                'node-processing': ['node-refining'],
-                'node-refining': ['node-dual-use'],
-                'node-scrap': ['node-dual-use'],
-                'node-dual-use': ['node-end-users'],
-                'node-end-users': ['node-end-of-life'],
-                'node-end-of-life': ['node-recycle'],
-                'node-recycle': ['node-refining']
-            };
-
-            nodes.forEach(node => {
-                node.addEventListener('mouseenter', function() {
-                    const className = Array.from(this.classList).find(c => c.startsWith('node-'));
-                    const connected = pathConnections[className] || [];
-
-                    nodes.forEach(n => {
-                        const nClass = Array.from(n.classList).find(c => c.startsWith('node-'));
-                        if (n !== this && !connected.includes(nClass)) {
-                            n.style.opacity = '0.3';
-                        }
-                    });
-                });
-
-                node.addEventListener('mouseleave', function() {
-                    nodes.forEach(n => {
-                        n.style.opacity = '1';
-                    });
-                });
-            });
-
-            // Subtle continuous pulse on the circular loop arrows
-            setInterval(() => {
-                const circularPaths = Array.from(paths).slice(4); // Skip linear flow arrows
-                circularPaths.forEach((path, index) => {
-                    setTimeout(() => {
-                        path.style.transition = 'stroke-width 0.4s ease, opacity 0.4s ease';
-                        path.style.strokeWidth = '3.5';
-                        path.style.opacity = '1';
-                        setTimeout(() => {
-                            path.style.strokeWidth = '2.5';
-                        }, 400);
-                    }, index * 150);
-                });
-            }, 6000);
-        });
+        lucide.createIcons();
     </script>
 </body>
 </html>
