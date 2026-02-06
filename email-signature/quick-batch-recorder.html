@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Batch Recorder - All Signatures</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #000000;
+            color: #F9FAFC;
+            overflow: hidden;
+        }
+
+        .fullscreen-signature {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        iframe {
+            border: none;
+            background: white;
+            box-shadow: 0 0 100px rgba(255, 215, 0, 0.3);
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #FFD700;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .controls.minimized {
+            width: auto;
+            right: auto;
+            padding: 10px 20px;
+        }
+
+        .info {
+            flex: 1;
+        }
+
+        .signature-name {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 5px;
+        }
+
+        .progress-info {
+            color: #94A3B8;
+            font-size: 0.9em;
+        }
+
+        .timer {
+            font-size: 3em;
+            font-weight: 700;
+            color: #FFD700;
+            margin: 0 40px;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .timer.recording {
+            color: #EF4444;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1em;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .btn-record {
+            background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+            color: white;
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+            color: white;
+        }
+
+        .btn-prev {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-minimize {
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            padding: 8px 16px;
+            font-size: 0.85em;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .instructions {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #0891B2;
+            border-radius: 12px;
+            padding: 20px 30px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .instructions.hidden {
+            display: none;
+        }
+
+        .instructions h3 {
+            color: #0891B2;
+            margin-bottom: 10px;
+        }
+
+        .instructions ol {
+            text-align: left;
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin: 5px 0;
+            color: #F9FAFC;
+        }
+
+        .close-instructions {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-top: 15px;
+            padding: 8px 20px;
+            font-size: 0.9em;
+        }
+
+        .checklist {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid rgba(34, 197, 94, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 999;
+            min-width: 250px;
+        }
+
+        .checklist.hidden {
+            display: none;
+        }
+
+        .checklist h4 {
+            color: #22C55E;
+            margin-bottom: 15px;
+        }
+
+        .checklist-item {
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9em;
+        }
+
+        .checklist-item.completed {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22C55E;
+        }
+
+        .checklist-item.current {
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            font-weight: 600;
+        }
+
+        .size-options {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(15, 23, 42, 0.98);
+            border: 3px solid #FFD700;
+            border-radius: 16px;
+            padding: 40px;
+            z-index: 2000;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .size-options.hidden {
+            display: none;
+        }
+
+        .size-options h2 {
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        .size-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .size-btn {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .size-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #FFD700;
+            transform: translateY(-2px);
+        }
+
+        .size-btn strong {
+            display: block;
+            color: #FFD700;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Size Selection Modal -->
+    <div class="size-options" id="sizeOptions">
+        <h2>Choose Recording Size</h2>
+        <p style="color: #94A3B8; margin-bottom: 20px;">Select the size for your GIF recordings</p>
+        <div class="size-grid">
+            <div class="size-btn" onclick="selectSize(600, 200)">
+                <strong>Standard</strong>
+                <div>600 x 200px</div>
+                <div style="font-size: 0.85em; color: #94A3B8; margin-top: 5px;">Recommended</div>
+            </div>
+            <div class="size-btn" onclick="selectSize(800, 300)">
+                <strong>Large</strong>
+                <div>800 x 300px</div>
+                <div style="font-size: 0.85em; color: #94A3B8; margin-top: 5px;">Higher Quality</div>
+            </div>
+            <div class="size-btn" onclick="selectSize(1000, 350)">
+                <strong>XL</strong>
+                <div>1000 x 350px</div>
+                <div style="font-size: 0.85em; color: #94A3B8; margin-top: 5px;">Best Quality</div>
+            </div>
+            <div class="size-btn" onclick="selectSize(1200, 400)">
+                <strong>XXL</strong>
+                <div>1200 x 400px</div>
+                <div style="font-size: 0.85em; color: #94A3B8; margin-top: 5px;">Maximum</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="instructions" id="instructions">
+        <h3>🎬 Quick Recording Guide</h3>
+        <ol>
+            <li><strong>Start your screen recorder</strong> (ScreenToGif, Gifox, etc.)</li>
+            <li><strong>Click "START RECORDING"</strong> - timer counts 20 seconds</li>
+            <li><strong>Click "NEXT"</strong> when done - auto-advances to next signature</li>
+            <li><strong>Repeat</strong> for all 15 signatures</li>
+        </ol>
+        <p style="margin-top: 15px; color: #FFD700; font-weight: 600;">
+            💡 TIP: Position your recording frame once, then just click through all signatures!
+        </p>
+        <button class="close-instructions" onclick="closeInstructions()">Got It! Let's Start</button>
+    </div>
+
+    <!-- Checklist -->
+    <div class="checklist hidden" id="checklist">
+        <h4>✓ Progress Checklist</h4>
+        <div id="checklistItems"></div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls" id="controls">
+        <div class="info">
+            <div class="signature-name" id="signatureName">Amy Keen</div>
+            <div class="progress-info" id="progressInfo">Signature 1 of 15</div>
+        </div>
+        <div class="timer" id="timer">20</div>
+        <div class="buttons">
+            <button class="btn-minimize" onclick="toggleMinimize()">Minimize</button>
+            <button class="btn-prev" onclick="previousSignature()" id="prevBtn">← Previous</button>
+            <button class="btn-record" onclick="startRecording()" id="recordBtn">⏺ START RECORDING</button>
+            <button class="btn-next" onclick="nextSignature()" id="nextBtn">Next →</button>
+        </div>
+    </div>
+
+    <!-- Signature Display -->
+    <div class="fullscreen-signature" id="signatureContainer">
+        <iframe id="signatureFrame" width="600" height="200"></iframe>
+    </div>
+
+    <script>
+        const signatures = [
+            { name: 'Amy Keen', file: 'signature-amy-keen.html' },
+            { name: 'Ben Silver', file: 'signature-ben-silver.html' },
+            { name: 'Esther Fagade', file: 'signature-esther-fagade.html' },
+            { name: 'Jaehun Jeon', file: 'signature-jaehun-jeon.html' },
+            { name: 'Mark Mikhail', file: 'signature-mark-mikhail.html' },
+            { name: 'Michelle Ernest', file: 'signature-michelle-ernest.html' },
+            { name: 'Nifemi Oguntuase', file: 'signature-nifemi-oguntuase.html' },
+            { name: 'Paige McGarry', file: 'signature-paige-mcgarry.html' },
+            { name: 'Rory Chisholm', file: 'signature-rory-chisholm.html' },
+            { name: 'Ryan Tobin', file: 'signature-ryan-tobin.html' },
+            { name: 'Sam Silver', file: 'signature-sam-silver.html' },
+            { name: 'Sergii Liashyk', file: 'signature-sergii-liashyk.html' },
+            { name: 'Stephen Leonard', file: 'signature-stephen-leonard.html' },
+            { name: 'Steven Gravelsins', file: 'signature-steven-gravelsins.html' },
+            { name: 'Thai Do', file: 'signature-thai-do.html' }
+        ];
+
+        let currentIndex = 0;
+        let isRecording = false;
+        let recordingTimer = null;
+        let timeRemaining = 20;
+        let recordingWidth = 600;
+        let recordingHeight = 200;
+        let completedSignatures = new Set();
+
+        function selectSize(width, height) {
+            recordingWidth = width;
+            recordingHeight = height;
+            document.getElementById('sizeOptions').classList.add('hidden');
+            document.getElementById('signatureFrame').width = width;
+            document.getElementById('signatureFrame').height = height;
+            loadSignature(currentIndex);
+            initializeChecklist();
+        }
+
+        function initializeChecklist() {
+            const checklistItems = document.getElementById('checklistItems');
+            checklistItems.innerHTML = signatures.map((sig, index) => `
+                <div class="checklist-item ${index === 0 ? 'current' : ''}" id="checklist-${index}">
+                    <span>${index === 0 ? '▶' : '○'}</span>
+                    <span>${sig.name}</span>
+                </div>
+            `).join('');
+        }
+
+        function updateChecklist() {
+            signatures.forEach((sig, index) => {
+                const item = document.getElementById(`checklist-${index}`);
+                item.className = 'checklist-item';
+
+                if (completedSignatures.has(index)) {
+                    item.classList.add('completed');
+                    item.querySelector('span:first-child').textContent = '✓';
+                } else if (index === currentIndex) {
+                    item.classList.add('current');
+                    item.querySelector('span:first-child').textContent = '▶';
+                } else {
+                    item.querySelector('span:first-child').textContent = '○';
+                }
+            });
+        }
+
+        function loadSignature(index) {
+            const signature = signatures[index];
+            document.getElementById('signatureName').textContent = signature.name;
+            document.getElementById('progressInfo').textContent = `Signature ${index + 1} of ${signatures.length}`;
+            document.getElementById('signatureFrame').src = signature.file;
+
+            document.getElementById('prevBtn').disabled = index === 0;
+
+            updateChecklist();
+        }
+
+        function startRecording() {
+            if (isRecording) return;
+
+            isRecording = true;
+            timeRemaining = 20;
+
+            const recordBtn = document.getElementById('recordBtn');
+            const timer = document.getElementById('timer');
+
+            recordBtn.textContent = '⏸ RECORDING...';
+            recordBtn.disabled = true;
+            timer.classList.add('recording');
+
+            recordingTimer = setInterval(() => {
+                timeRemaining--;
+                timer.textContent = timeRemaining;
+
+                if (timeRemaining <= 0) {
+                    stopRecording();
+                }
+            }, 1000);
+        }
+
+        function stopRecording() {
+            isRecording = false;
+            clearInterval(recordingTimer);
+
+            const recordBtn = document.getElementById('recordBtn');
+            const timer = document.getElementById('timer');
+
+            recordBtn.textContent = '⏺ START RECORDING';
+            recordBtn.disabled = false;
+            timer.classList.remove('recording');
+            timer.textContent = '20';
+
+            completedSignatures.add(currentIndex);
+            updateChecklist();
+
+            // Auto-advance to next signature
+            if (currentIndex < signatures.length - 1) {
+                setTimeout(() => {
+                    nextSignature();
+                }, 500);
+            } else {
+                alert('🎉 All signatures recorded! Great job!');
+            }
+        }
+
+        function nextSignature() {
+            if (isRecording) {
+                stopRecording();
+            }
+
+            if (currentIndex < signatures.length - 1) {
+                currentIndex++;
+                loadSignature(currentIndex);
+            }
+        }
+
+        function previousSignature() {
+            if (isRecording) {
+                stopRecording();
+            }
+
+            if (currentIndex > 0) {
+                currentIndex--;
+                loadSignature(currentIndex);
+            }
+        }
+
+        function toggleMinimize() {
+            const controls = document.getElementById('controls');
+            const checklist = document.getElementById('checklist');
+
+            controls.classList.toggle('minimized');
+
+            if (controls.classList.contains('minimized')) {
+                checklist.classList.remove('hidden');
+            } else {
+                checklist.classList.add('hidden');
+            }
+        }
+
+        function closeInstructions() {
+            document.getElementById('instructions').classList.add('hidden');
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'n') {
+                nextSignature();
+            } else if (e.key === 'ArrowLeft' || e.key === 'p') {
+                previousSignature();
+            } else if (e.key === ' ' || e.key === 'r') {
+                e.preventDefault();
+                if (!isRecording) {
+                    startRecording();
+                }
+            } else if (e.key === 'Escape') {
+                closeInstructions();
+            }
+        });
+
+        // Show size selection on load
+        window.addEventListener('load', () => {
+            // Size selection modal is shown by default
+        });
+    </script>
+</body>
+</html>
