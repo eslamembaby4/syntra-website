@@ -43,12 +43,28 @@ Professional animated banner using GIF format.
 
 ### Supporting Files
 
+#### **gif-converter.html** ⭐ NEW TOOL
+Interactive GIF conversion tool for any signature.
+- Load any signature file for preview
+- Multiple recording methods supported
+- Dimension presets included
+- Step-by-step instructions for all platforms
+- **Use this first for easiest GIF creation**
+
 #### **gif-capture-template.html**
 Template for recording the animated banner as GIF.
 - Pre-sized 550x200px capture area
 - All animations included
 - Optimized for screen recording
 - Instructions included
+
+#### **GIF_CONVERSION_GUIDE.md** 📘 COMPREHENSIVE
+Complete guide for converting ANY signature to GIF.
+- Windows, Mac, and online methods
+- Tool recommendations with links
+- Step-by-step instructions for each tool
+- Optimization and troubleshooting
+- Email implementation examples
 
 #### **GIF_BANNER_GUIDE.md** 📘
 Complete guide for creating and implementing GIF banner.
@@ -118,10 +134,13 @@ The signature reflects Syntra Refining's identity:
 
 ### Option 1: GIF Banner Signature (Recommended)
 
-1. **Create the GIF:**
-   - Open `gif-capture-template.html` in Chrome
-   - Use ScreenToGif or similar tool to record
-   - Follow `GIF_BANNER_GUIDE.md` for complete instructions
+1. **Create the GIF:** ⭐ EASY METHOD
+   - Open `gif-converter.html` in your browser
+   - Select any signature from the dropdown
+   - Choose dimensions (600x200 recommended)
+   - Click "Load Preview"
+   - Follow the on-screen instructions to record as GIF
+   - See `GIF_CONVERSION_GUIDE.md` for detailed tool guides
 
 2. **Host the GIF:**
    - Upload to: `https://www.syntrarefining.com/assets/email-signature/syntra-banner-animated.gif`
