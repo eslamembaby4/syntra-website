@@ -93,6 +93,7 @@
         .buttons {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         button {
@@ -109,6 +110,32 @@
         .btn-record {
             background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
             color: white;
+        }
+
+        .btn-stop {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            color: white;
+            display: none;
+        }
+
+        .btn-stop.active {
+            display: block;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+            color: white;
+            display: none;
+        }
+
+        .btn-download.active {
+            display: block;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .btn-next {
@@ -128,7 +155,7 @@
             font-size: 0.85em;
         }
 
-        button:hover {
+        button:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
         }
@@ -279,6 +306,26 @@
             font-size: 1.2em;
             margin-bottom: 5px;
         }
+
+        .recording-indicator {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(239, 68, 68, 0.95);
+            color: white;
+            padding: 30px 60px;
+            border-radius: 16px;
+            font-size: 2em;
+            font-weight: 700;
+            display: none;
+            z-index: 1500;
+            animation: pulse 1s infinite;
+        }
+
+        .recording-indicator.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -310,17 +357,23 @@
         </div>
     </div>
 
+    <!-- Recording Indicator -->
+    <div class="recording-indicator" id="recordingIndicator">
+        ⏺ RECORDING
+    </div>
+
     <!-- Instructions -->
     <div class="instructions" id="instructions">
-        <h3>🎬 Quick Recording Guide</h3>
+        <h3>🎬 Automatic Recording Guide</h3>
         <ol>
-            <li><strong>Start your screen recorder</strong> (ScreenToGif, Gifox, etc.)</li>
-            <li><strong>Click "START RECORDING"</strong> - timer counts 20 seconds</li>
-            <li><strong>Click "NEXT"</strong> when done - auto-advances to next signature</li>
+            <li><strong>Click "START RECORDING"</strong> - Begins 20-second capture</li>
+            <li><strong>Wait 20 seconds</strong> - Recording captures automatically</li>
+            <li><strong>Click "DOWNLOAD GIF"</strong> - Save the recorded file</li>
+            <li><strong>Click "NEXT"</strong> - Auto-advances to next signature</li>
             <li><strong>Repeat</strong> for all 15 signatures</li>
         </ol>
         <p style="margin-top: 15px; color: #FFD700; font-weight: 600;">
-            💡 TIP: Position your recording frame once, then just click through all signatures!
+            💡 TIP: Recording happens automatically in the browser - no external software needed!
         </p>
         <button class="close-instructions" onclick="closeInstructions()">Got It! Let's Start</button>
     </div>
@@ -342,6 +395,8 @@
             <button class="btn-minimize" onclick="toggleMinimize()">Minimize</button>
             <button class="btn-prev" onclick="previousSignature()" id="prevBtn">← Previous</button>
             <button class="btn-record" onclick="startRecording()" id="recordBtn">⏺ START RECORDING</button>
+            <button class="btn-stop" onclick="stopRecording()" id="stopBtn">⏹ STOP</button>
+            <button class="btn-download" onclick="downloadGif()" id="downloadBtn">⬇ DOWNLOAD GIF</button>
             <button class="btn-next" onclick="nextSignature()" id="nextBtn">Next →</button>
         </div>
     </div>
@@ -350,6 +405,12 @@
     <div class="fullscreen-signature" id="signatureContainer">
         <iframe id="signatureFrame" width="600" height="200"></iframe>
     </div>
+
+    <!-- Hidden canvas for capture -->
+    <canvas id="captureCanvas" style="display: none;"></canvas>
+
+    <!-- GIF.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.js"></script>
 
     <script>
         const signatures = [
@@ -377,6 +438,9 @@
         let recordingWidth = 600;
         let recordingHeight = 200;
         let completedSignatures = new Set();
+        let currentGif = null;
+        let recordedBlob = null;
+        let captureInterval = null;
 
         function selectSize(width, height) {
             recordingWidth = width;
@@ -384,6 +448,11 @@
             document.getElementById('sizeOptions').classList.add('hidden');
             document.getElementById('signatureFrame').width = width;
             document.getElementById('signatureFrame').height = height;
+
+            const canvas = document.getElementById('captureCanvas');
+            canvas.width = width;
+            canvas.height = height;
+
             loadSignature(currentIndex);
             initializeChecklist();
         }
@@ -422,56 +491,171 @@
             document.getElementById('signatureFrame').src = signature.file;
 
             document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('downloadBtn').classList.remove('active');
+            recordedBlob = null;
 
             updateChecklist();
         }
 
-        function startRecording() {
+        async function captureFrame() {
+            const iframe = document.getElementById('signatureFrame');
+            const canvas = document.getElementById('captureCanvas');
+            const ctx = canvas.getContext('2d');
+
+            try {
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+                // Create a temporary canvas with iframe content
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = recordingWidth;
+                tempCanvas.height = recordingHeight;
+                const tempCtx = tempCanvas.getContext('2d');
+
+                // Draw white background
+                tempCtx.fillStyle = 'white';
+                tempCtx.fillRect(0, 0, recordingWidth, recordingHeight);
+
+                // Try to capture iframe content
+                // Note: This may have CORS limitations
+                try {
+                    const svgData = new XMLSerializer().serializeToString(iframeDoc.documentElement);
+                    const img = new Image();
+                    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+                    const url = URL.createObjectURL(svgBlob);
+
+                    await new Promise((resolve) => {
+                        img.onload = () => {
+                            tempCtx.drawImage(img, 0, 0, recordingWidth, recordingHeight);
+                            URL.revokeObjectURL(url);
+                            resolve();
+                        };
+                        img.onerror = resolve;
+                        img.src = url;
+                    });
+                } catch (e) {
+                    console.warn('Direct capture failed, using fallback');
+                }
+
+                ctx.drawImage(tempCanvas, 0, 0);
+                return canvas;
+            } catch (error) {
+                console.error('Frame capture error:', error);
+                return canvas;
+            }
+        }
+
+        async function startRecording() {
             if (isRecording) return;
 
             isRecording = true;
             timeRemaining = 20;
+            recordedBlob = null;
 
             const recordBtn = document.getElementById('recordBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
             const timer = document.getElementById('timer');
+            const indicator = document.getElementById('recordingIndicator');
 
-            recordBtn.textContent = '⏸ RECORDING...';
-            recordBtn.disabled = true;
+            recordBtn.style.display = 'none';
+            stopBtn.classList.add('active');
+            downloadBtn.classList.remove('active');
             timer.classList.add('recording');
+            indicator.classList.add('active');
 
+            // Initialize GIF encoder
+            currentGif = new GIF({
+                workers: 2,
+                quality: 20,
+                width: recordingWidth,
+                height: recordingHeight,
+                workerScript: 'https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.worker.js'
+            });
+
+            // Wait for iframe to fully load
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Start capturing frames
+            const fps = 25;
+            const frameDelay = 1000 / fps;
+            let frameCount = 0;
+            const totalFrames = 20 * fps; // 20 seconds
+
+            captureInterval = setInterval(async () => {
+                if (frameCount >= totalFrames || !isRecording) {
+                    await finishRecording();
+                    return;
+                }
+
+                const canvas = await captureFrame();
+                currentGif.addFrame(canvas, { delay: frameDelay, copy: true });
+                frameCount++;
+            }, frameDelay);
+
+            // Update timer
             recordingTimer = setInterval(() => {
                 timeRemaining--;
                 timer.textContent = timeRemaining;
 
                 if (timeRemaining <= 0) {
-                    stopRecording();
+                    clearInterval(recordingTimer);
                 }
             }, 1000);
         }
 
-        function stopRecording() {
-            isRecording = false;
+        async function finishRecording() {
+            clearInterval(captureInterval);
             clearInterval(recordingTimer);
 
-            const recordBtn = document.getElementById('recordBtn');
-            const timer = document.getElementById('timer');
+            if (!currentGif) return;
 
-            recordBtn.textContent = '⏺ START RECORDING';
-            recordBtn.disabled = false;
-            timer.classList.remove('recording');
-            timer.textContent = '20';
+            currentGif.on('finished', (blob) => {
+                recordedBlob = blob;
+                isRecording = false;
 
-            completedSignatures.add(currentIndex);
-            updateChecklist();
+                const recordBtn = document.getElementById('recordBtn');
+                const stopBtn = document.getElementById('stopBtn');
+                const downloadBtn = document.getElementById('downloadBtn');
+                const timer = document.getElementById('timer');
+                const indicator = document.getElementById('recordingIndicator');
 
-            // Auto-advance to next signature
-            if (currentIndex < signatures.length - 1) {
-                setTimeout(() => {
-                    nextSignature();
-                }, 500);
-            } else {
-                alert('🎉 All signatures recorded! Great job!');
+                recordBtn.style.display = 'block';
+                stopBtn.classList.remove('active');
+                downloadBtn.classList.add('active');
+                timer.classList.remove('recording');
+                timer.textContent = '20';
+                indicator.classList.remove('active');
+
+                completedSignatures.add(currentIndex);
+                updateChecklist();
+            });
+
+            currentGif.render();
+        }
+
+        function stopRecording() {
+            if (!isRecording) return;
+            isRecording = false;
+            finishRecording();
+        }
+
+        function downloadGif() {
+            if (!recordedBlob) {
+                alert('No recording available. Please record first!');
+                return;
             }
+
+            const signature = signatures[currentIndex];
+            const fileName = signature.name.toLowerCase().replace(/\s+/g, '-') + '-signature.gif';
+            const url = URL.createObjectURL(recordedBlob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         }
 
         function nextSignature() {
@@ -482,6 +666,8 @@
             if (currentIndex < signatures.length - 1) {
                 currentIndex++;
                 loadSignature(currentIndex);
+            } else {
+                alert('🎉 All signatures completed!');
             }
         }
 
@@ -521,17 +707,14 @@
                 previousSignature();
             } else if (e.key === ' ' || e.key === 'r') {
                 e.preventDefault();
-                if (!isRecording) {
+                if (!isRecording && !recordedBlob) {
                     startRecording();
                 }
+            } else if (e.key === 'd' && recordedBlob) {
+                downloadGif();
             } else if (e.key === 'Escape') {
                 closeInstructions();
             }
-        });
-
-        // Show size selection on load
-        window.addEventListener('load', () => {
-            // Size selection modal is shown by default
         });
     </script>
 </body>
