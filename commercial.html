@@ -367,7 +367,7 @@
 
         @keyframes progress-fill {
             from { width: 0%; }
-            to { width: 85%; }
+            to { width: 100%; }
         }
 
         .capability-progress {
@@ -567,15 +567,25 @@
 
         <div class="container mx-auto px-6 relative z-10">
             <div class="mb-16 animate-on-scroll" style="transform: translateY(30px);">
-                <div class="inline-block px-3 py-1 bg-syntra-accent/20 border border-syntra-accent text-slate-300 text-[10px] font-bold mb-6">
+                <div class="inline-block px-4 py-2 mb-6 font-bold text-xs tracking-wider uppercase" style="background-color: rgba(8, 145, 178, 0.15); color: #0891B2;">
                     OUR CAPABILITIES
                 </div>
-                <h2 class="font-head text-4xl md:text-5xl font-bold text-white uppercase mb-4 tracking-tight">
+                <h2 class="font-head text-4xl md:text-5xl font-bold text-white uppercase mb-6 tracking-tight">
                     Powering the Critical Minerals Economy
                 </h2>
-                <p class="text-slate-400 text-lg max-w-2xl">
+                <p class="text-syntra-accent text-lg max-w-2xl mb-3 font-semibold">
                     Real-time insights into our operations and technology
                 </p>
+                <p class="text-slate-300 text-base max-w-2xl italic">
+                    Syntra is deploying a distributed refining network and modular capacity infrastructure across North America
+                </p>
+            </div>
+
+            <!-- Label Above Cards -->
+            <div class="mb-6 animate-on-scroll" style="transform: translateY(30px);">
+                <div class="inline-block px-3 py-1 bg-white/10 border border-white/20 text-white text-[10px] font-bold tracking-wider uppercase">
+                    PROPRIETARY REFINING TECHNOLOGY
+                </div>
             </div>
 
             <!-- Animated Capability Cards -->
@@ -602,7 +612,7 @@
                     <h3 class="font-head text-xl font-bold text-white uppercase mb-3 relative z-10">Advanced Refining</h3>
                     <div class="relative z-10">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="text-3xl font-head font-bold text-white" data-counter-animated="99.8">0</span>
+                            <span class="text-3xl font-head font-bold text-syntra-accent" data-counter-animated="99.8">0</span>
                             <span class="text-sm text-slate-400 font-semibold">% PURITY</span>
                         </div>
                         <p class="text-slate-400 text-sm">Proprietary purification technology</p>
@@ -610,8 +620,8 @@
 
                     <!-- Animated Progress Bar -->
                     <div class="mt-6 relative z-10">
-                        <div class="h-1 bg-white/10 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-syntra-accent to-syntra-amber capability-progress" style="width: 0%;"></div>
+                        <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-syntra-accent capability-progress" style="width: 0%; max-width: 85%;"></div>
                         </div>
                     </div>
                 </div>
@@ -619,6 +629,13 @@
                 <!-- Production Capacity -->
                 <div class="capability-card group relative bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-xl p-8 hover:border-syntra-amber transition-all duration-500 overflow-hidden animate-on-scroll" style="transform: translateY(30px); animation-delay: 0.1s;">
                     <div class="absolute inset-0 bg-gradient-to-br from-syntra-amber/0 to-syntra-amber/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    <!-- TPA Label -->
+                    <div class="absolute top-4 right-4 z-20">
+                        <div class="px-2 py-1 bg-white text-syntra-accent font-mono text-[10px] font-bold tracking-wider">
+                            TPA
+                        </div>
+                    </div>
 
                     <!-- Animated Icon -->
                     <div class="relative mb-6">
@@ -642,16 +659,17 @@
                     <h3 class="font-head text-xl font-bold text-white uppercase mb-3 relative z-10">Production Output</h3>
                     <div class="relative z-10">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="text-3xl font-head font-bold text-white" data-counter-animated="1000">0</span>
+                            <span class="text-3xl font-head font-bold text-syntra-accent" data-counter-animated="1000">0</span>
                             <span class="text-sm text-slate-400 font-semibold">MT/YEAR</span>
                         </div>
-                        <p class="text-slate-400 text-sm">Current facility capacity</p>
+                        <p class="text-slate-400 text-sm mb-1">Current facility capacity</p>
+                        <p class="text-[10px] text-slate-500 font-mono uppercase tracking-wider">CURRENT CAPACITY</p>
                     </div>
 
                     <!-- Animated Progress Bar -->
                     <div class="mt-6 relative z-10">
-                        <div class="h-1 bg-white/10 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-syntra-amber to-syntra-accent capability-progress" style="width: 0%; animation-delay: 0.5s;"></div>
+                        <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-syntra-accent capability-progress" style="width: 0%; max-width: 85%; animation-delay: 0.5s;"></div>
                         </div>
                     </div>
                 </div>
@@ -685,16 +703,17 @@
                     <h3 class="font-head text-xl font-bold text-white uppercase mb-3 relative z-10">Global Network</h3>
                     <div class="relative z-10">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="text-3xl font-head font-bold text-white" data-counter-animated="10">0</span>
+                            <span class="text-3xl font-head font-bold text-syntra-tech" data-counter-animated="10">0</span>
                             <span class="text-sm text-slate-400 font-semibold">+ PARTNERS</span>
                         </div>
-                        <p class="text-slate-400 text-sm">Across 3 continents</p>
+                        <p class="text-slate-400 text-sm mb-1">Across 3 continents</p>
+                        <p class="text-[10px] text-slate-500 font-mono uppercase tracking-wider">THREE CONTINENTS</p>
                     </div>
 
                     <!-- Animated Progress Bar -->
                     <div class="mt-6 relative z-10">
-                        <div class="h-1 bg-white/10 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-syntra-tech to-syntra-accent capability-progress" style="width: 0%; animation-delay: 1s;"></div>
+                        <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-syntra-accent capability-progress" style="width: 0%; max-width: 85%; animation-delay: 1s;"></div>
                         </div>
                     </div>
                 </div>
@@ -745,8 +764,8 @@
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-3xl mx-auto text-center" data-animate>
-                <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-4">Infrastructure Platform</p>
+            <div class="max-w-4xl text-left" data-animate>
+                <p class="font-mono text-xs text-syntra-tech tracking-widest uppercase mb-4">Infrastructure Platform</p>
                 <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4"><span class="text-syntra-accent">Distributed</span> Refining <span class="text-syntra-accent">Network</span></h3>
                 <p class="text-slate-300 text-lg">Modular capacity deployment <span class="text-syntra-accent font-semibold">across North America</span></p>
             </div>
