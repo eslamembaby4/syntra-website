@@ -63,7 +63,7 @@ class MetricsHeaderCard {
                             <tr class="border-b border-slate-200">
                                 <th class="text-left py-2.5 px-2 font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold w-[32%]">Category</th>
                                 <th class="text-right py-2.5 px-2 font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold w-[18%]">Current</th>
-                                <th class="text-right py-2.5 px-2 font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold w-[18%]">YoY Growth</th>
+                                <th class="text-right py-2.5 px-2 font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold w-[18%]">Target</th>
                                 <th class="text-right py-2.5 px-2 font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold w-[32%]">Details</th>
                             </tr>
                         </thead>
@@ -99,7 +99,7 @@ class MetricsHeaderCard {
                                     <p class="font-mono font-bold text-syntra-amber">${row.current}</p>
                                 </div>
                                 <div>
-                                    <p class="font-mono text-[9px] text-slate-400 uppercase tracking-wider mb-1">Growth</p>
+                                    <p class="font-mono text-[9px] text-slate-400 uppercase tracking-wider mb-1">Target</p>
                                     <p class="font-mono text-slate-600">${row.yoyGrowth}</p>
                                 </div>
                                 <div>
