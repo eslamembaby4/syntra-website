@@ -40,12 +40,6 @@ window.SYNTRA_METRICS_CONFIGS = {
     subtitle: 'SYNCORE™ PERFORMANCE METRICS',
     metrics: [
       {
-        category: 'Process Yield',
-        current: '96%',
-        yoyGrowth: '98% Target',
-        details: 'Optimized chemistry'
-      },
-      {
         category: 'Purity Targets Met',
         current: '99.5%',
         yoyGrowth: '99.9% Capable',
