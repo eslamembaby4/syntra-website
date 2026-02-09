@@ -149,17 +149,18 @@ table tfoot td {
    SHARP GEOMETRY
    ============================ */
 
-/* Buttons */
+/* Buttons - STRICT: Oswald Bold Only */
 .btn,
 button,
 [class*="button"],
+[class*="cta"],
 input[type="submit"],
 input[type="button"] {
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-sm) !important;
   border: none;
   padding: 0.75rem 1.5rem;
-  font-family: var(--font-mono);
-  font-weight: var(--weight-mono-bold);
+  font-family: var(--font-heading) !important;
+  font-weight: var(--weight-heading) !important;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   transition: all var(--transition-normal);
@@ -390,23 +391,80 @@ select:focus {
    BRAND COMPLIANCE HELPERS
    ============================ */
 
-/* Ensure no centered text in main content */
+/* STRICT ENFORCEMENT: No centered text anywhere */
+[class*="text-center"],
+[class*="items-center"][class*="flex-col"],
+.text-center,
 main [class*="center"],
-main [style*="text-align: center"] {
+main [style*="text-align: center"],
+[style*="text-align: center"] {
   text-align: left !important;
 }
 
-/* Ensure sharp corners everywhere */
-* {
-  border-radius: 0;
+/* Allow flex centering for layout, but force text left */
+.flex.flex-col.items-center *,
+.flex.items-center *,
+.grid.text-center * {
+  text-align: left !important;
 }
 
-.btn, button, input, textarea, select, .card {
-  border-radius: var(--radius-sm);
+/* STRICT ENFORCEMENT: Sharp corners only */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
 }
 
-img {
-  border-radius: 0;
+/* Allowed border radius - Small elements only */
+.btn,
+button:not([class*="rounded-full"]),
+[class*="button"]:not([class*="rounded-full"]),
+[class*="cta"],
+input:not([type="radio"]):not([type="checkbox"]),
+textarea,
+select,
+.card:not([class*="rounded-xl"]):not([class*="rounded-2xl"]):not([class*="rounded-full"]) {
+  border-radius: var(--radius-sm) !important;
+}
+
+/* Structural elements: NO rounding */
+[class*="card"],
+[class*="capability"],
+[class*="metric"],
+section,
+article,
+.panel,
+.box {
+  border-radius: 0 !important;
+}
+
+/* Images and decorative elements: NO rounding */
+img,
+[class*="avatar"],
+[class*="badge"],
+.indicator,
+[class*="status"] {
+  border-radius: 0 !important;
+}
+
+/* Override all Tailwind rounded classes */
+[class*="rounded-full"],
+[class*="rounded-xl"],
+[class*="rounded-2xl"],
+[class*="rounded-3xl"],
+[class*="rounded-lg"],
+[class*="rounded-md"] {
+  border-radius: var(--radius-sm) !important;
+}
+
+/* Ping animations and decorative dots - allow full rounding */
+.animate-ping,
+[class*="ping"],
+.dot,
+[style*="width: 2px"],
+[style*="width: 4px"],
+[style*="width: 8px"] {
+  border-radius: 50% !important;
 }
 
 /* ============================
