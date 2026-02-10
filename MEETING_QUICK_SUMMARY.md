@@ -72,26 +72,6 @@
 
 ---
 
-## 💰 BUDGET NEEDED
-
-### Immediate (This Week):
-**$3K-6K** - Fix critical issues (career app, email, security)
-
-### Phase 1 Enhancements (Next Month):
-**$6K-13K** - Wow improvements (animations, interactions, UX)
-- Scroll animations
-- Magnetic buttons
-- Count-up statistics
-- Smart navigation
-- Enhanced forms
-
-### Content Creation (Ongoing):
-**$12K-23K** - Marketing materials, video, photography
-
-**Total for Q1 2026:** $21K-42K
-
----
-
 ## 📅 PROPOSED TIMELINE
 
 ### Week 1-2 (Feb 10-24):
@@ -126,11 +106,11 @@
 
 ## ❓ KEY QUESTIONS FOR DISCUSSION
 
-1. **Budget:** Can we allocate $3-6K for critical fixes this week?
-2. **Phase 1:** Approve $6-13K for wow enhancements next month?
-3. **Timeline:** Realistic to fix critical issues by Feb 17?
-4. **Ownership:** Who owns website going forward?
-5. **Priorities:** Do we agree on the top 5 above?
+1. **Timeline:** Realistic to fix critical issues by Feb 17?
+2. **Ownership:** Who owns website going forward?
+3. **Priorities:** Do we agree on the top 5 above?
+4. **Phase 1:** Approve Phase 1 wow enhancements for next month?
+5. **Resources:** Do we have developer capacity for critical fixes this week?
 
 ---
 
@@ -164,16 +144,16 @@
 - [ ] Document hosting setup
 
 ### Leadership:
-- [ ] Review and approve budget
 - [ ] Prioritize enhancements
 - [ ] Set KPIs for website
+- [ ] Approve Phase 1 implementation
 
 ---
 
 ## 📄 FULL DOCUMENTATION
 
 **Read before meeting:**
-- `/WEBSITE_REVIEW_MEETING_NOTES.md` - Complete 18-section review (15 min read)
+- `/WEBSITE_REVIEW_MEETING_NOTES.md` - Complete 17-section review (15 min read)
 - `/WOW_WEBSITE_RECOMMENDATIONS.md` - Enhancement strategy (20 min read)
 - `/QUICK_IMPLEMENTATION_GUIDE.md` - Code snippets for quick wins (10 min read)
 
@@ -188,9 +168,8 @@
 
 1. **Assign owners** to each critical issue
 2. **Set deadlines** (recommend: Feb 17 for critical, Feb 28 for high)
-3. **Allocate budget** ($3-6K immediate, $6-13K Phase 1)
-4. **Schedule follow-up** (Feb 24, 2 weeks)
-5. **Create task tracker** (Asana, Trello, etc.)
+3. **Schedule follow-up** (Feb 24, 2 weeks)
+4. **Create task tracker** (Asana, Trello, etc.)
 
 ---
 
@@ -202,7 +181,7 @@
 
 **But we have critical issues** that are hurting operations right now (broken career app, no email notifications).
 
-**The ask:** $3-6K and 1 week of dev time to fix critical issues, then $6-13K and 1 month for Phase 1 enhancements to compete with industry leaders.
+**The ask:** Commit 1 week of dev time to fix critical issues, then 1 month for Phase 1 enhancements to compete with industry leaders.
 
 **The result:** Industry-leading website that converts visitors to customers and positions Syntra as the sophisticated, innovative company we are.
 

@@ -386,16 +386,15 @@
 - Mobile optimizations
 - Performance upgrades
 
-**Investment Tiers:**
-- Phase 1 (Quick Wins): $2K-$3K, 2 weeks
-- Phase 2 (Medium): $4K-$6K, 3-5 weeks
-- Phase 3 (Advanced): $8K-$12K, 6-10 weeks
+**Timeline Estimates:**
+- Phase 1 (Quick Wins): 2 weeks
+- Phase 2 (Medium): 3-5 weeks
+- Phase 3 (Advanced): 6-10 weeks
 
 **Next Action Required:**
 - Review `/WOW_WEBSITE_RECOMMENDATIONS.md`
 - Review `/QUICK_IMPLEMENTATION_GUIDE.md`
 - Decide on Phase 1 implementation
-- Allocate budget and timeline
 
 **Timeline:** Can start Phase 1 immediately
 
@@ -799,7 +798,6 @@
 ### For Leadership/Decision Makers:
 **This Week:**
 - [ ] Review this document completely
-- [ ] Prioritize budget for critical fixes
 - [ ] Approve Phase 1 "Wow" enhancements (optional)
 - [ ] Decide on email signature deployment timing
 
@@ -812,7 +810,6 @@
 **Next Quarter:**
 - [ ] Review website analytics and adjust strategy
 - [ ] Approve Phase 3 enhancements if desired
-- [ ] Plan content marketing budget
 - [ ] Consider full website redesign timeline (if needed)
 
 ---
@@ -840,34 +837,7 @@
 
 ---
 
-## 10. BUDGET CONSIDERATIONS
-
-### Immediate Fixes (Critical Priority)
-- Developer time: 40 hours @ $75-150/hr = $3,000-6,000
-- Email service: $0 (free tier sufficient initially)
-- Total: $3,000-6,000
-
-### Enhancement Phase 1 (High Priority)
-- Developer time: 80 hours @ $75-150/hr = $6,000-12,000
-- Design assets: $500-1,000
-- Tools/services: $100-300/month
-- Total: $6,600-13,300
-
-### Content Creation (Ongoing)
-- Marketing materials: $3,000-5,000
-- Video production: $5,000-10,000 (optional)
-- Photography: $2,000-4,000 (optional)
-- Copywriting: $2,000-4,000
-- Total: $12,000-23,000
-
-### Long-term Enhancements (Phase 2-3)
-- Advanced features: $15,000-30,000
-- Ongoing maintenance: $2,000-4,000/month
-- Content marketing: $3,000-6,000/month
-
----
-
-## 11. TIMELINE PROPOSAL
+## 10. TIMELINE PROPOSAL
 
 ### Week 1-2 (Immediate)
 - Fix career application
@@ -897,7 +867,7 @@
 
 ---
 
-## 12. SUCCESS METRICS TO TRACK
+## 11. SUCCESS METRICS TO TRACK
 
 ### Engagement Metrics:
 - Time on site (target: 3+ minutes)
@@ -920,19 +890,15 @@
 
 ### Business Metrics:
 - Qualified leads generated
-- Cost per lead
 - Lead to customer conversion
 - Brand sentiment/feedback
 
 ---
 
-## 13. RISKS & MITIGATION
+## 12. RISKS & MITIGATION
 
 ### Risk: Developer Capacity
 **Mitigation:** Prioritize critical fixes, consider hiring contractor for enhancements
-
-### Risk: Budget Constraints
-**Mitigation:** Phase approach, ROI tracking, start with free/low-cost solutions
 
 ### Risk: Content Delays
 **Mitigation:** Start with available content, iterate over time
@@ -945,7 +911,7 @@
 
 ---
 
-## 14. QUESTIONS FOR TEAM DISCUSSION
+## 13. QUESTIONS FOR TEAM DISCUSSION
 
 ### Technical Questions:
 1. What's our current hosting setup?
@@ -962,22 +928,21 @@
 10. Do we have any customer testimonials we can use?
 
 ### Business Questions:
-11. What's the budget for website improvements?
-12. What's the timeline for Phase 1 enhancements?
-13. Who is the website project owner?
-14. How do we measure website success?
-15. What are our top 3 website priorities?
+11. What's the timeline for Phase 1 enhancements?
+12. Who is the website project owner?
+13. How do we measure website success?
+14. What are our top 3 website priorities?
 
 ### Marketing Questions:
-16. When should we deploy email signatures?
-17. What collateral do we need most urgently?
-18. Are we planning video content?
-19. Do we want to start a blog/news section?
-20. What's our social media strategy?
+15. When should we deploy email signatures?
+16. What collateral do we need most urgently?
+17. Are we planning video content?
+18. Do we want to start a blog/news section?
+19. What's our social media strategy?
 
 ---
 
-## 15. RECOMMENDATION SUMMARY
+## 14. RECOMMENDATION SUMMARY
 
 ### DO IMMEDIATELY (This Week):
 1. Fix career application form
@@ -1006,14 +971,13 @@
 
 ---
 
-## 16. NEXT STEPS AFTER THIS MEETING
+## 15. NEXT STEPS AFTER THIS MEETING
 
 ### Immediate Actions:
 1. **Assign owners** to each critical issue
 2. **Set deadlines** for Priority 1 items
-3. **Allocate budget** for immediate fixes
-4. **Schedule follow-up** meeting in 2 weeks
-5. **Create shared task tracker** (Asana, Trello, or similar)
+3. **Schedule follow-up** meeting in 2 weeks
+4. **Create shared task tracker** (Asana, Trello, or similar)
 
 ### Communication Plan:
 1. **Weekly updates** on critical issues
@@ -1029,7 +993,7 @@
 
 ---
 
-## 17. CONCLUSION
+## 16. CONCLUSION
 
 ### Summary:
 The Syntra Refining website has a **strong professional foundation** with good branding, clean design, and solid technical architecture. However, there are **critical functional issues** (career applications, email notifications) that must be addressed immediately, and significant opportunities to enhance the user experience to match industry leaders.
@@ -1052,7 +1016,7 @@ The Syntra Refining website has a **strong professional foundation** with good b
 With focused effort over the next 2-3 months, we can transform this site from "good" to "industry-leading" and create a competitive advantage through digital experience.
 
 ### The Ask:
-- **Leadership:** Approve budget and timeline for critical fixes + Phase 1 enhancements
+- **Leadership:** Approve timeline for critical fixes and Phase 1 enhancements
 - **Development:** Commit to fixing critical issues this week
 - **Marketing:** Create priority downloadable materials this month
 - **IT:** Deploy email signatures and support technical setup
@@ -1060,7 +1024,7 @@ With focused effort over the next 2-3 months, we can transform this site from "g
 
 ---
 
-## 18. APPENDICES
+## 17. APPENDICES
 
 ### A. Related Documents to Review:
 - `/WOW_WEBSITE_RECOMMENDATIONS.md` - Comprehensive enhancement strategy
@@ -1093,7 +1057,7 @@ With focused effort over the next 2-3 months, we can transform this site from "g
 **Distribution:** All team members
 
 **Next Meeting:** February 24, 2026 (2 weeks)
-**Agenda:** Review progress on critical issues, approve Phase 1 budget
+**Agenda:** Review progress on critical issues and Phase 1 implementation
 
 ---
 
