@@ -446,63 +446,106 @@
     </header>
 
     <!-- WHAT SYNTRA DOES AT A GLANCE -->
-    <section data-animate class="relative py-32 bg-white">
-        <div class="container mx-auto px-6">
+    <section data-animate class="relative py-32 bg-white overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-[0.03]">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="company-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+                        <circle cx="30" cy="30" r="1.5" fill="#0F172A"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#company-grid)"/>
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-7xl mx-auto">
                 <!-- Section Header -->
-                <div class="mb-20" data-animate>
-                    <div class="inline-block px-4 py-2 bg-syntra-accent/10 border border-syntra-accent/30 mb-8">
-                        <span class="text-xs text-slate-600 tracking-widest uppercase font-semibold">AT A GLANCE</span>
+                <div class="mb-20 text-center" data-animate>
+                    <div class="inline-block px-6 py-3 bg-gradient-to-r from-syntra-accent/20 via-syntra-accent/10 to-syntra-tech/10 border-2 border-syntra-accent/40 mb-10 shadow-sm">
+                        <span class="text-xs text-syntra-midnight tracking-[0.2em] uppercase font-bold">AT A GLANCE</span>
                     </div>
-                    <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl font-bold uppercase leading-[0.9] mb-8">
+                    <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase leading-[0.85] mb-10">
                         <span class="text-syntra-midnight">WHAT</span> <span class="text-syntra-amber">SYNTRA</span> <span class="text-syntra-midnight">DOES</span>
                     </h2>
-                    <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium">
-                        Syntra is building North America's critical minerals infrastructure through advanced hydrometallurgical refining.
+                    <p class="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
+                        Building North America's critical minerals infrastructure through advanced hydrometallurgical refining technology and strategic partnerships.
                     </p>
                 </div>
 
-                <!-- Metrics Grid -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-                    <div class="bg-gradient-to-br from-slate-50 to-white border border-slate-200 p-8 hover:shadow-lg transition-all duration-300" data-animate>
-                        <div class="text-6xl font-head font-bold text-syntra-text mb-3">15</div>
-                        <div class="text-sm text-slate-500 tracking-widest uppercase mb-2 font-semibold">Team Members</div>
-                        <div class="text-slate-600 text-sm">Engineering and technical expertise focused on process chemistry and refining operations</div>
+                <!-- Metrics Grid with Enhanced Styling -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <div class="relative group bg-gradient-to-br from-white to-slate-50 border-2 border-slate-200 p-8 hover:border-syntra-amber hover:shadow-2xl transition-all duration-500 overflow-hidden" data-animate>
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-syntra-accent/5 rounded-bl-full transform translate-x-8 -translate-y-8 group-hover:scale-150 transition-transform duration-500"></div>
+                        <div class="relative">
+                            <div class="text-7xl font-head font-bold bg-gradient-to-br from-syntra-midnight to-syntra-text bg-clip-text text-transparent mb-4">15</div>
+                            <div class="h-1 w-12 bg-syntra-amber mb-3"></div>
+                            <div class="text-sm text-slate-500 tracking-[0.15em] uppercase mb-3 font-bold">Team Members</div>
+                            <div class="text-slate-600 text-sm leading-relaxed">Engineering and technical expertise in process chemistry and refining operations</div>
+                        </div>
                     </div>
 
-                    <div class="bg-gradient-to-br from-slate-50 to-white border border-slate-200 p-8 hover:shadow-lg transition-all duration-300" data-animate>
-                        <div class="text-6xl font-head font-bold text-syntra-text mb-3">8</div>
-                        <div class="text-sm text-slate-500 tracking-widest uppercase mb-2 font-semibold">Process Patents</div>
-                        <div class="text-slate-600 text-sm">Proprietary hydrometallurgical IP for critical minerals refining</div>
+                    <div class="relative group bg-gradient-to-br from-white to-slate-50 border-2 border-slate-200 p-8 hover:border-syntra-tech hover:shadow-2xl transition-all duration-500 overflow-hidden" data-animate>
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-syntra-tech/5 rounded-bl-full transform translate-x-8 -translate-y-8 group-hover:scale-150 transition-transform duration-500"></div>
+                        <div class="relative">
+                            <div class="text-7xl font-head font-bold bg-gradient-to-br from-syntra-midnight to-syntra-tech bg-clip-text text-transparent mb-4">8</div>
+                            <div class="h-1 w-12 bg-syntra-tech mb-3"></div>
+                            <div class="text-sm text-slate-500 tracking-[0.15em] uppercase mb-3 font-bold">Process Patents</div>
+                            <div class="text-slate-600 text-sm leading-relaxed">Proprietary hydrometallurgical intellectual property for critical minerals refining</div>
+                        </div>
                     </div>
 
-                    <div class="bg-gradient-to-br from-slate-50 to-white border border-slate-200 p-8 hover:shadow-lg transition-all duration-300" data-animate>
-                        <div class="text-6xl font-head font-bold text-syntra-text mb-3">10</div>
-                        <div class="text-sm text-slate-500 tracking-widest uppercase mb-2 font-semibold">Strategic Partners</div>
-                        <div class="text-slate-600 text-sm">Mining operations, battery manufacturers, and industrial partners</div>
+                    <div class="relative group bg-gradient-to-br from-white to-slate-50 border-2 border-slate-200 p-8 hover:border-syntra-amber hover:shadow-2xl transition-all duration-500 overflow-hidden" data-animate>
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-syntra-accent/5 rounded-bl-full transform translate-x-8 -translate-y-8 group-hover:scale-150 transition-transform duration-500"></div>
+                        <div class="relative">
+                            <div class="text-7xl font-head font-bold bg-gradient-to-br from-syntra-midnight to-syntra-text bg-clip-text text-transparent mb-4">10</div>
+                            <div class="h-1 w-12 bg-syntra-amber mb-3"></div>
+                            <div class="text-sm text-slate-500 tracking-[0.15em] uppercase mb-3 font-bold">Strategic Partners</div>
+                            <div class="text-slate-600 text-sm leading-relaxed">Mining operators, battery manufacturers, and industrial ecosystem partners</div>
+                        </div>
                     </div>
 
-                    <div class="bg-gradient-to-br from-slate-50 to-white border border-slate-200 p-8 hover:shadow-lg transition-all duration-300" data-animate>
-                        <div class="text-6xl font-head font-bold text-syntra-text mb-3">7</div>
-                        <div class="text-sm text-slate-500 tracking-widest uppercase mb-2 font-semibold">Years in R&D</div>
-                        <div class="text-slate-600 text-sm">Continuous development of advanced refining processes and operational systems</div>
+                    <div class="relative group bg-gradient-to-br from-white to-slate-50 border-2 border-slate-200 p-8 hover:border-syntra-tech hover:shadow-2xl transition-all duration-500 overflow-hidden" data-animate>
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-syntra-tech/5 rounded-bl-full transform translate-x-8 -translate-y-8 group-hover:scale-150 transition-transform duration-500"></div>
+                        <div class="relative">
+                            <div class="text-7xl font-head font-bold bg-gradient-to-br from-syntra-midnight to-syntra-tech bg-clip-text text-transparent mb-4">7</div>
+                            <div class="h-1 w-12 bg-syntra-tech mb-3"></div>
+                            <div class="text-sm text-slate-500 tracking-[0.15em] uppercase mb-3 font-bold">Years in R&D</div>
+                            <div class="text-slate-600 text-sm leading-relaxed">Continuous development of advanced refining processes and operational systems</div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Additional Stats -->
-                <div class="bg-gradient-to-r from-syntra-accent/5 via-white to-syntra-tech/5 border-2 border-slate-200 p-12" data-animate>
-                    <div class="grid md:grid-cols-3 gap-8 text-center">
-                        <div class="border-r border-slate-200 last:border-r-0">
-                            <div class="text-4xl font-head font-bold text-syntra-text mb-2">1,000 MT/YR</div>
-                            <div class="text-sm text-slate-600 uppercase font-semibold">DEMONSTRATION CAPACITY</div>
+                <!-- Enhanced Featured Stats Banner -->
+                <div class="relative bg-gradient-to-r from-syntra-midnight via-slate-900 to-syntra-midnight border-4 border-syntra-accent/20 p-12 lg:p-16 overflow-hidden shadow-2xl" data-animate>
+                    <!-- Animated Background Pattern -->
+                    <div class="absolute inset-0 opacity-5">
+                        <div class="absolute inset-0" style="background-image: linear-gradient(45deg, #FFD700 1px, transparent 1px), linear-gradient(-45deg, #FFD700 1px, transparent 1px); background-size: 40px 40px;"></div>
+                    </div>
+
+                    <!-- Accent Corners -->
+                    <div class="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-syntra-accent"></div>
+                    <div class="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-syntra-accent"></div>
+
+                    <div class="relative z-10 grid sm:grid-cols-3 gap-12 text-center">
+                        <div class="group">
+                            <div class="text-5xl lg:text-6xl font-head font-bold text-syntra-amber mb-4 group-hover:scale-110 transition-transform duration-300">1,000 MT/YR</div>
+                            <div class="h-1 w-16 bg-syntra-amber mx-auto mb-4"></div>
+                            <div class="text-sm text-slate-300 uppercase font-bold tracking-[0.15em]">Demonstration Capacity</div>
+                            <div class="text-xs text-slate-400 mt-2">Initial processing facility</div>
                         </div>
-                        <div class="border-r border-slate-200 last:border-r-0">
-                            <div class="text-4xl font-head font-bold text-syntra-text mb-2">99.5%+</div>
-                            <div class="text-sm text-slate-600">Target Purity Specification</div>
+                        <div class="sm:border-x-2 border-syntra-accent/30 group">
+                            <div class="text-5xl lg:text-6xl font-head font-bold text-syntra-amber mb-4 group-hover:scale-110 transition-transform duration-300">99.5%+</div>
+                            <div class="h-1 w-16 bg-syntra-amber mx-auto mb-4"></div>
+                            <div class="text-sm text-slate-300 uppercase font-bold tracking-[0.15em]">Target Purity Specification</div>
+                            <div class="text-xs text-slate-400 mt-2">Battery-grade quality</div>
                         </div>
-                        <div>
-                            <div class="text-4xl font-head font-bold text-syntra-text mb-2">Halifax, NS</div>
-                            <div class="text-sm text-slate-600 uppercase font-semibold">HEADQUARTERS</div>
+                        <div class="group">
+                            <div class="text-4xl lg:text-5xl font-head font-bold text-syntra-amber mb-4 group-hover:scale-110 transition-transform duration-300">Halifax, NS</div>
+                            <div class="h-1 w-16 bg-syntra-amber mx-auto mb-4"></div>
+                            <div class="text-sm text-slate-300 uppercase font-bold tracking-[0.15em]">Headquarters</div>
+                            <div class="text-xs text-slate-400 mt-2">Canada's Atlantic hub</div>
                         </div>
                     </div>
                 </div>
