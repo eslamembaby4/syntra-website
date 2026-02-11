@@ -472,9 +472,39 @@
   <script>
     function toggleMobileMenu() {
       const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('hidden');
-      menu.classList.toggle('flex');
+      const backdrop = document.getElementById('menuBackdrop');
+      const body = document.body;
+
+      if (!menu || !backdrop) {
+        console.error('Mobile menu elements not found');
+        return;
+      }
+
+      const isOpen = menu.classList.contains('translate-x-0');
+
+      if (isOpen) {
+        menu.classList.remove('translate-x-0');
+        menu.classList.add('translate-x-full');
+        backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+        backdrop.classList.add('opacity-0', 'pointer-events-none');
+        body.style.overflow = '';
+      } else {
+        menu.classList.remove('translate-x-full');
+        menu.classList.add('translate-x-0');
+        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+        backdrop.classList.add('opacity-100', 'pointer-events-auto');
+        body.style.overflow = 'hidden';
+      }
     }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const menu = document.getElementById('mobileMenu');
+        if (menu && menu.classList.contains('translate-x-0')) {
+          toggleMobileMenu();
+        }
+      }
+    });
 
     const VALID_TOKENS = ['OBSERVER2025', 'OBS-DEMO-001', 'OBS-2025-DEMO'];
 

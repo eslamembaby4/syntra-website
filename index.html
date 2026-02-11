@@ -925,17 +925,20 @@
             const backdrop = document.getElementById('menuBackdrop');
             const body = document.body;
 
+            if (!menu || !backdrop) {
+                console.error('Mobile menu elements not found');
+                return;
+            }
+
             const isOpen = menu.classList.contains('translate-x-0');
 
             if (isOpen) {
-                // Close menu
                 menu.classList.remove('translate-x-0');
                 menu.classList.add('translate-x-full');
                 backdrop.classList.remove('opacity-100', 'pointer-events-auto');
                 backdrop.classList.add('opacity-0', 'pointer-events-none');
                 body.style.overflow = '';
             } else {
-                // Open menu
                 menu.classList.remove('translate-x-full');
                 menu.classList.add('translate-x-0');
                 backdrop.classList.remove('opacity-0', 'pointer-events-none');
@@ -952,11 +955,10 @@
             }
         }
 
-        // Close menu on escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const menu = document.getElementById('mobileMenu');
-                if (menu.classList.contains('translate-x-0')) {
+                if (menu && menu.classList.contains('translate-x-0')) {
                     toggleMobileMenu();
                 }
             }

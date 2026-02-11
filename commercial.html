@@ -1019,6 +1019,11 @@
             const backdrop = document.getElementById('menuBackdrop');
             const body = document.body;
 
+            if (!menu || !backdrop) {
+                console.error('Mobile menu elements not found');
+                return;
+            }
+
             const isOpen = menu.classList.contains('translate-x-0');
 
             if (isOpen) {
@@ -1042,7 +1047,7 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const menu = document.getElementById('mobileMenu');
-                if (menu.classList.contains('translate-x-0')) {
+                if (menu && menu.classList.contains('translate-x-0')) {
                     toggleMobileMenu();
                 }
             }
