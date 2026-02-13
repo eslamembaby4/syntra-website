@@ -40,7 +40,7 @@ window.SYNTRA_METRICS_CONFIGS = {
     subtitle: 'SYNCORE™ PERFORMANCE METRICS',
     metrics: [
       {
-        category: 'Purity Targets Met',
+        category: '99% Purity Targets Met',
         current: '99.5%',
         yoyGrowth: '99.9% Capable',
         details: 'Battery-grade output'
