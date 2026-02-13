@@ -41,8 +41,8 @@ window.SYNTRA_METRICS_CONFIGS = {
     metrics: [
       {
         category: '99% Purity Targets Met',
-        current: '99.5%',
-        yoyGrowth: '99.9% Capable',
+        current: '98%',
+        yoyGrowth: '99%',
         details: 'Battery-grade output'
       },
       {
