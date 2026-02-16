@@ -11,7 +11,7 @@ window.SYNTRA_METRICS_CONFIGS = {
       {
         category: 'Annual Capacity',
         current: '1000 TPA',
-        yoyGrowth: '10000 TPA',
+        yoyGrowth: '50000 TPA',
         details: 'Scaling target 50000 TPA'
       },
       {
