@@ -12,6 +12,7 @@
         :root {
             --midnight: #0B1423;
             --deep-navy: #0F1829;
+            --black: #000000;
             --slate-900: #0A1018;
             --slate-800: #1A2332;
             --slate-700: #2A3648;
@@ -23,6 +24,8 @@
             --white: #FFFFFF;
             --signal-yellow: #FDB913;
             --electric-blue: #0EA5E9;
+            --steel-blue: #5B8FA3;
+            --primary-accent: #5B8FA3;
         }
 
         * {
@@ -48,8 +51,8 @@
             width: 100%;
             height: 100%;
             background:
-                radial-gradient(circle at 10% 20%, rgba(253, 185, 19, 0.02) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.015) 0%, transparent 40%);
+                radial-gradient(circle at 10% 20%, rgba(91, 143, 163, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(91, 143, 163, 0.02) 0%, transparent 40%);
             pointer-events: none;
             z-index: 0;
         }
@@ -93,7 +96,7 @@
             top: 0;
             left: 0;
             height: 2px;
-            background: var(--signal-yellow);
+            background: var(--primary-accent);
             transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 1000;
         }
@@ -130,8 +133,8 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            background: var(--signal-yellow);
-            color: var(--midnight);
+            background: var(--primary-accent);
+            color: var(--white);
             border: none;
             padding: 0.75rem 1.5rem;
             cursor: pointer;
@@ -139,7 +142,8 @@
         }
 
         .nav-btn:hover {
-            background: var(--white);
+            background: var(--slate-300);
+            color: var(--midnight);
         }
 
         .fullscreen-btn {
@@ -152,8 +156,8 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             background: transparent;
-            border: 1px solid var(--signal-yellow);
-            color: var(--signal-yellow);
+            border: 1px solid var(--primary-accent);
+            color: var(--primary-accent);
             padding: 0.5rem 0.875rem;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -162,14 +166,14 @@
         }
 
         .fullscreen-btn:hover {
-            background: var(--signal-yellow);
-            color: var(--midnight);
+            background: var(--primary-accent);
+            color: var(--white);
         }
 
         .top-bar {
             width: 100%;
             height: 3px;
-            background: var(--signal-yellow);
+            background: var(--primary-accent);
             position: absolute;
             top: 0;
             left: 0;
@@ -196,7 +200,7 @@
             color: var(--white);
             margin-bottom: 4rem;
             padding-left: 2rem;
-            border-left: 4px solid var(--signal-yellow);
+            border-left: 4px solid var(--primary-accent);
         }
 
         h3 {
@@ -219,6 +223,10 @@
         }
 
         .signal {
+            color: var(--primary-accent);
+        }
+
+        .syntra-yellow {
             color: var(--signal-yellow);
         }
 
@@ -328,7 +336,7 @@
         }
 
         .card:hover {
-            border-color: rgba(253, 185, 19, 0.3);
+            border-color: rgba(91, 143, 163, 0.3);
             background: rgba(255, 255, 255, 0.03);
         }
 
@@ -338,7 +346,7 @@
             font-weight: 700;
             letter-spacing: 0.05em;
             text-transform: uppercase;
-            color: var(--signal-yellow);
+            color: var(--primary-accent);
             margin-bottom: 1.25rem;
         }
 
@@ -356,12 +364,12 @@
             color: var(--slate-300);
             padding: 2rem 2.5rem;
             margin-top: 3rem;
-            border-left: 3px solid var(--signal-yellow);
-            background: rgba(253, 185, 19, 0.02);
+            border-left: 3px solid var(--primary-accent);
+            background: rgba(91, 143, 163, 0.05);
         }
 
         .quote-block strong {
-            color: var(--signal-yellow);
+            color: var(--primary-accent);
             font-weight: 600;
         }
 
@@ -381,7 +389,7 @@
         }
 
         .timeline-card:hover {
-            border-color: var(--signal-yellow);
+            border-color: var(--primary-accent);
             background: rgba(255, 255, 255, 0.03);
         }
 
@@ -389,7 +397,7 @@
             font-family: 'Oswald', sans-serif;
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--signal-yellow);
+            color: var(--primary-accent);
             margin-bottom: 1rem;
             line-height: 1;
         }
@@ -410,7 +418,7 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: var(--signal-yellow);
+            color: var(--primary-accent);
             margin-bottom: 1rem;
         }
 
@@ -428,10 +436,15 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            background: var(--signal-yellow);
-            color: var(--midnight);
+            background: var(--primary-accent);
+            color: var(--white);
             padding: 0.375rem 0.75rem;
             margin-top: 0.5rem;
+        }
+
+        .tag-syntra {
+            background: var(--signal-yellow);
+            color: var(--midnight);
         }
 
         .two-column {
@@ -460,7 +473,7 @@
             font-family: 'Oswald', sans-serif;
             font-size: 8rem;
             font-weight: 700;
-            color: var(--signal-yellow);
+            color: var(--primary-accent);
             line-height: 0.9;
             animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
@@ -490,7 +503,7 @@
         .list-icon {
             font-family: 'Oswald', sans-serif;
             font-size: 1.25rem;
-            color: var(--signal-yellow);
+            color: var(--primary-accent);
             flex-shrink: 0;
         }
 
@@ -519,8 +532,8 @@
         .flow-stage-highlight {
             flex: 1;
             text-align: center;
-            border: 2px solid var(--signal-yellow);
-            background: rgba(253, 185, 19, 0.03);
+            border: 2px solid var(--primary-accent);
+            background: rgba(91, 143, 163, 0.08);
             padding: 2rem 1.5rem;
         }
 
@@ -540,7 +553,7 @@
         }
 
         .flow-label-highlight {
-            color: var(--signal-yellow);
+            color: var(--primary-accent);
         }
 
         .flow-title {
@@ -560,7 +573,7 @@
         }
 
         .flow-status-highlight {
-            color: var(--signal-yellow);
+            color: var(--primary-accent);
         }
 
         .problems-list {
@@ -588,7 +601,7 @@
             padding: 1rem;
             background: rgba(255, 255, 255, 0.02);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--signal-yellow);
+            color: var(--primary-accent);
         }
 
         td {
@@ -602,7 +615,7 @@
             font-family: 'Oswald', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--signal-yellow);
+            color: var(--primary-accent);
             text-align: right;
         }
 
@@ -621,8 +634,8 @@
         }
 
         .info-card-highlight {
-            border: 2px solid var(--signal-yellow);
-            background: rgba(253, 185, 19, 0.02);
+            border: 2px solid var(--primary-accent);
+            background: rgba(91, 143, 163, 0.05);
         }
 
         .status-badge {
@@ -647,13 +660,13 @@
         }
 
         .status-high {
-            background: rgba(253, 185, 19, 0.3);
-            color: var(--signal-yellow);
+            background: rgba(91, 143, 163, 0.3);
+            color: var(--primary-accent);
         }
 
         .cta-section {
-            background: rgba(253, 185, 19, 0.02);
-            border: 2px solid var(--signal-yellow);
+            background: rgba(91, 143, 163, 0.05);
+            border: 2px solid var(--primary-accent);
             padding: 4rem 4rem;
             margin-top: 4rem;
             text-align: center;
@@ -667,7 +680,7 @@
             letter-spacing: 0.15em;
             color: var(--slate-500);
             margin-bottom: 2rem;
-            border-bottom: 2px solid var(--signal-yellow);
+            border-bottom: 2px solid var(--primary-accent);
             display: inline-block;
             padding-bottom: 0.5rem;
         }
@@ -685,7 +698,7 @@
         .cta-divider {
             width: 120px;
             height: 2px;
-            background: var(--signal-yellow);
+            background: var(--primary-accent);
             margin: 3rem auto;
         }
 
@@ -812,8 +825,8 @@
                     <div class="card fade-in delay-2">
                         <div class="card-title">THE SOLUTION</div>
                         <div class="card-content">
-                            SynHub™ is our AI-powered, feedstock-agnostic, multi-metal refinery.<br><br>
-                            We are developing a decentralized network of "Smart Refineries," starting with the MEP in Halifax, that springboards global SynHubs™.
+                            <span class="syntra-yellow">SynHub™</span> is our AI-powered, feedstock-agnostic, multi-metal refinery.<br><br>
+                            We are developing a decentralized network of "Smart Refineries," starting with the MEP in Halifax, that springboards global <span class="syntra-yellow">SynHubs™</span>.
                         </div>
                     </div>
 
@@ -837,7 +850,7 @@
             <div class="slide">
                 <h2 class="fade-in">THE LIFE-CYCLE OF MODERN INFRASTRUCTURE</h2>
                 <p style="font-size: 0.9375rem; color: var(--slate-500); margin-bottom: 3rem; font-weight: 500;" class="fade-in delay-1">
-                    SYNTRA OWNS REFINING—THE ESSENTIAL TECHNICAL BRIDGE THAT TURNS RAW DIRT (STEP 1) INTO INDUSTRIAL POWER (STEP 2).
+                    <span class="syntra-yellow">SYNTRA</span> OWNS REFINING—THE ESSENTIAL TECHNICAL BRIDGE THAT TURNS RAW DIRT (STEP 1) INTO INDUSTRIAL POWER (STEP 2).
                 </p>
 
                 <div class="timeline-grid">
@@ -895,12 +908,12 @@
 
                 <div class="two-column">
                     <div class="fade-in delay-1">
-                        <h3 style="color: var(--signal-yellow);">THE KEY TO ENERGY TRANSITION</h3>
+                        <h3 style="color: var(--primary-accent);">THE KEY TO ENERGY TRANSITION</h3>
                         <p style="font-size: 0.9375rem; line-height: 1.8; color: var(--slate-300); margin-bottom: 2.5rem;">
                             Critical minerals serve as essential building blocks for the massive infrastructure needed to achieve Net-Zero targets and advance our technological world.
                         </p>
 
-                        <h3 style="color: var(--signal-yellow); margin-top: 2.5rem;">GEOPOLITICAL REALITY</h3>
+                        <h3 style="color: var(--primary-accent); margin-top: 2.5rem;">GEOPOLITICAL REALITY</h3>
                         <div class="list-item">
                             <div class="list-icon">▸</div>
                             <div class="list-content">China controls <strong>>85%</strong> of global market share.</div>
@@ -946,8 +959,8 @@
                 <p style="font-size: 0.9375rem; color: var(--slate-400); margin-bottom: 0.5rem;" class="fade-in delay-1">
                     Canada is strong in Stage 1. The US is building Stage 3.
                 </p>
-                <p style="font-size: 1.125rem; font-family: 'Oswald', sans-serif; font-weight: 700; color: var(--signal-yellow); margin-bottom: 3rem;" class="fade-in delay-2">
-                    SYNTRA BUILDS STAGE 2 IN NOVA SCOTIA.
+                <p style="font-size: 1.125rem; font-family: 'Oswald', sans-serif; font-weight: 700; margin-bottom: 3rem;" class="fade-in delay-2">
+                    <span class="syntra-yellow">SYNTRA</span> <span style="color: var(--primary-accent);">BUILDS STAGE 2 IN NOVA SCOTIA.</span>
                 </p>
 
                 <div class="supply-chain-flow fade-in delay-3">
@@ -1010,13 +1023,13 @@
                             </div>
                         </div>
 
-                        <div style="font-size: 2rem; color: var(--signal-yellow); margin: 2rem 0;">↓</div>
+                        <div style="font-size: 2rem; color: var(--primary-accent); margin: 2rem 0;">↓</div>
 
                         <div>
                             <div style="font-family: 'Inter', sans-serif; font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--slate-600); margin-bottom: 0.75rem;">
                                 REFINED MINERAL PRODUCT:
                             </div>
-                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--signal-yellow);">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-accent);">
                                 ~$16,500 / TONNE
                             </div>
                         </div>
@@ -1038,14 +1051,14 @@
                     <div style="text-align: center;">
                         <div class="metric-block fade-in delay-1">
                             <div class="metric-value" style="font-size: 10rem;">200+</div>
-                            <div style="font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--signal-yellow); margin-top: 1.5rem;">
+                            <div style="font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--primary-accent); margin-top: 1.5rem;">
                                 HIGH-QUALITY JOBS
                             </div>
                         </div>
 
                         <div class="metric-block fade-in delay-2" style="margin-top: 4rem;">
                             <div class="metric-value" style="font-size: 10rem;">$500M</div>
-                            <div style="font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--signal-yellow); margin-top: 1.5rem;">
+                            <div style="font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--primary-accent); margin-top: 1.5rem;">
                                 PROJECTED GDP IMPACT
                             </div>
                         </div>
@@ -1054,14 +1067,14 @@
                     <div class="fade-in delay-3">
                         <h3>INVESTMENT IN PROSPERITY</h3>
                         <p style="font-size: 0.9375rem; line-height: 1.8; color: var(--slate-300); margin-bottom: 2rem;">
-                            Syntra growing as an economic engine. By establishing a midstream refining hub, we create high-value science, engineering and operational roles that stay in the province.
+                            <span class="syntra-yellow">Syntra</span> growing as an economic engine. By establishing a midstream refining hub, we create high-value science, engineering and operational roles that stay in the province.
                         </p>
 
                         <p style="font-size: 0.9375rem; line-height: 1.8; color: var(--slate-300); margin-bottom: 2rem;">
                             Our 5-year outlook includes the development of a full-scale 50,000t commercial hub, positioning Nova Scotia as a strong player for critical minerals.
                         </p>
 
-                        <div style="background: rgba(253, 185, 19, 0.05); border-left: 3px solid var(--signal-yellow); padding: 1.5rem 2rem; margin-top: 2.5rem;">
+                        <div style="background: rgba(91, 143, 163, 0.08); border-left: 3px solid var(--primary-accent); padding: 1.5rem 2rem; margin-top: 2.5rem;">
                             <p style="font-size: 1rem; font-weight: 500; color: var(--white);">
                                 "Energy independence is impossible when refining capacity is zero."
                             </p>
@@ -1120,7 +1133,7 @@
                         <div style="font-family: 'Inter', sans-serif; font-size: 0.625rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--slate-600); margin-bottom: 1rem;">
                             PROPOSED SITE
                         </div>
-                        <div style="font-family: 'Oswald', sans-serif; font-size: 2rem; font-weight: 700; color: var(--signal-yellow); margin-bottom: 1.5rem;">
+                        <div style="font-family: 'Oswald', sans-serif; font-size: 2rem; font-weight: 700; color: var(--primary-accent); margin-bottom: 1.5rem;">
                             265 JULIUS BLVD
                         </div>
                         <div style="font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; color: #10B981;">
@@ -1160,7 +1173,7 @@
                         <div class="card-title">EXECUTION RISK</div>
                         <div class="card-content">
                             The "Valley of Death" between Lab and Commercial scale.<br><br>
-                            <strong style="color: var(--signal-yellow);">This is where we need you.</strong>
+                            <strong style="color: var(--primary-accent);">This is where we need you.</strong>
                         </div>
                     </div>
                 </div>
@@ -1181,12 +1194,12 @@
                             Process Verification<br>
                             Pilot Success
                         </div>
-                        <div class="tag" style="background: #10B981;">SYNHUB™ 1.0 COMPLETE</div>
+                        <div class="tag tag-syntra">SYNHUB™ 1.0 COMPLETE</div>
                     </div>
 
                     <div class="timeline-card info-card-highlight fade-in delay-2">
                         <div class="timeline-number">2</div>
-                        <div class="timeline-title" style="color: var(--signal-yellow);">DEPLOY</div>
+                        <div class="timeline-title" style="color: var(--primary-accent);">DEPLOY</div>
                         <div class="timeline-subtitle">Q4 2026</div>
                         <div class="timeline-description">
                             1,000t Demo Plant<br>
@@ -1203,7 +1216,7 @@
                             Commercial Offtake<br>
                             Revenue Generation
                         </div>
-                        <div class="tag" style="background: #10B981;">SYNHUB™ 2.0</div>
+                        <div class="tag tag-syntra">SYNHUB™ 2.0</div>
                     </div>
 
                     <div class="timeline-card fade-in delay-4">
@@ -1214,7 +1227,7 @@
                             50,000t Hub<br>
                             Modular Expansion
                         </div>
-                        <div class="tag" style="background: #10B981;">SYNHUB™ 3.0</div>
+                        <div class="tag tag-syntra">SYNHUB™ 3.0</div>
                     </div>
                 </div>
             </div>
@@ -1225,7 +1238,7 @@
             <div class="slide">
                 <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                     <div class="cta-section fade-in" style="max-width: 1000px;">
-                        <div class="cta-intro">NOVA SCOTIA IS READY. SYNTRA IS READY.</div>
+                        <div class="cta-intro">NOVA SCOTIA IS READY. <span class="syntra-yellow">SYNTRA</span> IS READY.</div>
 
                         <div class="cta-quote">
                             "WE HAVE DE-RISKED THE SCIENCE.<br>
