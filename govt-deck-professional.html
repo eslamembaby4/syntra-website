@@ -758,11 +758,57 @@
         .delay-4 { animation-delay: 0.4s; }
         .delay-5 { animation-delay: 0.5s; }
 
+        .click-zone {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 30%;
+            z-index: 999;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .click-zone-left {
+            left: 0;
+        }
+
+        .click-zone-right {
+            right: 0;
+        }
+
+        .click-zone:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            color: rgba(91, 143, 163, 0);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .click-zone:hover .nav-arrow {
+            color: rgba(91, 143, 163, 0.6);
+        }
+
+        .nav-arrow-left {
+            left: 2rem;
+        }
+
+        .nav-arrow-right {
+            right: 2rem;
+        }
+
         @media print {
             .navigation,
             .slide-counter,
             .progress-bar,
-            .fullscreen-btn {
+            .fullscreen-btn,
+            .click-zone {
                 display: none !important;
             }
             .slide {
@@ -775,6 +821,13 @@
     <div class="top-bar"></div>
     <div class="progress-bar" id="progressBar"></div>
     <button class="fullscreen-btn" onclick="toggleFullscreen()">FULLSCREEN</button>
+
+    <div class="click-zone click-zone-left" onclick="previousSlide()">
+        <div class="nav-arrow nav-arrow-left">‹</div>
+    </div>
+    <div class="click-zone click-zone-right" onclick="nextSlide()">
+        <div class="nav-arrow nav-arrow-right">›</div>
+    </div>
 
     <div class="presentation-wrapper">
         <!-- SLIDE 1: Title -->
@@ -1374,6 +1427,23 @@
                 } else {
                     previousSlide();
                 }
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.nav-btn, .fullscreen-btn, .click-zone')) {
+                return;
+            }
+
+            const clickX = e.clientX;
+            const windowWidth = window.innerWidth;
+
+            if (clickX < windowWidth * 0.3) {
+                previousSlide();
+            } else if (clickX > windowWidth * 0.7) {
+                nextSlide();
+            } else {
+                nextSlide();
             }
         });
 
