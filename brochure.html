@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntra Refining | Corporate Brochure</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --midnight-navy: #0B1120;
+            --signal-yellow: #FFD700;
+            --deep-slate: #0F172A;
+            --white: #FFFFFF;
+            --cyan: #0891B2;
+            --slate-100: #F1F5F9;
+            --slate-200: #E2E8F0;
+            --slate-300: #CBD5E1;
+            --slate-400: #94A3B8;
+            --slate-500: #64748B;
+            --slate-600: #475569;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--deep-slate);
+            line-height: 1.6;
+        }
+
+        .brochure-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+        }
+
+        /* Header */
+        .brochure-header {
+            background: var(--midnight-navy);
+            padding: 60px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brochure-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 600px;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-mark {
+            width: 60px;
+            height: 60px;
+            background: var(--midnight-navy);
+            border: 2px solid var(--signal-yellow);
+            transform: rotate(45deg);
+            position: relative;
+        }
+
+        .logo-mark::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            width: 24px;
+            height: 24px;
+            background: var(--signal-yellow);
+        }
+
+        .company-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .company-name .accent {
+            color: var(--signal-yellow);
+        }
+
+        .tagline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--signal-yellow);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-top: 16px;
+        }
+
+        .hero-statement {
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1.5;
+            margin-top: 32px;
+            max-width: 800px;
+        }
+
+        .hero-statement strong {
+            font-weight: 700;
+            color: var(--signal-yellow);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 80px;
+        }
+
+        .section-alt {
+            background: var(--slate-100);
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--midnight-navy);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            position: relative;
+            padding-bottom: 16px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--signal-yellow);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--slate-500);
+            margin-bottom: 48px;
+            line-height: 1.7;
+        }
+
+        /* Grid Layouts */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border: 2px solid var(--slate-200);
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--signal-yellow);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(11, 17, 32, 0.1);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--signal-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--midnight-navy);
+            margin-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        .feature-description {
+            font-size: 15px;
+            color: var(--slate-600);
+            line-height: 1.7;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+            margin-top: 48px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--signal-yellow);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--slate-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Technology Section */
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .tech-item {
+            background: var(--white);
+            border-left: 4px solid var(--signal-yellow);
+            padding: 32px;
+        }
+
+        .tech-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--midnight-navy);
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+        }
+
+        .tech-description {
+            font-size: 15px;
+            color: var(--slate-600);
+            line-height: 1.7;
+        }
+
+        /* Value Propositions */
+        .value-props {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .value-prop {
+            display: flex;
+            gap: 24px;
+            background: var(--white);
+            border: 2px solid var(--slate-200);
+            padding: 32px;
+        }
+
+        .value-number {
+            font-family: 'Oswald', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--signal-yellow);
+            line-height: 1;
+            min-width: 60px;
+        }
+
+        .value-content h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--midnight-navy);
+            margin-bottom: 12px;
+        }
+
+        .value-content p {
+            font-size: 15px;
+            color: var(--slate-600);
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        .brochure-footer {
+            background: var(--midnight-navy);
+            padding: 60px 80px;
+            color: var(--white);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 64px;
+        }
+
+        .footer-section h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--signal-yellow);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            font-size: 14px;
+            color: var(--slate-300);
+            line-height: 1.8;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: var(--signal-yellow);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            font-size: 13px;
+            color: var(--slate-400);
+        }
+
+        /* Print Button */
+        .print-button {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: var(--signal-yellow);
+            color: var(--midnight-navy);
+            border: none;
+            padding: 16px 32px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .print-button:hover {
+            background: var(--midnight-navy);
+            color: var(--signal-yellow);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .tech-stack {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .brochure-header,
+            .section {
+                padding: 48px 32px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="brochure-container">
+
+        <!-- Header -->
+        <header class="brochure-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-mark"></div>
+                    <div>
+                        <div class="company-name">SYNTRA<span class="accent">■</span></div>
+                    </div>
+                </div>
+
+                <div class="tagline">SMART REFINING ■ UNIVERSAL INTAKE ■ AI OPTIMIZED</div>
+
+                <p class="hero-statement">
+                    Building North America's first <strong>feedstock-agnostic smart refinery network</strong> powered by predictive supply chain intelligence
+                </p>
+            </div>
+        </header>
+
+        <!-- Company Overview -->
+        <section class="section">
+            <h2 class="section-title">Company Overview</h2>
+            <p class="section-subtitle">
+                Syntra Refining Corp is revolutionizing critical minerals processing through AI-optimized technology and universal feedstock capabilities. We're securing the battery supply chain with intelligent, distributed infrastructure that adapts to any input source.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Universal Intake</h3>
+                    <p class="feature-description">
+                        Process any feedstock—from virgin ore to black mass recycling—with our adaptive refining technology.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">AI Optimized</h3>
+                    <p class="feature-description">
+                        Machine learning algorithms continuously optimize processing parameters for maximum efficiency and yield.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">Distributed Network</h3>
+                    <p class="feature-description">
+                        Strategic facility locations minimize transportation costs and maximize supply chain resilience.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Smart Refining</h3>
+                    <p class="feature-description">
+                        Real-time monitoring and automated adjustments ensure consistent quality and optimal performance.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Predictive Intelligence</h3>
+                    <p class="feature-description">
+                        SYNCORE™ platform forecasts supply chain dynamics and optimizes operations accordingly.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">♻️</div>
+                    <h3 class="feature-title">Circular Economy</h3>
+                    <p class="feature-description">
+                        Full lifecycle processing from mining through recycling, closing the loop on critical minerals.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- By the Numbers -->
+        <section class="section section-alt">
+            <h2 class="section-title">By the Numbers</h2>
+            <p class="section-subtitle">
+                Our impact on the North American battery supply chain
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">10kt</div>
+                    <div class="stat-label">Planned Annual Capacity</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Feedstock Agnostic</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">AI Monitoring</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-value">99.5%</div>
+                    <div class="stat-label">Battery Grade Purity</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Platform -->
+        <section class="section">
+            <h2 class="section-title">Technology Platform</h2>
+            <p class="section-subtitle">
+                Powered by SYNCORE™ — our proprietary real-time intelligence network
+            </p>
+
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h3 class="tech-name">ADAPTIVE PROCESSING</h3>
+                    <p class="tech-description">
+                        Dynamic chemistry adjustments based on feedstock composition. Our system automatically calibrates to handle varying input materials from multiple sources without manual intervention.
+                    </p>
+                </div>
+
+                <div class="tech-item">
+                    <h3 class="tech-name">PREDICTIVE ANALYTICS</h3>
+                    <p class="tech-description">
+                        Machine learning models forecast equipment maintenance needs, optimal processing parameters, and supply chain disruptions before they impact operations.
+                    </p>
+                </div>
+
+                <div class="tech-item">
+                    <h3 class="tech-name">REAL-TIME OPTIMIZATION</h3>
+                    <p class="tech-description">
+                        Continuous sensor monitoring feeds AI algorithms that make micro-adjustments every second to maximize yield, minimize waste, and ensure consistent output quality.
+                    </p>
+                </div>
+
+                <div class="tech-item">
+                    <h3 class="tech-name">SUPPLY CHAIN INTELLIGENCE</h3>
+                    <p class="tech-description">
+                        Integrated visibility across the entire critical minerals value chain—from mine to battery manufacturer—enabling unprecedented coordination and efficiency.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Proposition -->
+        <section class="section section-alt page-break">
+            <h2 class="section-title">Why Syntra</h2>
+            <p class="section-subtitle">
+                The strategic advantage for partners across the battery supply chain
+            </p>
+
+            <div class="value-props">
+                <div class="value-prop">
+                    <div class="value-number">01</div>
+                    <div class="value-content">
+                        <h3>Supply Chain Security</h3>
+                        <p>
+                            Reduce dependency on foreign processing with North American infrastructure. Our distributed network ensures reliable access to battery-grade materials regardless of geopolitical disruptions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="value-prop">
+                    <div class="value-number">02</div>
+                    <div class="value-content">
+                        <h3>Unmatched Flexibility</h3>
+                        <p>
+                            Universal intake capability means you're never locked into a single feedstock source. Process virgin ore today, recycled material tomorrow—our technology adapts seamlessly to whatever inputs you can secure.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="value-prop">
+                    <div class="value-number">03</div>
+                    <div class="value-content">
+                        <h3>Operational Excellence</h3>
+                        <p>
+                            AI optimization delivers higher yields, lower costs, and more consistent quality than traditional refineries. Our predictive maintenance reduces downtime and extends equipment life.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="value-prop">
+                    <div class="value-number">04</div>
+                    <div class="value-content">
+                        <h3>Future-Proof Investment</h3>
+                        <p>
+                            As battery chemistries evolve and recycling volumes grow, Syntra's adaptive platform ensures your processing infrastructure remains relevant and competitive for decades to come.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Markets We Serve -->
+        <section class="section">
+            <h2 class="section-title">Markets We Serve</h2>
+            <p class="section-subtitle">
+                Critical minerals processing for the electrification economy
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔋</div>
+                    <h3 class="feature-title">Battery Manufacturers</h3>
+                    <p class="feature-description">
+                        Battery-grade nickel, cobalt, and lithium compounds meeting the strictest quality specifications for EV and energy storage applications.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⛏️</div>
+                    <h3 class="feature-title">Mining Companies</h3>
+                    <p class="feature-description">
+                        Toll processing services that convert your concentrate into high-value refined products, capturing more of the value chain.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">♻️</div>
+                    <h3 class="feature-title">Recyclers</h3>
+                    <p class="feature-description">
+                        Processing black mass and end-of-life batteries into battery-grade materials, enabling true circular economy.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="brochure-footer">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>About Syntra Refining</h4>
+                    <p>
+                        Syntra Refining Corp is building North America's first feedstock-agnostic smart refinery network for critical minerals. Powered by SYNCORE™ predictive supply chain intelligence.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="footer-links">
+                        <p>Halifax, Nova Scotia, Canada</p>
+                        <a href="tel:+19024424010">902-442-4010</a>
+                        <a href="mailto:info@syntrarefining.com">info@syntrarefining.com</a>
+                        <a href="https://www.syntrarefining.com">syntrarefining.com</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="/technology.html">Technology</a>
+                        <a href="/company.html">Company</a>
+                        <a href="/careers.html">Careers</a>
+                        <a href="/contact.html">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                © 2026 Syntra Refining Corp. All rights reserved. SYNTRA and SYNCORE are trademarks of Syntra Refining Corp.
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Print Button -->
+    <button class="print-button no-print" onclick="window.print()">
+        📄 Print Brochure
+    </button>
+
+    <script>
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
