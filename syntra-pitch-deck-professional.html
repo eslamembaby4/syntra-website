@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>Syntra Refining Corp - Critical Minerals Infrastructure 2.0</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,10 +15,27 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --syntra-midnight-navy: #0B1120;
+            --syntra-signal-yellow: #FFD700;
+            --syntra-deep-slate: #0F172A;
+            --syntra-slate-50: #F9FAFC;
+            --syntra-white: #FFFFFF;
+            --syntra-cyan: #0891B2;
+            --syntra-slate-300: #CBD5E1;
+            --syntra-slate-400: #94A3B8;
+            --syntra-slate-500: #64748B;
+            --syntra-slate-800: #1E293B;
+
+            --font-heading: 'Oswald', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: #0B1120;
-            color: #E2E8F0;
+            font-family: var(--font-body);
+            background: var(--syntra-slate-50);
+            color: var(--syntra-deep-slate);
             overflow: hidden;
             height: 100vh;
         }
@@ -23,39 +43,39 @@
         .presentation-container {
             width: 100%;
             height: 100vh;
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 40px;
         }
 
         .slide {
             display: none;
-            width: 90%;
+            width: 100%;
             max-width: 1400px;
-            height: 85vh;
-            padding: 80px;
-            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-            border-radius: 0;
+            height: calc(100vh - 160px);
+            padding: 60px 80px;
+            background: var(--syntra-white);
+            border: 1px solid var(--syntra-slate-300);
             position: absolute;
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            transition: opacity 0.4s ease-in-out;
         }
 
         .slide.active {
             display: block;
             opacity: 1;
-            animation: slideIn 0.6s ease-out;
+            animation: slideIn 0.5s ease-out;
         }
 
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateX(20px);
+                transform: translateY(10px);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
 
@@ -63,8 +83,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            height: 4px;
-            background: #FFD700;
+            height: 3px;
+            background: var(--syntra-signal-yellow);
             transition: width 0.3s ease;
             z-index: 1000;
         }
@@ -75,26 +95,28 @@
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 20px;
+            gap: 16px;
             z-index: 1000;
         }
 
         .nav-btn {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid #FFD700;
-            color: #FFD700;
+            background: var(--syntra-signal-yellow);
+            border: none;
+            color: var(--syntra-midnight-navy);
             padding: 12px 24px;
-            border-radius: 8px;
+            border-radius: 2px;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 200ms ease;
         }
 
         .nav-btn:hover {
-            background: #FFD700;
-            color: #0B1120;
+            background: var(--syntra-midnight-navy);
+            color: var(--syntra-signal-yellow);
             transform: translateY(-2px);
         }
 
@@ -102,131 +124,154 @@
             position: fixed;
             bottom: 40px;
             right: 40px;
-            color: #94A3B8;
+            color: var(--syntra-slate-400);
+            font-family: var(--font-mono);
             font-size: 14px;
             z-index: 1000;
-            background: rgba(15, 23, 42, 0.8);
+            background: var(--syntra-white);
             padding: 10px 20px;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
+            border: 1px solid var(--syntra-slate-300);
+            border-radius: 2px;
         }
 
-        .logo {
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
             margin-bottom: 40px;
         }
 
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: #0B1120;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .logo-mark {
+            width: 48px;
+            height: 48px;
             position: relative;
         }
 
         .logo-diamond {
-            width: 40px;
-            height: 40px;
-            border: 2px solid #FFD700;
+            width: 48px;
+            height: 48px;
+            border: 2px solid var(--syntra-signal-yellow);
             transform: rotate(45deg);
             position: absolute;
         }
 
         .logo-square {
-            width: 16px;
-            height: 16px;
-            background: #FFD700;
+            width: 20px;
+            height: 20px;
+            background: var(--syntra-signal-yellow);
             position: absolute;
+            top: 14px;
+            left: 14px;
         }
 
         .logo-text {
+            font-family: var(--font-heading);
             font-size: 28px;
             font-weight: 700;
-            color: #E2E8F0;
+            color: var(--syntra-midnight-navy);
             letter-spacing: 0.05em;
         }
 
         .logo-tagline {
-            color: #FFD700;
-            font-size: 12px;
-            letter-spacing: 0.1em;
-            font-family: 'Courier New', monospace;
+            color: var(--syntra-signal-yellow);
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
         }
 
         h1 {
+            font-family: var(--font-heading);
             font-size: 72px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 0.95;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--syntra-midnight-navy);
+            text-align: left;
         }
 
         h2 {
+            font-family: var(--font-heading);
             font-size: 48px;
             font-weight: 700;
             margin-bottom: 40px;
-            border-left: 6px solid #FFD700;
-            padding-left: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--syntra-midnight-navy);
+            border-left: 4px solid var(--syntra-signal-yellow);
+            padding-left: 20px;
+            text-align: left;
         }
 
         h3 {
+            font-family: var(--font-heading);
             font-size: 24px;
             font-weight: 700;
             margin-bottom: 16px;
-            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--syntra-midnight-navy);
+            text-align: left;
         }
 
         .highlight {
-            color: #FFD700;
+            color: var(--syntra-signal-yellow);
         }
 
         .subtitle {
-            font-size: 32px;
-            color: #94A3B8;
+            font-size: 28px;
+            color: var(--syntra-slate-400);
             margin-bottom: 60px;
+            font-weight: 400;
+            text-align: left;
         }
 
         .card-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 24px;
             margin-top: 40px;
         }
 
         .card {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 12px;
-            padding: 40px;
+            background: var(--syntra-slate-50);
+            border: 1px solid var(--syntra-slate-300);
+            border-radius: 0;
+            padding: 32px;
             transition: all 0.3s ease;
+            text-align: left;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            border-color: #FFD700;
-            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2);
+            transform: translateY(-4px);
+            border-color: var(--syntra-signal-yellow);
+            box-shadow: 0 8px 24px rgba(255, 215, 0, 0.15);
         }
 
         .card-icon {
-            font-size: 48px;
+            font-size: 40px;
             margin-bottom: 20px;
         }
 
         .card-title {
-            font-size: 20px;
+            font-family: var(--font-heading);
+            font-size: 18px;
             font-weight: 700;
-            color: #FFD700;
+            color: var(--syntra-midnight-navy);
             margin-bottom: 16px;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-align: left;
         }
 
         .card-content {
-            color: #CBD5E1;
-            line-height: 1.6;
-            font-size: 16px;
+            color: var(--syntra-slate-500);
+            line-height: 1.7;
+            font-size: 15px;
+            font-weight: 400;
+            text-align: left;
         }
 
         .metrics {
@@ -237,18 +282,21 @@
 
         .metric {
             flex: 1;
+            text-align: left;
         }
 
         .metric-value {
-            font-size: 72px;
-            font-weight: 900;
-            color: #FFD700;
+            font-family: var(--font-heading);
+            font-size: 64px;
+            font-weight: 700;
+            color: var(--syntra-signal-yellow);
             margin-bottom: 8px;
         }
 
         .metric-label {
-            font-size: 16px;
-            color: #94A3B8;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--syntra-slate-400);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
@@ -256,8 +304,9 @@
         .timeline {
             display: flex;
             justify-content: space-between;
-            margin-top: 80px;
+            margin-top: 60px;
             position: relative;
+            padding-top: 40px;
         }
 
         .timeline::before {
@@ -267,58 +316,67 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(to right, #FFD700, #94A3B8);
+            background: var(--syntra-slate-300);
         }
 
         .timeline-item {
             flex: 1;
-            text-align: center;
+            text-align: left;
             position: relative;
+            padding-left: 20px;
         }
 
         .timeline-number {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #0B1120;
-            border: 3px solid #FFD700;
+            width: 48px;
+            height: 48px;
+            border-radius: 0;
+            background: var(--syntra-white);
+            border: 2px solid var(--syntra-signal-yellow);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 24px;
+            margin: 0 0 20px 0;
+            font-family: var(--font-heading);
+            font-size: 20px;
             font-weight: 700;
-            color: #FFD700;
+            color: var(--syntra-signal-yellow);
         }
 
         .timeline-title {
-            font-size: 20px;
+            font-family: var(--font-heading);
+            font-size: 18px;
             font-weight: 700;
             margin-bottom: 12px;
-            color: #E2E8F0;
+            color: var(--syntra-midnight-navy);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .timeline-subtitle {
-            font-size: 14px;
-            color: #94A3B8;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--syntra-slate-400);
             margin-bottom: 8px;
+            text-transform: uppercase;
         }
 
         .timeline-description {
             font-size: 14px;
-            color: #CBD5E1;
+            color: var(--syntra-slate-500);
+            line-height: 1.6;
         }
 
         .quote {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 600;
-            color: #E2E8F0;
-            text-align: center;
-            padding: 60px;
-            border-left: 4px solid #FFD700;
+            color: var(--syntra-deep-slate);
+            text-align: left;
+            padding: 40px;
+            border-left: 4px solid var(--syntra-signal-yellow);
             background: rgba(255, 215, 0, 0.05);
-            margin-top: 60px;
+            margin-top: 40px;
             font-style: italic;
+            line-height: 1.5;
         }
 
         .two-column {
@@ -331,28 +389,31 @@
         .list-item {
             display: flex;
             align-items: start;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .list-icon {
-            color: #FFD700;
-            margin-right: 16px;
-            font-size: 24px;
+            color: var(--syntra-signal-yellow);
+            margin-right: 12px;
+            font-family: var(--font-heading);
+            font-size: 18px;
         }
 
         .list-content {
             flex: 1;
-            color: #CBD5E1;
-            line-height: 1.6;
+            color: var(--syntra-slate-500);
+            line-height: 1.7;
+            font-size: 15px;
         }
 
         .presenter-info {
             position: absolute;
-            bottom: 80px;
+            bottom: 60px;
             right: 80px;
-            text-align: right;
-            color: #94A3B8;
-            font-size: 14px;
+            text-align: left;
+            color: var(--syntra-slate-400);
+            font-family: var(--font-mono);
+            font-size: 12px;
         }
 
         .team-grid {
@@ -363,108 +424,183 @@
         }
 
         .team-member {
-            text-align: center;
+            text-align: left;
         }
 
         .team-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: rgba(255, 215, 0, 0.1);
-            border: 3px solid #FFD700;
-            margin: 0 auto 16px;
+            width: 100px;
+            height: 100px;
+            border-radius: 0;
+            background: var(--syntra-slate-50);
+            border: 2px solid var(--syntra-signal-yellow);
+            margin: 0 0 16px 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
-            color: #FFD700;
+            font-family: var(--font-heading);
+            font-size: 32px;
+            color: var(--syntra-signal-yellow);
         }
 
         .team-name {
-            font-size: 18px;
+            font-family: var(--font-heading);
+            font-size: 16px;
             font-weight: 700;
-            color: #E2E8F0;
+            color: var(--syntra-midnight-navy);
             margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
         }
 
         .team-role {
-            font-size: 14px;
-            color: #FFD700;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--syntra-slate-400);
             margin-bottom: 12px;
             text-transform: uppercase;
-            font-weight: 600;
+            letter-spacing: 0.05em;
         }
 
         .team-bio {
             font-size: 13px;
-            color: #94A3B8;
-            line-height: 1.5;
+            color: var(--syntra-slate-500);
+            line-height: 1.6;
         }
 
         .cta-section {
-            text-align: center;
-            padding: 80px;
-            background: rgba(255, 215, 0, 0.05);
-            border: 2px solid #FFD700;
-            border-radius: 16px;
-            margin-top: 60px;
+            text-align: left;
+            padding: 60px;
+            background: var(--syntra-slate-50);
+            border: 2px solid var(--syntra-signal-yellow);
+            border-radius: 0;
+            margin-top: 40px;
         }
 
         .cta-title {
-            font-size: 48px;
-            font-weight: 900;
-            color: #FFD700;
-            margin-bottom: 30px;
-        }
-
-        .cta-subtitle {
-            font-size: 24px;
-            color: #E2E8F0;
-            margin-bottom: 40px;
+            font-family: var(--font-heading);
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--syntra-signal-yellow);
+            margin-bottom: 24px;
+            text-transform: uppercase;
         }
 
         .contact-info {
             display: flex;
-            justify-content: center;
-            gap: 80px;
-            margin-top: 40px;
+            gap: 60px;
+            margin-top: 30px;
         }
 
         .contact-item {
-            text-align: center;
+            text-align: left;
         }
 
         .contact-label {
-            font-size: 14px;
-            color: #94A3B8;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--syntra-slate-400);
             margin-bottom: 8px;
+            text-transform: uppercase;
         }
 
         .contact-value {
-            font-size: 24px;
-            color: #FFD700;
-            font-weight: 700;
+            font-size: 20px;
+            color: var(--syntra-midnight-navy);
+            font-weight: 600;
         }
 
         .fullscreen-btn {
             position: fixed;
             top: 40px;
             right: 40px;
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid #FFD700;
-            color: #FFD700;
+            background: var(--syntra-signal-yellow);
+            border: none;
+            color: var(--syntra-midnight-navy);
             padding: 10px 16px;
-            border-radius: 8px;
+            border-radius: 2px;
             cursor: pointer;
-            font-size: 14px;
+            font-family: var(--font-heading);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
             z-index: 1000;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            transition: all 200ms ease;
         }
 
         .fullscreen-btn:hover {
-            background: #FFD700;
-            color: #0B1120;
+            background: var(--syntra-midnight-navy);
+            color: var(--syntra-signal-yellow);
+        }
+
+        .yellow-bar {
+            height: 3px;
+            width: 60px;
+            background: var(--syntra-signal-yellow);
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--syntra-signal-yellow);
+            color: var(--syntra-midnight-navy);
+            padding: 6px 12px;
+            border-radius: 2px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+            border-bottom: 1px solid var(--syntra-slate-300);
+        }
+
+        th {
+            background: var(--syntra-slate-50);
+            font-family: var(--font-heading);
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--syntra-midnight-navy);
+        }
+
+        td {
+            font-size: 15px;
+            color: var(--syntra-slate-500);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 2px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .status-low {
+            background: #10B981;
+            color: white;
+        }
+
+        .status-medium {
+            background: #F59E0B;
+            color: white;
+        }
+
+        .status-high {
+            background: #EF4444;
+            color: white;
         }
 
         @media print {
@@ -480,31 +616,34 @@
 <body>
     <div class="progress-bar" id="progressBar"></div>
 
-    <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+    <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶ FULLSCREEN</button>
 
     <div class="presentation-container">
         <!-- Slide 1: Title -->
         <div class="slide active">
-            <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
-                <div style="border-top: 4px solid #FFD700; padding-top: 40px;">
-                    <h1>CRITICAL MINERALS<br><span style="color: #64748B;">INFRASTRUCTURE</span><br><span class="highlight">2.0</span></h1>
+            <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                <div>
+                    <div class="yellow-bar"></div>
+                    <h1>CRITICAL MINERALS<br><span style="color: var(--syntra-slate-400);">INFRASTRUCTURE</span><br><span class="highlight">2.0</span></h1>
                     <p class="subtitle">Bridging the Midstream Gap through Smart Refining.</p>
                 </div>
-                <div style="margin-top: 80px; display: flex; align-items: center; gap: 20px;">
-                    <div class="logo-icon">
-                        <div class="logo-diamond"></div>
-                        <div class="logo-square"></div>
-                    </div>
-                    <div>
-                        <div class="logo-text">SYNTRA</div>
-                        <div class="logo-tagline">REFINING CORP.</div>
+                <div style="margin-top: 60px;">
+                    <div class="logo-container">
+                        <div class="logo-mark">
+                            <div class="logo-diamond"></div>
+                            <div class="logo-square"></div>
+                        </div>
+                        <div>
+                            <div class="logo-text">SYNTRA</div>
+                            <div class="logo-tagline">REFINING CORP.</div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="presenter-info">
-                <div style="font-size: 12px; text-transform: uppercase;">PRESENTED BY</div>
-                <div style="font-size: 16px; font-weight: 700; color: #E2E8F0; margin-top: 4px;">NIFEMI OGUNTUASE</div>
-                <div style="font-size: 14px; margin-top: 2px;">DATE: FEB 2026</div>
+                <div style="text-transform: uppercase; margin-bottom: 4px;">PRESENTED BY</div>
+                <div style="font-family: var(--font-heading); font-size: 16px; color: var(--syntra-midnight-navy); margin-bottom: 4px;">NIFEMI OGUNTUASE</div>
+                <div>DATE: FEB 2026</div>
             </div>
         </div>
 
@@ -521,8 +660,8 @@
                 </div>
                 <div class="card">
                     <div class="card-icon">
-                        <div style="width: 40px; height: 40px; border: 3px solid #FFD700; transform: rotate(45deg); position: relative;">
-                            <div style="width: 16px; height: 16px; background: #FFD700; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg);"></div>
+                        <div style="width: 32px; height: 32px; border: 2px solid var(--syntra-signal-yellow); transform: rotate(45deg); position: relative; display: inline-block;">
+                            <div style="width: 12px; height: 12px; background: var(--syntra-signal-yellow); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg);"></div>
                         </div>
                     </div>
                     <div class="card-title">THE SOLUTION</div>
@@ -539,43 +678,43 @@
                 </div>
             </div>
             <div class="quote">
-                "We believe energy security and environmental stewardship are one and the same. <span class="highlight">Refining is the bottleneck</span> that secures the supply chain."
+                "We believe energy security and environmental stewardship are one and the same. <strong>Refining is the bottleneck</strong> that secures the supply chain."
             </div>
         </div>
 
         <!-- Slide 3: The Life-Cycle -->
         <div class="slide">
             <h2>THE LIFE-CYCLE OF MODERN INFRASTRUCTURE</h2>
-            <p style="font-size: 18px; color: #94A3B8; margin-bottom: 40px;">Syntra owns Refining—the essential technical bridge that turns raw dirt (Step 1) into industrial power (Step 2).</p>
+            <p style="font-size: 16px; color: var(--syntra-slate-500); margin-bottom: 40px;">Syntra owns Refining—the essential technical bridge that turns raw dirt (Step 1) into industrial power (Step 2).</p>
 
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-number">1</div>
                     <div class="timeline-title">ORIGIN</div>
-                    <div class="timeline-subtitle" style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">THEY ARE GOTTEN FROM...</div>
+                    <div class="timeline-subtitle">THEY ARE GOTTEN FROM...</div>
                     <div class="timeline-description">Primary mining of Spodumene, Laterites and Sulphides. Secondary sources like tailings, e-waste and industrial scrap</div>
-                    <div style="background: #FFD700; color: #0B1120; padding: 8px 16px; border-radius: 4px; font-weight: 700; margin-top: 16px; font-size: 12px;">FEEDSTOCK DIVERSITY</div>
+                    <div class="tag">FEEDSTOCK DIVERSITY</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-number">2</div>
                     <div class="timeline-title">UTILITY</div>
-                    <div class="timeline-subtitle" style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">THEY ARE USED TO...</div>
+                    <div class="timeline-subtitle">THEY ARE USED TO...</div>
                     <div class="timeline-description">Enable electrification and green infrastructure. EV, smart grid, and high-performance materials in defense and manufacturing.</div>
-                    <div style="background: #FFD700; color: #0B1120; padding: 8px 16px; border-radius: 4px; font-weight: 700; margin-top: 16px; font-size: 12px;">FUNCTIONAL NECESSITY</div>
+                    <div class="tag">FUNCTIONAL NECESSITY</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-number">3</div>
                     <div class="timeline-title">DEMAND</div>
-                    <div class="timeline-subtitle" style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">WE NEED...</div>
+                    <div class="timeline-subtitle">WE NEED...</div>
                     <div class="timeline-description">42 million tonnes of critical minerals annually by 2040. To hit Net Zero, demand must grow > 19x from 2020 levels.</div>
-                    <div style="background: #FFD700; color: #0B1120; padding: 8px 16px; border-radius: 4px; font-weight: 700; margin-top: 16px; font-size: 12px;">THE QUANTUM LEAP</div>
+                    <div class="tag">THE QUANTUM LEAP</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-number">4</div>
                     <div class="timeline-title">STRATEGY</div>
-                    <div class="timeline-subtitle" style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">THEY ARE VITAL BECAUSE...</div>
+                    <div class="timeline-subtitle">THEY ARE VITAL BECAUSE...</div>
                     <div class="timeline-description">They are the Currency of Sovereignty. Control of these minerals determines which nations lead industrial manufacturing</div>
-                    <div style="background: #FFD700; color: #0B1120; padding: 8px 16px; border-radius: 4px; font-weight: 700; margin-top: 16px; font-size: 12px;">ECONOMIC SECURITY</div>
+                    <div class="tag">ECONOMIC SECURITY</div>
                 </div>
             </div>
         </div>
@@ -585,12 +724,12 @@
             <h2>THE MACRO CONTEXT</h2>
             <div class="two-column">
                 <div>
-                    <h3 style="font-size: 32px; margin-bottom: 24px;">THE KEY TO ENERGY TRANSITION</h3>
-                    <p style="font-size: 18px; color: #CBD5E1; line-height: 1.8; margin-bottom: 40px;">
+                    <h3>THE KEY TO ENERGY TRANSITION</h3>
+                    <p style="font-size: 16px; color: var(--syntra-slate-500); line-height: 1.7; margin-bottom: 32px;">
                         Critical minerals serve as essential building blocks for the massive infrastructure needed to achieve Net-Zero targets and advance our technological world.
                     </p>
 
-                    <h3 style="font-size: 28px; margin-bottom: 20px;">GEOPOLITICAL REALITY</h3>
+                    <h3 style="margin-top: 32px;">GEOPOLITICAL REALITY</h3>
                     <div class="list-item">
                         <div class="list-icon">▸</div>
                         <div class="list-content">China controls >85% of global market share.</div>
@@ -605,23 +744,23 @@
                     </div>
                 </div>
                 <div style="display: flex; flex-direction: column; justify-content: center;">
-                    <div class="metric" style="text-align: center; margin-bottom: 40px;">
-                        <div style="font-size: 18px; color: #94A3B8; margin-bottom: 8px;">TAM</div>
+                    <div class="metric" style="margin-bottom: 32px;">
+                        <div class="metric-label">TAM</div>
                         <div class="metric-value">$500B</div>
                     </div>
-                    <div style="display: flex; gap: 40px;">
-                        <div class="metric" style="text-align: center;">
-                            <div style="font-size: 18px; color: #64748B; margin-bottom: 8px;">SAM</div>
-                            <div class="metric-value" style="color: #64748B;">$52B</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+                        <div class="metric">
+                            <div class="metric-label">SAM</div>
+                            <div class="metric-value" style="color: var(--syntra-slate-400);">$52B</div>
                         </div>
-                        <div class="metric" style="text-align: center;">
-                            <div style="font-size: 18px; color: #FFD700; margin-bottom: 8px;">SOM</div>
+                        <div class="metric">
+                            <div class="metric-label">SOM</div>
                             <div class="metric-value">$500M</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="margin-top: 60px; text-align: center; color: #94A3B8; font-size: 20px; letter-spacing: 0.05em;">
+            <div style="margin-top: 40px; font-family: var(--font-mono); color: var(--syntra-slate-400); font-size: 14px; letter-spacing: 0.05em;">
                 Cobalt | Nickel | Manganese | Copper | Aluminum | Lithium | Zinc
             </div>
         </div>
@@ -629,37 +768,37 @@
         <!-- Slide 5: The Supply Chain -->
         <div class="slide">
             <h2>THE CRITICAL MINERALS SUPPLY CHAIN</h2>
-            <p style="font-size: 22px; color: #E2E8F0; margin-bottom: 20px;">Canada is strong in Stage 1. The US is building Stage 3.</p>
-            <p style="font-size: 22px; color: #FFD700; font-weight: 700; margin-bottom: 60px;">Syntra builds Stage 2 in Nova Scotia.</p>
+            <p style="font-size: 18px; color: var(--syntra-deep-slate); margin-bottom: 12px;">Canada is strong in Stage 1. The US is building Stage 3.</p>
+            <p style="font-size: 18px; color: var(--syntra-signal-yellow); font-family: var(--font-heading); font-weight: 700; margin-bottom: 40px;">SYNTRA BUILDS STAGE 2 IN NOVA SCOTIA.</p>
 
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 80px;">
-                <div style="text-align: center; flex: 1;">
-                    <div style="font-size: 64px; margin-bottom: 20px;">⛏️</div>
-                    <div style="font-size: 16px; font-weight: 700; color: #94A3B8; margin-bottom: 12px;">1. UPSTREAM</div>
-                    <div style="font-size: 18px; color: #E2E8F0; margin-bottom: 8px;">Mining & Extraction</div>
-                    <div style="color: #F59E0B; font-weight: 700; font-size: 16px;">LOW MARGIN</div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 60px;">
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-size: 48px; margin-bottom: 16px;">⛏️</div>
+                    <div style="font-family: var(--font-mono); font-size: 12px; color: var(--syntra-slate-400); margin-bottom: 8px; text-transform: uppercase;">1. UPSTREAM</div>
+                    <div style="font-size: 16px; color: var(--syntra-deep-slate); margin-bottom: 6px;">Mining & Extraction</div>
+                    <div style="color: #F59E0B; font-family: var(--font-heading); font-weight: 700; font-size: 14px;">LOW MARGIN</div>
                 </div>
 
-                <div style="font-size: 48px; color: #64748B;">→</div>
+                <div style="font-size: 40px; color: var(--syntra-slate-300);">→</div>
 
-                <div style="text-align: center; flex: 1; border: 4px solid #FFD700; padding: 40px; border-radius: 12px; background: rgba(255, 215, 0, 0.05);">
-                    <div style="font-size: 64px; margin-bottom: 20px;">🏭</div>
-                    <div style="font-size: 16px; font-weight: 700; color: #FFD700; margin-bottom: 12px;">2. MIDSTREAM</div>
-                    <div style="font-size: 18px; color: #E2E8F0; margin-bottom: 8px;">Refining & Processing</div>
-                    <div style="color: #FFD700; font-weight: 700; font-size: 16px;">HIGH VALUE (THE GAP)</div>
+                <div style="text-align: left; flex: 1; border: 3px solid var(--syntra-signal-yellow); padding: 32px; background: rgba(255, 215, 0, 0.05);">
+                    <div style="font-size: 48px; margin-bottom: 16px;">🏭</div>
+                    <div style="font-family: var(--font-mono); font-size: 12px; color: var(--syntra-signal-yellow); margin-bottom: 8px; text-transform: uppercase;">2. MIDSTREAM</div>
+                    <div style="font-size: 16px; color: var(--syntra-deep-slate); margin-bottom: 6px;">Refining & Processing</div>
+                    <div style="color: var(--syntra-signal-yellow); font-family: var(--font-heading); font-weight: 700; font-size: 14px;">HIGH VALUE (THE GAP)</div>
                 </div>
 
-                <div style="font-size: 48px; color: #64748B;">→</div>
+                <div style="font-size: 40px; color: var(--syntra-slate-300);">→</div>
 
-                <div style="text-align: center; flex: 1;">
-                    <div style="font-size: 64px; margin-bottom: 20px;">🔋</div>
-                    <div style="font-size: 16px; font-weight: 700; color: #94A3B8; margin-bottom: 12px;">3. DOWNSTREAM</div>
-                    <div style="font-size: 18px; color: #E2E8F0; margin-bottom: 8px;">Battery Mfg. & OEMs</div>
-                    <div style="color: #F59E0B; font-weight: 700; font-size: 16px;">HIGH DEMAND</div>
+                <div style="text-align: left; flex: 1;">
+                    <div style="font-size: 48px; margin-bottom: 16px;">🔋</div>
+                    <div style="font-family: var(--font-mono); font-size: 12px; color: var(--syntra-slate-400); margin-bottom: 8px; text-transform: uppercase;">3. DOWNSTREAM</div>
+                    <div style="font-size: 16px; color: var(--syntra-deep-slate); margin-bottom: 6px;">Battery Mfg. & OEMs</div>
+                    <div style="color: #F59E0B; font-family: var(--font-heading); font-weight: 700; font-size: 14px;">HIGH DEMAND</div>
                 </div>
             </div>
 
-            <div style="margin-top: 60px; display: flex; gap: 40px; color: #EF4444; font-size: 16px;">
+            <div style="margin-top: 40px; display: flex; gap: 32px; color: #EF4444; font-size: 14px;">
                 <div>✗ Lost GDP / Tax Revenue</div>
                 <div>✗ Supply Chain Fragility</div>
                 <div>✗ High Carbon Transport Footprint</div>
@@ -670,380 +809,35 @@
         <div class="slide">
             <h2>VALUE CREATION: THE MULTIPLIER EFFECT</h2>
             <div class="two-column" style="align-items: center;">
-                <div style="text-align: center;">
-                    <div style="font-size: 180px; font-weight: 900; color: #FFD700; line-height: 1;">16x</div>
-                    <div style="font-size: 24px; color: #FFD700; margin-top: 20px; text-transform: uppercase; letter-spacing: 0.1em;">VALUE MULTIPLIER</div>
+                <div style="text-align: left;">
+                    <div style="font-family: var(--font-heading); font-size: 160px; font-weight: 700; color: var(--syntra-signal-yellow); line-height: 1;">16x</div>
+                    <div style="font-family: var(--font-heading); font-size: 20px; color: var(--syntra-midnight-navy); margin-top: 16px; text-transform: uppercase; letter-spacing: 0.1em;">VALUE MULTIPLIER</div>
                 </div>
                 <div>
-                    <h3 style="font-size: 32px; margin-bottom: 24px;">WHY REFINING MATTERS</h3>
-                    <p style="font-size: 18px; color: #CBD5E1; line-height: 1.8; margin-bottom: 40px;">
+                    <h3>WHY REFINING MATTERS</h3>
+                    <p style="font-size: 16px; color: var(--syntra-slate-500); line-height: 1.7; margin-bottom: 32px;">
                         Refining unlocks major value: it converts 'mined rock' into high-value raw materials for Canadian industries.
                     </p>
-                    <div style="margin-bottom: 24px;">
-                        <div style="font-size: 16px; color: #94A3B8; margin-bottom: 8px;">Primary Ore:</div>
-                        <div style="font-size: 28px; color: #E2E8F0;">~$1,100 / tonne</div>
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--syntra-slate-400); margin-bottom: 6px; text-transform: uppercase;">Primary Ore:</div>
+                        <div style="font-size: 24px; color: var(--syntra-deep-slate);">~$1,100 / tonne</div>
                     </div>
-                    <div style="font-size: 48px; color: #FFD700; margin: 24px 0;">↓</div>
+                    <div style="font-size: 40px; color: var(--syntra-signal-yellow); margin: 20px 0;">↓</div>
                     <div>
-                        <div style="font-size: 16px; color: #94A3B8; margin-bottom: 8px;">Refined Mineral Product:</div>
-                        <div style="font-size: 28px; color: #FFD700; font-weight: 700;">~$16,500 / tonne</div>
+                        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--syntra-slate-400); margin-bottom: 6px; text-transform: uppercase;">Refined Mineral Product:</div>
+                        <div style="font-size: 24px; color: var(--syntra-signal-yellow); font-weight: 600;">~$16,500 / tonne</div>
                     </div>
-                    <p style="font-size: 16px; color: #94A3B8; line-height: 1.6; margin-top: 40px;">
+                    <p style="font-size: 14px; color: var(--syntra-slate-400); line-height: 1.6; margin-top: 32px;">
                         This 16x increase in value stays in here, generating tax revenue, funding high-skilled jobs, and building a sophisticated industrial base.
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 7: Feedstock Agnostic -->
-        <div class="slide">
-            <h2>TRUE FLEXIBILITY: FEEDSTOCK AGNOSTIC</h2>
-            <div class="two-column" style="align-items: center;">
-                <div>
-                    <div style="background: rgba(15, 23, 42, 0.8); border: 2px solid #FFD700; border-radius: 16px; padding: 60px; text-align: center;">
-                        <div style="font-size: 12px; color: #FFD700; margin-bottom: 30px; letter-spacing: 0.1em;">SYSTEM ARCHITECTURE</div>
-
-                        <div style="background: rgba(71, 85, 105, 0.5); padding: 30px; border-radius: 12px; margin-bottom: 30px;">
-                            <div style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">UNIVERSAL INTAKE</div>
-                            <div style="display: flex; justify-content: center; gap: 30px; font-size: 14px;">
-                                <div>♻️<br>RECYCLING</div>
-                                <div>⛏️<br>MINING</div>
-                                <div>⚙️<br>MFG SCRAP</div>
-                            </div>
-                        </div>
-
-                        <div style="font-size: 40px; color: #FFD700; margin: 20px 0;">↓</div>
-
-                        <div style="background: rgba(15, 23, 42, 0.8); border: 3px solid #FFD700; padding: 30px; border-radius: 12px; margin-bottom: 30px;">
-                            <div style="font-size: 24px; font-weight: 700; color: #FFD700; margin-bottom: 12px;">SYNCORE™</div>
-                            <div style="font-size: 14px; color: #94A3B8;">AI-Optimized Hydrometallurgy</div>
-                        </div>
-
-                        <div style="font-size: 40px; color: #FFD700; margin: 20px 0;">↓</div>
-
-                        <div style="background: rgba(71, 85, 105, 0.5); padding: 30px; border-radius: 12px;">
-                            <div style="font-size: 20px; font-weight: 700; margin-bottom: 12px;">BATTERY SALTS</div>
-                            <div style="font-size: 16px; color: #94A3B8;">Li | Ni | Mn | Co | Cu | Al</div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h3 style="font-size: 32px; margin-bottom: 24px;">RISK MITIGATION THROUGH DIVERSITY</h3>
-                    <p style="font-size: 18px; color: #CBD5E1; line-height: 1.8; margin-bottom: 40px;">
-                        Traditional refineries go bankrupt if their specific mine shuts down. Syntra is immune to single-source failure.
-                    </p>
-
-                    <div style="background: rgba(255, 215, 0, 0.05); border-left: 4px solid #FFD700; padding: 24px; margin-bottom: 20px;">
-                        <div style="font-size: 16px; font-weight: 700; color: #FFD700; margin-bottom: 8px;">INPUT A:</div>
-                        <div style="color: #CBD5E1;">Spodumene / Nickel Concentrates (Mining)</div>
-                    </div>
-
-                    <div style="background: rgba(255, 215, 0, 0.05); border-left: 4px solid #FFD700; padding: 24px; margin-bottom: 20px;">
-                        <div style="font-size: 16px; font-weight: 700; color: #FFD700; margin-bottom: 8px;">INPUT B:</div>
-                        <div style="color: #CBD5E1;">Black Mass (Recycling)</div>
-                    </div>
-
-                    <div style="background: rgba(255, 215, 0, 0.05); border-left: 4px solid #FFD700; padding: 24px; margin-bottom: 20px;">
-                        <div style="font-size: 16px; font-weight: 700; color: #FFD700; margin-bottom: 8px;">INPUT C:</div>
-                        <div style="color: #CBD5E1;">Manufacturing Scrap (Gigafactories)</div>
-                    </div>
-
-                    <div style="background: #FFD700; color: #0B1120; padding: 20px; border-radius: 8px; text-align: center; font-size: 18px; font-weight: 700; margin-top: 40px;">
-                        RESULT: 100% UTILIZATION RATE
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 8: SYNCORE Technology -->
-        <div class="slide">
-            <h2>NEW AGE SMART REFINING + AI OPTIMIZATION</h2>
-            <p style="font-size: 18px; color: #94A3B8; margin-bottom: 60px;">Beyond steel; we build code. Every physical pump, tank, and sensor in the SynHub™ has a virtual replica.</p>
-
-            <div style="display: flex; align-items: center; justify-content: center; margin-top: 80px;">
-                <div class="card" style="max-width: 400px;">
-                    <div style="font-size: 20px; font-weight: 700; color: #64748B; margin-bottom: 16px;">⚡ AI Powered Automation</div>
-                    <div style="color: #94A3B8; font-family: 'Courier New', monospace; font-size: 14px;">Powered by AI for optimization and safety</div>
-                </div>
-
-                <div style="margin: 0 60px; font-size: 48px; color: #64748B;">—</div>
-
-                <div style="width: 300px; height: 300px; border: 3px solid #64748B; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative;">
-                    <div style="position: absolute; width: 40px; height: 40px; border: 3px solid #FFD700; transform: rotate(45deg); margin-right: 10px;">
-                        <div style="width: 16px; height: 16px; background: #FFD700; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg);"></div>
-                    </div>
-                    <div style="font-size: 48px; font-weight: 700; color: #64748B; margin-left: 60px;">SYNCORE™</div>
-                </div>
-
-                <div style="margin: 0 60px; font-size: 48px; color: #64748B;">—</div>
-
-                <div class="card" style="max-width: 400px;">
-                    <div style="font-size: 20px; font-weight: 700; color: #64748B; margin-bottom: 16px;">🧪 Process Chemistry</div>
-                    <div style="color: #94A3B8; font-family: 'Courier New', monospace; font-size: 14px;">Tackles rigid input feed complexity and recovery economics</div>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 80px;">
-                <div class="card" style="display: inline-block; max-width: 500px;">
-                    <div style="font-size: 20px; font-weight: 700; color: #64748B; margin-bottom: 16px;">⚙️ Novel Engineering</div>
-                    <div style="color: #94A3B8; font-family: 'Courier New', monospace; font-size: 14px;">Tackles Modularity & CAPEX</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 9: Market Entry Plant -->
-        <div class="slide">
-            <h2>MARKET ENTRY PLANT - SYNHUB™ HALIFAX</h2>
-            <div class="two-column">
-                <div>
-                    <h3 style="font-size: 28px; margin-bottom: 24px;">1,000 TONNE MARKET ENTRY FACILITY</h3>
-                    <p style="font-size: 16px; color: #CBD5E1; line-height: 1.8; margin-bottom: 40px;">
-                        Proposed for Julius Blvd, Halifax Industrial Park. This is a brownfield deployment designed for market entry - serves as the blueprint for our 50,000t expansion economics of "Universal Intake" refining.
-                    </p>
-
-                    <div style="background: #10B981; color: #0B1120; padding: 16px 24px; border-radius: 8px; font-weight: 700; margin-bottom: 40px;">
-                        STATUS: READY TO BUILD
-                    </div>
-
-                    <h3 style="font-size: 24px; margin-bottom: 20px;">KEY CAPABILITIES</h3>
-                    <div class="list-item">
-                        <div class="list-icon">■</div>
-                        <div class="list-content">Class 9 Hazardous Material Handling</div>
-                    </div>
-                    <div class="list-item">
-                        <div class="list-icon">■</div>
-                        <div class="list-content">Closed-Loop Hydrometallurgy Circuit</div>
-                    </div>
-                    <div class="list-item">
-                        <div class="list-icon">■</div>
-                        <div class="list-content">AI-Driven Digital Twin Control Room</div>
-                    </div>
-                    <div class="list-item">
-                        <div class="list-icon">■</div>
-                        <div class="list-content">Direct Rail & Port Access</div>
-                    </div>
-                </div>
-                <div style="background: rgba(255, 215, 0, 0.05); border: 2px solid #FFD700; border-radius: 12px; padding: 60px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
-                    <div style="font-size: 48px; margin-bottom: 24px;">🏗️</div>
-                    <div style="font-size: 32px; font-weight: 700; color: #FFD700; margin-bottom: 16px;">Proposed floor Plan for 265 Julius Blvd</div>
-                    <div style="font-size: 24px; font-weight: 700; color: #10B981; margin-top: 24px;">Zero Carbon Building</div>
-                    <div style="font-size: 14px; color: #94A3B8; margin-top: 40px; line-height: 1.6;">
-                        Strategic location with direct access to Port of Halifax and rail infrastructure
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 10: Atlantic Gateway -->
-        <div class="slide">
-            <h2>THE ATLANTIC GATEWAY OPPORTUNITY</h2>
-            <div class="two-column">
-                <div>
-                    <h3 style="font-size: 32px; margin-bottom: 24px;">FROM HALIFAX TO THE BATTERY BELT</h3>
-                    <p style="font-size: 18px; color: #CBD5E1; line-height: 1.8; margin-bottom: 40px;">
-                        Nova Scotia is geographically positioned to be the refining hub for the Atlantic. We leverage the Port of Halifax to bridge the gap between global mining and North American manufacturing.
-                    </p>
-
-                    <div style="background: rgba(15, 23, 42, 0.8); border: 2px solid #64748B; border-radius: 12px; padding: 30px; margin-bottom: 20px;">
-                        <div style="font-size: 18px; font-weight: 700; margin-bottom: 12px;">IMPORT (INPUT)</div>
-                        <div style="font-size: 20px; color: #E2E8F0; margin-bottom: 8px;">Black Mass & Concentrates</div>
-                        <div style="font-size: 14px; color: #94A3B8;">From: Africa, Europe, South America, Recyclers</div>
-                    </div>
-
-                    <div style="text-align: center; margin: 30px 0;">
-                        <div style="font-size: 28px; color: #FFD700;">↓</div>
-                        <div style="font-size: 18px; font-weight: 700; color: #FFD700; margin: 16px 0;">VALUE ADDED REFINING</div>
-                        <div style="font-size: 28px; color: #FFD700;">↓</div>
-                    </div>
-
-                    <div style="background: rgba(255, 215, 0, 0.1); border: 2px solid #FFD700; border-radius: 12px; padding: 30px;">
-                        <div style="font-size: 18px; font-weight: 700; color: #FFD700; margin-bottom: 12px;">EXPORT (OUTPUT)</div>
-                        <div style="font-size: 20px; color: #E2E8F0; margin-bottom: 8px;">Battery-Grade Salts</div>
-                        <div style="font-size: 14px; color: #94A3B8;">To: Eastern US, Ontario, Quebec (OEMs)</div>
-                    </div>
-                </div>
-                <div style="background: rgba(15, 23, 42, 0.6); border-radius: 12px; padding: 60px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                    <div style="font-size: 72px; margin-bottom: 40px;">🌍</div>
-                    <div style="display: flex; gap: 60px; align-items: center; margin-bottom: 40px;">
-                        <div style="text-align: center;">
-                            <div style="font-size: 48px; margin-bottom: 16px;">🚢</div>
-                            <div style="font-size: 24px; color: #FFD700; font-weight: 700;">Europe</div>
-                        </div>
-                        <div style="font-size: 48px; color: #64748B;">→</div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 48px; margin-bottom: 16px;">✈️</div>
-                            <div style="width: 60px; height: 60px; border: 3px solid #FFD700; transform: rotate(45deg); position: relative; margin: 20px auto;">
-                                <div style="width: 24px; height: 24px; background: #FFD700; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg);"></div>
-                            </div>
-                            <div style="font-size: 24px; color: #FFD700; font-weight: 700;">Canada</div>
-                            <div style="font-size: 14px; color: #94A3B8; margin-top: 8px;">Halifax Hub</div>
-                        </div>
-                        <div style="font-size: 48px; color: #64748B;">→</div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 48px; margin-bottom: 16px;">🚃</div>
-                            <div style="font-size: 24px; color: #FFD700; font-weight: 700;">United States</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 11: Strategic Alignment -->
-        <div class="slide">
-            <h2>STRATEGIC ALIGNMENT: SOVEREIGNTY & CIRCULARITY</h2>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px;">
-                <div class="card" style="padding: 60px;">
-                    <div style="font-size: 64px; margin-bottom: 24px;">♻️</div>
-                    <h3 style="font-size: 28px; margin-bottom: 24px;">CIRCULAR ECONOMY INFRASTRUCTURE</h3>
-                    <p style="font-size: 16px; color: #CBD5E1; line-height: 1.8;">
-                        We enable "Urban Mining" by refining end-of-life batteries into new, battery-grade materials. This is key to Canada's Net Zero ambition, diverting toxic waste from landfills and reducing the carbon intensity of our supply chain.
-                    </p>
-                </div>
-                <div class="card" style="padding: 60px;">
-                    <div style="font-size: 64px; margin-bottom: 24px;">🛡️</div>
-                    <h3 style="font-size: 28px; margin-bottom: 24px;">DUAL-USE STRATEGIC ASSETS</h3>
-                    <p style="font-size: 16px; color: #CBD5E1; line-height: 1.8;">
-                        Critical minerals like Cobalt and Nickel are not just for EVs; they are essential for aerospace, defense, and drone technology. By refining domestically, Syntra secures a sovereign supply chain for Canada and our NATO allies, reducing reliance on adversarial nations.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 12: ROI for Nova Scotia -->
-        <div class="slide">
-            <h2>ROI FOR NOVA SCOTIA</h2>
-            <div class="card-grid" style="margin-top: 80px;">
-                <div class="card" style="text-align: center; padding: 60px;">
-                    <div style="font-size: 64px; margin-bottom: 24px;">👥</div>
-                    <div class="card-title" style="font-size: 24px;">JOBS</div>
-                    <div class="card-content" style="font-size: 16px;">
-                        ~65 High-Paying Technical roles (Engineers, Data Scientists) retained in NS.
-                    </div>
-                </div>
-                <div class="card" style="text-align: center; padding: 60px;">
-                    <div style="font-size: 64px; margin-bottom: 24px;">🏭</div>
-                    <div class="card-title" style="font-size: 24px;">ANCHOR</div>
-                    <div class="card-content" style="font-size: 16px;">
-                        A functioning refinery attracts battery manufacturers and EV OEMs to the province.
-                    </div>
-                </div>
-                <div class="card" style="text-align: center; padding: 60px;">
-                    <div style="font-size: 64px; margin-bottom: 24px;">🌐</div>
-                    <div class="card-title" style="font-size: 24px;">BRAND</div>
-                    <div class="card-content" style="font-size: 16px;">
-                        Positions Nova Scotia as a Tier-1 jurisdiction for the Green Economy.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 13: 5 Year Impact -->
-        <div class="slide">
-            <h2>5 YEAR ECONOMIC IMPACT & ROI</h2>
-            <div class="two-column" style="align-items: center;">
-                <div>
-                    <div class="metric" style="margin-bottom: 60px;">
-                        <div class="metric-value">200+</div>
-                        <div class="metric-label">HIGH-QUALITY JOBS</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value">$500M</div>
-                        <div class="metric-label">PROJECTED GDP IMPACT</div>
-                    </div>
-                </div>
-                <div>
-                    <h3 style="font-size: 32px; margin-bottom: 24px;">INVESTMENT IN PROSPERITY</h3>
-                    <p style="font-size: 18px; color: #CBD5E1; line-height: 1.8; margin-bottom: 30px;">
-                        Syntra growing as an economic engine. By establishing a midstream refining hub, we create high-value science, engineering and operational roles that stay in the province.
-                    </p>
-                    <p style="font-size: 18px; color: #CBD5E1; line-height: 1.8; margin-bottom: 30px;">
-                        Our 5-year outlook includes the development of a full-scale 50,000t commercial hub, positioning Nova Scotia as a strong player for critical minerals.
-                    </p>
-                    <div style="background: rgba(15, 23, 42, 0.8); border-left: 4px solid #FFD700; padding: 30px; border-radius: 8px;">
-                        <p style="font-size: 20px; color: #E2E8F0; font-style: italic;">
-                            "Energy independence is impossible when refining capacity is zero."
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 14: Risks -->
-        <div class="slide">
-            <h2>INTELLECTUAL HONESTY: RISKS</h2>
-            <div class="card-grid" style="margin-top: 60px;">
-                <div class="card">
-                    <div class="card-title">TECHNICAL RISK</div>
-                    <div style="font-size: 18px; color: #10B981; font-weight: 700; margin-bottom: 20px;">Status: LOW</div>
-                    <div class="card-content">
-                        Process chemistry proven at lab scale. Digital Twin simulation validates flow rates.
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-title">MARKET RISK</div>
-                    <div style="font-size: 18px; color: #F59E0B; font-weight: 700; margin-bottom: 20px;">Status: MEDIUM</div>
-                    <div class="card-content">
-                        Commodity prices fluctuate. Mitigation: Feedstock agnosticism allows us to switch inputs based on price.
-                    </div>
-                </div>
-                <div class="card" style="border-color: #FFD700; border-width: 3px;">
-                    <div class="card-title">EXECUTION RISK</div>
-                    <div style="font-size: 18px; color: #EF4444; font-weight: 700; margin-bottom: 20px;">Status: HIGH</div>
-                    <div class="card-content">
-                        The "Valley of Death" between Lab and Commercial scale. This is where we need you.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 15: The Team -->
-        <div class="slide">
-            <h2>EXECUTION: THE TEAM</h2>
-            <div class="team-grid" style="margin-top: 40px;">
-                <div class="team-member">
-                    <div class="team-avatar">NO</div>
-                    <div class="team-role">FOUNDER & CEO</div>
-                    <div class="team-name">NIFEMI OGUNTUASE</div>
-                    <div class="team-bio">Visionary leader with background in Chemistry and Finance. Previously provided minerals processing and exploration support services to the mining industry.</div>
-                </div>
-                <div class="team-member">
-                    <div class="team-avatar">SG</div>
-                    <div class="team-role">HEAD OF TECHNOLOGY</div>
-                    <div class="team-name">DR. STEVEN GRAVELSINS</div>
-                    <div class="team-bio">Ph.D. in Chemistry, Years of experience optimizing process flows with deep expertise in chemical isolation methods of unique materials.</div>
-                </div>
-                <div class="team-member">
-                    <div class="team-avatar">EI</div>
-                    <div class="team-role">STRATEGIC ADVISOR</div>
-                    <div class="team-name">EREZ ICHILOV</div>
-                    <div class="team-bio">Veteran industry executive from Traxys Minerals Trading Group executive, providing deep access to global supply chains.</div>
-                </div>
-                <div class="team-member">
-                    <div class="team-avatar">JD</div>
-                    <div class="team-role">TECHNOLOGY ADVISOR</div>
-                    <div class="team-name">Dr. JEFF DAHN</div>
-                    <div class="team-bio">Tesla, Dalhousie University, Clean technology research and development, particularly in energy materials</div>
-                </div>
-            </div>
-            <div style="margin-top: 80px; text-align: center;">
-                <h3 style="font-size: 24px; color: #64748B; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 0.1em;">ECOSYSTEM PARTNERS</h3>
-                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; opacity: 0.6;">
-                    <div style="color: #94A3B8; font-weight: 700;">GLENCORE</div>
-                    <div style="color: #94A3B8; font-weight: 700;">INVEST NS</div>
-                    <div style="color: #94A3B8; font-weight: 700;">ACOA</div>
-                    <div style="color: #94A3B8; font-weight: 700;">NRC-CBMI</div>
-                    <div style="color: #94A3B8; font-weight: 700;">NORTON ROSE FULBRIGHT</div>
-                    <div style="color: #94A3B8; font-weight: 700;">DALHOUSIE UNIVERSITY</div>
-                    <div style="color: #94A3B8; font-weight: 700;">SPRINGBOARD</div>
-                    <div style="color: #94A3B8; font-weight: 700;">CDL ATLANTIC</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 16: Execution Roadmap -->
+        <!-- Slide 7: Execution Roadmap -->
         <div class="slide">
             <h2>EXECUTION ROADMAP</h2>
-            <div class="timeline" style="margin-top: 100px;">
+            <div class="timeline" style="margin-top: 80px;">
                 <div class="timeline-item">
                     <div class="timeline-number">1</div>
                     <div class="timeline-title">VALIDATE</div>
@@ -1051,23 +845,19 @@
                     <div class="timeline-description" style="margin-top: 16px;">
                         <div>Process Verification</div>
                         <div>Pilot Success</div>
-                        <div style="color: #10B981; font-weight: 700; margin-top: 12px;">SYNHUB™ 1.0 COMPLETE</div>
                     </div>
-                </div>
-
-                <div style="position: absolute; left: 25%; top: 30px; background: #EF4444; color: white; padding: 8px 16px; border-radius: 4px; font-size: 12px; font-weight: 700; transform: rotate(-5deg);">
-                    VALLEY OF DEATH
+                    <div class="tag" style="background: #10B981;">SYNHUB™ 1.0 COMPLETE</div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-number" style="background: #FFD700; color: #0B1120; border-color: #FFD700;">2</div>
-                    <div class="timeline-title" style="color: #FFD700;">DEPLOY</div>
+                    <div class="timeline-number" style="background: var(--syntra-signal-yellow); color: var(--syntra-midnight-navy);">2</div>
+                    <div class="timeline-title" style="color: var(--syntra-signal-yellow);">DEPLOY</div>
                     <div class="timeline-subtitle">Q4 2026</div>
                     <div class="timeline-description" style="margin-top: 16px;">
                         <div>1,000t Demo Plant</div>
                         <div>Hot Commissioning</div>
-                        <div style="color: #FFD700; font-weight: 700; margin-top: 12px;">FUNDING TARGET</div>
                     </div>
+                    <div class="tag">FUNDING TARGET</div>
                 </div>
 
                 <div class="timeline-item">
@@ -1077,8 +867,8 @@
                     <div class="timeline-description" style="margin-top: 16px;">
                         <div>Commercial Offtake</div>
                         <div>Revenue Generation</div>
-                        <div style="color: #10B981; font-weight: 700; margin-top: 12px;">SYNHUB ™ 2.0</div>
                     </div>
+                    <div class="tag" style="background: #10B981;">SYNHUB ™ 2.0</div>
                 </div>
 
                 <div class="timeline-item">
@@ -1088,104 +878,106 @@
                     <div class="timeline-description" style="margin-top: 16px;">
                         <div>50,000t Hub</div>
                         <div>Modular Expansion</div>
-                        <div style="color: #10B981; font-weight: 700; margin-top: 12px;">SYNHUB ™ 3.0</div>
                     </div>
+                    <div class="tag" style="background: #10B981;">SYNHUB ™ 3.0</div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 17: The Ask -->
+        <!-- Slide 8: The Ask -->
         <div class="slide">
             <h2>THE ASK: $5 MILLION</h2>
-            <div class="two-column" style="align-items: center;">
+            <div class="two-column" style="align-items: start;">
                 <div>
-                    <h3 style="font-size: 28px; margin-bottom: 24px;">Strategic Investment to De-Risk Commercialization</h3>
-                    <p style="font-size: 18px; color: #CBD5E1; line-height: 1.8; margin-bottom: 40px;">
+                    <h3>STRATEGIC INVESTMENT TO DE-RISK COMMERCIALIZATION</h3>
+                    <p style="font-size: 16px; color: var(--syntra-slate-500); line-height: 1.7; margin-bottom: 32px;">
                         We are seeking $5M in non-dilutive funding to match our private capital. This funding is strictly allocated to tangible assets and operational readiness.
                     </p>
 
-                    <div style="background: rgba(15, 23, 42, 0.8); border: 2px solid #FFD700; border-radius: 12px; overflow: hidden;">
-                        <div style="display: grid; grid-template-columns: 2fr 1fr; border-bottom: 2px solid #FFD700;">
-                            <div style="padding: 16px 24px; background: rgba(255, 215, 0, 0.1); font-weight: 700; color: #FFD700;">Allocation Category</div>
-                            <div style="padding: 16px 24px; background: rgba(255, 215, 0, 0.1); font-weight: 700; color: #FFD700; text-align: right;">Amount</div>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 2fr 1fr; border-bottom: 1px solid rgba(255, 215, 0, 0.2);">
-                            <div style="padding: 16px 24px;">
-                                <div style="font-weight: 700; margin-bottom: 4px;">Capital Equipment (CAPEX)</div>
-                                <div style="font-size: 14px; color: #94A3B8;">Reactors, Filtration Units, Control Systems</div>
-                            </div>
-                            <div style="padding: 16px 24px; text-align: right; font-size: 24px; font-weight: 700; color: #FFD700;">$3.5M</div>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 2fr 1fr; border-bottom: 1px solid rgba(255, 215, 0, 0.2);">
-                            <div style="padding: 16px 24px;">
-                                <div style="font-weight: 700; margin-bottom: 4px;">Digital Twin Asset</div>
-                                <div style="font-size: 14px; color: #94A3B8;">Training our AI/ML controls systems</div>
-                            </div>
-                            <div style="padding: 16px 24px; text-align: right; font-size: 24px; font-weight: 700; color: #FFD700;">$0.5M</div>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 2fr 1fr;">
-                            <div style="padding: 16px 24px;">
-                                <div style="font-weight: 700; margin-bottom: 4px;">Site Prep & Operations</div>
-                                <div style="font-size: 14px; color: #94A3B8;">HVAC, Hazmat Safety, Initial Staffing</div>
-                            </div>
-                            <div style="padding: 16px 24px; text-align: right; font-size: 24px; font-weight: 700; color: #FFD700;">$1.0M</div>
-                        </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ALLOCATION CATEGORY</th>
+                                <th style="text-align: right;">AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div style="font-weight: 600; margin-bottom: 4px;">Capital Equipment (CAPEX)</div>
+                                    <div style="font-size: 13px; color: var(--syntra-slate-400);">Reactors, Filtration Units, Control Systems</div>
+                                </td>
+                                <td style="text-align: right; font-family: var(--font-heading); font-size: 20px; color: var(--syntra-signal-yellow);">$3.5M</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="font-weight: 600; margin-bottom: 4px;">Digital Twin Asset</div>
+                                    <div style="font-size: 13px; color: var(--syntra-slate-400);">Training our AI/ML controls systems</div>
+                                </td>
+                                <td style="text-align: right; font-family: var(--font-heading); font-size: 20px; color: var(--syntra-signal-yellow);">$0.5M</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="font-weight: 600; margin-bottom: 4px;">Site Prep & Operations</div>
+                                    <div style="font-size: 13px; color: var(--syntra-slate-400);">HVAC, Hazmat Safety, Initial Staffing</div>
+                                </td>
+                                <td style="text-align: right; font-family: var(--font-heading); font-size: 20px; color: var(--syntra-signal-yellow);">$1.0M</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: var(--syntra-slate-50); padding: 60px; border: 2px solid var(--syntra-signal-yellow);">
+                    <div style="font-size: 80px; margin-bottom: 24px;">🏗️</div>
+                    <div style="font-family: var(--font-mono); font-size: 12px; color: var(--syntra-slate-400); margin-bottom: 12px; text-transform: uppercase;">PROPOSED SITE</div>
+                    <div style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--syntra-signal-yellow); margin-bottom: 20px;">265 JULIUS BLVD</div>
+                    <div style="font-family: var(--font-heading); font-size: 18px; color: #10B981; font-weight: 700;">ZERO CARBON BUILDING</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Risks -->
+        <div class="slide">
+            <h2>INTELLECTUAL HONESTY: RISKS</h2>
+            <div class="card-grid" style="margin-top: 60px;">
+                <div class="card">
+                    <div class="card-title">TECHNICAL RISK</div>
+                    <div class="status-badge status-low">STATUS: LOW</div>
+                    <div class="card-content" style="margin-top: 16px;">
+                        Process chemistry proven at lab scale. Digital Twin simulation validates flow rates.
                     </div>
                 </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 96px; margin-bottom: 24px;">🏗️</div>
-                    <div style="background: rgba(255, 215, 0, 0.05); border: 3px solid #FFD700; border-radius: 12px; padding: 40px;">
-                        <div style="font-size: 18px; color: #94A3B8; margin-bottom: 12px;">PROPOSED SITE</div>
-                        <div style="font-size: 28px; font-weight: 700; color: #FFD700; margin-bottom: 20px;">265 Julius Blvd</div>
-                        <div style="font-size: 20px; color: #10B981; font-weight: 700;">Zero Carbon Building</div>
+                <div class="card">
+                    <div class="card-title">MARKET RISK</div>
+                    <div class="status-badge status-medium">STATUS: MEDIUM</div>
+                    <div class="card-content" style="margin-top: 16px;">
+                        Commodity prices fluctuate. Mitigation: Feedstock agnosticism allows us to switch inputs based on price.
+                    </div>
+                </div>
+                <div class="card" style="border-color: var(--syntra-signal-yellow); border-width: 2px;">
+                    <div class="card-title">EXECUTION RISK</div>
+                    <div class="status-badge status-high">STATUS: HIGH</div>
+                    <div class="card-content" style="margin-top: 16px;">
+                        The "Valley of Death" between Lab and Commercial scale. This is where we need you.
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 18: Why Invest Now -->
+        <!-- Slide 10: Closing -->
         <div class="slide">
-            <h2>WHY INVEST NOW?</h2>
-            <div class="card-grid" style="margin-top: 80px;">
-                <div class="card" style="padding: 60px;">
-                    <div style="font-size: 64px; color: #10B981; margin-bottom: 24px;">✓</div>
-                    <div class="card-title">FIRST MOVER</div>
-                    <div class="card-content">
-                        Syntra is positioned to be the first smart refining hub in Atlantic Canada, securing the supply chain before competitors can mobilize.
-                    </div>
-                </div>
-                <div class="card" style="padding: 60px;">
-                    <div style="font-size: 64px; color: #10B981; margin-bottom: 24px;">✓</div>
-                    <div class="card-title">DE-RISKED</div>
-                    <div class="card-content">
-                        Technology validated, team assembled, site selected. We are past the "science project" phase and into execution.
-                    </div>
-                </div>
-                <div class="card" style="padding: 60px;">
-                    <div style="font-size: 64px; color: #10B981; margin-bottom: 24px;">✓</div>
-                    <div class="card-title">STRATEGIC NEED</div>
-                    <div class="card-content">
-                        Canada cannot meet its 2030 EV targets without domestic refining capacity. The market demand is guaranteed by policy.
-                    </div>
-                </div>
-            </div>
-        </div>
+            <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                <div class="cta-section" style="max-width: 900px;">
+                    <div style="font-family: var(--font-mono); font-size: 12px; color: var(--syntra-slate-400); margin-bottom: 16px; letter-spacing: 0.1em; text-transform: uppercase;">NOVA SCOTIA IS READY. SYNTRA IS READY.</div>
 
-        <!-- Slide 19: Closing -->
-        <div class="slide">
-            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; text-align: center;">
-                <div style="border: 4px solid #FFD700; padding: 80px; border-radius: 16px; background: rgba(255, 215, 0, 0.05); max-width: 1000px;">
-                    <div style="font-size: 18px; color: #FFD700; margin-bottom: 20px; letter-spacing: 0.1em; text-transform: uppercase;">Nova Scotia is ready. Syntra is ready.</div>
-
-                    <div style="font-size: 56px; font-weight: 900; color: #FFD700; margin-bottom: 30px; line-height: 1.3;">
-                        "WE HAVE DE-RISKED THE<br>SCIENCE.
+                    <div class="cta-title" style="font-size: 44px; line-height: 1.2; margin-bottom: 24px;">
+                        "WE HAVE DE-RISKED THE SCIENCE.
                     </div>
 
-                    <div style="font-size: 56px; font-weight: 900; color: #E2E8F0; margin-bottom: 60px; line-height: 1.3;">
+                    <div style="font-family: var(--font-heading); font-size: 44px; font-weight: 700; color: var(--syntra-midnight-navy); line-height: 1.2; margin-bottom: 48px; text-transform: uppercase;">
                         HELP US DE-RISK THE SCALE-UP."
                     </div>
 
-                    <div style="height: 2px; background: linear-gradient(to right, transparent, #FFD700, transparent); margin: 60px 0;"></div>
+                    <div style="height: 2px; background: var(--syntra-signal-yellow); margin: 48px 0;"></div>
 
                     <div class="contact-info">
                         <div class="contact-item">
@@ -1198,7 +990,7 @@
                         </div>
                     </div>
 
-                    <div style="margin-top: 40px; font-size: 20px; color: #64748B;">
+                    <div style="margin-top: 32px; font-family: var(--font-mono); font-size: 16px; color: var(--syntra-slate-400);">
                         syntrarefining.com
                     </div>
                 </div>
@@ -1208,12 +1000,12 @@
     </div>
 
     <div class="navigation">
-        <button class="nav-btn" onclick="previousSlide()">← Previous</button>
-        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" onclick="previousSlide()">← PREVIOUS</button>
+        <button class="nav-btn" onclick="nextSlide()">NEXT →</button>
     </div>
 
     <div class="slide-counter">
-        <span id="currentSlide">1</span> / <span id="totalSlides">19</span>
+        <span id="currentSlide">1</span> / <span id="totalSlides">10</span>
     </div>
 
     <script>
