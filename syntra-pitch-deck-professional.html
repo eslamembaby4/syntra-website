@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Syntra Refining Corp - Critical Minerals Infrastructure 2.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #0B1120;
+            color: #E2E8F0;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1400px;
+            height: 85vh;
+            padding: 80px;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            border-radius: 0;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+            opacity: 1;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #FFD700;
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: #FFD700;
+            color: #0B1120;
+            transform: translateY(-2px);
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            color: #94A3B8;
+            font-size: 14px;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            padding: 10px 20px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: #0B1120;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-diamond {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #FFD700;
+            transform: rotate(45deg);
+            position: absolute;
+        }
+
+        .logo-square {
+            width: 16px;
+            height: 16px;
+            background: #FFD700;
+            position: absolute;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: #E2E8F0;
+            letter-spacing: 0.05em;
+        }
+
+        .logo-tagline {
+            color: #FFD700;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            font-family: 'Courier New', monospace;
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            border-left: 6px solid #FFD700;
+            padding-left: 24px;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #FFD700;
+        }
+
+        .highlight {
+            color: #FFD700;
+        }
+
+        .subtitle {
+            font-size: 32px;
+            color: #94A3B8;
+            margin-bottom: 60px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #FFD700;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2);
+        }
+
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .card-content {
+            color: #CBD5E1;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .metrics {
+            display: flex;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .metric {
+            flex: 1;
+        }
+
+        .metric-value {
+            font-size: 72px;
+            font-weight: 900;
+            color: #FFD700;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 16px;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, #FFD700, #94A3B8);
+        }
+
+        .timeline-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .timeline-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #0B1120;
+            border: 3px solid #FFD700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #FFD700;
+        }
+
+        .timeline-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #E2E8F0;
+        }
+
+        .timeline-subtitle {
+            font-size: 14px;
+            color: #94A3B8;
+            margin-bottom: 8px;
+        }
+
+        .timeline-description {
+            font-size: 14px;
+            color: #CBD5E1;
+        }
+
+        .quote {
+            font-size: 28px;
+            font-weight: 600;
+            color: #E2E8F0;
+            text-align: center;
+            padding: 60px;
+            border-left: 4px solid #FFD700;
+            background: rgba(255, 215, 0, 0.05);
+            margin-top: 60px;
+            font-style: italic;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 20px;
+        }
+
+        .list-icon {
+            color: #FFD700;
+            margin-right: 16px;
+            font-size: 24px;
+        }
+
+        .list-content {
+            flex: 1;
+            color: #CBD5E1;
+            line-height: 1.6;
+        }
+
+        .presenter-info {
+            position: absolute;
+            bottom: 80px;
+            right: 80px;
+            text-align: right;
+            color: #94A3B8;
+            font-size: 14px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.1);
+            border: 3px solid #FFD700;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #FFD700;
+        }
+
+        .team-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #E2E8F0;
+            margin-bottom: 8px;
+        }
+
+        .team-role {
+            font-size: 14px;
+            color: #FFD700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .team-bio {
+            font-size: 13px;
+            color: #94A3B8;
+            line-height: 1.5;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 80px;
+            background: rgba(255, 215, 0, 0.05);
+            border: 2px solid #FFD700;
+            border-radius: 16px;
+            margin-top: 60px;
+        }
+
+        .cta-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #FFD700;
+            margin-bottom: 30px;
+        }
+
+        .cta-subtitle {
+            font-size: 24px;
+            color: #E2E8F0;
+            margin-bottom: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-label {
+            font-size: 14px;
+            color: #94A3B8;
+            margin-bottom: 8px;
+        }
+
+        .contact-value {
+            font-size: 24px;
+            color: #FFD700;
+            font-weight: 700;
+        }
+
+        .fullscreen-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .fullscreen-btn:hover {
+            background: #FFD700;
+            color: #0B1120;
+        }
+
+        @media print {
+            .navigation,
+            .slide-counter,
+            .progress-bar,
+            .fullscreen-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                <div style="border-top: 4px solid #FFD700; padding-top: 40px;">
+                    <h1>CRITICAL MINERALS<br><span style="color: #64748B;">INFRASTRUCTURE</span><br><span class="highlight">2.0</span></h1>
+                    <p class="subtitle">Bridging the Midstream Gap through Smart Refining.</p>
+                </div>
+                <div style="margin-top: 80px; display: flex; align-items: center; gap: 20px;">
+                    <div class="logo-icon">
+                        <div class="logo-diamond"></div>
+                        <div class="logo-square"></div>
+                    </div>
+                    <div>
+                        <div class="logo-text">SYNTRA</div>
+                        <div class="logo-tagline">REFINING CORP.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="presenter-info">
+                <div style="font-size: 12px; text-transform: uppercase;">PRESENTED BY</div>
+                <div style="font-size: 16px; font-weight: 700; color: #E2E8F0; margin-top: 4px;">NIFEMI OGUNTUASE</div>
+                <div style="font-size: 14px; margin-top: 2px;">DATE: FEB 2026</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Executive Summary -->
+        <div class="slide">
+            <h2>EXECUTIVE SUMMARY</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🔗</div>
+                    <div class="card-title">THE PROBLEM</div>
+                    <div class="card-content">
+                        Canada's midstream gap, driven by limited domestic refining capacity, results in the export of processing value. This reliance on foreign facilities contributes to economic leakage and exposes Canada to supply chain security risks.
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <div style="width: 40px; height: 40px; border: 3px solid #FFD700; transform: rotate(45deg); position: relative;">
+                            <div style="width: 16px; height: 16px; background: #FFD700; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg);"></div>
+                        </div>
+                    </div>
+                    <div class="card-title">THE SOLUTION</div>
+                    <div class="card-content">
+                        SynHub™ is our AI-powered, feedstock-agnostic, multi metal refinery. We are developing a decentralized network of "Smart Refineries," starting with the MEP in Halifax, that springboards global Synhubs™
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🤝</div>
+                    <div class="card-title">THE ASK</div>
+                    <div class="card-content">
+                        Seeking a public-private partnership to de-risk the critical MEP stage. This funding de-risks the demonstration and secures Nova Scotia's first-mover advantage.
+                    </div>
+                </div>
+            </div>
+            <div class="quote">
+                "We believe energy security and environmental stewardship are one and the same. <span class="highlight">Refining is the bottleneck</span> that secures the supply chain."
+            </div>
+        </div>
+
+        <!-- Slide 3: The Life-Cycle -->
+        <div class="slide">
+            <h2>THE LIFE-CYCLE OF MODERN INFRASTRUCTURE</h2>
+            <p style="font-size: 18px; color: #94A3B8; margin-bottom: 40px;">Syntra owns Refining—the essential technical bridge that turns raw dirt (Step 1) into industrial power (Step 2).</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-title">ORIGIN</div>
+                    <div class="timeline-subtitle" style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">THEY ARE GOTTEN FROM...</div>
+                    <div class="timeline-description">Primary mining of Spodumene, Laterites and Sulphides. Secondary sources like tailings, e-waste and industrial scrap</div>
+                    <div style="background: #FFD700; color: #0B1120; padding: 8px 16px; border-radius: 4px; font-weight: 700; margin-top: 16px; font-size: 12px;">FEEDSTOCK DIVERSITY</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-title">UTILITY</div>
+                    <div class="timeline-subtitle" style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">THEY ARE USED TO...</div>
+                    <div class="timeline-description">Enable electrification and green infrastructure. EV, smart grid, and high-performance materials in defense and manufacturing.</div>
+                    <div style="background: #FFD700; color: #0B1120; padding: 8px 16px; border-radius: 4px; font-weight: 700; margin-top: 16px; font-size: 12px;">FUNCTIONAL NECESSITY</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-title">DEMAND</div>
+                    <div class="timeline-subtitle" style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">WE NEED...</div>
+                    <div class="timeline-description">42 million tonnes of critical minerals annually by 2040. To hit Net Zero, demand must grow > 19x from 2020 levels.</div>
+                    <div style="background: #FFD700; color: #0B1120; padding: 8px 16px; border-radius: 4px; font-weight: 700; margin-top: 16px; font-size: 12px;">THE QUANTUM LEAP</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-title">STRATEGY</div>
+                    <div class="timeline-subtitle" style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">THEY ARE VITAL BECAUSE...</div>
+                    <div class="timeline-description">They are the Currency of Sovereignty. Control of these minerals determines which nations lead industrial manufacturing</div>
+                    <div style="background: #FFD700; color: #0B1120; padding: 8px 16px; border-radius: 4px; font-weight: 700; margin-top: 16px; font-size: 12px;">ECONOMIC SECURITY</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Macro Context -->
+        <div class="slide">
+            <h2>THE MACRO CONTEXT</h2>
+            <div class="two-column">
+                <div>
+                    <h3 style="font-size: 32px; margin-bottom: 24px;">THE KEY TO ENERGY TRANSITION</h3>
+                    <p style="font-size: 18px; color: #CBD5E1; line-height: 1.8; margin-bottom: 40px;">
+                        Critical minerals serve as essential building blocks for the massive infrastructure needed to achieve Net-Zero targets and advance our technological world.
+                    </p>
+
+                    <h3 style="font-size: 28px; margin-bottom: 20px;">GEOPOLITICAL REALITY</h3>
+                    <div class="list-item">
+                        <div class="list-icon">▸</div>
+                        <div class="list-content">China controls >85% of global market share.</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-icon">▸</div>
+                        <div class="list-content">The US Inflation Reduction Act (IRA) demands "Free Trade Agreement" sourcing.</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-icon">▸</div>
+                        <div class="list-content">Nova Scotia is perfectly positioned as the Atlantic Gateway.</div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content: center;">
+                    <div class="metric" style="text-align: center; margin-bottom: 40px;">
+                        <div style="font-size: 18px; color: #94A3B8; margin-bottom: 8px;">TAM</div>
+                        <div class="metric-value">$500B</div>
+                    </div>
+                    <div style="display: flex; gap: 40px;">
+                        <div class="metric" style="text-align: center;">
+                            <div style="font-size: 18px; color: #64748B; margin-bottom: 8px;">SAM</div>
+                            <div class="metric-value" style="color: #64748B;">$52B</div>
+                        </div>
+                        <div class="metric" style="text-align: center;">
+                            <div style="font-size: 18px; color: #FFD700; margin-bottom: 8px;">SOM</div>
+                            <div class="metric-value">$500M</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 60px; text-align: center; color: #94A3B8; font-size: 20px; letter-spacing: 0.05em;">
+                Cobalt | Nickel | Manganese | Copper | Aluminum | Lithium | Zinc
+            </div>
+        </div>
+
+        <!-- Slide 5: The Supply Chain -->
+        <div class="slide">
+            <h2>THE CRITICAL MINERALS SUPPLY CHAIN</h2>
+            <p style="font-size: 22px; color: #E2E8F0; margin-bottom: 20px;">Canada is strong in Stage 1. The US is building Stage 3.</p>
+            <p style="font-size: 22px; color: #FFD700; font-weight: 700; margin-bottom: 60px;">Syntra builds Stage 2 in Nova Scotia.</p>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 80px;">
+                <div style="text-align: center; flex: 1;">
+                    <div style="font-size: 64px; margin-bottom: 20px;">⛏️</div>
+                    <div style="font-size: 16px; font-weight: 700; color: #94A3B8; margin-bottom: 12px;">1. UPSTREAM</div>
+                    <div style="font-size: 18px; color: #E2E8F0; margin-bottom: 8px;">Mining & Extraction</div>
+                    <div style="color: #F59E0B; font-weight: 700; font-size: 16px;">LOW MARGIN</div>
+                </div>
+
+                <div style="font-size: 48px; color: #64748B;">→</div>
+
+                <div style="text-align: center; flex: 1; border: 4px solid #FFD700; padding: 40px; border-radius: 12px; background: rgba(255, 215, 0, 0.05);">
+                    <div style="font-size: 64px; margin-bottom: 20px;">🏭</div>
+                    <div style="font-size: 16px; font-weight: 700; color: #FFD700; margin-bottom: 12px;">2. MIDSTREAM</div>
+                    <div style="font-size: 18px; color: #E2E8F0; margin-bottom: 8px;">Refining & Processing</div>
+                    <div style="color: #FFD700; font-weight: 700; font-size: 16px;">HIGH VALUE (THE GAP)</div>
+                </div>
+
+                <div style="font-size: 48px; color: #64748B;">→</div>
+
+                <div style="text-align: center; flex: 1;">
+                    <div style="font-size: 64px; margin-bottom: 20px;">🔋</div>
+                    <div style="font-size: 16px; font-weight: 700; color: #94A3B8; margin-bottom: 12px;">3. DOWNSTREAM</div>
+                    <div style="font-size: 18px; color: #E2E8F0; margin-bottom: 8px;">Battery Mfg. & OEMs</div>
+                    <div style="color: #F59E0B; font-weight: 700; font-size: 16px;">HIGH DEMAND</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px; display: flex; gap: 40px; color: #EF4444; font-size: 16px;">
+                <div>✗ Lost GDP / Tax Revenue</div>
+                <div>✗ Supply Chain Fragility</div>
+                <div>✗ High Carbon Transport Footprint</div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Value Creation -->
+        <div class="slide">
+            <h2>VALUE CREATION: THE MULTIPLIER EFFECT</h2>
+            <div class="two-column" style="align-items: center;">
+                <div style="text-align: center;">
+                    <div style="font-size: 180px; font-weight: 900; color: #FFD700; line-height: 1;">16x</div>
+                    <div style="font-size: 24px; color: #FFD700; margin-top: 20px; text-transform: uppercase; letter-spacing: 0.1em;">VALUE MULTIPLIER</div>
+                </div>
+                <div>
+                    <h3 style="font-size: 32px; margin-bottom: 24px;">WHY REFINING MATTERS</h3>
+                    <p style="font-size: 18px; color: #CBD5E1; line-height: 1.8; margin-bottom: 40px;">
+                        Refining unlocks major value: it converts 'mined rock' into high-value raw materials for Canadian industries.
+                    </p>
+                    <div style="margin-bottom: 24px;">
+                        <div style="font-size: 16px; color: #94A3B8; margin-bottom: 8px;">Primary Ore:</div>
+                        <div style="font-size: 28px; color: #E2E8F0;">~$1,100 / tonne</div>
+                    </div>
+                    <div style="font-size: 48px; color: #FFD700; margin: 24px 0;">↓</div>
+                    <div>
+                        <div style="font-size: 16px; color: #94A3B8; margin-bottom: 8px;">Refined Mineral Product:</div>
+                        <div style="font-size: 28px; color: #FFD700; font-weight: 700;">~$16,500 / tonne</div>
+                    </div>
+                    <p style="font-size: 16px; color: #94A3B8; line-height: 1.6; margin-top: 40px;">
+                        This 16x increase in value stays in here, generating tax revenue, funding high-skilled jobs, and building a sophisticated industrial base.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Feedstock Agnostic -->
+        <div class="slide">
+            <h2>TRUE FLEXIBILITY: FEEDSTOCK AGNOSTIC</h2>
+            <div class="two-column" style="align-items: center;">
+                <div>
+                    <div style="background: rgba(15, 23, 42, 0.8); border: 2px solid #FFD700; border-radius: 16px; padding: 60px; text-align: center;">
+                        <div style="font-size: 12px; color: #FFD700; margin-bottom: 30px; letter-spacing: 0.1em;">SYSTEM ARCHITECTURE</div>
+
+                        <div style="background: rgba(71, 85, 105, 0.5); padding: 30px; border-radius: 12px; margin-bottom: 30px;">
+                            <div style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">UNIVERSAL INTAKE</div>
+                            <div style="display: flex; justify-content: center; gap: 30px; font-size: 14px;">
+                                <div>♻️<br>RECYCLING</div>
+                                <div>⛏️<br>MINING</div>
+                                <div>⚙️<br>MFG SCRAP</div>
+                            </div>
+                        </div>
+
+                        <div style="font-size: 40px; color: #FFD700; margin: 20px 0;">↓</div>
+
+                        <div style="background: rgba(15, 23, 42, 0.8); border: 3px solid #FFD700; padding: 30px; border-radius: 12px; margin-bottom: 30px;">
+                            <div style="font-size: 24px; font-weight: 700; color: #FFD700; margin-bottom: 12px;">SYNCORE™</div>
+                            <div style="font-size: 14px; color: #94A3B8;">AI-Optimized Hydrometallurgy</div>
+                        </div>
+
+                        <div style="font-size: 40px; color: #FFD700; margin: 20px 0;">↓</div>
+
+                        <div style="background: rgba(71, 85, 105, 0.5); padding: 30px; border-radius: 12px;">
+                            <div style="font-size: 20px; font-weight: 700; margin-bottom: 12px;">BATTERY SALTS</div>
+                            <div style="font-size: 16px; color: #94A3B8;">Li | Ni | Mn | Co | Cu | Al</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 32px; margin-bottom: 24px;">RISK MITIGATION THROUGH DIVERSITY</h3>
+                    <p style="font-size: 18px; color: #CBD5E1; line-height: 1.8; margin-bottom: 40px;">
+                        Traditional refineries go bankrupt if their specific mine shuts down. Syntra is immune to single-source failure.
+                    </p>
+
+                    <div style="background: rgba(255, 215, 0, 0.05); border-left: 4px solid #FFD700; padding: 24px; margin-bottom: 20px;">
+                        <div style="font-size: 16px; font-weight: 700; color: #FFD700; margin-bottom: 8px;">INPUT A:</div>
+                        <div style="color: #CBD5E1;">Spodumene / Nickel Concentrates (Mining)</div>
+                    </div>
+
+                    <div style="background: rgba(255, 215, 0, 0.05); border-left: 4px solid #FFD700; padding: 24px; margin-bottom: 20px;">
+                        <div style="font-size: 16px; font-weight: 700; color: #FFD700; margin-bottom: 8px;">INPUT B:</div>
+                        <div style="color: #CBD5E1;">Black Mass (Recycling)</div>
+                    </div>
+
+                    <div style="background: rgba(255, 215, 0, 0.05); border-left: 4px solid #FFD700; padding: 24px; margin-bottom: 20px;">
+                        <div style="font-size: 16px; font-weight: 700; color: #FFD700; margin-bottom: 8px;">INPUT C:</div>
+                        <div style="color: #CBD5E1;">Manufacturing Scrap (Gigafactories)</div>
+                    </div>
+
+                    <div style="background: #FFD700; color: #0B1120; padding: 20px; border-radius: 8px; text-align: center; font-size: 18px; font-weight: 700; margin-top: 40px;">
+                        RESULT: 100% UTILIZATION RATE
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: SYNCORE Technology -->
+        <div class="slide">
+            <h2>NEW AGE SMART REFINING + AI OPTIMIZATION</h2>
+            <p style="font-size: 18px; color: #94A3B8; margin-bottom: 60px;">Beyond steel; we build code. Every physical pump, tank, and sensor in the SynHub™ has a virtual replica.</p>
+
+            <div style="display: flex; align-items: center; justify-content: center; margin-top: 80px;">
+                <div class="card" style="max-width: 400px;">
+                    <div style="font-size: 20px; font-weight: 700; color: #64748B; margin-bottom: 16px;">⚡ AI Powered Automation</div>
+                    <div style="color: #94A3B8; font-family: 'Courier New', monospace; font-size: 14px;">Powered by AI for optimization and safety</div>
+                </div>
+
+                <div style="margin: 0 60px; font-size: 48px; color: #64748B;">—</div>
+
+                <div style="width: 300px; height: 300px; border: 3px solid #64748B; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative;">
+                    <div style="position: absolute; width: 40px; height: 40px; border: 3px solid #FFD700; transform: rotate(45deg); margin-right: 10px;">
+                        <div style="width: 16px; height: 16px; background: #FFD700; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg);"></div>
+                    </div>
+                    <div style="font-size: 48px; font-weight: 700; color: #64748B; margin-left: 60px;">SYNCORE™</div>
+                </div>
+
+                <div style="margin: 0 60px; font-size: 48px; color: #64748B;">—</div>
+
+                <div class="card" style="max-width: 400px;">
+                    <div style="font-size: 20px; font-weight: 700; color: #64748B; margin-bottom: 16px;">🧪 Process Chemistry</div>
+                    <div style="color: #94A3B8; font-family: 'Courier New', monospace; font-size: 14px;">Tackles rigid input feed complexity and recovery economics</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 80px;">
+                <div class="card" style="display: inline-block; max-width: 500px;">
+                    <div style="font-size: 20px; font-weight: 700; color: #64748B; margin-bottom: 16px;">⚙️ Novel Engineering</div>
+                    <div style="color: #94A3B8; font-family: 'Courier New', monospace; font-size: 14px;">Tackles Modularity & CAPEX</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Market Entry Plant -->
+        <div class="slide">
+            <h2>MARKET ENTRY PLANT - SYNHUB™ HALIFAX</h2>
+            <div class="two-column">
+                <div>
+                    <h3 style="font-size: 28px; margin-bottom: 24px;">1,000 TONNE MARKET ENTRY FACILITY</h3>
+                    <p style="font-size: 16px; color: #CBD5E1; line-height: 1.8; margin-bottom: 40px;">
+                        Proposed for Julius Blvd, Halifax Industrial Park. This is a brownfield deployment designed for market entry - serves as the blueprint for our 50,000t expansion economics of "Universal Intake" refining.
+                    </p>
+
+                    <div style="background: #10B981; color: #0B1120; padding: 16px 24px; border-radius: 8px; font-weight: 700; margin-bottom: 40px;">
+                        STATUS: READY TO BUILD
+                    </div>
+
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">KEY CAPABILITIES</h3>
+                    <div class="list-item">
+                        <div class="list-icon">■</div>
+                        <div class="list-content">Class 9 Hazardous Material Handling</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-icon">■</div>
+                        <div class="list-content">Closed-Loop Hydrometallurgy Circuit</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-icon">■</div>
+                        <div class="list-content">AI-Driven Digital Twin Control Room</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-icon">■</div>
+                        <div class="list-content">Direct Rail & Port Access</div>
+                    </div>
+                </div>
+                <div style="background: rgba(255, 215, 0, 0.05); border: 2px solid #FFD700; border-radius: 12px; padding: 60px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="font-size: 48px; margin-bottom: 24px;">🏗️</div>
+                    <div style="font-size: 32px; font-weight: 700; color: #FFD700; margin-bottom: 16px;">Proposed floor Plan for 265 Julius Blvd</div>
+                    <div style="font-size: 24px; font-weight: 700; color: #10B981; margin-top: 24px;">Zero Carbon Building</div>
+                    <div style="font-size: 14px; color: #94A3B8; margin-top: 40px; line-height: 1.6;">
+                        Strategic location with direct access to Port of Halifax and rail infrastructure
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Atlantic Gateway -->
+        <div class="slide">
+            <h2>THE ATLANTIC GATEWAY OPPORTUNITY</h2>
+            <div class="two-column">
+                <div>
+                    <h3 style="font-size: 32px; margin-bottom: 24px;">FROM HALIFAX TO THE BATTERY BELT</h3>
+                    <p style="font-size: 18px; color: #CBD5E1; line-height: 1.8; margin-bottom: 40px;">
+                        Nova Scotia is geographically positioned to be the refining hub for the Atlantic. We leverage the Port of Halifax to bridge the gap between global mining and North American manufacturing.
+                    </p>
+
+                    <div style="background: rgba(15, 23, 42, 0.8); border: 2px solid #64748B; border-radius: 12px; padding: 30px; margin-bottom: 20px;">
+                        <div style="font-size: 18px; font-weight: 700; margin-bottom: 12px;">IMPORT (INPUT)</div>
+                        <div style="font-size: 20px; color: #E2E8F0; margin-bottom: 8px;">Black Mass & Concentrates</div>
+                        <div style="font-size: 14px; color: #94A3B8;">From: Africa, Europe, South America, Recyclers</div>
+                    </div>
+
+                    <div style="text-align: center; margin: 30px 0;">
+                        <div style="font-size: 28px; color: #FFD700;">↓</div>
+                        <div style="font-size: 18px; font-weight: 700; color: #FFD700; margin: 16px 0;">VALUE ADDED REFINING</div>
+                        <div style="font-size: 28px; color: #FFD700;">↓</div>
+                    </div>
+
+                    <div style="background: rgba(255, 215, 0, 0.1); border: 2px solid #FFD700; border-radius: 12px; padding: 30px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #FFD700; margin-bottom: 12px;">EXPORT (OUTPUT)</div>
+                        <div style="font-size: 20px; color: #E2E8F0; margin-bottom: 8px;">Battery-Grade Salts</div>
+                        <div style="font-size: 14px; color: #94A3B8;">To: Eastern US, Ontario, Quebec (OEMs)</div>
+                    </div>
+                </div>
+                <div style="background: rgba(15, 23, 42, 0.6); border-radius: 12px; padding: 60px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div style="font-size: 72px; margin-bottom: 40px;">🌍</div>
+                    <div style="display: flex; gap: 60px; align-items: center; margin-bottom: 40px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 48px; margin-bottom: 16px;">🚢</div>
+                            <div style="font-size: 24px; color: #FFD700; font-weight: 700;">Europe</div>
+                        </div>
+                        <div style="font-size: 48px; color: #64748B;">→</div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 48px; margin-bottom: 16px;">✈️</div>
+                            <div style="width: 60px; height: 60px; border: 3px solid #FFD700; transform: rotate(45deg); position: relative; margin: 20px auto;">
+                                <div style="width: 24px; height: 24px; background: #FFD700; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg);"></div>
+                            </div>
+                            <div style="font-size: 24px; color: #FFD700; font-weight: 700;">Canada</div>
+                            <div style="font-size: 14px; color: #94A3B8; margin-top: 8px;">Halifax Hub</div>
+                        </div>
+                        <div style="font-size: 48px; color: #64748B;">→</div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 48px; margin-bottom: 16px;">🚃</div>
+                            <div style="font-size: 24px; color: #FFD700; font-weight: 700;">United States</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Strategic Alignment -->
+        <div class="slide">
+            <h2>STRATEGIC ALIGNMENT: SOVEREIGNTY & CIRCULARITY</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px;">
+                <div class="card" style="padding: 60px;">
+                    <div style="font-size: 64px; margin-bottom: 24px;">♻️</div>
+                    <h3 style="font-size: 28px; margin-bottom: 24px;">CIRCULAR ECONOMY INFRASTRUCTURE</h3>
+                    <p style="font-size: 16px; color: #CBD5E1; line-height: 1.8;">
+                        We enable "Urban Mining" by refining end-of-life batteries into new, battery-grade materials. This is key to Canada's Net Zero ambition, diverting toxic waste from landfills and reducing the carbon intensity of our supply chain.
+                    </p>
+                </div>
+                <div class="card" style="padding: 60px;">
+                    <div style="font-size: 64px; margin-bottom: 24px;">🛡️</div>
+                    <h3 style="font-size: 28px; margin-bottom: 24px;">DUAL-USE STRATEGIC ASSETS</h3>
+                    <p style="font-size: 16px; color: #CBD5E1; line-height: 1.8;">
+                        Critical minerals like Cobalt and Nickel are not just for EVs; they are essential for aerospace, defense, and drone technology. By refining domestically, Syntra secures a sovereign supply chain for Canada and our NATO allies, reducing reliance on adversarial nations.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: ROI for Nova Scotia -->
+        <div class="slide">
+            <h2>ROI FOR NOVA SCOTIA</h2>
+            <div class="card-grid" style="margin-top: 80px;">
+                <div class="card" style="text-align: center; padding: 60px;">
+                    <div style="font-size: 64px; margin-bottom: 24px;">👥</div>
+                    <div class="card-title" style="font-size: 24px;">JOBS</div>
+                    <div class="card-content" style="font-size: 16px;">
+                        ~65 High-Paying Technical roles (Engineers, Data Scientists) retained in NS.
+                    </div>
+                </div>
+                <div class="card" style="text-align: center; padding: 60px;">
+                    <div style="font-size: 64px; margin-bottom: 24px;">🏭</div>
+                    <div class="card-title" style="font-size: 24px;">ANCHOR</div>
+                    <div class="card-content" style="font-size: 16px;">
+                        A functioning refinery attracts battery manufacturers and EV OEMs to the province.
+                    </div>
+                </div>
+                <div class="card" style="text-align: center; padding: 60px;">
+                    <div style="font-size: 64px; margin-bottom: 24px;">🌐</div>
+                    <div class="card-title" style="font-size: 24px;">BRAND</div>
+                    <div class="card-content" style="font-size: 16px;">
+                        Positions Nova Scotia as a Tier-1 jurisdiction for the Green Economy.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: 5 Year Impact -->
+        <div class="slide">
+            <h2>5 YEAR ECONOMIC IMPACT & ROI</h2>
+            <div class="two-column" style="align-items: center;">
+                <div>
+                    <div class="metric" style="margin-bottom: 60px;">
+                        <div class="metric-value">200+</div>
+                        <div class="metric-label">HIGH-QUALITY JOBS</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">$500M</div>
+                        <div class="metric-label">PROJECTED GDP IMPACT</div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 32px; margin-bottom: 24px;">INVESTMENT IN PROSPERITY</h3>
+                    <p style="font-size: 18px; color: #CBD5E1; line-height: 1.8; margin-bottom: 30px;">
+                        Syntra growing as an economic engine. By establishing a midstream refining hub, we create high-value science, engineering and operational roles that stay in the province.
+                    </p>
+                    <p style="font-size: 18px; color: #CBD5E1; line-height: 1.8; margin-bottom: 30px;">
+                        Our 5-year outlook includes the development of a full-scale 50,000t commercial hub, positioning Nova Scotia as a strong player for critical minerals.
+                    </p>
+                    <div style="background: rgba(15, 23, 42, 0.8); border-left: 4px solid #FFD700; padding: 30px; border-radius: 8px;">
+                        <p style="font-size: 20px; color: #E2E8F0; font-style: italic;">
+                            "Energy independence is impossible when refining capacity is zero."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Risks -->
+        <div class="slide">
+            <h2>INTELLECTUAL HONESTY: RISKS</h2>
+            <div class="card-grid" style="margin-top: 60px;">
+                <div class="card">
+                    <div class="card-title">TECHNICAL RISK</div>
+                    <div style="font-size: 18px; color: #10B981; font-weight: 700; margin-bottom: 20px;">Status: LOW</div>
+                    <div class="card-content">
+                        Process chemistry proven at lab scale. Digital Twin simulation validates flow rates.
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">MARKET RISK</div>
+                    <div style="font-size: 18px; color: #F59E0B; font-weight: 700; margin-bottom: 20px;">Status: MEDIUM</div>
+                    <div class="card-content">
+                        Commodity prices fluctuate. Mitigation: Feedstock agnosticism allows us to switch inputs based on price.
+                    </div>
+                </div>
+                <div class="card" style="border-color: #FFD700; border-width: 3px;">
+                    <div class="card-title">EXECUTION RISK</div>
+                    <div style="font-size: 18px; color: #EF4444; font-weight: 700; margin-bottom: 20px;">Status: HIGH</div>
+                    <div class="card-content">
+                        The "Valley of Death" between Lab and Commercial scale. This is where we need you.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: The Team -->
+        <div class="slide">
+            <h2>EXECUTION: THE TEAM</h2>
+            <div class="team-grid" style="margin-top: 40px;">
+                <div class="team-member">
+                    <div class="team-avatar">NO</div>
+                    <div class="team-role">FOUNDER & CEO</div>
+                    <div class="team-name">NIFEMI OGUNTUASE</div>
+                    <div class="team-bio">Visionary leader with background in Chemistry and Finance. Previously provided minerals processing and exploration support services to the mining industry.</div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">SG</div>
+                    <div class="team-role">HEAD OF TECHNOLOGY</div>
+                    <div class="team-name">DR. STEVEN GRAVELSINS</div>
+                    <div class="team-bio">Ph.D. in Chemistry, Years of experience optimizing process flows with deep expertise in chemical isolation methods of unique materials.</div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">EI</div>
+                    <div class="team-role">STRATEGIC ADVISOR</div>
+                    <div class="team-name">EREZ ICHILOV</div>
+                    <div class="team-bio">Veteran industry executive from Traxys Minerals Trading Group executive, providing deep access to global supply chains.</div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">JD</div>
+                    <div class="team-role">TECHNOLOGY ADVISOR</div>
+                    <div class="team-name">Dr. JEFF DAHN</div>
+                    <div class="team-bio">Tesla, Dalhousie University, Clean technology research and development, particularly in energy materials</div>
+                </div>
+            </div>
+            <div style="margin-top: 80px; text-align: center;">
+                <h3 style="font-size: 24px; color: #64748B; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 0.1em;">ECOSYSTEM PARTNERS</h3>
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; opacity: 0.6;">
+                    <div style="color: #94A3B8; font-weight: 700;">GLENCORE</div>
+                    <div style="color: #94A3B8; font-weight: 700;">INVEST NS</div>
+                    <div style="color: #94A3B8; font-weight: 700;">ACOA</div>
+                    <div style="color: #94A3B8; font-weight: 700;">NRC-CBMI</div>
+                    <div style="color: #94A3B8; font-weight: 700;">NORTON ROSE FULBRIGHT</div>
+                    <div style="color: #94A3B8; font-weight: 700;">DALHOUSIE UNIVERSITY</div>
+                    <div style="color: #94A3B8; font-weight: 700;">SPRINGBOARD</div>
+                    <div style="color: #94A3B8; font-weight: 700;">CDL ATLANTIC</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Execution Roadmap -->
+        <div class="slide">
+            <h2>EXECUTION ROADMAP</h2>
+            <div class="timeline" style="margin-top: 100px;">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-title">VALIDATE</div>
+                    <div class="timeline-subtitle">2025</div>
+                    <div class="timeline-description" style="margin-top: 16px;">
+                        <div>Process Verification</div>
+                        <div>Pilot Success</div>
+                        <div style="color: #10B981; font-weight: 700; margin-top: 12px;">SYNHUB™ 1.0 COMPLETE</div>
+                    </div>
+                </div>
+
+                <div style="position: absolute; left: 25%; top: 30px; background: #EF4444; color: white; padding: 8px 16px; border-radius: 4px; font-size: 12px; font-weight: 700; transform: rotate(-5deg);">
+                    VALLEY OF DEATH
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number" style="background: #FFD700; color: #0B1120; border-color: #FFD700;">2</div>
+                    <div class="timeline-title" style="color: #FFD700;">DEPLOY</div>
+                    <div class="timeline-subtitle">Q4 2026</div>
+                    <div class="timeline-description" style="margin-top: 16px;">
+                        <div>1,000t Demo Plant</div>
+                        <div>Hot Commissioning</div>
+                        <div style="color: #FFD700; font-weight: 700; margin-top: 12px;">FUNDING TARGET</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-title">OPERATE</div>
+                    <div class="timeline-subtitle">2027</div>
+                    <div class="timeline-description" style="margin-top: 16px;">
+                        <div>Commercial Offtake</div>
+                        <div>Revenue Generation</div>
+                        <div style="color: #10B981; font-weight: 700; margin-top: 12px;">SYNHUB ™ 2.0</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-title">EXPAND</div>
+                    <div class="timeline-subtitle">2028+</div>
+                    <div class="timeline-description" style="margin-top: 16px;">
+                        <div>50,000t Hub</div>
+                        <div>Modular Expansion</div>
+                        <div style="color: #10B981; font-weight: 700; margin-top: 12px;">SYNHUB ™ 3.0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: The Ask -->
+        <div class="slide">
+            <h2>THE ASK: $5 MILLION</h2>
+            <div class="two-column" style="align-items: center;">
+                <div>
+                    <h3 style="font-size: 28px; margin-bottom: 24px;">Strategic Investment to De-Risk Commercialization</h3>
+                    <p style="font-size: 18px; color: #CBD5E1; line-height: 1.8; margin-bottom: 40px;">
+                        We are seeking $5M in non-dilutive funding to match our private capital. This funding is strictly allocated to tangible assets and operational readiness.
+                    </p>
+
+                    <div style="background: rgba(15, 23, 42, 0.8); border: 2px solid #FFD700; border-radius: 12px; overflow: hidden;">
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; border-bottom: 2px solid #FFD700;">
+                            <div style="padding: 16px 24px; background: rgba(255, 215, 0, 0.1); font-weight: 700; color: #FFD700;">Allocation Category</div>
+                            <div style="padding: 16px 24px; background: rgba(255, 215, 0, 0.1); font-weight: 700; color: #FFD700; text-align: right;">Amount</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; border-bottom: 1px solid rgba(255, 215, 0, 0.2);">
+                            <div style="padding: 16px 24px;">
+                                <div style="font-weight: 700; margin-bottom: 4px;">Capital Equipment (CAPEX)</div>
+                                <div style="font-size: 14px; color: #94A3B8;">Reactors, Filtration Units, Control Systems</div>
+                            </div>
+                            <div style="padding: 16px 24px; text-align: right; font-size: 24px; font-weight: 700; color: #FFD700;">$3.5M</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; border-bottom: 1px solid rgba(255, 215, 0, 0.2);">
+                            <div style="padding: 16px 24px;">
+                                <div style="font-weight: 700; margin-bottom: 4px;">Digital Twin Asset</div>
+                                <div style="font-size: 14px; color: #94A3B8;">Training our AI/ML controls systems</div>
+                            </div>
+                            <div style="padding: 16px 24px; text-align: right; font-size: 24px; font-weight: 700; color: #FFD700;">$0.5M</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 2fr 1fr;">
+                            <div style="padding: 16px 24px;">
+                                <div style="font-weight: 700; margin-bottom: 4px;">Site Prep & Operations</div>
+                                <div style="font-size: 14px; color: #94A3B8;">HVAC, Hazmat Safety, Initial Staffing</div>
+                            </div>
+                            <div style="padding: 16px 24px; text-align: right; font-size: 24px; font-weight: 700; color: #FFD700;">$1.0M</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 96px; margin-bottom: 24px;">🏗️</div>
+                    <div style="background: rgba(255, 215, 0, 0.05); border: 3px solid #FFD700; border-radius: 12px; padding: 40px;">
+                        <div style="font-size: 18px; color: #94A3B8; margin-bottom: 12px;">PROPOSED SITE</div>
+                        <div style="font-size: 28px; font-weight: 700; color: #FFD700; margin-bottom: 20px;">265 Julius Blvd</div>
+                        <div style="font-size: 20px; color: #10B981; font-weight: 700;">Zero Carbon Building</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Why Invest Now -->
+        <div class="slide">
+            <h2>WHY INVEST NOW?</h2>
+            <div class="card-grid" style="margin-top: 80px;">
+                <div class="card" style="padding: 60px;">
+                    <div style="font-size: 64px; color: #10B981; margin-bottom: 24px;">✓</div>
+                    <div class="card-title">FIRST MOVER</div>
+                    <div class="card-content">
+                        Syntra is positioned to be the first smart refining hub in Atlantic Canada, securing the supply chain before competitors can mobilize.
+                    </div>
+                </div>
+                <div class="card" style="padding: 60px;">
+                    <div style="font-size: 64px; color: #10B981; margin-bottom: 24px;">✓</div>
+                    <div class="card-title">DE-RISKED</div>
+                    <div class="card-content">
+                        Technology validated, team assembled, site selected. We are past the "science project" phase and into execution.
+                    </div>
+                </div>
+                <div class="card" style="padding: 60px;">
+                    <div style="font-size: 64px; color: #10B981; margin-bottom: 24px;">✓</div>
+                    <div class="card-title">STRATEGIC NEED</div>
+                    <div class="card-content">
+                        Canada cannot meet its 2030 EV targets without domestic refining capacity. The market demand is guaranteed by policy.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Closing -->
+        <div class="slide">
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; text-align: center;">
+                <div style="border: 4px solid #FFD700; padding: 80px; border-radius: 16px; background: rgba(255, 215, 0, 0.05); max-width: 1000px;">
+                    <div style="font-size: 18px; color: #FFD700; margin-bottom: 20px; letter-spacing: 0.1em; text-transform: uppercase;">Nova Scotia is ready. Syntra is ready.</div>
+
+                    <div style="font-size: 56px; font-weight: 900; color: #FFD700; margin-bottom: 30px; line-height: 1.3;">
+                        "WE HAVE DE-RISKED THE<br>SCIENCE.
+                    </div>
+
+                    <div style="font-size: 56px; font-weight: 900; color: #E2E8F0; margin-bottom: 60px; line-height: 1.3;">
+                        HELP US DE-RISK THE SCALE-UP."
+                    </div>
+
+                    <div style="height: 2px; background: linear-gradient(to right, transparent, #FFD700, transparent); margin: 60px 0;"></div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-label">NAME</div>
+                            <div class="contact-value">Nifemi Oguntuase</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-label">EMAIL</div>
+                            <div class="contact-value">nifemi@syntrarefining.com</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 40px; font-size: 20px; color: #64748B;">
+                        syntrarefining.com
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">19</span>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = document.querySelectorAll('.slide').length;
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+
+            if (n > totalSlides) {
+                currentSlide = 1;
+            }
+            if (n < 1) {
+                currentSlide = totalSlides;
+            }
+
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            slides[currentSlide - 1].classList.add('active');
+
+            document.getElementById('currentSlide').textContent = currentSlide;
+
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                previousSlide();
+            } else if (event.key === 'Home') {
+                currentSlide = 1;
+                showSlide(currentSlide);
+            } else if (event.key === 'End') {
+                currentSlide = totalSlides;
+                showSlide(currentSlide);
+            }
+        });
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
