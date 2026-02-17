@@ -502,7 +502,7 @@
 
                 <!-- Timeline Navigation -->
                 <div class="flex flex-wrap gap-3 mb-12" data-animate>
-                    <button onclick="showTimeline('founding')" class="timeline-btn active px-6 py-3 bg-syntra-amber text-white font-mono text-xs tracking-widest uppercase rounded-lg hover:bg-syntra-amber/90 transition-colors" data-period="founding">
+                    <button onclick="showTimeline('founding')" class="timeline-btn active px-6 py-3 bg-syntra-amber text-black font-mono text-xs tracking-widest uppercase rounded-lg hover:bg-syntra-amber/90 transition-colors" data-period="founding">
                         2017-2019<br><span class="text-[10px]">Founding Era</span>
                     </button>
                     <button onclick="showTimeline('development')" class="timeline-btn px-6 py-3 bg-slate-200 text-slate-900 font-mono text-xs tracking-widest uppercase rounded-lg hover:bg-slate-300 transition-colors" data-period="development">
@@ -886,15 +886,15 @@
 
             // Update button states
             document.querySelectorAll('.timeline-btn').forEach(btn => {
-                btn.classList.remove('active', 'bg-syntra-amber', 'text-white');
-                btn.classList.add('bg-slate-200', 'text-slate-700');
+                btn.classList.remove('active', 'bg-syntra-amber', 'text-white', 'text-black');
+                btn.classList.add('bg-slate-200', 'text-slate-900');
             });
 
             // Activate clicked button
             const activeBtn = document.querySelector(`[data-period="${period}"]`);
             if (activeBtn) {
-                activeBtn.classList.remove('bg-slate-200', 'text-slate-700');
-                activeBtn.classList.add('active', 'bg-syntra-amber', 'text-white');
+                activeBtn.classList.remove('bg-slate-200', 'text-slate-900');
+                activeBtn.classList.add('active', 'bg-syntra-amber', 'text-black');
             }
         }
     </script>
