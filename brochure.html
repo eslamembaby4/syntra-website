@@ -314,12 +314,13 @@
         .node:nth-child(3) { animation-delay: 0.6s; }
         .node:nth-child(4) { animation-delay: 0.9s; }
 
-        /* Smart Refining - Spinning Gear */
+        /* Smart Refining - Real-time Monitoring Dashboard */
         .icon-smart {
-            border: 3px solid var(--signal-yellow);
-            border-radius: 50%;
             position: relative;
-            animation: spin-slow 8s linear infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 8px;
         }
 
         .icon-smart::before,
@@ -329,27 +330,56 @@
             background: var(--signal-yellow);
         }
 
+        /* Scanning line effect */
         .icon-smart::before {
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--signal-yellow), transparent);
+            animation: scan 2s ease-in-out infinite;
+        }
+
+        /* Central monitoring dot */
+        .icon-smart::after {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 16px;
-            height: 16px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
+            box-shadow:
+                0 0 0 2px var(--signal-yellow),
+                0 0 8px var(--signal-yellow);
+            animation: monitoring-pulse 1.5s ease-in-out infinite;
         }
 
-        .icon-smart::after {
-            top: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 8px;
-            box-shadow:
-                0 60px 0 var(--signal-yellow),
-                -28px 12px 0 var(--signal-yellow),
-                28px 12px 0 var(--signal-yellow),
-                -28px 48px 0 var(--signal-yellow),
-                28px 48px 0 var(--signal-yellow);
+        .bar {
+            height: 4px;
+            background: var(--signal-yellow);
+            opacity: 0.3;
+            animation: bar-adjust 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .bar:nth-child(1) {
+            width: 60%;
+            animation-delay: 0s;
+        }
+
+        .bar:nth-child(2) {
+            width: 80%;
+            animation-delay: 0.5s;
+        }
+
+        .bar:nth-child(3) {
+            width: 45%;
+            animation-delay: 1s;
+        }
+
+        .bar:nth-child(4) {
+            width: 70%;
+            animation-delay: 1.5s;
         }
 
         /* Predictive Intelligence - Data Wave */
@@ -513,9 +543,28 @@
             50% { transform: scale(1.3); opacity: 0.6; }
         }
 
-        @keyframes spin-slow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes scan {
+            0% { transform: translateY(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(56px); opacity: 0; }
+        }
+
+        @keyframes monitoring-pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 0 2px var(--signal-yellow), 0 0 8px var(--signal-yellow);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                box-shadow: 0 0 0 4px var(--signal-yellow), 0 0 16px var(--signal-yellow);
+            }
+        }
+
+        @keyframes bar-adjust {
+            0%, 100% { opacity: 0.3; width: var(--original-width, 50%); }
+            25% { opacity: 0.8; }
+            50% { opacity: 1; width: calc(var(--original-width, 50%) + 15%); }
+            75% { opacity: 0.8; }
         }
 
         @keyframes wave {
@@ -839,7 +888,12 @@
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon icon-smart"></div>
+                    <div class="feature-icon icon-smart">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
                     <h3 class="feature-title">Smart Refining</h3>
                     <p class="feature-description">
                         Real-time monitoring and automated adjustments ensure consistent quality and optimal performance.
