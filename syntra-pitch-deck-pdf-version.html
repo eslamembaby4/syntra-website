@@ -38,6 +38,24 @@
             color: var(--syntra-white);
             overflow: hidden;
             height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(8, 145, 178, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            animation: backgroundPulse 15s ease-in-out infinite;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
         }
 
         .presentation-container {
@@ -58,25 +76,78 @@
             background: var(--syntra-midnight-navy);
             position: absolute;
             opacity: 0;
-            transition: opacity 0.4s ease-in-out;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
 
         .slide.active {
             display: block;
             opacity: 1;
-            animation: slideIn 0.5s ease-out;
+            animation: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .slide.slide-out-left {
+            animation: slideOutLeft 0.5s cubic-bezier(0.7, 0, 0.84, 0);
+        }
+
+        .slide.slide-out-right {
+            animation: slideOutRight 0.5s cubic-bezier(0.7, 0, 0.84, 0);
         }
 
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(30px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes slideOutLeft {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
 
         .progress-bar {
             position: fixed;
@@ -143,6 +214,11 @@
             width: 48px;
             height: 48px;
             position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-mark:hover {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .logo-diamond {
@@ -151,6 +227,12 @@
             border: 2px solid var(--syntra-signal-yellow);
             transform: rotate(45deg);
             position: absolute;
+            animation: rotatePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes rotatePulse {
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.05); }
         }
 
         .logo-square {
@@ -160,6 +242,13 @@
             position: absolute;
             top: 14px;
             left: 14px;
+            animation: squarePulse 3s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        @keyframes squarePulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
         }
 
         .logo-text {
@@ -238,14 +327,33 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 0;
             padding: 32px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-8px) scale(1.02);
             border-color: var(--syntra-signal-yellow);
-            box-shadow: 0 8px 24px rgba(255, 215, 0, 0.15);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card-title {
@@ -329,6 +437,30 @@
             border: 2px solid rgba(255, 255, 255, 0.2);
             padding: 40px;
             margin: 20px 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .timeline-box::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--syntra-signal-yellow);
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .timeline-box:hover {
+            border-color: var(--syntra-signal-yellow);
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .timeline-box:hover::after {
+            width: 100%;
         }
 
         .timeline-number {
@@ -419,6 +551,11 @@
             font-weight: 700;
             color: var(--syntra-signal-yellow);
             margin-bottom: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .metric-value:hover {
+            transform: scale(1.05);
         }
 
         .metric-label {
@@ -427,6 +564,27 @@
             color: var(--syntra-slate-400);
             text-transform: uppercase;
             letter-spacing: 0.05em;
+        }
+
+        .counter {
+            display: inline-block;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseBorder {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+            }
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
         .cta-section {
@@ -484,29 +642,29 @@
 
         <!-- Slide 2: Executive Summary -->
         <div class="slide">
-            <h2>EXECUTIVE SUMMARY</h2>
+            <h2 class="animate-in">EXECUTIVE SUMMARY</h2>
             <div class="card-grid">
-                <div class="card">
+                <div class="card animate-in stagger-2">
                     <div class="card-title">THE PROBLEM</div>
                     <div class="card-content">
                         Canada's midstream gap, driven by limited domestic refining capacity, results in the export of processing value. This reliance on foreign facilities contributes to economic leakage and exposes Canada to supply chain security risks.
                     </div>
                 </div>
-                <div class="card">
+                <div class="card animate-in stagger-3">
                     <div class="card-title">THE SOLUTION</div>
                     <div class="card-content">
                         SynHub™ is our AI-powered, feedstock-agnostic, multi metal refinery. We are developing a decentralized network of "Smart Refineries," starting with the MEP in Halifax, that springboards global Synhubs™
                     </div>
                 </div>
-                <div class="card">
+                <div class="card animate-in stagger-4">
                     <div class="card-title">THE ASK</div>
                     <div class="card-content">
                         Seeking a public-private partnership to de-risk the critical MEP stage. This funding de-risks the demonstration and secures Nova Scotia's first-mover advantage.
                     </div>
                 </div>
             </div>
-            <div class="quote">
-                "We believe energy security and environmental stewardship are one and the same. <strong>Refining is the bottleneck</strong> that secures the supply chain."
+            <div class="quote animate-in stagger-5">
+                "We believe energy security and environmental stewardship are one and the same. <strong class="glow-text">Refining is the bottleneck</strong> that secures the supply chain."
             </div>
         </div>
 
@@ -553,9 +711,9 @@
 
         <!-- Slide 4: The Macro Context -->
         <div class="slide">
-            <h2>THE MACRO CONTEXT</h2>
+            <h2 class="animate-in">THE MACRO CONTEXT</h2>
             <div class="two-column">
-                <div>
+                <div class="animate-in stagger-2">
                     <h3 style="color: var(--syntra-signal-yellow);">THE KEY TO ENERGY TRANSITION</h3>
                     <p style="font-size: 16px; color: var(--syntra-slate-400); line-height: 1.7; margin-bottom: 32px;">
                         Critical minerals serve as essential building blocks for the massive infrastructure needed to achieve Net-Zero targets and advance our technological world.
@@ -575,24 +733,24 @@
                         <div class="list-content">Nova Scotia is perfectly positioned as the Atlantic Gateway.</div>
                     </div>
                 </div>
-                <div style="display: flex; flex-direction: column; justify-content: center;">
+                <div style="display: flex; flex-direction: column; justify-content: center;" class="animate-in stagger-3">
                     <div style="margin-bottom: 32px;">
                         <div class="metric-label">TAM</div>
-                        <div class="metric-value">$500B</div>
+                        <div class="metric-value">$<span class="counter" data-target="500" data-suffix="B">0B</span></div>
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
                         <div>
                             <div class="metric-label">SAM</div>
-                            <div class="metric-value" style="color: #0891B2;">$52B</div>
+                            <div class="metric-value" style="color: #0891B2;">$<span class="counter" data-target="52" data-suffix="B">0B</span></div>
                         </div>
                         <div>
                             <div class="metric-label">SOM</div>
-                            <div class="metric-value">$500M</div>
+                            <div class="metric-value">$<span class="counter" data-target="500" data-suffix="M">0M</span></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="margin-top: 40px; font-family: var(--font-mono); color: var(--syntra-slate-400); font-size: 14px; letter-spacing: 0.05em;">
+            <div style="margin-top: 40px; font-family: var(--font-mono); color: var(--syntra-slate-400); font-size: 14px; letter-spacing: 0.05em;" class="animate-in stagger-4">
                 Cobalt | Nickel | Manganese | Copper | Aluminum | Lithium | Zinc
             </div>
         </div>
@@ -636,25 +794,25 @@
 
         <!-- Slide 6: Value Creation -->
         <div class="slide">
-            <h2>VALUE CREATION: THE MULTIPLIER EFFECT</h2>
+            <h2 class="animate-in">VALUE CREATION: THE MULTIPLIER EFFECT</h2>
             <div class="two-column" style="align-items: center;">
-                <div style="text-align: left;">
-                    <div style="font-family: var(--font-heading); font-size: 160px; font-weight: 700; color: var(--syntra-signal-yellow); line-height: 1;">16x</div>
+                <div style="text-align: left;" class="animate-in stagger-2">
+                    <div style="font-family: var(--font-heading); font-size: 160px; font-weight: 700; color: var(--syntra-signal-yellow); line-height: 1;" class="glow-text pulse-border"><span class="counter" data-target="16" data-suffix="x">0x</span></div>
                     <div style="font-family: var(--font-heading); font-size: 20px; color: var(--syntra-white); margin-top: 16px; text-transform: uppercase; letter-spacing: 0.1em;">VALUE MULTIPLIER</div>
                 </div>
-                <div>
+                <div class="animate-in stagger-3">
                     <h3>WHY REFINING MATTERS</h3>
                     <p style="font-size: 16px; color: var(--syntra-slate-400); line-height: 1.7; margin-bottom: 32px;">
                         Refining unlocks major value: it converts 'mined rock' into high-value raw materials for Canadian industries.
                     </p>
                     <div style="margin-bottom: 20px;">
                         <div style="font-family: var(--font-mono); font-size: 12px; color: var(--syntra-slate-400); margin-bottom: 6px; text-transform: uppercase;">Primary Ore:</div>
-                        <div style="font-size: 24px; color: var(--syntra-white);">~$1,100 / tonne</div>
+                        <div style="font-size: 24px; color: var(--syntra-white);">~$<span class="counter" data-target="1100">0</span> / tonne</div>
                     </div>
                     <div style="font-size: 40px; color: var(--syntra-signal-yellow); margin: 20px 0;">↓</div>
                     <div>
                         <div style="font-family: var(--font-mono); font-size: 12px; color: var(--syntra-slate-400); margin-bottom: 6px; text-transform: uppercase;">Refined Mineral Product:</div>
-                        <div style="font-size: 24px; color: var(--syntra-signal-yellow); font-weight: 600;">~$16,500 / tonne</div>
+                        <div style="font-size: 24px; color: var(--syntra-signal-yellow); font-weight: 600;">~$<span class="counter" data-target="16500">0</span> / tonne</div>
                     </div>
                     <p style="font-size: 14px; color: var(--syntra-slate-400); line-height: 1.6; margin-top: 32px;">
                         This 16x increase in value stays in here, generating tax revenue, funding high-skilled jobs, and building a sophisticated industrial base.
@@ -665,9 +823,9 @@
 
         <!-- Slide 7: Execution Roadmap -->
         <div class="slide">
-            <h2>EXECUTION ROADMAP</h2>
+            <h2 class="animate-in">EXECUTION ROADMAP</h2>
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 80px;">
-                <div class="timeline-box">
+                <div class="timeline-box animate-in stagger-2">
                     <div style="font-size: 48px; color: var(--syntra-signal-yellow); margin-bottom: 20px;">1</div>
                     <div class="timeline-title">VALIDATE</div>
                     <div class="timeline-subtitle">2025</div>
@@ -678,7 +836,7 @@
                     <div class="tag" style="background: #10B981;">SYNHUB™ 1.0 COMPLETE</div>
                 </div>
 
-                <div class="timeline-box" style="border-color: var(--syntra-signal-yellow); background: rgba(255, 215, 0, 0.05);">
+                <div class="timeline-box animate-in stagger-3" style="border-color: var(--syntra-signal-yellow); background: rgba(255, 215, 0, 0.05);">
                     <div style="font-size: 48px; color: var(--syntra-signal-yellow); margin-bottom: 20px;">2</div>
                     <div class="timeline-title" style="color: var(--syntra-signal-yellow);">DEPLOY</div>
                     <div class="timeline-subtitle">Q4 2026</div>
@@ -689,7 +847,7 @@
                     <div class="tag">FUNDING TARGET</div>
                 </div>
 
-                <div class="timeline-box">
+                <div class="timeline-box animate-in stagger-4">
                     <div style="font-size: 48px; color: var(--syntra-signal-yellow); margin-bottom: 20px;">3</div>
                     <div class="timeline-title">OPERATE</div>
                     <div class="timeline-subtitle">2027</div>
@@ -700,7 +858,7 @@
                     <div class="tag" style="background: #10B981;">SYNHUB ™ 2.0</div>
                 </div>
 
-                <div class="timeline-box">
+                <div class="timeline-box animate-in stagger-5">
                     <div style="font-size: 48px; color: var(--syntra-signal-yellow); margin-bottom: 20px;">4</div>
                     <div class="timeline-title">EXPAND</div>
                     <div class="timeline-subtitle">2028+</div>
@@ -765,23 +923,23 @@
 
         <!-- Slide 9: Risks -->
         <div class="slide">
-            <h2>INTELLECTUAL HONESTY: RISKS</h2>
+            <h2 class="animate-in">INTELLECTUAL HONESTY: RISKS</h2>
             <div class="card-grid" style="margin-top: 60px;">
-                <div class="card">
+                <div class="card animate-in stagger-2">
                     <div class="card-title">TECHNICAL RISK</div>
                     <div style="display: inline-block; padding: 4px 12px; background: #10B981; color: white; font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px;">STATUS: LOW</div>
                     <div class="card-content">
                         Process chemistry proven at lab scale. Digital Twin simulation validates flow rates.
                     </div>
                 </div>
-                <div class="card">
+                <div class="card animate-in stagger-3">
                     <div class="card-title">MARKET RISK</div>
                     <div style="display: inline-block; padding: 4px 12px; background: #F59E0B; color: white; font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px;">STATUS: MEDIUM</div>
                     <div class="card-content">
                         Commodity prices fluctuate. Mitigation: Feedstock agnosticism allows us to switch inputs based on price.
                     </div>
                 </div>
-                <div class="card" style="border-color: var(--syntra-signal-yellow); border-width: 2px;">
+                <div class="card animate-in stagger-4 pulse-border" style="border-color: var(--syntra-signal-yellow); border-width: 2px;">
                     <div class="card-title">EXECUTION RISK</div>
                     <div style="display: inline-block; padding: 4px 12px; background: #EF4444; color: white; font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px;">STATUS: HIGH</div>
                     <div class="card-content">
@@ -794,10 +952,10 @@
         <!-- Slide 10: Closing -->
         <div class="slide">
             <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
-                <div class="cta-section" style="max-width: 900px;">
+                <div class="cta-section animate-in pulse-border" style="max-width: 900px;">
                     <div style="font-family: var(--font-mono); font-size: 12px; color: var(--syntra-slate-400); margin-bottom: 16px; letter-spacing: 0.1em; text-transform: uppercase;">NOVA SCOTIA IS READY. SYNTRA IS READY.</div>
 
-                    <div style="font-family: var(--font-heading); font-size: 44px; line-height: 1.2; margin-bottom: 24px; color: var(--syntra-signal-yellow); font-weight: 700; text-transform: uppercase;">
+                    <div style="font-family: var(--font-heading); font-size: 44px; line-height: 1.2; margin-bottom: 24px; color: var(--syntra-signal-yellow); font-weight: 700; text-transform: uppercase;" class="glow-text">
                         "WE HAVE DE-RISKED THE SCIENCE.
                     </div>
 
@@ -838,10 +996,70 @@
 
     <script>
         let currentSlide = 1;
+        let isAnimating = false;
         const totalSlides = document.querySelectorAll('.slide').length;
         document.getElementById('totalSlides').textContent = totalSlides;
 
-        function showSlide(n) {
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        function animateValue(element, start, end, duration, suffix = '') {
+            const range = end - start;
+            const increment = range / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                    element.textContent = end + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+            }, 16);
+        }
+
+        function triggerAnimations(slideElement) {
+            const animateElements = slideElement.querySelectorAll('.animate-in');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                setTimeout(() => {
+                    el.style.animation = 'none';
+                    setTimeout(() => {
+                        el.style.animation = '';
+                    }, 10);
+                }, 10);
+            });
+
+            const counters = slideElement.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const suffix = counter.getAttribute('data-suffix') || '';
+                if (target) {
+                    counter.textContent = '0' + suffix;
+                    setTimeout(() => {
+                        animateValue(counter, 0, target, 1500, suffix);
+                    }, 300);
+                }
+            });
+        }
+
+        function showSlide(n, direction = 'next') {
+            if (isAnimating) return;
+
             const slides = document.querySelectorAll('.slide');
 
             if (n > totalSlides) {
@@ -851,39 +1069,65 @@
                 currentSlide = totalSlides;
             }
 
-            slides.forEach(slide => {
-                slide.classList.remove('active');
-            });
+            isAnimating = true;
 
-            slides[currentSlide - 1].classList.add('active');
+            const currentSlideElement = document.querySelector('.slide.active');
+            const nextSlideElement = slides[currentSlide - 1];
 
-            document.getElementById('currentSlide').textContent = currentSlide;
+            if (currentSlideElement) {
+                currentSlideElement.classList.add(direction === 'next' ? 'slide-out-left' : 'slide-out-right');
+            }
 
-            const progress = (currentSlide / totalSlides) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
+            setTimeout(() => {
+                slides.forEach(slide => {
+                    slide.classList.remove('active', 'slide-out-left', 'slide-out-right');
+                });
+
+                nextSlideElement.classList.add('active');
+                triggerAnimations(nextSlideElement);
+
+                document.getElementById('currentSlide').textContent = currentSlide;
+
+                const progress = (currentSlide / totalSlides) * 100;
+                const progressBar = document.getElementById('progressBar');
+                progressBar.style.transition = 'width 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                progressBar.style.width = progress + '%';
+
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 100);
+            }, 300);
         }
 
         function nextSlide() {
-            currentSlide++;
-            showSlide(currentSlide);
+            if (!isAnimating) {
+                currentSlide++;
+                showSlide(currentSlide, 'next');
+            }
         }
 
         function previousSlide() {
-            currentSlide--;
-            showSlide(currentSlide);
+            if (!isAnimating) {
+                currentSlide--;
+                showSlide(currentSlide, 'prev');
+            }
         }
 
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'ArrowRight') {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                event.preventDefault();
                 nextSlide();
             } else if (event.key === 'ArrowLeft') {
+                event.preventDefault();
                 previousSlide();
             } else if (event.key === 'Home') {
+                event.preventDefault();
                 currentSlide = 1;
-                showSlide(currentSlide);
+                showSlide(currentSlide, 'next');
             } else if (event.key === 'End') {
+                event.preventDefault();
                 currentSlide = totalSlides;
-                showSlide(currentSlide);
+                showSlide(currentSlide, 'prev');
             }
         });
 
@@ -897,7 +1141,29 @@
             }
         }
 
-        showSlide(currentSlide);
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                previousSlide();
+            }
+        }
+
+        showSlide(currentSlide, 'next');
+        triggerAnimations(document.querySelector('.slide.active'));
     </script>
 </body>
 </html>
