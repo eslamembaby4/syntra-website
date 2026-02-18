@@ -404,28 +404,123 @@
             transform-origin: right;
         }
 
-        /* Circular Economy - Rotating Arrows */
+        /* Circular Economy - Complete Lifecycle Circle */
         .icon-circular {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Main circular path */
+        .icon-circular::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--signal-yellow);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        /* Animated circular flow */
+        .icon-circular::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
             border: 3px solid transparent;
             border-top-color: var(--signal-yellow);
             border-right-color: var(--signal-yellow);
             border-radius: 50%;
-            animation: rotate-clockwise 3s linear infinite;
+            animation: rotate-smooth 3s linear infinite;
+            filter: drop-shadow(0 0 6px var(--signal-yellow));
         }
 
-        .icon-circular::before {
-            content: '';
+        /* Lifecycle stages dots */
+        .stage-dot {
             position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--signal-yellow);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--signal-yellow);
+        }
+
+        .stage-dot:nth-child(1) {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: stage-pulse 3s ease-in-out infinite;
+            animation-delay: 0s;
+        }
+
+        .stage-dot:nth-child(2) {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            animation: stage-pulse 3s ease-in-out infinite;
+            animation-delay: 0.75s;
+        }
+
+        .stage-dot:nth-child(3) {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: stage-pulse 3s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+
+        .stage-dot:nth-child(4) {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            animation: stage-pulse 3s ease-in-out infinite;
+            animation-delay: 2.25s;
+        }
+
+        /* Central recycling symbol */
+        .recycle-center {
+            position: absolute;
+            width: 20px;
+            height: 20px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 32px;
-            height: 32px;
-            border: 3px solid transparent;
-            border-bottom-color: var(--signal-yellow);
-            border-left-color: var(--signal-yellow);
-            border-radius: 50%;
-            animation: rotate-counterclockwise 3s linear infinite;
+        }
+
+        .recycle-arrow {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-bottom: 8px solid var(--signal-yellow);
+            opacity: 0.8;
+        }
+
+        .recycle-arrow:nth-child(1) {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate(0deg);
+            animation: recycle-fade 3s ease-in-out infinite;
+            animation-delay: 0s;
+        }
+
+        .recycle-arrow:nth-child(2) {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(120deg);
+            animation: recycle-fade 3s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .recycle-arrow:nth-child(3) {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(240deg);
+            animation: recycle-fade 3s ease-in-out infinite;
+            animation-delay: 2s;
         }
 
         /* Battery Icon */
@@ -574,14 +669,43 @@
             75% { transform: scaleX(1.2) translateY(4px); }
         }
 
-        @keyframes rotate-clockwise {
+        @keyframes rotate-smooth {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        @keyframes rotate-counterclockwise {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(-360deg); }
+        @keyframes stage-pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+                box-shadow: 0 0 8px var(--signal-yellow);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0.6;
+                box-shadow: 0 0 16px var(--signal-yellow);
+            }
+        }
+
+        .stage-dot:nth-child(2) {
+            transform: translateY(-50%) !important;
+        }
+
+        .stage-dot:nth-child(2):is(:hover, :focus) {
+            transform: translateY(-50%) scale(1.2) !important;
+        }
+
+        .stage-dot:nth-child(4) {
+            transform: translateY(-50%) !important;
+        }
+
+        .stage-dot:nth-child(4):is(:hover, :focus) {
+            transform: translateY(-50%) scale(1.2) !important;
+        }
+
+        @keyframes recycle-fade {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
         }
 
         @keyframes battery-fill {
@@ -909,7 +1033,17 @@
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon icon-circular"></div>
+                    <div class="feature-icon icon-circular">
+                        <div class="stage-dot"></div>
+                        <div class="stage-dot"></div>
+                        <div class="stage-dot"></div>
+                        <div class="stage-dot"></div>
+                        <div class="recycle-center">
+                            <div class="recycle-arrow"></div>
+                            <div class="recycle-arrow"></div>
+                            <div class="recycle-arrow"></div>
+                        </div>
+                    </div>
                     <h3 class="feature-title">Circular Economy</h3>
                     <p class="feature-description">
                         Full lifecycle processing from mining through recycling, closing the loop on critical minerals.
