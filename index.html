@@ -473,7 +473,7 @@
 
     <!-- TECHNOLOGY & DIGITAL TWIN -->
     <section id="technology" class="py-24 bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight text-white relative overflow-hidden">
-      <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0 opacity-10 pointer-events-none">
         <div class="absolute inset-0" style="background-image: linear-gradient(#FFD700 1px, transparent 1px), linear-gradient(90deg, #FFD700 1px, transparent 1px); background-size: 50px 50px;"></div>
       </div>
 
@@ -524,12 +524,12 @@
               LIVE SIMULATION
             </div>
 
-            <canvas id="twinCanvas"></canvas>
+            <canvas id="twinCanvas" class="w-full h-full"></canvas>
 
             <div class="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-2 z-20">
               <div class="bg-slate-900/90 p-2 border border-slate-700">
                 <p class="text-[10px] text-slate-500 font-mono">FLOW</p>
-                <p class="text-white font-mono font-bold" id="sim-flow">120 L/m</p>
+                <p class="text-white font-mono font-bold" id="sim-flow">124.2 L/m</p>
               </div>
 
               <div class="bg-slate-900/90 p-2 border border-slate-700">
@@ -539,7 +539,7 @@
 
               <div class="bg-slate-900/90 p-2 border border-slate-700">
                 <p class="text-[10px] text-slate-500 font-mono">PH</p>
-                <p class="text-syntra-tech font-mono font-bold" id="sim-ph">4.2</p>
+                <p class="text-syntra-tech font-mono font-bold" id="sim-ph">4.17</p>
               </div>
             </div>
           </div>
@@ -548,8 +548,8 @@
     </section>
 
     <!-- SYNHUB ARCHITECTURE -->
-    <section id="infrastructure" class="py-24 bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight text-white relative overflow-hidden border-t border-white/5">
-        <div class="absolute inset-0 opacity-10">
+    <section id="infrastructure" class="py-24 bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
             <div class="absolute inset-0" style="background-image: linear-gradient(#FFD700 1px, transparent 1px), linear-gradient(90deg, #FFD700 1px, transparent 1px); background-size: 50px 50px;"></div>
         </div>
 
