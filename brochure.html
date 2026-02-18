@@ -211,35 +211,148 @@
             margin-bottom: 20px;
         }
 
-        /* Universal Intake - Expanding Square */
+        /* Universal Intake - Adaptive Funnel Processing */
         .icon-intake {
-            border: 3px solid var(--signal-yellow);
-            animation: pulse-border 3s ease-in-out infinite;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
         }
 
-        .icon-intake::before,
+        /* Outer funnel/intake boundary */
+        .icon-intake::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 10px;
+            border: 3px solid var(--signal-yellow);
+            border-bottom: none;
+            border-radius: 20px 20px 0 0;
+            opacity: 0.6;
+        }
+
+        /* Processing chamber */
         .icon-intake::after {
             content: '';
             position: absolute;
-            background: var(--signal-yellow);
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--signal-yellow);
+            border-radius: 4px;
+            opacity: 0.4;
         }
 
-        .icon-intake::before {
+        /* Feedstock particles */
+        .feedstock-particle {
+            position: absolute;
+            background: var(--signal-yellow);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--signal-yellow);
+        }
+
+        /* Virgin ore particles (larger, from top-left) */
+        .feedstock-particle:nth-child(1) {
+            width: 6px;
+            height: 6px;
+            top: 0;
+            left: 25%;
+            animation: intake-flow-1 3s ease-in infinite;
+            animation-delay: 0s;
+        }
+
+        .feedstock-particle:nth-child(2) {
+            width: 5px;
+            height: 5px;
+            top: 0;
+            left: 35%;
+            animation: intake-flow-1 3s ease-in infinite;
+            animation-delay: 0.5s;
+        }
+
+        /* Black mass particles (medium, from top-right) */
+        .feedstock-particle:nth-child(3) {
+            width: 4px;
+            height: 4px;
+            top: 0;
+            right: 25%;
+            animation: intake-flow-2 3s ease-in infinite;
+            animation-delay: 1s;
+            opacity: 0.8;
+        }
+
+        .feedstock-particle:nth-child(4) {
+            width: 5px;
+            height: 5px;
+            top: 0;
+            right: 35%;
+            animation: intake-flow-2 3s ease-in infinite;
+            animation-delay: 1.5s;
+            opacity: 0.8;
+        }
+
+        /* Recycled material particles (smaller, from top-center) */
+        .feedstock-particle:nth-child(5) {
+            width: 4px;
+            height: 4px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: intake-flow-3 3s ease-in infinite;
+            animation-delay: 2s;
+            opacity: 0.9;
+        }
+
+        .feedstock-particle:nth-child(6) {
+            width: 3px;
+            height: 3px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: intake-flow-3 3s ease-in infinite;
+            animation-delay: 2.5s;
+            opacity: 0.9;
+        }
+
+        /* Central processing indicator */
+        .processing-core {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--signal-yellow);
+            border-radius: 50%;
+            animation: processing-glow 2s ease-in-out infinite;
+        }
+
+        .processing-core::before {
+            content: '';
+            position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 24px;
-            height: 24px;
-            animation: rotate-square 4s linear infinite;
+            width: 8px;
+            height: 8px;
+            background: var(--signal-yellow);
+            border-radius: 50%;
+            animation: core-pulse 1s ease-in-out infinite;
         }
 
-        .icon-intake::after {
-            top: 50%;
+        /* Output stream */
+        .output-stream {
+            position: absolute;
+            bottom: -4px;
             left: 50%;
-            transform: translate(-50%, -50%) rotate(45deg);
-            width: 12px;
+            transform: translateX(-50%);
+            width: 3px;
             height: 12px;
-            animation: pulse-center 2s ease-in-out infinite;
+            background: linear-gradient(to bottom, var(--signal-yellow), transparent);
+            animation: output-flow 2s ease-in-out infinite;
         }
 
         /* AI Optimized - Neural Network */
@@ -708,6 +821,100 @@
             50% { opacity: 1; }
         }
 
+        /* Universal Intake Animations */
+        @keyframes intake-flow-1 {
+            0% {
+                top: -10px;
+                opacity: 0;
+                transform: translateX(0) scale(1);
+            }
+            20% {
+                opacity: 1;
+            }
+            60% {
+                top: 50%;
+                transform: translateX(10px) scale(0.7);
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+                transform: translateX(15px) scale(0.3);
+            }
+        }
+
+        @keyframes intake-flow-2 {
+            0% {
+                top: -10px;
+                opacity: 0;
+                transform: translateX(0) scale(1);
+            }
+            20% {
+                opacity: 1;
+            }
+            60% {
+                top: 50%;
+                transform: translateX(-10px) scale(0.7);
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+                transform: translateX(-15px) scale(0.3);
+            }
+        }
+
+        @keyframes intake-flow-3 {
+            0% {
+                top: -10px;
+                opacity: 0;
+                transform: translateX(-50%) scale(1);
+            }
+            20% {
+                opacity: 1;
+            }
+            60% {
+                top: 50%;
+                transform: translateX(-50%) scale(0.8);
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+                transform: translateX(-50%) scale(0.4);
+            }
+        }
+
+        @keyframes processing-glow {
+            0%, 100% {
+                box-shadow: 0 0 8px var(--signal-yellow);
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                box-shadow: 0 0 20px var(--signal-yellow), 0 0 40px rgba(255, 215, 0, 0.3);
+                transform: translateX(-50%) scale(1.1);
+            }
+        }
+
+        @keyframes core-pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(1.3);
+            }
+        }
+
+        @keyframes output-flow {
+            0%, 100% {
+                opacity: 0.3;
+                height: 12px;
+            }
+            50% {
+                opacity: 1;
+                height: 16px;
+            }
+        }
+
         @keyframes battery-fill {
             0% { height: 0%; }
             50% { height: 80%; }
@@ -983,7 +1190,16 @@
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon icon-intake"></div>
+                    <div class="feature-icon icon-intake">
+                        <div class="feedstock-particle"></div>
+                        <div class="feedstock-particle"></div>
+                        <div class="feedstock-particle"></div>
+                        <div class="feedstock-particle"></div>
+                        <div class="feedstock-particle"></div>
+                        <div class="feedstock-particle"></div>
+                        <div class="processing-core"></div>
+                        <div class="output-stream"></div>
+                    </div>
                     <h3 class="feature-title">Universal Intake</h3>
                     <p class="feature-description">
                         Process any feedstock—from virgin ore to black mass recycling—with our adaptive refining technology.
