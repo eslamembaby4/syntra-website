@@ -55,6 +55,42 @@
             .page-break {
                 page-break-after: always;
             }
+
+            /* Prevent sections from breaking across pages */
+            .section {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            /* Prevent feature cards from breaking */
+            .feature-card {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            /* Prevent tech items from breaking */
+            .tech-item {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            /* Keep section titles with their content */
+            .section-title {
+                page-break-after: avoid;
+                break-after: avoid;
+            }
+
+            /* Keep headers together */
+            .brochure-header {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            /* Prevent orphans and widows */
+            p {
+                orphans: 3;
+                widows: 3;
+            }
         }
 
         /* Header */
