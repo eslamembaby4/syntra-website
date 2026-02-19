@@ -459,22 +459,27 @@
     </div>
 
     <!-- ABOUT US HERO INTRODUCTION -->
-    <header data-animate class="relative bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight text-white py-32 md:py-40 overflow-hidden">
-        <div class="absolute inset-0 opacity-10 pointer-events-none">
-            <div class="absolute inset-0" style="background-image: linear-gradient(#FFD700 1px, transparent 1px), linear-gradient(90deg, #FFD700 1px, transparent 1px); background-size: 50px 50px;"></div>
+    <header data-animate class="relative bg-gradient-to-b from-white via-slate-50 to-white py-24 border-b-4 border-syntra-accent/20">
+        <div class="absolute inset-0 z-0 opacity-5">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="black" stroke-width="1"/>
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
         </div>
 
         <div class="container mx-auto px-6 relative z-10 w-full max-w-7xl">
-            <div class="text-left max-w-6xl mx-auto">
-                <div class="inline-block px-3 py-1 border border-syntra-tech text-syntra-tech mb-6 font-mono text-xs font-bold">
+            <div class="text-left max-w-5xl mx-auto">
+                <div class="inline-block px-4 py-2 mb-6 font-bold text-xs tracking-wider uppercase" style="background-color: rgba(8, 145, 178, 0.15); color: #0891B2;">
                     ABOUT SYNTRA REFINING
                 </div>
 
-                <h1 class="font-head text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold uppercase leading-[0.85] mb-8 tracking-tight">
-                    WHY WE ARE <span class="text-syntra-accent">HERE</span>
+                <h1 class="font-head text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-syntra-midnight uppercase leading-[0.9] mb-8 tracking-tight">
+                    WHY WE ARE <span class="text-slate-600">HERE</span>
                 </h1>
 
-                <p class="text-lg sm:text-xl md:text-2xl text-slate-300 leading-relaxed max-w-4xl">
+                <p class="text-base sm:text-lg text-slate-700 font-light tracking-wide leading-relaxed max-w-3xl">
                     We are committed to responsibly transforming how critical minerals are refined through advanced technological excellence.
                 </p>
             </div>
@@ -482,35 +487,32 @@
     </header>
 
     <!-- OUR STORY / TIMELINE -->
-    <section data-animate class="relative py-32 bg-gradient-to-b from-white to-slate-50">
+    <section data-animate class="relative py-32 bg-white">
         <div class="container mx-auto px-6">
             <div class="max-w-7xl mx-auto">
                 <!-- Section Header -->
                 <div class="mb-20" data-animate>
-                    <div class="inline-block px-3 py-1 border border-syntra-amber text-syntra-amber mb-6 font-mono text-xs font-bold">
-                        THE JOURNEY
-                    </div>
-                    <h2 class="font-head text-5xl sm:text-6xl lg:text-8xl font-bold uppercase leading-[0.85] mb-8">
-                        <span class="text-syntra-midnight">OUR</span> <span class="text-syntra-tech">STORY</span>
+                    <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl font-bold uppercase leading-[0.9] mb-8">
+                        <span class="text-black">OUR STORY</span>
                     </h2>
-                    <p class="text-xl md:text-2xl text-slate-600 max-w-5xl leading-relaxed">
+                    <p class="text-xl text-slate-600 max-w-4xl leading-relaxed font-medium">
                         From identifying a critical infrastructure gap to deploying commercial-scale refining capacity, Syntra Refining is addressing North America's midstream bottleneck in critical minerals processing.
                     </p>
                 </div>
 
                 <!-- Timeline Navigation -->
-                <div class="flex flex-wrap gap-3 mb-16" data-animate>
-                    <button onclick="showTimeline('founding')" class="timeline-btn active px-8 py-4 bg-syntra-amber text-syntra-midnight font-mono text-xs tracking-widest uppercase font-bold transition-all duration-300 border-2 border-syntra-amber hover:shadow-lg" data-period="founding">
-                        2017-2019<br><span class="text-[10px] font-normal">Founding Era</span>
+                <div class="flex flex-wrap gap-3 mb-12" data-animate>
+                    <button onclick="showTimeline('founding')" class="timeline-btn active px-6 py-3 bg-syntra-amber text-black font-mono text-xs tracking-widest uppercase rounded-lg hover:bg-syntra-amber/90 transition-colors" data-period="founding">
+                        2017-2019<br><span class="text-[10px]">Founding Era</span>
                     </button>
-                    <button onclick="showTimeline('development')" class="timeline-btn px-8 py-4 bg-white text-slate-900 font-mono text-xs tracking-widest uppercase font-bold border-2 border-slate-300 hover:border-syntra-tech hover:text-syntra-tech transition-all duration-300" data-period="development">
-                        2020-2022<br><span class="text-[10px] font-normal">Development</span>
+                    <button onclick="showTimeline('development')" class="timeline-btn px-6 py-3 bg-slate-200 text-slate-900 font-mono text-xs tracking-widest uppercase rounded-lg hover:bg-slate-300 transition-colors" data-period="development">
+                        2020-2022<br><span class="text-[10px]">Development</span>
                     </button>
-                    <button onclick="showTimeline('deployment')" class="timeline-btn px-8 py-4 bg-white text-slate-900 font-mono text-xs tracking-widest uppercase font-bold border-2 border-slate-300 hover:border-syntra-tech hover:text-syntra-tech transition-all duration-300" data-period="deployment">
-                        2023-2024<br><span class="text-[10px] font-normal">Deployment</span>
+                    <button onclick="showTimeline('deployment')" class="timeline-btn px-6 py-3 bg-slate-200 text-slate-900 font-mono text-xs tracking-widest uppercase rounded-lg hover:bg-slate-300 transition-colors" data-period="deployment">
+                        2023-2024<br><span class="text-[10px]">Deployment</span>
                     </button>
-                    <button onclick="showTimeline('expansion')" class="timeline-btn px-8 py-4 bg-white text-slate-900 font-mono text-xs tracking-widest uppercase font-bold border-2 border-slate-300 hover:border-syntra-tech hover:text-syntra-tech transition-all duration-300" data-period="expansion">
-                        2025-2026<br><span class="text-[10px] font-normal">Demonstration</span>
+                    <button onclick="showTimeline('expansion')" class="timeline-btn px-6 py-3 bg-slate-200 text-slate-900 font-mono text-xs tracking-widest uppercase rounded-lg hover:bg-slate-300 transition-colors" data-period="expansion">
+                        2025-2026<br><span class="text-[10px]">Demonstration</span>
                     </button>
                 </div>
 
@@ -518,13 +520,12 @@
                 <div class="timeline-content-wrapper">
                     <!-- 2017-2019: Founding Era -->
                     <div id="timeline-founding" class="timeline-content active">
-                        <div class="bg-gradient-to-br from-white to-slate-50 border-4 border-syntra-amber p-12 md:p-16 shadow-2xl relative overflow-hidden">
-                            <div class="absolute top-0 right-0 w-64 h-64 bg-syntra-amber/5 rounded-full blur-3xl"></div>
-                            <div class="inline-block px-4 py-2 bg-syntra-amber text-syntra-midnight font-mono text-xs tracking-widest uppercase font-bold mb-6">
+                        <div class="bg-gradient-to-br from-slate-50 to-white border-2 border-syntra-amber rounded-2xl p-12 md:p-16">
+                            <div class="inline-block px-4 py-2 bg-syntra-amber text-black font-mono text-xs tracking-widest uppercase rounded-full mb-6">
                                 2017-2019: Founding Era
                             </div>
-                            <h3 class="font-head text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase mb-8 leading-[0.9] relative z-10">
-                                <span class="text-syntra-midnight">IDENTIFYING THE</span><br><span class="text-syntra-tech">INFRASTRUCTURE GAP</span>
+                            <h3 class="font-head text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold uppercase mb-8 break-words">
+                                <span class="text-syntra-midnight">IDENTIFYING THE</span> <span class="text-syntra-tech">INFRASTRUCTURE GAP</span>
                             </h3>
                             <div class="prose prose-lg max-w-none text-slate-600 space-y-6">
                                 <p class="text-xl leading-relaxed font-medium">
@@ -692,44 +693,56 @@
     </section>
 
     <!-- WHAT SYNTRA DOES AT A GLANCE -->
-    <section data-animate class="relative py-32 bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight text-white overflow-hidden">
-        <!-- Animated Background Pattern -->
-        <div class="absolute inset-0 opacity-10 pointer-events-none">
-            <div class="absolute inset-0" style="background-image: linear-gradient(#FFD700 1px, transparent 1px), linear-gradient(90deg, #FFD700 1px, transparent 1px); background-size: 50px 50px;"></div>
+    <section data-animate class="relative py-32 bg-white overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-[0.03]">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="company-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+                        <circle cx="30" cy="30" r="1.5" fill="#0F172A"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#company-grid)"/>
+            </svg>
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-7xl mx-auto">
                 <!-- Section Header -->
                 <div class="mb-20 text-center" data-animate>
-                    <div class="inline-block px-3 py-1 border border-syntra-amber text-syntra-amber mb-6 font-mono text-xs font-bold">
-                        AT A GLANCE
+                    <div class="inline-block px-6 py-3 bg-syntra-tech/10 border border-syntra-tech/30 mb-10">
+                        <span class="text-xs text-syntra-tech tracking-[0.2em] uppercase font-bold">AT A GLANCE</span>
                     </div>
-                    <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl xl:text-9xl font-bold uppercase leading-[0.85] mb-10">
-                        <span class="text-white">WHAT</span> <span class="text-syntra-amber">SYNTRA</span> <span class="text-white">DOES</span>
+                    <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase leading-[0.85] mb-10">
+                        <span class="text-syntra-midnight">WHAT</span> <span class="text-syntra-amber">SYNTRA</span> <span class="text-syntra-midnight">DOES</span>
                     </h2>
-                    <p class="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+                    <p class="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
                         Building North America's critical minerals infrastructure through advanced hydrometallurgical refining technology and strategic partnerships.
                     </p>
                 </div>
 
                 <!-- Enhanced Featured Stats Banner -->
-                <div class="relative bg-black/30 border-2 border-syntra-accent p-12 lg:p-20 overflow-hidden backdrop-blur-sm" data-animate>
+                <div class="relative bg-gradient-to-r from-syntra-midnight via-slate-900 to-syntra-midnight border-4 border-syntra-accent/20 p-12 lg:p-16 overflow-hidden shadow-2xl" data-animate>
+                    <!-- Animated Background Pattern -->
+                    <div class="absolute inset-0 opacity-5">
+                        <div class="absolute inset-0" style="background-image: linear-gradient(45deg, #FFD700 1px, transparent 1px), linear-gradient(-45deg, #FFD700 1px, transparent 1px); background-size: 40px 40px;"></div>
+                    </div>
+
                     <div class="relative z-10 grid sm:grid-cols-3 gap-12 text-center">
                         <div class="group">
-                            <div class="text-6xl lg:text-7xl font-head font-bold text-syntra-amber mb-4 group-hover:scale-110 transition-transform duration-300">1,000 TPA</div>
-                            <div class="text-sm text-white uppercase font-bold tracking-[0.15em] mb-2">Demonstration Capacity</div>
-                            <div class="text-xs text-slate-400">Initial processing facility</div>
+                            <div class="text-5xl lg:text-6xl font-head font-bold text-syntra-amber mb-4 group-hover:scale-110 transition-transform duration-300">1,000 TPA</div>
+                            <div class="text-sm text-slate-300 uppercase font-bold tracking-[0.15em]">Demonstration Capacity</div>
+                            <div class="text-xs text-slate-400 mt-2">Initial processing facility</div>
                         </div>
                         <div class="group">
-                            <div class="text-6xl lg:text-7xl font-head font-bold text-syntra-amber mb-4 group-hover:scale-110 transition-transform duration-300">99%</div>
-                            <div class="text-sm text-white uppercase font-bold tracking-[0.15em] mb-2">Target Purity Specification</div>
-                            <div class="text-xs text-slate-400">Battery-grade quality</div>
+                            <div class="text-5xl lg:text-6xl font-head font-bold text-syntra-amber mb-4 group-hover:scale-110 transition-transform duration-300">99%</div>
+                            <div class="text-sm text-slate-300 uppercase font-bold tracking-[0.15em]">Target Purity Specification</div>
+                            <div class="text-xs text-slate-400 mt-2">Battery-grade quality</div>
                         </div>
                         <div class="group">
-                            <div class="text-5xl lg:text-6xl font-head font-bold text-syntra-amber mb-4 group-hover:scale-110 transition-transform duration-300">Halifax, NS</div>
-                            <div class="text-sm text-white uppercase font-bold tracking-[0.15em] mb-2">Headquarters</div>
-                            <div class="text-xs text-slate-400">Canada's Atlantic hub</div>
+                            <div class="text-4xl lg:text-5xl font-head font-bold text-syntra-amber mb-4 group-hover:scale-110 transition-transform duration-300">Halifax, NS</div>
+                            <div class="text-sm text-slate-300 uppercase font-bold tracking-[0.15em]">Headquarters</div>
+                            <div class="text-xs text-slate-400 mt-2">Canada's Atlantic hub</div>
                         </div>
                     </div>
                 </div>
@@ -738,18 +751,18 @@
     </section>
 
     <!-- CAPABILITIES / SERVICES -->
-    <section data-animate class="relative py-32 bg-white">
+    <section data-animate class="relative py-32 bg-gradient-to-br from-slate-50 via-white to-slate-100">
         <div class="container mx-auto px-6">
             <div class="max-w-7xl mx-auto">
                 <!-- Section Header -->
                 <div class="mb-20" data-animate>
-                    <div class="inline-block px-3 py-1 border border-syntra-tech text-syntra-tech mb-6 font-mono text-xs font-bold">
-                        OUR CAPABILITIES
+                    <div class="inline-block px-4 py-2 bg-syntra-tech/10 border border-syntra-tech/30 mb-8">
+                        <span class="text-xs text-slate-600 tracking-widest uppercase font-semibold">OUR CAPABILITIES</span>
                     </div>
-                    <h2 class="font-head text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold uppercase leading-[0.85] mb-8">
-                        <span class="text-syntra-midnight">TECHNOLOGIES</span><br><span class="text-syntra-tech">& SERVICES</span>
+                    <h2 class="font-head text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase leading-[0.9] mb-8 break-words">
+                        <span class="text-syntra-midnight">TECHNOLOGIES</span> <span class="text-syntra-tech">& SERVICES</span>
                     </h2>
-                    <p class="text-xl md:text-2xl text-slate-600 max-w-4xl leading-relaxed">
+                    <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium">
                         Comprehensive refining services and technical solutions for the critical minerals supply chain
                     </p>
                 </div>
@@ -757,61 +770,57 @@
                 <!-- Services Grid -->
                 <div class="grid md:grid-cols-2 gap-8">
                     <!-- Hydrometallurgical Refining -->
-                    <div class="bg-gradient-to-br from-white to-slate-50 border-2 border-slate-200 p-10 hover:border-syntra-amber hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden" data-animate>
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-syntra-amber/5 rounded-full blur-2xl"></div>
-                        <div class="mb-6 relative z-10">
-                            <h3 class="font-head text-3xl font-bold text-syntra-midnight uppercase mb-3 leading-tight">Hydrometallurgical Refining</h3>
-                            <p class="text-xs text-syntra-tech tracking-widest uppercase font-bold">Core Capability</p>
+                    <div class="bg-white border-2 border-slate-200 p-10 hover:border-syntra-amber hover:shadow-xl transition-all duration-300 group" data-animate>
+                        <div class="mb-6">
+                            <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-2">Hydrometallurgical Refining</h3>
+                            <p class="text-sm text-slate-500 tracking-widest uppercase font-semibold">Core Capability</p>
                         </div>
-                        <p class="text-slate-600 leading-relaxed mb-8 relative z-10">
+                        <p class="text-slate-600 leading-relaxed mb-6">
                             Advanced chemical refining processes that achieve battery-grade purity specifications. Our clean, closed-loop technology replaces energy-intensive pyrometallurgical methods with precision hydrometallurgical extraction, enabling processing of complex domestic feedstocks at commercial scale.
                         </p>
-                        <a href="technology.html" class="inline-flex items-center gap-2 px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase text-sm hover:bg-white hover:text-syntra-tech transition-all duration-300 border-2 border-syntra-accent hover:border-syntra-tech relative z-10">
+                        <a href="technology.html" class="inline-block px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300">
                             Learn more about our technology
                         </a>
                     </div>
 
                     <!-- Process Engineering -->
-                    <div class="bg-gradient-to-br from-white to-slate-50 border-2 border-slate-200 p-10 hover:border-syntra-tech hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden" data-animate>
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-syntra-tech/5 rounded-full blur-2xl"></div>
-                        <div class="mb-6 relative z-10">
-                            <h3 class="font-head text-3xl font-bold text-syntra-midnight uppercase mb-3 leading-tight">Process Engineering</h3>
-                            <p class="text-xs text-syntra-tech tracking-widest uppercase font-bold">Technical Design</p>
+                    <div class="bg-white border-2 border-slate-200 p-10 hover:border-syntra-tech hover:shadow-xl transition-all duration-300 group" data-animate>
+                        <div class="mb-6">
+                            <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-2">Process Engineering</h3>
+                            <p class="text-sm text-slate-500 tracking-widest uppercase font-semibold">Technical Design</p>
                         </div>
-                        <p class="text-slate-600 leading-relaxed mb-8 relative z-10">
+                        <p class="text-slate-600 leading-relaxed mb-6">
                             End-to-end process design and optimization for critical minerals refining operations. Our engineering team develops customized flowsheets, conducts feasibility studies, and provides technical validation for feedstock compatibility and purity specifications.
                         </p>
-                        <a href="commercial.html" class="inline-flex items-center gap-2 px-6 py-3 bg-syntra-tech text-white font-head font-bold uppercase text-sm hover:bg-syntra-midnight transition-all duration-300 border-2 border-syntra-tech relative z-10">
+                        <a href="commercial.html" class="inline-block px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300">
                             Explore commercial services
                         </a>
                     </div>
 
                     <!-- Facility Development -->
-                    <div class="bg-gradient-to-br from-white to-slate-50 border-2 border-slate-200 p-10 hover:border-syntra-amber hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden" data-animate>
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-syntra-amber/5 rounded-full blur-2xl"></div>
-                        <div class="mb-6 relative z-10">
-                            <h3 class="font-head text-3xl font-bold text-syntra-midnight uppercase mb-3 leading-tight">Facility Development</h3>
-                            <p class="text-xs text-syntra-tech tracking-widest uppercase font-bold">Regional Deployment</p>
+                    <div class="bg-white border-2 border-slate-200 p-10 hover:border-syntra-amber hover:shadow-xl transition-all duration-300 group" data-animate>
+                        <div class="mb-6">
+                            <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-2">Facility Development</h3>
+                            <p class="text-sm text-slate-500 tracking-widest uppercase font-semibold">Regional Deployment</p>
                         </div>
-                        <p class="text-slate-600 leading-relaxed mb-8 relative z-10">
+                        <p class="text-slate-600 leading-relaxed mb-6">
                             Modular refining facilities designed for rapid deployment across strategic locations. We manage site selection, permitting, construction, and commissioning of industrial-scale operations integrated with existing mining and manufacturing partners.
                         </p>
-                        <a href="network.html" class="inline-flex items-center gap-2 px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase text-sm hover:bg-white hover:text-syntra-tech transition-all duration-300 border-2 border-syntra-accent hover:border-syntra-tech relative z-10">
+                        <a href="network.html" class="inline-block px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300">
                             View our network
                         </a>
                     </div>
 
                     <!-- Strategic Partnerships -->
-                    <div class="bg-gradient-to-br from-white to-slate-50 border-2 border-slate-200 p-10 hover:border-syntra-tech hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden" data-animate>
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-syntra-tech/5 rounded-full blur-2xl"></div>
-                        <div class="mb-6 relative z-10">
-                            <h3 class="font-head text-3xl font-bold text-syntra-midnight uppercase mb-3 leading-tight">Strategic Partnerships</h3>
-                            <p class="text-xs text-syntra-tech tracking-widest uppercase font-bold">Value Chain Integration</p>
+                    <div class="bg-white border-2 border-slate-200 p-10 hover:border-syntra-tech hover:shadow-xl transition-all duration-300 group" data-animate>
+                        <div class="mb-6">
+                            <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-2">Strategic Partnerships</h3>
+                            <p class="text-sm text-slate-500 tracking-widest uppercase font-semibold">Value Chain Integration</p>
                         </div>
-                        <p class="text-slate-600 leading-relaxed mb-8 relative z-10">
+                        <p class="text-slate-600 leading-relaxed mb-6">
                             Collaborative partnerships with mining operators and OEMs, battery manufacturers, and automotive partners. We structure offtake agreements, feedstock supply arrangements, and joint ventures that create vertically integrated domestic supply chains.
                         </p>
-                        <a href="contact.html" class="inline-flex items-center gap-2 px-6 py-3 bg-syntra-tech text-white font-head font-bold uppercase text-sm hover:bg-syntra-midnight transition-all duration-300 border-2 border-syntra-tech relative z-10">
+                        <a href="contact.html" class="inline-block px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300">
                             Partner with us
                         </a>
                     </div>
@@ -821,55 +830,54 @@
     </section>
 
     <!-- LEADERSHIP SECTION -->
-    <section data-animate class="py-32 bg-gradient-to-b from-slate-50 to-white">
+    <section data-animate class="py-32 bg-gradient-to-br from-slate-50 via-white to-slate-100">
         <div class="container mx-auto px-6">
-            <div class="max-w-6xl mx-auto">
+            <div class="max-w-5xl mx-auto">
                 <!-- Header -->
-                <div class="mb-20" data-animate>
-                    <div class="inline-block px-3 py-1 border border-syntra-amber text-syntra-amber mb-6 font-mono text-xs font-bold">
+                <div class="mb-16" data-animate>
+                    <div class="inline-block px-4 py-2 font-mono text-xs font-bold mb-6 tracking-wider" style="background-color: rgba(8, 145, 178, 0.15); color: #0891B2;">
                         LEADERSHIP
                     </div>
-                    <h2 class="font-head text-5xl sm:text-6xl lg:text-8xl font-bold uppercase leading-[0.85] mb-8">
-                        <span class="text-syntra-midnight">THE</span> <span class="text-syntra-tech">FOUNDER</span>
+                    <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl font-bold uppercase leading-[0.9] mb-8">
+                        <span class="text-black">THE FOUNDER</span>
                     </h2>
-                    <p class="text-xl md:text-2xl text-slate-600 max-w-4xl leading-relaxed">
+                    <p class="text-xl text-slate-600 max-w-3xl leading-relaxed font-medium">
                         Building transformative refining infrastructure demands rare convergence of technical expertise, financial acumen, and strategic vision
                     </p>
                 </div>
 
                 <!-- CEO Card -->
-                <div class="bg-gradient-to-br from-white to-slate-50 border-4 border-syntra-tech overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300 relative" data-animate>
-                    <div class="absolute top-0 right-0 w-96 h-96 bg-syntra-tech/5 rounded-full blur-3xl"></div>
+                <div class="bg-white border-2 border-slate-200 overflow-hidden shadow-lg hover:border-syntra-tech hover:shadow-2xl transition-all duration-300" data-animate>
                     <div class="grid md:grid-cols-5 gap-8 p-12">
                         <!-- Image Column -->
-                        <div class="md:col-span-2 flex flex-col md:items-start relative z-10">
-                            <img src="assets/images/leadership/nifemi.png" alt="Nifemi Oguntuase" class="w-56 h-56 object-cover border-4 border-syntra-tech shadow-xl mb-8">
+                        <div class="md:col-span-2 flex flex-col md:items-start">
+                            <img src="assets/images/leadership/nifemi.png" alt="Nifemi Oguntuase" class="w-48 h-48 object-cover border-4 border-syntra-tech shadow-lg mb-6">
                             <div>
-                                <h3 class="font-head text-4xl lg:text-5xl font-bold uppercase mb-3 leading-tight">
-                                    <span class="text-syntra-midnight">Nifemi Oguntuase</span>
+                                <h3 class="font-head text-4xl font-bold uppercase mb-2">
+                                    <span class="text-syntra-tech">Nifemi Oguntuase</span>
                                 </h3>
-                                <p class="font-mono text-xs text-syntra-tech tracking-widest uppercase font-bold mb-6">Founder & Chief Executive Officer</p>
+                                <p class="font-mono text-sm text-syntra-tech tracking-widest uppercase mb-4">Founder & Chief Executive Officer</p>
                                 <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1.5 bg-syntra-tech/10 border border-syntra-tech text-syntra-tech text-xs font-bold">Process Chemistry</span>
-                                    <span class="px-3 py-1.5 bg-syntra-tech/10 border border-syntra-tech text-syntra-tech text-xs font-bold">Resource Finance</span>
-                                    <span class="px-3 py-1.5 bg-syntra-amber/10 border border-syntra-amber text-syntra-midnight text-xs font-bold">Infrastructure Development</span>
+                                    <span class="px-3 py-1 bg-syntra-tech/10 border border-syntra-tech/30 text-syntra-tech text-xs font-semibold">Process Chemistry</span>
+                                    <span class="px-3 py-1 bg-syntra-tech/10 border border-syntra-tech/30 text-syntra-tech text-xs font-semibold">Resource Finance</span>
+                                    <span class="px-3 py-1 bg-slate-100 border border-slate-300 text-slate-700 text-xs font-semibold">Infrastructure Development</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Content Column -->
-                        <div class="md:col-span-3 flex flex-col justify-center relative z-10">
-                            <div class="space-y-6 text-slate-700 leading-relaxed mb-10">
-                                <p class="text-lg leading-relaxed">
-                                    Nifemi Oguntuase founded Syntra Refining after identifying a fundamental structural inefficiency in North America's critical minerals value chain. With expertise spanning <span class="text-syntra-tech font-bold">mineral process chemistry, institutional resource finance, and exploration consulting</span>, she recognized what capital markets had systematically undervalued: the midstream refining bottleneck.
+                        <div class="md:col-span-3 flex flex-col justify-center">
+                            <div class="space-y-6 text-slate-600 leading-relaxed mb-8">
+                                <p class="text-lg font-medium">
+                                    Nifemi Oguntuase founded Syntra Refining after identifying a fundamental structural inefficiency in North America's critical minerals value chain. With expertise spanning <span class="text-syntra-tech font-semibold">mineral process chemistry, institutional resource finance, and exploration consulting</span>, she recognized what capital markets had systematically undervalued: the midstream refining bottleneck.
                                 </p>
-                                <p class="text-lg leading-relaxed">
-                                    Under her leadership, Syntra is establishing the <span class="text-syntra-tech font-bold">refining infrastructure backbone</span> that makes domestic supply chains economically competitive and strategically secure.
+                                <p class="font-medium">
+                                    Under her leadership, Syntra is establishing the <span class="text-syntra-tech font-semibold">refining infrastructure backbone</span> that makes domestic supply chains economically competitive and strategically secure.
                                 </p>
                             </div>
 
-                            <div class="border-l-4 border-syntra-amber pl-8 py-6 bg-gradient-to-r from-syntra-amber/5 to-transparent">
-                                <p class="text-lg md:text-xl text-syntra-midnight leading-relaxed font-medium italic">
+                            <div class="border-l-4 border-syntra-tech pl-6 py-4 bg-gradient-to-r from-slate-50 to-white">
+                                <p class="text-lg text-slate-700 leading-relaxed mb-3 font-medium italic">
                                     "North America has the geology, the capital, and the demand. What's missing is the infrastructure to connect them. Syntra exists to build that infrastructure—not as an R&D project, but as operational refining capacity deployed at commercial scale."
                                 </p>
                             </div>
@@ -878,8 +886,8 @@
                 </div>
 
                 <!-- Contact CTA -->
-                <div class="mt-16 text-center" data-animate>
-                    <a href="contact.html" class="inline-flex items-center gap-2 px-10 py-5 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase text-sm hover:bg-white hover:text-syntra-tech transition-all duration-300 shadow-2xl hover:shadow-3xl border-2 border-syntra-accent hover:border-syntra-tech">
+                <div class="mt-12 text-center" data-animate>
+                    <a href="contact.html" class="inline-block px-8 py-4 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300 shadow-lg hover:shadow-xl">
                         SCHEDULE A MEETING WITH OUR CEO
                     </a>
                 </div>
@@ -905,15 +913,15 @@
 
             // Update button states
             document.querySelectorAll('.timeline-btn').forEach(btn => {
-                btn.classList.remove('active', 'bg-syntra-amber', 'text-syntra-midnight', 'border-syntra-amber');
-                btn.classList.add('bg-white', 'text-slate-900', 'border-slate-300');
+                btn.classList.remove('active', 'bg-syntra-amber', 'text-white', 'text-black');
+                btn.classList.add('bg-slate-200', 'text-slate-900');
             });
 
             // Activate clicked button
             const activeBtn = document.querySelector(`[data-period="${period}"]`);
             if (activeBtn) {
-                activeBtn.classList.remove('bg-white', 'text-slate-900', 'border-slate-300');
-                activeBtn.classList.add('active', 'bg-syntra-amber', 'text-syntra-midnight', 'border-syntra-amber');
+                activeBtn.classList.remove('bg-slate-200', 'text-slate-900');
+                activeBtn.classList.add('active', 'bg-syntra-amber', 'text-black');
             }
         }
     </script>
