@@ -195,13 +195,11 @@
 
         /* Hero Grid Layout */
         .hero-grid-layout {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 48px;
+            align-items: start;
             width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         .hero-content {
@@ -224,10 +222,22 @@
             max-width: 680px;
         }
 
+        /* Desktop: side-by-side layout */
+        @media (min-width: 1025px) {
+            .hero-grid-layout {
+                grid-template-columns: 1fr 680px;
+                gap: 64px;
+            }
+        }
+
         /* Mobile: reduce gaps */
         @media (max-width: 768px) {
             .hero-grid-layout {
                 gap: 32px;
+            }
+
+            .hero-metrics-card {
+                max-width: 100%;
             }
         }
 
