@@ -193,12 +193,12 @@
             left: 0;
         }
 
-        /* Hero Grid Layout */
+        /* Hero Grid Layout - Single Column */
         .hero-grid-layout {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 48px;
-            align-items: start;
+            align-items: flex-start;
             width: 100%;
         }
 
@@ -220,15 +220,6 @@
         .hero-metrics-card {
             width: 100%;
             max-width: 680px;
-        }
-
-        /* Desktop: side-by-side layout */
-        @media (min-width: 1025px) {
-            .hero-grid-layout {
-                grid-template-columns: 1fr 680px;
-                gap: 64px;
-                align-items: center;
-            }
         }
 
         /* Mobile: reduce gaps */
