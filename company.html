@@ -52,6 +52,65 @@
         .logo-inner { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s; }
         .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #FFD700; }
 
+        /* Enhanced Card Styles */
+        .feature-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        /* Number Counter Animation */
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stat-number {
+            animation: countUp 0.8s ease-out forwards;
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #FFD700 0%, #0891B2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Hover Lift Effect */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Animated Border */
+        @keyframes border-pulse {
+            0%, 100% { border-color: #E2E8F0; }
+            50% { border-color: #FFD700; }
+        }
+
+        .animate-border {
+            animation: border-pulse 3s ease-in-out infinite;
+        }
+
         .nav-link {
             position: relative;
             font-weight: 500;
@@ -459,29 +518,61 @@
     </div>
 
     <!-- ABOUT US HERO INTRODUCTION -->
-    <header data-animate class="relative bg-gradient-to-b from-white via-slate-50 to-white py-24 border-b-4 border-syntra-accent/20">
-        <div class="absolute inset-0 z-0 opacity-5">
+    <header data-animate class="relative bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight py-32 overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 z-0 opacity-10">
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="black" stroke-width="1"/>
-                </pattern>
-                <rect width="100%" height="100%" fill="url(#grid)" />
+                <defs>
+                    <pattern id="hero-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+                        <circle cx="30" cy="30" r="2" fill="#FFD700"/>
+                        <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#FFD700" stroke-width="0.5"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#hero-grid)" />
             </svg>
         </div>
 
-        <div class="container mx-auto px-6 relative z-10 w-full">
-            <div class="text-left max-w-7xl">
-                <div class="inline-block px-4 py-2 mb-6 font-bold text-xs tracking-wider uppercase" style="background-color: rgba(8, 145, 178, 0.15); color: #0891B2;">
-                    ABOUT SYNTRA REFINING
+        <!-- Floating Elements -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-20 left-10 w-32 h-32 bg-syntra-amber/5 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-20 right-20 w-40 h-40 bg-syntra-tech/5 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-left max-w-6xl">
+                <div class="inline-flex items-center gap-3 px-6 py-3 mb-8 bg-syntra-amber/20 border border-syntra-amber/40 backdrop-blur-sm">
+                    <div class="w-2 h-2 bg-syntra-amber rounded-full animate-pulse"></div>
+                    <span class="font-bold text-xs tracking-[0.2em] uppercase text-syntra-amber">ABOUT SYNTRA REFINING</span>
                 </div>
 
-                <h1 class="font-head text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-syntra-midnight uppercase leading-[0.9] mb-8 tracking-tight">
-                    WHY WE ARE HERE
+                <h1 class="font-head text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold uppercase leading-[0.85] mb-10 tracking-tight">
+                    <span class="text-white">WHY WE</span><br>
+                    <span class="gradient-text">ARE HERE</span>
                 </h1>
 
-                <p class="text-base sm:text-lg text-slate-700 font-light tracking-wide leading-relaxed max-w-3xl">
+                <p class="text-xl sm:text-2xl text-slate-300 font-light leading-relaxed max-w-4xl mb-12">
                     We are committed to responsibly transforming how critical minerals are refined through advanced technological excellence.
                 </p>
+
+                <!-- Key Metrics Banner -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl">
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-6 hover:bg-white/10 transition-all duration-300">
+                        <div class="text-3xl font-head font-bold text-syntra-amber mb-2">2017</div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider">Founded</div>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-6 hover:bg-white/10 transition-all duration-300">
+                        <div class="text-3xl font-head font-bold text-syntra-amber mb-2">1,000</div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider">TPA Capacity</div>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-6 hover:bg-white/10 transition-all duration-300">
+                        <div class="text-3xl font-head font-bold text-syntra-amber mb-2">Halifax</div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider">Headquarters</div>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-6 hover:bg-white/10 transition-all duration-300">
+                        <div class="text-3xl font-head font-bold text-syntra-amber mb-2">99%</div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider">Target Purity</div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -722,29 +813,44 @@
                 </div>
 
                 <!-- Enhanced Featured Stats Banner -->
-                <div class="relative bg-gradient-to-r from-syntra-midnight via-slate-900 to-syntra-midnight border-4 border-syntra-accent/20 p-12 lg:p-16 overflow-hidden shadow-2xl" data-animate>
+                <div class="relative bg-gradient-to-r from-syntra-midnight via-slate-900 to-syntra-midnight border-4 border-syntra-accent overflow-hidden shadow-2xl" data-animate>
                     <!-- Animated Background Pattern -->
                     <div class="absolute inset-0 opacity-5">
                         <div class="absolute inset-0" style="background-image: linear-gradient(45deg, #FFD700 1px, transparent 1px), linear-gradient(-45deg, #FFD700 1px, transparent 1px); background-size: 40px 40px;"></div>
                     </div>
 
-                    <div class="relative z-10 grid sm:grid-cols-3 gap-12 text-center">
-                        <div class="group">
-                            <div class="text-5xl lg:text-6xl font-head font-bold text-syntra-amber mb-4 group-hover:scale-110 transition-transform duration-300">1,000 TPA</div>
-                            <div class="text-sm text-slate-300 uppercase font-bold tracking-[0.15em]">Demonstration Capacity</div>
-                            <div class="text-xs text-slate-400 mt-2">Initial processing facility</div>
+                    <!-- Animated Accent Line -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-syntra-amber to-transparent"></div>
+
+                    <div class="relative z-10 grid sm:grid-cols-3 gap-12 text-center p-12 lg:p-16">
+                        <div class="group stat-item">
+                            <div class="relative inline-block mb-6">
+                                <div class="absolute inset-0 bg-syntra-amber/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                                <div class="relative text-6xl lg:text-7xl font-head font-bold text-syntra-amber stat-number group-hover:scale-110 transition-transform duration-300">1,000</div>
+                            </div>
+                            <div class="text-sm text-slate-300 uppercase font-bold tracking-[0.15em] mb-1">TPA Capacity</div>
+                            <div class="text-xs text-slate-400">Initial processing facility</div>
                         </div>
-                        <div class="group">
-                            <div class="text-5xl lg:text-6xl font-head font-bold text-syntra-amber mb-4 group-hover:scale-110 transition-transform duration-300">99%</div>
-                            <div class="text-sm text-slate-300 uppercase font-bold tracking-[0.15em]">Target Purity Specification</div>
-                            <div class="text-xs text-slate-400 mt-2">Battery-grade quality</div>
+                        <div class="group stat-item">
+                            <div class="relative inline-block mb-6">
+                                <div class="absolute inset-0 bg-syntra-amber/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                                <div class="relative text-6xl lg:text-7xl font-head font-bold text-syntra-amber stat-number group-hover:scale-110 transition-transform duration-300">99%</div>
+                            </div>
+                            <div class="text-sm text-slate-300 uppercase font-bold tracking-[0.15em] mb-1">Target Purity</div>
+                            <div class="text-xs text-slate-400">Battery-grade quality</div>
                         </div>
-                        <div class="group">
-                            <div class="text-4xl lg:text-5xl font-head font-bold text-syntra-amber mb-4 group-hover:scale-110 transition-transform duration-300">Halifax, NS</div>
-                            <div class="text-sm text-slate-300 uppercase font-bold tracking-[0.15em]">Headquarters</div>
-                            <div class="text-xs text-slate-400 mt-2">Canada's Atlantic hub</div>
+                        <div class="group stat-item">
+                            <div class="relative inline-block mb-6">
+                                <div class="absolute inset-0 bg-syntra-amber/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                                <div class="relative text-5xl lg:text-6xl font-head font-bold text-syntra-amber stat-number group-hover:scale-110 transition-transform duration-300">Halifax</div>
+                            </div>
+                            <div class="text-sm text-slate-300 uppercase font-bold tracking-[0.15em] mb-1">Headquarters</div>
+                            <div class="text-xs text-slate-400">Canada's Atlantic hub</div>
                         </div>
                     </div>
+
+                    <!-- Bottom Accent Line -->
+                    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-syntra-amber to-transparent"></div>
                 </div>
             </div>
         </div>
@@ -770,58 +876,90 @@
                 <!-- Services Grid -->
                 <div class="grid md:grid-cols-2 gap-8">
                     <!-- Hydrometallurgical Refining -->
-                    <div class="bg-white border-2 border-slate-200 p-10 hover:border-syntra-amber hover:shadow-xl transition-all duration-300 group" data-animate>
+                    <div class="feature-card hover-lift bg-white border-2 border-slate-200 p-10 group" data-animate>
                         <div class="mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-syntra-amber to-syntra-tech/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-8 h-8 text-syntra-midnight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                                </svg>
+                            </div>
                             <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-2">Hydrometallurgical Refining</h3>
-                            <p class="text-sm text-slate-500 tracking-widest uppercase font-semibold">Core Capability</p>
+                            <p class="text-sm text-syntra-tech tracking-widest uppercase font-semibold">Core Capability</p>
                         </div>
                         <p class="text-slate-600 leading-relaxed mb-6">
                             Advanced chemical refining processes that achieve battery-grade purity specifications. Our clean, closed-loop technology replaces energy-intensive pyrometallurgical methods with precision hydrometallurgical extraction, enabling processing of complex domestic feedstocks at commercial scale.
                         </p>
-                        <a href="technology.html" class="inline-block px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300">
-                            Learn more about our technology
+                        <a href="technology.html" class="inline-flex items-center gap-2 px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300 group/btn">
+                            Learn More
+                            <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
                         </a>
                     </div>
 
                     <!-- Process Engineering -->
-                    <div class="bg-white border-2 border-slate-200 p-10 hover:border-syntra-tech hover:shadow-xl transition-all duration-300 group" data-animate>
+                    <div class="feature-card hover-lift bg-white border-2 border-slate-200 p-10 group" data-animate>
                         <div class="mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-syntra-tech to-syntra-amber/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                                </svg>
+                            </div>
                             <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-2">Process Engineering</h3>
-                            <p class="text-sm text-slate-500 tracking-widest uppercase font-semibold">Technical Design</p>
+                            <p class="text-sm text-syntra-tech tracking-widest uppercase font-semibold">Technical Design</p>
                         </div>
                         <p class="text-slate-600 leading-relaxed mb-6">
                             End-to-end process design and optimization for critical minerals refining operations. Our engineering team develops customized flowsheets, conducts feasibility studies, and provides technical validation for feedstock compatibility and purity specifications.
                         </p>
-                        <a href="commercial.html" class="inline-block px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300">
-                            Explore commercial services
+                        <a href="commercial.html" class="inline-flex items-center gap-2 px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300 group/btn">
+                            Explore Services
+                            <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
                         </a>
                     </div>
 
                     <!-- Facility Development -->
-                    <div class="bg-white border-2 border-slate-200 p-10 hover:border-syntra-amber hover:shadow-xl transition-all duration-300 group" data-animate>
+                    <div class="feature-card hover-lift bg-white border-2 border-slate-200 p-10 group" data-animate>
                         <div class="mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-syntra-amber to-syntra-tech/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-8 h-8 text-syntra-midnight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                            </div>
                             <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-2">Facility Development</h3>
-                            <p class="text-sm text-slate-500 tracking-widest uppercase font-semibold">Regional Deployment</p>
+                            <p class="text-sm text-syntra-tech tracking-widest uppercase font-semibold">Regional Deployment</p>
                         </div>
                         <p class="text-slate-600 leading-relaxed mb-6">
                             Modular refining facilities designed for rapid deployment across strategic locations. We manage site selection, permitting, construction, and commissioning of industrial-scale operations integrated with existing mining and manufacturing partners.
                         </p>
-                        <a href="network.html" class="inline-block px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300">
-                            View our network
+                        <a href="network.html" class="inline-flex items-center gap-2 px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300 group/btn">
+                            View Network
+                            <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
                         </a>
                     </div>
 
                     <!-- Strategic Partnerships -->
-                    <div class="bg-white border-2 border-slate-200 p-10 hover:border-syntra-tech hover:shadow-xl transition-all duration-300 group" data-animate>
+                    <div class="feature-card hover-lift bg-white border-2 border-slate-200 p-10 group" data-animate>
                         <div class="mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-syntra-tech to-syntra-amber/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                            </div>
                             <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-2">Strategic Partnerships</h3>
-                            <p class="text-sm text-slate-500 tracking-widest uppercase font-semibold">Value Chain Integration</p>
+                            <p class="text-sm text-syntra-tech tracking-widest uppercase font-semibold">Value Chain Integration</p>
                         </div>
                         <p class="text-slate-600 leading-relaxed mb-6">
                             Collaborative partnerships with mining operators and OEMs, battery manufacturers, and automotive partners. We structure offtake agreements, feedstock supply arrangements, and joint ventures that create vertically integrated domestic supply chains.
                         </p>
-                        <a href="contact.html" class="inline-block px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300">
-                            Partner with us
+                        <a href="contact.html" class="inline-flex items-center gap-2 px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300 group/btn">
+                            Partner With Us
+                            <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -830,24 +968,27 @@
     </section>
 
     <!-- LEADERSHIP SECTION -->
-    <section data-animate class="py-32 bg-gradient-to-br from-slate-50 via-white to-slate-100">
+    <section data-animate class="py-32 bg-gradient-to-b from-white to-slate-50">
         <div class="container mx-auto px-6">
-            <div class="max-w-5xl">
+            <div class="max-w-6xl">
                 <!-- Header -->
-                <div class="mb-16" data-animate>
-                    <div class="inline-block px-4 py-2 font-mono text-xs font-bold mb-6 tracking-wider" style="background-color: rgba(8, 145, 178, 0.15); color: #0891B2;">
-                        LEADERSHIP
+                <div class="mb-20" data-animate>
+                    <div class="inline-flex items-center gap-3 px-6 py-3 mb-8 bg-syntra-tech/10 border border-syntra-tech/30">
+                        <svg class="w-4 h-4 text-syntra-tech" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                        <span class="font-bold text-xs tracking-[0.2em] uppercase text-syntra-tech">LEADERSHIP</span>
                     </div>
                     <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl font-bold uppercase leading-[0.9] mb-8">
-                        <span class="text-black">THE FOUNDER</span>
+                        <span class="text-syntra-midnight">THE</span> <span class="text-syntra-amber">FOUNDER</span>
                     </h2>
-                    <p class="text-xl text-slate-600 max-w-3xl leading-relaxed font-medium">
+                    <p class="text-xl text-slate-600 max-w-4xl leading-relaxed font-medium">
                         Building transformative refining infrastructure demands rare convergence of technical expertise, financial acumen, and strategic vision
                     </p>
                 </div>
 
                 <!-- CEO Card -->
-                <div class="bg-white border-2 border-slate-200 overflow-hidden shadow-lg hover:border-syntra-tech hover:shadow-2xl transition-all duration-300" data-animate>
+                <div class="hover-lift bg-gradient-to-br from-white to-slate-50 border-2 border-syntra-amber overflow-hidden shadow-xl animate-border" data-animate>
                     <div class="grid md:grid-cols-5 gap-8 p-12">
                         <!-- Image Column -->
                         <div class="md:col-span-2 flex flex-col md:items-start">
@@ -886,10 +1027,31 @@
                 </div>
 
                 <!-- Contact CTA -->
-                <div class="mt-12 text-left" data-animate>
-                    <a href="contact.html" class="inline-block px-8 py-4 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300 shadow-lg hover:shadow-xl">
-                        SCHEDULE A MEETING WITH OUR CEO
-                    </a>
+                <div class="mt-16" data-animate>
+                    <div class="bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight p-12 relative overflow-hidden">
+                        <!-- Background Pattern -->
+                        <div class="absolute inset-0 opacity-5">
+                            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                                <pattern id="cta-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                                    <circle cx="20" cy="20" r="1" fill="#FFD700"/>
+                                </pattern>
+                                <rect width="100%" height="100%" fill="url(#cta-pattern)"/>
+                            </svg>
+                        </div>
+
+                        <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div>
+                                <h3 class="font-head text-3xl font-bold text-white uppercase mb-2">Ready to Partner?</h3>
+                                <p class="text-slate-300 text-lg">Connect with our leadership team to explore opportunities</p>
+                            </div>
+                            <a href="contact.html" class="inline-flex items-center gap-3 px-8 py-4 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase tracking-wider hover:bg-syntra-accent/90 transition-all duration-300 shadow-lg hover:shadow-xl group whitespace-nowrap">
+                                Schedule Meeting
+                                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
