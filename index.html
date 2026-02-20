@@ -528,6 +528,39 @@
             </a>
           </div>
 
+          <div class="bg-black border border-slate-700 shadow-2xl relative overflow-hidden" style="height:520px;">
+            <div class="absolute top-3 left-4 z-20 flex items-center gap-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+              <span class="font-mono text-xs text-cyan-400 font-bold tracking-widest">PROCESS SIMULATION</span>
+            </div>
+            <div class="absolute top-3 right-4 z-20 font-mono text-[10px] text-slate-500" id="sim-clock">--:--:--</div>
+
+            <canvas id="twinCanvas" class="w-full h-full" style="display:block;"></canvas>
+
+            <div class="absolute bottom-3 left-3 right-3 grid grid-cols-5 gap-1.5 z-20">
+              <div class="bg-slate-950/95 border border-slate-700 p-2">
+                <p class="text-[9px] text-slate-500 font-mono uppercase">Feed Rate</p>
+                <p class="text-white font-mono font-bold text-xs" id="sim-flow">124.2 L/m</p>
+              </div>
+              <div class="bg-slate-950/95 border border-slate-700 p-2">
+                <p class="text-[9px] text-slate-500 font-mono uppercase">Leach pH</p>
+                <p class="font-mono font-bold text-xs" style="color:#0891B2;" id="sim-ph">4.17</p>
+              </div>
+              <div class="bg-slate-950/95 border border-slate-700 p-2">
+                <p class="text-[9px] text-slate-500 font-mono uppercase">Temp °C</p>
+                <p class="font-mono font-bold text-xs" style="color:#f97316;" id="sim-temp">82.4</p>
+              </div>
+              <div class="bg-slate-950/95 border border-slate-700 p-2">
+                <p class="text-[9px] text-slate-500 font-mono uppercase">Recovery</p>
+                <p class="text-syntra-accent font-mono font-bold text-xs" id="sim-recovery">97.3%</p>
+              </div>
+              <div class="bg-slate-950/95 border border-slate-700 p-2">
+                <p class="text-[9px] text-white font-mono uppercase">Purity</p>
+                <p class="text-yellow-400 font-mono font-bold text-xs" id="sim-purity">99.8%</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -975,6 +1008,328 @@
             }
         }
 
+        /* ===========================
+           DIGITAL TWIN CANVAS ANIMATION
+           =========================== */
+        (function() {
+            const canvas = document.getElementById('twinCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let W, H;
+
+            function resize() {
+                W = canvas.width = canvas.parentElement.offsetWidth;
+                H = canvas.height = canvas.parentElement.offsetHeight;
+            }
+            window.addEventListener('resize', () => { resize(); });
+            resize();
+
+            const tel = {
+                flow:     { v: 124.2, base: 124.2, noise: 2.5 },
+                ph:       { v: 4.17,  base: 4.17,  noise: 0.08 },
+                temp:     { v: 82.4,  base: 82.4,  noise: 1.5 },
+                recovery: { v: 97.3,  base: 97.3,  noise: 0.6 },
+                purity:   { v: 99.8,  base: 99.8,  noise: 0.15 }
+            };
+
+            function smoothNoise(t, noise) {
+                return (Math.sin(Date.now() * 0.0003 + t) * 0.6 + Math.sin(Date.now() * 0.0011 + t * 2.3) * 0.4) * noise;
+            }
+
+            const STAGES = [
+                { id:'feed',    label:'FEEDSTOCK', sub:'', col: 0.08 },
+                { id:'leach',   label:'LEACH',      sub:'', col: 0.28 },
+                { id:'sx',      label:'SX / EW',    sub:'', col: 0.50 },
+                { id:'precip',  label:'PRECIP',     sub:'', col: 0.72 },
+                { id:'product', label:'PRODUCT',    sub:'', col: 0.92 }
+            ];
+
+            const STAGE_COLORS = {
+                feed:    '#94a3b8',
+                leach:   '#0891B2',
+                sx:      '#06b6d4',
+                precip:  '#FFD700',
+                product: '#38bdf8'
+            };
+
+            const PIPE_COLOR = '#1e3a52';
+
+            const pipeParticles = [];
+            function spawnPipeParticle(fromX, toX, pipeY, color) {
+                pipeParticles.push({
+                    x: fromX, y: pipeY,
+                    targetX: toX,
+                    speed: (toX - fromX) * (0.0008 + Math.random() * 0.0006),
+                    color: color,
+                    alpha: 0.7 + Math.random() * 0.3,
+                    r: 2 + Math.random() * 2
+                });
+            }
+
+            let t = 0;
+
+            function roundRect(x, y, w, h, radius) {
+                ctx.beginPath();
+                ctx.moveTo(x + radius, y);
+                ctx.lineTo(x + w - radius, y);
+                ctx.arcTo(x + w, y, x + w, y + radius, radius);
+                ctx.lineTo(x + w, y + h - radius);
+                ctx.arcTo(x + w, y + h, x + w - radius, y + h, radius);
+                ctx.lineTo(x + radius, y + h);
+                ctx.arcTo(x, y + h, x, y + h - radius, radius);
+                ctx.lineTo(x, y + radius);
+                ctx.arcTo(x, y, x + radius, y, radius);
+                ctx.closePath();
+            }
+
+            function drawVessel(stage, stageColor, liquidLevel, isActive) {
+                const cx = stage.col * W;
+                const vw = Math.min(W * 0.11, 72);
+                const vh = H * 0.30;
+                const vx = cx - vw / 2;
+                const vy = H * 0.28;
+
+                ctx.globalAlpha = 1;
+                roundRect(vx, vy, vw, vh, 4);
+                ctx.fillStyle = '#0a0f1a';
+                ctx.fill();
+                ctx.strokeStyle = isActive ? stageColor : '#1e3a52';
+                ctx.lineWidth = isActive ? 1.5 : 1;
+                ctx.stroke();
+
+                const fillH = vh * liquidLevel;
+                roundRect(vx + 1, vy + vh - fillH, vw - 2, fillH - 1, 3);
+                const grad = ctx.createLinearGradient(vx, vy + vh - fillH, vx, vy + vh);
+                grad.addColorStop(0, stageColor + '55');
+                grad.addColorStop(1, stageColor + 'cc');
+                ctx.fillStyle = grad;
+                ctx.fill();
+
+                if (stage.id === 'leach' || stage.id === 'sx' || stage.id === 'precip') {
+                    const ag = t * (stage.id === 'leach' ? 1.5 : stage.id === 'sx' ? 1.0 : 0.7);
+                    const agCX = cx;
+                    const agCY = vy + vh * 0.5;
+                    const agR = vw * 0.35;
+                    ctx.save();
+                    ctx.translate(agCX, agCY);
+                    ctx.rotate(ag);
+                    ctx.strokeStyle = stageColor + '88';
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(-agR, 0); ctx.lineTo(agR, 0);
+                    ctx.moveTo(0, -agR * 0.5); ctx.lineTo(0, agR * 0.5);
+                    ctx.stroke();
+                    ctx.restore();
+                }
+
+                if (isActive) {
+                    ctx.shadowColor = stageColor;
+                    ctx.shadowBlur = 12;
+                    roundRect(vx, vy, vw, vh, 4);
+                    ctx.strokeStyle = stageColor + '44';
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+                    ctx.shadowBlur = 0;
+                }
+
+                ctx.globalAlpha = 1;
+                ctx.fillStyle = isActive ? stageColor : '#64748b';
+                ctx.font = `bold ${Math.max(8, Math.min(10, W * 0.018))}px monospace`;
+                ctx.textAlign = 'center';
+                ctx.fillText(stage.label, cx, vy - 14);
+                ctx.fillStyle = '#475569';
+                ctx.font = `${Math.max(7, Math.min(9, W * 0.015))}px monospace`;
+                ctx.fillText(stage.sub, cx, vy - 4);
+
+                return { cx, cy: vy + vh / 2, top: vy, bottom: vy + vh, left: vx, right: vx + vw, vw, vh, vy };
+            }
+
+            function drawPipe(x1, x2, y, color, flow) {
+                const ph = 6;
+                ctx.globalAlpha = 1;
+                ctx.fillStyle = '#0d1b2a';
+                ctx.fillRect(x1, y - ph / 2, x2 - x1, ph);
+                ctx.strokeStyle = PIPE_COLOR;
+                ctx.lineWidth = 1;
+                ctx.strokeRect(x1, y - ph / 2, x2 - x1, ph);
+                const progress = ((t * flow * 0.4) % 1);
+                const offset = progress * (x2 - x1);
+                const gx = ctx.createLinearGradient(x1 + offset - 20, y, x1 + offset + 20, y);
+                gx.addColorStop(0, 'transparent');
+                gx.addColorStop(0.4, color + 'cc');
+                gx.addColorStop(0.6, color + 'cc');
+                gx.addColorStop(1, 'transparent');
+                ctx.fillStyle = gx;
+                ctx.fillRect(x1, y - ph / 2 + 1, x2 - x1, ph - 2);
+            }
+
+            function updatePipeParticles(stageGeoms) {
+                if (Math.random() < 0.18) {
+                    for (let i = 0; i < STAGES.length - 1; i++) {
+                        const g1 = stageGeoms[i];
+                        const g2 = stageGeoms[i + 1];
+                        if (!g1 || !g2) continue;
+                        const pipeY = H * 0.44;
+                        spawnPipeParticle(g1.cx + g1.vw / 2, g2.cx - g2.vw / 2, pipeY, Object.values(STAGE_COLORS)[i]);
+                    }
+                }
+                for (let i = pipeParticles.length - 1; i >= 0; i--) {
+                    const p = pipeParticles[i];
+                    p.x += p.speed;
+                    if (p.x >= p.targetX) { pipeParticles.splice(i, 1); continue; }
+                    ctx.globalAlpha = Math.max(0.1, Math.min(0.9, p.alpha));
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.globalAlpha = 1;
+            }
+
+            const waveHistory = { ph: [], temp: [], flow: [] };
+            const WAVE_LEN = 120;
+
+            function updateWave() {
+                ['ph', 'temp', 'flow'].forEach(k => {
+                    if (waveHistory[k].length > WAVE_LEN) waveHistory[k].shift();
+                    waveHistory[k].push(tel[k].v);
+                });
+            }
+
+            function drawWave(data, color, x, y, w, h, min, max) {
+                if (data.length < 2) return;
+                ctx.save();
+                ctx.beginPath();
+                ctx.rect(x, y, w, h);
+                ctx.clip();
+                const step = w / WAVE_LEN;
+                ctx.beginPath();
+                for (let i = 0; i < data.length; i++) {
+                    const px = x + i * step;
+                    const py = y + h - ((data[i] - min) / (max - min)) * h;
+                    i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+                }
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 1.5;
+                ctx.globalAlpha = 0.8;
+                ctx.stroke();
+                ctx.restore();
+                ctx.globalAlpha = 1;
+            }
+
+            function draw() {
+                t += 0.016;
+                ctx.clearRect(0, 0, W, H);
+
+                ctx.globalAlpha = 0.05;
+                ctx.strokeStyle = '#0891B2';
+                ctx.lineWidth = 0.5;
+                for (let gx = 0; gx < W; gx += 40) {
+                    ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke();
+                }
+                for (let gy = 0; gy < H; gy += 40) {
+                    ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke();
+                }
+                ctx.globalAlpha = 1;
+
+                ctx.globalAlpha = 0.025;
+                for (let sy = 0; sy < H; sy += 3) {
+                    ctx.fillStyle = '#000';
+                    ctx.fillRect(0, sy, W, 1);
+                }
+                ctx.globalAlpha = 1;
+
+                const pipeY = H * 0.44;
+
+                const stageGeoms = [];
+                STAGES.forEach((s, i) => {
+                    const cx = s.col * W;
+                    const vw = Math.min(W * 0.11, 72);
+                    stageGeoms[i] = { cx, vw, cy: pipeY };
+                });
+
+                for (let i = 0; i < STAGES.length - 1; i++) {
+                    const g1 = stageGeoms[i];
+                    const g2 = stageGeoms[i + 1];
+                    const col = Object.values(STAGE_COLORS)[i];
+                    drawPipe(g1.cx + g1.vw / 2, g2.cx - g2.vw / 2, pipeY, col, 1 + i * 0.2);
+                }
+
+                const drawnGeoms = [];
+                STAGES.forEach((stage, i) => {
+                    const color = STAGE_COLORS[stage.id];
+                    const liquidBase = stage.id === 'product' ? 0.55 : 0.65;
+                    const liquid = liquidBase + Math.sin(t * 0.5 + i * 1.1) * 0.06;
+                    const isActive = Math.floor(t * 0.5) % STAGES.length === i;
+                    const g = drawVessel(stage, color, liquid, isActive);
+                    drawnGeoms.push(g);
+                });
+
+                updatePipeParticles(drawnGeoms);
+
+                const waveX = W * 0.04, waveY = H * 0.72, waveW = W * 0.92, waveH = H * 0.10;
+                ctx.globalAlpha = 0.25;
+                ctx.fillStyle = '#0a0f1a';
+                ctx.fillRect(waveX, waveY, waveW, waveH);
+                ctx.globalAlpha = 0.4;
+                ctx.strokeStyle = '#1e3a52';
+                ctx.lineWidth = 1;
+                ctx.strokeRect(waveX, waveY, waveW, waveH);
+                ctx.globalAlpha = 1;
+
+                const ww3 = waveW / 3 - 4;
+                drawWave(waveHistory.ph,   '#0891B2', waveX + 2,          waveY + 2, ww3, waveH - 4, 3.8, 4.6);
+                drawWave(waveHistory.temp, '#f97316', waveX + ww3 + 6,    waveY + 2, ww3, waveH - 4, 78,  88);
+                drawWave(waveHistory.flow, '#ffffff', waveX + ww3 * 2 + 10, waveY + 2, ww3, waveH - 4, 118, 130);
+
+                ctx.globalAlpha = 0.5;
+                ctx.font = '8px monospace';
+                ctx.textAlign = 'left';
+                ctx.fillStyle = '#0891B2'; ctx.fillText('pH',   waveX + 4,          waveY + 10);
+                ctx.fillStyle = '#f97316'; ctx.fillText('TEMP', waveX + ww3 + 8,    waveY + 10);
+                ctx.fillStyle = '#94a3b8'; ctx.fillText('FLOW', waveX + ww3 * 2 + 12, waveY + 10);
+                ctx.globalAlpha = 1;
+
+                STAGES.forEach((s, i) => {
+                    if (i < STAGES.length - 1) {
+                        const g1 = drawnGeoms[i];
+                        const g2 = drawnGeoms[i + 1];
+                        const arrowProg = (t * 0.4 + i * 0.33) % 1;
+                        const arrowX = g1.cx + g1.vw / 2 + (g2.cx - g2.vw / 2 - g1.cx - g1.vw / 2) * arrowProg;
+                        ctx.globalAlpha = 1 - Math.abs(arrowProg - 0.5) * 2;
+                        ctx.fillStyle = Object.values(STAGE_COLORS)[i];
+                        ctx.font = 'bold 10px monospace';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('▶', arrowX, pipeY + 1);
+                        ctx.globalAlpha = 1;
+                    }
+                });
+
+                const now = new Date();
+                const cl = document.getElementById('sim-clock');
+                if (cl) cl.textContent = now.toLocaleTimeString('en-US', { hour12: false });
+            }
+
+            function updateTelemetry() {
+                Object.keys(tel).forEach((k, i) => {
+                    tel[k].v = tel[k].base + smoothNoise(i * 7.3, tel[k].noise);
+                });
+                document.getElementById('sim-flow').textContent     = tel.flow.v.toFixed(1) + ' L/m';
+                document.getElementById('sim-ph').textContent       = tel.ph.v.toFixed(2);
+                document.getElementById('sim-temp').textContent     = tel.temp.v.toFixed(1);
+                document.getElementById('sim-recovery').textContent = tel.recovery.v.toFixed(1) + '%';
+                document.getElementById('sim-purity').textContent   = tel.purity.v.toFixed(1) + '%';
+                updateWave();
+            }
+
+            setInterval(updateTelemetry, 400);
+
+            function loop() {
+                draw();
+                requestAnimationFrame(loop);
+            }
+            loop();
+        })();
 
     </script>
 
