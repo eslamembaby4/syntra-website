@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syntra Refining | Newsletter — SYNHUB™ Halifax Update</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Syntra Refining | Investor Update Q1 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
@@ -12,13 +12,13 @@
 
         :root {
             --navy:   #0B1120;
-            --deep:   #0F172A;
+            --deep:   #0A0F1E;
             --yellow: #FFD700;
-            --slate8: #1E293B;
-            --slate7: #334155;
-            --slate5: #64748B;
-            --slate4: #94A3B8;
-            --slate3: #CBD5E1;
+            --s8:     #1E293B;
+            --s7:     #334155;
+            --s5:     #64748B;
+            --s4:     #94A3B8;
+            --s3:     #CBD5E1;
             --white:  #FFFFFF;
         }
 
@@ -26,148 +26,107 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background: #07090f;
+            background: var(--deep);
             font-family: 'Inter', sans-serif;
             color: var(--white);
         }
 
-        /* ── PAGE SHELL ─────────────────────────────── */
+        /* PAGE: fixed viewport fill, no scroll */
         .page {
             width: 100vw;
             height: 100vh;
             display: grid;
-            grid-template-rows: auto 1fr auto;
+            grid-template-rows: 3px auto 1fr auto;
             background: var(--navy);
-            position: relative;
             overflow: hidden;
+            position: relative;
         }
 
-        /* subtle grid overlay */
+        /* faint grid overlay */
         .page::before {
             content: '';
             position: absolute;
             inset: 0;
             background-image:
-                linear-gradient(rgba(255,215,0,0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,215,0,0.025) 1px, transparent 1px);
-            background-size: 52px 52px;
+                linear-gradient(rgba(255,215,0,0.022) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,215,0,0.022) 1px, transparent 1px);
+            background-size: 48px 48px;
             pointer-events: none;
             z-index: 0;
         }
 
-        /* ── TOP ACCENT ─────────────────────────────── */
-        .top-bar {
-            height: 3px;
-            background: linear-gradient(90deg, var(--yellow) 0%, rgba(255,215,0,0.15) 100%);
+        .top-rule {
+            background: linear-gradient(90deg, var(--yellow) 0%, rgba(255,215,0,0.1) 100%);
             position: relative;
             z-index: 1;
         }
 
-        /* ── HEADER ─────────────────────────────────── */
-        .header {
+        /* ── HEADER ── */
+        .hd {
             background: var(--deep);
-            border-bottom: 1px solid var(--slate8);
-            padding: 0 32px;
-            height: 52px;
+            border-bottom: 1px solid var(--s8);
+            padding: 0 clamp(16px, 3vw, 32px);
+            height: clamp(44px, 6vh, 56px);
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: relative;
             z-index: 1;
-            flex-shrink: 0;
-        }
-
-        .logo-group {
-            display: flex;
-            align-items: center;
             gap: 12px;
         }
 
-        .diamond {
-            width: 22px;
-            height: 22px;
-            border: 2px solid var(--yellow);
-            transform: rotate(45deg);
-            flex-shrink: 0;
-            position: relative;
-        }
-        .diamond::after {
-            content: '';
-            position: absolute;
-            inset: 4px;
-            border: 1px solid rgba(255,215,0,0.35);
+        .hd-logo {
+            height: clamp(20px, 3vh, 28px);
+            width: auto;
+            display: block;
+            object-fit: contain;
         }
 
-        .wordmark {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--white);
-            line-height: 1;
-        }
-        .wordmark span { color: var(--yellow); }
-
-        .header-sep {
-            width: 1px;
-            height: 20px;
-            background: var(--slate7);
-        }
-
-        .header-sub {
+        .hd-badge {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.58rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--yellow);
-        }
-
-        .issue-badge {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.58rem;
+            font-size: clamp(0.45rem, 1vw, 0.6rem);
             font-weight: 700;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--slate4);
-            background: var(--slate8);
-            border: 1px solid var(--slate7);
-            padding: 4px 10px;
+            color: var(--s4);
+            background: var(--s8);
+            border: 1px solid var(--s7);
+            padding: 3px 10px;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        /* ── BODY ────────────────────────────────────── */
+        /* ── BODY: 3-col grid ── */
         .body {
             display: grid;
             grid-template-columns: 1fr 1px 1fr 1px 1fr;
+            overflow: hidden;
+            min-height: 0;
             position: relative;
             z-index: 1;
-            overflow: hidden;
-            min-height: 0;
         }
 
-        .col-div {
-            background: var(--slate8);
-            width: 1px;
+        /* on mobile: single column, scrolling inside each "panel" not needed — stack all in one flow col */
+        .vdiv {
+            background: var(--s8);
         }
 
-        /* ── COLUMN BASE ─────────────────────────────── */
         .col {
-            padding: 22px 26px;
+            padding: clamp(14px, 2.2vh, 24px) clamp(14px, 2vw, 24px);
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: clamp(10px, 1.5vh, 16px);
             overflow: hidden;
             min-height: 0;
         }
+        .col-a { background: var(--deep); }
+        .col-b { background: var(--navy); position: relative; }
+        .col-c { background: var(--deep); }
 
-        .col-left   { background: var(--deep); border-right: none; }
-        .col-mid    { background: var(--navy); }
-        .col-right  { background: var(--deep); }
-
-        /* ── LABEL ───────────────────────────────────── */
-        .label {
+        /* ── SECTION LABEL ── */
+        .lbl {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.52rem;
+            font-size: clamp(0.44rem, 0.9vw, 0.54rem);
             font-weight: 700;
             letter-spacing: 0.2em;
             text-transform: uppercase;
@@ -177,17 +136,17 @@
             gap: 8px;
             flex-shrink: 0;
         }
-        .label::after {
+        .lbl::after {
             content: '';
             flex: 1;
             height: 1px;
-            background: linear-gradient(90deg, rgba(255,215,0,0.5), transparent);
+            background: linear-gradient(90deg, rgba(255,215,0,0.45), transparent);
         }
 
-        /* ── COL HEADING ─────────────────────────────── */
-        .col-title {
+        /* ── HEADINGS ── */
+        .h1 {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.45rem;
+            font-size: clamp(1.1rem, 2.2vw, 1.55rem);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.04em;
@@ -195,143 +154,142 @@
             color: var(--white);
             flex-shrink: 0;
         }
-        .col-title .accent { color: var(--yellow); }
+        .h1 .y { color: var(--yellow); }
 
-        .col-body {
-            font-size: 0.78rem;
+        .h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            line-height: 1.15;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        .h2 .y { color: var(--yellow); }
+
+        /* ── BODY TEXT ── */
+        .bt {
+            font-size: clamp(0.68rem, 1.1vw, 0.8rem);
             line-height: 1.7;
-            color: var(--slate3);
+            color: var(--s3);
             flex-shrink: 0;
         }
 
-        /* ── MILESTONE ───────────────────────────────── */
-        .milestone {
-            background: rgba(255,215,0,0.06);
+        /* ── MILESTONE / CALLOUT ── */
+        .box {
+            background: rgba(255,215,0,0.055);
             border-left: 2px solid var(--yellow);
-            padding: 12px 14px;
+            padding: clamp(10px, 1.4vh, 14px) clamp(12px, 1.5vw, 16px);
             flex-shrink: 0;
         }
-        .milestone-lbl {
+        .box-lbl {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.5rem;
+            font-size: clamp(0.42rem, 0.8vw, 0.5rem);
             font-weight: 700;
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--yellow);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
-        .milestone-val {
+        .box-val {
             font-family: 'Oswald', sans-serif;
-            font-size: 0.95rem;
+            font-size: clamp(0.8rem, 1.3vw, 1rem);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             color: var(--white);
+            line-height: 1.2;
         }
-        .milestone-sub {
-            font-size: 0.7rem;
-            color: var(--slate4);
+        .box-sub {
+            font-size: clamp(0.62rem, 0.95vw, 0.72rem);
+            color: var(--s4);
             margin-top: 3px;
             line-height: 1.5;
         }
 
-        /* ── PILLARS ─────────────────────────────────── */
-        .pillars {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
+        /* ── BULLET LIST ── */
+        .blist {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
             flex-shrink: 0;
         }
-
-        .pillar {
-            background: var(--slate8);
-            border-top: 2px solid var(--yellow);
-            padding: 10px 12px;
+        .blist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: clamp(0.66rem, 1vw, 0.76rem);
+            line-height: 1.5;
+            color: var(--s3);
         }
-        .pillar-cat {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.48rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--yellow);
-            margin-bottom: 4px;
-        }
-        .pillar-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--white);
-            margin-bottom: 3px;
-        }
-        .pillar-desc {
-            font-size: 0.66rem;
-            line-height: 1.55;
-            color: var(--slate4);
+        .blist-item::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--yellow);
+            flex-shrink: 0;
+            margin-top: 5px;
+            transform: rotate(45deg);
         }
 
-        /* ── ELEMENT CARD ────────────────────────────── */
-        .element-row {
+        /* ── ELEMENT CARD (periodic table) ── */
+        .el-row {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
             flex-shrink: 0;
         }
-
-        .element-card {
+        .el-card {
+            border: 2px solid var(--yellow);
+            padding: clamp(6px, 1vh, 10px) clamp(8px, 1.2vw, 14px);
+            background: rgba(255,215,0,0.05);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: 2px solid var(--yellow);
-            padding: 8px 12px;
-            min-width: 64px;
-            background: rgba(255,215,0,0.05);
             flex-shrink: 0;
+            min-width: clamp(52px, 6vw, 70px);
         }
-        .el-symbol {
+        .el-sym {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.6rem;
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
             font-weight: 700;
             color: var(--yellow);
             line-height: 1;
         }
         .el-name {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.48rem;
+            font-size: clamp(0.42rem, 0.8vw, 0.52rem);
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--slate3);
+            color: var(--s3);
             margin-top: 2px;
         }
         .el-num {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.5rem;
-            color: var(--slate5);
+            font-size: clamp(0.4rem, 0.75vw, 0.5rem);
+            color: var(--s5);
         }
+        .el-info { flex: 1; }
 
-        .element-info { flex: 1; }
-        .element-info .col-title { font-size: 1.05rem; }
-
-        /* ── STATS ───────────────────────────────────── */
+        /* ── STATS ROW ── */
         .stats {
             display: flex;
-            border: 1px solid var(--slate7);
+            border: 1px solid var(--s7);
             flex-shrink: 0;
         }
         .stat {
             flex: 1;
-            padding: 10px 12px;
-            background: var(--slate8);
-            border-right: 1px solid var(--slate7);
+            padding: clamp(8px, 1.2vh, 12px) clamp(8px, 1vw, 12px);
+            background: var(--s8);
+            border-right: 1px solid var(--s7);
         }
         .stat:last-child { border-right: none; }
         .stat-val {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 1.8vw, 1.4rem);
             font-weight: 700;
             color: var(--yellow);
             line-height: 1;
@@ -339,193 +297,198 @@
         }
         .stat-lbl {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.5rem;
+            font-size: clamp(0.42rem, 0.75vw, 0.52rem);
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--slate4);
+            color: var(--s4);
             line-height: 1.4;
         }
 
-        /* ── TECH BLOCK ──────────────────────────────── */
-        .tech-block {
+        /* ── TECH BLOCK ── */
+        .tech {
             background: rgba(255,215,0,0.03);
-            border: 1px solid rgba(255,215,0,0.18);
-            padding: 12px 14px;
+            border: 1px solid rgba(255,215,0,0.16);
+            padding: clamp(10px, 1.4vh, 14px) clamp(12px, 1.5vw, 16px);
             flex-shrink: 0;
         }
-        .tech-header {
+        .tech-lbl {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.52rem;
+            font-size: clamp(0.42rem, 0.8vw, 0.52rem);
             font-weight: 700;
             letter-spacing: 0.14em;
             text-transform: uppercase;
             color: var(--yellow);
             margin-bottom: 6px;
         }
-        .tech-desc {
-            font-size: 0.73rem;
+        .tech-txt {
+            font-size: clamp(0.66rem, 1vw, 0.76rem);
             line-height: 1.65;
-            color: var(--slate3);
+            color: var(--s3);
         }
 
-        /* ── CLOSING QUOTE ───────────────────────────── */
-        .closing {
+        /* ── CLOSING QUOTE ── */
+        .quote {
             border-left: 2px solid var(--yellow);
-            padding-left: 14px;
+            padding-left: clamp(12px, 1.5vw, 16px);
             flex-shrink: 0;
         }
-        .closing-quote {
+        .quote-text {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 1.8vw, 1.3rem);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            color: var(--white);
             line-height: 1.25;
-            margin-bottom: 8px;
-        }
-        .closing-quote .accent { color: var(--yellow); }
-        .closing-sub {
-            font-size: 0.7rem;
-            color: var(--slate4);
-            line-height: 1.65;
-        }
-
-        /* ── FOOTER ──────────────────────────────────── */
-        .footer {
-            background: var(--deep);
-            border-top: 1px solid var(--slate8);
-            height: 42px;
-            padding: 0 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            z-index: 1;
-            flex-shrink: 0;
-        }
-
-        .footer-brand {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
             color: var(--white);
         }
-        .footer-brand span { color: var(--yellow); }
+        .quote-text .y { color: var(--yellow); }
 
-        .footer-center {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.52rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--slate5);
-        }
-
-        .footer-right {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.52rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--slate5);
-        }
-
-        /* ── CO watermark ────────────────────────────── */
-        .co-mark {
+        /* faint Co watermark */
+        .co-wm {
             font-family: 'Oswald', sans-serif;
-            font-size: 7rem;
+            font-size: clamp(5rem, 12vw, 9rem);
             font-weight: 700;
-            color: rgba(255,215,0,0.03);
+            color: rgba(255,215,0,0.025);
             position: absolute;
-            right: 10px;
+            right: 8px;
             bottom: 4px;
             line-height: 1;
             pointer-events: none;
             user-select: none;
+        }
+
+        /* ── FOOTER ── */
+        .ft {
+            background: var(--deep);
+            border-top: 1px solid var(--s8);
+            height: clamp(36px, 5vh, 44px);
+            padding: 0 clamp(16px, 3vw, 32px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .ft-brand {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(0.65rem, 1.2vw, 0.82rem);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+        .ft-brand span { color: var(--yellow); }
+        .ft-mid {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.44rem, 0.85vw, 0.54rem);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--s5);
+            white-space: nowrap;
+        }
+        .ft-right {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.44rem, 0.85vw, 0.52rem);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--s5);
+            white-space: nowrap;
+        }
+
+        /* ── MOBILE: single-column, content scales ── */
+        @media (max-width: 700px) {
+            .body {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1px 1fr 1px 1fr;
+                overflow: hidden;
+            }
+            .vdiv {
+                height: 1px;
+                width: 100%;
+            }
+            .col {
+                gap: clamp(7px, 1.5vh, 11px);
+                padding: clamp(10px, 2vh, 16px) clamp(12px, 4vw, 20px);
+            }
+            .ft-mid { display: none; }
+            .hd-badge { display: none; }
+            .co-wm { display: none; }
+            .h1 { font-size: clamp(0.95rem, 4vw, 1.2rem); }
+            .h2 { font-size: clamp(0.78rem, 3.2vw, 0.95rem); }
+            .bt, .tech-txt { font-size: clamp(0.6rem, 2.5vw, 0.72rem); }
+            .box-val { font-size: clamp(0.72rem, 3vw, 0.88rem); }
+            .blist-item { font-size: clamp(0.6rem, 2.5vw, 0.72rem); }
+            .quote-text { font-size: clamp(0.85rem, 3.5vw, 1.05rem); }
+            .stat-val { font-size: clamp(0.88rem, 3.5vw, 1.1rem); }
         }
     </style>
 </head>
 <body>
 
 <div class="page">
-    <div class="top-bar"></div>
+    <div class="top-rule"></div>
 
     <!-- HEADER -->
-    <div class="header">
-        <div class="logo-group">
-            <div class="diamond"></div>
-            <div class="wordmark">SYNTRA<span>.</span></div>
-            <div class="header-sep"></div>
-            <div class="header-sub">Critical Mineral Infrastructure</div>
-        </div>
-        <div class="issue-badge">Investor Update — Q1 2026</div>
+    <div class="hd">
+        <img src="/assets/images/Wordmark_2_(1).png" alt="Syntra Refining Corp." class="hd-logo">
+        <div class="hd-badge">Investor Update — Q1 2026</div>
     </div>
 
-    <!-- THREE COLUMNS -->
+    <!-- BODY -->
     <div class="body">
 
-        <!-- LEFT: Executive Update + Pillars -->
-        <div class="col col-left">
-            <div class="label">Executive Update</div>
-            <div class="col-title">Breaking Ground.<br><span class="accent">SYNHUB™ Halifax</span><br>Advances.</div>
-            <p class="col-body">We are advancing toward breaking ground on SYNHUB™ Halifax — the first facility in our distributed refining network, expanding North America's critical mineral supply from extraction to battery-grade output.</p>
+        <!-- COL A: Syntra Update + Let's Learn -->
+        <div class="col col-a">
+            <div class="lbl">Syntra Update</div>
 
-            <div class="milestone">
-                <div class="milestone-lbl">Milestone Achieved</div>
-                <div class="milestone-val">Lead Investor Secured</div>
-                <div class="milestone-sub">Capital foundation strengthened. Momentum is building. Execution continues.</div>
+            <div class="h1">SYNHUB™ <span class="y">Halifax</span><br>Advances.</div>
+
+            <p class="bt">We are advancing toward breaking ground on SYNHUB™ Halifax — the first facility in our distributed refining network, designed to expand North America's critical mineral supply.</p>
+
+            <div class="box">
+                <div class="box-lbl">Milestone Achieved</div>
+                <div class="box-val">Lead Investor Secured</div>
+                <div class="box-sub">A major milestone that strengthens our capital foundation as we move toward execution. Momentum is building. Execution continues.</div>
             </div>
 
-            <div class="label">Education Series</div>
-            <div class="col-title" style="font-size:1.05rem;">Why Do These Minerals <span class="accent">Matter?</span></div>
-            <p class="col-body">Critical minerals power electrification — EVs, energy storage, aerospace. Supply exists. Refining certainty does not. Syntra delivers what's missing.</p>
+            <div class="lbl">Let's Learn</div>
 
-            <div class="pillars">
-                <div class="pillar">
-                    <div class="pillar-cat">Technology</div>
-                    <div class="pillar-title">Clean Recovery</div>
-                    <div class="pillar-desc">Hydrometallurgical processing without toxic solvents.</div>
-                </div>
-                <div class="pillar">
-                    <div class="pillar-cat">Infrastructure</div>
-                    <div class="pillar-title">Distributed Capacity</div>
-                    <div class="pillar-desc">Modular network close to feedstock sources.</div>
-                </div>
-                <div class="pillar">
-                    <div class="pillar-cat">Operations</div>
-                    <div class="pillar-title">Zero Liquid Discharge</div>
-                    <div class="pillar-desc">Full effluent containment across all streams.</div>
-                </div>
-                <div class="pillar">
-                    <div class="pillar-cat">Performance</div>
-                    <div class="pillar-title">Greater Recovery</div>
-                    <div class="pillar-desc">AI-optimized yield through SYNCORE™.</div>
-                </div>
+            <div class="h2">Why Do These<br><span class="y">Minerals Matter?</span></div>
+
+            <p class="bt">Critical minerals power electrification — from EVs to energy storage to aerospace systems. Supply exists. Refining certainty does not.</p>
+
+            <div class="blist">
+                <div class="blist-item">Clean recovery technology</div>
+                <div class="blist-item">Distributed refining capacity</div>
+                <div class="blist-item">Zero Liquid Discharge operations</div>
+                <div class="blist-item">Greater recovery efficiency</div>
             </div>
+
+            <p class="bt" style="color:var(--s4);">Over the coming months, we will spotlight the minerals quietly powering modern life.</p>
         </div>
 
-        <div class="col-div"></div>
+        <div class="vdiv"></div>
 
-        <!-- MIDDLE: Mineral Spotlight -->
-        <div class="col col-mid" style="position:relative;">
-            <div class="co-mark">Co</div>
+        <!-- COL B: Mineral Spotlight -->
+        <div class="col col-b">
+            <div class="co-wm">Co</div>
 
-            <div class="label">Mineral Spotlight</div>
+            <div class="lbl">Mineral Spotlight</div>
 
-            <div class="element-row">
-                <div class="element-card">
-                    <div class="el-symbol">Co</div>
+            <div class="el-row">
+                <div class="el-card">
+                    <div class="el-sym">Co</div>
                     <div class="el-name">Cobalt</div>
                     <div class="el-num">27</div>
                 </div>
-                <div class="element-info">
-                    <div class="col-title">Cobalt —<br><span class="accent">The Stability Metal</span></div>
+                <div class="el-info">
+                    <div class="h2">Cobalt —<br><span class="y">The Stability Metal</span></div>
                 </div>
             </div>
 
-            <p class="col-body">Cobalt enhances lithium-ion battery performance — improving energy density, thermal stability, and cycle lifespan. It is a foundational input to battery chemistries powering EVs and stationary storage systems globally.</p>
+            <p class="bt">Cobalt enhances lithium-ion batteries — improving energy density, thermal stability, and lifespan. A foundational input to the chemistries powering EVs and stationary storage globally.</p>
 
             <div class="stats">
                 <div class="stat">
@@ -534,73 +497,37 @@
                 </div>
                 <div class="stat">
                     <div class="stat-val">~70%</div>
-                    <div class="stat-lbl">Global Refining<br>Concentrated in DRC</div>
+                    <div class="stat-lbl">Global Refining<br>in DRC</div>
                 </div>
                 <div class="stat">
                     <div class="stat-val">$33B</div>
-                    <div class="stat-lbl">Projected Market<br>Size by 2030</div>
+                    <div class="stat-lbl">Market Size<br>by 2030</div>
                 </div>
             </div>
 
-            <p class="col-body">Canada holds the world's 7th-largest cobalt reserves — yet most is exported raw, processed overseas, and repurchased as battery-grade material at a premium. This structural vulnerability represents both a national security risk and a commercial opportunity.</p>
+            <p class="bt">Canada holds the world's 7th-largest reserves, yet much of its cobalt is exported for processing and later repurchased as battery-grade material — a structural vulnerability.</p>
 
-            <div class="tech-block">
-                <div class="tech-header">SYNCORE™ Technology — Cobalt Recovery</div>
-                <p class="tech-desc">Syntra's SYNCORE™ platform applies advanced hydrometallurgy combined with AI process optimization to recover cobalt without toxic solvents — delivering cleaner processing, stronger economics, and battery-grade output domestically.</p>
+            <div class="tech">
+                <div class="tech-lbl">SYNCORE™ Technology</div>
+                <p class="tech-txt">Syntra's proprietary SYNCORE™ applies advanced hydrometallurgy and AI optimization to recover cobalt without toxic solvents — delivering cleaner processing and stronger economics.</p>
             </div>
         </div>
 
-        <div class="col-div"></div>
+        <div class="vdiv"></div>
 
-        <!-- RIGHT: Closing + Next -->
-        <div class="col col-right" style="justify-content: space-between;">
-            <div style="display:flex; flex-direction:column; gap:14px;">
-                <div class="label">Closing Statement</div>
-
-                <div class="closing">
-                    <div class="closing-quote">Energy transition<br>requires <span class="accent">refining<br>capacity.</span><br>At Syntra,<br>we are building it.</div>
-                    <p class="closing-sub">Over the coming months, we will continue to spotlight the critical minerals quietly powering modern life — and the infrastructure being built to secure their supply.</p>
-                </div>
-
-                <div class="label" style="margin-top:6px;">What's Ahead</div>
-
-                <div style="display:flex; flex-direction:column; gap:8px;">
-                    <div class="milestone">
-                        <div class="milestone-lbl">Coming Soon</div>
-                        <div class="milestone-val">Nickel Spotlight</div>
-                        <div class="milestone-sub">Next in our mineral education series — the metal redefining battery cathode chemistry.</div>
-                    </div>
-                    <div class="milestone">
-                        <div class="milestone-lbl">In Progress</div>
-                        <div class="milestone-val">Site Preparation — Halifax</div>
-                        <div class="milestone-sub">SYNHUB™ site readiness advancing. Groundbreaking timeline on track.</div>
-                    </div>
-                    <div class="milestone">
-                        <div class="milestone-lbl">Ongoing</div>
-                        <div class="milestone-val">Capital Formation</div>
-                        <div class="milestone-sub">With Lead Investor secured, syndication and co-investment conversations continue.</div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="border-top: 1px solid var(--slate8); padding-top: 14px; margin-top: 4px;">
-                <div style="font-family:'JetBrains Mono',monospace; font-size:0.5rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--yellow); margin-bottom:8px;">Syntra Delivers</div>
-                <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                    <span style="font-family:'JetBrains Mono',monospace; font-size:0.52rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--slate3); background:var(--slate8); border:1px solid var(--slate7); padding:3px 8px;">SYNCORE™</span>
-                    <span style="font-family:'JetBrains Mono',monospace; font-size:0.52rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--slate3); background:var(--slate8); border:1px solid var(--slate7); padding:3px 8px;">SYNHUB™ Halifax</span>
-                    <span style="font-family:'JetBrains Mono',monospace; font-size:0.52rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--slate3); background:var(--slate8); border:1px solid var(--slate7); padding:3px 8px;">Hydrometallurgy</span>
-                    <span style="font-family:'JetBrains Mono',monospace; font-size:0.52rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--slate3); background:var(--slate8); border:1px solid var(--slate7); padding:3px 8px;">Zero Liquid Discharge</span>
-                    <span style="font-family:'JetBrains Mono',monospace; font-size:0.52rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--slate3); background:var(--slate8); border:1px solid var(--slate7); padding:3px 8px;">AI Optimization</span>
-                </div>
+        <!-- COL C: Closing -->
+        <div class="col col-c" style="justify-content:center;">
+            <div class="quote">
+                <div class="quote-text">Energy transition<br>requires <span class="y">refining<br>capacity.</span><br>At Syntra,<br>we are building it.</div>
             </div>
         </div>
     </div>
 
     <!-- FOOTER -->
-    <div class="footer">
-        <div class="footer-brand">SYNTRA<span>.</span> Refining Corp</div>
-        <div class="footer-center">Powered by SYNCORE™ — Smart Critical Mineral Infrastructure</div>
-        <div class="footer-right">syntrarefining.com &nbsp;|&nbsp; Halifax, NS &nbsp;|&nbsp; © 2026</div>
+    <div class="ft">
+        <div class="ft-brand">SYNTRA<span>.</span> Refining Corp</div>
+        <div class="ft-mid">Powered by SYNCORE™ — Smart Critical Mineral Infrastructure</div>
+        <div class="ft-right">syntrarefining.com &nbsp;|&nbsp; © 2026</div>
     </div>
 </div>
 
