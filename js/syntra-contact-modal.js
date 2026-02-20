@@ -90,7 +90,7 @@
             </div>
 
             <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-              <button type="submit" style="flex: 1; padding: 1rem 1.5rem; background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); color: white; border: none; border-radius: 2px; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">
+              <button type="submit" style="flex: 1; padding: 1rem 1.5rem; background: #FFD700; color: #0B1120; border: none; border-radius: 2px; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 14px rgba(255, 215, 0, 0.3); transition: background 0.2s;" onmouseover="this.style.background='#FACC15'" onmouseout="this.style.background='#FFD700'">
                 Submit Inquiry
               </button>
               <button type="button" class="modal-cancel-btn" style="padding: 1rem 1.5rem; background: transparent; color: #64748B; border: 2px solid #E2E8F0; border-radius: 2px; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; transition: all 0.2s;">
