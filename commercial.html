@@ -193,10 +193,10 @@
             left: 0;
         }
 
-        /* Hero Grid Layout - Three Column */
+        /* Hero Grid Layout - Two Column */
         .hero-grid-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 40px;
             align-items: start;
             width: 100%;
@@ -216,42 +216,15 @@
             margin-right: 0;
         }
 
-        .hero-video-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .hero-video-panel video {
-            width: 100%;
-            border-radius: 12px;
-            object-fit: cover;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.18);
-        }
-
         .hero-metrics-card {
             width: 100%;
         }
 
         /* Mobile: stack columns */
-        @media (max-width: 1024px) {
-            .hero-grid-layout {
-                grid-template-columns: 1fr 1fr;
-                gap: 32px;
-            }
-            .hero-video-panel {
-                grid-column: 1 / -1;
-                order: -1;
-            }
-        }
-
         @media (max-width: 768px) {
             .hero-grid-layout {
                 grid-template-columns: 1fr;
                 gap: 28px;
-            }
-            .hero-video-panel {
-                order: 0;
             }
         }
 
@@ -570,24 +543,6 @@
                         <a href="technology.html" class="px-8 py-4 bg-syntra-accent text-syntra-midnight font-head font-bold text-lg uppercase tracking-wide hover:bg-yellow-400 transition-colors shadow-xl shadow-yellow-500/20 flex items-center justify-center gap-3">
                             Technology Overview
                         </a>
-                    </div>
-                </div>
-
-                <!-- Center Column: Visual -->
-                <div class="hero-video-panel" data-animate>
-                    <div class="relative rounded-xl overflow-hidden bg-slate-100 flex items-center justify-center" style="box-shadow: 0 20px 60px rgba(0,0,0,0.18); min-height: 320px;">
-                        <div class="text-center p-12">
-                            <div class="w-24 h-24 mx-auto mb-6 relative">
-                                <div class="absolute inset-0 border-2 border-syntra-accent/30 rounded-full rotating-ring"></div>
-                                <div class="absolute inset-2 border-2 border-syntra-amber/40 rounded-full rotating-ring-reverse"></div>
-                                <div class="absolute inset-4 border-2 border-syntra-tech/30 rounded-full rotating-ring" style="animation-delay: 0.5s;"></div>
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="w-6 h-7 bg-syntra-accent" style="border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;"></div>
-                                </div>
-                            </div>
-                            <p class="font-head font-bold text-syntra-midnight uppercase tracking-wide text-lg">Battery-Grade<br>Critical Minerals</p>
-                            <p class="font-mono text-xs text-slate-400 mt-2 uppercase tracking-widest">Refining Operations</p>
-                        </div>
                     </div>
                 </div>
 
