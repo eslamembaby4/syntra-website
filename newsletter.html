@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntra Refining | Newsletter — SYNHUB™ Halifax Update</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy:   #0B1120;
+            --deep:   #0F172A;
+            --yellow: #FFD700;
+            --slate8: #1E293B;
+            --slate7: #334155;
+            --slate4: #94A3B8;
+            --slate3: #CBD5E1;
+            --white:  #FFFFFF;
+        }
+
+        body {
+            background: #07090f;
+            font-family: 'Inter', sans-serif;
+            color: var(--white);
+            min-height: 100vh;
+            padding: 48px 16px;
+        }
+
+        /* ── WRAPPER ─────────────────────────────────────────── */
+        .nl-wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--navy);
+            border: 1px solid var(--slate8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* subtle grid overlay */
+        .nl-wrap::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,215,0,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,215,0,0.03) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+        }
+
+        /* ── HEADER ──────────────────────────────────────────── */
+        .nl-header {
+            background: var(--deep);
+            border-bottom: 2px solid var(--yellow);
+            padding: 40px 48px 36px;
+            position: relative;
+        }
+
+        .nl-header-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .nl-logo-mark {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .nl-diamond {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--yellow);
+            transform: rotate(45deg);
+            flex-shrink: 0;
+            position: relative;
+        }
+        .nl-diamond::after {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border: 1px solid rgba(255,215,0,0.4);
+        }
+
+        .nl-wordmark {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--white);
+            line-height: 1;
+        }
+        .nl-wordmark span { color: var(--yellow); }
+
+        .nl-issue-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--slate4);
+            background: var(--slate8);
+            border: 1px solid var(--slate7);
+            padding: 6px 12px;
+            white-space: nowrap;
+            align-self: flex-start;
+        }
+
+        .nl-header-tagline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            padding-top: 2px;
+        }
+
+        /* ── HERO BAND ───────────────────────────────────────── */
+        .nl-hero {
+            padding: 48px 48px 40px;
+            border-bottom: 1px solid var(--slate8);
+            position: relative;
+        }
+
+        .nl-section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nl-section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--yellow), transparent);
+            opacity: 0.4;
+        }
+
+        .nl-hero-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        .nl-hero-title .accent { color: var(--yellow); }
+
+        .nl-hero-body {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: var(--slate3);
+            max-width: 560px;
+        }
+
+        /* ── MILESTONE CALLOUT ───────────────────────────────── */
+        .nl-milestone {
+            margin: 32px 0 0;
+            background: rgba(255, 215, 0, 0.06);
+            border-left: 3px solid var(--yellow);
+            padding: 20px 24px;
+        }
+        .nl-milestone-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 8px;
+        }
+        .nl-milestone-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--white);
+            line-height: 1.3;
+        }
+        .nl-milestone-sub {
+            font-size: 0.82rem;
+            color: var(--slate4);
+            margin-top: 6px;
+            line-height: 1.6;
+        }
+
+        /* ── DIVIDER ─────────────────────────────────────────── */
+        .nl-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--slate7), transparent);
+            margin: 0 48px;
+        }
+
+        /* ── SECTION ─────────────────────────────────────────── */
+        .nl-section {
+            padding: 40px 48px;
+            border-bottom: 1px solid var(--slate8);
+        }
+
+        .nl-section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--white);
+            margin-bottom: 14px;
+        }
+        .nl-section-title .accent { color: var(--yellow); }
+
+        .nl-body {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: var(--slate3);
+        }
+
+        /* ── PILLARS GRID ────────────────────────────────────── */
+        .nl-pillars {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .nl-pillar {
+            background: var(--deep);
+            border: 1px solid var(--slate8);
+            border-top: 2px solid var(--yellow);
+            padding: 16px 18px;
+        }
+
+        .nl-pillar-icon {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 8px;
+        }
+
+        .nl-pillar-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .nl-pillar-desc {
+            font-size: 0.78rem;
+            line-height: 1.6;
+            color: var(--slate4);
+        }
+
+        /* ── MINERAL SPOTLIGHT ───────────────────────────────── */
+        .nl-spotlight {
+            padding: 40px 48px;
+            border-bottom: 1px solid var(--slate8);
+            background: var(--deep);
+            position: relative;
+        }
+        .nl-spotlight::before {
+            content: 'Co';
+            font-family: 'Oswald', sans-serif;
+            font-size: 8rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            color: rgba(255,215,0,0.04);
+            position: absolute;
+            right: 32px;
+            top: 24px;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .nl-element-card {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--yellow);
+            padding: 12px 16px;
+            min-width: 80px;
+            margin-bottom: 24px;
+            background: rgba(255,215,0,0.05);
+        }
+        .nl-element-symbol {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--yellow);
+            line-height: 1;
+        }
+        .nl-element-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--slate3);
+            margin-top: 4px;
+        }
+        .nl-element-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--slate4);
+            margin-top: 2px;
+        }
+
+        .nl-stat-row {
+            display: flex;
+            gap: 0;
+            margin: 24px 0;
+            border: 1px solid var(--slate8);
+        }
+
+        .nl-stat {
+            flex: 1;
+            padding: 16px 18px;
+            border-right: 1px solid var(--slate8);
+            background: var(--slate8);
+        }
+        .nl-stat:last-child { border-right: none; }
+
+        .nl-stat-val {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--yellow);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .nl-stat-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--slate4);
+            line-height: 1.4;
+        }
+
+        /* ── SYNCORE TECH BLOCK ──────────────────────────────── */
+        .nl-tech-block {
+            background: rgba(255,215,0,0.03);
+            border: 1px solid rgba(255,215,0,0.2);
+            padding: 20px 24px;
+            margin-top: 20px;
+        }
+        .nl-tech-header {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 10px;
+        }
+        .nl-tech-desc {
+            font-size: 0.85rem;
+            line-height: 1.75;
+            color: var(--slate3);
+        }
+
+        /* ── CLOSING STATEMENT ───────────────────────────────── */
+        .nl-closing {
+            padding: 40px 48px;
+            border-bottom: 1px solid var(--slate8);
+        }
+
+        .nl-closing-quote {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--white);
+            line-height: 1.25;
+            border-left: 3px solid var(--yellow);
+            padding-left: 20px;
+            margin-bottom: 16px;
+        }
+        .nl-closing-quote .accent { color: var(--yellow); }
+
+        .nl-closing-sub {
+            font-size: 0.85rem;
+            color: var(--slate4);
+            padding-left: 23px;
+            line-height: 1.7;
+        }
+
+        /* ── FOOTER ──────────────────────────────────────────── */
+        .nl-footer {
+            background: var(--deep);
+            padding: 32px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .nl-footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nl-footer-brand {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+        .nl-footer-brand span { color: var(--yellow); }
+
+        .nl-footer-tagline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--slate4);
+        }
+
+        .nl-footer-right {
+            text-align: right;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--slate4);
+            line-height: 1.8;
+        }
+
+        .nl-footer-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--slate8);
+            margin-bottom: 24px;
+        }
+
+        /* ── ACCENT LINE ─────────────────────────────────────── */
+        .nl-accent-line {
+            height: 3px;
+            background: linear-gradient(90deg, var(--yellow), rgba(255,215,0,0.1));
+        }
+
+        /* ── RESPONSIVE ──────────────────────────────────────── */
+        @media (max-width: 560px) {
+            .nl-header        { padding: 28px 24px 24px; }
+            .nl-hero          { padding: 32px 24px; }
+            .nl-section       { padding: 28px 24px; }
+            .nl-spotlight     { padding: 28px 24px; }
+            .nl-closing       { padding: 28px 24px; }
+            .nl-footer        { padding: 24px; flex-direction: column; align-items: flex-start; }
+            .nl-footer-right  { text-align: left; }
+            .nl-divider       { margin: 0 24px; }
+            .nl-hero-title    { font-size: 1.75rem; }
+            .nl-pillars       { grid-template-columns: 1fr; }
+            .nl-stat-row      { flex-direction: column; }
+            .nl-stat          { border-right: none; border-bottom: 1px solid var(--slate7); }
+            .nl-stat:last-child { border-bottom: none; }
+            .nl-spotlight::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nl-wrap">
+
+    <!-- Top accent line -->
+    <div class="nl-accent-line"></div>
+
+    <!-- HEADER -->
+    <div class="nl-header">
+        <div class="nl-header-top">
+            <div class="nl-logo-mark">
+                <div class="nl-diamond"></div>
+                <div>
+                    <div class="nl-wordmark">SYNTRA<span>.</span></div>
+                    <div class="nl-header-tagline">Critical Mineral Infrastructure</div>
+                </div>
+            </div>
+            <div class="nl-issue-badge">Investor Update — Q1 2026</div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="nl-hero">
+        <div class="nl-section-label">Executive Update</div>
+        <h1 class="nl-hero-title">
+            Breaking Ground.<br>
+            <span class="accent">SYNHUB™ Halifax</span><br>
+            Advances.
+        </h1>
+        <p class="nl-hero-body">
+            We are advancing toward breaking ground on SYNHUB™ Halifax — the first facility in our distributed refining network, designed to expand North America's critical mineral supply chain from extraction through to battery-grade output.
+        </p>
+
+        <div class="nl-milestone">
+            <div class="nl-milestone-label">Milestone Achieved</div>
+            <div class="nl-milestone-text">Lead Investor Secured</div>
+            <div class="nl-milestone-sub">A major milestone that strengthens our capital foundation as we move toward execution. Momentum is building. Execution continues.</div>
+        </div>
+    </div>
+
+    <!-- LET'S LEARN -->
+    <div class="nl-section">
+        <div class="nl-section-label">Education Series</div>
+        <h2 class="nl-section-title">Why Do These Minerals <span class="accent">Matter?</span></h2>
+        <p class="nl-body">
+            Critical minerals power electrification — from electric vehicles to grid-scale energy storage to advanced aerospace systems. The raw material supply exists. What North America lacks is refining certainty — the domestic capacity to convert extracted ore into battery-grade output at scale.
+        </p>
+
+        <div class="nl-pillars">
+            <div class="nl-pillar">
+                <div class="nl-pillar-icon">Technology</div>
+                <div class="nl-pillar-title">Clean Recovery</div>
+                <div class="nl-pillar-desc">Proprietary hydrometallurgical processing without toxic solvents — delivering higher purity at lower environmental cost.</div>
+            </div>
+            <div class="nl-pillar">
+                <div class="nl-pillar-icon">Infrastructure</div>
+                <div class="nl-pillar-title">Distributed Capacity</div>
+                <div class="nl-pillar-desc">A modular refining network positioned close to feedstock sources, reducing logistics risk and supply chain dependency.</div>
+            </div>
+            <div class="nl-pillar">
+                <div class="nl-pillar-icon">Operations</div>
+                <div class="nl-pillar-title">Zero Liquid Discharge</div>
+                <div class="nl-pillar-desc">Full effluent containment across all processing streams — meeting the environmental standards of next-generation industrial facilities.</div>
+            </div>
+            <div class="nl-pillar">
+                <div class="nl-pillar-icon">Performance</div>
+                <div class="nl-pillar-title">Greater Recovery</div>
+                <div class="nl-pillar-desc">AI-optimized process control through SYNCORE™ — increasing yield from each feedstock input and improving overall economics.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MINERAL SPOTLIGHT -->
+    <div class="nl-spotlight">
+        <div class="nl-section-label">Mineral Spotlight</div>
+
+        <div style="display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap; margin-bottom: 8px;">
+            <div class="nl-element-card">
+                <div class="nl-element-symbol">Co</div>
+                <div class="nl-element-name">Cobalt</div>
+                <div class="nl-element-num">27</div>
+            </div>
+            <div style="flex: 1; min-width: 200px;">
+                <h2 class="nl-section-title" style="margin-bottom: 10px;">Cobalt — <span class="accent">The Stability Metal</span></h2>
+                <p class="nl-body">Cobalt enhances lithium-ion battery performance — improving energy density, thermal stability, and overall cycle lifespan. It is a foundational input to the battery chemistries powering EVs and stationary storage systems globally.</p>
+            </div>
+        </div>
+
+        <div class="nl-stat-row">
+            <div class="nl-stat">
+                <div class="nl-stat-val">7th</div>
+                <div class="nl-stat-label">Canada's Global<br>Reserve Ranking</div>
+            </div>
+            <div class="nl-stat">
+                <div class="nl-stat-val">~70%</div>
+                <div class="nl-stat-label">Global Refining<br>Concentrated in DRC</div>
+            </div>
+            <div class="nl-stat">
+                <div class="nl-stat-val">$33B</div>
+                <div class="nl-stat-label">Projected Market<br>Size by 2030</div>
+            </div>
+        </div>
+
+        <p class="nl-body" style="margin-bottom: 20px;">
+            Canada holds the world's 7th-largest cobalt reserves — yet much of its cobalt is exported raw for overseas processing, then repurchased as battery-grade material at a premium. This structural vulnerability represents both a national security risk and a commercial opportunity.
+        </p>
+
+        <div class="nl-tech-block">
+            <div class="nl-tech-header">SYNCORE™ Technology — Cobalt Recovery</div>
+            <p class="nl-tech-desc">
+                Syntra's proprietary SYNCORE™ platform applies advanced hydrometallurgy combined with AI process optimization to recover cobalt without toxic solvents. The result: cleaner processing, stronger economics, and output that meets battery-grade specifications — domestically.
+            </p>
+        </div>
+    </div>
+
+    <!-- CLOSING -->
+    <div class="nl-closing">
+        <div class="nl-closing-quote">
+            Energy transition requires<br>
+            <span class="accent">refining capacity.</span><br>
+            At Syntra, we are building it.
+        </div>
+        <p class="nl-closing-sub">
+            Over the coming months, we will continue to spotlight the critical minerals quietly powering modern life — and the infrastructure being built to secure their supply.
+        </p>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="nl-footer">
+        <div class="nl-footer-divider"></div>
+        <div class="nl-footer-left">
+            <div class="nl-footer-brand">SYNTRA<span>.</span> Refining Corp</div>
+            <div class="nl-footer-tagline">Powered by SYNCORE™ — Smart Critical Mineral Infrastructure</div>
+        </div>
+        <div class="nl-footer-right">
+            <div>syntrarefining.com</div>
+            <div>Halifax, Nova Scotia, Canada</div>
+            <div style="margin-top: 6px; color: rgba(148,163,184,0.5);">© 2026 Syntra Refining Corp. All rights reserved.</div>
+        </div>
+    </div>
+
+    <!-- Bottom accent line -->
+    <div class="nl-accent-line"></div>
+
+</div>
+
+</body>
+</html>
