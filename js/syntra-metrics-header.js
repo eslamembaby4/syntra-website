@@ -72,7 +72,7 @@ class MetricsHeaderCard {
                                 <tr class="border-b border-slate-100 hover:bg-slate-50/50 transition-colors group last:border-0">
                                     <td class="py-3 px-2 text-sm font-medium text-syntra-text whitespace-nowrap">${row.category}</td>
                                     <td class="py-3 px-2 text-right">
-                                        <span class="font-mono font-bold text-syntra-amber text-sm group-hover:text-syntra-accent transition-colors whitespace-nowrap">${row.current}</span>
+                                        <span class="font-head font-bold text-lg whitespace-nowrap" style="color: #0B1120;">${row.current}</span>
                                     </td>
                                     <td class="py-3 px-2 text-right">
                                         <span class="font-mono text-slate-600 text-xs whitespace-nowrap">${row.yoyGrowth}</span>
@@ -96,7 +96,7 @@ class MetricsHeaderCard {
                             <div class="grid grid-cols-3 gap-2 text-xs">
                                 <div>
                                     <p class="font-mono text-[9px] text-slate-400 uppercase tracking-wider mb-1">Current</p>
-                                    <p class="font-mono font-bold text-syntra-amber">${row.current}</p>
+                                    <p class="font-head font-bold text-lg" style="color: #0B1120;">${row.current}</p>
                                 </div>
                                 <div>
                                     <p class="font-mono text-[9px] text-slate-400 uppercase tracking-wider mb-1">Target</p>
