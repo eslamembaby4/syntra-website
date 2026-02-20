@@ -31,7 +31,6 @@
             color: var(--white);
         }
 
-        /* PAGE: fixed viewport fill, no scroll */
         .page {
             width: 100vw;
             height: 100vh;
@@ -42,7 +41,6 @@
             position: relative;
         }
 
-        /* faint grid overlay */
         .page::before {
             content: '';
             position: absolute;
@@ -61,7 +59,6 @@
             z-index: 1;
         }
 
-        /* ── HEADER ── */
         .hd {
             background: var(--deep);
             border-bottom: 1px solid var(--s8);
@@ -96,34 +93,25 @@
             flex-shrink: 0;
         }
 
-        /* ── BODY: 3-col grid ── */
         .body {
-            display: grid;
-            grid-template-columns: 1fr 1px 1fr 1px 1fr;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
             min-height: 0;
             position: relative;
             z-index: 1;
+            padding: clamp(24px, 4vh, 48px) clamp(16px, 6vw, 80px);
         }
 
-        /* on mobile: single column, scrolling inside each "panel" not needed — stack all in one flow col */
-        .vdiv {
-            background: var(--s8);
-        }
-
-        .col {
-            padding: clamp(14px, 2.2vh, 24px) clamp(14px, 2vw, 24px);
+        .content {
+            max-width: 680px;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            gap: clamp(10px, 1.5vh, 16px);
-            overflow: hidden;
-            min-height: 0;
+            gap: clamp(14px, 2vh, 22px);
         }
-        .col-a { background: var(--deep); }
-        .col-b { background: var(--navy); position: relative; }
-        .col-c { background: var(--deep); }
 
-        /* ── SECTION LABEL ── */
         .lbl {
             font-family: 'JetBrains Mono', monospace;
             font-size: clamp(0.44rem, 0.9vw, 0.54rem);
@@ -134,7 +122,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            flex-shrink: 0;
         }
         .lbl::after {
             content: '';
@@ -143,222 +130,88 @@
             background: linear-gradient(90deg, rgba(255,215,0,0.45), transparent);
         }
 
-        /* ── HEADINGS ── */
         .h1 {
             font-family: 'Oswald', sans-serif;
-            font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+            font-size: clamp(1.4rem, 3.5vw, 2.2rem);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             line-height: 1.1;
             color: var(--white);
-            flex-shrink: 0;
         }
         .h1 .y { color: var(--yellow); }
 
-        .h2 {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(0.85rem, 1.5vw, 1.1rem);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            line-height: 1.15;
-            color: var(--white);
-            flex-shrink: 0;
-        }
-        .h2 .y { color: var(--yellow); }
-
-        /* ── BODY TEXT ── */
-        .bt {
+        .preview {
+            font-family: 'Inter', sans-serif;
             font-size: clamp(0.68rem, 1.1vw, 0.8rem);
-            line-height: 1.7;
-            color: var(--s3);
-            flex-shrink: 0;
+            color: var(--s5);
+            font-style: italic;
+            line-height: 1.5;
         }
 
-        /* ── MILESTONE / CALLOUT ── */
-        .box {
-            background: rgba(255,215,0,0.055);
-            border-left: 2px solid var(--yellow);
-            padding: clamp(10px, 1.4vh, 14px) clamp(12px, 1.5vw, 16px);
-            flex-shrink: 0;
+        .bt {
+            font-size: clamp(0.72rem, 1.2vw, 0.88rem);
+            line-height: 1.75;
+            color: var(--s3);
         }
-        .box-lbl {
+
+        .partner {
+            background: rgba(255,215,0,0.04);
+            border: 1px solid rgba(255,215,0,0.22);
+            padding: clamp(14px, 2vh, 20px) clamp(16px, 2vw, 22px);
+        }
+        .partner-lbl {
             font-family: 'JetBrains Mono', monospace;
             font-size: clamp(0.42rem, 0.8vw, 0.5rem);
             font-weight: 700;
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--yellow);
-            margin-bottom: 3px;
+            margin-bottom: 5px;
         }
-        .box-val {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(0.8rem, 1.3vw, 1rem);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--white);
-            line-height: 1.2;
-        }
-        .box-sub {
-            font-size: clamp(0.62rem, 0.95vw, 0.72rem);
-            color: var(--s4);
-            margin-top: 3px;
-            line-height: 1.5;
-        }
-
-        /* ── BULLET LIST ── */
-        .blist {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            flex-shrink: 0;
-        }
-        .blist-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            font-size: clamp(0.66rem, 1vw, 0.76rem);
-            line-height: 1.5;
-            color: var(--s3);
-        }
-        .blist-item::before {
-            content: '';
-            width: 5px;
-            height: 5px;
-            background: var(--yellow);
-            flex-shrink: 0;
-            margin-top: 5px;
-            transform: rotate(45deg);
-        }
-
-        /* ── ELEMENT CARD (periodic table) ── */
-        .el-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
-        }
-        .el-card {
-            border: 2px solid var(--yellow);
-            padding: clamp(6px, 1vh, 10px) clamp(8px, 1.2vw, 14px);
-            background: rgba(255,215,0,0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            min-width: clamp(52px, 6vw, 70px);
-        }
-        .el-sym {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(1.4rem, 2.5vw, 2rem);
-            font-weight: 700;
-            color: var(--yellow);
-            line-height: 1;
-        }
-        .el-name {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.42rem, 0.8vw, 0.52rem);
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--s3);
-            margin-top: 2px;
-        }
-        .el-num {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.4rem, 0.75vw, 0.5rem);
-            color: var(--s5);
-        }
-        .el-info { flex: 1; }
-
-        /* ── STATS ROW ── */
-        .stats {
-            display: flex;
-            border: 1px solid var(--s7);
-            flex-shrink: 0;
-        }
-        .stat {
-            flex: 1;
-            padding: clamp(8px, 1.2vh, 12px) clamp(8px, 1vw, 12px);
-            background: var(--s8);
-            border-right: 1px solid var(--s7);
-        }
-        .stat:last-child { border-right: none; }
-        .stat-val {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(1rem, 1.8vw, 1.4rem);
-            font-weight: 700;
-            color: var(--yellow);
-            line-height: 1;
-            margin-bottom: 3px;
-        }
-        .stat-lbl {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.42rem, 0.75vw, 0.52rem);
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--s4);
-            line-height: 1.4;
-        }
-
-        /* ── TECH BLOCK ── */
-        .tech {
-            background: rgba(255,215,0,0.03);
-            border: 1px solid rgba(255,215,0,0.16);
-            padding: clamp(10px, 1.4vh, 14px) clamp(12px, 1.5vw, 16px);
-            flex-shrink: 0;
-        }
-        .tech-lbl {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.42rem, 0.8vw, 0.52rem);
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--yellow);
-            margin-bottom: 6px;
-        }
-        .tech-txt {
-            font-size: clamp(0.66rem, 1vw, 0.76rem);
-            line-height: 1.65;
-            color: var(--s3);
-        }
-
-        /* ── CLOSING QUOTE ── */
-        .quote {
-            border-left: 2px solid var(--yellow);
-            padding-left: clamp(12px, 1.5vw, 16px);
-            flex-shrink: 0;
-        }
-        .quote-text {
+        .partner-name {
             font-family: 'Oswald', sans-serif;
             font-size: clamp(1rem, 1.8vw, 1.3rem);
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
-            line-height: 1.25;
+            letter-spacing: 0.05em;
             color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 6px;
         }
-        .quote-text .y { color: var(--yellow); }
+        .partner-sub {
+            font-size: clamp(0.68rem, 1.1vw, 0.8rem);
+            color: var(--s4);
+            line-height: 1.6;
+        }
 
-        /* faint Co watermark */
-        .co-wm {
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--yellow);
+            color: var(--deep);
             font-family: 'Oswald', sans-serif;
-            font-size: clamp(5rem, 12vw, 9rem);
+            font-size: clamp(0.72rem, 1.1vw, 0.84rem);
             font-weight: 700;
-            color: rgba(255,215,0,0.025);
-            position: absolute;
-            right: 8px;
-            bottom: 4px;
-            line-height: 1;
-            pointer-events: none;
-            user-select: none;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: clamp(10px, 1.4vh, 14px) clamp(20px, 2.5vw, 28px);
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            align-self: flex-start;
+        }
+        .cta-btn:hover {
+            background: var(--white);
+            transform: translateY(-1px);
+        }
+        .cta-btn svg {
+            width: clamp(13px, 1.4vw, 16px);
+            height: clamp(13px, 1.4vw, 16px);
         }
 
-        /* ── FOOTER ── */
         .ft {
             background: var(--deep);
             border-top: 1px solid var(--s8);
@@ -397,102 +250,12 @@
             white-space: nowrap;
         }
 
-        /* ── PREVIEW LINE ── */
-        .preview {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(0.62rem, 0.95vw, 0.72rem);
-            color: var(--s5);
-            font-style: italic;
-            line-height: 1.5;
-            flex-shrink: 0;
-        }
-
-        /* ── CTA BUTTON ── */
-        .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--yellow);
-            color: var(--deep);
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(0.68rem, 1.1vw, 0.8rem);
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: clamp(9px, 1.3vh, 12px) clamp(16px, 2vw, 22px);
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s, color 0.2s, transform 0.15s;
-            flex-shrink: 0;
-            align-self: flex-start;
-        }
-        .cta-btn:hover {
-            background: var(--white);
-            transform: translateY(-1px);
-        }
-        .cta-btn svg {
-            width: clamp(12px, 1.4vw, 16px);
-            height: clamp(12px, 1.4vw, 16px);
-        }
-
-        /* ── PARTNER CALLOUT ── */
-        .partner {
-            background: rgba(255,215,0,0.04);
-            border: 1px solid rgba(255,215,0,0.2);
-            padding: clamp(10px, 1.4vh, 14px) clamp(12px, 1.5vw, 16px);
-            flex-shrink: 0;
-        }
-        .partner-lbl {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.42rem, 0.8vw, 0.5rem);
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--yellow);
-            margin-bottom: 4px;
-        }
-        .partner-name {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(0.88rem, 1.4vw, 1.1rem);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--white);
-            line-height: 1.2;
-            margin-bottom: 4px;
-        }
-        .partner-sub {
-            font-size: clamp(0.62rem, 0.95vw, 0.72rem);
-            color: var(--s4);
-            line-height: 1.5;
-        }
-
-        /* ── MOBILE: single-column, content scales ── */
         @media (max-width: 700px) {
-            .body {
-                grid-template-columns: 1fr;
-                grid-template-rows: 1fr 1px 1fr 1px 1fr;
-                overflow: hidden;
-            }
-            .vdiv {
-                height: 1px;
-                width: 100%;
-            }
-            .col {
-                gap: clamp(7px, 1.5vh, 11px);
-                padding: clamp(10px, 2vh, 16px) clamp(12px, 4vw, 20px);
-            }
+            .body { padding: clamp(16px, 3vh, 28px) clamp(16px, 5vw, 28px); }
+            .h1 { font-size: clamp(1.1rem, 5vw, 1.5rem); }
+            .bt { font-size: clamp(0.66rem, 3vw, 0.8rem); }
             .ft-mid { display: none; }
             .hd-badge { display: none; }
-            .co-wm { display: none; }
-            .h1 { font-size: clamp(0.95rem, 4vw, 1.2rem); }
-            .h2 { font-size: clamp(0.78rem, 3.2vw, 0.95rem); }
-            .bt, .tech-txt { font-size: clamp(0.6rem, 2.5vw, 0.72rem); }
-            .box-val { font-size: clamp(0.72rem, 3vw, 0.88rem); }
-            .blist-item { font-size: clamp(0.6rem, 2.5vw, 0.72rem); }
-            .quote-text { font-size: clamp(0.85rem, 3.5vw, 1.05rem); }
-            .stat-val { font-size: clamp(0.88rem, 3.5vw, 1.1rem); }
         }
     </style>
 </head>
@@ -501,20 +264,17 @@
 <div class="page">
     <div class="top-rule"></div>
 
-    <!-- HEADER -->
     <div class="hd">
         <img src="/assets/images/Wordmark_2_(1).png" alt="Syntra Refining Corp." class="hd-logo">
         <div class="hd-badge">February Edition 2026</div>
     </div>
 
-    <!-- BODY -->
     <div class="body">
+        <div class="content">
 
-        <!-- COL A: February Edition — Business Feature -->
-        <div class="col col-a">
             <div class="lbl">Business Feature</div>
 
-            <div class="h1">The Road to<br><span class="y">SYNHUB™ Halifax</span></div>
+            <div class="h1">FEBRUARY <span class="y">EDITION</span></div>
 
             <p class="preview">Lead investor announced, the road to SYNHUB™ Halifax, and our upcoming education series.</p>
 
@@ -523,72 +283,19 @@
             <div class="partner">
                 <div class="partner-lbl">Lead Investor Announced</div>
                 <div class="partner-name">Sandpiper Ventures</div>
-                <div class="partner-sub">Led by Rhiannon Davies — an exceptional ally and partner to Syntra over the last several months. Together, we are setting Canada up as a clean, smart, refining powerhouse.</div>
+                <div class="partner-sub">Led by Rhiannon Davies — an exceptional ally and partner to Syntra over the last several months. Together, we are extremely excited to set Canada up as a clean, smart, refining powerhouse.</div>
             </div>
 
-            <p class="bt">To support the capital intensity of this build, and as a champion of Syntra's vision to revolutionize mineral refining, we are extremely pleased to welcome Sandpiper Ventures as our Lead Investor. Join us as we build the critical infrastructure to power North America's future.</p>
+            <p class="bt">To support the capital intensity of this build, and as a champion of Syntra's vision to revolutionize mineral refining, we are extremely pleased to announce that Sandpiper Ventures has joined our raise as our Lead Investor. Join us as we build the critical infrastructure to power North America's future.</p>
 
             <a class="cta-btn" href="mailto:nifemi@syntrarefining.com">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-                Connect with Nifemi
+                Email Nifemi
             </a>
-        </div>
 
-        <div class="vdiv"></div>
-
-        <!-- COL B: Mineral Spotlight -->
-        <div class="col col-b">
-            <div class="co-wm">Co</div>
-
-            <div class="lbl">Mineral Spotlight</div>
-
-            <div class="el-row">
-                <div class="el-card">
-                    <div class="el-sym">Co</div>
-                    <div class="el-name">Cobalt</div>
-                    <div class="el-num">27</div>
-                </div>
-                <div class="el-info">
-                    <div class="h2">Cobalt —<br><span class="y">The Stability Metal</span></div>
-                </div>
-            </div>
-
-            <p class="bt">Cobalt enhances lithium-ion batteries — improving energy density, thermal stability, and lifespan. A foundational input to the chemistries powering EVs and stationary storage globally.</p>
-
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-val">7th</div>
-                    <div class="stat-lbl">Canada's Global<br>Reserve Ranking</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-val">~70%</div>
-                    <div class="stat-lbl">Global Refining<br>in DRC</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-val">$33B</div>
-                    <div class="stat-lbl">Market Size<br>by 2030</div>
-                </div>
-            </div>
-
-            <p class="bt">Canada holds the world's 7th-largest reserves, yet much of its cobalt is exported for processing and later repurchased as battery-grade material — a structural vulnerability.</p>
-
-            <div class="tech">
-                <div class="tech-lbl">SYNCORE™ Technology</div>
-                <p class="tech-txt">Syntra's proprietary SYNCORE™ applies advanced hydrometallurgy and AI optimization to recover cobalt without toxic solvents — delivering cleaner processing and stronger economics.</p>
-            </div>
-        </div>
-
-        <div class="vdiv"></div>
-
-        <!-- COL C: Closing -->
-        <div class="col col-c" style="justify-content:center;">
-            <div class="quote">
-                <div class="quote-text">Energy transition<br>requires <span class="y">refining<br>capacity.</span><br>At Syntra,<br>we are building it.</div>
-            </div>
         </div>
     </div>
 
-    <!-- FOOTER -->
     <div class="ft">
         <div class="ft-brand">SYNTRA<span>.</span> Refining Corp</div>
         <div class="ft-mid">Powered by SYNCORE™ — Smart Critical Mineral Infrastructure</div>
