@@ -81,7 +81,7 @@ function renderJobListings(jobs) {
           <span class="text-[11px] font-mono text-slate-500 uppercase">${escapeHtml(job.department)}</span>
           <button
             onclick="openApplicationModal('${escapeHtml(job.title)}')"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-text text-white text-xs font-mono uppercase rounded hover:bg-syntra-tech hover:text-white transition-all duration-200 hover:scale-105"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-accent text-syntra-text text-xs font-head font-bold uppercase rounded hover:bg-yellow-400 transition-all duration-200 hover:scale-105"
           >
             Apply Now
           </button>
