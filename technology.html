@@ -590,8 +590,9 @@
     </section>
 
 
-    <!-- OPERATIONAL INTELLIGENCE -->
+    <!-- AI OPERATIONAL CONTROL -->
     <section class="py-24 bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight relative overflow-hidden" data-animate>
+        <!-- Animated Background Grid -->
         <div class="absolute inset-0 opacity-10">
             <div class="absolute inset-0" style="background-image: linear-gradient(#FFD700 1px, transparent 1px), linear-gradient(90deg, #FFD700 1px, transparent 1px); background-size: 50px 50px;"></div>
         </div>
@@ -609,100 +610,108 @@
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 mb-20">
-                <!-- Real-Time Processing -->
-                <div class="capability-card group relative bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-xl p-8 hover:border-syntra-accent transition-all duration-500 overflow-hidden animate-on-scroll" style="transform: translateY(30px);">
-                    <div class="absolute inset-0 bg-gradient-to-br from-syntra-accent/0 to-syntra-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="relative mb-6 h-20">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="relative w-full h-full">
-                                <div class="absolute left-0 top-1/2 w-2 h-2 bg-syntra-accent rounded-full data-particle" style="animation-delay: 0s;"></div>
-                                <div class="absolute left-0 top-1/2 w-2 h-2 bg-syntra-tech rounded-full data-particle" style="animation-delay: 0.5s;"></div>
-                                <div class="absolute left-0 top-1/2 w-2 h-2 bg-slate-400 rounded-full data-particle" style="animation-delay: 1s;"></div>
-                                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 border-2 border-syntra-accent rounded processing-pulse"></div>
+                <!-- Animated Intelligence Cards -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Real-Time Processing -->
+                    <div class="capability-card group relative bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-xl p-8 hover:border-syntra-accent transition-all duration-500 overflow-hidden animate-on-scroll" style="transform: translateY(30px);">
+                        <div class="absolute inset-0 bg-gradient-to-br from-syntra-accent/0 to-syntra-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                        <!-- Animated Data Flow -->
+                        <div class="relative mb-6 h-20">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <!-- Data Particles Flowing -->
+                                <div class="relative w-full h-full">
+                                    <div class="absolute left-0 top-1/2 w-2 h-2 bg-syntra-accent rounded-full data-particle" style="animation-delay: 0s;"></div>
+                                    <div class="absolute left-0 top-1/2 w-2 h-2 bg-syntra-tech rounded-full data-particle" style="animation-delay: 0.5s;"></div>
+                                    <div class="absolute left-0 top-1/2 w-2 h-2 bg-slate-400 rounded-full data-particle" style="animation-delay: 1s;"></div>
+                                    <!-- Processing Center -->
+                                    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 border-2 border-syntra-accent rounded processing-pulse"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="font-head text-lg font-bold text-white uppercase mb-3 text-center relative z-10">Real-Time Processing</h3>
+                        <p class="text-slate-400 text-sm text-center leading-relaxed relative z-10">
+                            Sensor data flows continuously into predictive models that calculate optimal parameters in real-time.
+                        </p>
+
+                        <!-- Animated Progress Bar -->
+                        <div class="mt-6 relative z-10">
+                            <div class="h-1 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-syntra-accent capability-progress" style="width: 0%;"></div>
                             </div>
                         </div>
                     </div>
-                    <h3 class="font-head text-lg font-bold text-white uppercase mb-3 text-center relative z-10">Real-Time Processing</h3>
-                    <p class="text-slate-400 text-sm text-center leading-relaxed relative z-10">
-                        Sensor data flows continuously into predictive models that calculate optimal parameters in real-time.
-                    </p>
-                    <div class="mt-6 relative z-10">
-                        <div class="h-1 bg-white/10 rounded-full overflow-hidden">
-                            <div class="h-full bg-syntra-accent capability-progress" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Digital Twin -->
-                <div class="capability-card group relative bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-xl p-8 hover:border-syntra-tech transition-all duration-500 overflow-hidden animate-on-scroll" style="transform: translateY(30px); animation-delay: 0.1s;">
-                    <div class="absolute inset-0 bg-gradient-to-br from-syntra-tech/0 to-syntra-tech/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="relative mb-6 h-20">
-                        <div class="absolute inset-0 flex items-center justify-center gap-8">
-                            <div class="relative">
-                                <div class="w-10 h-10 border-2 border-syntra-tech rounded twin-sync"></div>
-                                <div class="absolute inset-2 bg-syntra-tech/30 rounded"></div>
-                            </div>
-                            <div class="flex flex-col gap-1">
-                                <div class="w-6 h-0.5 bg-syntra-accent sync-line" style="animation-delay: 0s;"></div>
-                                <div class="w-6 h-0.5 bg-syntra-tech sync-line" style="animation-delay: 0.3s;"></div>
-                                <div class="w-6 h-0.5 bg-slate-400 sync-line" style="animation-delay: 0.6s;"></div>
-                            </div>
-                            <div class="relative">
-                                <div class="w-10 h-10 border-2 border-syntra-accent rounded twin-sync" style="animation-delay: 0.2s;"></div>
-                                <div class="absolute inset-2 bg-syntra-accent/30 rounded"></div>
+                    <!-- Digital Twin -->
+                    <div class="capability-card group relative bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-xl p-8 hover:border-syntra-tech transition-all duration-500 overflow-hidden animate-on-scroll" style="transform: translateY(30px); animation-delay: 0.1s;">
+                        <div class="absolute inset-0 bg-gradient-to-br from-syntra-tech/0 to-syntra-tech/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                        <!-- Twin Synchronization -->
+                        <div class="relative mb-6 h-20">
+                            <div class="absolute inset-0 flex items-center justify-center gap-8">
+                                <!-- Physical System -->
+                                <div class="relative">
+                                    <div class="w-10 h-10 border-2 border-syntra-tech rounded twin-sync"></div>
+                                    <div class="absolute inset-2 bg-syntra-tech/30 rounded"></div>
+                                </div>
+                                <!-- Sync Lines -->
+                                <div class="flex flex-col gap-1">
+                                    <div class="w-6 h-0.5 bg-syntra-accent sync-line" style="animation-delay: 0s;"></div>
+                                    <div class="w-6 h-0.5 bg-syntra-tech sync-line" style="animation-delay: 0.3s;"></div>
+                                    <div class="w-6 h-0.5 bg-slate-400 sync-line" style="animation-delay: 0.6s;"></div>
+                                </div>
+                                <!-- Digital Twin -->
+                                <div class="relative">
+                                    <div class="w-10 h-10 border-2 border-syntra-accent rounded twin-sync" style="animation-delay: 0.2s;"></div>
+                                    <div class="absolute inset-2 bg-syntra-accent/30 rounded"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <h3 class="font-head text-lg font-bold text-white uppercase mb-3 text-center relative z-10">Digital Twin</h3>
-                    <p class="text-slate-400 text-sm text-center leading-relaxed relative z-10">
-                        Virtual representations of each refining stage synchronized with physical operations for predictive control.
-                    </p>
-                    <div class="mt-6 relative z-10">
-                        <div class="h-1 bg-white/10 rounded-full overflow-hidden">
-                            <div class="h-full bg-syntra-accent capability-progress" style="width: 0%; animation-delay: 0.5s;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- KEY CAPABILITIES -->
-            <div class="border-t border-white/10 pt-16">
-                <div class="mb-12" data-animate>
-                    <div class="inline-block px-4 py-2 mb-4 font-bold text-xs tracking-wider uppercase" style="background-color: rgba(8, 145, 178, 0.15); color: #0891B2;">
-                        KEY CAPABILITIES
-                    </div>
-                    <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl font-bold text-white uppercase leading-tight mb-6">
-                        Platform <span style="color: #0891B2;">Advantages</span>
-                    </h2>
-                </div>
+                        <h3 class="font-head text-lg font-bold text-white uppercase mb-3 text-center relative z-10">Digital Twin</h3>
+                        <p class="text-slate-400 text-sm text-center leading-relaxed relative z-10">
+                            Virtual representations of each refining stage synchronized with physical operations for predictive control.
+                        </p>
 
-                <div class="grid md:grid-cols-2 gap-8" data-animate>
-                    <!-- Battery-Grade Output -->
-                    <div class="group relative bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-xl p-10 hover:border-syntra-accent transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-br from-syntra-accent/0 to-syntra-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                        <div class="relative z-10">
-                            <div class="font-head text-5xl font-bold mb-4" style="color: #0891B2;">01</div>
-                            <div class="font-mono text-xs tracking-widest uppercase mb-4 font-bold" style="color: #FFD700;">Battery-Grade Output</div>
-                            <p class="text-slate-300 text-base leading-relaxed">
-                                Lithium carbonate/hydroxide &gt;99.5% purity. Nickel and cobalt sulfates to customer specifications. Controlled trace metal profiles meeting OEM qualification requirements. Consistent batch-to-batch quality.
-                            </p>
+                        <!-- Animated Progress Bar -->
+                        <div class="mt-6 relative z-10">
+                            <div class="h-1 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-syntra-accent capability-progress" style="width: 0%; animation-delay: 0.5s;"></div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Closed-Loop System -->
-                    <div class="group relative bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-xl p-10 hover:border-syntra-accent transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-br from-syntra-accent/0 to-syntra-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                        <div class="relative z-10">
-                            <div class="font-head text-5xl font-bold mb-4" style="color: #0891B2;">02</div>
-                            <div class="font-mono text-xs tracking-widest uppercase mb-4 font-bold" style="color: #FFD700;">Closed-Loop System</div>
-                            <p class="text-slate-300 text-base leading-relaxed">
-                                Zero liquid discharge through reagent recycling and water recovery systems. Process water circulates continuously. Waste streams minimized to filter cake suitable for safe disposal or further processing.
-                            </p>
+                    <!-- Network Learning -->
+                    <div class="capability-card group relative bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-xl p-8 hover:border-syntra-amber transition-all duration-500 overflow-hidden animate-on-scroll" style="transform: translateY(30px); animation-delay: 0.2s;">
+                        <div class="absolute inset-0 bg-gradient-to-br from-syntra-amber/0 to-syntra-amber/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                        <!-- Network Nodes -->
+                        <div class="relative mb-6 h-20">
+                            <div class="absolute inset-0">
+                                <!-- Central Node -->
+                                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-syntra-accent rounded-full network-node-pulse"></div>
+                                <!-- Surrounding Nodes -->
+                                <div class="absolute left-1/4 top-1/4 w-3 h-3 bg-syntra-accent rounded-full network-node-pulse" style="animation-delay: 0.2s;"></div>
+                                <div class="absolute right-1/4 top-1/4 w-3 h-3 bg-syntra-tech rounded-full network-node-pulse" style="animation-delay: 0.4s;"></div>
+                                <div class="absolute left-1/4 bottom-1/4 w-3 h-3 bg-syntra-tech rounded-full network-node-pulse" style="animation-delay: 0.6s;"></div>
+                                <div class="absolute right-1/4 bottom-1/4 w-3 h-3 bg-syntra-accent rounded-full network-node-pulse" style="animation-delay: 0.8s;"></div>
+                            </div>
+                        </div>
+
+                        <h3 class="font-head text-lg font-bold text-white uppercase mb-3 text-center relative z-10">Distributed Learning</h3>
+                        <p class="text-slate-400 text-sm text-center leading-relaxed relative z-10">
+                            Process improvements from all nodes deploy automatically across the network, accelerating optimization.
+                        </p>
+
+                        <!-- Animated Progress Bar -->
+                        <div class="mt-6 relative z-10">
+                            <div class="h-1 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-syntra-accent capability-progress" style="width: 0%; animation-delay: 1s;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </section>
 
