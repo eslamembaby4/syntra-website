@@ -20,10 +20,9 @@
     width: auto;
     display: block;
     position: relative;
-    filter: brightness(0) invert(1);
 }
 
-/* Light variant (for dark backgrounds) - already white by default */
+/* Light variant (for dark backgrounds) - inverts the logo colors */
 .syntra-logo-hover-wrapper.light .syntra-logo-image {
     filter: brightness(0) invert(1);
 }
