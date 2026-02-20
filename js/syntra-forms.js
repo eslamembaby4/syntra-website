@@ -385,7 +385,7 @@
 
     // Build content using DOM elements
     modalBox.innerHTML = `
-      <button class="close-x" type="button" style="position: absolute; top: 15px; right: 15px; min-width: 90px; height: 36px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: none; color: white; cursor: pointer; z-index: 10; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; padding: 0 14px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);">
+      <button class="close-x" type="button" style="position: absolute; top: 15px; right: 15px; min-width: 90px; height: 36px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #FFD700; border: none; color: #0B1120; cursor: pointer; z-index: 10; border-radius: 6px; font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; padding: 0 14px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M18 6L6 18M6 6l12 12"></path>
         </svg>
@@ -409,8 +409,8 @@
           <p style="font-size: 28px; font-weight: bold; color: #0F172A; font-family: monospace; margin: 0; word-break: break-all;" class="ref-id-text">${referenceId}</p>
         </div>
 
-        <button class="copy-btn" style="width: 100%; background: #FFD700; color: #0F172A; border: none; padding: 15px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer;">
-          📋 COPY REFERENCE ID
+        <button class="copy-btn" style="width: 100%; background: #FFD700; color: #0B1120; border: none; padding: 15px; border-radius: 8px; font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; box-shadow: 0 4px 14px rgba(255, 215, 0, 0.3); transition: background 0.2s;">
+          COPY REFERENCE ID
         </button>
 
         <p style="font-size: 12px; color: #0F172A; margin: 15px 0 0; font-weight: 500;">Please keep this reference for your records.</p>
@@ -434,7 +434,7 @@
         </div>
       </div>
 
-      <button class="close-btn" style="width: 100%; background: #1f2937; color: white; border: none; padding: 15px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;">CLOSE</button>
+      <button class="close-btn" style="width: 100%; background: #FFD700; color: #0B1120; border: none; padding: 15px; border-radius: 8px; font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 4px 14px rgba(255, 215, 0, 0.3); transition: background 0.2s;">CLOSE</button>
     `;
 
     overlay.appendChild(modalBox);
@@ -471,14 +471,14 @@
     // Add hover effects to close button
     if (closeX) {
       closeX.addEventListener('mouseenter', function() {
-        this.style.background = 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)';
+        this.style.background = '#FACC15';
         this.style.transform = 'translateY(-2px) scale(1.02)';
-        this.style.boxShadow = '0 4px 16px rgba(220, 38, 38, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+        this.style.boxShadow = '0 4px 16px rgba(255, 215, 0, 0.5)';
       });
       closeX.addEventListener('mouseleave', function() {
-        this.style.background = 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)';
+        this.style.background = '#FFD700';
         this.style.transform = 'translateY(0) scale(1)';
-        this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)';
+        this.style.boxShadow = '0 2px 8px rgba(255, 215, 0, 0.3)';
       });
     }
 

@@ -92,7 +92,7 @@ window.showThankYouModal = function(referenceId) {
           width: 36px;
           height: 36px;
           border: none;
-          background: #F1F5F9;
+          background: #FFD700;
           border-radius: 8px;
           cursor: pointer;
           display: flex;
@@ -100,8 +100,9 @@ window.showThankYouModal = function(referenceId) {
           justify-content: center;
           transition: all 0.2s;
           padding: 0;
-        " onmouseover="this.style.background='#E2E8F0'; this.style.transform='rotate(90deg)'" onmouseout="this.style.background='#F1F5F9'; this.style.transform='rotate(0deg)'">
-          <svg style="width: 20px; height: 20px; color: #64748B;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+        " onmouseover="this.style.background='#FACC15'; this.style.transform='rotate(90deg)'" onmouseout="this.style.background='#FFD700'; this.style.transform='rotate(0deg)'">
+          <svg style="width: 20px; height: 20px; color: #0B1120;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>

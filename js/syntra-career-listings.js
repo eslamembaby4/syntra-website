@@ -81,7 +81,7 @@ function renderJobListings(jobs) {
           <span class="text-[11px] font-mono text-slate-500 uppercase">${escapeHtml(job.department)}</span>
           <button
             onclick="openApplicationModal('${escapeHtml(job.title)}')"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-accent text-syntra-text text-xs font-head font-bold uppercase rounded hover:bg-yellow-400 transition-all duration-200 hover:scale-105"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-accent text-syntra-midnight text-xs font-head font-bold uppercase rounded hover:bg-yellow-400 transition-all duration-200 hover:scale-105 shadow-sm shadow-yellow-500/20"
           >
             Apply Now
           </button>
@@ -113,7 +113,7 @@ function renderEmptyState() {
         </p>
         <button
           onclick="openApplicationModal('General Application')"
-          class="inline-flex items-center gap-2 px-6 py-3 bg-syntra-tech text-white font-head font-bold text-sm uppercase rounded hover:bg-cyan-700 transition-colors"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold text-sm uppercase rounded hover:bg-yellow-400 transition-colors shadow-md shadow-yellow-500/20"
         >
           Submit General Application
         </button>
