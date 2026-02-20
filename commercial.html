@@ -193,17 +193,16 @@
             left: 0;
         }
 
-        /* Hero Grid Layout - Single Column */
+        /* Hero Grid Layout - Three Column */
         .hero-grid-layout {
-            display: flex;
-            flex-direction: column;
-            gap: 48px;
-            align-items: flex-start;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            align-items: start;
             width: 100%;
         }
 
         .hero-content {
-            width: 100%;
             text-align: left;
             display: flex;
             flex-direction: column;
@@ -217,19 +216,42 @@
             margin-right: 0;
         }
 
-        .hero-metrics-card {
-            width: 100%;
-            max-width: 680px;
+        .hero-video-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
         }
 
-        /* Mobile: reduce gaps */
-        @media (max-width: 768px) {
+        .hero-video-panel video {
+            width: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+        }
+
+        .hero-metrics-card {
+            width: 100%;
+        }
+
+        /* Mobile: stack columns */
+        @media (max-width: 1024px) {
             .hero-grid-layout {
+                grid-template-columns: 1fr 1fr;
                 gap: 32px;
             }
+            .hero-video-panel {
+                grid-column: 1 / -1;
+                order: -1;
+            }
+        }
 
-            .hero-metrics-card {
-                max-width: 100%;
+        @media (max-width: 768px) {
+            .hero-grid-layout {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+            .hero-video-panel {
+                order: 0;
             }
         }
 
@@ -548,6 +570,29 @@
                         <a href="technology.html" class="px-8 py-4 bg-syntra-accent text-syntra-midnight font-head font-bold text-lg uppercase tracking-wide hover:bg-yellow-400 transition-colors shadow-xl shadow-yellow-500/20 flex items-center justify-center gap-3">
                             Technology Overview
                         </a>
+                    </div>
+                </div>
+
+                <!-- Center Column: Video/Visual -->
+                <div class="hero-video-panel" data-animate>
+                    <div class="relative rounded-xl overflow-hidden" style="box-shadow: 0 20px 60px rgba(0,0,0,0.18);">
+                        <video
+                            id="hero-commercial-video"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            class="w-full"
+                            style="display: none; border-radius: 12px;"
+                        >
+                        </video>
+                        <img
+                            id="hero-commercial-image"
+                            src="Eslam_Embaby_Recycling_Stream_1942577f-2a30-44af-bb33-edc4bedfb048_(1).jpg"
+                            alt="Critical minerals recycling circular economy"
+                            class="w-full"
+                            style="border-radius: 12px; display: block;"
+                        />
                     </div>
                 </div>
 
