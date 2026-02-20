@@ -70,7 +70,7 @@ class MetricsHeaderCard {
                         <tbody>
                             ${this.metrics.map((row, index) => `
                                 <tr class="border-b border-slate-100 hover:bg-slate-50/50 transition-colors group last:border-0">
-                                    <td class="py-3 px-2 text-sm font-medium text-syntra-text whitespace-nowrap">${row.category}</td>
+                                    <td class="py-3 px-2 font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold whitespace-nowrap">${row.category}</td>
                                     <td class="py-3 px-2 text-right">
                                         <span class="font-head font-bold text-lg whitespace-nowrap" style="color: #0B1120;">${row.current}</span>
                                     </td>
@@ -91,7 +91,7 @@ class MetricsHeaderCard {
                     ${this.metrics.map((row) => `
                         <div class="border-b border-slate-100 pb-3 last:border-0 last:pb-0">
                             <div class="flex items-start justify-between mb-2">
-                                <h4 class="font-medium text-syntra-text text-sm">${row.category}</h4>
+                                <h4 class="font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold">${row.category}</h4>
                             </div>
                             <div class="grid grid-cols-3 gap-2 text-xs">
                                 <div>
