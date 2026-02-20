@@ -65,7 +65,6 @@
     </script>
 
     <style>
-        /* --- BRAND ANIMATIONS --- */
         .logo-container { cursor: pointer; }
         .logo-outer { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s; }
         .logo-inner { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s; }
@@ -88,14 +87,10 @@
         }
         .nav-link:hover::after { width: 100%; }
 
-
-        /* Menu Button Styling */
         .menu-line { transition: all 0.3s ease; }
 
-        /* Product Card in Hero */
         .hero-product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
 
-        /* Hero Grid Layout - Proper Alignment */
         .hero-grid-layout {
             display: grid;
             grid-template-columns: 1fr;
@@ -116,7 +111,6 @@
             max-width: 520px;
         }
 
-        /* Desktop: side-by-side layout */
         @media (min-width: 1025px) {
             .hero-grid-layout {
                 grid-template-columns: 1fr 520px;
@@ -124,7 +118,6 @@
             }
         }
 
-        /* Tablet: stack but center card */
         @media (max-width: 1024px) {
             .hero-metrics-card {
                 max-width: 600px;
@@ -132,7 +125,6 @@
             }
         }
 
-        /* Mobile: full width */
         @media (max-width: 768px) {
             .hero-grid-layout {
                 gap: 32px;
@@ -143,7 +135,6 @@
             }
         }
 
-        /* Architecture Flow Arrow */
         .flow-arrow {
             display: flex;
             align-items: center;
@@ -154,7 +145,6 @@
             .flow-arrow { transform: rotate(-90deg); }
         }
 
-        /* Feedstock Cards */
         .feedstock-card {
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
         }
@@ -163,7 +153,6 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
 
-        /* Professional close button */
         .modal-close-btn {
           display: inline-flex;
           align-items: center;
@@ -228,12 +217,10 @@
     <!-- MAIN NAVIGATION -->
     <nav id="navbar" class="sticky top-0 z-40 bg-white border-b border-syntra-border">
         <div class="container mx-auto px-6 h-24 flex justify-between items-center">
-            <!-- Logo Block -->
             <a href="index.html" class="syntra-logo-hover-wrapper">
                 <img src="/assets/images/Wordmark_2_(1).png" alt="Syntra Refining Corp." class="syntra-logo-image">
             </a>
 
-            <!-- Menu Toggle -->
             <button class="text-syntra-text p-2 hover:text-syntra-amber transition-colors" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
                 <div class="flex flex-col gap-[6px] items-end">
                     <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
@@ -244,13 +231,10 @@
         </div>
     </nav>
 
-    <!-- MOBILE MENU - Modern Side Drawer -->
-    <!-- Backdrop Overlay -->
+    <!-- MOBILE MENU -->
     <div id="menuBackdrop" class="fixed inset-0 bg-syntra-midnight/60 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300" onclick="toggleMobileMenu()"></div>
 
-    <!-- Side Drawer -->
     <div id="mobileMenu" class="fixed top-0 right-0 h-full w-[85%] sm:w-[450px] bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-out overflow-y-auto" role="dialog" aria-modal="true">
-        <!-- Header -->
         <div class="sticky top-0 bg-white border-b border-syntra-border px-6 py-6 flex justify-between items-center z-10">
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-syntra-accent"></div>
@@ -263,7 +247,6 @@
             </button>
         </div>
 
-        <!-- Navigation Links -->
         <div class="px-6 py-8">
             <nav class="flex flex-col gap-3">
                 <a href="index.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
@@ -331,17 +314,16 @@
                         CRITICAL MINERALS INFRASTRUCTURE
                     </div>
 
-                    <!-- Yellow Bar Line -->
                     <div class="syntra-yellow-bar" data-animate></div>
 
                     <h1 class="font-head text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-syntra-midnight uppercase leading-[0.9] mb-8 tracking-tight" data-animate>
-                        <span class="font-head font-bold">BATTERY-GRADE</span><br>
-                        <span class="font-head font-bold">CRITICAL MINERALS</span><br>
-                        <span class="text-slate-400 font-head font-bold tracking-tighter">REFINING</span>
+                        CLEAN<br>
+                        SMART<br>
+                        <span class="text-slate-400">REFINING</span>
                     </h1>
 
                     <p class="text-base sm:text-lg md:text-xl text-slate-600 max-w-xl leading-relaxed mb-4 font-light">
-                        Syntra Refining Corp operates a distributed network of Synhubs that use our innovative technology <span class="text-syntra-accent font-semibold">SYNCORE™</span> to refine battery-grade critical minerals at industrial scale.
+                        Syntra Refining Corp operates a distributed network of Synhubs that use our innovative technology SYNCORE™ to refine battery-grade critical minerals at industrial scale.
                     </p>
 
                     <p class="text-sm text-slate-500 max-w-xl mb-10">
@@ -363,7 +345,7 @@
                     <div class="relative bg-white p-8 shadow-2xl border-t-4 border-syntra-accent border border-syntra-border">
                         <div class="flex justify-between items-end mb-6 border-b border-syntra-border pb-4">
                             <div>
-                                <h2 class="font-head text-2xl font-bold uppercase text-syntra-text">Production Output</h2>
+                                <h3 class="font-head text-2xl font-bold uppercase text-syntra-text">Production Output</h3>
                                 <p class="font-mono text-xs text-syntra-muted">ACTIVE CAPABILITIES</p>
                             </div>
                             <div class="text-right">
@@ -442,8 +424,8 @@
                     <div class="inline-block px-4 py-2 mb-6 font-bold text-xs tracking-wider uppercase" style="background-color: rgba(8, 145, 178, 0.15); color: #0891B2;">
                         UNIVERSAL INTAKE
                     </div>
-                    <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl font-bold text-syntra-text uppercase">Feedstock Agnostic</h2>
-                    <p class="text-slate-600 mt-4 text-lg">We provide offtake agreements for miners, recyclers, and OEMs.</p>
+                    <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold text-syntra-text uppercase">Feedstock Agnostic</h2>
+                    <p class="text-slate-600 mt-4 text-lg">We provide consistent offtake agreements for miners, recyclers, and OEMs.</p>
                     <div class="mt-6 flex gap-4">
                         <a href="commercial.html" class="inline-flex items-center gap-2 bg-syntra-accent text-syntra-midnight px-6 py-3 font-head font-bold uppercase text-sm hover:bg-yellow-400 transition-colors shadow-xl shadow-yellow-500/20">
                             Learn More
@@ -452,53 +434,44 @@
                 </div>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="feedstock-card border border-syntra-border bg-syntra-midnight shadow-sm group relative overflow-hidden" style="min-height: 280px;">
-                    <div class="p-10 h-full flex flex-col justify-end">
-                        <h3 class="font-head text-xl font-bold uppercase mb-2 text-white">Black Mass</h3>
-                        <p class="text-xs text-syntra-tech mb-4 uppercase font-semibold tracking-wider">Recycling Stream</p>
-                        <p class="text-slate-300 text-sm leading-relaxed">Variable grade Li-ion battery recyclate from end-of-life processing.</p>
-                    </div>
+                <div class="feedstock-card bg-white p-10 border border-syntra-border shadow-sm group">
+                    <h3 class="font-head text-2xl font-bold uppercase mb-2">Black Mass</h3>
+                    <p class="text-xs text-slate-500 mb-4 uppercase font-semibold">Recycling Stream</p>
+                    <p class="text-slate-600">Variable grade Li-ion battery recyclate from end-of-life processing.</p>
                 </div>
-                <div class="feedstock-card border border-syntra-border bg-syntra-midnight shadow-sm group relative overflow-hidden" style="min-height: 280px;">
-                    <div class="p-10 h-full flex flex-col justify-end">
-                        <h3 class="font-head text-xl font-bold uppercase mb-2 text-white">Concentrates</h3>
-                        <p class="text-xs text-syntra-tech mb-4 uppercase font-semibold tracking-wider">Mining Stream</p>
-                        <p class="text-slate-300 text-sm leading-relaxed">Spodumene, nickel sulfide, cobalt, and mixed mineral concentrates.</p>
-                    </div>
+                <div class="feedstock-card bg-white p-10 border border-syntra-border shadow-sm group">
+                    <h3 class="font-head text-2xl font-bold uppercase mb-2">Concentrates</h3>
+                    <p class="text-xs text-slate-500 mb-4 uppercase font-semibold">Mining Stream</p>
+                    <p class="text-slate-600">Spodumene, nickel sulfide, cobalt, and mixed mineral concentrates.</p>
                 </div>
-                <div class="feedstock-card border border-syntra-border bg-syntra-midnight shadow-sm group relative overflow-hidden" style="min-height: 280px;">
-                    <div class="p-10 h-full flex flex-col justify-end">
-                        <h3 class="font-head text-xl font-bold uppercase mb-2 text-white">Process Scrap</h3>
-                        <p class="text-xs text-syntra-tech mb-4 uppercase font-semibold tracking-wider">Manufacturing Stream</p>
-                        <p class="text-slate-300 text-sm leading-relaxed">Cathode production scrap and manufacturing waste materials.</p>
-                    </div>
+                <div class="feedstock-card bg-white p-10 border border-syntra-border shadow-sm group">
+                    <h3 class="font-head text-2xl font-bold uppercase mb-2">Process Scrap</h3>
+                    <p class="text-xs text-slate-500 mb-4 uppercase font-semibold">Manufacturing Stream</p>
+                    <p class="text-slate-600">Cathode production scrap and manufacturing waste materials.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TECHNOLOGY & DIGITAL TWIN + SYNHUB ARCHITECTURE (Combined for seamless background) -->
+    <!-- TECHNOLOGY & DIGITAL TWIN -->
     <section id="technology" class="py-24 bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight text-white relative overflow-hidden">
-      <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute inset-0 opacity-10">
         <div class="absolute inset-0" style="background-image: linear-gradient(#FFD700 1px, transparent 1px), linear-gradient(90deg, #FFD700 1px, transparent 1px); background-size: 50px 50px;"></div>
       </div>
 
-      <!-- POWERED BY SYNCORE™ - Digital Twin Section -->
-      <div class="container mx-auto px-6 relative z-10 pb-24">
+      <div class="container mx-auto px-6 relative z-10">
         <div class="grid lg:grid-cols-2 gap-16">
           <div>
-            <div class="block mb-4">
-              <span class="inline-block px-3 py-1 border border-syntra-tech text-syntra-tech font-mono text-xs font-bold">POWERED BY SYNCORE™</span>
+            <div class="inline-block px-3 py-1 border border-syntra-tech text-syntra-tech mb-6 font-mono text-xs font-bold">
+              POWERED BY SYNCORE™
             </div>
 
-            <div class="inline-block bg-black px-6 py-4 mb-6">
-              <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl font-bold uppercase">
-                The <span class="text-slate-400">Digital Twin</span><br />Advantage
-              </h2>
-            </div>
+            <h2 class="font-head text-3xl sm:text-4xl md:text-6xl font-bold uppercase mb-6">
+              The <span class="text-slate-400">Digital Twin</span><br />Advantage
+            </h2>
 
             <p class="text-slate-300 text-lg mb-8 leading-relaxed">
-              <strong class="text-syntra-accent">SYNCORE™</strong> uses digital twin technology to create virtual replicas of each refining stage, continuously optimizing reagent levels, temperature, and flow rates in real-time. This delivers measurable improvements in yield consistency, uptime, and operational efficiency.
+              <strong class="text-white">SYNCORE™</strong> uses digital twin technology to create virtual replicas of each refining stage, continuously optimizing reagent levels, temperature, and flow rates in real-time. This delivers measurable improvements in yield consistency, uptime, and operational efficiency.
             </p>
 
             <ul class="space-y-6 mb-8">
@@ -523,50 +496,55 @@
               </li>
             </ul>
 
-            <a href="technology.html" class="inline-flex items-center gap-2 bg-syntra-accent text-syntra-midnight px-6 py-3 font-head font-bold uppercase text-sm hover:bg-yellow-400 transition-colors shadow-md shadow-yellow-500/20">
+            <a href="technology.html" class="inline-flex items-center gap-2 bg-syntra-accent text-syntra-text px-6 py-3 font-head font-bold uppercase text-sm hover:bg-white hover:text-syntra-tech transition-colors">
               Learn More About SYNCORE™
             </a>
           </div>
 
-          <div class="bg-black/50 border border-slate-700 p-1 shadow-2xl relative overflow-hidden" style="height:500px;">
+          <div class="bg-black/50 border border-slate-700 p-1 shadow-2xl relative overflow-hidden h-[500px]">
             <div class="absolute top-4 left-4 z-20 bg-black/80 px-3 py-1 text-xs font-mono text-syntra-tech border border-syntra-tech/30">
               LIVE SIMULATION
             </div>
 
-            <canvas id="twinCanvas" class="w-full h-full" style="display:block;"></canvas>
+            <canvas id="twinCanvas"></canvas>
 
             <div class="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-2 z-20">
               <div class="bg-slate-900/90 p-2 border border-slate-700">
                 <p class="text-[10px] text-slate-500 font-mono">FLOW</p>
                 <p class="text-white font-mono font-bold" id="sim-flow">120 L/m</p>
               </div>
+
               <div class="bg-slate-900/90 p-2 border border-slate-700">
                 <p class="text-[10px] text-slate-500 font-mono">PURITY</p>
                 <p class="text-syntra-accent font-mono font-bold" id="sim-purity">99%</p>
               </div>
+
               <div class="bg-slate-900/90 p-2 border border-slate-700">
                 <p class="text-[10px] text-slate-500 font-mono">PH</p>
                 <p class="text-syntra-tech font-mono font-bold" id="sim-ph">4.2</p>
               </div>
             </div>
           </div>
-
         </div>
       </div>
+    </section>
 
-      <!-- SYNHUB ARCHITECTURE (now part of same section for seamless background) -->
-      <div id="infrastructure" class="container mx-auto px-6 relative z-10 pt-24">
+    <!-- SYNHUB ARCHITECTURE -->
+    <section id="infrastructure" class="py-24 bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight text-white relative overflow-hidden border-t border-white/5">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: linear-gradient(#FFD700 1px, transparent 1px), linear-gradient(90deg, #FFD700 1px, transparent 1px); background-size: 50px 50px;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
             <div class="mb-16">
-                <div class="block mb-4">
-                  <span class="inline-block px-3 py-1 border border-syntra-tech text-syntra-tech font-mono text-xs font-bold">THE ARCHITECTURE</span>
+                <div class="inline-block px-3 py-1 border border-syntra-tech text-syntra-tech mb-6 font-mono text-xs font-bold">
+                    THE ARCHITECTURE
                 </div>
-                <div class="inline-block bg-black px-6 py-4 mb-6">
-                  <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl font-bold text-white uppercase">The <span class="text-syntra-accent">SYNHUB™</span> Ecosystem</h2>
-                </div>
+                <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase">The <span class="text-syntra-accent">SYNHUB™</span> Ecosystem</h2>
                 <p class="text-slate-300 mt-4 max-w-2xl">Modular refining network connecting diverse feedstock sources to battery-grade outputs.</p>
             </div>
 
-            <div class="relative max-w-7xl">
+            <div class="relative max-w-7xl mx-auto">
                 <div class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-0">
                     <div class="flex flex-col gap-4 w-full lg:w-1/4">
                         <div class="bg-slate-800/50 border border-slate-700 p-6 rounded">
@@ -586,9 +564,9 @@
                         <div class="text-6xl font-bold lg:hidden">↓</div>
                         <div class="text-6xl font-bold hidden lg:block">→</div>
                     </div>
-                    <div class="w-full lg:w-1/3 bg-slate-950 border-2 border-syntra-accent p-10 shadow-[0_0_40px_rgba(255,215,0,0.15)] relative z-20 flex flex-col items-center justify-center text-center">
+                    <div class="w-full lg:w-1/3 bg-slate-950 border-2 border-syntra-accent p-10 shadow-[0_0_40px_rgba(255,215,0,0.15)] relative z-20">
                         <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-syntra-accent text-slate-900 px-3 py-1 font-mono text-xs font-bold uppercase">Processing Node</div>
-                        <h3 class="font-head text-4xl font-bold text-syntra-accent mb-2">SYNHUB™</h3>
+                        <h3 class="font-head text-4xl font-bold text-white mb-2">SYNHUB™</h3>
                         <p class="font-mono text-xs text-syntra-accent">POWERED BY SYNCORE™</p>
                     </div>
                     <div class="text-syntra-accent transform lg:rotate-270 lg:-ml-8 lg:-mr-8 z-10 flow-arrow">
@@ -616,11 +594,11 @@
             </div>
 
             <div class="mt-16">
-                <a href="network.html" class="inline-flex items-center gap-2 bg-syntra-accent text-syntra-midnight px-6 py-3 font-head font-bold uppercase text-sm hover:bg-yellow-400 transition-colors shadow-md shadow-yellow-500/20">
+                <a href="network.html" class="inline-flex items-center gap-2 bg-syntra-accent text-syntra-text px-6 py-3 font-head font-bold uppercase text-sm hover:bg-white transition-colors">
                     Learn More About Our Network
                 </a>
             </div>
-      </div>
+        </div>
     </section>
 
     <!-- ENGAGEMENT MODELS -->
@@ -629,22 +607,22 @@
             <div class="mb-4">
                 <span class="inline-block px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider" style="background-color: rgba(8, 145, 178, 0.15); color: #0891B2;">BUSINESS MODEL</span>
             </div>
-            <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl font-bold uppercase mb-16 text-black">ENGAGEMENT OPPORTUNITIES</h2>
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl">
+            <h2 class="font-head text-4xl font-bold uppercase mb-16 text-black">ENGAGEMENT OPPORTUNITIES</h2>
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <div class="border-t-4 border-syntra-amber pt-8 group p-6 bg-white shadow-sm hover:shadow-xl transition-all">
-                    <h3 class="font-head text-xl font-bold uppercase mb-4 group-hover:text-syntra-amber transition-colors">Merchant Refining</h3>
+                    <h3 class="font-head text-2xl font-bold uppercase mb-4 group-hover:text-syntra-amber transition-colors">Merchant Refining</h3>
                     <p class="font-mono text-xs text-slate-400 mb-6">BUY &amp; SELL</p>
                     <p class="text-slate-600 mb-6 text-sm">We purchase feedstock (Black mass, Concentrates) directly and sell purified battery-grade salts.</p>
                     <button onclick="window.openContactModal('Product Offtake')" class="text-sm font-bold uppercase underline hover:text-syntra-amber cursor-pointer">Submit Offer</button>
                 </div>
                 <div class="border-t-4 border-syntra-amber pt-8 group p-6 bg-white shadow-sm hover:shadow-xl transition-all">
-                    <h3 class="font-head text-xl font-bold uppercase mb-4 group-hover:text-syntra-amber transition-colors">Tolling Services</h3>
+                    <h3 class="font-head text-2xl font-bold uppercase mb-4 group-hover:text-syntra-amber transition-colors">Tolling Services</h3>
                     <p class="font-mono text-xs text-slate-400 mb-6">REFINING AS A SERVICE (RaaS)</p>
                     <p class="text-slate-600 mb-6 text-sm">You maintain ownership of the material. We process your feedstock into battery-grade salts for a fixed fee.</p>
                     <button onclick="window.openContactModal('Tolling Services')" class="text-sm font-bold uppercase underline hover:text-syntra-amber cursor-pointer">Request Tolling Quote</button>
                 </div>
                 <div class="border-t-4 border-syntra-amber pt-8 group p-6 bg-white shadow-sm hover:shadow-xl transition-all">
-                    <h3 class="font-head text-xl font-bold uppercase mb-4 group-hover:text-syntra-amber transition-colors">Strategic Partnerships</h3>
+                    <h3 class="font-head text-2xl font-bold uppercase mb-4 group-hover:text-syntra-amber transition-colors">Strategic Partnerships</h3>
                     <p class="font-mono text-xs text-slate-400 mb-6">INFRASTRUCTURE DEVELOPMENT</p>
                     <p class="text-slate-600 mb-6 text-sm">Collaborate with Syntra to develop bespoke refining solutions at your site.</p>
                     <button onclick="window.openContactModal('Strategic Partnership')" class="text-sm font-bold uppercase underline hover:text-syntra-amber cursor-pointer">Discuss Partnership</button>
@@ -661,7 +639,7 @@
             <div class="inline-block px-4 py-2 font-mono text-xs font-bold mb-4 tracking-wider" style="background-color: rgba(8, 145, 178, 0.15); color: #0891B2;">
               BATTERY-GRADE OUTPUTS
             </div>
-            <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl font-bold uppercase text-syntra-text">
+            <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase text-syntra-text">
               Products &amp; Chemistries
             </h2>
             <p class="text-slate-600 mt-4 text-sm md:text-base max-w-xl">
@@ -682,7 +660,7 @@
             <div class="flex justify-between items-start mb-4">
               <div>
                 <p class="font-mono text-[11px] text-syntra-muted uppercase mb-1">Lithium</p>
-                <h3 class="font-head text-xl font-bold uppercase">Salts</h3>
+                <h3 class="font-head text-2xl font-bold uppercase">Salts</h3>
               </div>
               <span class="px-2 py-1 bg-cyan-50 text-cyan-700 text-[10px] font-mono rounded-full">
                 Battery Grade
@@ -702,7 +680,7 @@
             <div class="flex justify-between items-start mb-4">
               <div>
                 <p class="font-mono text-[11px] text-syntra-muted uppercase mb-1">Nickel &amp; Cobalt</p>
-                <h3 class="font-head text-xl font-bold uppercase">Salts & Metals</h3>
+                <h3 class="font-head text-2xl font-bold uppercase">Salts & Metals</h3>
               </div>
               <span class="px-2 py-1 bg-cyan-50 text-cyan-700 text-[10px] font-mono rounded-full">
                 High Purity
@@ -725,7 +703,7 @@
             <div class="flex justify-between items-start mb-4">
               <div>
                 <p class="font-mono text-[11px] text-syntra-muted uppercase mb-1">Mn / Al / Cu</p>
-                <h3 class="font-head text-xl font-bold uppercase">Supporting Metals</h3>
+                <h3 class="font-head text-2xl font-bold uppercase">Supporting Metals</h3>
               </div>
               <span class="px-2 py-1 bg-cyan-50 text-cyan-700 text-[10px] font-mono rounded-full">
                 Circular
@@ -754,7 +732,7 @@
           <div class="inline-block px-4 py-2 font-mono text-xs font-bold mb-4 tracking-wider" style="background-color: rgba(8, 145, 178, 0.15); color: #0891B2;">
             ECOSYSTEM HUB
           </div>
-          <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl font-bold uppercase mb-4 text-syntra-text">
+          <h2 class="font-head text-3xl md:text-4xl font-bold uppercase mb-4 text-syntra-text">
             Partner Access
           </h2>
           <p class="text-slate-600 text-base">
@@ -762,26 +740,23 @@
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6 max-w-5xl">
-          <!-- Observer Status -->
+        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           <div class="bg-syntra-base border border-syntra-border p-6">
-            <h3 class="font-head text-lg font-bold uppercase mb-2">Observer Status</h3>
+            <h3 class="font-head text-xl font-bold uppercase mb-2">Observer Status</h3>
             <p class="text-xs text-slate-600">
               Verified visibility into capacity expansion and operational data under NDA.
             </p>
           </div>
 
-          <!-- Investor Relations -->
           <div class="bg-syntra-base border border-syntra-accent p-6">
-            <h3 class="font-head text-lg font-bold uppercase mb-2">Investor Relations</h3>
+            <h3 class="font-head text-xl font-bold uppercase mb-2">Investor Relations</h3>
             <p class="text-xs text-slate-600">
               Equity and project finance partners supporting infrastructure buildout.
             </p>
           </div>
 
-          <!-- Supplier Portal -->
           <div class="bg-syntra-base border border-syntra-border p-6">
-            <h3 class="font-head text-lg font-bold uppercase mb-2">Supplier Portal</h3>
+            <h3 class="font-head text-xl font-bold uppercase mb-2">Supplier Portal</h3>
             <p class="text-xs text-slate-600">
               Feedstock suppliers and technical service providers for our refining network.
             </p>
@@ -789,7 +764,6 @@
         </div>
       </div>
     </section>
-
 
     <!-- PARTNER ECOSYSTEM ACCESS FORM -->
     <section id="partner-ecosystem-access" class="py-24 bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight text-white relative overflow-hidden">
@@ -799,9 +773,7 @@
         <div class="container mx-auto px-6 relative z-10">
             <div class="grid lg:grid-cols-2 gap-16">
                 <div>
-                    <div class="inline-block bg-black px-6 py-4 mb-6">
-                        <h2 class="font-head text-5xl sm:text-6xl lg:text-7xl font-bold text-white uppercase"><span class="text-slate-400 font-black">BUILD</span> WITH US</h2>
-                    </div>
+                    <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase mb-6"><span class="text-slate-400">BUILD</span> <span class="text-white">WITH US</span></h2>
                     <p class="text-slate-400 text-lg mb-12">Syntra Refining is currently onboarding strategic partners for the 2027 production cycle.</p>
                     <div class="space-y-6">
                         <div class="flex items-start gap-4">
@@ -824,16 +796,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-gradient-to-br from-white to-slate-50 text-syntra-text p-10 shadow-2xl border-2 border-slate-200 relative overflow-hidden flex flex-col items-center justify-center min-h-[400px]">
-                    <div class="absolute top-0 right-0 w-40 h-40 bg-syntra-accent/5 blur-3xl -mr-20 -mt-20"></div>
-                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-cyan-500/5 blur-3xl -ml-16 -mb-16"></div>
-                    <div class="relative z-10 text-center w-full flex flex-col items-center justify-center flex-1">
-                        <h3 class="font-head text-4xl md:text-5xl font-bold uppercase mb-6 text-syntra-midnight">Contact Us</h3>
-                        <p class="text-slate-500 mb-10 leading-relaxed max-w-md mx-auto">
-                            Reach our corporate development team for partnerships, offtake agreements, or investment inquiries. All responses within two business days.
+                <div class="bg-gradient-to-br from-white to-slate-50 text-syntra-text p-10 shadow-2xl border-2 border-slate-200 relative overflow-hidden">
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/5 blur-3xl -ml-32 -mb-32"></div>
+                    <div class="relative z-10">
+                        <div class="mb-8">
+                            <h3 class="font-head text-3xl font-bold uppercase mb-4">Contact Us</h3>
+                        </div>
+                        <p class="text-slate-600 mb-8 leading-relaxed">
+                            Reach out for partnership inquiries, commercial discussions, or general information.
                         </p>
-                        <button onclick="window.openContactModal('Strategic Partnership')" class="group w-full max-w-sm bg-syntra-accent text-syntra-midnight font-head font-bold uppercase py-5 hover:bg-yellow-400 transition-all duration-300 shadow-xl shadow-yellow-500/20 flex items-center justify-center">
-                            <span>Send Inquiry</span>
+                        <button onclick="window.openContactModal('Strategic Partnership')" class="w-full bg-syntra-accent text-syntra-midnight font-head font-bold uppercase py-5 hover:bg-yellow-400 transition-all duration-300 shadow-xl shadow-yellow-500/20 hover:scale-[1.02] transform">
+                            Send Inquiry
                         </button>
                     </div>
                 </div>
@@ -893,10 +866,7 @@
             const backdrop = document.getElementById('menuBackdrop');
             const body = document.body;
 
-            if (!menu || !backdrop) {
-                console.error('Mobile menu elements not found');
-                return;
-            }
+            if (!menu || !backdrop) return;
 
             const isOpen = menu.classList.contains('translate-x-0');
 
@@ -915,14 +885,6 @@
             }
         }
 
-        function handleMobileNavClick(target) {
-            toggleMobileMenu();
-            const el = document.querySelector(target);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const menu = document.getElementById('mobileMenu');
@@ -936,7 +898,6 @@
            GO TO PARTNER FORM WITH PREFILL
            =========================== */
         function goToPartnerForm(interestType) {
-            // Use the contact modal instead of scrolling to form
             if (window.openContactModal) {
                 window.openContactModal(interestType);
             }
@@ -955,7 +916,6 @@
             const interest = form.elements[4].value;
             const message = form.elements[5].value;
 
-            // Save to database
             const formData = {
                 form_type: 'partner_inquiry',
                 first_name: firstName,
@@ -968,7 +928,6 @@
 
             const result = await submitFormToDatabase(formData);
 
-            // Show success message
             const formContainer = form.parentElement;
             if (result.success) {
                 formContainer.innerHTML = `
