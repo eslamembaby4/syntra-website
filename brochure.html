@@ -118,43 +118,12 @@
         }
 
         .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 16px;
             margin-bottom: 32px;
         }
 
-        .logo-mark {
-            width: 60px;
-            height: 60px;
-            background: var(--midnight-navy);
-            border: 2px solid var(--signal-yellow);
-            transform: rotate(45deg);
-            position: relative;
-        }
-
-        .logo-mark::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            width: 24px;
-            height: 24px;
-            background: var(--signal-yellow);
-        }
-
-        .company-name {
-            font-family: 'Oswald', sans-serif;
-            font-size: 42px;
-            font-weight: 700;
-            color: var(--white);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .company-name .accent {
-            color: var(--signal-yellow);
+        .logo-section img {
+            height: 80px;
+            width: auto;
         }
 
         .tagline {
@@ -1203,10 +1172,7 @@
         <header class="brochure-header">
             <div class="header-content">
                 <div class="logo-section">
-                    <div class="logo-mark"></div>
-                    <div>
-                        <div class="company-name">SYNTRA<span class="accent">■</span></div>
-                    </div>
+                    <img src="/assets/images/syntra-logo-refiningcorp-transparent-clean.png" alt="Syntra Refining Corp.">
                 </div>
 
                 <div class="tagline">SMART REFINING ■ UNIVERSAL INTAKE ■ AI OPTIMIZED</div>
