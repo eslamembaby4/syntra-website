@@ -616,13 +616,7 @@
             <div class="grid md:grid-cols-3 gap-4 mb-4">
                 <!-- Card 1: Advanced Refining -->
                 <div class="capability-stat-card" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 32px 28px; position: relative; overflow: hidden;">
-                    <div class="mb-6" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                            <rect x="14" y="14" width="12" height="12" stroke="#FFD700" stroke-width="1.5" fill="none"/>
-                            <rect x="10" y="10" width="20" height="20" stroke="#FFD700" stroke-width="1" fill="none" opacity="0.4"/>
-                            <circle cx="20" cy="20" r="3" fill="#FFD700"/>
-                        </svg>
-                    </div>
+                    <canvas id="anim-purity" width="80" height="80" class="mb-5" style="display: block;"></canvas>
                     <h3 class="font-head font-black uppercase mb-3" style="color: white; font-size: 1rem; letter-spacing: 0.06em;">ADVANCED REFINING</h3>
                     <div class="flex items-baseline gap-1 mb-1">
                         <span class="font-head font-black" style="color: #FFD700; font-size: 2.5rem; line-height: 1;" id="cap-purity-val">99</span>
@@ -635,15 +629,7 @@
 
                 <!-- Card 2: Production Output -->
                 <div class="capability-stat-card" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 32px 28px; position: relative; overflow: hidden;">
-                    <div class="mb-6" style="width: 48px; height: 48px; position: relative; display: flex; align-items: center; justify-content: center;">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                            <polygon points="20,8 28,20 20,32 12,20" stroke="#FFD700" stroke-width="1.5" fill="none"/>
-                            <polygon points="20,13 25,20 20,27 15,20" stroke="#FFD700" stroke-width="1" fill="rgba(255,215,0,0.1)"/>
-                        </svg>
-                        <div style="position: absolute; top: 4px; right: 4px; width: 16px; height: 16px; background: white; display: flex; align-items: center; justify-content: center;">
-                            <div style="width: 8px; height: 8px; background: #0B1120;"></div>
-                        </div>
-                    </div>
+                    <canvas id="anim-production" width="80" height="80" class="mb-5" style="display: block;"></canvas>
                     <h3 class="font-head font-black uppercase mb-3" style="color: white; font-size: 1rem; letter-spacing: 0.06em;">PRODUCTION OUTPUT</h3>
                     <div class="flex items-baseline gap-1 mb-1">
                         <span class="font-head font-black" style="color: #FF4444; font-size: 2.5rem; line-height: 1;" id="cap-tpa-val">1000</span>
@@ -656,18 +642,7 @@
 
                 <!-- Card 3: Global Network -->
                 <div class="capability-stat-card" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 32px 28px; position: relative; overflow: hidden;">
-                    <div class="mb-6" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                            <rect x="8" y="8" width="8" height="8" fill="#0891B2" opacity="0.8"/>
-                            <rect x="24" y="8" width="8" height="8" fill="#0891B2" opacity="0.5"/>
-                            <rect x="8" y="24" width="8" height="8" fill="#0891B2" opacity="0.5"/>
-                            <rect x="24" y="24" width="8" height="8" fill="#0891B2" opacity="0.8"/>
-                            <line x1="12" y1="16" x2="12" y2="24" stroke="#0891B2" stroke-width="1" opacity="0.4"/>
-                            <line x1="28" y1="16" x2="28" y2="24" stroke="#0891B2" stroke-width="1" opacity="0.4"/>
-                            <line x1="16" y1="12" x2="24" y2="12" stroke="#0891B2" stroke-width="1" opacity="0.4"/>
-                            <line x1="16" y1="28" x2="24" y2="28" stroke="#0891B2" stroke-width="1" opacity="0.4"/>
-                        </svg>
-                    </div>
+                    <canvas id="anim-network" width="80" height="80" class="mb-5" style="display: block;"></canvas>
                     <h3 class="font-head font-black uppercase mb-3" style="color: white; font-size: 1rem; letter-spacing: 0.06em;">GLOBAL NETWORK</h3>
                     <div class="flex items-baseline gap-1 mb-1">
                         <span class="font-head font-black" style="color: #0891B2; font-size: 2.5rem; line-height: 1;" id="cap-partners-val">10</span>
@@ -710,6 +685,11 @@
 
     <script>
     (function() {
+        function randomWalk(base, count, variance) {
+            const pts = [base];
+            for (let i = 1; i < count; i++) pts.push(pts[i-1] + (Math.random() - 0.5) * variance);
+            return pts;
+        }
         function drawSparkline(canvasId, color, points) {
             const canvas = document.getElementById(canvasId);
             if (!canvas) return;
@@ -720,8 +700,11 @@
             const min = Math.min(...points), max = Math.max(...points);
             const range = max - min || 1;
             ctx.clearRect(0, 0, w, h);
+            const grad = ctx.createLinearGradient(0, 0, w, 0);
+            grad.addColorStop(0, color + '33');
+            grad.addColorStop(1, color);
             ctx.beginPath();
-            ctx.strokeStyle = color;
+            ctx.strokeStyle = grad;
             ctx.lineWidth = 1.5;
             points.forEach((p, i) => {
                 const x = (i / (points.length - 1)) * w;
@@ -731,13 +714,212 @@
             ctx.stroke();
         }
 
-        function randomWalk(base, count, variance) {
-            const pts = [base];
-            for (let i = 1; i < count; i++) {
-                pts.push(pts[i-1] + (Math.random() - 0.5) * variance);
+        /* ── PURITY: dual concentric rotating arcs + scanning pulse ── */
+        (function() {
+            const c = document.getElementById('anim-purity');
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            const W = 80, H = 80, cx = 40, cy = 40;
+            let t = 0;
+            function frame() {
+                ctx.clearRect(0, 0, W, H);
+                t += 0.025;
+                const color = '#FFD700';
+                const purity = 0.99;
+
+                /* outer track */
+                ctx.beginPath();
+                ctx.arc(cx, cy, 34, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(255,215,0,0.08)';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+
+                /* outer filled arc (purity %) */
+                const startAngle = -Math.PI / 2;
+                const endAngle = startAngle + Math.PI * 2 * purity;
+                const gArc = ctx.createLinearGradient(cx - 34, cy, cx + 34, cy);
+                gArc.addColorStop(0, 'rgba(255,215,0,0.3)');
+                gArc.addColorStop(1, '#FFD700');
+                ctx.beginPath();
+                ctx.arc(cx, cy, 34, startAngle, endAngle);
+                ctx.strokeStyle = gArc;
+                ctx.lineWidth = 3;
+                ctx.stroke();
+
+                /* inner rotating dashed ring */
+                ctx.save();
+                ctx.translate(cx, cy);
+                ctx.rotate(t);
+                ctx.setLineDash([4, 6]);
+                ctx.beginPath();
+                ctx.arc(0, 0, 24, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(255,215,0,0.35)';
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+                ctx.setLineDash([]);
+                ctx.restore();
+
+                /* counter-rotating inner ring */
+                ctx.save();
+                ctx.translate(cx, cy);
+                ctx.rotate(-t * 0.7);
+                ctx.setLineDash([2, 8]);
+                ctx.beginPath();
+                ctx.arc(0, 0, 16, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(255,215,0,0.2)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                ctx.setLineDash([]);
+                ctx.restore();
+
+                /* scanning dot on outer arc */
+                const dotAngle = startAngle + t * 2;
+                const dx = cx + 34 * Math.cos(dotAngle);
+                const dy = cy + 34 * Math.sin(dotAngle);
+                const glow = ctx.createRadialGradient(dx, dy, 0, dx, dy, 6);
+                glow.addColorStop(0, '#FFD700');
+                glow.addColorStop(1, 'transparent');
+                ctx.beginPath();
+                ctx.arc(dx, dy, 6, 0, Math.PI * 2);
+                ctx.fillStyle = glow;
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(dx, dy, 2.5, 0, Math.PI * 2);
+                ctx.fillStyle = '#FFD700';
+                ctx.fill();
+
+                /* center core pulse */
+                const pulse = 0.5 + 0.5 * Math.sin(t * 3);
+                ctx.beginPath();
+                ctx.arc(cx, cy, 4 + pulse * 2, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255,215,0,${0.15 + pulse * 0.15})`;
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(cx, cy, 3, 0, Math.PI * 2);
+                ctx.fillStyle = '#FFD700';
+                ctx.fill();
+
+                requestAnimationFrame(frame);
             }
-            return pts;
-        }
+            frame();
+        })();
+
+        /* ── PRODUCTION: rising waveform bars ── */
+        (function() {
+            const c = document.getElementById('anim-production');
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            const W = 80, H = 80;
+            let t = 0;
+            const BAR_COUNT = 10;
+            function frame() {
+                ctx.clearRect(0, 0, W, H);
+                t += 0.04;
+                const barW = 4, gap = 4;
+                const totalW = BAR_COUNT * barW + (BAR_COUNT - 1) * gap;
+                const startX = (W - totalW) / 2;
+                for (let i = 0; i < BAR_COUNT; i++) {
+                    const phase = (i / BAR_COUNT) * Math.PI * 2;
+                    const heightFrac = 0.3 + 0.6 * Math.abs(Math.sin(t + phase));
+                    const barH = heightFrac * (H - 8);
+                    const x = startX + i * (barW + gap);
+                    const y = H - 4 - barH;
+                    const alpha = 0.4 + 0.6 * heightFrac;
+                    const g = ctx.createLinearGradient(x, y, x, H - 4);
+                    g.addColorStop(0, `rgba(255,68,68,${alpha})`);
+                    g.addColorStop(1, `rgba(255,68,68,0.08)`);
+                    ctx.fillStyle = g;
+                    ctx.fillRect(x, y, barW, barH);
+                    /* top bright cap */
+                    ctx.fillStyle = `rgba(255,120,120,${alpha})`;
+                    ctx.fillRect(x, y, barW, 2);
+                }
+                /* horizontal scan line */
+                const scanY = 4 + ((Math.sin(t * 0.8) * 0.5 + 0.5)) * (H - 8);
+                ctx.beginPath();
+                ctx.moveTo(0, scanY);
+                ctx.lineTo(W, scanY);
+                ctx.strokeStyle = 'rgba(255,68,68,0.2)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                requestAnimationFrame(frame);
+            }
+            frame();
+        })();
+
+        /* ── NETWORK: pulsing nodes + travelling data packets ── */
+        (function() {
+            const c = document.getElementById('anim-network');
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            const W = 80, H = 80;
+            let t = 0;
+            const nodes = [
+                { x: 40, y: 14 },
+                { x: 66, y: 30 },
+                { x: 60, y: 62 },
+                { x: 20, y: 62 },
+                { x: 14, y: 30 },
+                { x: 40, y: 40 },
+            ];
+            const edges = [[0,1],[1,2],[2,3],[3,4],[4,0],[0,5],[1,5],[2,5],[3,5],[4,5]];
+            function lerp(a, b, f) { return a + (b - a) * f; }
+            function frame() {
+                ctx.clearRect(0, 0, W, H);
+                t += 0.02;
+
+                /* edges */
+                edges.forEach(([ai, bi]) => {
+                    const a = nodes[ai], b = nodes[bi];
+                    ctx.beginPath();
+                    ctx.moveTo(a.x, a.y);
+                    ctx.lineTo(b.x, b.y);
+                    ctx.strokeStyle = 'rgba(8,145,178,0.18)';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                });
+
+                /* travelling packets */
+                edges.forEach(([ai, bi], idx) => {
+                    const a = nodes[ai], b = nodes[bi];
+                    const frac = ((t * 0.9 + idx * 0.37) % 1);
+                    const px = lerp(a.x, b.x, frac);
+                    const py = lerp(a.y, b.y, frac);
+                    const glow = ctx.createRadialGradient(px, py, 0, px, py, 5);
+                    glow.addColorStop(0, 'rgba(8,145,178,0.8)');
+                    glow.addColorStop(1, 'transparent');
+                    ctx.beginPath();
+                    ctx.arc(px, py, 5, 0, Math.PI * 2);
+                    ctx.fillStyle = glow;
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(px, py, 1.5, 0, Math.PI * 2);
+                    ctx.fillStyle = '#0891B2';
+                    ctx.fill();
+                });
+
+                /* nodes */
+                nodes.forEach((n, i) => {
+                    const pulse = 0.5 + 0.5 * Math.sin(t * 2.5 + i * 1.1);
+                    /* halo */
+                    const halo = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, 7 + pulse * 3);
+                    halo.addColorStop(0, `rgba(8,145,178,${0.2 * pulse})`);
+                    halo.addColorStop(1, 'transparent');
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, 7 + pulse * 3, 0, Math.PI * 2);
+                    ctx.fillStyle = halo;
+                    ctx.fill();
+                    /* core */
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, i === 5 ? 4 : 3, 0, Math.PI * 2);
+                    ctx.fillStyle = i === 5 ? '#0891B2' : `rgba(8,145,178,${0.5 + 0.5 * pulse})`;
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(frame);
+            }
+            frame();
+        })();
 
         function initSparklines() {
             drawSparkline('sparkline-1', '#FFD700', randomWalk(99, 24, 0.5));
