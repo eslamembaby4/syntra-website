@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syntra Refining | Corporate Brochure</title>
+    <title>Syntra Refining | Corporate Brochure — Print Ready</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
 
     <style>
+        /* ================================================
+           PASSWORD GATE
+        ================================================ */
         #pw-gate {
             position: fixed;
             inset: 0;
@@ -60,11 +63,10 @@
         #pw-gate button:hover { background: #F5C800; }
         #pw-gate .pw-error { color: #EF4444; font-size: 12px; margin-top: 10px; min-height: 16px; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ================================================
+           RESET & ROOT
+        ================================================ */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --midnight-navy: #0B1120;
@@ -78,1518 +80,1027 @@
             --slate-400: #94A3B8;
             --slate-500: #64748B;
             --slate-600: #475569;
+
+            /* Tri-fold panel dimensions
+               Letter landscape: 11in × 8.5in
+               Three equal panels: 3.667in each
+               We work in px at 96dpi for screen, print uses @page */
+            --panel-w: 352px;   /* 3.667in × 96dpi ≈ 352px */
+            --sheet-h: 816px;   /* 8.5in × 96dpi */
+            --bleed: 9px;       /* ~0.125in bleed */
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--white);
+            background: #CBD5E1;
             color: var(--deep-slate);
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
-        .brochure-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-        }
-
-        /* Print Styles */
-        @media print {
-            body {
-                print-color-adjust: exact;
-                -webkit-print-color-adjust: exact;
-            }
-            .no-print {
-                display: none !important;
-            }
-            .page-break {
-                page-break-after: always;
-            }
-
-            /* Prevent sections from breaking across pages */
-            .section {
-                page-break-inside: avoid;
-                break-inside: avoid;
-            }
-
-            /* Prevent feature cards from breaking */
-            .feature-card {
-                page-break-inside: avoid;
-                break-inside: avoid;
-            }
-
-            /* Prevent tech items from breaking */
-            .tech-item {
-                page-break-inside: avoid;
-                break-inside: avoid;
-            }
-
-            /* Keep section titles with their content */
-            .section-title {
-                page-break-after: avoid;
-                break-after: avoid;
-            }
-
-            /* Keep headers together */
-            .brochure-header {
-                page-break-inside: avoid;
-                break-inside: avoid;
-            }
-
-            /* Prevent orphans and widows */
-            p {
-                orphans: 3;
-                widows: 3;
-            }
-        }
-
-        /* Header */
-        .brochure-header {
-            background: var(--white);
+        /* ================================================
+           SCREEN: PRINT CONTROLS BAR
+        ================================================ */
+        .screen-controls {
+            background: var(--midnight-navy);
             border-bottom: 3px solid var(--signal-yellow);
-            padding: 60px 80px;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .screen-controls .logo {
+            height: 32px;
+            width: auto;
+        }
+
+        .controls-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .controls-center h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .controls-center p {
+            font-size: 11px;
+            color: var(--slate-400);
+            letter-spacing: 0.05em;
+        }
+
+        .print-btn {
+            background: var(--signal-yellow);
+            color: var(--midnight-navy);
+            border: none;
+            padding: 10px 28px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .print-btn:hover {
+            background: var(--white);
+        }
+
+        /* ================================================
+           BROCHURE SHEETS WRAPPER
+        ================================================ */
+        .sheets-wrapper {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .sheet-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--slate-500);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        /* ================================================
+           SHEET — the physical paper
+        ================================================ */
+        .sheet {
+            width: 1056px;    /* 11in × 96dpi */
+            height: 816px;    /* 8.5in × 96dpi */
+            background: white;
+            display: flex;
+            position: relative;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+
+        /* ================================================
+           PANEL — each of three columns
+        ================================================ */
+        .panel {
+            width: 352px;
+            height: 816px;
+            flex-shrink: 0;
             position: relative;
             overflow: hidden;
         }
 
-        .brochure-header::before {
+        /* Fold guide lines */
+        .sheet::before,
+        .sheet::after {
             content: '';
             position: absolute;
             top: 0;
-            right: 0;
-            width: 600px;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.06) 0%, transparent 100%);
+            bottom: 0;
+            width: 1px;
+            background: rgba(203, 213, 225, 0.5);
+            z-index: 50;
             pointer-events: none;
         }
+        .sheet::before { left: 352px; }
+        .sheet::after  { left: 704px; }
 
-        .header-content {
-            position: relative;
-            z-index: 1;
+        /* ================================================
+           PANEL THEMES
+        ================================================ */
+        .panel-dark {
+            background: var(--midnight-navy);
+            color: var(--white);
         }
 
-        .logo-section {
-            margin-bottom: 32px;
-        }
-
-        .logo-section img {
-            height: 80px;
-            width: auto;
-        }
-
-        .tagline {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--cyan);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-top: 16px;
-        }
-
-        .hero-statement {
-            font-size: 28px;
-            font-weight: 300;
+        .panel-light {
+            background: var(--white);
             color: var(--deep-slate);
-            line-height: 1.5;
-            margin-top: 32px;
-            max-width: 800px;
         }
 
-        .hero-statement strong {
-            font-weight: 700;
+        .panel-accent {
+            background: var(--slate-100);
+            color: var(--deep-slate);
+        }
+
+        .panel-yellow {
+            background: var(--signal-yellow);
             color: var(--midnight-navy);
         }
 
-        /* Two Column Layout */
-        .two-col-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: start;
+        /* ================================================
+           PANEL INNER PADDING
+        ================================================ */
+        .panel-inner {
+            padding: 44px 36px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
-        .col-left {
-            border-right: 1px solid var(--slate-200);
-        }
-
-        .col-right {}
-
-        .section-alt-col {
-            background: var(--slate-100);
-            padding: 64px 56px;
-        }
-
-        @media (max-width: 900px) {
-            .two-col-layout {
-                grid-template-columns: 1fr;
-            }
-            .col-left {
-                border-right: none;
-                border-bottom: 1px solid var(--slate-200);
-            }
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 64px 56px;
-        }
-
-        .section-alt {
-            background: var(--slate-100);
-        }
-
-        .section-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            margin-bottom: 16px;
-            border: 2px solid var(--cyan);
-        }
-
-        .section-tag span {
-            font-family: 'Oswald', sans-serif;
-            font-size: 10px;
+        /* ================================================
+           TYPOGRAPHY — shared
+        ================================================ */
+        .panel-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
             font-weight: 700;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--cyan);
+            margin-bottom: 12px;
         }
 
-        .section-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 36px;
-            font-weight: 700;
+        .panel-tag.tag-yellow {
+            color: var(--signal-yellow);
+        }
+
+        .panel-tag.tag-dark {
             color: var(--midnight-navy);
-            letter-spacing: 0.05em;
+        }
+
+        .panel-heading {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .panel-heading.h-lg {
+            font-size: 34px;
+        }
+
+        .panel-heading.h-md {
+            font-size: 22px;
+            margin-bottom: 14px;
+        }
+
+        .panel-heading.h-sm {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .panel-heading.color-white { color: var(--white); }
+        .panel-heading.color-yellow { color: var(--signal-yellow); }
+        .panel-heading.color-navy { color: var(--midnight-navy); }
+
+        .panel-rule {
+            width: 48px;
+            height: 3px;
+            background: var(--signal-yellow);
+            margin: 14px 0 18px;
+            flex-shrink: 0;
+        }
+
+        .panel-rule.rule-dark { background: var(--midnight-navy); }
+        .panel-rule.rule-navy { background: var(--midnight-navy); }
+
+        .panel-body {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--slate-400);
+        }
+
+        .panel-body.body-dark { color: var(--deep-slate); }
+        .panel-body.body-navy { color: var(--slate-600); }
+        .panel-body.body-white { color: rgba(255,255,255,0.75); }
+
+        /* ================================================
+           FRONT COVER PANEL (Panel 3 — outside right)
+        ================================================ */
+        .cover-bg-accent {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cover-logo {
+            height: 56px;
+            width: auto;
+            margin-bottom: 32px;
+        }
+
+        .cover-tagline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--cyan);
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             margin-bottom: 16px;
-            position: relative;
-            padding-bottom: 16px;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: var(--signal-yellow);
-        }
-
-        .section-subtitle {
-            font-size: 18px;
-            color: var(--slate-500);
-            margin-bottom: 48px;
-            line-height: 1.7;
-        }
-
-        /* Grid Layouts */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-top: 48px;
-        }
-
-        .feature-card {
-            background: var(--white);
-            border: 2px solid var(--slate-200);
-            padding: 24px;
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            border-color: var(--signal-yellow);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(11, 17, 32, 0.1);
-        }
-
-        .feature-icon {
-            width: 56px;
-            height: 56px;
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        /* Universal Intake - Adaptive Funnel Processing */
-        .icon-intake {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: visible;
-        }
-
-        /* Outer funnel/intake boundary */
-        .icon-intake::before {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 10px;
-            border: 3px solid var(--signal-yellow);
-            border-bottom: none;
-            border-radius: 20px 20px 0 0;
-            opacity: 0.6;
-        }
-
-        /* Processing chamber */
-        .icon-intake::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 3px solid var(--signal-yellow);
-            border-radius: 4px;
-            opacity: 0.4;
-        }
-
-        /* Feedstock particles */
-        .feedstock-particle {
-            position: absolute;
-            background: var(--signal-yellow);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--signal-yellow);
-        }
-
-        /* Virgin ore particles (larger, from top-left) */
-        .feedstock-particle:nth-child(1) {
-            width: 6px;
-            height: 6px;
-            top: 0;
-            left: 25%;
-            animation: intake-flow-1 3s ease-in infinite;
-            animation-delay: 0s;
-        }
-
-        .feedstock-particle:nth-child(2) {
-            width: 5px;
-            height: 5px;
-            top: 0;
-            left: 35%;
-            animation: intake-flow-1 3s ease-in infinite;
-            animation-delay: 0.5s;
-        }
-
-        /* Black mass particles (medium, from top-right) */
-        .feedstock-particle:nth-child(3) {
-            width: 4px;
-            height: 4px;
-            top: 0;
-            right: 25%;
-            animation: intake-flow-2 3s ease-in infinite;
-            animation-delay: 1s;
-            opacity: 0.8;
-        }
-
-        .feedstock-particle:nth-child(4) {
-            width: 5px;
-            height: 5px;
-            top: 0;
-            right: 35%;
-            animation: intake-flow-2 3s ease-in infinite;
-            animation-delay: 1.5s;
-            opacity: 0.8;
-        }
-
-        /* Recycled material particles (smaller, from top-center) */
-        .feedstock-particle:nth-child(5) {
-            width: 4px;
-            height: 4px;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: intake-flow-3 3s ease-in infinite;
-            animation-delay: 2s;
-            opacity: 0.9;
-        }
-
-        .feedstock-particle:nth-child(6) {
-            width: 3px;
-            height: 3px;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: intake-flow-3 3s ease-in infinite;
-            animation-delay: 2.5s;
-            opacity: 0.9;
-        }
-
-        /* Central processing indicator */
-        .processing-core {
-            position: absolute;
-            bottom: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--signal-yellow);
-            border-radius: 50%;
-            animation: processing-glow 2s ease-in-out infinite;
-        }
-
-        .processing-core::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
-            background: var(--signal-yellow);
-            border-radius: 50%;
-            animation: core-pulse 1s ease-in-out infinite;
-        }
-
-        /* Output stream */
-        .output-stream {
-            position: absolute;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 3px;
-            height: 12px;
-            background: linear-gradient(to bottom, var(--signal-yellow), transparent);
-            animation: output-flow 2s ease-in-out infinite;
-        }
-
-        /* AI Optimized - Neural Network */
-        .icon-ai::before,
-        .icon-ai::after {
-            content: '';
-            position: absolute;
-            background: var(--signal-yellow);
-        }
-
-        .icon-ai::before {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            box-shadow:
-                -20px -20px 0 var(--signal-yellow),
-                20px -20px 0 var(--signal-yellow),
-                -20px 20px 0 var(--signal-yellow),
-                20px 20px 0 var(--signal-yellow);
-            animation: neural-pulse 2s ease-in-out infinite;
-        }
-
-        .icon-ai::after {
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 2px solid var(--signal-yellow);
-            border-radius: 50%;
-            animation: ripple 3s ease-out infinite;
-        }
-
-        /* Distributed Network - Connected Nodes */
-        .icon-network {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            padding: 8px;
-        }
-
-        .icon-network::before,
-        .icon-network::after {
-            content: '';
-            background: var(--signal-yellow);
-            border-radius: 50%;
-            animation: node-pulse 2s ease-in-out infinite;
-        }
-
-        .icon-network::before {
-            grid-column: 1;
-            grid-row: 1;
-        }
-
-        .icon-network::after {
-            grid-column: 3;
-            grid-row: 3;
-            animation-delay: 1s;
-        }
-
-        .node {
-            width: 100%;
-            height: 100%;
-            background: var(--signal-yellow);
-            border-radius: 50%;
-            animation: node-pulse 2s ease-in-out infinite;
-        }
-
-        .node:nth-child(2) { animation-delay: 0.3s; }
-        .node:nth-child(3) { animation-delay: 0.6s; }
-        .node:nth-child(4) { animation-delay: 0.9s; }
-
-        /* Smart Refining - Real-time Monitoring Dashboard */
-        .icon-smart {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            padding: 8px;
-        }
-
-        .icon-smart::before,
-        .icon-smart::after {
-            content: '';
-            position: absolute;
-            background: var(--signal-yellow);
-        }
-
-        /* Scanning line effect */
-        .icon-smart::before {
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--signal-yellow), transparent);
-            animation: scan 2s ease-in-out infinite;
-        }
-
-        /* Central monitoring dot */
-        .icon-smart::after {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            box-shadow:
-                0 0 0 2px var(--signal-yellow),
-                0 0 8px var(--signal-yellow);
-            animation: monitoring-pulse 1.5s ease-in-out infinite;
-        }
-
-        .bar {
-            height: 4px;
-            background: var(--signal-yellow);
-            opacity: 0.3;
-            animation: bar-adjust 3s ease-in-out infinite;
-            position: relative;
-        }
-
-        .bar:nth-child(1) {
-            width: 60%;
-            animation-delay: 0s;
-        }
-
-        .bar:nth-child(2) {
-            width: 80%;
-            animation-delay: 0.5s;
-        }
-
-        .bar:nth-child(3) {
-            width: 45%;
-            animation-delay: 1s;
-        }
-
-        .bar:nth-child(4) {
-            width: 70%;
-            animation-delay: 1.5s;
-        }
-
-        /* Predictive Intelligence - Data Wave */
-        .icon-predictive::before,
-        .icon-predictive::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 3px;
-            background: var(--signal-yellow);
-            top: 50%;
-            left: 0;
-        }
-
-        .icon-predictive::before {
-            animation: wave 2s ease-in-out infinite;
-            transform-origin: left;
-        }
-
-        .icon-predictive::after {
-            animation: wave 2s ease-in-out infinite 1s;
-            transform-origin: right;
-        }
-
-        /* Circular Economy - Complete Lifecycle Circle */
-        .icon-circular {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Main circular path */
-        .icon-circular::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 3px solid var(--signal-yellow);
-            border-radius: 50%;
-            opacity: 0.3;
-        }
-
-        /* Animated circular flow */
-        .icon-circular::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 3px solid transparent;
-            border-top-color: var(--signal-yellow);
-            border-right-color: var(--signal-yellow);
-            border-radius: 50%;
-            animation: rotate-smooth 3s linear infinite;
-            filter: drop-shadow(0 0 6px var(--signal-yellow));
-        }
-
-        /* Lifecycle stages dots */
-        .stage-dot {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: var(--signal-yellow);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--signal-yellow);
-        }
-
-        .stage-dot:nth-child(1) {
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: stage-pulse 3s ease-in-out infinite;
-            animation-delay: 0s;
-        }
-
-        .stage-dot:nth-child(2) {
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            animation: stage-pulse 3s ease-in-out infinite;
-            animation-delay: 0.75s;
-        }
-
-        .stage-dot:nth-child(3) {
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: stage-pulse 3s ease-in-out infinite;
-            animation-delay: 1.5s;
-        }
-
-        .stage-dot:nth-child(4) {
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            animation: stage-pulse 3s ease-in-out infinite;
-            animation-delay: 2.25s;
-        }
-
-        /* Central recycling symbol */
-        .recycle-center {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .recycle-arrow {
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-bottom: 8px solid var(--signal-yellow);
-            opacity: 0.8;
-        }
-
-        .recycle-arrow:nth-child(1) {
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%) rotate(0deg);
-            animation: recycle-fade 3s ease-in-out infinite;
-            animation-delay: 0s;
-        }
-
-        .recycle-arrow:nth-child(2) {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(120deg);
-            animation: recycle-fade 3s ease-in-out infinite;
-            animation-delay: 1s;
-        }
-
-        .recycle-arrow:nth-child(3) {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(240deg);
-            animation: recycle-fade 3s ease-in-out infinite;
-            animation-delay: 2s;
-        }
-
-        /* Battery Icon */
-        .icon-battery {
-            border: 3px solid var(--signal-yellow);
-            border-radius: 4px;
-            position: relative;
-        }
-
-        .icon-battery::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 16px;
-            height: 8px;
-            background: var(--signal-yellow);
-            border-radius: 2px 2px 0 0;
-        }
-
-        .icon-battery::after {
-            content: '';
-            position: absolute;
-            bottom: 8px;
-            left: 8px;
-            right: 8px;
-            height: 0%;
-            background: var(--signal-yellow);
-            animation: battery-fill 3s ease-in-out infinite;
-        }
-
-        /* Mining Icon */
-        .icon-mining::before,
-        .icon-mining::after {
-            content: '';
-            position: absolute;
-            background: var(--signal-yellow);
-        }
-
-        .icon-mining::before {
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 8px;
-            animation: shake 0.5s ease-in-out infinite;
-        }
-
-        .icon-mining::after {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(45deg);
-            width: 32px;
-            height: 4px;
-            animation: dig 2s ease-in-out infinite;
-        }
-
-        /* Recycling Icon */
-        .icon-recycling {
-            position: relative;
-        }
-
-        .icon-recycling::before,
-        .icon-recycling::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 3px solid var(--signal-yellow);
-            border-radius: 50%;
-        }
-
-        .icon-recycling::before {
-            top: 8px;
-            left: 8px;
-            border-color: transparent var(--signal-yellow) var(--signal-yellow) transparent;
-            animation: rotate-arrow-1 2s linear infinite;
-        }
-
-        .icon-recycling::after {
-            top: 8px;
-            left: 8px;
-            border-color: var(--signal-yellow) transparent transparent var(--signal-yellow);
-            animation: rotate-arrow-2 2s linear infinite;
-        }
-
-        /* Animations */
-        @keyframes pulse-border {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.8; }
-        }
-
-        @keyframes rotate-square {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        @keyframes pulse-center {
-            0%, 100% { opacity: 1; transform: translate(-50%, -50%) rotate(45deg) scale(1); }
-            50% { opacity: 0.5; transform: translate(-50%, -50%) rotate(45deg) scale(1.5); }
-        }
-
-        @keyframes neural-pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        @keyframes ripple {
-            0% { transform: scale(0.8); opacity: 1; }
-            100% { transform: scale(1.5); opacity: 0; }
-        }
-
-        @keyframes node-pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.3); opacity: 0.6; }
-        }
-
-        @keyframes scan {
-            0% { transform: translateY(0); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateY(56px); opacity: 0; }
-        }
-
-        @keyframes monitoring-pulse {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(1);
-                box-shadow: 0 0 0 2px var(--signal-yellow), 0 0 8px var(--signal-yellow);
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.2);
-                box-shadow: 0 0 0 4px var(--signal-yellow), 0 0 16px var(--signal-yellow);
-            }
-        }
-
-        @keyframes bar-adjust {
-            0%, 100% { opacity: 0.3; width: var(--original-width, 50%); }
-            25% { opacity: 0.8; }
-            50% { opacity: 1; width: calc(var(--original-width, 50%) + 15%); }
-            75% { opacity: 0.8; }
-        }
-
-        @keyframes wave {
-            0%, 100% { transform: scaleX(1) translateY(0); }
-            25% { transform: scaleX(0.8) translateY(-4px); }
-            50% { transform: scaleX(1) translateY(0); }
-            75% { transform: scaleX(1.2) translateY(4px); }
-        }
-
-        @keyframes rotate-smooth {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes stage-pulse {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-                box-shadow: 0 0 8px var(--signal-yellow);
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.5);
-                opacity: 0.6;
-                box-shadow: 0 0 16px var(--signal-yellow);
-            }
-        }
-
-        .stage-dot:nth-child(2) {
-            transform: translateY(-50%) !important;
-        }
-
-        .stage-dot:nth-child(2):is(:hover, :focus) {
-            transform: translateY(-50%) scale(1.2) !important;
-        }
-
-        .stage-dot:nth-child(4) {
-            transform: translateY(-50%) !important;
-        }
-
-        .stage-dot:nth-child(4):is(:hover, :focus) {
-            transform: translateY(-50%) scale(1.2) !important;
-        }
-
-        @keyframes recycle-fade {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        /* Universal Intake Animations */
-        @keyframes intake-flow-1 {
-            0% {
-                top: -10px;
-                opacity: 0;
-                transform: translateX(0) scale(1);
-            }
-            20% {
-                opacity: 1;
-            }
-            60% {
-                top: 50%;
-                transform: translateX(10px) scale(0.7);
-            }
-            100% {
-                top: 100%;
-                opacity: 0;
-                transform: translateX(15px) scale(0.3);
-            }
-        }
-
-        @keyframes intake-flow-2 {
-            0% {
-                top: -10px;
-                opacity: 0;
-                transform: translateX(0) scale(1);
-            }
-            20% {
-                opacity: 1;
-            }
-            60% {
-                top: 50%;
-                transform: translateX(-10px) scale(0.7);
-            }
-            100% {
-                top: 100%;
-                opacity: 0;
-                transform: translateX(-15px) scale(0.3);
-            }
-        }
-
-        @keyframes intake-flow-3 {
-            0% {
-                top: -10px;
-                opacity: 0;
-                transform: translateX(-50%) scale(1);
-            }
-            20% {
-                opacity: 1;
-            }
-            60% {
-                top: 50%;
-                transform: translateX(-50%) scale(0.8);
-            }
-            100% {
-                top: 100%;
-                opacity: 0;
-                transform: translateX(-50%) scale(0.4);
-            }
-        }
-
-        @keyframes processing-glow {
-            0%, 100% {
-                box-shadow: 0 0 8px var(--signal-yellow);
-                transform: translateX(-50%) scale(1);
-            }
-            50% {
-                box-shadow: 0 0 20px var(--signal-yellow), 0 0 40px rgba(255, 215, 0, 0.3);
-                transform: translateX(-50%) scale(1.1);
-            }
-        }
-
-        @keyframes core-pulse {
-            0%, 100% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: translate(-50%, -50%) scale(1.3);
-            }
-        }
-
-        @keyframes output-flow {
-            0%, 100% {
-                opacity: 0.3;
-                height: 12px;
-            }
-            50% {
-                opacity: 1;
-                height: 16px;
-            }
-        }
-
-        @keyframes battery-fill {
-            0% { height: 0%; }
-            50% { height: 80%; }
-            100% { height: 0%; }
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-2px); }
-            75% { transform: translateX(2px); }
-        }
-
-        @keyframes dig {
-            0%, 100% { transform: translate(-50%, -50%) rotate(45deg) translateY(0); }
-            50% { transform: translate(-50%, -50%) rotate(45deg) translateY(8px); }
-        }
-
-        @keyframes rotate-arrow-1 {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes rotate-arrow-2 {
-            0% { transform: rotate(180deg); }
-            100% { transform: rotate(540deg); }
-        }
-
-        .feature-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--midnight-navy);
-            margin-bottom: 12px;
-            letter-spacing: 0.02em;
-        }
-
-        .feature-description {
-            font-size: 15px;
-            color: var(--slate-600);
-            line-height: 1.7;
-        }
-
-        /* Stats Section */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 48px;
-            margin-top: 48px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-value {
+        .cover-headline {
             font-family: 'Oswald', sans-serif;
-            font-size: 56px;
+            font-size: 30px;
             font-weight: 700;
-            color: #000000;
-            line-height: 1;
-            margin-bottom: 12px;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--slate-500);
+            color: var(--white);
+            line-height: 1.15;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.03em;
         }
 
-        /* Technology Section */
-        .tech-stack {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            margin-top: 48px;
+        .cover-headline em {
+            color: var(--signal-yellow);
+            font-style: normal;
         }
 
-        .tech-item {
-            background: var(--white);
-            border-left: 4px solid var(--signal-yellow);
-            padding: 32px;
+        .cover-rule {
+            width: 56px;
+            height: 3px;
+            background: var(--signal-yellow);
+            margin: 20px 0;
         }
 
-        .tech-name {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--midnight-navy);
-            margin-bottom: 12px;
-            letter-spacing: 0.05em;
-        }
-
-        .tech-description {
-            font-size: 15px;
-            color: var(--slate-600);
+        .cover-sub {
+            font-size: 12px;
+            color: rgba(255,255,255,0.65);
             line-height: 1.7;
+            flex-grow: 1;
         }
 
-        /* Value Propositions */
-        .value-props {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            margin-top: 48px;
+        .cover-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border: 1px solid rgba(255,215,0,0.4);
+            margin-top: 24px;
         }
 
-        .value-prop {
-            display: flex;
-            gap: 24px;
-            background: var(--white);
-            border: 2px solid var(--slate-200);
-            padding: 32px;
-        }
-
-        .value-number {
-            font-family: 'Oswald', sans-serif;
-            font-size: 48px;
+        .cover-badge span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
             font-weight: 700;
             color: var(--signal-yellow);
-            line-height: 1;
-            min-width: 60px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
         }
 
-        .value-content h3 {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--midnight-navy);
-            margin-bottom: 12px;
+        .cover-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--signal-yellow);
         }
 
-        .value-content p {
-            font-size: 15px;
-            color: var(--slate-600);
-            line-height: 1.7;
+        .cover-footer {
+            margin-top: auto;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* Footer */
-        .brochure-footer {
-            background: var(--white);
-            border-top: 3px solid var(--signal-yellow);
-            padding: 60px 80px;
-            color: var(--deep-slate);
+        .cover-footer p {
+            font-size: 10px;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.05em;
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 64px;
-        }
-
-        .footer-logo {
+        /* ================================================
+           BACK COVER PANEL (Panel 1 — outside left)
+        ================================================ */
+        .back-logo {
+            height: 40px;
+            width: auto;
             margin-bottom: 24px;
         }
 
-        .footer-logo img {
-            height: 60px;
+        .contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 4px;
+        }
+
+        .contact-list li {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .contact-list .c-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            font-weight: 700;
+            color: var(--signal-yellow);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .contact-list .c-value {
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.5;
+        }
+
+        .back-copyright {
+            margin-top: auto;
+            font-size: 9px;
+            color: rgba(255,255,255,0.25);
+            line-height: 1.6;
+        }
+
+        .back-divider {
+            width: 100%;
+            height: 1px;
+            background: rgba(255,255,255,0.08);
+            margin: 20px 0;
+        }
+
+        .syncore-callout {
+            background: rgba(255,215,0,0.08);
+            border-left: 3px solid var(--signal-yellow);
+            padding: 14px 16px;
+            margin-top: 20px;
+        }
+
+        .syncore-callout .sc-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--signal-yellow);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .syncore-callout .sc-body {
+            font-size: 11px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.6;
+        }
+
+        /* ================================================
+           SPINE PANEL (Panel 2 — outside center)
+        ================================================ */
+        .spine-inner {
+            padding: 44px 28px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        .spine-logo {
+            height: 32px;
             width: auto;
         }
 
-        .footer-section h4 {
+        .spine-tagline-wrap {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spine-tagline {
             font-family: 'Oswald', sans-serif;
-            font-size: 18px;
+            font-size: 13px;
             font-weight: 700;
-            color: var(--midnight-navy);
-            letter-spacing: 0.05em;
+            color: rgba(255,255,255,0.2);
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            margin-bottom: 20px;
         }
 
-        .footer-section p,
-        .footer-section a {
-            font-size: 14px;
-            color: var(--slate-600);
-            line-height: 1.8;
-            text-decoration: none;
+        .spine-url {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--signal-yellow);
+            letter-spacing: 0.1em;
         }
 
-        .footer-section a:hover {
-            color: var(--cyan);
+        /* ================================================
+           INSIDE PANELS
+        ================================================ */
+
+        /* Left inside — Company Overview */
+        .overview-icon-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
         }
 
-        .footer-links {
+        .oi-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            background: var(--midnight-navy);
+            border: 1px solid rgba(255,215,0,0.2);
+        }
+
+        .oi-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--signal-yellow);
+            flex-shrink: 0;
+        }
+
+        .oi-chip span {
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.8);
+            letter-spacing: 0.04em;
+        }
+
+        .overview-features {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 20px;
+            flex-grow: 1;
+        }
+
+        .ov-feat {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .ov-num {
+            font-family: 'Oswald', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: rgba(255,215,0,0.25);
+            line-height: 1;
+            flex-shrink: 0;
+            min-width: 28px;
+        }
+
+        .ov-text h4 {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 3px;
+            letter-spacing: 0.02em;
+        }
+
+        .ov-text p {
+            font-size: 11px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.55;
+        }
+
+        /* Center inside — Technology */
+        .tech-items {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 4px;
+            flex-grow: 1;
+        }
+
+        .tech-item-card {
+            border-left: 3px solid var(--signal-yellow);
+            padding: 10px 14px;
+            background: rgba(255,215,0,0.04);
+        }
+
+        .tech-item-card h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--signal-yellow);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .tech-item-card p {
+            font-size: 11px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.55;
+        }
+
+        /* Right inside — Why Syntra + Markets */
+        .why-items {
             display: flex;
             flex-direction: column;
             gap: 12px;
+            margin-top: 4px;
         }
 
-        .copyright {
-            text-align: center;
-            margin-top: 48px;
-            padding-top: 32px;
-            border-top: 1px solid var(--slate-200);
-            font-size: 13px;
-            color: var(--slate-500);
+        .why-item {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
         }
 
-        /* Print Button */
-        .print-button {
-            position: fixed;
-            bottom: 32px;
-            right: 32px;
-            background: var(--signal-yellow);
-            color: var(--midnight-navy);
-            border: none;
-            padding: 16px 32px;
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
+        .why-num {
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
             font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 8px 24px rgba(255, 215, 0, 0.4);
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .print-button:hover {
-            background: var(--midnight-navy);
             color: var(--signal-yellow);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(255, 215, 0, 0.5);
+            line-height: 1;
+            flex-shrink: 0;
+            min-width: 26px;
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .tech-stack {
-                grid-template-columns: 1fr;
-            }
+        .why-text h4 {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--midnight-navy);
+            margin-bottom: 3px;
         }
 
-        @media (max-width: 768px) {
-            .brochure-header,
-            .section {
-                padding: 48px 32px;
+        .why-text p {
+            font-size: 10px;
+            color: var(--slate-500);
+            line-height: 1.55;
+        }
+
+        .markets-row {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .market-chip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            background: var(--midnight-navy);
+        }
+
+        .market-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--signal-yellow);
+            flex-shrink: 0;
+        }
+
+        .market-chip span {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        /* ================================================
+           FOLD INSTRUCTION (screen only)
+        ================================================ */
+        .fold-instruction {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 14px 24px;
+            background: #1E293B;
+            border-left: 3px solid var(--signal-yellow);
+            max-width: 1056px;
+            width: 100%;
+        }
+
+        .fold-instruction p {
+            font-size: 12px;
+            color: var(--slate-400);
+            line-height: 1.6;
+        }
+
+        .fold-instruction strong {
+            color: var(--white);
+        }
+
+        /* ================================================
+           PRINT STYLES
+        ================================================ */
+        @media print {
+            @page {
+                size: 11in 8.5in landscape;
+                margin: 0;
             }
-            .features-grid {
-                grid-template-columns: 1fr;
+
+            html, body {
+                width: 11in;
+                height: 8.5in;
+                background: white !important;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
             }
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
+
+            #pw-gate,
+            .screen-controls,
+            .fold-instruction,
+            .sheet-label {
+                display: none !important;
             }
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
+
+            .sheets-wrapper {
+                padding: 0;
+                gap: 0;
+                background: white;
+            }
+
+            .sheet {
+                width: 11in;
+                height: 8.5in;
+                box-shadow: none;
+                page-break-after: always;
+                break-after: page;
+            }
+
+            .sheet:last-of-type {
+                page-break-after: avoid;
+                break-after: avoid;
+            }
+
+            .panel {
+                width: calc(11in / 3);
+                height: 8.5in;
+            }
+
+            /* Print fold guides as dashed lines */
+            .sheet::before,
+            .sheet::after {
+                background: transparent;
+                border-left: 1px dashed rgba(0,0,0,0.15);
             }
         }
     </style>
 </head>
 <body>
 
-    <div id="pw-gate">
-        <div class="pw-box">
-            <img src="/assets/images/[PRIMARY]_White_+_Signal_Yellow.png" alt="Syntra Refining Corp.">
-            <h2>Protected Document</h2>
-            <p>Enter the password to access this brochure</p>
-            <input type="password" id="pw-input" placeholder="Enter password" autofocus>
-            <button onclick="checkPassword()">Access Document</button>
-            <div class="pw-error" id="pw-error"></div>
-        </div>
+<!-- PASSWORD GATE -->
+<div id="pw-gate">
+    <div class="pw-box">
+        <img src="/assets/images/[PRIMARY]_White_+_Signal_Yellow.png" alt="Syntra Refining Corp.">
+        <h2>Protected Document</h2>
+        <p>Enter the password to access this brochure</p>
+        <input type="password" id="pw-input" placeholder="Enter password" autofocus>
+        <button onclick="checkPassword()">Access Document</button>
+        <div class="pw-error" id="pw-error"></div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        if (sessionStorage.getItem('brochure_auth') === '1') {
+            document.getElementById('pw-gate').style.display = 'none';
+        }
+        document.getElementById('pw-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') checkPassword();
+        });
+    })();
+    function checkPassword() {
+        var val = document.getElementById('pw-input').value;
+        if (val === '8585') {
+            sessionStorage.setItem('brochure_auth', '1');
+            document.getElementById('pw-gate').style.display = 'none';
+        } else {
+            document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
+            document.getElementById('pw-input').value = '';
+            document.getElementById('pw-input').focus();
+        }
+    }
+</script>
+
+<!-- SCREEN CONTROLS BAR -->
+<div class="screen-controls no-print">
+    <img class="logo" src="/assets/images/[PRIMARY]_White_+_Signal_Yellow.png" alt="Syntra Refining Corp.">
+    <div class="controls-center">
+        <h1>Tri-Fold Brochure — Print Ready</h1>
+        <p>Letter landscape (11&quot; &times; 8.5&quot;) &nbsp;&bull;&nbsp; Print both sides &nbsp;&bull;&nbsp; Fold in thirds</p>
+    </div>
+    <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<div class="sheets-wrapper">
+
+    <!-- ============================================================
+         SHEET 1 — OUTSIDE
+         When printed: fold so Panel 3 is front cover
+         Left to right: [Back Cover] [Spine/Mailing] [Front Cover]
+    ============================================================ -->
+    <div class="sheet-label no-print">Sheet 1 &mdash; Outside &nbsp;|&nbsp; Panels: Back Cover &bull; Spine &bull; Front Cover</div>
+
+    <div class="fold-instruction no-print">
+        <p><strong>Outside sheet:</strong> Print this side first. When folding, Panel&nbsp;3 (right) is the <strong>Front Cover</strong>. Panel&nbsp;2 (center) folds behind as the spine/mailing panel. Panel&nbsp;1 (left) is the <strong>Back Cover</strong> — it folds inside the back.</p>
     </div>
 
-    <script>
-        (function() {
-            if (sessionStorage.getItem('brochure_auth') === '1') {
-                document.getElementById('pw-gate').style.display = 'none';
-            }
-            document.getElementById('pw-input').addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') checkPassword();
-            });
-        })();
-        function checkPassword() {
-            var val = document.getElementById('pw-input').value;
-            if (val === '8585') {
-                sessionStorage.setItem('brochure_auth', '1');
-                document.getElementById('pw-gate').style.display = 'none';
-            } else {
-                document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
-                document.getElementById('pw-input').value = '';
-                document.getElementById('pw-input').focus();
-            }
-        }
-    </script>
+    <div class="sheet" id="sheet-outside">
 
-    <div class="brochure-container">
+        <!-- PANEL 1 — BACK COVER (outside left) -->
+        <div class="panel panel-dark">
+            <div class="panel-inner">
+                <img class="back-logo" src="/assets/images/[PRIMARY]_White_+_Signal_Yellow.png" alt="Syntra Refining Corp.">
 
-        <!-- Header -->
-        <header class="brochure-header">
-            <div class="header-content">
-                <div class="logo-section">
-                    <img src="/assets/images/Deep_Navy_+_Signal_Yellow.png" alt="Syntra Refining Corp.">
+                <div class="panel-tag tag-yellow">Connect With Us</div>
+                <div class="panel-heading h-md color-white">Get In Touch</div>
+                <div class="panel-rule"></div>
+
+                <ul class="contact-list">
+                    <li>
+                        <span class="c-label">Location</span>
+                        <span class="c-value">Halifax, Nova Scotia, Canada</span>
+                    </li>
+                    <li>
+                        <span class="c-label">Phone</span>
+                        <span class="c-value">902-442-4010</span>
+                    </li>
+                    <li>
+                        <span class="c-label">Email</span>
+                        <span class="c-value">info@syntrarefining.com</span>
+                    </li>
+                    <li>
+                        <span class="c-label">Website</span>
+                        <span class="c-value">syntrarefining.com</span>
+                    </li>
+                </ul>
+
+                <div class="back-divider"></div>
+
+                <div class="syncore-callout">
+                    <div class="sc-title">SYNCORE&#8482; Platform</div>
+                    <div class="sc-body">Our proprietary real-time intelligence network — powering predictive supply chain decisions across the entire critical minerals value chain.</div>
                 </div>
 
-                <div class="tagline">SMART REFINING ■ UNIVERSAL INTAKE ■ AI OPTIMIZED</div>
-
-                <p class="hero-statement">
-                    Building North America's first <strong>feedstock-agnostic smart refinery network</strong> powered by predictive supply chain intelligence
-                </p>
+                <div class="back-copyright">
+                    &copy; 2026 Syntra Refining Corp. All rights reserved.<br>
+                    SYNTRA and SYNCORE are trademarks of Syntra Refining Corp.
+                </div>
             </div>
-        </header>
+        </div>
 
-        <div class="two-col-layout">
-        <div class="col-left">
+        <!-- PANEL 2 — SPINE / MAILING (outside center) -->
+        <div class="panel panel-dark" style="background:#070D1A; border-left: 1px solid rgba(255,255,255,0.04); border-right: 1px solid rgba(255,255,255,0.04);">
+            <div class="spine-inner">
+                <img class="spine-logo" src="/assets/images/[PRIMARY]_White_+_Signal_Yellow.png" alt="Syntra Refining Corp.">
 
-        <!-- Company Overview -->
-        <section class="section">
-            <h2 class="section-title">Company Overview</h2>
-            <p class="section-subtitle">
-                Syntra Refining Corp is revolutionizing critical minerals processing through advanced machinery integrated with AI-optimized technology and universal feedstock capabilities. We're securing the battery supply chain with intelligent, distributed infrastructure that adapts to any input source.
-            </p>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon icon-intake">
-                        <div class="feedstock-particle"></div>
-                        <div class="feedstock-particle"></div>
-                        <div class="feedstock-particle"></div>
-                        <div class="feedstock-particle"></div>
-                        <div class="feedstock-particle"></div>
-                        <div class="feedstock-particle"></div>
-                        <div class="processing-core"></div>
-                        <div class="output-stream"></div>
-                    </div>
-                    <h3 class="feature-title">Universal Intake</h3>
-                    <p class="feature-description">
-                        Process any feedstock—from virgin ore to black mass recycling—with our adaptive refining technology.
-                    </p>
+                <div class="spine-tagline-wrap">
+                    <span class="spine-tagline">North America's Smart Refinery</span>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon icon-ai"></div>
-                    <h3 class="feature-title">AI Optimized</h3>
-                    <p class="feature-description">
-                        Machine learning algorithms continuously optimize processing parameters for maximum efficiency and yield.
-                    </p>
+                <span class="spine-url">syntrarefining.com</span>
+            </div>
+        </div>
+
+        <!-- PANEL 3 — FRONT COVER (outside right) -->
+        <div class="panel panel-dark">
+            <div class="cover-bg-accent"></div>
+            <div class="panel-inner">
+                <img class="cover-logo" src="/assets/images/[PRIMARY]_White_+_Signal_Yellow.png" alt="Syntra Refining Corp.">
+
+                <div class="cover-tagline">Critical Minerals Processing</div>
+
+                <div class="cover-headline">
+                    Securing the<br>
+                    Battery Supply<br>
+                    Chain with<br>
+                    <em>Intelligent</em><br>
+                    Infrastructure
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon icon-network">
-                        <div class="node"></div>
-                        <div class="node"></div>
-                        <div class="node"></div>
-                        <div class="node"></div>
-                    </div>
-                    <h3 class="feature-title">Distributed Network</h3>
-                    <p class="feature-description">
-                        Strategic facility locations minimize transportation costs and maximize supply chain resilience.
-                    </p>
+                <div class="cover-rule"></div>
+
+                <div class="cover-sub">
+                    North America's first feedstock-agnostic smart refinery network — built for the electrification economy.
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon icon-smart">
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                    </div>
-                    <h3 class="feature-title">Smart Refining</h3>
-                    <p class="feature-description">
-                        Real-time monitoring and automated adjustments ensure consistent quality and optimal performance.
-                    </p>
+                <div class="cover-badge">
+                    <div class="cover-dot"></div>
+                    <span>Powered by SYNCORE&#8482;</span>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon icon-predictive"></div>
-                    <h3 class="feature-title">Predictive Intelligence</h3>
-                    <p class="feature-description">
-                        <span style="color: #FFD700; font-weight: 600;">SYNCORE™</span> platform forecasts supply chain dynamics and optimizes operations accordingly.
-                    </p>
+                <div class="cover-footer">
+                    <p>syntrarefining.com &nbsp;&bull;&nbsp; Halifax, NS, Canada</p>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /sheet outside -->
+
+
+    <!-- ============================================================
+         SHEET 2 — INSIDE
+         When printed on back of Sheet 1 and unfolded, this is the
+         full interior spread.
+         Left to right: [Left Inside] [Center Inside] [Right Inside]
+    ============================================================ -->
+    <div class="sheet-label no-print">Sheet 2 &mdash; Inside &nbsp;|&nbsp; Full interior spread when unfolded</div>
+
+    <div class="fold-instruction no-print">
+        <p><strong>Inside sheet:</strong> Print this side second (duplex / flip on long edge). When unfolded completely, this is the full <strong>interior spread</strong>. The right panel faces the front cover when first opened.</p>
+    </div>
+
+    <div class="sheet" id="sheet-inside">
+
+        <!-- PANEL 4 — LEFT INSIDE (Company Overview) -->
+        <div class="panel panel-dark">
+            <div class="panel-inner">
+                <div class="panel-tag tag-yellow">Who We Are</div>
+                <div class="panel-heading h-md color-white">Company Overview</div>
+                <div class="panel-rule"></div>
+
+                <div class="panel-body body-white" style="font-size:11px; margin-bottom:16px;">
+                    Syntra Refining Corp is revolutionizing critical minerals processing through advanced machinery integrated with AI-optimized technology and universal feedstock capabilities. We're securing the battery supply chain with intelligent, distributed infrastructure that adapts to any input source.
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon icon-circular">
-                        <div class="stage-dot"></div>
-                        <div class="stage-dot"></div>
-                        <div class="stage-dot"></div>
-                        <div class="stage-dot"></div>
-                        <div class="recycle-center">
-                            <div class="recycle-arrow"></div>
-                            <div class="recycle-arrow"></div>
-                            <div class="recycle-arrow"></div>
+                <div class="overview-icon-row">
+                    <div class="oi-chip"><div class="oi-dot"></div><span>Mining</span></div>
+                    <div class="oi-chip"><div class="oi-dot"></div><span>Recycling</span></div>
+                    <div class="oi-chip"><div class="oi-dot"></div><span>Black Mass</span></div>
+                    <div class="oi-chip"><div class="oi-dot"></div><span>Virgin Ore</span></div>
+                </div>
+
+                <div class="overview-features">
+                    <div class="ov-feat">
+                        <div class="ov-num">01</div>
+                        <div class="ov-text">
+                            <h4>Universal Intake</h4>
+                            <p>Process any feedstock — from virgin ore to black mass recycling — with adaptive refining technology.</p>
                         </div>
                     </div>
-                    <h3 class="feature-title">Circular Economy</h3>
-                    <p class="feature-description">
-                        Full lifecycle processing from mining through recycling, closing the loop on critical minerals.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Technology Platform -->
-        <section class="section">
-            <h2 class="section-title">Technology Platform</h2>
-            <p class="section-subtitle">
-                Powered by <span style="color: #FFD700; font-weight: 600;">SYNCORE™</span> — our proprietary real-time intelligence network
-            </p>
-
-            <div class="tech-stack">
-                <div class="tech-item">
-                    <h3 class="tech-name">ADAPTIVE PROCESSING</h3>
-                    <p class="tech-description">
-                        Dynamic chemistry adjustments based on feedstock composition. Our system automatically calibrates to handle varying input materials from multiple sources without manual intervention.
-                    </p>
-                </div>
-
-                <div class="tech-item">
-                    <h3 class="tech-name">PREDICTIVE ANALYTICS</h3>
-                    <p class="tech-description">
-                        Machine learning models forecast equipment maintenance needs and optimal processing parameters.
-                    </p>
-                </div>
-
-                <div class="tech-item">
-                    <h3 class="tech-name">REAL-TIME OPTIMIZATION</h3>
-                    <p class="tech-description">
-                        Continuous sensor monitoring feeds AI algorithms that make micro-adjustments every second to maximize yield, minimize waste, and ensure consistent output quality.
-                    </p>
-                </div>
-
-                <div class="tech-item">
-                    <h3 class="tech-name">SUPPLY CHAIN INTELLIGENCE</h3>
-                    <p class="tech-description">
-                        Integrated visibility across the entire critical minerals value chain—from mine to battery manufacturer—enabling unprecedented coordination and efficiency.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        </div><!-- /col-left -->
-        <div class="col-right">
-
-        <!-- Value Proposition -->
-        <section class="section section-alt-col">
-            <h2 class="section-title">Why Syntra</h2>
-            <p class="section-subtitle">
-                The strategic advantage for partners across the battery supply chain
-            </p>
-
-            <div class="value-props">
-                <div class="value-prop">
-                    <div class="value-number">01</div>
-                    <div class="value-content">
-                        <h3>Supply Chain Security</h3>
-                        <p>
-                            Reduce dependency on foreign processing with North American infrastructure. Our distributed network ensures reliable access to battery-grade materials regardless of geopolitical disruptions.
-                        </p>
+                    <div class="ov-feat">
+                        <div class="ov-num">02</div>
+                        <div class="ov-text">
+                            <h4>AI Optimized</h4>
+                            <p>Machine learning algorithms continuously optimize processing parameters for maximum efficiency and yield.</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="value-prop">
-                    <div class="value-number">02</div>
-                    <div class="value-content">
-                        <h3>Unmatched Flexibility</h3>
-                        <p>
-                            Universal intake capability means you're never locked into a single feedstock source. Process virgin ore today, recycled material tomorrow—our technology adapts seamlessly to whatever inputs you can secure.
-                        </p>
+                    <div class="ov-feat">
+                        <div class="ov-num">03</div>
+                        <div class="ov-text">
+                            <h4>Distributed Network</h4>
+                            <p>Strategic facility locations minimize transportation costs and maximize supply chain resilience.</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="value-prop">
-                    <div class="value-number">03</div>
-                    <div class="value-content">
-                        <h3>Operational Excellence</h3>
-                        <p>
-                            AI optimization delivers higher yields, lower costs, and more consistent quality than traditional refineries. Our predictive maintenance reduces downtime and extends equipment life.
-                        </p>
+                    <div class="ov-feat">
+                        <div class="ov-num">04</div>
+                        <div class="ov-text">
+                            <h4>Circular Economy</h4>
+                            <p>Full lifecycle processing from mining through recycling, closing the loop on critical minerals.</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="value-prop">
-                    <div class="value-number">04</div>
-                    <div class="value-content">
-                        <h3>Future-Proof Investment</h3>
-                        <p>
-                            As battery chemistries evolve and recycling volumes grow, Syntra's adaptive platform ensures your processing infrastructure remains relevant and competitive for decades to come.
-                        </p>
+                    <div class="ov-feat">
+                        <div class="ov-num">05</div>
+                        <div class="ov-text">
+                            <h4>Smart Refining</h4>
+                            <p>Real-time monitoring and automated adjustments ensure consistent quality and optimal performance.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Markets We Serve -->
-        <section class="section">
-            <h2 class="section-title">Markets We Serve</h2>
-            <p class="section-subtitle">
-                Critical minerals processing for the electrification economy
-            </p>
+        <!-- PANEL 5 — CENTER INSIDE (Technology Platform) -->
+        <div class="panel" style="background:#0D1829; color:var(--white);">
+            <div class="panel-inner">
+                <div class="panel-tag tag-yellow">Our Platform</div>
+                <div class="panel-heading h-md color-white">Technology Platform</div>
+                <div class="panel-rule"></div>
 
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon icon-battery"></div>
-                    <h3 class="feature-title">Battery Manufacturers</h3>
-                    <p class="feature-description">
-                        Battery-grade nickel, cobalt, and lithium compounds meeting the strictest quality specifications for EV and energy storage applications.
-                    </p>
+                <div class="panel-body body-white" style="font-size:11px; margin-bottom:20px;">
+                    Powered by <strong style="color:var(--signal-yellow);">SYNCORE&#8482;</strong> — our proprietary real-time intelligence network that drives every decision across the refining process.
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon icon-mining"></div>
-                    <h3 class="feature-title">Mining Companies</h3>
-                    <p class="feature-description">
-                        Toll processing services that convert your concentrate into high-value refined products, capturing more of the value chain.
-                    </p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon icon-recycling"></div>
-                    <h3 class="feature-title">Recyclers</h3>
-                    <p class="feature-description">
-                        Processing black mass and end-of-life batteries into battery-grade materials, enabling true circular economy.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        </div><!-- /col-right -->
-        </div><!-- /two-col-layout -->
-
-        <!-- Footer -->
-        <footer class="brochure-footer">
-            <div class="footer-logo">
-                <img src="/assets/images/Deep_Navy_+_Signal_Yellow.png" alt="Syntra Refining Corp.">
-            </div>
-
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>About Syntra Refining</h4>
-                    <p>
-                        Syntra Refining Corp is building North America's first feedstock-agnostic smart refinery network for critical minerals. Powered by <span style="color: #FFD700; font-weight: 600;">SYNCORE™</span> predictive supply chain intelligence.
-                    </p>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <div class="footer-links">
-                        <p>Halifax, Nova Scotia, Canada</p>
-                        <a href="tel:+19024424010">902-442-4010</a>
-                        <a href="mailto:info@syntrarefining.com">info@syntrarefining.com</a>
-                        <a href="https://www.syntrarefining.com">syntrarefining.com</a>
+                <div class="tech-items">
+                    <div class="tech-item-card">
+                        <h4>Adaptive Processing</h4>
+                        <p>Dynamic chemistry adjustments based on feedstock composition. Automatically calibrates to handle varying input materials from multiple sources without manual intervention.</p>
+                    </div>
+                    <div class="tech-item-card">
+                        <h4>Predictive Analytics</h4>
+                        <p>Machine learning models forecast equipment maintenance needs and optimal processing parameters, reducing downtime and extending equipment life.</p>
+                    </div>
+                    <div class="tech-item-card">
+                        <h4>Real-Time Optimization</h4>
+                        <p>Continuous sensor monitoring feeds AI algorithms that make micro-adjustments every second to maximize yield, minimize waste, and ensure consistent output quality.</p>
+                    </div>
+                    <div class="tech-item-card">
+                        <h4>Supply Chain Intelligence</h4>
+                        <p>Integrated visibility across the entire critical minerals value chain — from mine to battery manufacturer — enabling unprecedented coordination and efficiency.</p>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="copyright">
-                © 2026 Syntra Refining Corp. All rights reserved. SYNTRA and SYNCORE are trademarks of Syntra Refining Corp.
+        <!-- PANEL 6 — RIGHT INSIDE (Why Syntra + Markets) -->
+        <div class="panel panel-light">
+            <div class="panel-inner">
+                <div class="panel-tag">Strategic Advantage</div>
+                <div class="panel-heading h-md color-navy">Why Syntra</div>
+                <div class="panel-rule rule-navy"></div>
+
+                <div class="why-items">
+                    <div class="why-item">
+                        <div class="why-num">01</div>
+                        <div class="why-text">
+                            <h4>Supply Chain Security</h4>
+                            <p>Reduce dependency on foreign processing with North American infrastructure. Our distributed network ensures reliable access to battery-grade materials regardless of geopolitical disruptions.</p>
+                        </div>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-num">02</div>
+                        <div class="why-text">
+                            <h4>Unmatched Flexibility</h4>
+                            <p>Universal intake means you're never locked into a single feedstock. Process virgin ore today, recycled material tomorrow — our technology adapts seamlessly.</p>
+                        </div>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-num">03</div>
+                        <div class="why-text">
+                            <h4>Operational Excellence</h4>
+                            <p>AI optimization delivers higher yields, lower costs, and more consistent quality than traditional refineries.</p>
+                        </div>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-num">04</div>
+                        <div class="why-text">
+                            <h4>Future-Proof Investment</h4>
+                            <p>As battery chemistries evolve and recycling volumes grow, Syntra's adaptive platform ensures your processing infrastructure remains competitive for decades.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:20px;">
+                    <div class="panel-tag" style="margin-bottom:10px;">Markets We Serve</div>
+                    <div class="markets-row">
+                        <div class="market-chip">
+                            <div class="market-dot"></div>
+                            <span>Battery Manufacturers</span>
+                        </div>
+                        <div class="market-chip">
+                            <div class="market-dot"></div>
+                            <span>Mining Companies</span>
+                        </div>
+                        <div class="market-chip">
+                            <div class="market-dot"></div>
+                            <span>Recyclers &amp; Black Mass Processors</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </footer>
+        </div>
 
-    </div>
+    </div><!-- /sheet inside -->
 
-    <!-- Print Button -->
-    <button class="print-button no-print" onclick="window.print()">
-        Print Brochure
-    </button>
+</div><!-- /sheets-wrapper -->
 
-    <script>
-        // Add smooth scroll behavior
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
