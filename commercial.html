@@ -826,12 +826,12 @@
                     const y = H - 4 - barH;
                     const alpha = 0.4 + 0.6 * heightFrac;
                     const g = ctx.createLinearGradient(x, y, x, H - 4);
-                    g.addColorStop(0, `rgba(255,68,68,${alpha})`);
-                    g.addColorStop(1, `rgba(255,68,68,0.08)`);
+                    g.addColorStop(0, `rgba(148,163,184,${alpha})`);
+                    g.addColorStop(1, `rgba(148,163,184,0.08)`);
                     ctx.fillStyle = g;
                     ctx.fillRect(x, y, barW, barH);
                     /* top bright cap */
-                    ctx.fillStyle = `rgba(255,120,120,${alpha})`;
+                    ctx.fillStyle = `rgba(203,213,225,${alpha})`;
                     ctx.fillRect(x, y, barW, 2);
                 }
                 /* horizontal scan line */
@@ -839,7 +839,7 @@
                 ctx.beginPath();
                 ctx.moveTo(0, scanY);
                 ctx.lineTo(W, scanY);
-                ctx.strokeStyle = 'rgba(255,68,68,0.2)';
+                ctx.strokeStyle = 'rgba(148,163,184,0.2)';
                 ctx.lineWidth = 1;
                 ctx.stroke();
                 requestAnimationFrame(frame);
@@ -923,7 +923,7 @@
 
         function initSparklines() {
             drawSparkline('sparkline-1', '#FFD700', randomWalk(99, 24, 0.5));
-            drawSparkline('sparkline-2', '#FF4444', randomWalk(1000, 24, 20));
+            drawSparkline('sparkline-2', '#94a3b8', randomWalk(1000, 24, 20));
             drawSparkline('sparkline-3', '#0891B2', randomWalk(10, 24, 0.3));
         }
 
@@ -935,7 +935,7 @@
 
         setInterval(() => {
             drawSparkline('sparkline-1', '#FFD700', randomWalk(99, 24, 0.5));
-            drawSparkline('sparkline-2', '#FF4444', randomWalk(1000, 24, 20));
+            drawSparkline('sparkline-2', '#94a3b8', randomWalk(1000, 24, 20));
             drawSparkline('sparkline-3', '#0891B2', randomWalk(10, 24, 0.3));
         }, 2000);
     })();
