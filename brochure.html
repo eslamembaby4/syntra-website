@@ -201,9 +201,37 @@
             color: var(--midnight-navy);
         }
 
+        /* Two Column Layout */
+        .two-col-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: start;
+        }
+
+        .col-left {
+            border-right: 1px solid var(--slate-200);
+        }
+
+        .col-right {}
+
+        .section-alt-col {
+            background: var(--slate-100);
+            padding: 64px 56px;
+        }
+
+        @media (max-width: 900px) {
+            .two-col-layout {
+                grid-template-columns: 1fr;
+            }
+            .col-left {
+                border-right: none;
+                border-bottom: 1px solid var(--slate-200);
+            }
+        }
+
         /* Section Styles */
         .section {
-            padding: 80px 80px;
+            padding: 64px 56px;
         }
 
         .section-alt {
@@ -260,15 +288,15 @@
         /* Grid Layouts */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
             margin-top: 48px;
         }
 
         .feature-card {
             background: var(--white);
             border: 2px solid var(--slate-200);
-            padding: 32px;
+            padding: 24px;
             transition: all 0.3s;
         }
 
@@ -1296,6 +1324,9 @@
             </div>
         </header>
 
+        <div class="two-col-layout">
+        <div class="col-left">
+
         <!-- Company Overview -->
         <section class="section">
             <h2 class="section-title">Company Overview</h2>
@@ -1383,32 +1414,6 @@
             </div>
         </section>
 
-        <!-- By the Numbers -->
-        <section class="section section-alt">
-            <h2 class="section-title">By the Numbers</h2>
-            <p class="section-subtitle">
-                Our impact on the North American battery supply chain
-            </p>
-
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-value">50,000 TPA</div>
-                    <div class="stat-label">Planned Annual Capacity</div>
-                </div>
-
-
-                <div class="stat-item">
-                    <div class="stat-value">24/7</div>
-                    <div class="stat-label">AI Monitoring</div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-value">99.5%</div>
-                    <div class="stat-label"><span style="color:#ffffff;">Purity</span> Battery Grade</div>
-                </div>
-            </div>
-        </section>
-
         <!-- Technology Platform -->
         <section class="section">
             <h2 class="section-title">Technology Platform</h2>
@@ -1447,8 +1452,11 @@
             </div>
         </section>
 
+        </div><!-- /col-left -->
+        <div class="col-right">
+
         <!-- Value Proposition -->
-        <section class="section section-alt page-break">
+        <section class="section section-alt-col">
             <h2 class="section-title">Why Syntra</h2>
             <p class="section-subtitle">
                 The strategic advantage for partners across the battery supply chain
@@ -1530,6 +1538,9 @@
                 </div>
             </div>
         </section>
+
+        </div><!-- /col-right -->
+        </div><!-- /two-col-layout -->
 
         <!-- Footer -->
         <footer class="brochure-footer">
