@@ -10,6 +10,56 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
 
     <style>
+        #pw-gate {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #0B1120;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+        }
+        #pw-gate .pw-box {
+            background: #0F172A;
+            border: 1px solid #1E293B;
+            border-top: 3px solid #FFD700;
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+        #pw-gate img { height: 40px; width: auto; margin-bottom: 32px; }
+        #pw-gate h2 { color: #FFFFFF; font-size: 18px; font-weight: 600; margin-bottom: 8px; letter-spacing: 0.02em; }
+        #pw-gate p { color: #64748B; font-size: 13px; margin-bottom: 28px; }
+        #pw-gate input {
+            width: 100%;
+            padding: 12px 16px;
+            background: #1E293B;
+            border: 1px solid #334155;
+            color: #FFFFFF;
+            font-size: 16px;
+            letter-spacing: 0.15em;
+            text-align: center;
+            outline: none;
+            margin-bottom: 12px;
+        }
+        #pw-gate input:focus { border-color: #FFD700; }
+        #pw-gate button {
+            width: 100%;
+            padding: 12px;
+            background: #FFD700;
+            color: #0B1120;
+            border: none;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        #pw-gate button:hover { background: #F5C800; }
+        #pw-gate .pw-error { color: #EF4444; font-size: 12px; margin-top: 10px; min-height: 16px; }
+
         * {
             margin: 0;
             padding: 0;
@@ -1195,6 +1245,40 @@
     </style>
 </head>
 <body>
+
+    <div id="pw-gate">
+        <div class="pw-box">
+            <img src="/assets/images/[PRIMARY]_White_+_Signal_Yellow.png" alt="Syntra Refining Corp.">
+            <h2>Protected Document</h2>
+            <p>Enter the password to access this brochure</p>
+            <input type="password" id="pw-input" placeholder="Enter password" autofocus>
+            <button onclick="checkPassword()">Access Document</button>
+            <div class="pw-error" id="pw-error"></div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            if (sessionStorage.getItem('brochure_auth') === '1') {
+                document.getElementById('pw-gate').style.display = 'none';
+            }
+            document.getElementById('pw-input').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') checkPassword();
+            });
+        })();
+        function checkPassword() {
+            var val = document.getElementById('pw-input').value;
+            if (val === '8585') {
+                sessionStorage.setItem('brochure_auth', '1');
+                document.getElementById('pw-gate').style.display = 'none';
+            } else {
+                document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
+                document.getElementById('pw-input').value = '';
+                document.getElementById('pw-input').focus();
+            }
+        }
+    </script>
+
     <div class="brochure-container">
 
         <!-- Header -->
