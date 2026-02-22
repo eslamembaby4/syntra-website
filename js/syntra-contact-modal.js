@@ -100,28 +100,30 @@
           </form>
 
           <!-- Footer -->
-          <div style="padding: 1.5rem; background: linear-gradient(180deg, transparent 0%, #F8FAFC 100%); border-top: 1px solid #E2E8F0; display: flex; gap: 1rem; flex-wrap: wrap;">
-            <div style="display: flex; align-items: center; gap: 0.75rem;">
-              <div style="width: 32px; height: 32px; background: white; border: 1px solid #E2E8F0; border-radius: 2px; display: flex; align-items: center; justify-content: center; color: #FFD700;">
+          <div style="position: relative; overflow: hidden; background: linear-gradient(135deg, #0B1120, #0f172a, #0B1120); border-top: 1px solid rgba(255,215,0,0.2); padding: 1.25rem 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <div style="position: absolute; inset: 0; opacity: 0.07; background-image: linear-gradient(#FFD700 1px, transparent 1px), linear-gradient(90deg, #FFD700 1px, transparent 1px); background-size: 30px 30px; pointer-events: none;"></div>
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #FFD700, transparent);"></div>
+            <div style="position: relative; z-index: 1; display: flex; align-items: center; gap: 0.75rem;">
+              <div style="width: 32px; height: 32px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,215,0,0.3); border-radius: 2px; display: flex; align-items: center; justify-content: center; color: #FFD700;">
                 <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                 </svg>
               </div>
               <div>
-                <p style="font-weight: 600; font-size: 0.75rem; color: #334155;">Halifax, NS</p>
-                <p style="font-size: 0.625rem; color: #64748B;">Canada</p>
+                <p style="font-weight: 600; font-size: 0.75rem; color: #ffffff;">Halifax, NS</p>
+                <p style="font-size: 0.625rem; color: #94A3B8;">Canada</p>
               </div>
             </div>
-            <div style="display: flex; align-items: center; gap: 0.75rem;">
-              <div style="width: 32px; height: 32px; background: white; border: 1px solid #E2E8F0; border-radius: 2px; display: flex; align-items: center; justify-content: center; color: #FFD700;">
+            <div style="position: relative; z-index: 1; display: flex; align-items: center; gap: 0.75rem;">
+              <div style="width: 32px; height: 32px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,215,0,0.3); border-radius: 2px; display: flex; align-items: center; justify-content: center; color: #FFD700;">
                 <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                 </svg>
               </div>
               <div>
-                <p style="font-weight: 600; font-size: 0.75rem; color: #334155;">Commercial</p>
-                <p style="font-size: 0.625rem; color: #64748B;">commercial@syntrarefining.com</p>
+                <p style="font-weight: 600; font-size: 0.75rem; color: #ffffff;">Commercial</p>
+                <p style="font-size: 0.625rem; color: #94A3B8;">commercial@syntrarefining.com</p>
               </div>
             </div>
           </div>
