@@ -198,6 +198,16 @@ h1, h2, h3, h4, h5, h6,
   line-height: 1.1;
 }
 
+/* All buttons MUST use Oswald Bold */
+button,
+input[type="submit"],
+input[type="button"],
+a.btn,
+[role="button"] {
+  font-family: var(--font-heading) !important;
+  font-weight: var(--weight-heading) !important;
+}
+
 /* H1 - Page Title (Consistent across all pages) */
 h1,
 .h1-page-title {
