@@ -94,22 +94,104 @@
         }
 
         .body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr;
             overflow: hidden;
             min-height: 0;
             position: relative;
             z-index: 1;
-            padding: clamp(24px, 4vh, 48px) clamp(16px, 6vw, 80px);
+        }
+
+        .vdiv {
+            background: var(--s8);
+            align-self: stretch;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: clamp(12px, 1.8vh, 20px);
+            padding: clamp(20px, 3.5vh, 44px) clamp(20px, 4vw, 56px);
+            overflow: hidden;
+            min-height: 0;
         }
 
         .content {
-            max-width: 680px;
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: clamp(14px, 2vh, 22px);
+            gap: clamp(12px, 1.8vh, 20px);
+        }
+
+        .intro-section {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(12px, 1.8vh, 20px);
+        }
+
+        .intro-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.44rem, 0.9vw, 0.54rem);
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .intro-tag::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,215,0,0.45), transparent);
+        }
+
+        .intro-heading {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            line-height: 1.15;
+            color: var(--white);
+        }
+        .intro-heading .y { color: var(--yellow); }
+
+        .intro-body {
+            font-size: clamp(0.7rem, 1.15vw, 0.84rem);
+            line-height: 1.75;
+            color: var(--s3);
+        }
+
+        .intro-cards {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(8px, 1.2vh, 12px);
+        }
+
+        .intro-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--s8);
+            border-left: 2px solid var(--yellow);
+            padding: clamp(10px, 1.4vh, 14px) clamp(12px, 1.5vw, 16px);
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .intro-card-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(0.72rem, 1.2vw, 0.9rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--white);
+        }
+        .intro-card-sub {
+            font-size: clamp(0.62rem, 1vw, 0.74rem);
+            color: var(--s4);
+            line-height: 1.5;
         }
 
         .lbl {
@@ -251,7 +333,9 @@
         }
 
         @media (max-width: 700px) {
-            .body { padding: clamp(16px, 3vh, 28px) clamp(16px, 5vw, 28px); }
+            .body { grid-template-columns: 1fr; grid-template-rows: auto 1px auto; }
+            .vdiv { width: 100%; height: 1px; }
+            .col { padding: clamp(16px, 3vh, 24px) clamp(16px, 5vw, 24px); }
             .h1 { font-size: clamp(1.1rem, 5vw, 1.5rem); }
             .bt { font-size: clamp(0.66rem, 3vw, 0.8rem); }
             .ft-mid { display: none; }
@@ -270,8 +354,9 @@
     </div>
 
     <div class="body">
-        <div class="content">
 
+        <!-- COL A: Business Feature -->
+        <div class="col">
             <div class="lbl">Business Feature</div>
 
             <div class="h1">FEBRUARY <span class="y">EDITION</span></div>
@@ -292,8 +377,38 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
                 Email Nifemi
             </a>
-
         </div>
+
+        <div class="vdiv"></div>
+
+        <!-- COL B: Introducing Learn -->
+        <div class="col">
+            <div class="intro-section">
+                <div class="intro-tag">Introducing</div>
+
+                <div class="intro-heading">We Are <span class="y">Introducing<br>Learn</span></div>
+
+                <p class="intro-body">We are building something new — a dedicated learning platform to help our network understand the critical mineral supply chain, the technology behind refining, and the investment opportunity at hand.</p>
+
+                <div class="intro-cards">
+                    <div class="intro-card">
+                        <div class="intro-card-title">The Critical Mineral Supply Chain</div>
+                        <div class="intro-card-sub">From mine to battery — understand how critical minerals move through the global system and where Canada fits.</div>
+                    </div>
+                    <div class="intro-card">
+                        <div class="intro-card-title">How Refining Works</div>
+                        <div class="intro-card-sub">A plain-language look at hydrometallurgy, SYNCORE™ technology, and why refining capacity is the bottleneck.</div>
+                    </div>
+                    <div class="intro-card">
+                        <div class="intro-card-title">The Investment Case</div>
+                        <div class="intro-card-sub">North America's refining gap, the policy tailwinds behind it, and why the timing matters now.</div>
+                    </div>
+                </div>
+
+                <p class="intro-body" style="color:var(--s5); font-size: clamp(0.62rem, 1vw, 0.74rem);">Coming soon — stay tuned for the first release.</p>
+            </div>
+        </div>
+
     </div>
 
     <div class="ft">
