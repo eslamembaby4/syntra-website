@@ -8,56 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <style>
-        #pw-gate {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: #0A0F1E;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Inter', sans-serif;
-        }
-        #pw-gate .pw-box {
-            background: #0F172A;
-            border: 1px solid #1E293B;
-            border-top: 3px solid #FFD700;
-            padding: 48px 40px;
-            width: 100%;
-            max-width: 380px;
-            text-align: center;
-        }
-        #pw-gate img { height: 40px; width: auto; margin-bottom: 32px; }
-        #pw-gate h2 { color: #FFFFFF; font-size: 18px; font-weight: 600; margin-bottom: 8px; letter-spacing: 0.02em; }
-        #pw-gate p { color: #64748B; font-size: 13px; margin-bottom: 28px; }
-        #pw-gate input {
-            width: 100%;
-            padding: 12px 16px;
-            background: #1E293B;
-            border: 1px solid #334155;
-            color: #FFFFFF;
-            font-size: 16px;
-            letter-spacing: 0.15em;
-            text-align: center;
-            outline: none;
-            margin-bottom: 12px;
-        }
-        #pw-gate input:focus { border-color: #FFD700; }
-        #pw-gate button {
-            width: 100%;
-            padding: 12px;
-            background: #FFD700;
-            color: #0B1120;
-            border: none;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-        #pw-gate button:hover { background: #F5C800; }
-        #pw-gate .pw-error { color: #EF4444; font-size: 12px; margin-top: 10px; min-height: 16px; }
-
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
@@ -72,9 +22,48 @@
             --white:  #FFFFFF;
         }
 
-        html, body {
+        /* Password gate */
+        #pw-gate {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--deep);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+        }
+        #pw-gate .pw-box {
+            background: #0F172A;
+            border: 1px solid var(--s8);
+            border-top: 3px solid var(--yellow);
+            padding: 40px 32px;
             width: 100%;
-            height: 100%;
+            max-width: 360px;
+            text-align: center;
+        }
+        #pw-gate img { height: 36px; width: auto; margin-bottom: 28px; }
+        #pw-gate h2 { color: var(--white); font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+        #pw-gate p { color: var(--s5); font-size: 12px; margin-bottom: 24px; }
+        #pw-gate input {
+            width: 100%; padding: 12px 16px;
+            background: var(--s8); border: 1px solid var(--s7);
+            color: var(--white); font-size: 16px;
+            letter-spacing: 0.15em; text-align: center;
+            outline: none; margin-bottom: 10px;
+        }
+        #pw-gate input:focus { border-color: var(--yellow); }
+        #pw-gate button {
+            width: 100%; padding: 12px;
+            background: var(--yellow); color: var(--deep);
+            border: none; font-size: 13px; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+        }
+        #pw-gate button:hover { background: #F5C800; }
+        #pw-gate .pw-error { color: #EF4444; font-size: 11px; margin-top: 8px; min-height: 14px; }
+
+        html, body {
+            width: 100%; height: 100%;
             overflow: hidden;
             background: var(--deep);
             font-family: 'Inter', sans-serif;
@@ -93,301 +82,229 @@
 
         .page::before {
             content: '';
-            position: absolute;
-            inset: 0;
+            position: absolute; inset: 0;
             background-image:
-                linear-gradient(rgba(255,215,0,0.022) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,215,0,0.022) 1px, transparent 1px);
+                linear-gradient(rgba(255,215,0,0.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,215,0,0.018) 1px, transparent 1px);
             background-size: 48px 48px;
-            pointer-events: none;
-            z-index: 0;
+            pointer-events: none; z-index: 0;
         }
 
         .top-rule {
             background: linear-gradient(90deg, var(--yellow) 0%, rgba(255,215,0,0.1) 100%);
-            position: relative;
-            z-index: 1;
+            position: relative; z-index: 1;
         }
 
+        /* Header */
         .hd {
             background: var(--deep);
             border-bottom: 1px solid var(--s8);
-            padding: 0 clamp(16px, 3vw, 32px);
-            height: clamp(44px, 6vh, 56px);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            z-index: 1;
-            gap: 12px;
+            padding: 0 clamp(14px, 3vw, 28px);
+            height: clamp(42px, 5.5vh, 52px);
+            display: flex; align-items: center; justify-content: space-between;
+            position: relative; z-index: 1; gap: 10px;
         }
-
-        .hd-logo {
-            height: clamp(20px, 3vh, 28px);
-            width: auto;
-            display: block;
-            object-fit: contain;
-        }
-
+        .hd-logo { height: clamp(18px, 2.8vh, 26px); width: auto; display: block; object-fit: contain; }
         .hd-badge {
             font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.45rem, 1vw, 0.6rem);
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--s4);
-            background: var(--s8);
-            border: 1px solid var(--s7);
-            padding: 3px 10px;
-            white-space: nowrap;
-            flex-shrink: 0;
+            font-size: clamp(0.42rem, 0.9vw, 0.56rem);
+            font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--s4); background: var(--s8);
+            border: 1px solid var(--s7); padding: 3px 9px; white-space: nowrap; flex-shrink: 0;
         }
 
+        /* Body: two columns on desktop, single column on mobile */
         .body {
             display: grid;
             grid-template-columns: 1fr 1px 1fr;
             overflow: hidden;
             min-height: 0;
-            position: relative;
-            z-index: 1;
+            position: relative; z-index: 1;
         }
-
-        .vdiv {
-            background: var(--s8);
-            align-self: stretch;
-        }
+        .vdiv { background: var(--s8); align-self: stretch; }
 
         .col {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: clamp(12px, 1.8vh, 20px);
-            padding: clamp(20px, 3.5vh, 44px) clamp(20px, 4vw, 56px);
-            overflow: hidden;
-            min-height: 0;
+            gap: clamp(10px, 1.5vh, 16px);
+            padding: clamp(16px, 2.5vh, 36px) clamp(18px, 3.5vw, 48px);
+            overflow: hidden; min-height: 0;
         }
 
-        .content {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: clamp(12px, 1.8vh, 20px);
-        }
-
-        .intro-section {
-            display: flex;
-            flex-direction: column;
-            gap: clamp(12px, 1.8vh, 20px);
-        }
-
-        .intro-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.44rem, 0.9vw, 0.54rem);
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--yellow);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .intro-tag::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(255,215,0,0.45), transparent);
-        }
-
-        .intro-heading {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(1.1rem, 2.5vw, 1.7rem);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            line-height: 1.15;
-            color: var(--white);
-        }
-        .intro-heading .y { color: var(--yellow); }
-
-        .intro-body {
-            font-size: clamp(0.7rem, 1.15vw, 0.84rem);
-            line-height: 1.75;
-            color: var(--s3);
-        }
-
-        .intro-cards {
-            display: flex;
-            flex-direction: column;
-            gap: clamp(8px, 1.2vh, 12px);
-        }
-
-        .intro-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--s8);
-            border-left: 2px solid var(--yellow);
-            padding: clamp(10px, 1.4vh, 14px) clamp(12px, 1.5vw, 16px);
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-        .intro-card-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(0.72rem, 1.2vw, 0.9rem);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--white);
-        }
-        .intro-card-sub {
-            font-size: clamp(0.62rem, 1vw, 0.74rem);
-            color: var(--s4);
-            line-height: 1.5;
-        }
-
+        /* Label */
         .lbl {
             font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.44rem, 0.9vw, 0.54rem);
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
+            font-size: clamp(0.42rem, 0.85vw, 0.52rem);
+            font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
             color: var(--yellow);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            display: flex; align-items: center; gap: 8px;
         }
-        .lbl::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(255,215,0,0.45), transparent);
-        }
+        .lbl::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255,215,0,0.4), transparent); }
 
+        /* Main headline */
         .h1 {
             font-family: 'Oswald', sans-serif;
-            font-size: clamp(1.4rem, 3.5vw, 2.2rem);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            line-height: 1.1;
-            color: var(--white);
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.04em; line-height: 1.1; color: var(--white);
         }
         .h1 .y { color: var(--yellow); }
 
         .preview {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(0.68rem, 1.1vw, 0.8rem);
-            color: var(--s5);
-            font-style: italic;
-            line-height: 1.5;
+            font-size: clamp(0.66rem, 1.05vw, 0.78rem);
+            color: var(--s5); font-style: italic; line-height: 1.5;
         }
 
         .bt {
-            font-size: clamp(0.72rem, 1.2vw, 0.88rem);
-            line-height: 1.75;
-            color: var(--s3);
+            font-size: clamp(0.68rem, 1.1vw, 0.82rem);
+            line-height: 1.72; color: var(--s3);
         }
 
-        .partner {
-            background: rgba(255,215,0,0.04);
-            border: 1px solid rgba(255,215,0,0.22);
-            padding: clamp(14px, 2vh, 20px) clamp(16px, 2vw, 22px);
-        }
-        .partner-lbl {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.42rem, 0.8vw, 0.5rem);
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--yellow);
-            margin-bottom: 5px;
-        }
-        .partner-name {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(1rem, 1.8vw, 1.3rem);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--white);
-            line-height: 1.2;
-            margin-bottom: 6px;
-        }
-        .partner-sub {
-            font-size: clamp(0.68rem, 1.1vw, 0.8rem);
-            color: var(--s4);
-            line-height: 1.6;
-        }
-
-        .cta-btn {
-            display: inline-flex;
+        /* Lead investor pill — compact */
+        .lead-pill {
+            display: flex;
             align-items: center;
-            gap: 8px;
-            background: var(--yellow);
-            color: var(--deep);
+            gap: clamp(10px, 1.5vw, 16px);
+            background: rgba(255,215,0,0.05);
+            border: 1px solid rgba(255,215,0,0.2);
+            border-left: 3px solid var(--yellow);
+            padding: clamp(10px, 1.4vh, 14px) clamp(12px, 1.6vw, 18px);
+        }
+        .lead-pill-icon {
+            width: clamp(28px, 3vw, 36px);
+            height: clamp(28px, 3vw, 36px);
+            background: rgba(255,215,0,0.12);
+            border: 1px solid rgba(255,215,0,0.3);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .lead-pill-icon svg { width: 14px; height: 14px; color: var(--yellow); }
+        .lead-pill-text {}
+        .lead-pill-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.4rem, 0.75vw, 0.48rem);
+            font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--yellow); margin-bottom: 2px;
+        }
+        .lead-pill-name {
             font-family: 'Oswald', sans-serif;
-            font-size: clamp(0.72rem, 1.1vw, 0.84rem);
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+            font-size: clamp(0.9rem, 1.6vw, 1.15rem);
+            font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.05em; color: var(--white); line-height: 1.1;
+        }
+
+        /* CTA */
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--yellow); color: var(--deep);
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(0.68rem, 1vw, 0.8rem);
+            font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
             text-decoration: none;
-            padding: clamp(10px, 1.4vh, 14px) clamp(20px, 2.5vw, 28px);
-            border: none;
-            cursor: pointer;
+            padding: clamp(9px, 1.2vh, 12px) clamp(18px, 2.2vw, 24px);
+            border: none; cursor: pointer;
             transition: background 0.2s, transform 0.15s;
             align-self: flex-start;
         }
-        .cta-btn:hover {
-            background: var(--white);
-            transform: translateY(-1px);
+        .cta-btn:hover { background: var(--white); transform: translateY(-1px); }
+        .cta-btn svg { width: 13px; height: 13px; }
+
+        /* Right column — SynLearn */
+        .intro-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.42rem, 0.85vw, 0.52rem);
+            font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--yellow);
+            display: flex; align-items: center; gap: 8px;
         }
-        .cta-btn svg {
-            width: clamp(13px, 1.4vw, 16px);
-            height: clamp(13px, 1.4vw, 16px);
+        .intro-tag::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255,215,0,0.4), transparent); }
+
+        .synlearn-heading {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1.2rem, 2.6vw, 1.9rem);
+            font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.04em; line-height: 1.1; color: var(--white);
+        }
+        .synlearn-heading .y { color: var(--yellow); }
+
+        .intro-body {
+            font-size: clamp(0.68rem, 1.1vw, 0.82rem);
+            line-height: 1.72; color: var(--s3);
         }
 
+        .intro-cards {
+            display: flex; flex-direction: column;
+            gap: clamp(6px, 0.9vh, 10px);
+        }
+        .intro-card {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--s8);
+            border-left: 2px solid var(--yellow);
+            padding: clamp(8px, 1.1vh, 11px) clamp(10px, 1.3vw, 14px);
+            display: flex; flex-direction: column; gap: 2px;
+        }
+        .intro-card-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(0.68rem, 1.1vw, 0.84rem);
+            font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.05em; color: var(--white);
+        }
+        .intro-card-sub {
+            font-size: clamp(0.6rem, 0.95vw, 0.72rem);
+            color: var(--s4); line-height: 1.5;
+        }
+
+        .coming-soon {
+            font-size: clamp(0.6rem, 0.95vw, 0.72rem);
+            color: var(--s5); font-style: italic;
+        }
+
+        /* Footer */
         .ft {
             background: var(--deep);
             border-top: 1px solid var(--s8);
-            height: clamp(36px, 5vh, 44px);
-            padding: 0 clamp(16px, 3vw, 32px);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            position: relative;
-            z-index: 1;
+            height: clamp(34px, 4.5vh, 42px);
+            padding: 0 clamp(14px, 3vw, 28px);
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 10px; position: relative; z-index: 1;
         }
         .ft-brand {
             font-family: 'Oswald', sans-serif;
-            font-size: clamp(0.65rem, 1.2vw, 0.82rem);
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--white);
+            font-size: clamp(0.6rem, 1.1vw, 0.78rem);
+            font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white);
         }
         .ft-brand span { color: var(--yellow); }
         .ft-mid {
             font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.44rem, 0.85vw, 0.54rem);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--s5);
-            white-space: nowrap;
+            font-size: clamp(0.4rem, 0.8vw, 0.5rem);
+            letter-spacing: 0.08em; text-transform: uppercase; color: var(--s5); white-space: nowrap;
         }
         .ft-right {
             font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.44rem, 0.85vw, 0.52rem);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--s5);
-            white-space: nowrap;
+            font-size: clamp(0.4rem, 0.8vw, 0.5rem);
+            letter-spacing: 0.06em; text-transform: uppercase; color: var(--s5); white-space: nowrap;
         }
 
+        /* ── Mobile: single column, everything fits in 100vh ── */
         @media (max-width: 700px) {
-            .body { grid-template-columns: 1fr; grid-template-rows: auto 1px auto; }
+            .body {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1px 1fr;
+            }
             .vdiv { width: 100%; height: 1px; }
-            .col { padding: clamp(16px, 3vh, 24px) clamp(16px, 5vw, 24px); }
-            .h1 { font-size: clamp(1.1rem, 5vw, 1.5rem); }
-            .bt { font-size: clamp(0.66rem, 3vw, 0.8rem); }
+
+            .col {
+                gap: clamp(8px, 1.2vh, 12px);
+                padding: clamp(12px, 2vh, 18px) clamp(14px, 4vw, 20px);
+                justify-content: center;
+            }
+
+            .h1 { font-size: clamp(1.1rem, 4.5vw, 1.4rem); }
+            .synlearn-heading { font-size: clamp(1rem, 4vw, 1.3rem); }
+            .bt, .intro-body { font-size: clamp(0.62rem, 2.6vw, 0.76rem); }
+            .intro-card-sub { font-size: clamp(0.56rem, 2.3vw, 0.68rem); }
+
             .ft-mid { display: none; }
             .hd-badge { display: none; }
         }
@@ -446,50 +363,52 @@
 
             <p class="preview">Lead investor announced, the road to SYNHUB™ Halifax, and our upcoming education series.</p>
 
-            <p class="bt">As we drive our mission forward with speed and precision, our focus remains set on breaking ground on SYNHUB™ Halifax — Syntra's first refining facility in our network of SynHubs™ that will add meaningful volume to North America's critical mineral supply across electrification, advanced manufacturing, and industrial demand centers.</p>
+            <p class="bt">As we drive our mission forward with speed and precision, our focus remains set on breaking ground on SYNHUB™ Halifax — Syntra's first refining facility in a network that will add meaningful volume to North America's critical mineral supply.</p>
 
-            <div class="partner">
-                <div class="partner-lbl">Lead Investor Announced</div>
-                <div class="partner-name">Sandpiper Ventures</div>
-                <div class="partner-sub">Led by Rhiannon Davies — an exceptional ally and partner to Syntra over the last several months. Together, we are extremely excited to set Canada up as a clean, smart, refining powerhouse.</div>
+            <div class="lead-pill">
+                <div class="lead-pill-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <div class="lead-pill-text">
+                    <div class="lead-pill-label">Lead Investor Announced</div>
+                    <div class="lead-pill-name">Sandpiper Ventures</div>
+                </div>
             </div>
 
-            <p class="bt">To support the capital intensity of this build, and as a champion of Syntra's vision to build North America's critical minerals refining platform, we are extremely pleased to announce that Sandpiper Ventures has joined our raise as our Lead Investor. Join us as we build the infrastructure to power North America's future — from electrification to advanced manufacturing to industrial demand.</p>
+            <p class="bt">We are extremely pleased to announce that Sandpiper Ventures has joined our raise as our Lead Investor — a champion of Syntra's vision to build North America's critical minerals refining platform.</p>
 
             <a class="cta-btn" href="mailto:nifemi@syntrarefining.com">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-                Email Nifemi Oguntuase
+                Get in Touch
             </a>
         </div>
 
         <div class="vdiv"></div>
 
-        <!-- COL B: Introducing Learn -->
+        <!-- COL B: SynLearn -->
         <div class="col">
-            <div class="intro-section">
-                <div class="intro-tag">Introducing</div>
+            <div class="intro-tag">Introducing</div>
 
-                <div class="intro-heading">We Are <span class="y">Introducing<br>Learn</span></div>
+            <div class="synlearn-heading">SYN<span class="y">LEARN</span></div>
 
-                <p class="intro-body">We are building something new — a dedicated learning platform to help our network understand the critical mineral supply chain, the technology behind refining, and the investment opportunity at hand.</p>
+            <p class="intro-body">A dedicated learning platform to help our network understand the critical mineral supply chain, the technology behind refining, and the investment opportunity ahead.</p>
 
-                <div class="intro-cards">
-                    <div class="intro-card">
-                        <div class="intro-card-title">The Critical Mineral Supply Chain</div>
-                        <div class="intro-card-sub">From mine to end-user — understand how critical minerals move through the global system, the industries that depend on them, and where Canada fits.</div>
-                    </div>
-                    <div class="intro-card">
-                        <div class="intro-card-title">How Refining Works</div>
-                        <div class="intro-card-sub">A plain-language look at advanced hydrometallurgy, SYNCORE™ technology, and how spec-grade, qualification-ready outputs are produced for multiple industries.</div>
-                    </div>
-                    <div class="intro-card">
-                        <div class="intro-card-title">The Investment Case</div>
-                        <div class="intro-card-sub">The North America-first refining gap, global scalability, the policy tailwinds behind it, and why the timing matters now.</div>
-                    </div>
+            <div class="intro-cards">
+                <div class="intro-card">
+                    <div class="intro-card-title">The Critical Mineral Supply Chain</div>
+                    <div class="intro-card-sub">From mine to end-user — how critical minerals move through the global system and where Canada fits.</div>
                 </div>
-
-                <p class="intro-body" style="color:var(--s5); font-size: clamp(0.62rem, 1vw, 0.74rem);">Coming soon — stay tuned for the first release.</p>
+                <div class="intro-card">
+                    <div class="intro-card-title">How Refining Works</div>
+                    <div class="intro-card-sub">Advanced hydrometallurgy, SYNCORE™ technology, and how spec-grade outputs are produced for multiple industries.</div>
+                </div>
+                <div class="intro-card">
+                    <div class="intro-card-title">The Investment Case</div>
+                    <div class="intro-card-sub">The North America-first refining gap, global scalability, policy tailwinds, and why the timing matters now.</div>
+                </div>
             </div>
+
+            <p class="coming-soon">Coming soon — stay tuned for the first release.</p>
         </div>
 
     </div>
