@@ -64,7 +64,7 @@
         .page {
             width: 100vw; height: 100vh;
             display: grid;
-            grid-template-rows: 3px auto 1fr auto;
+            grid-template-rows: 3px auto 1fr;
             background: var(--navy);
             overflow: hidden;
             position: relative;
@@ -109,8 +109,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: clamp(14px, 2.2vh, 32px) clamp(20px, 5vw, 80px);
-            gap: clamp(10px, 1.6vh, 18px);
+            padding: clamp(10px, 1.6vh, 22px) clamp(20px, 5vw, 80px);
+            gap: clamp(7px, 1.1vh, 13px);
         }
 
         .section-label {
@@ -238,35 +238,9 @@
             color: var(--s5); font-style: italic;
         }
 
-        .ft {
-            background: var(--deep);
-            border-top: 1px solid var(--s8);
-            height: clamp(34px, 4.2vh, 42px);
-            padding: 0 clamp(20px, 4vw, 48px);
-            display: flex; align-items: center; justify-content: space-between;
-            gap: 10px; position: relative; z-index: 1;
-        }
-        .ft-brand {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(0.6rem, 1vw, 0.76rem);
-            font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white);
-        }
-        .ft-brand span { color: var(--yellow); }
-        .ft-mid {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.38rem, 0.75vw, 0.48rem);
-            letter-spacing: 0.08em; text-transform: uppercase; color: var(--s5); white-space: nowrap;
-        }
-        .ft-right {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.38rem, 0.75vw, 0.48rem);
-            letter-spacing: 0.06em; text-transform: uppercase; color: var(--s5); white-space: nowrap;
-        }
-
         @media (max-width: 640px) {
             .cards-row { grid-template-columns: 1fr; }
             .bottom-row { flex-direction: column; align-items: flex-start; }
-            .ft-mid { display: none; }
             .hd-badge { display: none; }
             .learn-row { flex-direction: column; gap: 4px; }
         }
@@ -369,11 +343,6 @@
 
     </div>
 
-    <div class="ft">
-        <div class="ft-brand">SYNTRA<span>.</span> Refining Corp</div>
-        <div class="ft-mid">Powered by SYNCORE™ — North America's Critical Minerals Refining Platform</div>
-        <div class="ft-right">syntrarefining.com &nbsp;|&nbsp; © 2026</div>
-    </div>
 </div>
 
 </body>
