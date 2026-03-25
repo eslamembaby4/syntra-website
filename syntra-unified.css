@@ -65,8 +65,8 @@
 
 /* Shared hero (large + small) — matches main hero visual without duplicating images */
 .syntra-hero {
-  background: radial-gradient(circle at center, rgba(255,200,0,0.08), transparent 70%),
-              linear-gradient(180deg, #030917 0%, #02060f 100%);
+  background: radial-gradient(circle at center, rgba(255,215,0,0.08), transparent 70%),
+              linear-gradient(180deg, #0B1120 0%, #0B1120 100%);
   min-height: 420px;
   display: flex;
   align-items: center;

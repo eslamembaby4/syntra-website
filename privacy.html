@@ -4,6 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy | Syntra Refining</title>
+  <meta name="description" content="Read the Syntra Refining Corp. privacy policy to understand how we collect, use, and protect your personal information." />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://syntrarefining.com/privacy" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0A1628">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -11,6 +23,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/syntra-brand-theme.css">
+  <link rel="stylesheet" href="/css/syntra-design-system.css">
+  <link rel="stylesheet" href="/css/syntra-logo-image.css">
   <script>
     tailwind.config = {
       theme: {
@@ -22,7 +36,7 @@
               text: '#0F172A',
               midnight: '#0B1120',
               accent: '#FFD700',
-              amber: '#D97706',
+              amber: '#FFD700',
               border: '#E2E8F0',
             },
           },
@@ -45,7 +59,7 @@
     .logo-container { cursor: pointer; }
     .logo-outer { transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s; }
     .logo-inner { transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1), background-color 0.3s; }
-    .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #D97706; }
+    .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #FFD700; }
 
     .nav-link {
       position: relative;
@@ -66,6 +80,16 @@
 
     .menu-line { transition: all 0.3s ease; }
 
+    .menu-diamond {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        transition: transform 250ms ease-in-out;
+    }
+    @media (hover: hover) and (pointer: fine) {
+        .menu-diamond:hover { transform: rotate(55deg); }
+    }
+
     .section-number {
       font-variant-numeric: tabular-nums;
       letter-spacing: -0.02em;
@@ -74,36 +98,83 @@
     .policy-section {
       scroll-margin-top: 2rem;
     }
+
+    .bg-chicken-wire {
+      background-image:
+        linear-gradient(rgba(11,17,32,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11,17,32,0.06) 1px, transparent 1px),
+        linear-gradient(45deg, rgba(11,17,32,0.03) 1px, transparent 1px),
+        linear-gradient(-45deg, rgba(11,17,32,0.03) 1px, transparent 1px);
+      background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+    }
+
+    .bg-chicken-wire-dark {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(45deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(-45deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+    }
+
+    .brand-spine-section { position: relative; }
+    .brand-spine-section::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, #FFD700 0%, rgba(255,215,0,0.4) 100%);
+      z-index: 20;
+    }
+
+    .ghost-wordmark {
+      position: absolute;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+      pointer-events: none;
+      user-select: none;
+      line-height: 0.85;
+      z-index: 0;
+    }
   </style>
 </head>
 
 <body class="bg-syntra-base text-syntra-text font-sans antialiased">
+
+  <!-- TOP TICKER -->
+  <div class="bg-syntra-text text-white py-1.5 border-b border-white/10 text-[10px] md:text-xs font-mono tracking-wide z-50 relative overflow-hidden">
+    <div class="container mx-auto px-4 sm:px-6 flex justify-between items-center">
+      <div class="flex items-center gap-3 sm:gap-6 min-w-0">
+        <span class="flex items-center gap-2 text-white font-bold whitespace-nowrap">
+          <span class="relative flex h-2 w-2 flex-shrink-0">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ffd700] opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-[#ffd700]"></span>
+          </span>
+          GRID: ONLINE
+        </span>
+        <span class="hidden sm:block text-slate-400 whitespace-nowrap">LOC: NOVA SCOTIA, CA</span>
+        <span class="hidden md:block text-slate-400 whitespace-nowrap">CAP: 1,000 TPA</span>|
+      </div>
+      <div class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+        <a href="observer.html" class="text-syntra-accent hover:text-white transition-colors font-bold whitespace-nowrap">OBSERVER LOGIN</a>
+        <span class="text-[#64748B]">|</span>
+        <a href="supplier.html" class="hover:text-syntra-accent transition-colors whitespace-nowrap hidden sm:block">SUPPLIER PORTAL</a>
+        <a href="supplier.html" class="hover:text-syntra-accent transition-colors whitespace-nowrap sm:hidden">SUPPLIER</a>
+      </div>
+    </div>
+  </div>
+
   <!-- NAV -->
-  <nav class="bg-white border-b border-syntra-border sticky top-0 z-30">
+  <nav class="bg-white border-b border-syntra-border sticky top-0 z-40">
     <div class="container mx-auto px-6 h-20 flex items-center justify-between">
       <a href="index.html" class="syntra-logo-hover-wrapper">
-        <div class="syntra-logo-mark">
-          <div class="syntra-logo-diamond"></div>
-          <div class="syntra-logo-square"></div>
-        </div>
-        <div class="syntra-logo-wordmark">
-          <div class="syntra-logo-title">SYNTRA</div>
-          <div class="syntra-logo-subtitle">REFINING CORP.</div>
-        </div>
+        <img src="/assets/images/Wordmark_2_(1).png" alt="Syntra Refining Corp." class="syntra-logo-image">
       </a>
-
-      <!-- Desktop nav -->
-      <div class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-[0.18em]">
-        <a href="commercial.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Commercial</a>
-        <a href="technology.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Technology</a>
-        <a href="network.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Network</a>
-        <a href="company.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Company</a>
-        <a href="careers.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Careers</a>
-        <a href="index.html#partner-ecosystem-access" class="relative nav-link text-slate-600 hover:text-syntra-text">Contact</a>
-      </div>
-
-      <!-- Mobile Menu Toggle -->
-      <button class="text-syntra-text p-2 hover:text-syntra-amber transition-colors md:hidden" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
+      <button class="text-syntra-text p-3 hover:text-syntra-amber transition-colors" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
         <div class="flex flex-col gap-[6px] items-end">
           <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
           <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
@@ -111,42 +182,122 @@
         </div>
       </button>
     </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-syntra-border">
-      <div class="container mx-auto px-6 py-6 flex flex-col gap-4 text-xs font-mono uppercase tracking-[0.18em]">
-        <a href="commercial.html" class="text-slate-600 hover:text-syntra-text py-2">Commercial</a>
-        <a href="technology.html" class="text-slate-600 hover:text-syntra-text py-2">Technology</a>
-        <a href="network.html" class="text-slate-600 hover:text-syntra-text py-2">Network</a>
-        <a href="company.html" class="text-slate-600 hover:text-syntra-text py-2">Company</a>
-        <a href="careers.html" class="text-slate-600 hover:text-syntra-text py-2">Careers</a>
-        <a href="index.html#partner-ecosystem-access" class="text-slate-600 hover:text-syntra-text py-2">Contact</a>
-      </div>
-    </div>
   </nav>
 
+  <!-- MOBILE MENU -->
+  <div id="menuBackdrop" class="fixed inset-0 bg-syntra-midnight/60 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300" onclick="toggleMobileMenu()"></div>
+
+  <div id="mobileMenu" class="fixed top-0 right-0 h-full w-[85%] sm:w-[450px] bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-out overflow-y-auto" role="dialog" aria-modal="true">
+    <div class="sticky top-0 bg-white border-b border-syntra-border px-6 py-6 flex justify-between items-center z-10">
+      <div class="flex items-center gap-3">
+        <svg class="menu-diamond" id="menuDiamond" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1" stroke="#FFD700" stroke-width="2.5" transform="rotate(45 12 12)"/></svg>
+        <span class="font-head font-bold text-xl text-syntra-midnight">MENU</span>
+      </div>
+      <button class="p-3 rounded-lg hover:bg-slate-100 transition-all hover:rotate-90 duration-200 group" onclick="toggleMobileMenu()" aria-label="Close menu">
+        <svg class="w-6 h-6 text-syntra-text group-hover:text-syntra-amber transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="px-6 py-8">
+      <nav class="flex flex-col gap-3">
+        <a href="index.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+          <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Home</span>
+          <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+        <a href="commercial.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+          <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Commercial</span>
+          <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+        <a href="technology.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+          <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Technology</span>
+          <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+        <a href="company.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+          <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Company</span>
+          <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+        <a href="careers.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+          <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Careers</span>
+          <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+        <a href="contact.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+          <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Contact</span>
+          <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </nav>
+    </div>
+
+        <!-- Branding Footer -->
+        <div class="mt-auto relative overflow-hidden" style="background: linear-gradient(135deg, #0B1120 0%, #061225 100%);">
+            <!-- Gold left spine -->
+            <div class="absolute left-0 top-0 bottom-0" style="width:4px; background:linear-gradient(to bottom, #FFD700 0%, rgba(255,215,0,0.3) 100%);"></div>
+            <!-- Spinning diamond bg marks -->
+            <div class="absolute pointer-events-none" style="top:50%; right:-40px; transform:translateY(-50%);" aria-hidden="true">
+                <div class="diamond-spin" style="width:180px; height:180px; border:1px solid rgba(255,215,0,0.08);"></div>
+            </div>
+            <div class="absolute pointer-events-none" style="top:50%; right:20px; transform:translateY(-50%);" aria-hidden="true">
+                <div class="diamond-spin-slow" style="width:100px; height:100px; border:1px solid rgba(255,215,0,0.06);"></div>
+            </div>
+            <div class="relative z-10 px-8 py-7 flex flex-col gap-4">
+                <!-- Logo -->
+                <img src="/assets/images/Wordmark_2_(1).png" alt="Syntra Refining Corp." style="height:28px; width:auto; object-fit:contain; filter:brightness(0) invert(1);">
+                <!-- Gold rule -->
+                <div style="width:48px; height:3px; background:#FFD700;"></div>
+                <!-- Tagline -->
+                <p style="font-family:'Oswald',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); line-height:1.6;">
+                    CLEAN &nbsp;&bull;&nbsp; SMART &nbsp;&bull;&nbsp; REFINING
+                </p>
+                <!-- Bottom micro row -->
+                <div class="flex items-center justify-between pt-1" style="border-top:1px solid rgba(255,255,255,0.07);">
+                    <span style="font-size:0.65rem; color:rgba(255,255,255,0.25); letter-spacing:0.06em;">syntrarefining.com</span>
+                    <!-- Mini diamond mark -->
+                    <div style="position:relative; width:20px; height:20px; flex-shrink:0;">
+                        <div style="position:absolute; inset:0; border:1.5px solid rgba(255,215,0,0.5); transform:rotate(45deg);"></div>
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:7px; height:7px; background:rgba(255,215,0,0.6);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+
   <!-- HEADER -->
-  <header class="bg-white border-b border-syntra-border py-16">
-    <div class="container mx-auto px-6 max-w-4xl">
-      <div class="border-l-4 border-syntra-accent pl-6">
-        <p class="font-mono text-xs text-syntra-amber uppercase tracking-[0.25em] mb-3 font-bold">Legal Documentation</p>
-        <h1 class="font-head text-5xl md:text-6xl font-bold uppercase mb-6 leading-tight">Privacy Policy</h1>
-        <p class="text-lg text-slate-600 leading-relaxed max-w-2xl">
+  <header class="brand-spine-section relative overflow-hidden bg-chicken-wire py-20 sm:py-24 md:py-28" style="background-color:#F9FAFC;">
+    <!-- Signal Yellow left spine -->
+    <div class="hidden lg:block absolute left-0 top-0 bottom-0 z-10 pointer-events-none" style="width:6px; background:linear-gradient(to bottom, #FFD700 0%, rgba(255,215,0,0.4) 100%);" aria-hidden="true"></div>
+    <!-- Engineering grid overlay -->
+    <div class="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" aria-hidden="true">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><pattern id="legal-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0b1120" stroke-width="1"/></pattern><rect width="100%" height="100%" fill="url(#legal-grid)"/></svg>
+    </div>
+    <!-- Ghost diamond geometry -->
+    <div class="absolute pointer-events-none hidden lg:block" style="top:50%; right:-4%; transform:translateY(-50%) rotate(45deg); width:480px; height:480px; border:1.5px solid rgba(255,215,0,0.10); z-index:1;" aria-hidden="true">
+      <div style="position:absolute; inset:15%; border:1px solid rgba(255,215,0,0.06);"></div>
+      <div style="position:absolute; inset:36%; background:rgba(255,215,0,0.04);"></div>
+    </div>
+    <!-- Ghost wordmark -->
+    <div class="ghost-wordmark hidden xl:block" style="right:-1%; bottom:-10%; font-size:clamp(8rem,16vw,20rem); color:rgba(11,17,32,0.028); white-space:nowrap;" aria-hidden="true">SYNTRA.</div>
+    <div class="container mx-auto px-6 max-w-5xl relative z-10">
+      <div class="mb-10">
+        <div class="inline-block px-4 py-2 mb-6 font-bold text-xs tracking-wider uppercase font-mono" style="background-color: rgba(8, 145, 178, 0.15); color: #0891B2; border: 1px solid rgba(8,145,178,0.25);">
+          LEGAL DOCUMENTATION
+        </div>
+        <h1 class="font-head text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase mb-6 leading-[0.9] tracking-tight text-syntra-midnight">Privacy<br>Policy</h1>
+        <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
           This Privacy Policy describes how Syntra Refining Corp. collects, uses, protects, and manages personal information in connection with our digital services, business operations, and commercial relationships.
         </p>
       </div>
-      <div class="mt-8 flex flex-wrap gap-6 text-sm">
+      <div class="flex flex-wrap gap-8 pt-8 border-t border-syntra-border">
         <div>
-          <p class="font-mono text-xs text-slate-500 uppercase mb-1">Effective Date</p>
-          <p class="font-semibold">January 9, 2026</p>
+          <p class="font-mono text-[10px] text-slate-400 uppercase tracking-widest mb-1">Effective Date</p>
+          <p class="font-head font-bold text-syntra-midnight">January 9, 2026</p>
         </div>
         <div>
-          <p class="font-mono text-xs text-slate-500 uppercase mb-1">Last Revised</p>
-          <p class="font-semibold">January 9, 2026</p>
+          <p class="font-mono text-[10px] text-slate-400 uppercase tracking-widest mb-1">Last Revised</p>
+          <p class="font-head font-bold text-syntra-midnight">January 9, 2026</p>
         </div>
         <div>
-          <p class="font-mono text-xs text-slate-500 uppercase mb-1">Version</p>
-          <p class="font-semibold">2.0</p>
+          <p class="font-mono text-[10px] text-slate-400 uppercase tracking-widest mb-1">Version</p>
+          <p class="font-head font-bold text-syntra-midnight">2.0</p>
         </div>
       </div>
     </div>
@@ -560,7 +711,7 @@
           If you have questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us:
         </p>
 
-        <div class="bg-white border-2 border-syntra-border p-8 rounded-lg">
+        <div class="bg-white border-2 border-syntra-border p-8">
           <h3 class="font-head text-xl font-bold uppercase mb-6 text-syntra-text">Privacy Contact</h3>
           <div class="space-y-4">
             <div>
@@ -590,7 +741,7 @@
     </section>
 
     <!-- Acknowledgment -->
-    <section class="bg-slate-100 border border-syntra-border p-8 rounded-lg">
+    <section class="bg-slate-100 border border-syntra-border p-8">
       <h3 class="font-head text-lg font-bold uppercase mb-4 text-syntra-text">Acknowledgment</h3>
       <p class="text-sm text-slate-700 leading-relaxed">
         By using our Services, you acknowledge that you have read and understood this Privacy Policy and agree to the collection, use, and disclosure of your personal information as described herein. If you do not agree with this Privacy Policy, please do not use our Services.
@@ -599,19 +750,14 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-syntra-midnight text-white py-16 border-t-4 border-syntra-accent mt-16">
-    <div class="container mx-auto px-6">
+  <footer class="bg-syntra-midnight text-white py-16 border-t-4 border-syntra-accent mt-16 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none bg-chicken-wire-dark" style="opacity:0.6;" aria-hidden="true"></div>
+    <div class="hidden lg:block absolute left-0 top-0 bottom-0 z-10 pointer-events-none" style="width:6px; background:linear-gradient(to bottom, rgba(255,215,0,0.7) 0%, rgba(255,215,0,0.2) 100%);" aria-hidden="true"></div>
+    <div class="container mx-auto px-6 relative z-10">
       <div class="grid md:grid-cols-12 gap-12 mb-16">
         <div class="md:col-span-4 space-y-6">
-          <a href="index.html" class="syntra-logo-hover-wrapper light">
-            <div class="syntra-logo-mark">
-              <div class="syntra-logo-diamond"></div>
-              <div class="syntra-logo-square"></div>
-            </div>
-            <div class="syntra-logo-wordmark">
-              <div class="syntra-logo-title">SYNTRA</div>
-              <div class="syntra-logo-subtitle">REFINING CORP.</div>
-            </div>
+          <a href="index.html" class="syntra-logo-hover-wrapper syntra-logo-footer light">
+            <img src="/assets/images/Wordmark_2_(1).png" alt="Syntra Refining Corp." class="syntra-logo-image">
           </a>
           <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
             North America's Critical Minerals Infrastructure.<br>Halifax, NS, Canada.
@@ -623,7 +769,6 @@
           <ul class="space-y-4 text-slate-400 text-sm">
             <li><a href="index.html#about" class="hover:text-syntra-accent transition-colors">Leadership</a></li>
             <li><a href="careers.html" class="hover:text-syntra-accent transition-colors">Careers</a></li>
-            <li><a href="investor.html" class="hover:text-syntra-accent transition-colors">Investor Relations</a></li>
           </ul>
         </div>
 
@@ -650,10 +795,35 @@
 
   <script>
     function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-      menu.classList.toggle('flex');
+      const menu = document.getElementById('mobileMenu');
+      const backdrop = document.getElementById('menuBackdrop');
+      const diamond = document.getElementById('menuDiamond');
+      const body = document.body;
+      if (!menu || !backdrop) return;
+      const isOpen = menu.classList.contains('translate-x-0');
+      if (isOpen) {
+        menu.classList.remove('translate-x-0');
+        menu.classList.add('translate-x-full');
+        backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+        backdrop.classList.add('opacity-0', 'pointer-events-none');
+        body.style.overflow = '';
+        if (diamond) diamond.style.transform = 'rotate(45deg)';
+      } else {
+        menu.classList.remove('translate-x-full');
+        menu.classList.add('translate-x-0');
+        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+        backdrop.classList.add('opacity-100', 'pointer-events-auto');
+        body.style.overflow = 'hidden';
+        if (diamond) diamond.style.transform = 'rotate(90deg)';
+      }
     }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const menu = document.getElementById('mobileMenu');
+        if (menu && menu.classList.contains('translate-x-0')) toggleMobileMenu();
+      }
+    });
   </script>
+
 </body>
 </html>

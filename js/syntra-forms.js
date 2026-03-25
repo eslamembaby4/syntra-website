@@ -18,6 +18,7 @@
  * - tds_request
  * - sds_inquiry
  * - newsletter
+ * - ceo_meeting
  */
 
 (function() {
@@ -31,7 +32,8 @@
     'supplier_document',
     'tds_request',
     'sds_inquiry',
-    'newsletter'
+    'newsletter',
+    'ceo_meeting'
   ];
 
   // Track which forms have already been bound to prevent duplicate listeners
@@ -305,22 +307,6 @@
     console.log('[Syntra Forms] Form type:', formType);
     console.log('[Syntra Forms] ========================================');
 
-    // ADD VISUAL TEST RIGHT HERE
-    const earlyTestBox = document.createElement('div');
-    earlyTestBox.style.cssText = `
-      position: fixed !important;
-      top: 10px !important;
-      left: 10px !important;
-      padding: 15px !important;
-      background: #00ff00 !important;
-      color: #000000 !important;
-      font-weight: bold !important;
-      z-index: 2147483647 !important;
-      border: 3px solid #000000 !important;
-    `;
-    earlyTestBox.textContent = 'showSuccess() RUNNING!';
-    document.body.appendChild(earlyTestBox);
-
     console.log('[Syntra Forms] About to call showThankYouModal...');
     console.log('[Syntra Forms] showThankYouModal exists:', typeof showThankYouModal);
 
@@ -330,7 +316,6 @@
     } catch (modalError) {
       console.error('[Syntra Forms] ❌ Error showing modal:', modalError);
       console.error('[Syntra Forms] Modal error stack:', modalError.stack);
-      // Fallback: show alert if modal fails
       alert(`✅ Thank You!\n\nYour submission has been received.\n\nReference ID: ${referenceId}\n\nPlease save this reference number for your records.\n\nOur team will review your submission within 24-48 business hours.`);
     }
 
@@ -348,28 +333,6 @@
   function showThankYouModal(referenceId) {
     console.log('[Syntra Forms] 🎨 ===== MODAL FUNCTION CALLED =====');
     console.log('[Syntra Forms] Reference ID:', referenceId);
-
-    // SUPER VISIBLE TEST: Add a bright red box to the page FIRST
-    const testBox = document.createElement('div');
-    testBox.id = 'test-visual';
-    testBox.style.cssText = `
-      position: fixed !important;
-      top: 10px !important;
-      right: 10px !important;
-      width: 200px !important;
-      padding: 20px !important;
-      background: #ff0000 !important;
-      color: #ffffff !important;
-      font-size: 18px !important;
-      font-weight: bold !important;
-      z-index: 2147483647 !important;
-      border: 5px solid #ffff00 !important;
-      border-radius: 10px !important;
-      text-align: center !important;
-    `;
-    testBox.textContent = 'FUNCTION IS RUNNING!';
-    document.body.appendChild(testBox);
-    console.log('[Syntra Forms] Red test box added');
 
     if (!referenceId) {
       console.error('[Syntra Forms] ❌ No reference ID provided!');
@@ -393,7 +356,7 @@
       bottom: 0 !important;
       width: 100vw !important;
       height: 100vh !important;
-      background-color: rgba(0, 0, 0, 0.9) !important;
+      background-color: rgba(11, 17, 32, 0.9) !important;
       z-index: 2147483646 !important;
       display: flex !important;
       align-items: center !important;
@@ -407,13 +370,13 @@
     const modalBox = document.createElement('div');
     modalBox.id = 'syntra-modal-box';
     modalBox.style.cssText = `
-      background: white !important;
+      background: #FFFFFF !important;
       border-radius: 16px !important;
       max-width: 600px !important;
       width: 100% !important;
       max-height: 90vh !important;
       overflow-y: auto !important;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5) !important;
+      box-shadow: 0 20px 60px rgba(11,17,32,0.5) !important;
       position: relative !important;
       padding: 40px 30px !important;
       text-align: center !important;
@@ -422,42 +385,47 @@
 
     // Build content using DOM elements
     modalBox.innerHTML = `
-      <button class="close-x" style="position: absolute; top: 15px; right: 15px; width: 35px; height: 35px; border: none; background: #1f2937; color: white; border-radius: 50%; cursor: pointer; font-size: 24px; line-height: 1;">×</button>
+      <button class="close-x" type="button" style="position: absolute; top: 15px; right: 15px; min-width: 90px; height: 36px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #FFD700; border: none; color: #0B1120; cursor: pointer; z-index: 10; border-radius: 6px; font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; padding: 0 14px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6L6 18M6 6l12 12"></path>
+        </svg>
+        <span style="text-transform: uppercase;">ESC</span>
+      </button>
 
-      <div style="margin: 0 auto 25px; width: 80px; height: 80px; background: linear-gradient(135deg, #22c55e, #10b981); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+      <div style="margin: 0 auto 25px; width: 80px; height: 80px; background: linear-gradient(135deg, #0891B2, #0e7490); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
         <svg style="width: 45px; height: 45px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
         </svg>
       </div>
 
-      <h2 style="font-size: 32px; font-weight: bold; color: #111827; margin: 0 0 15px; text-transform: uppercase; letter-spacing: 1px;">THANK YOU</h2>
+      <h2 style="font-size: 32px; font-weight: bold; color: #0F172A; margin: 0 0 15px; text-transform: uppercase; letter-spacing: 1px;">THANK YOU</h2>
 
-      <p style="font-size: 16px; color: #4b5563; margin: 0 0 30px; line-height: 1.6;">Your submission has been received successfully.</p>
+      <p style="font-size: 16px; color: #64748B; margin: 0 0 30px; line-height: 1.6;">Your submission has been received successfully.</p>
 
-      <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #22c55e; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
-        <div style="background: #16a34a; color: white; padding: 5px 15px; border-radius: 20px; font-size: 11px; font-weight: bold; text-transform: uppercase; display: inline-block; margin-bottom: 15px;">REFERENCE NUMBER</div>
+      <div style="background: linear-gradient(135deg, #F9FAFC, #CBD5E1); border: 2px solid #0891B2; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+        <div style="background: #0891B2; color: #FFFFFF; padding: 5px 15px; border-radius: 20px; font-size: 11px; font-weight: bold; text-transform: uppercase; display: inline-block; margin-bottom: 15px;">REFERENCE NUMBER</div>
 
-        <div style="background: white; padding: 20px; border-radius: 8px; border: 2px solid #86efac; margin-bottom: 15px;">
-          <p style="font-size: 28px; font-weight: bold; color: #166534; font-family: monospace; margin: 0; word-break: break-all;" class="ref-id-text">${referenceId}</p>
+        <div style="background: #FFFFFF; padding: 20px; border-radius: 8px; border: 2px solid #0891B2; margin-bottom: 15px;">
+          <p style="font-size: 28px; font-weight: bold; color: #0F172A; font-family: monospace; margin: 0; word-break: break-all;" class="ref-id-text">${referenceId}</p>
         </div>
 
-        <button class="copy-btn" style="width: 100%; background: #22c55e; color: white; border: none; padding: 15px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer;">
-          📋 COPY REFERENCE ID
+        <button class="copy-btn" style="width: 100%; background: #FFD700; color: #0B1120; border: none; padding: 15px; border-radius: 8px; font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; box-shadow: 0 4px 14px rgba(255, 215, 0, 0.3); transition: background 0.2s;">
+          COPY REFERENCE ID
         </button>
 
-        <p style="font-size: 12px; color: #166534; margin: 15px 0 0; font-weight: 500;">Please keep this reference for your records.</p>
+        <p style="font-size: 12px; color: #0F172A; margin: 15px 0 0; font-weight: 500;">Please keep this reference for your records.</p>
       </div>
 
-      <div style="background: #f9fafb; border-radius: 12px; padding: 20px; text-align: left; margin-bottom: 20px;">
+      <div style="background: #0b1120; border-radius: 12px; padding: 20px; text-align: left; margin-bottom: 20px;">
         <div style="display: flex; gap: 15px; align-items: start;">
-          <div style="flex-shrink: 0; width: 40px; height: 40px; background: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          <div style="flex-shrink: 0; width: 40px; height: 40px; background: #0891B2; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
             <svg style="width: 20px; height: 20px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
           <div style="flex: 1;">
-            <h4 style="font-size: 16px; font-weight: bold; color: #111827; margin: 0 0 10px;">What Happens Next?</h4>
-            <ul style="margin: 0; padding: 0; list-style: none; font-size: 14px; color: #4b5563; line-height: 1.8;">
+            <h4 style="font-size: 16px; font-weight: bold; color: #64748B; margin: 0 0 10px;">What Happens Next?</h4>
+            <ul style="margin: 0; padding: 0; list-style: none; font-size: 14px; color: #64748B; line-height: 1.8;">
               <li style="margin-bottom: 8px;">• Our team will review your submission within 24-48 business hours</li>
               <li style="margin-bottom: 8px;">• You'll receive a response via email with next steps</li>
               <li>• Use your reference ID for any follow-up communications</li>
@@ -466,7 +434,7 @@
         </div>
       </div>
 
-      <button class="close-btn" style="width: 100%; background: #1f2937; color: white; border: none; padding: 15px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;">CLOSE</button>
+      <button class="close-btn" style="width: 100%; background: #FFD700; color: #0B1120; border: none; padding: 15px; border-radius: 8px; font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 4px 14px rgba(255, 215, 0, 0.3); transition: background 0.2s;">CLOSE</button>
     `;
 
     overlay.appendChild(modalBox);
@@ -500,6 +468,20 @@
       overlay.remove();
     };
 
+    // Add hover effects to close button
+    if (closeX) {
+      closeX.addEventListener('mouseenter', function() {
+        this.style.background = '#FFD700';
+        this.style.transform = 'translateY(-2px) scale(1.02)';
+        this.style.boxShadow = '0 4px 16px rgba(255, 215, 0, 0.5)';
+      });
+      closeX.addEventListener('mouseleave', function() {
+        this.style.background = '#FFD700';
+        this.style.transform = 'translateY(0) scale(1)';
+        this.style.boxShadow = '0 2px 8px rgba(255, 215, 0, 0.3)';
+      });
+    }
+
     closeX.addEventListener('click', closeModal);
     closeBtn.addEventListener('click', closeModal);
     overlay.addEventListener('click', (e) => {
@@ -520,10 +502,10 @@
       try {
         await navigator.clipboard.writeText(referenceId);
         copyBtn.textContent = '✓ COPIED!';
-        copyBtn.style.background = '#16a34a';
+        copyBtn.style.background = '#0891B2';
         setTimeout(() => {
           copyBtn.textContent = '📋 COPY REFERENCE ID';
-          copyBtn.style.background = '#22c55e';
+          copyBtn.style.background = '#FFD700';
         }, 2000);
         console.log('[Syntra Forms] ✅ Copied:', referenceId);
       } catch (err) {
@@ -548,22 +530,22 @@
       ? errorMessage
       : 'Something went wrong while submitting the form.';
 
-    container.className = 'bg-red-50 border-2 border-red-500 rounded-lg p-6 mb-6 shadow-lg';
-    container.style.display = 'block';
+    container.className = '';
+    container.style.cssText = 'display:block; background:#0b1120; border:2px solid #ffd700; padding:1.5rem; margin-bottom:1.5rem;';
     container.innerHTML = `
-      <div class="flex items-start gap-4">
-        <div class="flex-shrink-0 w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div style="display:flex; align-items:flex-start; gap:1rem;">
+        <div style="flex-shrink:0; width:48px; height:48px; background:#ffd700; display:flex; align-items:center; justify-content:center;">
+          <svg style="width:24px; height:24px; color:#0b1120;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
         </div>
-        <div class="flex-1">
-          <p class="text-red-900 font-bold text-lg mb-2 uppercase tracking-wide">Submission Failed</p>
-          <p class="text-red-700 text-base mb-3 leading-relaxed">${userFriendlyMessage}</p>
-          <p class="text-red-600 text-sm font-medium">
+        <div style="flex:1;">
+          <p style="color:#ffd700; font-weight:bold; font-size:1.125rem; margin:0 0 0.5rem; text-transform:uppercase; letter-spacing:0.05em;">Submission Failed</p>
+          <p style="color:#64748B; font-size:1rem; margin:0 0 0.75rem; line-height:1.6;">${userFriendlyMessage}</p>
+          <p style="color:#64748B; font-size:0.875rem;">
             ${isValidationError
               ? 'Please check all required fields and try again.'
-              : 'Please try again or contact us at <a href="mailto:info@syntrarefining.com" class="underline hover:text-red-800">info@syntrarefining.com</a> if the issue persists.'}
+              : 'Please try again or contact us at <a href="mailto:info@syntrarefining.com" style="color:#ffd700; text-decoration:underline;">info@syntrarefining.com</a> if the issue persists.'}
           </p>
         </div>
       </div>

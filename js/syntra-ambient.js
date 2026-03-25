@@ -47,12 +47,12 @@
       };
 
       const variantColors = {
-        'company': { primary: '#FFD700', secondary: '#D97706', bg: '#020617' },
+        'company': { primary: '#FFD700', secondary: '#0891B2', bg: '#020617' },
         'technology': { primary: '#0891B2', secondary: '#FFD700', bg: '#020617' },
         'network': { primary: '#FFD700', secondary: '#0891B2', bg: '#0B1120' },
-        'investor': { primary: '#D97706', secondary: '#FFD700', bg: '#020617' },
+        'investor': { primary: '#FFD700', secondary: '#0891B2', bg: '#020617' },
         'supplier': { primary: '#FFD700', secondary: '#0891B2', bg: '#020617' },
-        'commercial': { primary: '#FFD700', secondary: '#D97706', bg: '#020617' },
+        'commercial': { primary: '#FFD700', secondary: '#0891B2', bg: '#020617' },
         'default': { primary: '#FFD700', secondary: '#0891B2', bg: '#020617' }
       };
 

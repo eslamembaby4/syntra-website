@@ -53,13 +53,13 @@
     line-height: 1;
 }
 
-/* SYNTRA text - Black */
+/* SYNTRA text */
 .syntra-logo-title {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
     font-size: 32px;
     letter-spacing: 0.08em;
-    color: #000000;
+    color: #0B1120;
     text-transform: uppercase;
 }
 

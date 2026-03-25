@@ -10,9 +10,9 @@ window.SYNTRA_METRICS_CONFIGS = {
     metrics: [
       {
         category: 'Annual Capacity',
-        current: '1000 MT',
-        yoyGrowth: '5000 MT Target',
-        details: 'Scaling execution'
+        current: '1000 TPA',
+        yoyGrowth: '50000 TPA',
+        details: 'Scaling target 50000 TPA'
       },
       {
         category: 'Active Partnerships',
@@ -40,15 +40,9 @@ window.SYNTRA_METRICS_CONFIGS = {
     subtitle: 'SYNCORE™ PERFORMANCE METRICS',
     metrics: [
       {
-        category: 'Process Yield',
-        current: '96%',
-        yoyGrowth: '98% Target',
-        details: 'Optimized chemistry'
-      },
-      {
-        category: 'Purity Targets Met',
-        current: '99.5%',
-        yoyGrowth: '99.9% Capable',
+        category: '99% Purity Targets Met',
+        current: '98%',
+        yoyGrowth: '99%',
         details: 'Battery-grade output'
       },
       {
@@ -103,8 +97,8 @@ window.SYNTRA_METRICS_CONFIGS = {
     metrics: [
       {
         category: 'Team Members',
-        current: '45',
-        yoyGrowth: '80 Capacity',
+        current: '16',
+        yoyGrowth: '40 Capacity',
         details: 'Engineering-focused'
       },
       {

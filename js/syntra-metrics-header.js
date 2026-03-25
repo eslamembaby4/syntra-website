@@ -14,8 +14,8 @@ class MetricsHeaderCard {
         return [
             {
                 category: 'Team Members',
-                current: '45.0',
-                yoyGrowth: '125.0%',
+                current: '16',
+                yoyGrowth: '80 Capacity',
                 details: 'Engineering-focused'
             },
             {
@@ -50,8 +50,8 @@ class MetricsHeaderCard {
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
                         </span>
                     </div>
                 </div>
@@ -63,16 +63,16 @@ class MetricsHeaderCard {
                             <tr class="border-b border-slate-200">
                                 <th class="text-left py-2.5 px-2 font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold w-[32%]">Category</th>
                                 <th class="text-right py-2.5 px-2 font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold w-[18%]">Current</th>
-                                <th class="text-right py-2.5 px-2 font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold w-[18%]">YoY Growth</th>
+                                <th class="text-right py-2.5 px-2 font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold w-[18%]">Target</th>
                                 <th class="text-right py-2.5 px-2 font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold w-[32%]">Details</th>
                             </tr>
                         </thead>
                         <tbody>
                             ${this.metrics.map((row, index) => `
                                 <tr class="border-b border-slate-100 hover:bg-slate-50/50 transition-colors group last:border-0">
-                                    <td class="py-3 px-2 text-sm font-medium text-syntra-text whitespace-nowrap">${row.category}</td>
+                                    <td class="py-3 px-2 font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold whitespace-nowrap">${row.category}</td>
                                     <td class="py-3 px-2 text-right">
-                                        <span class="font-mono font-bold text-syntra-amber text-sm group-hover:text-syntra-accent transition-colors whitespace-nowrap">${row.current}</span>
+                                        <span class="font-head font-bold text-lg whitespace-nowrap" style="color: #0B1120;">${row.current}</span>
                                     </td>
                                     <td class="py-3 px-2 text-right">
                                         <span class="font-mono text-slate-600 text-xs whitespace-nowrap">${row.yoyGrowth}</span>
@@ -91,15 +91,15 @@ class MetricsHeaderCard {
                     ${this.metrics.map((row) => `
                         <div class="border-b border-slate-100 pb-3 last:border-0 last:pb-0">
                             <div class="flex items-start justify-between mb-2">
-                                <h4 class="font-medium text-syntra-text text-sm">${row.category}</h4>
+                                <h4 class="font-mono text-[9px] text-slate-500 uppercase tracking-widest font-bold">${row.category}</h4>
                             </div>
                             <div class="grid grid-cols-3 gap-2 text-xs">
                                 <div>
                                     <p class="font-mono text-[9px] text-slate-400 uppercase tracking-wider mb-1">Current</p>
-                                    <p class="font-mono font-bold text-syntra-amber">${row.current}</p>
+                                    <p class="font-head font-bold text-lg" style="color: #0B1120;">${row.current}</p>
                                 </div>
                                 <div>
-                                    <p class="font-mono text-[9px] text-slate-400 uppercase tracking-wider mb-1">Growth</p>
+                                    <p class="font-mono text-[9px] text-slate-400 uppercase tracking-wider mb-1">Target</p>
                                     <p class="font-mono text-slate-600">${row.yoyGrowth}</p>
                                 </div>
                                 <div>

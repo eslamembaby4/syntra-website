@@ -15,8 +15,8 @@
  * <script src="/js/supabase-client.js"></script>
  */
 
-const SUPABASE_URL = window.SYNTRA_CONFIG?.supabaseUrl || 'https://dsmlfwllnhwyawftwuto.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = window.SYNTRA_CONFIG?.supabaseKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzbWxmd2xsbmh3eWF3ZnR3dXRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzNjY3NDYsImV4cCI6MjA4Mzk0Mjc0Nn0.mzppDLxBQtYy3Hla-Ggl2K3b4R_2IT7kOC7Y4lKXsmg';
+const SUPABASE_URL = window.SYNTRA_CONFIG?.supabaseUrl || 'https://smrfpquwwojfvnypjmkd.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = window.SYNTRA_CONFIG?.supabaseKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtcmZwcXV3d29qZnZueXBqbWtkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxNTY1NzMsImV4cCI6MjA4MjczMjU3M30.FdMEZNGwgtptar2K4YQbC9l61yAArBCNi4b7jLBiBuo';
 
 let supabaseClient = null;
 
@@ -76,6 +76,7 @@ async function submitFormToDatabase(formData, formElement) {
 
   try {
     let resumeUrl = null;
+    let fileMetadata = null;
     if (formElement && formData.form_type === 'career_application') {
       const fileInput = formElement.querySelector('input[type="file"][name="resume"]');
       if (fileInput && fileInput.files && fileInput.files.length > 0) {
@@ -92,6 +93,14 @@ async function submitFormToDatabase(formData, formElement) {
 
         console.log('[Syntra Forms] Uploading resume file...');
         resumeUrl = await uploadFileToStorage(file, tempReferenceId);
+
+        // Store file metadata
+        fileMetadata = {
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          lastModified: file.lastModified
+        };
       }
     }
 
@@ -110,6 +119,9 @@ async function submitFormToDatabase(formData, formElement) {
 
     if (resumeUrl) {
       payload.additional_data.resume_url = resumeUrl;
+      if (fileMetadata) {
+        payload.additional_data.resume_metadata = fileMetadata;
+      }
     }
 
     console.log('[Syntra Forms] Submitting payload to database:', payload);
@@ -119,7 +131,7 @@ async function submitFormToDatabase(formData, formElement) {
       .from('form_submissions')
       .insert([payload])
       .select()
-      .single();
+      .maybeSingle();
 
     if (error) {
       console.error('[Syntra Forms] ❌ Database insertion error:', error);
@@ -189,5 +201,6 @@ function sendEmailNotification(formType, referenceId, formData) {
 window.submitFormToDatabase = submitFormToDatabase;
 window.initSupabase = initSupabase;
 window.supabaseClient = initSupabase();
+window.supabase = window.supabaseClient;
 
 console.log('[Syntra Forms] supabase-client.js loaded');

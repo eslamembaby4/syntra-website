@@ -9,7 +9,7 @@
    TYPOGRAPHY
    ============================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@300;500&family=JetBrains+Mono:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root {
   /* Brand Colors - Primary */
@@ -33,9 +33,9 @@
 
   /* Font Weights */
   --weight-heading: 700;
-  --weight-body-light: 300;
-  --weight-body-medium: 500;
-  --weight-mono-light: 300;
+  --weight-body-light: 400;
+  --weight-body-medium: 600;
+  --weight-mono-light: 400;
   --weight-mono-bold: 700;
 
   /* Spacing Scale */
@@ -98,7 +98,7 @@ h6 { font-size: 1.125rem; line-height: 1.4; }
 }
 
 /* Body Text: Inter Light (Medium for Emphasis) */
-p, li, a, span {
+p, li, a, span:not([class*="font-mono"]):not([class*="font-head"]) {
   font-family: var(--font-body);
   font-weight: var(--weight-body-light);
 }
@@ -109,7 +109,8 @@ strong, b, .emphasis {
 
 /* Data/Specs/Nav: JetBrains Mono Light */
 .mono, .spec, .data-label, nav,
-[class*="nav-"], [class*="metric"], [class*="stat"] {
+[class*="nav-"], [class*="metric"], [class*="stat"],
+[class*="font-mono"] {
   font-family: var(--font-mono);
   font-weight: var(--weight-mono-light);
 }
@@ -149,20 +150,30 @@ table tfoot td {
    SHARP GEOMETRY
    ============================ */
 
-/* Buttons */
+/* Buttons - STRICT: Oswald Bold Only */
 .btn,
 button,
 [class*="button"],
+[class*="cta"],
 input[type="submit"],
 input[type="button"] {
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-sm) !important;
   border: none;
   padding: 0.75rem 1.5rem;
-  font-family: var(--font-mono);
-  font-weight: var(--weight-mono-bold);
+  font-family: var(--font-heading) !important;
+  font-weight: var(--weight-heading) !important;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   transition: all var(--transition-normal);
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+/* Button-styled links */
+a.inline-flex,
+a[class*="inline-flex"] {
+  text-align: center !important;
+  justify-content: center !important;
 }
 
 .btn-primary {
@@ -390,23 +401,178 @@ select:focus {
    BRAND COMPLIANCE HELPERS
    ============================ */
 
-/* Ensure no centered text in main content */
+/* STRICT ENFORCEMENT: No centered text anywhere */
+[class*="text-center"],
+[class*="items-center"][class*="flex-col"],
+.text-center,
 main [class*="center"],
-main [style*="text-align: center"] {
+main [style*="text-align: center"],
+[style*="text-align: center"] {
   text-align: left !important;
 }
 
-/* Ensure sharp corners everywhere */
-* {
-  border-radius: 0;
+/* Allow flex centering for layout, but force text left */
+.flex.flex-col.items-center *,
+.flex.items-center *,
+.grid.text-center * {
+  text-align: left !important;
 }
 
-.btn, button, input, textarea, select, .card {
-  border-radius: var(--radius-sm);
+/* STRICT ENFORCEMENT: Sharp corners only */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
 }
 
-img {
-  border-radius: 0;
+/* Allowed border radius - Small elements only */
+.btn,
+button:not([class*="rounded-full"]),
+[class*="button"]:not([class*="rounded-full"]),
+[class*="cta"],
+input:not([type="radio"]):not([type="checkbox"]),
+textarea,
+select,
+.card:not([class*="rounded-xl"]):not([class*="rounded-2xl"]):not([class*="rounded-full"]) {
+  border-radius: var(--radius-sm) !important;
+}
+
+/* Structural elements: NO rounding */
+[class*="card"],
+[class*="capability"],
+[class*="metric"],
+section,
+article,
+.panel,
+.box {
+  border-radius: 0 !important;
+}
+
+/* Images and decorative elements: NO rounding */
+img,
+[class*="avatar"],
+[class*="badge"],
+.indicator,
+[class*="status"] {
+  border-radius: 0 !important;
+}
+
+/* Override all Tailwind rounded classes */
+[class*="rounded-full"],
+[class*="rounded-xl"],
+[class*="rounded-2xl"],
+[class*="rounded-3xl"],
+[class*="rounded-lg"],
+[class*="rounded-md"] {
+  border-radius: var(--radius-sm) !important;
+}
+
+/* Ping animations and decorative dots - allow full rounding */
+.animate-ping,
+[class*="ping"],
+.dot,
+[style*="width: 2px"],
+[style*="width: 4px"],
+[style*="width: 8px"] {
+  border-radius: 50% !important;
+}
+
+/* ============================
+   GLOBAL CONSISTENCY ENFORCEMENT
+   ============================ */
+
+/* Modal close button — sharp geometry, consistent 40x40 touch-friendly */
+.modal-close-btn {
+  border-radius: 2px !important;
+  width: 44px !important;
+  height: 44px !important;
+}
+
+/* Hamburger and close nav buttons — minimum 44x44 touch target */
+button[onclick="toggleMobileMenu()"],
+button[aria-label="Open navigation menu"],
+button[aria-label="Close menu"] {
+  padding: 0.75rem !important;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Inline border-radius overrides — catch hardcoded 4px/8px values */
+[style*="border-radius: 4px"],
+[style*="border-radius:4px"],
+[style*="border-radius: 8px"],
+[style*="border-radius:8px"],
+[style*="border-radius: 6px"],
+[style*="border-radius:6px"] {
+  border-radius: 2px !important;
+}
+
+/* Badge / tag elements — sharp */
+[class*="badge"],
+[class*="tag"],
+[class*="chip"],
+[class*="mineral-badge"],
+[class*="status-badge"] {
+  border-radius: 0 !important;
+}
+
+/* Form inputs — unified sizing: min 44px height, 2px radius */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+  border-radius: 2px !important;
+  min-height: 44px;
+  padding: 0.75rem 1rem !important;
+}
+
+/* Card containers — 0 radius for structural cards */
+.card-elevated,
+[class*="rfq"],
+[class*="job-card"],
+[class*="feature-card"],
+[class*="material-card"],
+[class*="tech-card"],
+[class*="feedstock-card"],
+[class*="app-card"],
+[class*="output-card"],
+[class*="stat-box"],
+[class*="process-step"],
+[class*="capability-card"] {
+  border-radius: 0 !important;
+}
+
+/* Map overlays and popup wrappers */
+.leaflet-popup-content-wrapper,
+.legend,
+.title-overlay,
+[class*="overlay"],
+[class*="legend"] {
+  border-radius: 2px !important;
+}
+
+/* Data label minimum font size — no 9px text */
+.lbl-dark,
+.lbl-light,
+[class*="lbl-"] {
+  font-size: 10px !important;
+}
+
+/* Data grids on production pages — ensure horizontal scroll on mobile */
+.stat-grid-3,
+.output-grid {
+  overflow-x: auto;
+}
+
+/* CTA buttons — consistent sizing, no padding drift */
+.cta-button,
+a.cta-button,
+button.cta-button {
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 2px !important;
 }
 
 /* ============================

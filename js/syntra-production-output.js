@@ -1,6 +1,6 @@
 /**
  * Syntra Production Output Card
- * Displays active production capabilities and purity specifications
+ * Displays active production capabilities — row layout, no boxes
  */
 
 class ProductionOutputCard {
@@ -9,50 +9,46 @@ class ProductionOutputCard {
             {
                 symbol: 'Li',
                 name: 'LITHIUM',
-                grade: 'Battery Grade',
-                purity: '99.5%'
+                capability: 'Pure grade salts'
             },
             {
                 symbol: 'Ni',
                 name: 'NICKEL',
-                grade: 'Purity',
-                purity: 'High'
+                capability: 'Pure grade salt & metal'
             },
             {
                 symbol: 'Co',
                 name: 'COBALT',
-                grade: 'Purity',
-                purity: 'High'
+                capability: 'Pure grade salt'
             },
             {
                 symbol: 'Mn',
                 name: 'MANGANESE',
-                grade: 'Purity',
-                purity: 'High'
-            },
-            {
-                symbol: 'Al',
-                name: 'ALUMINUM',
-                grade: 'Precursor',
-                purity: '>99%'
+                capability: 'Pure grade salt & EMM'
             },
             {
                 symbol: 'Cu',
                 name: 'COPPER',
-                grade: 'Cathode',
-                purity: '>99%'
+                capability: 'Pure grade salts & cathode'
+            },
+            {
+                symbol: 'Al',
+                name: 'ALUMINUM',
+                capability: 'Select'
             }
         ];
     }
 
-    render() {
+    render(fullWidth = false) {
+        const sizeClass = fullWidth ? 'w-full' : 'w-full max-w-[460px]';
         return `
-            <div class="w-full max-w-[520px] bg-white rounded-sm shadow-xl overflow-hidden border border-syntra-border">
+            <div class="${sizeClass} border border-syntra-border shadow-xl">
+                <div class="bg-white overflow-hidden">
                 <!-- Accent Bar -->
                 <div class="h-1.5 bg-gradient-to-r from-syntra-accent via-yellow-400 to-syntra-accent"></div>
 
                 <!-- Header -->
-                <div class="px-6 py-5 border-b border-syntra-border bg-syntra-base">
+                <div class="px-6 py-5 border-b border-syntra-border">
                     <div class="flex items-start justify-between">
                         <div>
                             <h3 class="font-head text-xl font-bold text-syntra-text uppercase tracking-tight leading-tight">Production Output</h3>
@@ -70,27 +66,26 @@ class ProductionOutputCard {
                     </div>
                 </div>
 
-                <!-- Materials Grid -->
-                <div class="p-6 grid grid-cols-2 gap-4 bg-white">
+                <!-- Materials List -->
+                <div class="${fullWidth ? 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-x-0 sm:divide-x divide-y sm:divide-y-0 divide-syntra-border' : ''}">
                     ${this.materials.map((material, index) => `
-                        <div class="group bg-syntra-base border border-syntra-border rounded-sm p-4 hover:border-syntra-accent hover:shadow-md transition-all duration-300">
-                            <div class="flex items-start justify-between mb-3">
-                                <span class="font-head text-3xl font-bold text-syntra-text group-hover:text-syntra-amber transition-colors">${material.symbol}</span>
-                                <span class="font-mono text-sm font-bold text-syntra-amber group-hover:text-syntra-accent transition-colors">${material.purity}</span>
+                        <a href="/production/${material.name.toLowerCase()}.html" aria-label="Open ${material.name} production output page" class="${fullWidth ? 'flex flex-col items-start gap-2 px-6 py-5 border-b border-syntra-border lg:border-b-0 lg:border-r' : 'flex items-center gap-6 px-6 py-4 ' + (index < this.materials.length - 1 ? 'border-b border-syntra-border' : '')} cursor-pointer transition-colors duration-200 hover:bg-syntra-base block no-underline" style="text-decoration:none;">
+                            <span class="font-head ${fullWidth ? 'text-5xl' : 'text-4xl'} font-bold text-syntra-text ${fullWidth ? '' : 'w-12 shrink-0'} leading-none">${material.symbol}</span>
+                            <div class="${fullWidth ? 'w-full' : 'min-w-0 flex-1'}">
+                                <p class="font-mono text-[10px] text-syntra-muted uppercase tracking-widest mb-0.5">${material.name}</p>
+                                <p class="font-sans text-sm font-medium text-slate-600 leading-snug">${material.capability}</p>
                             </div>
-                            <div>
-                                <h4 class="font-mono text-xs text-syntra-tech uppercase tracking-wide mb-1">${material.name}</h4>
-                                <p class="font-mono text-[10px] text-syntra-muted uppercase tracking-wider">${material.grade}</p>
-                            </div>
-                        </div>
+                            ${fullWidth ? '' : '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="M9 18l6-6-6-6"/></svg>'}
+                        </a>
                     `).join('')}
                 </div>
 
-                <!-- Footer -->
-                <div class="px-6 py-5 border-t border-syntra-border bg-syntra-base">
-                    <button onclick="window.location.href='index.html#partner-ecosystem-access'" class="w-full font-mono text-xs text-syntra-tech uppercase tracking-widest hover:text-syntra-amber transition-colors duration-300 text-center font-medium">
+                <!-- Footer CTA -->
+                <div class="px-6 py-5 border-t border-syntra-border flex justify-center">
+                    <a href="contact.html" class="font-mono text-xs text-syntra-tech uppercase tracking-widest hover:text-syntra-amber transition-colors duration-300 font-medium">
                         Request Technical Data Sheets
-                    </button>
+                    </a>
+                </div>
                 </div>
             </div>
         `;
@@ -98,31 +93,33 @@ class ProductionOutputCard {
 }
 
 // Initialize and render production output card
-function initProductionOutputCard(containerId = 'production-output-card') {
+function initProductionOutputCard(containerId = 'production-output-card', fullWidth = false) {
     const container = document.getElementById(containerId);
     if (!container) {
-        console.warn(`ProductionOutputCard: Container with id "${containerId}" not found`);
         return;
     }
 
     const card = new ProductionOutputCard();
-    container.innerHTML = card.render();
+    container.innerHTML = card.render(fullWidth);
+}
+
+function initAllProductionOutputCards() {
+    const heroContainer = document.getElementById('production-output-card');
+    if (heroContainer) {
+        initProductionOutputCard('production-output-card', false);
+    }
+    const outputContainer = document.getElementById('production-output-card-output');
+    if (outputContainer) {
+        initProductionOutputCard('production-output-card-output', true);
+    }
 }
 
 // Auto-initialize on page load
 if (typeof window !== 'undefined') {
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.getElementById('production-output-card');
-            if (container) {
-                initProductionOutputCard();
-            }
-        });
+        document.addEventListener('DOMContentLoaded', initAllProductionOutputCards);
     } else {
-        const container = document.getElementById('production-output-card');
-        if (container) {
-            initProductionOutputCard();
-        }
+        initAllProductionOutputCards();
     }
 }
 

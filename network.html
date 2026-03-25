@@ -6,13 +6,25 @@
     <title>Network | Syntra Refining</title>
     <meta name="description" content="Syntra's distributed refining network architecture delivers operational resilience and strategic positioning across North American and European battery supply chains. Learn about our node deployment strategy and network advantages.">
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://syntrarefining.com/network" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0A1628">
+
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/syntra-brand-theme.css">
-    <link rel="stylesheet" href="/css/syntra-logo-hover.css">
+    <link rel="stylesheet" href="/css/syntra-design-system.css">
+    <link rel="stylesheet" href="/css/syntra-logo-image.css">
 
     <script>
         tailwind.config = {
@@ -26,7 +38,7 @@
                             deep: '#020617',
                             midnight: '#0B1120',
                             accent: '#FFD700',
-                            amber: '#D97706',
+                            amber: '#FFD700',
                             tech: '#0891B2',
                             muted: '#64748B',
                             border: '#E2E8F0',
@@ -46,7 +58,7 @@
         .logo-container { cursor: pointer; }
         .logo-outer { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s; }
         .logo-inner { transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s; }
-        .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #D97706; }
+        .logo-container:hover .logo-outer { transform: rotate(0deg); border-color: #FFD700; }
 
         .nav-link {
             position: relative;
@@ -65,6 +77,16 @@
         }
         .nav-link:hover::after { width: 100%; }
 
+        .menu-diamond {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            transition: transform 250ms ease-in-out;
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .menu-diamond:hover { transform: rotate(55deg); }
+        }
+
         .network-card {
             transition: all 0.3s ease;
             position: relative;
@@ -78,7 +100,7 @@
             left: 0;
             width: 4px;
             height: 0;
-            background: linear-gradient(180deg, #FFD700, #D97706);
+            background: linear-gradient(180deg, #FFD700, #FFD700);
             transition: height 0.3s ease;
         }
 
@@ -187,19 +209,37 @@
                 repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255, 215, 0, 0.03) 39px, rgba(255, 215, 0, 0.03) 40px);
         }
 
+        .syntra-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: auto;
+        }
+
+        .syntra-bg canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
         /* Hero Grid Layout */
         .hero-grid-layout {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            align-items: center;
         }
 
         .hero-content {
-            width: 100%;
             text-align: left;
             display: flex;
             flex-direction: column;
@@ -213,42 +253,151 @@
             margin-right: 0;
         }
 
-        .hero-metrics-card {
-            width: 100%;
-            max-width: 680px;
+        .hero-left-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
-        /* Mobile: reduce gaps */
-        @media (max-width: 768px) {
+        .hero-right-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        /* Mobile: stack columns */
+        @media (max-width: 1024px) {
             .hero-grid-layout {
-                gap: 32px;
+                grid-template-columns: 1fr;
+                gap: 48px;
             }
+        }
+
+        /* Deployment Strategy Animations */
+        @keyframes particle-float {
+            0%, 100% {
+                transform: translate(0, 0);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translate(20px, -30px);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-15px, -60px);
+                opacity: 0.5;
+            }
+            75% {
+                transform: translate(30px, -40px);
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes network-pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        @keyframes speed-line {
+            0% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(60px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes network-line-dash {
+            0% {
+                stroke-dashoffset: 100;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .network-line {
+            stroke-dasharray: 5, 5;
+            animation: network-line-dash 2s linear infinite;
+        }
+
+        @keyframes progress-fill {
+            from { width: 0%; }
+            to { width: 85%; }
+        }
+
+        .capability-progress {
+            animation: progress-fill 2s ease-out forwards;
+        }
+
+        .capability-card {
+            transform-style: preserve-3d;
+        }
+
+        .capability-card:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0) !important;
+        }
+
+        @keyframes line-grow {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .network-line-css {
+            animation: line-grow 1.5s ease-in-out infinite;
         }
     </style>
 </head>
 <body class="bg-syntra-base text-syntra-text font-sans antialiased">
 
     <!-- TOP TICKER -->
-    <div class="bg-syntra-text text-white py-1.5 border-b border-white/10 text-[10px] md:text-xs font-mono tracking-wide z-50 relative">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center gap-6">
-                <span class="flex items-center gap-2 text-syntra-accent font-bold">
-                    <span class="relative flex h-2 w-2">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+    <div class="bg-syntra-text text-white py-1.5 border-b border-white/10 text-[10px] md:text-xs font-mono tracking-wide z-50 relative overflow-hidden">
+        <div class="container mx-auto px-4 sm:px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3 sm:gap-6 min-w-0">
+                <span class="flex items-center gap-2 text-white font-bold whitespace-nowrap">
+                    <span class="relative flex h-2 w-2 flex-shrink-0">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ffd700] opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-[#ffd700]"></span>
                     </span>
-                    GRID STATUS: ONLINE
+                    GRID: ONLINE
                 </span>
-                <span class="hidden md:block text-slate-400">LOC: NOVA SCOTIA, CA</span>
-                <span class="hidden md:block text-slate-400">CURRENT CAP: 1,000 MT/YR</span>
+                <span class="hidden sm:block text-slate-400 whitespace-nowrap">LOC: NOVA SCOTIA, CA</span>
+                <span class="hidden md:block text-slate-400 whitespace-nowrap">CAP: 1,000 TPA</span>|
             </div>
-            <div class="flex items-center gap-4">
-                <a href="observer.html" class="text-syntra-accent hover:text-white transition-colors font-bold">
+            <div class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+                <a href="observer.html" class="text-syntra-accent hover:text-white transition-colors font-bold whitespace-nowrap">
                     OBSERVER LOGIN
                 </a>
-                <span class="text-slate-600">|</span>
-                <a href="supplier.html" class="hover:text-syntra-accent transition-colors">
+                <span class="text-[#64748B]">|</span>
+                <a href="supplier.html" class="hover:text-syntra-accent transition-colors whitespace-nowrap hidden sm:block">
                     SUPPLIER PORTAL
+                </a>
+                <a href="supplier.html" class="hover:text-syntra-accent transition-colors whitespace-nowrap sm:hidden">
+                    SUPPLIER
                 </a>
             </div>
         </div>
@@ -256,58 +405,121 @@
 
     <!-- MAIN NAVIGATION -->
     <nav id="navbar" class="sticky top-0 z-40 bg-white border-b border-syntra-border">
-        <div class="container mx-auto px-6 h-24 flex justify-between items-center">
+        <div class="container mx-auto px-4 sm:px-6 h-16 sm:h-20 md:h-24 flex justify-between items-center">
             <a href="index.html" class="syntra-logo-hover-wrapper">
-                <div class="syntra-logo-mark">
-                    <div class="syntra-logo-diamond"></div>
-                    <div class="syntra-logo-square"></div>
-                </div>
-                <div class="syntra-logo-wordmark">
-                    <div class="syntra-logo-title">SYNTRA</div>
-                    <div class="syntra-logo-subtitle">REFINING CORP.</div>
-                </div>
+                <img src="/assets/images/Wordmark_2_(1).png" alt="Syntra Refining Corp." class="syntra-logo-image">
             </a>
 
-            <div class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-[0.18em]">
-                <a href="commercial.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Commercial</a>
-                <a href="technology.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Technology</a>
-                <a href="network.html" class="relative nav-link text-slate-900">Network</a>
-                <a href="company.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Company</a>
-                <a href="careers.html" class="relative nav-link text-slate-600 hover:text-syntra-text">Careers</a>
-                <a href="index.html#partner-ecosystem-access" class="relative nav-link text-slate-600 hover:text-syntra-text">Contact</a>
-            </div>
-
-            <button class="text-syntra-text px-4 py-2 border-2 border-syntra-text hover:border-syntra-amber hover:text-syntra-amber transition-colors md:hidden font-mono text-xs font-bold uppercase tracking-wider" onclick="toggleMobileMenu()" aria-label="Open menu">
-                MENU
+            <button class="text-syntra-text p-3 hover:text-syntra-amber transition-colors" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
+                <div class="flex flex-col gap-[6px] items-end">
+                    <span class="block w-8 h-[3px] bg-current menu-line" style="border-radius:0"></span>
+                    <span class="block w-8 h-[3px] bg-current menu-line" style="border-radius:0"></span>
+                    <span class="block w-8 h-[3px] bg-current menu-line" style="border-radius:0"></span>
+                </div>
             </button>
         </div>
     </nav>
 
-    <!-- MOBILE MENU -->
-    <div id="mobileMenu" class="fixed inset-0 bg-white z-50 hidden flex-col pt-32 px-12 space-y-8" role="dialog" aria-modal="true">
-        <button class="absolute top-8 right-6 px-4 py-2 border-2 border-syntra-text hover:border-syntra-amber hover:text-syntra-amber transition-colors font-mono text-xs font-bold uppercase tracking-wider" onclick="toggleMobileMenu()" aria-label="Close menu">
-            CLOSE
-        </button>
-        <div class="container mx-auto grid md:grid-cols-2 gap-12">
-            <div class="flex flex-col gap-6">
-                <a href="commercial.html" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Commercial</a>
-                <a href="technology.html" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Technology</a>
-                <a href="network.html" class="text-4xl md:text-6xl font-head font-bold uppercase text-syntra-amber">Network</a>
-                <a href="company.html" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Company</a>
-                <a href="careers.html" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Careers</a>
-                <a href="index.html#partner-ecosystem-access" class="text-4xl md:text-6xl font-head font-bold uppercase hover:text-syntra-accent transition-colors">Contact</a>
+        <!-- MOBILE MENU - Modern Side Drawer -->
+    <!-- Backdrop Overlay -->
+    <div id="menuBackdrop" class="fixed inset-0 bg-syntra-midnight/60 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300" onclick="toggleMobileMenu()"></div>
+
+    <!-- Side Drawer -->
+    <div id="mobileMenu" class="fixed top-0 right-0 h-full w-[85%] sm:w-[450px] bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-out overflow-y-auto" role="dialog" aria-modal="true">
+        <!-- Header -->
+        <div class="sticky top-0 bg-white border-b border-syntra-border px-6 py-6 flex justify-between items-center z-10">
+            <div class="flex items-center gap-3">
+                <div id="menuDiamond" class="syntra-logo-hover-wrapper" aria-hidden="true" style="position: relative; width: 36px; height: 36px; min-width: 36px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <div id="menuDiamondOuter" class="syntra-logo-diamond" style="position: absolute; width: 36px; height: 36px; border: 2px solid #FFD700; transform: rotate(45deg); transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); box-sizing: border-box;"></div>
+                    <div class="syntra-logo-square" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 14px; height: 14px; background: #FFD700; box-sizing: border-box;"></div>
+                </div>
+                <span class="font-head font-bold text-xl text-syntra-midnight">MENU</span>
             </div>
-            <div class="hidden md:block border-l border-syntra-border pl-12">
-                <p class="font-mono text-xs text-slate-400 tracking-widest uppercase mb-4">Contact</p>
-                <p class="text-xl mb-8">network@syntrarefining.com</p>
-                <p class="font-mono text-xs text-slate-400 tracking-widest uppercase mb-4">Location</p>
-                <p class="text-xl">Halifax, Nova Scotia<br>Canada</p>
+            <button class="p-3 hover:bg-[#CBD5E1] transition-all hover:rotate-90 duration-200 group" style="border-radius:0" onclick="toggleMobileMenu()" aria-label="Close menu">
+                <svg class="w-6 h-6 text-syntra-text group-hover:text-syntra-amber transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="px-6 py-8">
+            <nav class="flex flex-col gap-3">
+                <a href="index.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Home</span>
+                    <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+                <a href="commercial.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Commercial</span>
+                    <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+                <a href="technology.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Technology</span>
+                    <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+                <a href="company.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Company</span>
+                    <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+                <a href="careers.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Careers</span>
+                    <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+                <a href="contact.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Contact</span>
+                    <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Branding Footer -->
+        <div class="mt-auto relative overflow-hidden" style="background: linear-gradient(135deg, #0B1120 0%, #061225 100%);">
+            <!-- Gold left spine -->
+            <div class="absolute left-0 top-0 bottom-0" style="width:4px; background:linear-gradient(to bottom, #FFD700 0%, rgba(255,215,0,0.3) 100%);"></div>
+            <!-- Spinning diamond bg marks -->
+            <div class="absolute pointer-events-none" style="top:50%; right:-40px; transform:translateY(-50%);" aria-hidden="true">
+                <div class="diamond-spin" style="width:180px; height:180px; border:1px solid rgba(255,215,0,0.08);"></div>
+            </div>
+            <div class="absolute pointer-events-none" style="top:50%; right:20px; transform:translateY(-50%);" aria-hidden="true">
+                <div class="diamond-spin-slow" style="width:100px; height:100px; border:1px solid rgba(255,215,0,0.06);"></div>
+            </div>
+            <div class="relative z-10 px-8 py-7 flex flex-col gap-4">
+                <!-- Logo -->
+                <img src="/assets/images/Wordmark_2_(1).png" alt="Syntra Refining Corp." style="height:28px; width:auto; object-fit:contain; filter:brightness(0) invert(1);">
+                <!-- Gold rule -->
+                <div style="width:48px; height:3px; background:#FFD700;"></div>
+                <!-- Tagline -->
+                <p style="font-family:'Oswald',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); line-height:1.6;">
+                    CLEAN &nbsp;&bull;&nbsp; SMART &nbsp;&bull;&nbsp; REFINING
+                </p>
+                <!-- Bottom micro row -->
+                <div class="flex items-center justify-between pt-1" style="border-top:1px solid rgba(255,255,255,0.07);">
+                    <span style="font-size:0.65rem; color:rgba(255,255,255,0.25); letter-spacing:0.06em;">syntrarefining.com</span>
+                    <!-- Mini diamond mark -->
+                    <div style="position:relative; width:20px; height:20px; flex-shrink:0;">
+                        <div style="position:absolute; inset:0; border:1.5px solid rgba(255,215,0,0.5); transform:rotate(45deg);"></div>
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:7px; height:7px; background:rgba(255,215,0,0.6);"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    </div>
 
     <!-- HERO SECTION -->
-    <header class="relative min-h-[75vh] flex items-center bg-gradient-to-b from-white to-syntra-base">
+    <header class="relative min-h-[60vh] sm:min-h-[75vh] md:min-h-[85vh] flex items-center bg-gradient-to-b from-white to-syntra-base">
         <div class="syntra-ambient" data-variant="network" data-density="med" data-speed="med" data-accent="mixed"></div>
         <div class="absolute inset-0 z-0 opacity-[0.03]">
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -321,263 +533,230 @@
         <div class="container mx-auto px-6 relative z-10 py-20 w-full">
             <div class="hero-grid-layout">
                 <!-- Left Column: Hero Content -->
-                <div class="hero-content" data-animate>
-                    <div class="inline-block px-3 py-1 bg-white border border-syntra-border text-slate-600 font-mono text-[10px] font-bold mb-6 shadow-sm">
+                <div class="hero-content">
+                    <div class="inline-block px-4 py-2 mb-6 font-bold text-xs tracking-wider uppercase" style="background-color: rgba(8, 145, 178, 0.22); color: #0891B2; border: 1px solid rgba(8,145,178,0.25);" data-animate>
                         NETWORK INFRASTRUCTURE
                     </div>
 
-                    <h1 class="font-head text-6xl md:text-7xl lg:text-8xl font-bold text-syntra-text uppercase leading-[0.9] mb-8 tracking-tight">
-                        <span class="text-syntra-accent">SYNHUB™</span><br>
-                        <span class="text-syntra-accent">Distributed</span><br>
-                        Platform.
+                    <h1 class="font-head text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-syntra-text uppercase leading-[0.9] mb-8 tracking-tight" data-animate>
+                        <span class="text-syntra-accent">SYNHUB</span><br>
+                        DISTRIBUTED<br>
+                        PLATFORM.
                     </h1>
 
-                    <p class="text-xl text-slate-600 max-w-3xl leading-relaxed mb-10 font-light border-l-4 border-syntra-accent pl-6">
-                        SYNHUB™ is Syntra's <span class="text-syntra-accent font-semibold">repeatable refining infrastructure</span> platform. Each facility uses <span class="text-syntra-accent font-semibold">standardized design</span>, modular construction, and AI-controlled operations. Deploy rapidly, co-locate with feedstock or demand centers, integrate seamlessly with upstream and downstream partners.
+                    <p class="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed mb-10 font-light border-l-4 border-syntra-accent pl-6" data-animate>
+                        <span class="text-syntra-accent font-semibold">SYNHUB™</span> is Syntra's repeatable refining infrastructure platform. Each facility uses standardized design, modular construction, and AI-controlled operations.<br><br>
+                        We can deploy rapidly, co-locate with feedstock or demand centers, and integrate seamlessly with upstream and downstream partners.
                     </p>
 
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="index.html#partner-ecosystem-access" class="px-8 py-4 bg-syntra-accent text-syntra-text font-head font-bold text-lg uppercase tracking-wide hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center">
-                            <span class="text-syntra-midnight">Join the Network</span>
+                    <div class="flex flex-col sm:flex-row gap-4" data-animate>
+                        <a href="index.html#partner-ecosystem-access" class="px-8 py-4 bg-syntra-accent text-syntra-midnight font-head font-bold text-base uppercase tracking-wide hover:bg-yellow-400 transition-colors shadow-xl shadow-yellow-500/20 flex items-center justify-center">
+                            JOIN THE NETWORK
                         </a>
-                        <a href="technology.html" class="px-8 py-4 bg-white border-2 border-syntra-border text-syntra-text font-head font-bold text-lg uppercase tracking-wide hover:bg-slate-50 transition-all duration-300 flex items-center justify-center">
-                            Technology Overview
+                        <a href="technology.html" class="px-8 py-4 bg-syntra-accent text-syntra-midnight font-head font-bold text-base uppercase tracking-wide hover:bg-yellow-400 transition-colors shadow-xl shadow-yellow-500/20 flex items-center justify-center">
+                            TECHNOLOGY OVERVIEW
                         </a>
                     </div>
                 </div>
 
-                <!-- Right Column: Metrics Card -->
-                <div class="hero-metrics-card" data-animate>
-                    <div id="metrics-header-card" data-metrics-config="network"></div>
+                <!-- Right Column: Empty for layout symmetry -->
+                <div class="hero-right-col" data-animate>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- AMBIENT VISUAL BAND 1 -->
-    <div class="relative min-h-[64px] md:min-h-[80px] lg:min-h-[96px] overflow-hidden syntra-ambient-bg py-24" data-animate>
-        <div class="syntra-bg">
-            <canvas id="syntraBg1"></canvas>
-        </div>
-        <div class="relative z-10 container mx-auto px-6">
-            <div class="max-w-2xl mx-auto ">
-                <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-4">Distributed Infrastructure</p>
-                <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4"><span class="text-syntra-accent">Repeatable</span> Facilities, <span class="text-syntra-accent">Regional</span> Resilience</h3>
-                <p class="text-slate-300 text-lg">SYNHUB™ deployed where <span class="text-syntra-accent font-semibold">supply and demand intersect</span></p>
-            </div>
-        </div>
-    </div>
-
-
     <!-- SYNHUB™ PLATFORM SECTION -->
     <section class="py-24 bg-white">
         <div class="container mx-auto px-6">
-            <div class="max-w-6xl mx-auto">
-                <div class="mb-16" data-animate>
-                    <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Repeatable Infrastructure</p>
-                    <h2 class="font-head text-5xl md:text-6xl font-bold text-syntra-text uppercase leading-tight mb-6">
-                        <span class="text-syntra-accent">SYNHUB™</span>:<br>Standardized Facilities,<br><span class="text-syntra-accent">Rapid Deployment</span>
-                    </h2>
+            <div class="mb-16" data-animate>
+                <div class="inline-block px-4 py-2 font-mono text-xs font-bold mb-6 tracking-wider" style="background-color: rgba(8, 145, 178, 0.22); color: #0891B2; border: 1px solid rgba(8,145,178,0.25);">
+                    SCALABLE PROCESSING HUBS
                 </div>
+                <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase leading-tight mb-6">
+                    <span class="text-syntra-accent">SYNHUB™:</span><br><span class="text-black">STANDARDIZED FACILITIES,</span><br><span class="text-black">RAPID DEPLOYMENT</span>
+                </h2>
+            </div>
 
-                <div class="space-y-6 text-lg text-slate-700 leading-relaxed border-l-4 border-syntra-accent pl-8 mb-16" data-animate>
-                    <p class="font-medium text-xl text-syntra-text">
-                        SYNHUB™ is not a custom-engineered facility. It is a <span class="text-syntra-accent font-semibold">standardized refining platform</span> designed for rapid, repeatable deployment. Every SYNHUB™ uses identical unit operations, equipment specifications, and control systems. This standardization compresses development timelines from years to months.
-                    </p>
-                    <p>
-                        <span class="text-syntra-accent font-semibold">Modular construction</span> enables co-location with mines, battery plants, or port infrastructure. Each facility integrates directly with upstream feedstock providers and downstream offtakers through standardized material specifications and logistics protocols. No custom integration required.
-                    </p>
-                    <p>
-                        Speed matters. Traditional greenfield refineries require <span class="text-syntra-accent font-semibold">4-7 years</span> from site selection to first production. SYNHUB™ facilities reach operational status in <span class="text-syntra-accent font-semibold">18-24 months</span> through prefabricated modules, proven engineering designs, and streamlined permitting enabled by standardized environmental controls.
-                    </p>
-                    <p>
-                        The distributed network architecture eliminates the traditional trade-off between scale and flexibility. Rather than constructing oversized centralized facilities designed for projected future demand, SYNHUB™ nodes are deployed incrementally as market conditions warrant. Each facility operates at optimal efficiency from day one.
+            <div class="border-l-4 border-syntra-accent pl-8 mb-16 max-w-5xl" data-animate>
+                    <p class="text-base sm:text-lg md:text-xl text-syntra-midnight leading-relaxed font-light">
+                        Standardized design and modular construction compress deployment from years to months—<strong>18–24 months</strong> to production versus 4–7 years for traditional refineries. Nodes deploy incrementally near mines, battery plants, or ports, eliminating the trade-off between scale and flexibility. Each facility operates at optimal efficiency from day one.
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-slate-50 border border-syntra-border p-8 rounded-sm hover:border-syntra-accent transition-all duration-300" data-animate data-card-hover>
-                        <div class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-3">DEPLOYMENT SPEED</div>
-                        <div class="font-head text-3xl font-bold text-syntra-text mb-3"><span class="text-syntra-accent">18-24</span> Months</div>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                            Site preparation to first production using modular construction and standardized permitting
-                        </p>
-                        <p class="text-xs text-slate-500 font-semibold">
-                            → 70% faster than traditional refineries<br>
-                            → Prefabricated modules reduce on-site work<br>
-                            → Proven designs streamline approvals
-                        </p>
-                    </div>
-
-                    <div class="bg-slate-50 border border-syntra-border p-8 rounded-sm hover:border-syntra-accent transition-all duration-300" data-animate data-card-hover>
-                        <div class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-3">DESIGN REPLICATION</div>
-                        <div class="font-head text-3xl font-bold text-syntra-text mb-3"><span class="text-syntra-accent">100%</span> Standardized</div>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                            Identical equipment, controls, and process architecture across all facilities
-                        </p>
-                        <p class="text-xs text-slate-500 font-semibold">
-                            → Eliminate engineering rework<br>
-                            → Predictable capital costs<br>
-                            → Cross-node operational learnings
-                        </p>
-                    </div>
-
-                    <div class="bg-slate-50 border border-syntra-border p-8 rounded-sm hover:border-syntra-accent transition-all duration-300" data-animate data-card-hover>
-                        <div class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-3">CO-LOCATION</div>
-                        <div class="font-head text-3xl font-bold text-syntra-text mb-3"><span class="text-syntra-accent">Flexible</span> Siting</div>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                            Deploy adjacent to feedstock sources, manufacturing demand, or logistics hubs
-                        </p>
-                        <p class="text-xs text-slate-500 font-semibold">
-                            → Minimize transportation costs<br>
-                            → Reduce supply chain risk<br>
-                            → Enable just-in-time delivery
-                        </p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- NODE DEPLOYMENT -->
-    <section class="py-24 bg-syntra-base relative overflow-hidden">
-        <div class="syntra-ambient" data-variant="network" data-density="med" data-speed="med" data-accent="mixed"></div>
+    <!-- DEPLOYMENT STRATEGY -->
+    <section class="py-24 bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight relative overflow-hidden">
+        <!-- Animated Background Grid -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: linear-gradient(#FFD700 1px, transparent 1px), linear-gradient(90deg, #FFD700 1px, transparent 1px); background-size: 50px 50px;"></div>
+        </div>
+
         <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-6xl mx-auto">
-                <div class="mb-16" data-animate>
-                    <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Deployment Strategy</p>
-                    <h2 class="font-head text-4xl md:text-5xl font-bold text-syntra-text uppercase leading-tight">
-                        Where <span class="text-syntra-accent">Nodes</span> Get <span class="text-syntra-accent">Built</span>
-                    </h2>
+            <div class="mb-16" data-animate>
+                <div class="block mb-6">
+                    <span class="inline-block px-4 py-2 font-mono text-xs font-bold tracking-wider" style="background-color: rgba(8, 145, 178, 0.22); color: #0891B2; border: 1px solid rgba(8,145,178,0.25);">
+                        DEPLOYMENT STRATEGY
+                    </span>
+                </div>
+                <h2 class="block font-head text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase mb-6 tracking-tight">
+                    <span class="inline-block bg-black px-6 py-3">Where Nodes Get Built</span>
+                </h2>
+                <p class="text-slate-300 text-base sm:text-lg md:text-xl max-w-3xl font-light leading-relaxed">
+                    Strategic positioning optimizes feedstock access, demand proximity, and logistics infrastructure
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feedstock Proximity -->
+                <div class="group relative bg-slate-900/50 border border-syntra-accent/20 hover:border-syntra-accent backdrop-blur-sm transition-all duration-300" data-animate>
+                    <div class="p-8">
+                        <div class="mb-6 pb-6 border-b border-syntra-accent/20">
+                            <h3 class="font-head text-lg font-bold text-white uppercase mb-3">Feedstock Proximity</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Adjacent to mining operations, reducing transportation costs and enabling tighter upstream integration
+                            </p>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="flex items-baseline gap-2 mb-1">
+                                <span class="font-head text-5xl font-bold text-syntra-tech" data-counter-animated="50">0</span>
+                                <span class="text-sm text-slate-400 font-mono uppercase">% Cost Reduction</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="mt-1.5 flex-shrink-0 w-2 h-2" style="background-color:#FFD700;"></span>
+                                <span class="text-slate-300 text-sm">40-60% lower transport costs</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="mt-1.5 flex-shrink-0 w-2 h-2" style="background-color:#FFD700;"></span>
+                                <span class="text-slate-300 text-sm">Real-time quality adjustments</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="mt-1.5 flex-shrink-0 w-2 h-2" style="background-color:#FFD700;"></span>
+                                <span class="text-slate-300 text-sm">Support smaller mining ops</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-1 bg-syntra-accent/10 group-hover:bg-syntra-accent transition-colors duration-300"></div>
                 </div>
 
-                <div class="space-y-8">
-                    <div class="network-card bg-white border border-syntra-border p-10 rounded-sm" data-animate data-card-hover>
-                        <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-4"><span class="text-syntra-accent">Feedstock</span> Proximity</h3>
-                        <p class="text-slate-600 leading-relaxed mb-4">
-                            Refining nodes positioned adjacent to mining operations significantly reduce feedstock transportation costs and enable tighter integration with upstream producers. Proximity facilitates rapid response to feedstock quality variations and reduces supply chain vulnerability.
-                        </p>
-                        <p class="text-slate-700 leading-relaxed mb-4">
-                            Node capacity is scaled to match regional feedstock availability, eliminating the traditional mismatch between distributed mine output and the large minimum capacity requirements of conventional centralized smelters.
-                        </p>
-                        <div class="mt-6 pt-6 border-t border-slate-200">
-                            <p class="text-sm text-slate-600 font-semibold">
-                                → Reduce transportation costs by 40-60%<br>
-                                → Enable real-time feedstock quality adjustments<br>
-                                → Support smaller-scale mining operations economically
+                <!-- Demand Center Positioning -->
+                <div class="group relative bg-slate-900/50 border border-syntra-amber/20 hover:border-syntra-amber backdrop-blur-sm transition-all duration-300" data-animate>
+                    <div class="p-8">
+                        <div class="mb-6 pb-6 border-b border-syntra-amber/20">
+                            <h3 class="font-head text-lg font-bold text-white uppercase mb-3">Demand Center Positioning</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Near battery manufacturing hubs for rapid delivery and just-in-time logistics
                             </p>
                         </div>
-                    </div>
 
-                    <div class="network-card bg-white border border-syntra-border p-10 rounded-sm" data-animate data-card-hover>
-                        <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-4"><span class="text-syntra-accent">Demand</span> Center Positioning</h3>
-                        <p class="text-slate-600 leading-relaxed mb-4">
-                            Positioning refining capacity near battery manufacturing hubs reduces logistics complexity, transit time, and handling risk for refined products. This is particularly critical for battery-grade materials such as <span class="text-syntra-accent font-semibold">lithium hydroxide and nickel sulfate</span>, which require precise environmental controls during storage and transportation.
-                        </p>
-                        <p class="text-slate-700 leading-relaxed mb-4">
-                            Regional refining infrastructure enables just-in-time delivery models, reducing working capital requirements for customers and improving supply chain efficiency.
-                        </p>
-                        <div class="mt-6 pt-6 border-t border-slate-200">
-                            <p class="text-sm text-slate-600 font-semibold">
-                                → 3-5 day delivery vs. 30-45 days trans-Pacific<br>
-                                → Eliminate inventory carrying costs<br>
-                                → Support rapid qualification timelines
-                            </p>
+                        <div class="mb-6">
+                            <div class="flex items-baseline gap-2 mb-1">
+                                <span class="font-head text-5xl font-bold text-syntra-tech" data-counter-animated="4">0</span>
+                                <span class="text-sm text-slate-400 font-mono uppercase">Day Delivery</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="network-card bg-white border border-syntra-border p-10 rounded-sm" data-animate data-card-hover>
-                        <h3 class="font-head text-2xl font-bold text-syntra-text uppercase mb-4"><span class="text-syntra-accent">Logistics</span> Infrastructure</h3>
-                        <p class="text-slate-600 leading-relaxed mb-4">
-                            Node placement prioritizes access to established industrial infrastructure including rail connectivity, port facilities, industrial water supply, and reliable electrical grid connections. <span class="text-syntra-accent font-semibold">Halifax serves as the anchor location</span> due to its ice-free deep-water port, strategic positioning between North American and European markets, and established industrial corridor.
-                        </p>
-                        <p class="text-slate-700 leading-relaxed mb-4">
-                            Availability of reliable utilities, transportation infrastructure, and industrial zoning is a mandatory prerequisite for node development consideration.
-                        </p>
-                        <div class="mt-6 pt-6 border-t border-slate-200">
-                            <p class="text-sm text-slate-600 font-semibold">
-                                → Deep-water port access for container shipping<br>
-                                → Class 1 rail connectivity to major markets<br>
-                                → Industrial-grade power and water supply
-                            </p>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="mt-1.5 flex-shrink-0 w-2 h-2" style="background-color:#FFD700;"></span>
+                                <span class="text-slate-300 text-sm">3-5 days vs. 30-45 trans-Pacific</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="mt-1.5 flex-shrink-0 w-2 h-2" style="background-color:#FFD700;"></span>
+                                <span class="text-slate-300 text-sm">Eliminate inventory carrying costs</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="mt-1.5 flex-shrink-0 w-2 h-2" style="background-color:#FFD700;"></span>
+                                <span class="text-slate-300 text-sm">Rapid qualification timelines</span>
+                            </div>
                         </div>
                     </div>
+                    <div class="h-1 bg-syntra-amber/10 group-hover:bg-syntra-amber transition-colors duration-300"></div>
+                </div>
+
+                <!-- Logistics Infrastructure -->
+                <div class="group relative bg-slate-900/50 border border-syntra-tech/20 hover:border-syntra-tech backdrop-blur-sm transition-all duration-300" data-animate>
+                    <div class="p-8">
+                        <div class="mb-6 pb-6 border-b border-syntra-tech/20">
+                            <h3 class="font-head text-lg font-bold text-white uppercase mb-3">Logistics Infrastructure</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Access to ports, rail, and industrial utilities. Halifax anchor location strategy
+                            </p>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="flex items-baseline gap-2 mb-1">
+                                <span class="font-head text-5xl font-bold text-syntra-tech" data-counter-animated="365">0</span>
+                                <span class="text-sm text-slate-400 font-mono uppercase">Days/Year</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="mt-1.5 flex-shrink-0 w-2 h-2" style="background-color:#FFD700;"></span>
+                                <span class="text-slate-300 text-sm">Deep-water port access</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="mt-1.5 flex-shrink-0 w-2 h-2" style="background-color:#FFD700;"></span>
+                                <span class="text-slate-300 text-sm">Class 1 rail connectivity</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="mt-1.5 flex-shrink-0 w-2 h-2" style="background-color:#FFD700;"></span>
+                                <span class="text-slate-300 text-sm">Industrial power & water</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-1 bg-syntra-tech/10 group-hover:bg-syntra-tech transition-colors duration-300"></div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- AMBIENT VISUAL BAND 2 -->
-    <div class="relative min-h-[64px] md:min-h-[80px] lg:min-h-[96px] overflow-hidden syntra-ambient-bg py-20" data-animate>
-        <div class="syntra-bg">
-            <canvas id="syntraBg2"></canvas>
-        </div>
-        <div class="relative z-10 container mx-auto px-6">
-            <div class="max-w-2xl mx-auto ">
-                <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-4">Rapid Deployment</p>
-                <h3 class="font-head text-3xl md:text-4xl font-bold text-white uppercase mb-4"><span class="text-syntra-accent">18-24 Months</span> to Production</h3>
-                <p class="text-slate-300 text-lg">Standardized design <span class="text-syntra-accent font-semibold">accelerates time-to-market</span></p>
-            </div>
-        </div>
-    </div>
 
     <!-- NETWORK BENEFITS -->
     <section class="py-24 bg-white">
         <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto">
-                <div class="mb-16" data-animate>
-                    <p class="font-mono text-xs text-syntra-amber tracking-widest uppercase mb-4">Operational Advantages</p>
-                    <h2 class="font-head text-4xl md:text-5xl font-bold text-syntra-text uppercase leading-tight mb-6">
-                        Why <span class="text-syntra-accent">Networks</span> Outperform <span class="text-syntra-accent">Single Sites</span>
+            <div class="mb-16" data-animate>
+                    <div class="inline-block px-4 py-2 font-mono text-xs font-bold mb-6 tracking-wider" style="background-color: rgba(8, 145, 178, 0.22); color: #0891B2; border: 1px solid rgba(8,145,178,0.25);">
+                        OPERATIONAL ADVANTAGES
+                    </div>
+                    <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase leading-tight mb-6 text-black">
+                        WHY NETWORKS OUTPERFORM SINGLE SITES
                     </h2>
                 </div>
 
                 <div class="space-y-8">
                     <div class="border-l-4 border-syntra-accent pl-8 py-6" data-animate>
-                        <h3 class="font-head text-xl font-bold text-syntra-text uppercase mb-3">Risk <span class="text-syntra-accent">Distribution</span></h3>
-                        <p class="text-slate-600 leading-relaxed mb-4">
-                            Distributed architecture eliminates single points of failure. Scheduled maintenance, weather events, or localized supply disruptions at individual nodes do not compromise network-wide operations. Production capacity can be reallocated between nodes to maintain aggregate supply commitments to customers.
-                        </p>
-                        <p class="text-sm text-slate-600 font-semibold">
-                            → 99%+ network uptime vs. single-facility risk<br>
-                            → Dynamic capacity reallocation during maintenance<br>
-                            → Geographic diversification reduces regional risks
+                        <h3 class="font-head text-lg font-bold text-syntra-tech uppercase mb-3">Risk Distribution</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Distributed architecture eliminates single points of failure. Maintenance, weather events, or supply disruptions at individual nodes don't compromise network operations. Production reallocates between nodes to maintain customer commitments.
                         </p>
                     </div>
 
                     <div class="border-l-4 border-syntra-tech pl-8 py-6" data-animate>
-                        <h3 class="font-head text-xl font-bold text-syntra-text uppercase mb-3">Incremental <span class="text-syntra-accent">Scaling</span></h3>
-                        <p class="text-slate-600 leading-relaxed mb-4">
-                            Network expansion through additional nodes requires significantly lower capital expenditure and shorter construction timelines compared to expanding centralized facilities. Each node operates at optimal scale without the inefficiencies inherent in oversized infrastructure constructed for projected future demand.
-                        </p>
-                        <p class="text-sm text-slate-600 font-semibold">
-                            → 50-70% lower per-ton capital costs vs. mega-facilities<br>
-                            → Add capacity in 1,000 MT/yr increments<br>
-                            → Match capacity additions to demand growth
+                        <h3 class="font-head text-lg font-bold text-syntra-tech uppercase mb-3">Incremental Scaling</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Network expansion requires significantly lower capital and shorter timelines versus expanding centralized facilities. Each node operates at optimal scale without the inefficiencies of oversized infrastructure built for projected future demand.
                         </p>
                     </div>
 
                     <div class="border-l-4 border-syntra-amber pl-8 py-6" data-animate>
-                        <h3 class="font-head text-xl font-bold text-syntra-text uppercase mb-3">Feedstock <span class="text-syntra-accent">Diversification</span></h3>
-                        <p class="text-slate-600 leading-relaxed mb-4">
-                            Processing diverse feedstock types across different nodes reduces dependency on single material sources and specific supplier relationships. This flexibility becomes increasingly critical as battery chemistries continue to evolve and recycled material volumes scale significantly over the next decade.
-                        </p>
-                        <p class="text-sm text-slate-600 font-semibold">
-                            → Process spodumene, brines, and clays in parallel<br>
-                            → Integrate recycled materials without disruption<br>
-                            → Adapt to evolving battery chemistry requirements
+                        <h3 class="font-head text-lg font-bold text-syntra-tech uppercase mb-3">Feedstock Diversification</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Processing diverse feedstock types across nodes reduces dependency on single sources and suppliers. Critical flexibility as battery chemistries evolve and recycled material volumes scale.
                         </p>
                     </div>
 
                     <div class="border-l-4 border-slate-300 pl-8 py-6" data-animate>
-                        <h3 class="font-head text-xl font-bold text-syntra-text uppercase mb-3">Data-Driven <span class="text-syntra-accent">Optimization</span></h3>
-                        <p class="text-slate-600 leading-relaxed mb-4">
-                            Operating multiple nodes generates substantially greater process data volumes than single-facility operations. This data enables continuous improvement through machine learning algorithms and advanced analytics, with process optimizations validated at individual sites before network-wide deployment.
-                        </p>
-                        <p class="text-sm text-slate-600 font-semibold">
-                            → 10x data volume accelerates ML model training<br>
-                            → A/B test process improvements across nodes<br>
-                            → Deploy validated optimizations network-wide
+                        <h3 class="font-head text-lg font-bold text-syntra-tech uppercase mb-3">Data-Driven Optimization</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Multiple nodes generate greater process data volumes than single facilities. Enables continuous improvement through ML and analytics, with optimizations validated at individual sites before network-wide deployment.
                         </p>
                     </div>
                 </div>
@@ -598,124 +777,91 @@
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-6xl mx-auto">
-                <div class=" mb-16" data-animate>
-                    <p class="font-mono text-xs text-syntra-accent tracking-widest uppercase mb-6">Global Supply Chain</p>
-                    <h2 class="font-head text-4xl md:text-5xl lg:text-6xl font-bold uppercase leading-tight mb-8 text-syntra-text">
-                        Material Flow <span class="text-syntra-accent">Network</span>
-                    </h2>
-                    <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
-                        Integrated supply chain from <span class="text-syntra-accent font-semibold">mine to market</span>, connecting raw material sources to end-use manufacturing
-                    </p>
-                </div>
-
-                <!-- Key Markets Map -->
-                <div class="relative w-full h-[500px] bg-gradient-to-br from-slate-100 to-slate-50 rounded-sm border-2 border-slate-200 overflow-hidden shadow-xl" data-animate>
-                    <svg class="w-full h-full" viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Background Grid -->
-                        <defs>
-                            <pattern id="mapgrid" width="30" height="30" patternUnits="userSpaceOnUse">
-                                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(30,41,59,0.03)" stroke-width="1"/>
-                            </pattern>
-                        </defs>
-                        <rect width="100%" height="100%" fill="url(#mapgrid)"/>
-
-                        <!-- North America Outline -->
-                        <path d="M 100 150 L 150 130 L 250 140 L 350 160 L 400 200 L 390 280 L 350 320 L 280 340 L 200 330 L 150 290 L 110 230 Z"
-                              fill="rgba(30,41,59,0.04)" stroke="rgba(30,41,59,0.12)" stroke-width="2"/>
-
-                        <!-- Europe Outline -->
-                        <path d="M 700 180 L 780 170 L 860 185 L 920 210 L 930 260 L 900 300 L 840 310 L 770 300 L 710 270 L 695 220 Z"
-                              fill="rgba(30,41,59,0.04)" stroke="rgba(30,41,59,0.12)" stroke-width="2"/>
-
-                        <!-- Market Location 1: Detroit -->
-                        <g>
-                            <circle cx="300" cy="220" r="18" fill="rgb(250,204,21)" stroke="white" stroke-width="3">
-                                <animate attributeName="r" values="18;22;18" dur="2.5s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="300" cy="220" r="28" fill="none" stroke="rgba(250,204,21,0.4)" stroke-width="2">
-                                <animate attributeName="r" values="28;38;28" dur="2.5s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.8;0;0.8" dur="2.5s" repeatCount="indefinite"/>
-                            </circle>
-                            <text x="300" y="195" text-anchor="middle" class="text-[16px] font-bold fill-slate-900">Detroit</text>
-                            <text x="300" y="255" text-anchor="middle" class="text-[12px] fill-slate-600">North America</text>
-                        </g>
-
-                        <!-- Market Location 2: Charlotte -->
-                        <g>
-                            <circle cx="320" cy="300" r="18" fill="rgb(250,204,21)" stroke="white" stroke-width="3">
-                                <animate attributeName="r" values="18;22;18" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="320" cy="300" r="28" fill="none" stroke="rgba(250,204,21,0.4)" stroke-width="2">
-                                <animate attributeName="r" values="28;38;28" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.8;0;0.8" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
-                            </circle>
-                            <text x="320" y="275" text-anchor="middle" class="text-[16px] font-bold fill-slate-900">Charlotte</text>
-                            <text x="320" y="335" text-anchor="middle" class="text-[12px] fill-slate-600">North America</text>
-                        </g>
-
-                        <!-- Market Location 3: Europe -->
-                        <g>
-                            <circle cx="820" cy="240" r="18" fill="rgb(250,204,21)" stroke="white" stroke-width="3">
-                                <animate attributeName="r" values="18;22;18" dur="2.5s" begin="1s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="820" cy="240" r="28" fill="none" stroke="rgba(250,204,21,0.4)" stroke-width="2">
-                                <animate attributeName="r" values="28;38;28" dur="2.5s" begin="1s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.8;0;0.8" dur="2.5s" begin="1s" repeatCount="indefinite"/>
-                            </circle>
-                            <text x="820" y="215" text-anchor="middle" class="text-[16px] font-bold fill-slate-900">Europe</text>
-                            <text x="820" y="275" text-anchor="middle" class="text-[12px] fill-slate-600">European Market</text>
-                        </g>
-                    </svg>
-
-                    <!-- Market Info Card -->
-                    <div class="absolute top-8 right-8 bg-white/95 backdrop-blur-sm rounded-sm border-2 border-syntra-accent/30 p-5 shadow-lg max-w-xs">
-                        <div class="font-mono text-xs text-syntra-accent font-bold mb-3">KEY MARKETS</div>
-                        <div class="space-y-2 text-sm">
-                            <div class="flex items-start gap-2">
-                                <div class="w-2 h-2 rounded-full bg-syntra-accent mt-1.5 flex-shrink-0"></div>
-                                <span class="text-slate-700 font-semibold">Detroit, Charlotte</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <div class="w-2 h-2 rounded-full bg-syntra-accent mt-1.5 flex-shrink-0"></div>
-                                <span class="text-slate-700 font-semibold">European Market</span>
-                            </div>
-                        </div>
+            <div class="mb-16" data-animate>
+                    <div class="inline-block px-4 py-2 font-mono text-xs font-bold mb-6 tracking-wider" style="background-color: rgba(8, 145, 178, 0.22); color: #0891B2; border: 1px solid rgba(8,145,178,0.25);">
+                        GLOBAL SUPPLY CHAIN
                     </div>
+                    <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase leading-tight mb-8 text-syntra-text">
+                        Material Flow Network
+                    </h2>
+                    <p class="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl font-light">
+                        Integrated supply chain from mine to market, connecting raw material sources to end-use manufacturing
+                    </p>
                 </div>
 
                 <!-- Supply Chain Stages -->
                 <div class="grid md:grid-cols-4 gap-6 mt-16">
-                    <div class="bg-white rounded-sm border-2 border-slate-200 p-6 hover:border-syntra-accent transition-all duration-300 hover:shadow-lg" data-animate>
-                        <div class="w-10 h-10 bg-syntra-accent/10 border-2 border-syntra-accent flex items-center justify-center mb-4">
-                            <span class="font-head text-lg font-bold text-syntra-amber">01</span>
+                    <div class="bg-white rounded-sm border-2 border-slate-200 p-6 hover:border-syntra-tech transition-all duration-300 hover:shadow-lg" data-animate>
+                        <div class="w-10 h-10 bg-syntra-tech/10 border-2 border-syntra-tech flex items-center justify-center mb-4">
+                            <span class="font-head text-lg font-bold text-syntra-tech">01</span>
                         </div>
-                        <h3 class="font-head text-lg font-bold uppercase mb-2 text-syntra-text">Extraction</h3>
+                        <h3 class="font-head text-lg font-bold uppercase mb-2 text-syntra-tech">Extraction</h3>
                         <p class="text-sm text-slate-600 leading-relaxed">Mine-to-port logistics from global lithium, cobalt, and nickel sources</p>
                     </div>
 
-                    <div class="bg-white rounded-sm border-2 border-slate-200 p-6 hover:border-syntra-accent transition-all duration-300 hover:shadow-lg" data-animate>
+                    <div class="bg-white rounded-sm border-2 border-slate-200 p-6 hover:border-syntra-tech transition-all duration-300 hover:shadow-lg" data-animate>
                         <div class="w-10 h-10 bg-syntra-tech/10 border-2 border-syntra-tech flex items-center justify-center mb-4">
                             <span class="font-head text-lg font-bold text-syntra-tech">02</span>
                         </div>
-                        <h3 class="font-head text-lg font-bold uppercase mb-2 text-syntra-text"><span class="text-syntra-accent">Refining</span></h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">Advanced hydrometallurgical processing at SYNHUB™ facilities</p>
+                        <h3 class="font-head text-lg font-bold uppercase mb-2 text-syntra-tech">Refining</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Advanced hydrometallurgical processing at <span class="text-syntra-accent font-semibold">SYNHUB™</span> facilities</p>
                     </div>
 
-                    <div class="bg-white rounded-sm border-2 border-slate-200 p-6 hover:border-syntra-accent transition-all duration-300 hover:shadow-lg" data-animate>
-                        <div class="w-10 h-10 bg-syntra-amber/10 border-2 border-syntra-amber flex items-center justify-center mb-4">
-                            <span class="font-head text-lg font-bold text-syntra-amber">03</span>
+                    <div class="bg-white rounded-sm border-2 border-slate-200 p-6 hover:border-syntra-tech transition-all duration-300 hover:shadow-lg" data-animate>
+                        <div class="w-10 h-10 bg-syntra-tech/10 border-2 border-syntra-tech flex items-center justify-center mb-4">
+                            <span class="font-head text-lg font-bold text-syntra-tech">03</span>
                         </div>
-                        <h3 class="font-head text-lg font-bold uppercase mb-2 text-syntra-text">Distribution</h3>
+                        <h3 class="font-head text-lg font-bold uppercase mb-2 text-syntra-tech">Distribution</h3>
                         <p class="text-sm text-slate-600 leading-relaxed">Direct delivery to battery manufacturers and chemical customers</p>
                     </div>
 
-                    <div class="bg-white rounded-sm border-2 border-slate-200 p-6 hover:border-syntra-accent transition-all duration-300 hover:shadow-lg" data-animate>
-                        <div class="w-10 h-10 bg-slate-300/50 border-2 border-slate-300 flex items-center justify-center mb-4">
-                            <span class="font-head text-lg font-bold text-slate-600">04</span>
+                    <div class="bg-white rounded-sm border-2 border-slate-200 p-6 hover:border-syntra-tech transition-all duration-300 hover:shadow-lg" data-animate>
+                        <div class="w-10 h-10 bg-syntra-tech/10 border-2 border-syntra-tech flex items-center justify-center mb-4">
+                            <span class="font-head text-lg font-bold text-syntra-tech">04</span>
                         </div>
-                        <h3 class="font-head text-lg font-bold uppercase mb-2 text-syntra-text">Circularity</h3>
+                        <h3 class="font-head text-lg font-bold uppercase mb-2 text-syntra-tech">Circularity</h3>
                         <p class="text-sm text-slate-600 leading-relaxed">Battery recycling and material recovery closing the loop</p>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <!-- BUILD WITH US -->
+    <section id="partner-ecosystem-access" class="py-16 sm:py-24 md:py-32 bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight text-white relative overflow-hidden border-b-4 border-syntra-accent">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: linear-gradient(#FFD700 1px, transparent 1px), linear-gradient(90deg, #FFD700 1px, transparent 1px); background-size: 50px 50px;"></div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-16">
+                <div>
+                    <div class="mb-6 sm:mb-8">
+                        <h2 class="font-head text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white uppercase leading-none tracking-tight whitespace-nowrap"><span class="text-slate-400 font-bold tracking-tighter">BUILD</span> WITH US</h2>
+                    </div>
+                    <p class="text-slate-400 text-base sm:text-lg font-light mb-10 sm:mb-12 leading-relaxed">
+                        Syntra Refining is currently onboarding strategic partners for the 2027 production cycle.
+                    </p>
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-[9px] font-mono font-bold tracking-[0.25em] uppercase mb-1 text-slate-400">Headquarter</p>
+                            <p class="font-head font-bold text-white text-base uppercase tracking-wide leading-snug">Syntra Hub &mdash; Halifax</p>
+                            <p class="text-xs text-slate-400 mt-0.5 tracking-wide">Nova Scotia, Canada</p>
+                        </div>
+                        <div class="w-8" style="height:1px; background: linear-gradient(to right, rgba(255,215,0,0.3), transparent);"></div>
+                        <div>
+                            <p class="text-[9px] font-mono font-bold tracking-[0.25em] uppercase mb-1 text-slate-400">Commercial Inquiries</p>
+                            <a href="mailto:commercial@syntrarefining.com" class="font-head font-bold text-white text-base uppercase tracking-wide leading-snug block transition-colors duration-200 hover:text-syntra-accent">commercial@syntrarefining.com</a>
+                            <p class="text-xs text-slate-400 mt-0.5 tracking-wide">Partnerships & Supply Chain</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-white to-slate-50 text-syntra-text p-6 sm:p-8 md:p-10 shadow-2xl border-2 border-slate-200 relative overflow-hidden flex flex-col items-center justify-center min-h-[280px] sm:min-h-[340px] md:min-h-[400px]">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-syntra-accent/5 blur-3xl -mr-20 -mt-20"></div>
+                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-cyan-500/5 blur-3xl -ml-16 -mb-16"></div>
+                    <div class="relative z-10 text-center w-full flex flex-col items-center justify-center flex-1">
+                        <h3 class="font-head text-4xl md:text-5xl font-bold uppercase mb-10 text-syntra-midnight">Contact Us</h3>
+                        <button onclick="window.openContactModal('Strategic Partnership')" class="inline-flex items-center justify-center gap-2 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase px-8 py-4 text-sm hover:bg-yellow-400 transition-colors shadow-xl shadow-yellow-500/20 whitespace-nowrap">
+                            <span>Send Inquiry</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -727,15 +873,8 @@
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-12 gap-12 mb-16">
                 <div class="md:col-span-4 space-y-6">
-                    <a href="index.html" class="syntra-logo-hover-wrapper light">
-                        <div class="syntra-logo-mark">
-                            <div class="syntra-logo-diamond"></div>
-                            <div class="syntra-logo-square"></div>
-                        </div>
-                        <div class="syntra-logo-wordmark">
-                            <div class="syntra-logo-title">SYNTRA</div>
-                            <div class="syntra-logo-subtitle">REFINING CORP.</div>
-                        </div>
+                    <a href="index.html" class="syntra-logo-hover-wrapper syntra-logo-footer light">
+                        <img src="/assets/images/Wordmark_2_(1).png" alt="Syntra Refining Corp." class="syntra-logo-image">
                     </a>
                     <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
                         North America's Critical Minerals Infrastructure.<br>
@@ -748,7 +887,6 @@
                     <ul class="space-y-4 text-slate-400 text-sm">
                         <li><a href="company.html" class="hover:text-syntra-accent transition-colors">Leadership</a></li>
                         <li><a href="careers.html" class="hover:text-syntra-accent transition-colors">Careers</a></li>
-                        <li><a href="investor.html" class="hover:text-syntra-accent transition-colors">Investor Relations</a></li>
                     </ul>
                 </div>
 
@@ -772,12 +910,61 @@
         </div>
     </footer>
 
-    <script>
+        <script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
+            const backdrop = document.getElementById('menuBackdrop');
+            const diamondOuter = document.getElementById('menuDiamondOuter');
+            const body = document.body;
+
+            if (!menu || !backdrop) return;
+
+            const isOpen = menu.classList.contains('translate-x-0');
+
+            if (isOpen) {
+                menu.classList.remove('translate-x-0');
+                menu.classList.add('translate-x-full');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                body.style.overflow = '';
+                if (diamondOuter) diamondOuter.style.transform = 'rotate(45deg)';
+            } else {
+                menu.classList.remove('translate-x-full');
+                menu.classList.add('translate-x-0');
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                body.style.overflow = 'hidden';
+                if (diamondOuter) diamondOuter.style.transform = 'rotate(405deg)';
+            }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            function isMenuOpen() {
+                const menu = document.getElementById('mobileMenu');
+                return menu && menu.classList.contains('translate-x-0');
+            }
+            const wrapper = document.getElementById('menuDiamond');
+            const outer = document.getElementById('menuDiamondOuter');
+            if (wrapper && outer) {
+                wrapper.addEventListener('mouseenter', function() {
+                    outer.style.transform = 'rotate(405deg)';
+                });
+                wrapper.addEventListener('mouseleave', function() {
+                    if (!isMenuOpen()) {
+                        outer.style.transform = 'rotate(45deg)';
+                    }
+                });
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const menu = document.getElementById('mobileMenu');
+                if (menu && menu.classList.contains('translate-x-0')) {
+                    toggleMobileMenu();
+                }
+            }
+        });
     </script>
 
     <script src="js/syntra-motion.js"></script>
@@ -794,10 +981,76 @@
 
   <script src="/js/syntra-contact-modal.js?v=203"></script>
 
-  <script src="/js/syntra-shared-background.js"></script>
+  <script src="/js/syntra-professional-background.js"></script>
   <script>
-    initSyntraBackground('syntraBg1');
-    initSyntraBackground('syntraBg2');
+    initSyntraProfessionalBg('syntraBg1', {
+      particleCount: 88,
+      primaryColor: '#FFD700',
+      secondaryColor: '#0891B2',
+      tertiaryColor: '#FFD700',
+      showConnections: true,
+      connectionDistance: 165,
+      mouseInteraction: true
+    });
+    initSyntraProfessionalBg('syntraBg2', {
+      particleCount: 72,
+      primaryColor: '#FFD700',
+      secondaryColor: '#FFD700',
+      tertiaryColor: '#0891B2',
+      showConnections: true,
+      connectionDistance: 145,
+      mouseInteraction: true
+    });
+
+    // Counter Animation for deployment strategy cards
+    function animateCounter(element, target, duration = 2000, decimals = 0) {
+        const start = 0;
+        const increment = target / (duration / 16);
+        let current = start;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                element.textContent = decimals > 0 ? target.toFixed(decimals) : target;
+                clearInterval(timer);
+            } else {
+                element.textContent = decimals > 0 ? current.toFixed(decimals) : Math.floor(current);
+            }
+        }, 16);
+    }
+
+    // Scroll Animation Observer
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px'
+    };
+
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+
+                // Trigger animated counters for deployment strategy cards
+                const animatedCounters = entry.target.querySelectorAll('[data-counter-animated]');
+                animatedCounters.forEach(animCounter => {
+                    if (!animCounter.classList.contains('counted')) {
+                        animCounter.classList.add('counted');
+                        const target = parseFloat(animCounter.getAttribute('data-counter-animated'));
+                        const decimals = target % 1 !== 0 ? 1 : 0;
+                        animateCounter(animCounter, target, 2000, decimals);
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+
+    // Observe all animate-on-scroll elements
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.animate-on-scroll, [data-animate]').forEach(el => {
+            scrollObserver.observe(el);
+        });
+    });
   </script>
+
 </body>
 </html>

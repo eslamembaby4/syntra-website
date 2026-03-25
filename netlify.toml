@@ -1,0 +1,24 @@
+[build]
+  publish = "."
+  ignore = "echo 'static site'"
+
+# Security headers for internal and experimental directories
+[[headers]]
+  for = "/internal/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/experimental/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
+# Security headers for all public pages
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
