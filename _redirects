@@ -83,18 +83,6 @@ http://www.syntrarefining.com/* https://www.syntrarefining.com/:splat 301
 /process /process.html 200
 /value-chain /value-chain.html 200
 
-# Industry pages
-/industries/miners /industries/miners.html 200
-/industries/oems /industries/oems.html 200
-/industries/batteries /industries/batteries.html 200
-/industries/recyclers /industries/recyclers.html 200
-/industries/defence /industries/defence.html 200
-/industries/aerospace /industries/aerospace.html 200
-
-# Production pages
-/production/cobalt /production/cobalt.html 200
-/production/copper /production/copper.html 200
-/production/lithium /production/lithium.html 200
-/production/nickel /production/nickel.html 200
-/production/aluminum /production/aluminum.html 200
-/production/manganese /production/manganese.html 200
+# Industry pages (disabled - redirect to homepage)
+/industries/* / 301
+/production/* / 301

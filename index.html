@@ -15,7 +15,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#0A1628">
+    <meta name="theme-color" content="#0B1120">
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -76,9 +76,9 @@
     </script>
 
     <style>
-        /* ── SYNTRA INDUSTRIAL SURFACE — reusable dark section wrapper ── */
+        /* ── SYNTRA INDUSTRIAL SURFACE - reusable dark section wrapper ── */
         .syntra-industrial-surface {
-          background: #061225;
+          background: #0B1120;
           position: relative;
           overflow: hidden;
         }
@@ -238,11 +238,9 @@
         }
         .bg-chicken-wire-dark {
             background-image:
-                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
-                linear-gradient(45deg, rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(-45deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
         @keyframes diamondSpin {
             from { transform: rotate(45deg); }
@@ -265,7 +263,7 @@
         .ghost-wordmark {
             position: absolute;
             font-family: 'Oswald', sans-serif;
-            font-weight: 900;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: -0.04em;
             pointer-events: none;
@@ -313,9 +311,9 @@
 
             <button class="text-syntra-text p-3 hover:text-syntra-amber transition-colors" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
                 <div class="flex flex-col gap-[6px] items-end">
-                    <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
-                    <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
-                    <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
+                    <span class="block w-8 h-[3px] bg-current menu-line" style="border-radius:0"></span>
+                    <span class="block w-8 h-[3px] bg-current menu-line" style="border-radius:0"></span>
+                    <span class="block w-8 h-[3px] bg-current menu-line" style="border-radius:0"></span>
                 </div>
             </button>
         </div>
@@ -348,8 +346,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </a>
-                <a href="commercial.html" class="group flex items-center justify-between px-5 py-4 bg-[#F8FAFC] hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
-                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Commercial</span>
+                <a href="company.html" class="group flex items-center justify-between px-5 py-4 bg-[#F8FAFC] hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Company</span>
                     <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
@@ -360,8 +358,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </a>
-                <a href="company.html" class="group flex items-center justify-between px-5 py-4 bg-[#F8FAFC] hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
-                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Company</span>
+                <a href="commercial.html" class="group flex items-center justify-between px-5 py-4 bg-[#F8FAFC] hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Commercial</span>
                     <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
@@ -382,7 +380,7 @@
         </div>
 
         <!-- Branding Footer -->
-        <div class="mt-auto relative overflow-hidden" style="background: linear-gradient(135deg, #0B1120 0%, #061225 100%);">
+        <div class="mt-auto relative overflow-hidden" style="background: #0B1120;">
             <div class="absolute left-0 top-0 bottom-0" style="width:4px; background:linear-gradient(to bottom, #FFD700 0%, rgba(255,215,0,0.3) 100%);"></div>
             <div class="absolute pointer-events-none" style="top:50%; right:-40px; transform:translateY(-50%);" aria-hidden="true">
                 <div class="diamond-spin" style="width:180px; height:180px; border:1px solid rgba(255,215,0,0.08);"></div>
@@ -406,7 +404,7 @@
     </div>
 
     <!-- HERO SECTION -->
-    <header id="hero-section" class="relative min-h-[80vh] sm:min-h-[85vh] md:min-h-[90vh] flex items-stretch bg-white overflow-hidden">
+    <header id="hero-section" class="relative py-20 sm:py-24 md:py-28 bg-white overflow-hidden">
 
 
         <!-- Subtle grid overlay -->
@@ -420,7 +418,7 @@
         </div>
         <!-- Signal Yellow left spine -->
         <div class="hidden lg:block absolute left-0 top-0 bottom-0 z-20 pointer-events-none" style="width:6px; background:linear-gradient(to bottom, #FFD700 0%, rgba(255,215,0,0.4) 100%);" aria-hidden="true"></div>
-        <!-- Animated spinning diamond brand mark — upper right of hero text area -->
+        <!-- Animated spinning diamond brand mark - upper right of hero text area -->
         <div class="absolute pointer-events-none hidden lg:block" style="top:50%; right:54%; transform:translateY(-50%) translateX(50%);" aria-hidden="true">
             <div class="diamond-spin" style="width:560px; height:560px; border:1px solid rgba(0,0,0,0.04);"></div>
         </div>
@@ -428,22 +426,22 @@
             <div class="diamond-spin-slow" style="width:340px; height:340px; border:1px solid rgba(0,0,0,0.03);"></div>
         </div>
         <!-- Ghost wordmark: "SYNTRA" very faint behind hero headline -->
-        <div class="absolute pointer-events-none hidden lg:block select-none" style="bottom:-40px; left:0px; font-family:'Oswald',sans-serif; font-weight:900; font-size:clamp(140px,18vw,240px); text-transform:uppercase; letter-spacing:-0.04em; line-height:0.85; color:rgba(0,0,0,0.025); z-index:0; white-space:nowrap;" aria-hidden="true">SYNTRA</div>
+        <div class="absolute pointer-events-none hidden lg:block select-none" style="bottom:-40px; left:0px; font-family:'Oswald',sans-serif; font-weight:700; font-size:clamp(140px,18vw,240px); text-transform:uppercase; letter-spacing:-0.04em; line-height:0.85; color:rgba(0,0,0,0.025); z-index:0; white-space:nowrap;" aria-hidden="true">SYNTRA</div>
 
         <!-- Hero Content: two-column layout -->
-        <div class="relative z-10 w-full py-12 sm:py-16 md:py-20">
-            <div class="container mx-auto px-4 sm:px-6 flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-16">
+        <div class="relative z-10 w-full">
+            <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-16">
 
                 <!-- LEFT: Headline + CTAs -->
                 <div class="w-full lg:w-[46%] shrink-0">
-                    <div class="inline-block px-4 py-2 mb-6 font-bold text-xs tracking-wider uppercase" style="background-color: rgba(8, 145, 178, 0.22); color: #0891B2; border: 1px solid rgba(8,145,178,0.25);" data-animate>
+                    <div class="hero-eyebrow" data-animate>
                         CRITICAL MINERALS INFRASTRUCTURE
                     </div>
 
                     <div style="display:table;">
                         <div class="syntra-yellow-bar" style="margin-bottom:0.75rem;" data-animate></div>
-                        <h1 style="display:block; font-family:'Oswald',sans-serif; font-size:clamp(2.6rem,5.5vw,5.2rem); font-weight:900; line-height:0.9; letter-spacing:-0.02em; text-transform:uppercase; color:#0B1120; margin-bottom:2rem; padding:0;" data-animate>
-                            CLEAN<br>SMART<br><span style="all:unset; display:inline; color:#64748B; font-family:'Oswald',sans-serif; font-size:clamp(2.6rem,5.5vw,5.2rem); font-weight:900; line-height:0.9; letter-spacing:-0.02em; text-transform:uppercase;">REFINING</span>
+                        <h1 style="all:initial;display:block;font-family:'Oswald',sans-serif;font-size:clamp(2.8rem,10vw,6.5rem);font-weight:700;line-height:0.88;letter-spacing:-0.02em;text-transform:uppercase;color:#0B1120;margin-bottom:2rem;" data-animate>
+                            CLEAN<br>SMART<br><span style="all:unset;font-family:inherit;font-size:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit;text-transform:inherit;color:#64748B;">REFINING</span>
                         </h1>
                     </div>
 
@@ -466,7 +464,7 @@
                                 border-radius:50%;
                             "></div>
                             <p class="text-base sm:text-lg text-[#64748B] leading-relaxed font-light" style="position:relative;z-index:1;">
-                                Industrial-scale refinement of pure-grade critical minerals — enabled by our <span style="color:#FFD700;font-weight:900;">SYNHUBS™</span> network and breakthrough <span style="color:#FFD700;font-weight:900;">SYNCORE™</span> technology
+                                Industrial-scale refining and recycling of pure-grade critical minerals, from mining concentrates to end-of-life black mass, powered by our <span style="color:#FFD700;font-weight:700;">SYNHUB™</span> network and <span style="color:#FFD700;font-weight:700;">SYNCORE™</span> technology
                             </p>
                         </div>
                     </div>
@@ -680,47 +678,33 @@
     })();
     </script>
 
-    <!-- TRANSITION: Hero (white) → Commercial (dark navy) — white dissolves into dark wave -->
-    <div aria-hidden="true" style="position:relative;height:72px;overflow:hidden;background:#0B1120;margin:0;padding:0;pointer-events:none;">
-      <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;display:block;">
-        <defs>
-          <linearGradient id="hero-to-dark" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#ffffff"/>
-            <stop offset="100%" stop-color="#0B1120"/>
-          </linearGradient>
-        </defs>
-        <!-- Dark navy canvas -->
-        <rect x="0" y="0" width="1440" height="72" fill="#0B1120"/>
-        <!-- White hero bleeds down in wave -->
-        <path d="M0,0 L1440,0 L1440,30 Q1080,62 720,38 Q360,14 0,46 Z" fill="#ffffff"/>
-        <!-- Gradient softening the transition -->
-        <path d="M0,0 L1440,0 L1440,30 Q1080,62 720,38 Q360,14 0,46 Z" fill="url(#hero-to-dark)" opacity="0.6"/>
-        <!-- Very faint gold glow hinting at brand color emerging -->
-        <path d="M0,46 Q360,14 720,38 Q1080,62 1440,30" fill="none" stroke="rgba(255,214,0,0.15)" stroke-width="1.2"/>
-      </svg>
-    </div>
+    <!-- TRANSITION: Hero → Commercial -->
+    <div aria-hidden="true" style="height:4px;background:#FFD700;margin:0;padding:0;pointer-events:none;"></div>
     <!-- COMMERCIAL & FEEDSTOCK -->
     <section id="commercial" class="py-16 sm:py-20 md:py-24 relative overflow-hidden">
         <div id="feedstock-bg-img" class="absolute inset-0 z-0 pointer-events-none" style="background-size:cover; background-position:center center; transition:transform 0.9s cubic-bezier(0.4,0,0.2,1); transform:scale(1);" aria-hidden="true"></div>
-        <script>document.getElementById('feedstock-bg-img').style.backgroundImage="url('/assets/images/iStock-1684426227_(1).jpg')";</script>
-        <div class="absolute inset-0 z-[1] pointer-events-none" style="background:linear-gradient(135deg, rgba(11,17,32,0.82) 0%, rgba(11,17,32,0.72) 50%, rgba(11,17,32,0.78) 100%);"></div>
+        <script>document.getElementById('feedstock-bg-img').style.backgroundImage="url('/assets/images/lucid-origin_high-detail_macro_visualization_of_black_mass_from_recycled_lithium-ion_batterie-1 copy.jpg')";</script>
+        <div class="absolute inset-0 z-[1] pointer-events-none" style="background:rgba(11,17,32,0.80);"></div>
         <div class="absolute inset-0 z-[1] pointer-events-none" style="background:radial-gradient(ellipse at 20% 50%, rgba(8,145,178,0.12) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(255,214,0,0.06) 0%, transparent 55%);"></div>
         <!-- Yellow spotlight over heading -->
         <div class="absolute inset-0 z-[2] pointer-events-none" style="background:radial-gradient(ellipse 55% 60% at 22% 38%, rgba(255,214,0,0.18) 0%, rgba(255,214,0,0.07) 40%, transparent 70%);"></div>
-        <!-- Hero-style engineered grid overlay: right 40% only, fades in from left -->
-        <div class="absolute inset-0 z-[4] pointer-events-none" aria-hidden="true" style="-webkit-mask-image:linear-gradient(to right, transparent 50%, rgba(0,0,0,0.3) 63%, rgba(0,0,0,0.7) 76%, rgba(0,0,0,1) 100%); mask-image:linear-gradient(to right, transparent 50%, rgba(0,0,0,0.3) 63%, rgba(0,0,0,0.7) 76%, rgba(0,0,0,1) 100%); opacity:0.18;">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <pattern id="feedstock-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.8"/>
-                </pattern>
-                <rect width="100%" height="100%" fill="url(#feedstock-grid)" />
-            </svg>
-        </div>
+        <!-- Brand diagonal slash lines — dark version -->
+        <svg class="absolute inset-0 w-full h-full z-[4] pointer-events-none" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+            <line x1="-200" y1="1000" x2="1100" y2="-200" stroke="rgba(255,255,255,0.04)" stroke-width="1.5"/>
+            <line x1="0" y1="1000" x2="1300" y2="-200" stroke="rgba(255,255,255,0.025)" stroke-width="1"/>
+            <line x1="200" y1="1000" x2="1500" y2="-200" stroke="rgba(255,255,255,0.018)" stroke-width="1"/>
+            <line x1="1640" y1="800" x2="300" y2="-200" stroke="rgba(255,255,255,0.038)" stroke-width="1.5"/>
+            <line x1="1640" y1="550" x2="550" y2="-200" stroke="rgba(255,255,255,0.025)" stroke-width="1"/>
+            <line x1="1640" y1="300" x2="800" y2="-200" stroke="rgba(255,255,255,0.015)" stroke-width="1"/>
+            <line x1="-200" y1="700" x2="700" y2="-200" stroke="rgba(255,214,0,0.12)" stroke-width="1.5"/>
+            <line x1="1640" y1="400" x2="750" y2="-200" stroke="rgba(255,214,0,0.1)" stroke-width="1.5"/>
+            <rect x="820" y="0" width="300" height="100" fill="none" stroke="rgba(255,255,255,0.045)" stroke-width="1"/>
+        </svg>
         <div id="feedstock-shadow" class="absolute inset-0 z-[3] pointer-events-none" style="background:rgba(5,9,20,0.72); transition:background 0.15s ease;"></div>
-        <div class="container mx-auto px-4 sm:px-6 relative z-[5]">
+        <div class="container mx-auto px-6 relative z-[5]">
             <div class="mb-16 md:flex justify-between items-end">
                 <div class="max-w-2xl">
-                    <div class="inline-block px-4 py-2 mb-6 font-bold text-xs tracking-wider uppercase" style="background-color: rgba(8, 145, 178, 0.22); color: #0891B2; border: 1px solid rgba(8,145,178,0.25);">
+                    <div class="section-eyebrow">
                         UNIVERSAL INTAKE
                     </div>
                     <div class="syntra-yellow-bar"></div>
@@ -743,7 +727,7 @@
                         <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase" style="color:#FFFFFF; position:relative; z-index:1;">Feedstock Agnostic</h2>
                         <div style="display:flex; gap:16px; align-items:stretch; margin-top:1rem; position:relative; z-index:1;">
                             <div style="width:8px; background:#FFD700; border-radius:2px; flex-shrink:0;"></div>
-                            <p class="text-base sm:text-lg md:text-xl leading-relaxed font-light" style="color:#94A3B8;">Enabling the Circular Economy — Our advanced hydrometallurgical process safely and efficiently digests diverse supply streams:</p>
+                            <p class="text-base sm:text-lg md:text-xl leading-relaxed font-light" style="color:#94A3B8;">Our hydrometallurgical process handles diverse supply streams across the full mineral cycle:</p>
                         </div>
                     </div>
                 </div>
@@ -752,17 +736,17 @@
                 <div class="feedstock-card p-6 sm:p-8 md:p-10 border group" style="background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.12); backdrop-filter:blur(4px);">
                     <div class="w-8 h-0.5 bg-syntra-accent mb-4"></div>
                     <h3 class="font-head text-lg sm:text-xl md:text-2xl font-bold uppercase mb-3 sm:mb-4" style="color:#FFFFFF;">Mining Stream</h3>
-                    <p class="text-sm leading-relaxed font-light" style="color:#94A3B8;">Our Mining Stream solution refines mine-site concentrates and tailings with high efficiency, recovering critical minerals at scale while reducing waste across the extraction lifecycle.</p>
+                    <p class="text-sm leading-relaxed font-light" style="color:#94A3B8;">We process mine-site concentrates and tailings directly, recovering critical minerals without requiring export or intermediate smelting.</p>
                 </div>
                 <div class="feedstock-card p-6 sm:p-8 md:p-10 border group" style="background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.12); backdrop-filter:blur(4px);">
                     <div class="w-8 h-0.5 bg-syntra-accent mb-4"></div>
                     <h3 class="font-head text-lg sm:text-xl md:text-2xl font-bold uppercase mb-3 sm:mb-4" style="color:#FFFFFF;">Recycling Stream</h3>
-                    <p class="text-sm leading-relaxed font-light" style="color:#94A3B8;">Black Mass intake supports circularity by recovering high-value materials from end-of-life lithium-ion batteries. This pathway strengthens supply-chain resilience, enhances sustainability, and returns critical minerals back into productive use.</p>
+                    <p class="text-sm leading-relaxed font-light" style="color:#94A3B8;">End-of-life lithium-ion batteries contain recoverable lithium, cobalt, nickel, and manganese. We process black mass into battery-grade outputs — closing the loop on battery mineral supply.</p>
                 </div>
                 <div class="feedstock-card p-6 sm:p-8 md:p-10 border group sm:col-span-2 lg:col-span-1" style="background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.12); backdrop-filter:blur(4px);">
                     <div class="w-8 h-0.5 bg-syntra-accent mb-4"></div>
                     <h3 class="font-head text-lg sm:text-xl md:text-2xl font-bold uppercase mb-3 sm:mb-4" style="color:#FFFFFF;">Manufacturing Stream</h3>
-                    <p class="text-sm leading-relaxed font-light" style="color:#94A3B8;">We refine high-value manufacturing scrap to recapture essential materials and reduce waste at the source. This stream reinforces sustainable production, boosts supply-chain efficiency delivering meaningful value back to OEMs.</p>
+                    <p class="text-sm leading-relaxed font-light" style="color:#94A3B8;">Cathode scrap and electrode trimmings from battery manufacturers contain high concentrations of refined minerals. We recover them at source, returning material directly into the supply chain without export.</p>
                 </div>
             </div>
             <div>
@@ -817,58 +801,41 @@
     })();
     </script>
 
-    <!-- TRANSITION: Commercial (dark navy) → Technology (dark navy) — gold scan-line with diagonal slice -->
-    <div aria-hidden="true" style="position:relative;height:56px;overflow:hidden;background:#061225;margin:0;padding:0;pointer-events:none;">
-      <svg viewBox="0 0 1440 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;display:block;">
-        <defs>
-          <linearGradient id="scan-gold" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="rgba(255,214,0,0)"/>
-            <stop offset="30%" stop-color="rgba(255,214,0,0.55)"/>
-            <stop offset="50%" stop-color="rgba(255,214,0,0.85)"/>
-            <stop offset="70%" stop-color="rgba(255,214,0,0.55)"/>
-            <stop offset="100%" stop-color="rgba(255,214,0,0)"/>
-          </linearGradient>
-          <linearGradient id="scan-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="rgba(8,145,178,0)"/>
-            <stop offset="25%" stop-color="rgba(8,145,178,0.3)"/>
-            <stop offset="50%" stop-color="rgba(8,145,178,0.5)"/>
-            <stop offset="75%" stop-color="rgba(8,145,178,0.3)"/>
-            <stop offset="100%" stop-color="rgba(8,145,178,0)"/>
-          </linearGradient>
-        </defs>
-        <!-- Dark navy fill from Commercial bg -->
-        <rect x="0" y="0" width="1440" height="56" fill="#0B1120"/>
-        <!-- Diagonal dividing slice -->
-        <polygon points="0,0 1440,20 1440,56 0,56" fill="#061225"/>
-        <!-- Gold accent line along diagonal -->
-        <line x1="0" y1="0" x2="1440" y2="20" stroke="url(#scan-gold)" stroke-width="1.2"/>
-        <!-- Cyan accent line, offset slightly -->
-        <line x1="0" y1="4" x2="1440" y2="24" stroke="url(#scan-cyan)" stroke-width="0.7"/>
-      </svg>
-    </div>
+    <!-- TRANSITION: Commercial → Technology -->
+    <div aria-hidden="true" style="height:1px;background:rgba(255,215,0,0.2);margin:0;padding:0;pointer-events:none;"></div>
 
     <!-- TECHNOLOGY & DIGITAL TWIN -->
-    <section id="technology" class="py-24 relative overflow-hidden syntra-industrial-surface">
+    <section id="technology" class="py-24 relative overflow-hidden" style="background:#0B1120;">
 
-      <!-- LAYER 1: dark navy base is set via .syntra-industrial-surface -->
+      <!-- LAYER 1: deep navy base -->
+      <div class="absolute inset-0 z-0 pointer-events-none" style="background:#0B1120;"></div>
 
-      <!-- LAYER 2: industrial background image -->
-      <div class="absolute inset-0 z-0 pointer-events-none" id="tech-bg-img" style="background-size:cover;background-position:center;opacity:0.20;"></div>
-      <script>document.getElementById('tech-bg-img').style.backgroundImage="url('/assets/images/iStock-1611975328.jpg')";</script>
+      <!-- LAYER 2: brand diagonal slash lines (brand guideline cover pattern) -->
+      <svg class="absolute inset-0 w-full h-full z-0 pointer-events-none" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+        <!-- Primary diagonals from bottom-left to top-right -->
+        <line x1="-200" y1="1000" x2="1100" y2="-200" stroke="rgba(255,255,255,0.045)" stroke-width="1.5"/>
+        <line x1="0" y1="1000" x2="1300" y2="-200" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+        <line x1="200" y1="1000" x2="1500" y2="-200" stroke="rgba(255,255,255,0.022)" stroke-width="1"/>
+        <!-- Counter diagonals from bottom-right to top-left -->
+        <line x1="1640" y1="800" x2="300" y2="-200" stroke="rgba(255,255,255,0.04)" stroke-width="1.5"/>
+        <line x1="1640" y1="550" x2="550" y2="-200" stroke="rgba(255,255,255,0.028)" stroke-width="1"/>
+        <line x1="1640" y1="300" x2="800" y2="-200" stroke="rgba(255,255,255,0.018)" stroke-width="1"/>
+        <!-- Signal yellow accent diagonals -->
+        <line x1="-200" y1="700" x2="700" y2="-200" stroke="rgba(255,214,0,0.065)" stroke-width="1.5"/>
+        <line x1="1640" y1="400" x2="750" y2="-200" stroke="rgba(255,214,0,0.05)" stroke-width="1.5"/>
+        <!-- Top corner rectangle (brand guideline cover element) -->
+        <rect x="800" y="0" width="300" height="100" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <!-- Left spine vertical line -->
+        <line x1="0" y1="150" x2="0" y2="750" stroke="rgba(255,215,0,0.5)" stroke-width="4"/>
+      </svg>
 
-      <!-- LAYER 3: dark readability overlay -->
-      <div class="absolute inset-0 z-0 pointer-events-none" style="background:linear-gradient(90deg,rgba(3,8,20,0.88) 0%,rgba(4,10,24,0.78) 40%,rgba(5,13,30,0.84) 100%);"></div>
+      <!-- LAYER 3: subtle vignette for depth -->
+      <div class="absolute inset-0 z-0 pointer-events-none" style="background:radial-gradient(circle at center,rgba(0,0,0,0) 30%,rgba(0,0,0,0.40) 100%);"></div>
 
-      <!-- LAYER 4: atmospheric blue glow -->
-      <div class="absolute inset-0 z-0 pointer-events-none" style="background:radial-gradient(circle at 72% 28%,rgba(20,90,180,0.18) 0%,rgba(20,90,180,0.09) 20%,rgba(20,90,180,0.00) 45%),radial-gradient(circle at 18% 72%,rgba(0,140,255,0.09) 0%,rgba(0,140,255,0.00) 38%);"></div>
+      <!-- LAYER 4: atmospheric blue/gold glow -->
+      <div class="absolute inset-0 z-0 pointer-events-none" style="background:radial-gradient(circle at 72% 28%,rgba(20,90,180,0.14) 0%,rgba(20,90,180,0.06) 22%,transparent 45%),radial-gradient(circle at 18% 72%,rgba(0,140,255,0.07) 0%,transparent 38%),radial-gradient(ellipse at 50% 50%,rgba(255,214,0,0.03) 0%,transparent 55%);"></div>
 
-      <!-- LAYER 5: vignette -->
-      <div class="absolute inset-0 z-0 pointer-events-none" style="background:radial-gradient(circle at center,rgba(0,0,0,0) 38%,rgba(0,0,0,0.32) 100%);"></div>
-
-      <!-- dark grid (very subtle on dark bg) -->
-      <div class="absolute inset-0 z-0 pointer-events-none" style="background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:40px 40px;opacity:1;"></div>
-
-      <!-- SPOTLIGHT LAYER — scroll-driven, fades in/out as section enters/leaves viewport -->
+      <!-- SPOTLIGHT LAYER - scroll-driven, fades in/out as section enters/leaves viewport -->
       <div id="tech-spotlight" class="absolute z-0 pointer-events-none" style="
         top: -40%;
         left: -10%;
@@ -884,18 +851,19 @@
         will-change: opacity, transform;
       "></div>
 
-      <!-- DIAMOND ACCENTS -->
-      <div class="absolute z-0 pointer-events-none" style="top:-70px;right:-90px;width:300px;height:300px;transform:rotate(45deg);border:1px solid rgba(255,214,0,0.18);"></div>
-      <div class="absolute z-0 pointer-events-none hidden sm:block" style="bottom:8%;left:-50px;width:180px;height:180px;transform:rotate(45deg);border:1px solid rgba(0,174,239,0.13);"></div>
-      <div class="absolute z-0 pointer-events-none hidden lg:block" style="top:30%;right:28%;width:110px;height:110px;transform:rotate(45deg);border:1px solid rgba(255,214,0,0.07);"></div>
+      <!-- GHOST WATERMARK "SYNHUB" -->
+      <div class="absolute z-0 pointer-events-none select-none hidden lg:block" style="top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(100px,14vw,200px);text-transform:uppercase;letter-spacing:-0.02em;line-height:1;color:rgba(255,255,255,0.018);white-space:nowrap;" aria-hidden="true">SYNHUB</div>
 
-      <div class="container mx-auto px-4 sm:px-6 relative z-10" id="infrastructure">
+      <!-- Left-spine yellow bar -->
+      <div class="absolute left-0 top-0 bottom-0 z-[1] pointer-events-none" style="width:4px;background:linear-gradient(to bottom,transparent 0%,rgba(255,214,0,0.35) 25%,rgba(255,214,0,0.6) 50%,rgba(255,214,0,0.35) 75%,transparent 100%);" aria-hidden="true"></div>
+
+      <div class="container mx-auto px-6 relative z-10" id="infrastructure">
             <div class="mb-20 max-w-2xl">
-                <div class="inline-block px-4 py-2 mb-6 font-bold text-xs tracking-wider uppercase" style="background-color: rgba(8, 145, 178, 0.22); color: #0891B2; border: 1px solid rgba(8,145,178,0.25);">
+                <div class="section-eyebrow">
                     THE ARCHITECTURE
                 </div>
                 <div class="syntra-yellow-bar"></div>
-                <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase" style="color:#FFFFFF;">The <span style="color:#FFD700; font-family:inherit; font-size:inherit; font-weight:900;">SYNHUB™</span> Ecosystem</h2>
+                <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase" style="color:#FFFFFF;">The <span style="color:#FFD700; font-family:inherit; font-size:inherit; font-weight:700;">SYNHUB™</span> Ecosystem</h2>
                 <div style="display:flex; gap:16px; align-items:stretch; margin-top:1rem; position:relative;">
                     <div id="synhub-desc-spotlight" aria-hidden="true" style="
                         position:absolute;
@@ -914,558 +882,455 @@
                         border-radius:50%;
                     "></div>
                     <div style="width:8px; background:#FFD700; border-radius:2px; flex-shrink:0; position:relative; z-index:1;"></div>
-                    <p class="text-base sm:text-lg font-light leading-relaxed" style="color:#94A3B8; position:relative; z-index:1;">Modular refining network connecting diverse feedstock sources to certified critical mineral outputs — serving battery, aerospace, defence, and advanced industrial supply chains.</p>
+                    <p class="text-base sm:text-lg font-light leading-relaxed" style="color:#94A3B8; position:relative; z-index:1;">Modular refining network connecting diverse feedstock sources to certified critical mineral outputs, serving battery, aerospace, defence, and advanced industrial supply chains.</p>
                 </div>
             </div>
 
-            <!-- PREMIUM SVG ECOSYSTEM ILLUSTRATION -->
-            <div class="relative w-full" id="synhub-diagram">
+            <!-- SYNTRA ECOSYSTEM ILLUSTRATION -->
+            <div id="syntra-ecosystem" class="w-full mt-8" style="background:#0B1120;">
               <style>
-                #synhub-diagram {
-                  --gold: #FFD700;
-                }
-                /* ── NEW DIAGRAM STYLES ── */
-                .eco-node-link { text-decoration: none; outline: none; display: block; }
-                .eco-node {
-                  transition: transform 0.22s ease, filter 0.22s ease;
+                /* ─── Flow cards ─── */
+                #syntra-ecosystem .flow-card {
+                  position: relative;
+                  background: rgba(17,26,48,0.5);
+                  border: none;
+                  border-radius: 0;
+                  padding: 1.25rem 1.5rem;
+                  display: flex;
+                  align-items: center;
+                  gap: 1.25rem;
                   cursor: pointer;
-                  transform-box: fill-box;
-                  transform-origin: center;
-                  isolation: isolate;
+                  text-decoration: none;
+                  /* Fixed card height so arrow rows align perfectly */
+                  height: 5.75rem;
+                  box-sizing: border-box;
+                  transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
                 }
-                .eco-node-link:hover .eco-node { transform: scale(1.025); }
-                .eco-node-link[data-side="gold"]:hover .eco-node { filter: drop-shadow(0 0 14px rgba(255,215,0,0.5)); }
-                .eco-node-link[data-side="cyan"]:hover .eco-node { filter: drop-shadow(0 0 14px rgba(9,145,178,0.5)); }
-                .eco-flow-dot { animation: eco-flow 2.4s linear infinite; }
-                .eco-flow-dot-b { animation: eco-flow 2.4s linear infinite; animation-delay: 1.2s; }
-                .eco-flow-out { animation: eco-flow-rev 2.4s linear infinite; }
-                .eco-flow-out-b { animation: eco-flow-rev 2.4s linear infinite; animation-delay: 1.2s; }
-                @keyframes eco-flow { 0%{offset-distance:0%;opacity:0} 8%{opacity:1} 88%{opacity:1} 100%{offset-distance:100%;opacity:0} }
-                @keyframes eco-flow-rev { 0%{offset-distance:0%;opacity:0} 8%{opacity:1} 88%{opacity:1} 100%{offset-distance:100%;opacity:0} }
-                .eco-breathe { animation: eco-breathe-anim 3.5s ease-in-out infinite; }
-                @keyframes eco-breathe-anim { 0%,100%{opacity:.5} 50%{opacity:1} }
-                .eco-breathe2 { animation: eco-breathe-anim 3.5s ease-in-out infinite; animation-delay:1.75s; }
-                .eco-pulse-ring { animation: eco-pulse-ring-anim 2.8s ease-out infinite; }
-                @keyframes eco-pulse-ring-anim { 0%{r:32;opacity:.5} 100%{r:60;opacity:0} }
-                .eco-orbit { animation: eco-orbit-anim 14s linear infinite; transform-origin: 600px 265px; }
-                .eco-orbit-rev { animation: eco-orbit-anim 10s linear infinite reverse; transform-origin: 600px 265px; }
-                @keyframes eco-orbit-anim { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-                .eco-scanline { animation: eco-scan 4.5s ease-in-out infinite; }
-                @keyframes eco-scan { 0%{transform:translateY(-110px);opacity:0} 10%{opacity:.4} 90%{opacity:.4} 100%{transform:translateY(110px);opacity:0} }
-                .eco-status-blink { animation: eco-blink 1.5s ease-in-out infinite; }
-                @keyframes eco-blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-                .eco-el-tile { cursor: default; }
-                .eco-el-tile:hover rect:first-child { fill: #1a2540; }
-                .eco-el-tile:hover text { fill: #0891b2; }
-                .sh-flow-dot  { animation: sh-flow 2.8s linear infinite; }
-                .sh-flow-dot-2 { animation-delay: 0.93s; }
-                .sh-flow-dot-3 { animation-delay: 1.86s; }
-                .sh-flow-out  { animation: sh-flow 2.8s linear infinite; }
-                .sh-flow-out-2 { animation-delay: 0.93s; }
-                .sh-flow-out-3 { animation-delay: 1.86s; }
-                @keyframes sh-flow {
-                  0%   { offset-distance: 0%;   opacity: 0; }
-                  8%   { opacity: 1; }
-                  88%  { opacity: 1; }
-                  100% { offset-distance: 100%; opacity: 0; }
+                #syntra-ecosystem .flow-card:hover {
+                  background: rgba(17,26,48,1);
+                  border-color: rgba(255,215,0,0.35);
+                  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
                 }
-                .sh-orbit-ring     { animation: sh-orbit 18s linear infinite; transform-origin: 500px 258px; }
-                .sh-orbit-ring-rev { animation: sh-orbit 12s linear infinite reverse; transform-origin: 500px 258px; }
-                @keyframes sh-orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-                .sh-pulse  { animation: sh-pulse-anim 3s ease-in-out infinite; }
-                @keyframes sh-pulse-anim  { 0%,100%{opacity:.15;r:62} 50%{opacity:.4;r:70} }
-                .sh-pulse2 { animation: sh-pulse2-anim 3s ease-in-out infinite; animation-delay: 1.5s; }
-                @keyframes sh-pulse2-anim { 0%,100%{opacity:.08;r:80} 50%{opacity:.25;r:90} }
-                .sh-scanline { animation: sh-scan 5s ease-in-out infinite; }
-                @keyframes sh-scan {
-                  0%   { transform: translateY(-130px); opacity: 0; }
-                  10%  { opacity: 0.5; }
-                  90%  { opacity: 0.5; }
-                  100% { transform: translateY(130px);  opacity: 0; }
+                #syntra-ecosystem .flow-card.right {
+                  flex-direction: row-reverse;
+                  text-align: right;
                 }
-                .sh-circ-path { animation: sh-circ-flow 3.5s linear infinite; }
-                @keyframes sh-circ-flow { 0%{stroke-dashoffset:200} 100%{stroke-dashoffset:0} }
-                .sh-card-hover { cursor: default; }
-                .sh-card-hover:hover .sh-card-bg { fill: #1E293B; }
-                .sh-el-hover { cursor: default; transition: all 0.2s; }
-                .sh-el-hover:hover rect { stroke: rgba(8,145,178,0.6); fill: #1E293B; }
-                .sh-el-hover:hover text { fill: #0891B2; }
-                .sh-status-blink { animation: sh-blink 1.4s ease-in-out infinite; }
-                @keyframes sh-blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
-                .c-breathe  { animation: c-breathe-anim 4s ease-in-out infinite; }
-                .c-breathe2 { animation: c-breathe-anim 4s ease-in-out infinite; animation-delay: 2s; }
-                @keyframes c-breathe-anim { 0%,100%{opacity:.6} 50%{opacity:1} }
-                .c-node { cursor: default; transition: all 0.25s; }
-                .c-node:hover .c-node-ring { stroke-opacity: 1; }
-                .c-el-tile { cursor: default; }
-                .c-el-tile:hover rect:first-child { fill: #1E293B; stroke-opacity: 0.7; }
-                .c-el-tile:hover text { fill: #0991b2; }
+                /* Icon circle */
+                #syntra-ecosystem .icon-circle {
+                  flex-shrink: 0;
+                  width: 3.25rem;
+                  height: 3.25rem;
+                  border-radius: 9999px;
+                  background: rgba(30,41,59,0.8);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #94a3b8;
+                  transition: color 0.25s, background 0.25s;
+                }
+                #syntra-ecosystem .icon-circle img {
+                  transition: filter 0.25s;
+                }
+                #syntra-ecosystem .flow-card:hover .icon-circle {
+                  color: #FFD700;
+                  background: rgba(255,215,0,0.07);
+                }
+                #syntra-ecosystem .flow-card:hover .icon-circle img {
+                  filter: invert(1) sepia(1) saturate(3) hue-rotate(5deg) brightness(1.1);
+                }
+                /* ID marker */
+                #syntra-ecosystem .card-id {
+                  position: absolute;
+                  top: 0.4rem;
+                  right: 0.5rem;
+                  font-size: 0.45rem;
+                  font-family: monospace;
+                  letter-spacing: 0.12em;
+                  color: rgba(51,65,85,0.8);
+                }
 
-                .c-node-link { text-decoration: none; outline: none; }
-                .c-node-link g.c-node { cursor: pointer; transition: transform 0.2s ease, filter 0.2s ease; transform-box: fill-box; transform-origin: center; }
-                .c-node-link:hover g.c-node { transform: scale(1.02); }
-                .c-node-link[data-side="gold"]:hover g.c-node { filter: drop-shadow(0 0 12px rgba(255,215,0,0.4)); }
-                .c-node-link[data-side="cyan"]:hover g.c-node { filter: drop-shadow(0 0 12px rgba(9,145,178,0.4)); }
+                /* ─── Grid layout for the 3-col ecosystem diagram ─── */
+                #syntra-ecosystem,
+                #syntra-ecosystem .eco-grid,
+                #syntra-ecosystem .eco-left,
+                #syntra-ecosystem .eco-right,
+                #syntra-ecosystem .eco-center,
+                #syntra-ecosystem .eco-cards {
+                  background: #0B1120;
+                }
+                #syntra-ecosystem .eco-left,
+                #syntra-ecosystem .eco-right {
+                  border: none !important;
+                  outline: none !important;
+                  box-shadow: none !important;
+                  border-radius: 0 !important;
+                  padding: 0 !important;
+                }
+                #syntra-ecosystem .eco-cards {
+                  border: none !important;
+                  outline: none !important;
+                  box-shadow: none !important;
+                  border-radius: 0 !important;
+                }
+                @media (min-width: 1024px) {
+                  #syntra-ecosystem .eco-grid {
+                    display: grid;
+                    grid-template-columns: 1fr auto 1fr;
+                    align-items: center;
+                    gap: 0;
+                  }
+                  /* Left and right columns stretch to match center card height and center their card groups */
+                  #syntra-ecosystem .eco-left,
+                  #syntra-ecosystem .eco-right {
+                    display: flex;
+                    flex-direction: column;
+                    align-self: stretch;
+                  }
+                  #syntra-ecosystem .eco-left .eco-cards,
+                  #syntra-ecosystem .eco-right .eco-cards {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    gap: 1.5rem;
+                  }
+                  #syntra-ecosystem .eco-center {
+                    align-self: stretch;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                  }
+                }
+
+                /* ─── Center panel ─── */
+                #syntra-ecosystem .center-outer {
+                  background: #111A30;
+                  border: 1px solid rgba(234,179,8,0.4);
+                  border-radius: 1rem;
+                  padding: 0.25rem;
+                  position: relative;
+                  overflow: hidden;
+                  box-shadow: 0 0 40px rgba(234,179,8,0.1);
+                  transition: box-shadow 0.35s;
+                }
+                #syntra-ecosystem .center-outer:hover {
+                  box-shadow: 0 0 64px rgba(234,179,8,0.18);
+                }
+                #syntra-ecosystem .center-inner {
+                  background: #0B1120;
+                  border-radius: 0.75rem;
+                  padding: 2rem 1.75rem;
+                  height: 100%;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  text-align: center;
+                  border: 1px solid rgba(30,41,59,0.5);
+                }
+
+                /* ─── SYNHUB hover block ─── */
+                #syntra-ecosystem .synhub-block {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  width: 100%;
+                  padding: 0.875rem 1rem;
+                  border-radius: 0.375rem;
+                  cursor: default;
+                  transition: background 0.25s;
+                  margin-bottom: 1.75rem;
+                }
+                #syntra-ecosystem .synhub-block:hover {
+                  background: rgba(255,215,0,0.05);
+                }
+                #syntra-ecosystem .synhub-name {
+                  font-size: 1.875rem;
+                  font-weight: 700;
+                  font-family: 'Oswald', sans-serif;
+                  letter-spacing: 0.1em;
+                  color: #ffffff;
+                  margin-bottom: 0.25rem;
+                  transition: color 0.22s;
+                }
+                #syntra-ecosystem .synhub-block:hover .synhub-name { color: #FFD700; }
+                #syntra-ecosystem .synhub-sub {
+                  font-size: 0.6rem;
+                  letter-spacing: 0.2em;
+                  text-transform: uppercase;
+                  color: rgba(255,215,0,0.75);
+                  transition: color 0.22s;
+                }
+                #syntra-ecosystem .synhub-block:hover .synhub-sub { color: rgba(255,215,0,1); }
+
+                /* ─── SYNCORE hover card ─── */
+                #syntra-ecosystem .syncore-card {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 0.3rem;
+                  width: 100%;
+                  padding: 0.9rem 1.25rem 1rem;
+                  border-radius: 0.5rem;
+                  border: 1px solid rgba(255,215,0,0.55);
+                  background: rgba(255,215,0,0.08);
+                  box-shadow: 0 0 20px rgba(255,215,0,0.1), inset 0 1px 0 rgba(255,215,0,0.12);
+                  cursor: default;
+                  margin-bottom: 1.75rem;
+                }
+                #syntra-ecosystem .syncore-eyebrow {
+                  font-size: 0.55rem;
+                  letter-spacing: 0.22em;
+                  text-transform: uppercase;
+                  font-family: 'Inter', sans-serif;
+                  color: rgba(255,215,0,0.5);
+                }
+                #syntra-ecosystem .syncore-name {
+                  font-size: 1.15rem;
+                  font-weight: 700;
+                  font-family: 'Oswald', sans-serif;
+                  letter-spacing: 0.1em;
+                  text-transform: uppercase;
+                  color: #ffffff;
+                  line-height: 1.1;
+                }
+                #syntra-ecosystem .syncore-name strong {
+                  color: #FFD700;
+                }
+                #syntra-ecosystem .syncore-sub {
+                  font-size: 0.58rem;
+                  letter-spacing: 0.18em;
+                  text-transform: uppercase;
+                  font-family: 'Inter', sans-serif;
+                  color: rgba(255,215,0,0.4);
+                }
+
+                /* ─── Mineral output badges ─── */
+                #syntra-ecosystem .minerals-grid {
+                  display: grid;
+                  grid-template-columns: repeat(6, 1fr);
+                  gap: 0.4rem;
+                  width: 100%;
+                }
+                #syntra-ecosystem .elem-badge {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  cursor: default;
+                }
+                #syntra-ecosystem .elem-badge img.sym {
+                  width: 80%;
+                  max-width: 2.75rem;
+                  aspect-ratio: 1;
+                  border-radius: 0.2rem;
+                  object-fit: contain;
+                  padding: 0.15rem;
+                  background: rgba(255,255,255,0.04);
+                  border: 1px solid rgba(51,65,85,0.6);
+                  transition: background 0.22s, border-color 0.22s, transform 0.22s;
+                  filter: brightness(0) invert(1);
+                }
+                #syntra-ecosystem .elem-badge:hover img.sym {
+                  background: rgba(255,215,0,0.07);
+                  border-color: rgba(255,215,0,0.45);
+                  transform: translateY(-2px);
+                  filter: brightness(1) contrast(1.1);
+                }
+
+                /* ─── Ecosystem section title - centered, overrides global left-align rule ─── */
+                #syntra-ecosystem .ecosystem-main-header {
+                  width: 100%;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center !important;
+                  justify-content: center !important;
+                  text-align: center !important;
+                  margin-left: auto;
+                  margin-right: auto;
+                  margin-bottom: 1.5rem;
+                  pointer-events: none;
+                }
+                #syntra-ecosystem .ecosystem-main-header p,
+                #syntra-ecosystem .ecosystem-main-header h2 {
+                  text-align: center !important;
+                  width: 100%;
+                }
               </style>
 
-              <!-- ECOSYSTEM DIAGRAM v5 — HORIZONTAL FLOW WITH AGGREGATE NODES + CIRCULAR ECONOMY -->
-              <div class="hidden md:block w-full" style="border-radius:6px;overflow:hidden;box-shadow:0 0 80px rgba(0,0,0,0.6);" id="synhub-circ-wrap">
-                <svg id="synhub-circ" viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg" class="w-full" style="font-family:'Inter',sans-serif;display:block;" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
-                  <!-- ══ v5 DEFS ══ -->
-                  <defs>
-                    <filter id="c-glow-gold" x="-60%" y="-60%" width="220%" height="220%" color-interpolation-filters="sRGB">
-                      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b"/>
-                      <feComposite in="b" in2="SourceGraphic" operator="over"/>
-                    </filter>
-                    <filter id="c-glow-gold-lg" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="sRGB">
-                      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="b"/>
-                      <feComposite in="b" in2="SourceGraphic" operator="over"/>
-                    </filter>
-                    <filter id="c-glow-cyan" x="-60%" y="-60%" width="220%" height="220%" color-interpolation-filters="sRGB">
-                      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b"/>
-                      <feComposite in="b" in2="SourceGraphic" operator="over"/>
-                    </filter>
-                    <filter id="c-glow-cyan-lg" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="sRGB">
-                      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="b"/>
-                      <feComposite in="b" in2="SourceGraphic" operator="over"/>
-                    </filter>
-                    <filter id="c-shadow" x="-20%" y="-20%" width="140%" height="140%">
-                      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
-                    </filter>
-                    <filter id="hub-glow-wide" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="sRGB">
-                      <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="b"/>
-                      <feComposite in="b" in2="SourceGraphic" operator="over"/>
-                    </filter>
-                    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stop-color="#060c18"/>
-                      <stop offset="50%" stop-color="#0b1426"/>
-                      <stop offset="100%" stop-color="#060c18"/>
-                    </linearGradient>
-                    <linearGradient id="hub-body-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stop-color="#141f38"/>
-                      <stop offset="100%" stop-color="#080e1e"/>
-                    </linearGradient>
-                    <linearGradient id="track-line-gold" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stop-color="#6b7280" stop-opacity="0"/>
-                      <stop offset="30%" stop-color="#6b7280" stop-opacity="0.8"/>
-                      <stop offset="70%" stop-color="#6b7280" stop-opacity="0.8"/>
-                      <stop offset="100%" stop-color="#6b7280" stop-opacity="0"/>
-                    </linearGradient>
-                    <linearGradient id="track-line-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stop-color="#6b7280" stop-opacity="0"/>
-                      <stop offset="30%" stop-color="#6b7280" stop-opacity="0.8"/>
-                      <stop offset="70%" stop-color="#6b7280" stop-opacity="0.8"/>
-                      <stop offset="100%" stop-color="#6b7280" stop-opacity="0"/>
-                    </linearGradient>
-                    <linearGradient id="agg-node-gold" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stop-color="#111827" stop-opacity="1"/>
-                      <stop offset="100%" stop-color="#0d1220" stop-opacity="1"/>
-                    </linearGradient>
-                    <linearGradient id="agg-node-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stop-color="#111827" stop-opacity="1"/>
-                      <stop offset="100%" stop-color="#0d1220" stop-opacity="1"/>
-                    </linearGradient>
-                    <linearGradient id="circ-arc-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stop-color="#6b7280" stop-opacity="0.9"/>
-                      <stop offset="30%" stop-color="#6b7280" stop-opacity="0.6"/>
-                      <stop offset="70%" stop-color="#6b7280" stop-opacity="0.6"/>
-                      <stop offset="100%" stop-color="#6b7280" stop-opacity="0.9"/>
-                    </linearGradient>
-                    <pattern id="bg-dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                      <circle cx="20" cy="20" r="0.7" fill="rgba(148,163,184,0.06)"/>
-                    </pattern>
-                    <clipPath id="hub-clip"><rect x="480" y="130" width="240" height="420" rx="6"/></clipPath>
-                    <marker id="loop-arrow-fwd" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
-                      <path d="M1,2 L8,5 L1,8 Z" fill="#6b7280" opacity="0.85"/>
-                    </marker>
-                    <marker id="loop-arrow-rev" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto-start-reverse">
-                      <path d="M1,2 L8,5 L1,8 Z" fill="#6b7280" opacity="0.75"/>
-                    </marker>
-                  </defs>
-
-                  <!-- ══ BACKGROUND ══ -->
-                  <rect width="1200" height="760" fill="url(#bg-grad)"/>
-                  <rect width="1200" height="760" fill="url(#bg-dots)"/>
-
-                  <!-- Atmospheric glow zones -->
-                  <ellipse cx="165" cy="360" rx="220" ry="220" fill="#6b7280" fill-opacity="0.025"/>
-                  <ellipse cx="600" cy="360" rx="200" ry="200" fill="#ffd700" fill-opacity="0.03"/>
-                  <ellipse cx="1035" cy="360" rx="220" ry="220" fill="#6b7280" fill-opacity="0.025"/>
-
-                  <!-- ══ CIRCULAR ECONOMY LOOP — CLEAN STATIC ══ -->
-
-                  <!-- Top arc: Refined materials returned to market -->
-                  <path d="M 960,180 C 960,68 240,68 240,180"
-                    stroke="rgba(107,114,128,0.35)" stroke-width="1.5" fill="none"/>
-                  <!-- Top arc label removed -->
-
-                  <!-- Bottom arc: End-of-life materials return as feedstock -->
-                  <path d="M 240,540 C 240,652 960,652 960,540"
-                    stroke="rgba(107,114,128,0.35)" stroke-width="1.5" fill="none"/>
-                  <!-- Bottom arc label removed -->
-
-                  <!-- ══ HORIZONTAL RAIL TRACKS ══ -->
-                  <!-- Gray inbound track (feedstock → hub) -->
-                  <rect x="310" y="227" width="170" height="1.5" fill="url(#track-line-gold)" opacity="0.5"/>
-                  <rect x="310" y="338" width="170" height="1.5" fill="url(#track-line-gold)" opacity="0.7"/>
-                  <rect x="310" y="448" width="170" height="1.5" fill="url(#track-line-gold)" opacity="0.5"/>
-                  <rect x="310" y="226" width="170" height="4" fill="#6b7280" opacity="0.04"/>
-                  <rect x="310" y="337" width="170" height="4" fill="#6b7280" opacity="0.06"/>
-                  <rect x="310" y="447" width="170" height="4" fill="#6b7280" opacity="0.04"/>
-
-                  <!-- Gray outbound track (hub → end markets) -->
-                  <rect x="720" y="227" width="170" height="1.5" fill="url(#track-line-cyan)" opacity="0.5"/>
-                  <rect x="720" y="338" width="170" height="1.5" fill="url(#track-line-cyan)" opacity="0.7"/>
-                  <rect x="720" y="448" width="170" height="1.5" fill="url(#track-line-cyan)" opacity="0.5"/>
-                  <rect x="720" y="226" width="170" height="4" fill="#6b7280" opacity="0.04"/>
-                  <rect x="720" y="337" width="170" height="4" fill="#6b7280" opacity="0.06"/>
-                  <rect x="720" y="447" width="170" height="4" fill="#6b7280" opacity="0.04"/>
-
-                  <!-- ══ CONNECTOR DOTS — left side of hub ══ -->
-                  <circle cx="480" cy="228" r="3.5" fill="#0b1120" stroke="#6b7280" stroke-width="1.5"/>
-                  <circle cx="480" cy="228" r="1.5" fill="#6b7280"/>
-                  <circle cx="480" cy="339" r="3.5" fill="#0b1120" stroke="#6b7280" stroke-width="1.8"/>
-                  <circle cx="480" cy="339" r="1.8" fill="#6b7280"/>
-                  <circle cx="480" cy="449" r="3.5" fill="#0b1120" stroke="#6b7280" stroke-width="1.5"/>
-                  <circle cx="480" cy="449" r="1.5" fill="#6b7280"/>
-
-                  <!-- ══ CONNECTOR DOTS — right side of hub ══ -->
-                  <circle cx="720" cy="228" r="3.5" fill="#0b1120" stroke="#6b7280" stroke-width="1.5"/>
-                  <circle cx="720" cy="228" r="1.5" fill="#6b7280"/>
-                  <circle cx="720" cy="339" r="3.5" fill="#0b1120" stroke="#6b7280" stroke-width="1.8"/>
-                  <circle cx="720" cy="339" r="1.8" fill="#6b7280"/>
-                  <circle cx="720" cy="449" r="3.5" fill="#0b1120" stroke="#6b7280" stroke-width="1.5"/>
-                  <circle cx="720" cy="449" r="1.5" fill="#6b7280"/>
-
-                  <!-- ══ ANIMATED FLOW PARTICLES — INBOUND (GRAY) ══ -->
-                  <circle r="3" fill="#6b7280" class="eco-flow-dot" style="offset-path:path('M 310,228 L 480,228');offset-rotate:0deg;"/>
-                  <circle r="3" fill="#6b7280" class="eco-flow-dot-b" style="offset-path:path('M 310,228 L 480,228');offset-rotate:0deg;"/>
-                  <circle r="3.5" fill="#6b7280" class="eco-flow-dot" style="offset-path:path('M 310,339 L 480,339');offset-rotate:0deg;animation-delay:0.3s;"/>
-                  <circle r="3.5" fill="#6b7280" class="eco-flow-dot-b" style="offset-path:path('M 310,339 L 480,339');offset-rotate:0deg;animation-delay:0.3s;"/>
-                  <circle r="3" fill="#6b7280" class="eco-flow-dot" style="offset-path:path('M 310,449 L 480,449');offset-rotate:0deg;animation-delay:0.7s;"/>
-                  <circle r="3" fill="#6b7280" class="eco-flow-dot-b" style="offset-path:path('M 310,449 L 480,449');offset-rotate:0deg;animation-delay:0.7s;"/>
-
-                  <!-- ══ ANIMATED FLOW PARTICLES — OUTBOUND (GRAY) ══ -->
-                  <circle r="3" fill="#6b7280" class="eco-flow-out" style="offset-path:path('M 720,228 L 890,228');offset-rotate:0deg;"/>
-                  <circle r="3" fill="#6b7280" class="eco-flow-out-b" style="offset-path:path('M 720,228 L 890,228');offset-rotate:0deg;"/>
-                  <circle r="3.5" fill="#6b7280" class="eco-flow-out" style="offset-path:path('M 720,339 L 890,339');offset-rotate:0deg;animation-delay:0.4s;"/>
-                  <circle r="3.5" fill="#6b7280" class="eco-flow-out-b" style="offset-path:path('M 720,339 L 890,339');offset-rotate:0deg;animation-delay:0.4s;"/>
-                  <circle r="3" fill="#6b7280" class="eco-flow-out" style="offset-path:path('M 720,449 L 890,449');offset-rotate:0deg;animation-delay:0.8s;"/>
-                  <circle r="3" fill="#6b7280" class="eco-flow-out-b" style="offset-path:path('M 720,449 L 890,449');offset-rotate:0deg;animation-delay:0.8s;"/>
-
-                  <!-- ══ AGGREGATE NODE: FEEDSTOCK SOURCES ══ -->
-                  <!-- Vertical bracket line connecting feedstock nodes -->
-                  <line x1="105" y1="193" x2="105" y2="484" stroke="rgba(107,114,128,0.3)" stroke-width="1.5" stroke-dasharray="3 5"/>
-                  <line x1="105" y1="193" x2="118" y2="193" stroke="rgba(107,114,128,0.4)" stroke-width="1.5"/>
-                  <line x1="105" y1="484" x2="118" y2="484" stroke="rgba(107,114,128,0.4)" stroke-width="1.5"/>
-                  <!-- Aggregate node box — spans full height of the three feedstock nodes -->
-                  <rect x="20" y="193" width="78" height="291" rx="4" fill="url(#agg-node-gold)" stroke="rgba(107,114,128,0.4)" stroke-width="1.5"/>
-                  <rect x="20" y="193" width="78" height="4" rx="1" fill="#6b7280" opacity="0.9"/>
-                  <!-- Icon: 3 stacked lines = feedstock -->
-                  <line x1="40" y1="228" x2="80" y2="228" stroke="rgba(107,114,128,0.6)" stroke-width="1.5"/>
-                  <line x1="36" y1="235" x2="80" y2="235" stroke="rgba(107,114,128,0.4)" stroke-width="1"/>
-                  <line x1="38" y1="242" x2="80" y2="242" stroke="rgba(107,114,128,0.3)" stroke-width="0.8"/>
-                  <!-- Label text (rotated vertically) — centered in box -->
-                  <text transform="rotate(-90,59,338)" x="59" y="342" fill="#9ca3af" font-size="12" letter-spacing="3" font-weight="900" text-anchor="middle" font-family="'Oswald',sans-serif">FEEDSTOCK SOURCES</text>
-                  <!-- Count badge -->
-                  <circle cx="59" cy="448" r="11" fill="rgba(107,114,128,0.08)" stroke="rgba(107,114,128,0.35)" stroke-width="1"/>
-                  <text x="59" y="452" fill="#9ca3af" font-size="10" font-weight="900" text-anchor="middle" font-family="'Oswald',sans-serif">3</text>
-                  <!-- Arrow pointing right toward nodes -->
-                  <polygon points="98,339 88,333 88,345" fill="#6b7280" opacity="0.5"/>
-
-                  <!-- ══ AGGREGATE NODE: END MARKETS ══ -->
-                  <!-- Vertical bracket line connecting end market nodes -->
-                  <line x1="1095" y1="193" x2="1095" y2="484" stroke="rgba(107,114,128,0.3)" stroke-width="1.5" stroke-dasharray="3 5"/>
-                  <line x1="1082" y1="193" x2="1095" y2="193" stroke="rgba(107,114,128,0.4)" stroke-width="1.5"/>
-                  <line x1="1082" y1="484" x2="1095" y2="484" stroke="rgba(107,114,128,0.4)" stroke-width="1.5"/>
-                  <!-- Aggregate node box — spans full height of the three end market nodes -->
-                  <rect x="1102" y="193" width="78" height="291" rx="4" fill="url(#agg-node-cyan)" stroke="rgba(107,114,128,0.4)" stroke-width="1.5"/>
-                  <rect x="1102" y="193" width="78" height="4" rx="1" fill="#6b7280" opacity="0.9"/>
-                  <!-- Icon: target/market rings -->
-                  <circle cx="1121" cy="228" r="7" fill="none" stroke="rgba(107,114,128,0.5)" stroke-width="1.2"/>
-                  <circle cx="1121" cy="228" r="3" fill="rgba(107,114,128,0.4)"/>
-                  <!-- Label text — centered in box -->
-                  <text transform="rotate(90,1141,338)" x="1141" y="342" fill="#9ca3af" font-size="12" letter-spacing="3" font-weight="900" text-anchor="middle" font-family="'Oswald',sans-serif">END MARKETS</text>
-                  <!-- Count badge -->
-                  <circle cx="1141" cy="448" r="11" fill="rgba(107,114,128,0.08)" stroke="rgba(107,114,128,0.35)" stroke-width="1"/>
-                  <text x="1141" y="452" fill="#9ca3af" font-size="10" font-weight="900" text-anchor="middle" font-family="'Oswald',sans-serif">3</text>
-                  <!-- Arrow pointing left toward nodes -->
-                  <polygon points="1102,339 1112,333 1112,345" fill="#6b7280" opacity="0.5"/>
-
-                  <!-- ══ COLUMN HEADER LABELS ══ -->
-                  <text x="1000" y="126" fill="#9ca3af" font-size="13" letter-spacing="3" text-anchor="middle" font-weight="900" font-family="'Oswald',sans-serif">END MARKETS</text>
-                  <line x1="900" y1="134" x2="1100" y2="134" stroke="rgba(107,114,128,0.2)" stroke-width="0.8"/>
-                  <text x="205" y="126" fill="#9ca3af" font-size="13" letter-spacing="3" text-anchor="middle" font-weight="900" font-family="'Oswald',sans-serif">FEEDSTOCK SOURCES</text>
-                  <line x1="105" y1="134" x2="305" y2="134" stroke="rgba(107,114,128,0.2)" stroke-width="0.8"/>
-
-
-
-                  <!-- ══ FEEDSTOCK NODE: MINERS ══ -->
-                  <a href="/industries/miners" aria-label="Syntra infrastructure for miners" class="eco-node-link" data-side="gold">
-                  <g class="eco-node" data-node="miners">
-                    <rect x="118" y="193" width="192" height="70" rx="3" fill="#0b1626" stroke="rgba(107,114,128,0.4)" stroke-width="1.2"/>
-                    <rect x="118" y="193" width="192" height="4" rx="1" fill="#6b7280" opacity="0.8"/>
-                    <rect x="118" y="197" width="3" height="62" fill="rgba(107,114,128,0.2)"/>
-                    <text x="131" y="212" fill="rgba(156,163,175,0.7)" font-size="7" letter-spacing="2" font-weight="500" font-family="'JetBrains Mono',monospace">FS·01</text>
-                    <rect x="243" y="200" width="62" height="14" rx="2" fill="rgba(107,114,128,0.08)" stroke="rgba(107,114,128,0.25)" stroke-width="0.8"/>
-                    <text x="274" y="210" fill="rgba(156,163,175,0.7)" font-size="6.5" letter-spacing="1.5" font-weight="700" text-anchor="middle" font-family="'JetBrains Mono',monospace">FEEDSTOCK</text>
-                    <text x="214" y="238" fill="#ffffff" font-size="18" font-weight="600" letter-spacing="2" text-anchor="middle" font-family="'Oswald',sans-serif">MINERS</text>
-                    <text x="214" y="254" fill="#94a3b8" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="'Inter',sans-serif">Ore Concentrates</text>
-                    <circle cx="310" cy="228" r="4.5" fill="#0b1120" stroke="#6b7280" stroke-width="1.5" opacity="0.8"/>
-                    <circle cx="310" cy="228" r="2" fill="#6b7280"/>
-                  </g>
-                  </a>
-
-                  <!-- ══ FEEDSTOCK NODE: RECYCLERS ══ -->
-                  <a href="/industries/recyclers" aria-label="Syntra infrastructure for recyclers" class="eco-node-link" data-side="gold">
-                  <g class="eco-node" data-node="recyclers">
-                    <rect x="118" y="304" width="192" height="70" rx="3" fill="#0d1a28" stroke="rgba(107,114,128,0.55)" stroke-width="1.5"/>
-                    <rect x="118" y="304" width="192" height="4" rx="1" fill="#6b7280"/>
-                    <rect x="118" y="308" width="3" height="62" fill="rgba(107,114,128,0.3)"/>
-                    <text x="131" y="323" fill="rgba(156,163,175,0.7)" font-size="7" letter-spacing="2" font-weight="500" font-family="'JetBrains Mono',monospace">FS·02</text>
-                    <rect x="243" y="311" width="62" height="14" rx="2" fill="rgba(107,114,128,0.08)" stroke="rgba(107,114,128,0.25)" stroke-width="0.8"/>
-                    <text x="274" y="321" fill="rgba(156,163,175,0.7)" font-size="6.5" letter-spacing="1.5" font-weight="700" text-anchor="middle" font-family="'JetBrains Mono',monospace">FEEDSTOCK</text>
-                    <text x="214" y="349" fill="#ffffff" font-size="18" font-weight="600" letter-spacing="2" text-anchor="middle" font-family="'Oswald',sans-serif">RECYCLERS</text>
-                    <text x="214" y="365" fill="#94a3b8" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="'Inter',sans-serif">Black Mass</text>
-                    <circle cx="310" cy="339" r="4.5" fill="#0b1120" stroke="#6b7280" stroke-width="1.8"/>
-                    <circle cx="310" cy="339" r="2.2" fill="#6b7280"/>
-                  </g>
-                  </a>
-
-                  <!-- ══ FEEDSTOCK NODE: OEMs ══ -->
-                  <a href="/industries/oems" aria-label="Syntra infrastructure for OEM manufacturers" class="eco-node-link" data-side="gold">
-                  <g class="eco-node" data-node="oems">
-                    <rect x="118" y="414" width="192" height="70" rx="3" fill="#0b1626" stroke="rgba(107,114,128,0.35)" stroke-width="1.2"/>
-                    <rect x="118" y="414" width="192" height="4" rx="1" fill="#6b7280" opacity="0.6"/>
-                    <rect x="118" y="418" width="3" height="62" fill="rgba(107,114,128,0.15)"/>
-                    <text x="131" y="433" fill="rgba(156,163,175,0.7)" font-size="7" letter-spacing="2" font-weight="500" font-family="'JetBrains Mono',monospace">FS·03</text>
-                    <rect x="243" y="421" width="62" height="14" rx="2" fill="rgba(107,114,128,0.08)" stroke="rgba(107,114,128,0.25)" stroke-width="0.8"/>
-                    <text x="274" y="431" fill="rgba(156,163,175,0.7)" font-size="6.5" letter-spacing="1.5" font-weight="700" text-anchor="middle" font-family="'JetBrains Mono',monospace">FEEDSTOCK</text>
-                    <text x="214" y="459" fill="#ffffff" font-size="18" font-weight="600" letter-spacing="2" text-anchor="middle" font-family="'Oswald',sans-serif">OEMs</text>
-                    <text x="214" y="475" fill="#94a3b8" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="'Inter',sans-serif">Mfg. Scrap</text>
-                    <circle cx="310" cy="449" r="4.5" fill="#0b1120" stroke="#6b7280" stroke-width="1.5" opacity="0.65"/>
-                    <circle cx="310" cy="449" r="2" fill="#6b7280" opacity="0.7"/>
-                  </g>
-                  </a>
-
-                  <!-- ══ CENTRAL HUB: SYNHUB™ + SYNCORE™ ══ -->
-                  <ellipse cx="600" cy="338" rx="165" ry="160" fill="none" stroke="rgba(255,215,0,0.04)" stroke-width="1.5" class="eco-breathe"/>
-                  <ellipse cx="600" cy="338" rx="140" ry="135" fill="none" stroke="rgba(255,215,0,0.06)" stroke-width="1" class="eco-breathe2"/>
-
-                  <rect x="480" y="130" width="240" height="440" rx="6" fill="url(#hub-body-grad)" stroke="rgba(255,215,0,0.55)" stroke-width="1.5"/>
-                  <rect x="480" y="130" width="240" height="5" rx="2" fill="#ffd700"/>
-                  <rect x="480" y="565" width="240" height="5" rx="2" fill="rgba(255,215,0,0.15)"/>
-                  <rect x="480" y="130" width="240" height="3" fill="rgba(255,215,0,0.35)" class="eco-scanline" clip-path="url(#hub-clip)"/>
-
-                  <path d="M 480,160 L 480,130 L 510,130" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.9"/>
-                  <path d="M 720,160 L 720,130 L 690,130" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.9"/>
-                  <path d="M 480,540 L 480,570 L 510,570" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.9"/>
-                  <path d="M 720,540 L 720,570 L 690,570" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.9"/>
-
-                  <text x="714" y="151" fill="rgba(255,215,0,0.35)" font-size="7" letter-spacing="1" text-anchor="end" font-weight="400" font-family="'JetBrains Mono',monospace">v5.0</text>
-                  <line x1="480" y1="158" x2="720" y2="158" stroke="rgba(255,215,0,0.12)" stroke-width="0.8"/>
-
-                  <g class="eco-orbit" style="transform-origin:600px 265px;">
-                    <circle cx="600" cy="265" r="76" fill="none" stroke="rgba(107,114,128,0.15)" stroke-width="1"/>
-                    <circle cx="676" cy="265" r="4" fill="#6b7280"/>
-                  </g>
-                  <g class="eco-orbit-rev" style="transform-origin:600px 265px;">
-                    <circle cx="600" cy="265" r="88" fill="none" stroke="rgba(107,114,128,0.09)" stroke-width="0.8"/>
-                    <circle cx="600" cy="177" r="3" fill="rgba(107,114,128,0.5)"/>
-                  </g>
-                  <circle cx="600" cy="265" r="92" fill="none" stroke="rgba(107,114,128,0.04)" stroke-width="1" class="eco-breathe2"/>
-                  <circle cx="600" cy="265" r="60" fill="rgba(255,215,0,0)" stroke="rgba(255,215,0,0.5)">
-                    <animate attributeName="r" values="60;88;60" dur="3s" repeatCount="indefinite"/>
-                    <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite"/>
-                  </circle>
-
-                  <circle cx="600" cy="265" r="60" fill="#060d1c" stroke="#ffd700" stroke-width="2.5" filter="url(#c-glow-gold-lg)"/>
-                  <circle cx="600" cy="265" r="55" fill="none" stroke="rgba(255,215,0,0.12)" stroke-width="4"/>
-                  <text x="600" y="258" fill="#ffd700" font-size="20" font-weight="700" letter-spacing="2" text-anchor="middle" font-family="'Oswald',sans-serif" dominant-baseline="auto">SYNHUB™</text>
-                  <line x1="556" y1="265" x2="644" y2="265" stroke="rgba(255,215,0,0.35)" stroke-width="0.8"/>
-                  <text x="600" y="281" fill="#ffd700" font-size="10" letter-spacing="3" font-weight="700" text-anchor="middle" font-family="'JetBrains Mono',monospace" opacity="0.85">SYNCORE™</text>
-
-                  <line x1="498" y1="336" x2="702" y2="336" stroke="rgba(255,215,0,0.08)" stroke-width="1"/>
-
-
-                  <line x1="480" y1="228" x2="495" y2="228" stroke="#6b7280" stroke-width="1.5" opacity="0.6"/>
-                  <line x1="480" y1="339" x2="495" y2="339" stroke="#6b7280" stroke-width="2" opacity="0.9"/>
-                  <line x1="480" y1="449" x2="495" y2="449" stroke="#6b7280" stroke-width="1.5" opacity="0.6"/>
-                  <line x1="705" y1="228" x2="720" y2="228" stroke="#6b7280" stroke-width="1.5" opacity="0.6"/>
-                  <line x1="705" y1="339" x2="720" y2="339" stroke="#6b7280" stroke-width="2" opacity="0.9"/>
-                  <line x1="705" y1="449" x2="720" y2="449" stroke="#6b7280" stroke-width="1.5" opacity="0.6"/>
-
-
-                  <!-- Mineral output row in hub -->
-                  <line x1="498" y1="468" x2="702" y2="468" stroke="rgba(107,114,128,0.15)" stroke-width="1"/>
-                  <rect x="498" y="472" width="204" height="84" rx="3" fill="rgba(107,114,128,0.04)" stroke="rgba(107,114,128,0.2)" stroke-width="1"/>
-                  <rect x="498" y="472" width="204" height="3" rx="1" fill="rgba(107,114,128,0.3)"/>
-                  <text x="515" y="503" fill="#9ca3af" font-size="14" font-weight="900" letter-spacing="0" text-anchor="middle" font-family="'JetBrains Mono',monospace">Li</text>
-                  <text x="549" y="503" fill="#9ca3af" font-size="14" font-weight="900" letter-spacing="0" text-anchor="middle" font-family="'JetBrains Mono',monospace">Ni</text>
-                  <text x="583" y="503" fill="#9ca3af" font-size="14" font-weight="900" letter-spacing="0" text-anchor="middle" font-family="'JetBrains Mono',monospace">Co</text>
-                  <text x="617" y="503" fill="#9ca3af" font-size="14" font-weight="900" letter-spacing="0" text-anchor="middle" font-family="'JetBrains Mono',monospace">Mn</text>
-                  <text x="651" y="503" fill="#9ca3af" font-size="14" font-weight="900" letter-spacing="0" text-anchor="middle" font-family="'JetBrains Mono',monospace">Al</text>
-                  <text x="685" y="503" fill="#9ca3af" font-size="14" font-weight="900" letter-spacing="0" text-anchor="middle" font-family="'JetBrains Mono',monospace">Cu</text>
-                  <text x="515" y="516" fill="rgba(156,163,175,0.5)" font-size="6.5" letter-spacing="0" text-anchor="middle" font-family="'JetBrains Mono',monospace">Lithium</text>
-                  <text x="549" y="516" fill="rgba(156,163,175,0.5)" font-size="6.5" letter-spacing="0" text-anchor="middle" font-family="'JetBrains Mono',monospace">Nickel</text>
-                  <text x="583" y="516" fill="rgba(156,163,175,0.5)" font-size="6.5" letter-spacing="0" text-anchor="middle" font-family="'JetBrains Mono',monospace">Cobalt</text>
-                  <text x="617" y="516" fill="rgba(156,163,175,0.5)" font-size="6.5" letter-spacing="0" text-anchor="middle" font-family="'JetBrains Mono',monospace">Mangan.</text>
-                  <text x="651" y="516" fill="rgba(156,163,175,0.5)" font-size="6.5" letter-spacing="0" text-anchor="middle" font-family="'JetBrains Mono',monospace">Alum.</text>
-                  <text x="685" y="516" fill="rgba(156,163,175,0.5)" font-size="6.5" letter-spacing="0" text-anchor="middle" font-family="'JetBrains Mono',monospace">Copper</text>
-                  <text x="600" y="547" fill="#9ca3af" font-size="9.5" letter-spacing="2" text-anchor="middle" font-weight="900" font-family="'JetBrains Mono',monospace">CRITICAL MINERALS OUTPUT</text>
-
-                  <!-- ══ END MARKET NODE: BATTERIES ══ -->
-                  <a href="/industries/batteries" aria-label="Syntra solutions for battery manufacturers" class="eco-node-link" data-side="cyan">
-                  <g class="eco-node" data-node="batteries">
-                    <rect x="890" y="193" width="192" height="70" rx="3" fill="#06131f" stroke="rgba(107,114,128,0.45)" stroke-width="1.5"/>
-                    <rect x="890" y="193" width="192" height="4" rx="1" fill="#6b7280"/>
-                    <rect x="1079" y="197" width="3" height="62" fill="rgba(107,114,128,0.2)"/>
-                    <text x="904" y="212" fill="rgba(156,163,175,0.7)" font-size="7" letter-spacing="2" font-weight="500" font-family="'JetBrains Mono',monospace">EM·01</text>
-                    <text x="986" y="238" fill="#ffffff" font-size="18" font-weight="600" letter-spacing="2" text-anchor="middle" font-family="'Oswald',sans-serif">BATTERIES</text>
-                    <text x="986" y="254" fill="#94a3b8" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="'Inter',sans-serif">EV &amp; Grid Storage</text>
-                    <circle cx="890" cy="228" r="4.5" fill="#06131f" stroke="#6b7280" stroke-width="1.5" opacity="0.9"/>
-                    <circle cx="890" cy="228" r="2" fill="#6b7280"/>
-                  </g>
-                  </a>
-
-                  <!-- ══ END MARKET NODE: AEROSPACE ══ -->
-                  <a href="/industries/aerospace" aria-label="Syntra solutions for aerospace manufacturers" class="eco-node-link" data-side="cyan">
-                  <g class="eco-node" data-node="aerospace">
-                    <rect x="890" y="304" width="192" height="70" rx="3" fill="#06131f" stroke="rgba(107,114,128,0.55)" stroke-width="1.5"/>
-                    <rect x="890" y="304" width="192" height="4" rx="1" fill="#6b7280"/>
-                    <rect x="1079" y="308" width="3" height="62" fill="rgba(107,114,128,0.25)"/>
-                    <text x="904" y="323" fill="rgba(156,163,175,0.7)" font-size="7" letter-spacing="2" font-weight="500" font-family="'JetBrains Mono',monospace">EM·02</text>
-                    <text x="986" y="349" fill="#ffffff" font-size="18" font-weight="600" letter-spacing="2" text-anchor="middle" font-family="'Oswald',sans-serif">AEROSPACE</text>
-                    <text x="986" y="365" fill="#94a3b8" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="'Inter',sans-serif">High-purity alloys</text>
-                    <circle cx="890" cy="339" r="4.5" fill="#06131f" stroke="#6b7280" stroke-width="1.8"/>
-                    <circle cx="890" cy="339" r="2.2" fill="#6b7280"/>
-                  </g>
-                  </a>
-
-                  <!-- ══ END MARKET NODE: DEFENCE ══ -->
-                  <a href="/industries/defence" aria-label="Syntra solutions for defence sector" class="eco-node-link" data-side="cyan">
-                  <g class="eco-node" data-node="defense">
-                    <rect x="890" y="414" width="192" height="70" rx="3" fill="#06131f" stroke="rgba(107,114,128,0.3)" stroke-width="1.2"/>
-                    <rect x="890" y="414" width="192" height="4" rx="1" fill="#6b7280" opacity="0.5"/>
-                    <rect x="1079" y="418" width="3" height="62" fill="rgba(107,114,128,0.15)"/>
-                    <text x="904" y="433" fill="rgba(156,163,175,0.6)" font-size="7" letter-spacing="2" font-weight="500" font-family="'JetBrains Mono',monospace">EM·03</text>
-                    <text x="986" y="459" fill="#ffffff" font-size="18" font-weight="600" letter-spacing="2" text-anchor="middle" font-family="'Oswald',sans-serif">DEFENCE</text>
-                    <text x="986" y="475" fill="#94a3b8" font-size="9.5" letter-spacing="1" text-anchor="middle" font-family="'Inter',sans-serif">Strategic supply</text>
-                    <circle cx="890" cy="449" r="4.5" fill="#06131f" stroke="#6b7280" stroke-width="1.5" opacity="0.55"/>
-                    <circle cx="890" cy="449" r="2" fill="#6b7280" opacity="0.55"/>
-                  </g>
-                  </a>
-
-                  <!-- Signature watermark -->
-                  <image href="/assets/images/SmartRefining_1.svg" x="370" y="690" width="460" height="60" opacity="0.12" style="pointer-events:none;"/>
-
-                </svg>
+              <!-- Section title - centered across full width, outside the grid -->
+              <div class="ecosystem-main-header">
+                <p class="text-xs font-semibold uppercase mb-1" style="letter-spacing:0.3em;color:rgba(255,215,0,0.8);">CLEAN SMART REFINING</p>
+                <h2 class="text-xl sm:text-2xl font-light tracking-wide" style="color:#ffffff;">The Syntra Ecosystem</h2>
               </div>
 
-              <!-- MOBILE LAYOUT — enhanced -->
-              <div class="md:hidden flex flex-col gap-3 p-4 rounded" style="background:linear-gradient(160deg,#060D1B,#0A1428);border:1px solid rgba(107,114,128,0.25);box-shadow:0 4px 40px rgba(0,0,0,0.5);">
-                <p class="font-mono text-[9px] uppercase tracking-[0.3em] text-[#64748B] flex items-center gap-2"><span class="inline-block w-6 h-px bg-[#6b7280] opacity-40"></span>Feedstock Sources</p>
-                <div class="flex flex-col gap-2">
-                  <a href="/industries/miners" class="flex items-center gap-3 px-4 py-3 rounded" style="background:#0F1A2C;border:1px solid rgba(107,114,128,0.2);border-left:3px solid rgba(107,114,128,0.5);text-decoration:none;">
-                    <div class="min-w-0">
-                      <p class="font-mono text-[8px] text-[#9ca3af] uppercase tracking-widest mb-0.5">FS·01</p>
-                      <p class="font-bold text-white text-sm uppercase tracking-wide" style="font-family:'Oswald',sans-serif;">Miners</p>
-                      <p class="text-[10px] text-[#64748B] mt-0.5">Ore Concentrates</p>
-                    </div>
-                  </a>
-                  <a href="/industries/recyclers" class="flex items-center gap-3 px-4 py-3 rounded" style="background:#0F1A2C;border:1px solid rgba(107,114,128,0.35);border-left:3px solid rgba(107,114,128,0.7);text-decoration:none;">
-                    <div class="min-w-0">
-                      <p class="font-mono text-[8px] text-[#9ca3af] uppercase tracking-widest mb-0.5">FS·02</p>
-                      <p class="font-bold text-white text-sm uppercase tracking-wide" style="font-family:'Oswald',sans-serif;">Recyclers</p>
-                      <p class="text-[10px] text-[#94A3B8] mt-0.5">Black Mass</p>
-                    </div>
-                  </a>
-                  <a href="/industries/oems" class="flex items-center gap-3 px-4 py-3 rounded" style="background:#0F1A2C;border:1px solid rgba(107,114,128,0.2);border-left:3px solid rgba(107,114,128,0.45);text-decoration:none;">
-                    <div class="min-w-0">
-                      <p class="font-mono text-[8px] text-[#9ca3af] uppercase tracking-widest mb-0.5">FS·03</p>
-                      <p class="font-bold text-white text-sm uppercase tracking-wide" style="font-family:'Oswald',sans-serif;">OEMs</p>
-                      <p class="text-[10px] text-[#64748B] mt-0.5">Manufacturing Scrap</p>
-                    </div>
-                  </a>
-                </div>
-                <div class="flex justify-center pt-2 pb-0">
-                  <svg width="20" height="28" viewBox="0 0 20 28" fill="none"><line x1="10" y1="0" x2="10" y2="22" stroke="rgba(107,114,128,0.5)" stroke-width="1.5"/><polygon points="10,28 4,18 16,18" fill="rgba(107,114,128,0.6)"/></svg>
-                </div>
-                <div class="relative mt-8 rounded p-5 text-center" style="background:linear-gradient(160deg,#131F35,#080E1C);border:1.5px solid rgba(255,215,0,0.5);box-shadow:0 0 40px rgba(255,215,0,0.08);overflow:visible;">
-                  <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#FFD700] opacity-80"></div>
-                  <div class="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#FFD700] opacity-80"></div>
-                  <div class="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-[#FFD700] opacity-80"></div>
-                  <div class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-[#FFD700] opacity-80"></div>
-                  <div class="absolute top-0 left-0 right-0 h-1" style="background:#FFD700;"></div>
-                  <div class="absolute -top-[13px] left-1/2 -translate-x-1/2 px-3 py-1 font-mono text-[8px] font-bold uppercase tracking-[0.25em] whitespace-nowrap" style="background:#0A1428;color:#9ca3af;border:1px solid rgba(107,114,128,0.4);">Processing Node</div>
-                  <div class="flex items-center justify-center gap-1.5 mb-4 mt-3">
-                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                    <span class="font-mono text-[8px] text-green-400 uppercase tracking-widest">Online</span>
-                  </div>
-                  <div class="relative w-28 h-28 mx-auto mb-4">
-                    <div class="absolute inset-0 rounded-full border border-[#FFD700]/15 animate-ping" style="animation-duration:3s;"></div>
-                    <div class="absolute inset-2 rounded-full border border-[#FFD700]/25" style="animation:spin 12s linear infinite;"></div>
-                    <div class="absolute inset-5 rounded-full border border-[#FFD700]/10" style="animation:spin 8s linear infinite reverse;"></div>
-                    <div class="absolute inset-0 rounded-full flex items-center justify-center">
-                      <div class="text-center">
-                        <p class="font-bold text-xl leading-none tracking-wide" style="font-family:'Oswald',sans-serif;color:#FFD700;text-shadow:0 0 20px rgba(255,215,0,0.6);">SYNHUB™</p>
-                        <p class="font-mono text-[7px] mt-1 tracking-[0.2em]" style="color:rgba(255,215,0,0.5);">SYNCORE™</p>
+              <!-- Main diagram - 3-column grid on desktop, stacked on mobile -->
+              <div class="w-full max-w-6xl mx-auto" style="position:relative;background:#0B1120;">
+
+              <!-- Desktop: 3-col grid. Left col = feedstock+arrows, center = hub, right = arrows+markets -->
+              <div class="flex flex-col eco-grid" style="background:#0B1120;">
+
+                <!-- LEFT column: label + card rows (each row = card + arrow) -->
+                <div class="eco-left flex flex-col w-full z-10" style="background:#0B1120;">
+                  <!-- cards grow to fill; justify-center aligns group to center of main card -->
+                  <div class="eco-cards flex flex-col gap-6">
+
+                    <!-- Row 1: card + arrow -->
+                    <div class="flex items-center gap-0">
+                      <div class="flow-card flex-1" style="cursor:default;">
+                        <div class="icon-circle">
+                          <img src="/assets/images/Equipment-Wagon-Shiny-Stone--Streamline-Freehand.svg" alt="Miners" width="30" height="30" style="filter:invert(1) brightness(0.75);object-fit:contain;" />
+                        </div>
+                        <div class="flex-grow">
+                          <div class="font-medium tracking-wide mb-1 whitespace-nowrap" style="color:#ffffff;">Miners</div>
+                          <div class="text-sm" style="color:#64748b;">Ore Concentrates</div>
+                        </div>
+                      </div>
+                      <div class="hidden lg:flex items-center justify-center flex-shrink-0" style="width:2.5rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.25;color:#94a3b8;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                       </div>
                     </div>
-                  </div>
-                  <div class="grid grid-cols-3 gap-1 mb-2">
-                    <div class="py-1 rounded font-mono text-xs font-bold text-[#9ca3af] text-center" style="background:#0F1A2C;border:1px solid rgba(107,114,128,0.2);">Li</div>
-                    <div class="py-1 rounded font-mono text-xs font-bold text-[#9ca3af] text-center" style="background:#0F1A2C;border:1px solid rgba(107,114,128,0.2);">Ni</div>
-                    <div class="py-1 rounded font-mono text-xs font-bold text-[#9ca3af] text-center" style="background:#0F1A2C;border:1px solid rgba(107,114,128,0.2);">Co</div>
-                    <div class="py-1 rounded font-mono text-xs font-bold text-[#9ca3af] text-center" style="background:#0F1A2C;border:1px solid rgba(107,114,128,0.2);">Mn</div>
-                    <div class="py-1 rounded font-mono text-xs font-bold text-[#9ca3af] text-center" style="background:#0F1A2C;border:1px solid rgba(107,114,128,0.2);">Al</div>
-                    <div class="py-1 rounded font-mono text-xs font-bold text-[#9ca3af] text-center" style="background:#0F1A2C;border:1px solid rgba(107,114,128,0.2);">Cu</div>
-                  </div>
-                  <div class="flex items-center justify-center gap-2 py-2 rounded" style="background:rgba(107,114,128,0.06);border:1px solid rgba(107,114,128,0.25);">
-                    <span class="font-mono text-[8px] font-bold uppercase tracking-[0.2em]" style="color:rgba(156,163,175,0.9);">◈ 99% PURITY</span>
-                  </div>
-                </div>
-                <div class="flex justify-center py-2">
-                  <svg width="20" height="28" viewBox="0 0 20 28" fill="none"><line x1="10" y1="0" x2="10" y2="22" stroke="rgba(107,114,128,0.5)" stroke-width="1.5"/><polygon points="10,28 4,18 16,18" fill="rgba(107,114,128,0.6)"/></svg>
-                </div>
-                <p class="font-mono text-[9px] uppercase tracking-[0.3em] text-[#64748B] flex items-center gap-2"><span class="inline-block w-6 h-px bg-[#6b7280] opacity-50"></span>End Markets</p>
-                <div class="flex flex-col gap-2">
-                  <a href="/industries/batteries" class="flex items-center gap-3 px-4 py-3 rounded" style="background:#0D1929;border:1px solid rgba(107,114,128,0.3);border-left:3px solid rgba(107,114,128,0.6);text-decoration:none;">
-                    <div class="min-w-0">
-                      <p class="font-mono text-[8px] text-[#9ca3af] uppercase tracking-widest mb-0.5">EM·01</p>
-                      <p class="font-bold text-white text-sm uppercase tracking-wide" style="font-family:'Oswald',sans-serif;">Batteries</p>
-                      <p class="text-[10px] text-[#94A3B8] mt-0.5">EV &amp; Grid Storage</p>
+
+                    <!-- Row 2: card + arrow -->
+                    <div class="flex items-center gap-0">
+                      <div class="flow-card flex-1" style="cursor:default;">
+                        <div class="icon-circle">
+                          <img src="/assets/images/Recycling-Sign--Streamline-Ultimate_(1).svg" alt="Recyclers" width="30" height="30" style="filter:invert(1) brightness(0.75);object-fit:contain;" />
+                        </div>
+                        <div class="flex-grow">
+                          <div class="font-medium tracking-wide mb-1 whitespace-nowrap" style="color:#ffffff;">Recyclers</div>
+                          <div class="text-sm" style="color:#64748b;">Black Mass</div>
+                        </div>
+                      </div>
+                      <div class="hidden lg:flex items-center justify-center flex-shrink-0" style="width:2.5rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.25;color:#94a3b8;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                      </div>
                     </div>
-                  </a>
-                  <a href="/industries/aerospace" class="flex items-center gap-3 px-4 py-3 rounded" style="background:#0D1929;border:1px solid rgba(107,114,128,0.35);border-left:3px solid rgba(107,114,128,0.65);text-decoration:none;">
-                    <div class="min-w-0">
-                      <p class="font-mono text-[8px] text-[#9ca3af] uppercase tracking-widest mb-0.5">EM·02</p>
-                      <p class="font-bold text-white text-sm uppercase tracking-wide" style="font-family:'Oswald',sans-serif;">Aerospace</p>
-                      <p class="text-[10px] text-[#64748B] mt-0.5">High-spec alloys</p>
+
+                    <!-- Row 3: card + arrow -->
+                    <div class="flex items-center gap-0">
+                      <div class="flow-card flex-1" style="cursor:default;">
+                        <div class="icon-circle">
+                          <img src="/assets/images/Factory-Building-5--Streamline-Freehand.svg" alt="OEMs" width="30" height="30" style="filter:invert(1) brightness(0.75);object-fit:contain;" />
+                        </div>
+                        <div class="flex-grow">
+                          <div class="font-medium tracking-wide mb-1 whitespace-nowrap" style="color:#ffffff;">OEMs</div>
+                          <div class="text-sm" style="color:#64748b;">Mfg. Scrap</div>
+                        </div>
+                      </div>
+                      <div class="hidden lg:flex items-center justify-center flex-shrink-0" style="width:2.5rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.25;color:#94a3b8;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                      </div>
                     </div>
-                  </a>
-                  <a href="/industries/defence" class="flex items-center gap-3 px-4 py-3 rounded" style="background:#0D1929;border:1px solid rgba(107,114,128,0.2);border-left:3px solid rgba(107,114,128,0.4);text-decoration:none;">
-                    <div class="min-w-0">
-                      <p class="font-mono text-[8px] text-[#9ca3af] uppercase tracking-widest mb-0.5">EM·03</p>
-                      <p class="font-bold text-white text-sm uppercase tracking-wide" style="font-family:'Oswald',sans-serif;">Defence</p>
-                      <p class="text-[10px] text-[#64748B] mt-0.5">Strategic supply</p>
+
+                  </div>
+                </div>
+
+                <!-- CENTER: SYNHUB / SYNCORE -->
+                <div class="eco-center flex flex-col justify-center w-full lg:w-auto lg:flex-shrink-0 z-10 py-6 lg:py-0" style="background:#0B1120;">
+                  <div class="center-outer">
+                    <div style="position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(to right,transparent,#FFD700,transparent);opacity:0.5;pointer-events:none;"></div>
+                    <div class="center-inner">
+
+                      <p style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:#94A3B8;margin-bottom:1.25rem;font-weight:600;">Central Processing Unit</p>
+
+                      <!-- SYNHUB -->
+                      <div class="synhub-block">
+                        <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:0.875rem;flex-shrink:0;" aria-hidden="true">
+                          <polygon points="24,2 46,24 24,46 2,24" stroke="#FFD700" stroke-width="1.5" fill="none"/>
+                          <rect x="17" y="17" width="14" height="14" fill="#FFD700"/>
+                        </svg>
+                        <span class="synhub-name">SYNHUB<sup style="font-size:0.65rem;color:inherit;">™</sup></span>
+                        <span class="synhub-sub">Processing Hub</span>
+                      </div>
+
+                      <div style="width:100%;height:1px;background:linear-gradient(to right,transparent,rgba(51,65,85,0.9),transparent);margin-bottom:1.25rem;"></div>
+
+                      <!-- SYNCORE -->
+                      <div class="syncore-card">
+                        <span class="syncore-eyebrow">Powered by</span>
+                        <span class="syncore-name"><strong>SYNCORE<sup style="font-size:0.55em;letter-spacing:0;font-weight:inherit;">™</sup></strong></span>
+                        <span class="syncore-sub">Refining Technology</span>
+                      </div>
+
+                      <!-- Mineral output badges -->
+                      <div style="margin-top:auto;width:100%;padding-top:0.25rem;">
+                        <p style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:#94A3B8;margin-bottom:0.875rem;font-weight:600;">Critical Minerals Output</p>
+                        <div class="minerals-grid">
+                          <div class="elem-badge"><img class="sym" src="/assets/images/Lithium--Streamline-Ultimate.svg" alt="Lithium" /></div>
+                          <div class="elem-badge"><img class="sym" src="/assets/images/Nickel--Streamline-Ultimate.png" alt="Nickel" /></div>
+                          <div class="elem-badge"><img class="sym" src="/assets/images/Cobalt--Streamline-Ultimate.png" alt="Cobalt" /></div>
+                          <div class="elem-badge"><img class="sym" src="/assets/images/Manganese--Streamline-Ultimate.png" alt="Manganese" /></div>
+                          <div class="elem-badge"><img class="sym" src="/assets/images/Aluminium--Streamline-Ultimate.png" alt="Aluminum" /></div>
+                          <div class="elem-badge"><img class="sym" src="/assets/images/Copper--Streamline-Ultimate.png" alt="Copper" /></div>
+                        </div>
+                      </div>
+
                     </div>
-                  </a>
+                  </div>
                 </div>
-                <div class="flex items-center gap-2 mt-1 py-3 px-4 rounded" style="background:rgba(107,114,128,0.05);border:1px solid rgba(107,114,128,0.2);">
-                  <span class="font-mono text-[8px] uppercase tracking-[0.15em]" style="color:rgba(156,163,175,0.8);">↺ End-of-life materials re-enter the feedstock loop</span>
+
+                <!-- RIGHT column: label + card rows (arrow + card) -->
+                <div class="eco-right flex flex-col w-full z-10" style="background:#0B1120;">
+                  <div class="eco-cards flex flex-col gap-6">
+
+                    <!-- Row 1: arrow + card -->
+                    <div class="flex items-center gap-0">
+                      <div class="hidden lg:flex items-center justify-center flex-shrink-0" style="width:2.5rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.25;color:#94a3b8;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                      </div>
+                      <div class="flow-card right flex-1" style="cursor:default;">
+                        <div class="icon-circle">
+                          <img src="/assets/images/Renewable-Energy-Battery-Charge--Streamline-Freehand.svg" alt="Energy Storage" width="30" height="30" style="filter:invert(1) brightness(0.75);object-fit:contain;" />
+                        </div>
+                        <div class="flex-grow">
+                          <div class="font-medium tracking-wide mb-1 whitespace-nowrap" style="color:#ffffff;">Energy Storage</div>
+                          <div class="text-sm" style="color:#64748b;">EV &amp; Grid Infrastructure</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Row 2: arrow + card -->
+                    <div class="flex items-center gap-0">
+                      <div class="hidden lg:flex items-center justify-center flex-shrink-0" style="width:2.5rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.25;color:#94a3b8;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                      </div>
+                      <div class="flow-card right flex-1" style="cursor:default;">
+                        <div class="icon-circle">
+                          <img src="/assets/images/Microprocessor-Computer-Chip--Streamline-Freehand.svg" alt="Advanced Mfg." width="30" height="30" style="filter:invert(1) brightness(0.75);object-fit:contain;" />
+                        </div>
+                        <div class="flex-grow">
+                          <div class="font-medium tracking-wide mb-1 whitespace-nowrap" style="color:#ffffff;">Advanced Mfg.</div>
+                          <div class="text-sm" style="color:#64748b;">Alloys &amp; Electronics</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Row 3: arrow + card -->
+                    <div class="flex items-center gap-0">
+                      <div class="hidden lg:flex items-center justify-center flex-shrink-0" style="width:2.5rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.25;color:#94a3b8;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                      </div>
+                      <div class="flow-card right flex-1" style="cursor:default;">
+                        <div class="icon-circle">
+                          <img src="/assets/images/Aircraft-Military-Plane--Streamline-Freehand.svg" alt="Strategic &amp; Dual-Use" width="30" height="30" style="filter:invert(1) brightness(0.75);object-fit:contain;" />
+                        </div>
+                        <div class="flex-grow">
+                          <div class="font-medium tracking-wide mb-1 whitespace-nowrap" style="color:#ffffff;">Strategic &amp; Dual-Use</div>
+                          <div class="text-sm" style="color:#64748b;">Sovereign Supply</div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
-                <button onclick="window.openContactModal('Strategic Partnership')" class="w-full py-4 font-head font-bold uppercase text-sm tracking-widest transition-all" style="background:#FFD700;color:#0b1120;">
-                  Learn More
-                </button>
+
               </div>
             </div>
         </div>
 
-      <div class="container mx-auto px-4 sm:px-6 relative z-10 mt-16 sm:mt-20 md:mt-24">
+      <div class="container mx-auto px-6 relative z-10 mt-16 sm:mt-20 md:mt-24">
         <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 lg:items-center">
           <div>
-            <div class="inline-block px-4 py-2 mb-6 font-bold text-xs tracking-wider uppercase" style="background-color: rgba(8, 145, 178, 0.22); color: #0891B2; border: 1px solid rgba(8,145,178,0.25);">
+            <div class="section-eyebrow">
               POWERED BY <span style="color:#0891B2;font-weight:700;">SYNCORE™</span>
             </div>
 
@@ -1493,7 +1358,7 @@
                 "></div>
                 <div style="width:8px; background:#FFD700; border-radius:2px; flex-shrink:0; position:relative; z-index:1;"></div>
                 <p class="text-base sm:text-lg leading-relaxed font-light" style="color:#94A3B8; position:relative; z-index:1;">
-                  Our Digital Twin continuously models and refines the <strong style="color:#FFD700;font-weight:900;">SYNCORE™</strong> process using advanced AI/ML intelligence. It automates critical controls, enhances operational stability, and delivers real&#8209;time visibility across the entire network &mdash; ensuring every <strong style="color:#FFD700;font-weight:900;">SYNHUB™</strong> performs at its highest standard.
+                  Our Digital Twin continuously models the <strong style="color:#FFD700;font-weight:700;">SYNCORE™</strong> process using AI and machine learning. It automates process controls, maintains operational stability, and provides real&#8209;time visibility across the network so every <strong style="color:#FFD700;font-weight:700;">SYNHUB™</strong> node operates to specification.
                 </p>
             </div>
 
@@ -1565,53 +1430,39 @@
       </div>
     </section>
 
-    <!-- TRANSITION: Technology (dark navy) → Partnership (white) — dark wave melts into white -->
-    <div aria-hidden="true" style="position:relative;height:80px;overflow:hidden;background:#ffffff;margin:0;padding:0;pointer-events:none;">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;display:block;">
-        <defs>
-          <linearGradient id="tech-to-white-fade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#061225"/>
-            <stop offset="100%" stop-color="#ffffff"/>
-          </linearGradient>
-        </defs>
-        <!-- White canvas -->
-        <rect x="0" y="0" width="1440" height="80" fill="#ffffff"/>
-        <!-- Dark navy wave shape dissolving into white -->
-        <path d="M0,0 L1440,0 L1440,38 Q1200,72 960,48 Q720,22 480,52 Q240,76 0,44 Z" fill="#061225"/>
-        <!-- Soft gradient overlay to blend the edge -->
-        <path d="M0,0 L1440,0 L1440,38 Q1200,72 960,48 Q720,22 480,52 Q240,76 0,44 Z" fill="url(#tech-to-white-fade)" opacity="0.5"/>
-        <!-- Faint gold accent tracing the wave edge -->
-        <path d="M0,44 Q240,76 480,52 Q720,22 960,48 Q1200,72 1440,38" fill="none" stroke="rgba(255,214,0,0.25)" stroke-width="1"/>
-      </svg>
-    </div>
+    <!-- TRANSITION: Technology → Partnership -->
+    <div aria-hidden="true" style="height:4px;background:#FFD700;margin:0;padding:0;pointer-events:none;"></div>
 
     <!-- PLATFORM FOR PARTNERSHIP -->
     <section id="platform-for-partnership" class="relative" style="background: #ffffff;">
 
-        <!-- Engineered grid overlay — denser and more visible -->
-        <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true" style="
-            background-image:
-                linear-gradient(rgba(11,17,32,0.045) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(11,17,32,0.045) 1px, transparent 1px),
-                linear-gradient(rgba(11,17,32,0.018) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(11,17,32,0.018) 1px, transparent 1px);
-            background-size: 160px 160px, 160px 160px, 40px 40px, 40px 40px;
-        "></div>
+        <!-- Brand diagonal slash lines — light version -->
+        <svg class="absolute inset-0 w-full h-full z-0 pointer-events-none" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+            <line x1="-200" y1="1000" x2="1100" y2="-200" stroke="rgba(11,17,32,0.055)" stroke-width="1.5"/>
+            <line x1="0" y1="1000" x2="1300" y2="-200" stroke="rgba(11,17,32,0.035)" stroke-width="1"/>
+            <line x1="200" y1="1000" x2="1500" y2="-200" stroke="rgba(11,17,32,0.025)" stroke-width="1"/>
+            <line x1="1640" y1="800" x2="300" y2="-200" stroke="rgba(11,17,32,0.05)" stroke-width="1.5"/>
+            <line x1="1640" y1="550" x2="550" y2="-200" stroke="rgba(11,17,32,0.032)" stroke-width="1"/>
+            <line x1="1640" y1="300" x2="800" y2="-200" stroke="rgba(11,17,32,0.02)" stroke-width="1"/>
+            <line x1="-200" y1="700" x2="700" y2="-200" stroke="rgba(255,214,0,0.18)" stroke-width="1.5"/>
+            <line x1="1640" y1="400" x2="750" y2="-200" stroke="rgba(255,214,0,0.14)" stroke-width="1.5"/>
+            <rect x="820" y="0" width="300" height="100" fill="none" stroke="rgba(11,17,32,0.06)" stroke-width="1"/>
+        </svg>
 
         <!-- Signal Yellow left spine -->
         <div class="absolute left-0 top-0 bottom-0 z-10 pointer-events-none" style="width:6px; background:linear-gradient(to bottom, #FFD700 0%, rgba(255,215,0,0.35) 100%);" aria-hidden="true"></div>
 
-        <!-- Large ghost diamond — right side architectural element -->
+        <!-- Large ghost diamond - right side architectural element -->
         <div class="absolute pointer-events-none hidden lg:block" style="top:50%; right:-160px; transform:translateY(-50%) rotate(45deg); width:640px; height:640px; border:1.5px solid rgba(11,17,32,0.06);" aria-hidden="true"></div>
         <div class="absolute pointer-events-none hidden lg:block" style="top:50%; right:-160px; transform:translateY(-50%) rotate(45deg); width:400px; height:400px; border:1.5px solid rgba(8,145,178,0.07);" aria-hidden="true"></div>
         <div class="absolute pointer-events-none hidden lg:block" style="top:50%; right:-160px; transform:translateY(-50%) rotate(45deg); width:200px; height:200px; border:1.5px solid rgba(255,215,0,0.10);" aria-hidden="true"></div>
 
         <!-- Ghost "PLATFORM" watermark behind header -->
-        <div class="absolute pointer-events-none hidden lg:block select-none" style="top:0; right:0; font-family:'Oswald',sans-serif; font-weight:900; font-size:clamp(100px,13vw,180px); text-transform:uppercase; letter-spacing:-0.04em; line-height:0.85; color:rgba(0,0,0,0.022); z-index:0; white-space:nowrap; transform:translateY(-15%);" aria-hidden="true">PLATFORM</div>
+        <div class="absolute pointer-events-none hidden lg:block select-none" style="top:0; right:0; font-family:'Oswald',sans-serif; font-weight:700; font-size:clamp(100px,13vw,180px); text-transform:uppercase; letter-spacing:-0.04em; line-height:0.85; color:rgba(0,0,0,0.022); z-index:0; white-space:nowrap; transform:translateY(-15%);" aria-hidden="true">PLATFORM</div>
 
         <!-- Header -->
         <div class="relative z-10 border-b" style="background: transparent; border-color: rgba(11,17,32,0.08);">
-            <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-10 lg:py-12">
+            <div class="container mx-auto px-6 py-8 sm:py-10 lg:py-12">
                 <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-10">
                     <div style="position:relative;">
                         <div id="partnership-spotlight" aria-hidden="true" style="
@@ -1630,18 +1481,18 @@
                             z-index:0;
                             border-radius:50%;
                         "></div>
-                        <div class="inline-block px-4 py-2 mb-4 font-bold text-xs tracking-wider uppercase" style="background-color: rgba(8, 145, 178, 0.22); color: #0891B2; border: 1px solid rgba(8,145,178,0.25); position:relative; z-index:1;">
+                        <div class="section-eyebrow" style="position:relative; z-index:1;">
                             Partnerships
                         </div>
                         <div class="syntra-yellow-bar" style="position:relative; z-index:1;"></div>
-                        <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase" style="color:#0b1120; position:relative; z-index:1;">A Platform <span style="color:#0891B2; font-family:inherit; font-size:inherit; font-weight:inherit; line-height:inherit; letter-spacing:inherit;">for Partnership</span></h2>
+                        <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase" style="color:#0b1120; position:relative; z-index:1;">A Platform <span style="color:#FFD700; font-family:inherit; font-size:inherit; font-weight:inherit; line-height:inherit; letter-spacing:inherit;">for Partnership</span></h2>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Dynamic accordion cards -->
-        <div class="relative z-10 container mx-auto px-4 sm:px-6 pt-0 pb-8 sm:pb-12 lg:pl-12" id="pfp-accordion">
+        <div class="relative z-10 container mx-auto px-6 pt-0 pb-8 sm:pb-12 lg:pl-12" id="pfp-accordion">
 
             <!-- Card 01: Feedstock Suppliers -->
             <div class="pfp-card-item" data-index="0" style="border-bottom: 1px solid #CBD5E1;">
@@ -1651,7 +1502,7 @@
                         <div class="pfp-header-left">
                             <span class="pfp-num">01</span>
                             <div>
-                                <p class="pfp-eyebrow">Feedstock materials</p>
+                                <p class="pfp-eyebrow">Feedstock minerals</p>
                                 <h3 class="pfp-header-title">Feedstock Suppliers</h3>
                             </div>
                         </div>
@@ -1670,7 +1521,7 @@
                         <div class="pfp-panel-content">
                             <p class="font-mono text-[9px] font-bold uppercase tracking-[0.3em] mb-3" style="color: #0891B2;">Feedstock Suppliers</p>
                             <h3 class="font-head text-2xl sm:text-3xl md:text-4xl font-bold uppercase mb-3 leading-tight" style="color: #0F172A;">Turn Liabilities<br>into Assets</h3>
-                            <p class="text-[#64748B] text-sm sm:text-base leading-relaxed mb-5" style="max-width: 460px;">Your complex materials, stranded assets, and industrial byproducts are ideal feedstock. Our flexible platform extracts maximum value from sources traditional refiners cannot process.</p>
+                            <p class="text-[#64748B] text-sm sm:text-base leading-relaxed mb-5" style="max-width: 460px;">Your complex minerals, stranded assets, and industrial byproducts are ideal feedstock. Our flexible platform extracts maximum value from sources traditional refiners cannot process.</p>
                             <div class="flex flex-wrap gap-2 mb-5">
                                 <span class="pfp-tag">Black Mass</span>
                                 <span class="pfp-tag">OEMs</span>
@@ -1678,7 +1529,7 @@
                                 <span class="pfp-tag">Ore Concentrates</span>
                             </div>
                             <button class="pfp-cta-btn" onclick="event.stopPropagation(); window.openContactModal('Feedstock Supplier')">
-                                <span>Submit Material for Analysis</span>
+                                <span>Submit Feedstock for Analysis</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                             </button>
                         </div>
@@ -1711,7 +1562,7 @@
                         <div class="pfp-panel-content">
                             <p class="font-mono text-[9px] font-bold uppercase tracking-[0.3em] mb-3" style="color: #0891B2;">Offtake Partners</p>
                             <h3 class="font-head text-2xl sm:text-3xl md:text-4xl font-bold uppercase mb-3 leading-tight" style="color: #0F172A;">Secure a Resilient<br>Domestic Supply</h3>
-                            <p class="text-[#64748B] text-sm sm:text-base leading-relaxed mb-5" style="max-width: 460px;">De-risk your supply chain with a reliable, long-term North American source of high-purity critical minerals. Built for transparency, traceability, and ESG compliance.</p>
+                            <p class="text-[#64748B] text-sm sm:text-base leading-relaxed mb-5" style="max-width: 460px;">Secure a domestic source of battery-grade critical minerals with certified chain of custody, consistent specification, and long-term supply agreements.</p>
                             <div class="flex flex-wrap gap-2 mb-5">
                                 <span class="pfp-tag">Battery Cells</span>
                                 <span class="pfp-tag">Cathode Mfg.</span>
@@ -1806,7 +1657,7 @@
                 transition: background 0.3s ease;
             }
             .pfp-card-item:not(.pfp-active) .pfp-header:hover {
-                background: #0f1a2e;
+                background: #0F172A;
             }
             .pfp-active .pfp-header {
                 background: #0b1120;
@@ -1980,7 +1831,7 @@
                     100% 100%;
                 background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px, 0 0;
             }
-            /* Radial fade mask so grid fades at edges — keeps text clean */
+            /* Radial fade mask so grid fades at edges - keeps text clean */
             .pfp-panel-content::before {
                 content: '';
                 position: absolute;
@@ -2006,14 +1857,14 @@
                 position: relative;
                 z-index: 1;
             }
-            /* Hover right: engineered grid takeover — lines intensify and fill the expanded panel */
+            /* Hover right: engineered grid takeover - lines intensify and fill the expanded panel */
             .pfp-active .pfp-panel-inner:has(.pfp-panel-content:hover) .pfp-panel-content {
                 background:
                     linear-gradient(rgba(8,145,178,0.11) 1px, transparent 1px),
                     linear-gradient(90deg, rgba(8,145,178,0.11) 1px, transparent 1px),
                     linear-gradient(rgba(8,145,178,0.04) 1px, transparent 1px),
                     linear-gradient(90deg, rgba(8,145,178,0.04) 1px, transparent 1px),
-                    #f4fbff;
+                    #F9FAFC;
                 background-size:
                     160px 160px,
                     160px 160px,
@@ -2139,186 +1990,221 @@
     </section>
 
     <!-- NEWS / SUBSCRIBE FOR UPDATES -->
-    <section id="newsletter-subscribe" class="relative overflow-hidden" style="background:#F0F2F5;">
+    <section id="newsletter-subscribe" class="relative overflow-hidden" style="background:#0B1120;">
 
-        <!-- Exact brand guidelines background — very light cool gray base -->
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background:#F3F5F8;"></div>
+        <!-- Deep navy base -->
+        <div class="absolute inset-0 pointer-events-none" style="background:#0B1120;" aria-hidden="true"></div>
 
-        <!-- Brand guidelines diagonal cross geometry — large-scale, very low opacity -->
-        <svg class="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1440 560" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-            <!-- Primary X cross — thick soft bands matching the guidelines image -->
-            <line x1="-200" y1="-100" x2="1640" y2="660" stroke="rgba(200,206,220,0.55)" stroke-width="160"/>
-            <line x1="1640" y1="-100" x2="-200" y2="660" stroke="rgba(200,206,220,0.55)" stroke-width="160"/>
-            <!-- Hard edge lines on top of the bands -->
-            <line x1="-200" y1="-100" x2="1640" y2="660" stroke="rgba(185,193,210,0.35)" stroke-width="2"/>
-            <line x1="1640" y1="-100" x2="-200" y2="660" stroke="rgba(185,193,210,0.35)" stroke-width="2"/>
-            <!-- Secondary outer cross bands, slightly offset for depth -->
-            <line x1="-300" y1="100" x2="1540" y2="760" stroke="rgba(200,206,220,0.22)" stroke-width="100"/>
-            <line x1="1540" y1="100" x2="-300" y2="760" stroke="rgba(200,206,220,0.22)" stroke-width="100"/>
+        <!-- Brand diagonal slash lines (brand guideline cover pattern) -->
+        <svg class="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1440 560" xmlns="http://www.w3.org/2000/svg">
+            <!-- Primary diagonals bottom-left to top-right -->
+            <line x1="-200" y1="700" x2="900" y2="-200" stroke="rgba(255,255,255,0.045)" stroke-width="1.5"/>
+            <line x1="0" y1="700" x2="1100" y2="-200" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+            <line x1="200" y1="700" x2="1300" y2="-200" stroke="rgba(255,255,255,0.022)" stroke-width="1"/>
+            <!-- Counter diagonals bottom-right to top-left -->
+            <line x1="1640" y1="600" x2="350" y2="-200" stroke="rgba(255,255,255,0.04)" stroke-width="1.5"/>
+            <line x1="1640" y1="380" x2="580" y2="-200" stroke="rgba(255,255,255,0.028)" stroke-width="1"/>
+            <line x1="1640" y1="160" x2="820" y2="-200" stroke="rgba(255,255,255,0.018)" stroke-width="1"/>
+            <!-- Signal yellow accent diagonals -->
+            <line x1="-200" y1="500" x2="600" y2="-200" stroke="rgba(255,214,0,0.065)" stroke-width="1.5"/>
+            <line x1="1640" y1="300" x2="760" y2="-200" stroke="rgba(255,214,0,0.05)" stroke-width="1.5"/>
+            <!-- Top corner rectangle (brand guideline cover element) -->
+            <rect x="820" y="0" width="280" height="85" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+            <!-- Left spine -->
+            <line x1="0" y1="80" x2="0" y2="480" stroke="rgba(255,215,0,0.5)" stroke-width="4"/>
         </svg>
 
-        <!-- Signal Yellow left spine -->
-        <div class="absolute left-0 top-0 bottom-0 pointer-events-none" style="width:4px; background:linear-gradient(to bottom, rgba(255,215,0,0.6) 0%, #FFD700 30%, rgba(255,215,0,0.4) 100%);" aria-hidden="true"></div>
+        <!-- Signal Yellow top accent bar -->
+        <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:3px; background:#FFD700;" aria-hidden="true"></div>
 
-        <!-- Content -->
-        <div class="relative z-10 container mx-auto px-6 sm:px-8 py-20 sm:py-24 lg:py-28" style="max-width:1200px;">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <!-- Gold radial glow - left -->
+        <div class="absolute pointer-events-none" aria-hidden="true" style="top:-10%; left:-5%; width:55%; height:120%; background:radial-gradient(ellipse at 25% 55%, rgba(255,215,0,0.07) 0%, transparent 60%);"></div>
 
-                <!-- LEFT: Headline + Supporting text -->
-                <div>
-                    <!-- Eyebrow -->
-                    <div class="inline-block px-4 py-2 mb-5 font-bold text-xs tracking-wider uppercase" style="background-color: rgba(8,145,178,0.22); color: #0891B2; border: 1px solid rgba(8,145,178,0.25); font-family:'Inter',sans-serif;">
-                        News
+        <!-- Content: two-column split -->
+        <div class="relative z-10 container mx-auto px-6 lg:px-12 py-20 sm:py-24 lg:py-28">
+            <div class="grid lg:grid-cols-2 gap-0 lg:gap-16 xl:gap-24 items-stretch">
+
+                <!-- LEFT: Brand identity column -->
+                <div class="flex flex-col justify-between pb-12 lg:pb-0" style="border-bottom:1px solid rgba(255,215,0,0.12); padding-bottom:3rem;">
+
+                    <!-- Top: eyebrow + heading -->
+                    <div>
+                        <!-- Eyebrow chip -->
+                        <div class="mb-8">
+                            <div class="section-eyebrow">News</div>
+                        </div>
+
+                        <!-- Section heading -->
+                        <h2 style="font-family:'Oswald',sans-serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:700; line-height:0.95; letter-spacing:-0.02em; text-transform:uppercase; color:#FFFFFF; margin-bottom:1.5rem;">
+                            Subscribe<br>
+                            <span style="all:unset;font-family:inherit;font-size:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit;text-transform:inherit;color:#FFD700;">for Updates</span>
+                        </h2>
+
+                        <!-- Supporting text -->
+                        <p style="font-family:'Inter',sans-serif; font-weight:300; font-size:0.9375rem; line-height:1.75; color:#64748B; max-width:38ch;">
+                            Stay informed with Syntra Refining Corp. news, updates, and key developments.
+                        </p>
                     </div>
 
-                    <!-- Yellow bar -->
-                    <div style="width:40px; height:3px; background:#FFD700; margin-bottom:16px;"></div>
+                    <!-- Bottom: extended wordmark (brand PDF p.11 layout) -->
+                    <div style="margin-top:3.5rem;">
+                        <!-- Diamond + Square logomark -->
+                        <svg width="52" height="52" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="margin-bottom:1.25rem;">
+                            <polygon points="24,2 46,24 24,46 2,24" stroke="#FFD700" stroke-width="1.5" fill="none"/>
+                            <rect x="17" y="17" width="14" height="14" fill="#FFD700"/>
+                        </svg>
 
-                    <!-- Heading -->
-                    <h2 style="font-family:'Oswald',sans-serif; font-size:clamp(2rem,4vw,3.25rem); font-weight:900; line-height:1; letter-spacing:-0.01em; text-transform:uppercase; color:#0B1120; margin-bottom:1.25rem;">
-                        Subscribe<br><span style="color:#0891B2; font-family:'Oswald',sans-serif; font-size:inherit; font-weight:inherit; line-height:inherit; letter-spacing:inherit; text-transform:inherit;">for Updates</span>
-                    </h2>
-
-                    <!-- Supporting text -->
-                    <p style="font-family:'Inter',sans-serif; font-size:0.9375rem; line-height:1.7; color:#475569; max-width:380px;">
-                        Stay informed with Syntra Refining Corp. news, updates, and key developments.
-                    </p>
-
-                    <!-- Structural decoration — angular bracket motif -->
-                    <div class="hidden lg:flex items-center gap-3 mt-10" style="opacity:0.35;" aria-hidden="true">
-                        <div style="width:32px; height:32px; border-top:2px solid #0B1120; border-left:2px solid #0B1120;"></div>
-                        <div style="width:60px; height:1px; background:#0B1120;"></div>
-                        <span style="font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:#0B1120;">SYNTRA REFINING CORP.</span>
+                        <!-- Extended wordmark: SYNTRA | tagline lines -->
+                        <div style="display:flex; align-items:stretch; gap:0;">
+                            <!-- SYNTRA wordmark -->
+                            <div style="padding-right:1.25rem;">
+                                <p style="font-family:'Oswald',sans-serif; font-size:clamp(1.75rem,3.5vw,2.5rem); font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#FFD700; line-height:1; white-space:nowrap;">SYNTRA</p>
+                                <p style="font-family:'JetBrains Mono',monospace; font-size:0.6rem; font-weight:400; letter-spacing:0.28em; text-transform:uppercase; color:#475569; margin-top:4px; white-space:nowrap;">REFINING CORP.</p>
+                            </div>
+                            <!-- Vertical divider -->
+                            <div style="width:1.5px; background:rgba(255,215,0,0.35); flex-shrink:0; margin:2px 0;"></div>
+                            <!-- Tagline stack -->
+                            <div style="padding-left:1.25rem; display:flex; flex-direction:column; justify-content:center; gap:2px;">
+                                <p style="font-family:'JetBrains Mono',monospace; font-size:0.625rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:#FFFFFF; line-height:1.8;">SMART REFINING</p>
+                                <p style="font-family:'JetBrains Mono',monospace; font-size:0.625rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:#FFFFFF; line-height:1.8;">UNIVERSAL INTAKE</p>
+                                <p style="font-family:'JetBrains Mono',monospace; font-size:0.625rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:#FFFFFF; line-height:1.8;">DISTRIBUTED NETWORK</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- RIGHT: Subscription form -->
-                <div>
-                    <form id="newsletter-form" novalidate>
-                        <div style="display:flex; flex-direction:column; gap:20px;">
+                <!-- RIGHT: Subscription form column -->
+                <div class="flex flex-col justify-center pt-12 lg:pt-0" style="border-top:1px solid rgba(255,215,0,0.12);">
+                    <!-- Form container with brand corner accent treatment -->
+                    <div style="position:relative; border:1px solid rgba(255,255,255,0.08); padding:36px 32px;">
+                        <!-- Corner accent TL -->
+                        <div style="position:absolute; top:-1px; left:-1px; width:22px; height:22px; border-top:2px solid #FFD700; border-left:2px solid #FFD700;" aria-hidden="true"></div>
+                        <!-- Corner accent BR -->
+                        <div style="position:absolute; bottom:-1px; right:-1px; width:22px; height:22px; border-bottom:2px solid #FFD700; border-right:2px solid #FFD700;" aria-hidden="true"></div>
 
-                            <!-- Name field -->
-                            <div class="ns-field-group">
-                                <label for="ns-name" style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:#64748B; margin-bottom:8px;">
-                                    Name <span style="color:#FFD700;">*</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    id="ns-name"
-                                    name="name"
-                                    autocomplete="name"
-                                    placeholder="Your full name"
-                                    aria-required="true"
-                                    style="
-                                        display:block; width:100%;
-                                        font-family:'Inter',sans-serif; font-size:0.9375rem; color:#0B1120;
-                                        background:#ffffff;
-                                        border:1px solid #CBD5E1;
-                                        padding:13px 16px;
-                                        outline:none;
-                                        transition:border-color 0.15s;
-                                        border-radius:0;
-                                    "
-                                    onfocus="this.style.borderColor='#FFD700'; this.style.boxShadow='0 0 0 3px rgba(255,215,0,0.12)'"
-                                    onblur="this.style.borderColor='#CBD5E1'; this.style.boxShadow='none'"
-                                >
-                                <p id="ns-name-error" role="alert" style="display:none; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; color:#DC2626; letter-spacing:0.1em; text-transform:uppercase; margin-top:6px;">Required</p>
-                            </div>
+                        <form id="newsletter-form" novalidate>
+                            <div style="display:flex; flex-direction:column; gap:20px;">
 
-                            <!-- Email field -->
-                            <div class="ns-field-group">
-                                <label for="ns-email" style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:#64748B; margin-bottom:8px;">
-                                    Email <span style="color:#FFD700;">*</span>
-                                </label>
-                                <input
-                                    type="email"
-                                    id="ns-email"
-                                    name="email"
-                                    autocomplete="email"
-                                    placeholder="your@email.com"
-                                    aria-required="true"
-                                    style="
-                                        display:block; width:100%;
-                                        font-family:'Inter',sans-serif; font-size:0.9375rem; color:#0B1120;
-                                        background:#ffffff;
-                                        border:1px solid #CBD5E1;
-                                        padding:13px 16px;
-                                        outline:none;
-                                        transition:border-color 0.15s;
-                                        border-radius:0;
-                                    "
-                                    onfocus="this.style.borderColor='#FFD700'; this.style.boxShadow='0 0 0 3px rgba(255,215,0,0.12)'"
-                                    onblur="this.style.borderColor='#CBD5E1'; this.style.boxShadow='none'"
-                                >
-                                <p id="ns-email-error" role="alert" style="display:none; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; color:#DC2626; letter-spacing:0.1em; text-transform:uppercase; margin-top:6px;">Valid email required</p>
-                            </div>
-
-                            <!-- Consent checkbox -->
-                            <div style="display:flex; align-items:flex-start; gap:12px;">
-                                <div style="position:relative; flex-shrink:0; margin-top:2px;">
+                                <!-- Name field -->
+                                <div>
+                                    <label for="ns-name" style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:#64748B; margin-bottom:8px;">
+                                        Name <span style="color:#FFD700;">*</span>
+                                    </label>
                                     <input
-                                        type="checkbox"
-                                        id="ns-consent"
-                                        name="consent"
+                                        type="text"
+                                        id="ns-name"
+                                        name="name"
+                                        autocomplete="name"
+                                        placeholder="Your full name"
                                         aria-required="true"
                                         style="
-                                            position:absolute; opacity:0; width:18px; height:18px; cursor:pointer; margin:0;
+                                            display:block; width:100%;
+                                            font-family:'Inter',sans-serif; font-weight:300; font-size:0.9375rem; color:#F9FAFC;
+                                            background:rgba(255,255,255,0.04);
+                                            border:1px solid rgba(255,255,255,0.12);
+                                            padding:13px 16px;
+                                            outline:none;
+                                            transition:border-color 0.18s, box-shadow 0.18s;
+                                            border-radius:0;
                                         "
-                                        onchange="
-                                            document.getElementById('ns-consent-box').style.background = this.checked ? '#FFD700' : '#ffffff';
-                                            document.getElementById('ns-consent-box').style.borderColor = this.checked ? '#FFD700' : '#CBD5E1';
-                                            document.getElementById('ns-consent-check').style.opacity = this.checked ? '1' : '0';
-                                            document.getElementById('ns-consent-error').style.display = 'none';
-                                        "
+                                        onfocus="this.style.borderColor='#FFD700'; this.style.boxShadow='0 0 0 3px rgba(255,215,0,0.09)'"
+                                        onblur="this.style.borderColor='rgba(255,255,255,0.12)'; this.style.boxShadow='none'"
                                     >
-                                    <div id="ns-consent-box" style="width:18px; height:18px; border:1.5px solid #CBD5E1; background:#ffffff; display:flex; align-items:center; justify-content:center; pointer-events:none; transition:all 0.15s; flex-shrink:0;">
-                                        <svg id="ns-consent-check" style="opacity:0; transition:opacity 0.15s;" width="11" height="9" viewBox="0 0 11 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M1 4L4 7.5L10 1" stroke="#0B1120" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
-                                        </svg>
-                                    </div>
+                                    <p id="ns-name-error" role="alert" style="display:none; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; color:#0891B2; letter-spacing:0.1em; text-transform:uppercase; margin-top:6px;">Required</p>
                                 </div>
-                                <label for="ns-consent" style="font-family:'Inter',sans-serif; font-size:0.8125rem; line-height:1.6; color:#475569; cursor:pointer;">
-                                    I agree to receive news, updates, and other communications from Syntra Refining Corp. I understand I may withdraw consent any time.
-                                </label>
+
+                                <!-- Email field -->
+                                <div>
+                                    <label for="ns-email" style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:#64748B; margin-bottom:8px;">
+                                        Email <span style="color:#FFD700;">*</span>
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="ns-email"
+                                        name="email"
+                                        autocomplete="email"
+                                        placeholder="your@email.com"
+                                        aria-required="true"
+                                        style="
+                                            display:block; width:100%;
+                                            font-family:'Inter',sans-serif; font-weight:300; font-size:0.9375rem; color:#F9FAFC;
+                                            background:rgba(255,255,255,0.04);
+                                            border:1px solid rgba(255,255,255,0.12);
+                                            padding:13px 16px;
+                                            outline:none;
+                                            transition:border-color 0.18s, box-shadow 0.18s;
+                                            border-radius:0;
+                                        "
+                                        onfocus="this.style.borderColor='#FFD700'; this.style.boxShadow='0 0 0 3px rgba(255,215,0,0.09)'"
+                                        onblur="this.style.borderColor='rgba(255,255,255,0.12)'; this.style.boxShadow='none'"
+                                    >
+                                    <p id="ns-email-error" role="alert" style="display:none; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; color:#0891B2; letter-spacing:0.1em; text-transform:uppercase; margin-top:6px;">Valid email required</p>
+                                </div>
+
+                                <!-- Consent checkbox -->
+                                <div style="display:flex; align-items:flex-start; gap:12px;">
+                                    <div style="position:relative; flex-shrink:0; margin-top:2px;">
+                                        <input
+                                            type="checkbox"
+                                            id="ns-consent"
+                                            name="consent"
+                                            aria-required="true"
+                                            style="position:absolute; opacity:0; width:18px; height:18px; cursor:pointer; margin:0;"
+                                            onchange="
+                                                document.getElementById('ns-consent-box').style.background = this.checked ? '#FFD700' : 'rgba(255,255,255,0.05)';
+                                                document.getElementById('ns-consent-box').style.borderColor = this.checked ? '#FFD700' : 'rgba(255,255,255,0.2)';
+                                                document.getElementById('ns-consent-check').style.opacity = this.checked ? '1' : '0';
+                                                document.getElementById('ns-consent-error').style.display = 'none';
+                                            "
+                                        >
+                                        <div id="ns-consent-box" style="width:18px; height:18px; border:1.5px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:center; pointer-events:none; transition:all 0.15s; flex-shrink:0; border-radius:0;">
+                                            <svg id="ns-consent-check" style="opacity:0; transition:opacity 0.15s;" width="11" height="9" viewBox="0 0 11 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 4L4 7.5L10 1" stroke="#0B1120" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <label for="ns-consent" style="font-family:'Inter',sans-serif; font-weight:300; font-size:0.8125rem; line-height:1.65; color:#64748B; cursor:pointer;">
+                                        I agree to receive news, updates, and other communications from Syntra Refining Corp. I understand I may withdraw consent any time.
+                                    </label>
+                                </div>
+                                <p id="ns-consent-error" role="alert" style="display:none; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; color:#0891B2; letter-spacing:0.1em; text-transform:uppercase; margin-top:-12px;">Consent required</p>
+
+                                <!-- Submit button -->
+                                <div>
+                                    <button
+                                        type="submit"
+                                        id="ns-submit-btn"
+                                        style="
+                                            display:inline-flex; align-items:center; gap:10px;
+                                            padding:14px 32px;
+                                            background:#FFD700; color:#0B1120;
+                                            font-family:'Oswald',sans-serif; font-size:0.875rem; font-weight:700;
+                                            letter-spacing:0.12em; text-transform:uppercase;
+                                            border:none; cursor:pointer;
+                                            transition:background 0.18s, box-shadow 0.18s;
+                                            border-radius:0;
+                                        "
+                                        onmouseover="if(!this.disabled){this.style.background='#F9FAFC'; this.style.boxShadow='0 8px 32px rgba(255,215,0,0.22)';}"
+                                        onmouseout="if(!this.disabled){this.style.background='#FFD700'; this.style.boxShadow='none';}"
+                                    >
+                                        <span id="ns-btn-label">Subscribe</span>
+                                        <svg id="ns-btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+                                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                                        </svg>
+                                    </button>
+
+                                    <p style="font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:300; letter-spacing:0.15em; color:#334155; margin-top:12px;">*required field</p>
+                                </div>
+
+                                <!-- Success message -->
+                                <div id="ns-success" style="display:none; padding:16px 20px; background:rgba(255,215,0,0.05); border:1px solid rgba(255,215,0,0.25); border-left:3px solid #FFD700;">
+                                    <p style="font-family:'Oswald',sans-serif; font-size:1rem; font-weight:700; text-transform:uppercase; color:#FFD700; margin-bottom:4px;">Subscribed.</p>
+                                    <p style="font-family:'Inter',sans-serif; font-weight:300; font-size:0.875rem; color:#94A3B8; line-height:1.5;">Thank you. You'll receive Syntra Refining Corp. news and updates.</p>
+                                </div>
+
                             </div>
-                            <p id="ns-consent-error" role="alert" style="display:none; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; color:#DC2626; letter-spacing:0.1em; text-transform:uppercase; margin-top:-12px;">Consent required</p>
-
-                            <!-- Submit button -->
-                            <div>
-                                <button
-                                    type="submit"
-                                    id="ns-submit-btn"
-                                    style="
-                                        display:inline-flex; align-items:center; gap:10px;
-                                        padding:14px 32px;
-                                        background:#0B1120; color:#FFD700;
-                                        font-family:'Oswald',sans-serif; font-size:0.875rem; font-weight:700;
-                                        letter-spacing:0.08em; text-transform:uppercase;
-                                        border:none; cursor:pointer;
-                                        transition:background 0.15s, transform 0.15s, box-shadow 0.15s;
-                                        box-shadow: 0 4px 16px rgba(11,17,32,0.2);
-                                    "
-                                    onmouseover="if(!this.disabled){this.style.background='#FFD700'; this.style.color='#0B1120'; this.style.boxShadow='0 6px 24px rgba(255,215,0,0.3)';}"
-                                    onmouseout="if(!this.disabled){this.style.background='#0B1120'; this.style.color='#FFD700'; this.style.boxShadow='0 4px 16px rgba(11,17,32,0.2)';}"
-                                >
-                                    <span id="ns-btn-label">Subscribe</span>
-                                    <svg id="ns-btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                                    </svg>
-                                </button>
-
-                                <!-- Required note -->
-                                <p style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.15em; color:#94A3B8; margin-top:12px;">*required field</p>
-                            </div>
-
-                            <!-- Success message (hidden by default) -->
-                            <div id="ns-success" style="display:none; padding:16px 20px; background:rgba(255,215,0,0.08); border:1px solid rgba(255,215,0,0.35); border-left:4px solid #FFD700;">
-                                <p style="font-family:'Oswald',sans-serif; font-size:1rem; font-weight:700; text-transform:uppercase; color:#0B1120; margin-bottom:4px;">Subscribed</p>
-                                <p style="font-family:'Inter',sans-serif; font-size:0.875rem; color:#475569; line-height:1.5;">Thank you. You'll receive Syntra Refining Corp. news and updates.</p>
-                            </div>
-
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
 
             </div>
@@ -2348,19 +2234,19 @@
                 nameErr.style.display   = 'none';
                 emailErr.style.display  = 'none';
                 consentErr.style.display = 'none';
-                nameEl.style.borderColor  = '#CBD5E1';
-                emailEl.style.borderColor = '#CBD5E1';
+                nameEl.style.borderColor  = 'rgba(255,255,255,0.12)';
+                emailEl.style.borderColor = 'rgba(255,255,255,0.12)';
 
                 if (!nameEl.value.trim()) {
                     nameErr.style.display  = 'block';
-                    nameEl.style.borderColor = '#DC2626';
+                    nameEl.style.borderColor = '#0891B2';
                     valid = false;
                 }
                 var emailVal = emailEl.value.trim();
                 var emailOk  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
                 if (!emailVal || !emailOk) {
                     emailErr.style.display  = 'block';
-                    emailEl.style.borderColor = '#DC2626';
+                    emailEl.style.borderColor = '#0891B2';
                     valid = false;
                 }
                 if (!consent.checked) {
@@ -2395,67 +2281,22 @@
 
     </section>
 
-    <!-- TRANSITION: Partnership (white) → Output Materials (dark navy) — white wave sinking into dark -->
-    <div aria-hidden="true" style="position:relative;height:80px;overflow:hidden;background:#0B1120;margin:0;padding:0;pointer-events:none;">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;display:block;">
-        <defs>
-          <linearGradient id="white-to-dark-fade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#ffffff"/>
-            <stop offset="100%" stop-color="#0B1120"/>
-          </linearGradient>
-        </defs>
-        <!-- Dark navy canvas -->
-        <rect x="0" y="0" width="1440" height="80" fill="#0B1120"/>
-        <!-- White wave shape from above -->
-        <path d="M0,0 L1440,0 L1440,36 Q1200,10 960,34 Q720,58 480,30 Q240,4 0,36 Z" fill="#ffffff"/>
-        <!-- Gradient blend softening the bottom edge of white -->
-        <path d="M0,0 L1440,0 L1440,36 Q1200,10 960,34 Q720,58 480,30 Q240,4 0,36 Z" fill="url(#white-to-dark-fade)" opacity="0.6"/>
-        <!-- Faint cyan accent along wave edge -->
-        <path d="M0,36 Q240,4 480,30 Q720,58 960,34 Q1200,10 1440,36" fill="none" stroke="rgba(8,145,178,0.2)" stroke-width="1"/>
-      </svg>
-    </div>
+    <!-- TRANSITION: Subscribe (dark navy) → Output Minerals (dark navy) - seamless -->
+    <div aria-hidden="true" style="height:0;background:#0B1120;margin:0;padding:0;"></div>
 
-    <!-- TRANSITION: Output Materials → Build With Us -->
-    <div aria-hidden="true" style="position:relative;height:52px;overflow:hidden;background:#0B1120;margin:0;padding:0;pointer-events:none;">
-      <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;display:block;">
-        <defs>
-          <linearGradient id="gold-accent-bar" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="rgba(255,214,0,0)"/>
-            <stop offset="20%" stop-color="rgba(255,214,0,0.4)"/>
-            <stop offset="50%" stop-color="rgba(255,214,0,0.7)"/>
-            <stop offset="80%" stop-color="rgba(255,214,0,0.4)"/>
-            <stop offset="100%" stop-color="rgba(255,214,0,0)"/>
-          </linearGradient>
-          <linearGradient id="midnight-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#0B1120"/>
-            <stop offset="100%" stop-color="#0d1422"/>
-          </linearGradient>
-        </defs>
-        <rect x="0" y="0" width="1440" height="52" fill="#0B1120"/>
-        <!-- Angled dividing plane -->
-        <polygon points="0,14 1440,0 1440,52 0,52" fill="url(#midnight-fill)"/>
-        <!-- Gold accent line along the diagonal -->
-        <line x1="0" y1="14" x2="1440" y2="0" stroke="url(#gold-accent-bar)" stroke-width="1.5"/>
-        <!-- Second thinner gold echo line -->
-        <line x1="0" y1="18" x2="1440" y2="4" stroke="rgba(255,214,0,0.18)" stroke-width="0.8"/>
-      </svg>
-    </div>
+    <!-- TRANSITION: Output Minerals → Build With Us -->
+    <div aria-hidden="true" style="height:1px;background:rgba(255,215,0,0.2);margin:0;padding:0;pointer-events:none;"></div>
 
     <!-- BUILD WITH US CTA -->
     <section id="partner-ecosystem-access" class="py-16 sm:py-24 md:py-32 text-white relative overflow-hidden border-b-4 border-syntra-accent" style="background:#0B1120;">
 
         <!-- Deep base -->
-        <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(135deg, #061225 0%, #0B1120 40%, #061225 100%);"></div>
+        <div class="absolute inset-0 pointer-events-none" style="background:#0B1120;"></div>
 
-        <!-- Dense gold chicken wire — signature brand texture, prominent in CTA -->
-        <div class="absolute inset-0 pointer-events-none bg-chicken-wire-gold" style="opacity:0.9;"></div>
+        <!-- Standard dark grid -->
+        <div class="absolute inset-0 pointer-events-none bg-chicken-wire-dark" aria-hidden="true"></div>
 
-        <!-- Standard grid overlay -->
-        <div class="absolute inset-0 pointer-events-none" style="opacity:0.14;">
-            <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,215,0,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,215,0,0.15) 1px, transparent 1px); background-size: 40px 40px;"></div>
-        </div>
-
-        <!-- Animated spinning diamond — brand guidelines: "Diamond rotates, Square remains static" -->
+        <!-- Animated spinning diamond - brand guidelines: "Diamond rotates, Square remains static" -->
         <div class="absolute pointer-events-none" style="top:50%; left:50%; margin-left:-320px; margin-top:-320px;" aria-hidden="true">
             <div class="diamond-spin" style="width:640px; height:640px; border:1px solid rgba(255,215,0,0.07);"></div>
         </div>
@@ -2463,10 +2304,10 @@
             <div class="diamond-spin-slow" style="width:440px; height:440px; border:1px solid rgba(255,215,0,0.05);"></div>
         </div>
 
-        <!-- Static square at center — brand: "The Square remains static" -->
+        <!-- Static square at center - brand: "The Square remains static" -->
         <div class="absolute pointer-events-none" style="top:50%; left:50%; margin-left:-32px; margin-top:-32px; width:64px; height:64px; background:rgba(255,215,0,0.06);" aria-hidden="true"></div>
 
-        <!-- Ghost "SYNTRA." vertical — left edge of CTA -->
+        <!-- Ghost "SYNTRA." vertical - left edge of CTA -->
         <div class="ghost-wordmark hidden xl:block" style="left:-0.5%; top:50%; transform:translateY(-50%); font-size:clamp(5rem,9vw,12rem); color:rgba(255,255,255,0.03); writing-mode:vertical-rl; text-orientation:mixed; white-space:nowrap; letter-spacing:0.12em;" aria-hidden="true">SYNTRA</div>
 
         <!-- Radial accent glows -->
@@ -2474,22 +2315,22 @@
 
         <!-- Yellow left spine -->
         <div class="hidden lg:block absolute left-0 top-0 bottom-0 z-10 pointer-events-none" style="width:6px; background:linear-gradient(to bottom, rgba(255,215,0,0.7) 0%, #FFD700 50%, rgba(255,215,0,0.7) 100%);" aria-hidden="true"></div>
-        <div class="container mx-auto px-4 sm:px-6 relative z-20">
+        <div class="container mx-auto px-6 relative z-20">
             <div class="grid lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-16">
                 <div>
                     <div class="mb-6 sm:mb-8">
                         <h2 class="font-head text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white uppercase leading-none tracking-tight whitespace-nowrap"><span style="all:unset; font: inherit; letter-spacing: inherit; text-transform: inherit; line-height: inherit; color: #64748B;">BUILD</span> WITH US</h2>
                     </div>
                     <p class="text-slate-400 text-base sm:text-lg font-light mb-10 sm:mb-12 leading-relaxed">
-                        Syntra Refining is currently onboarding strategic partners for the 2027 production cycle.
+                        Syntra is onboarding miners, manufacturers, and off-takers for our 2027 production cycle.
                     </p>
                     <div class="space-y-6">
                         <div>
-                            <p class="text-[9px] font-mono font-bold tracking-[0.25em] uppercase mb-1 text-slate-400">Headquarter</p>
-                            <p class="font-head font-bold text-white text-base uppercase tracking-wide leading-snug">Syntra Hub &mdash; Halifax</p>
+                            <p class="text-[9px] font-mono font-bold tracking-[0.25em] uppercase mb-1 text-slate-400">Headquarters</p>
+                            <p class="font-head font-bold text-white text-base uppercase tracking-wide leading-snug">Syntra Hub, Halifax</p>
                             <p class="text-xs text-slate-400 mt-0.5 tracking-wide">Nova Scotia, Canada</p>
                         </div>
-                        <div class="w-8" style="height:1px; background: linear-gradient(to right, rgba(255,215,0,0.3), transparent);"></div>
+                        <div class="w-8" style="height:1px; background:rgba(255,215,0,0.25);"></div>
                         <div>
                             <p class="text-[9px] font-mono font-bold tracking-[0.25em] uppercase mb-1 text-slate-400">Commercial Inquiries</p>
                             <a href="mailto:commercial@syntrarefining.com" class="font-head font-bold text-white text-base uppercase tracking-wide leading-snug block transition-colors duration-200 hover:text-syntra-accent">commercial@syntrarefining.com</a>
@@ -2514,9 +2355,9 @@
 
     <!-- FOOTER -->
     <footer class="bg-syntra-midnight text-white py-12 sm:py-16 border-t-4 border-syntra-accent relative overflow-hidden">
-        <div class="absolute inset-0 pointer-events-none bg-chicken-wire-dark" style="opacity:0.6;" aria-hidden="true"></div>
+        <div class="absolute inset-0 pointer-events-none bg-chicken-wire-dark" aria-hidden="true"></div>
         <div class="hidden lg:block absolute left-0 top-0 bottom-0 z-10 pointer-events-none" style="width:6px; background:linear-gradient(to bottom, rgba(255,215,0,0.7) 0%, rgba(255,215,0,0.2) 100%);" aria-hidden="true"></div>
-        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+        <div class="container mx-auto px-6 relative z-10">
             <div class="grid md:grid-cols-12 gap-12 mb-16">
                 <div class="md:col-span-4 space-y-6">
                     <a href="index.html" class="syntra-logo-hover-wrapper syntra-logo-footer light">
@@ -2802,7 +2643,7 @@
         })();
     </script>
 
-    <!-- HERO TAGLINE SPOTLIGHT — scroll-driven appear/disappear -->
+    <!-- HERO TAGLINE SPOTLIGHT - scroll-driven appear/disappear -->
     <script>
       (function() {
         var spotlight = document.getElementById('hero-spotlight');
@@ -2846,7 +2687,7 @@
       })();
     </script>
 
-    <!-- FEEDSTOCK & MINERALS SPOTLIGHTS — scroll-driven appear/disappear -->
+    <!-- FEEDSTOCK & MINERALS SPOTLIGHTS - scroll-driven appear/disappear -->
     <script>
       (function() {
         var ids = ['feedstock-spotlight', 'minerals-spotlight', 'synhub-desc-spotlight', 'digital-twin-spotlight', 'partnership-spotlight', 'footnote-spotlight'];
@@ -2879,7 +2720,7 @@
       })();
     </script>
 
-    <!-- TECHNOLOGY SECTION SPOTLIGHT — scroll-driven appear/disappear -->
+    <!-- TECHNOLOGY SECTION SPOTLIGHT - scroll-driven appear/disappear -->
     <script>
       (function() {
         var spotlight = document.getElementById('tech-spotlight');

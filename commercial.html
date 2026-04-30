@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#0A1628">
+    <meta name="theme-color" content="#0B1120">
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -69,7 +69,7 @@
 
     <style>
         .syntra-industrial-surface {
-            background: #061225;
+            background: #0B1120;
             position: relative;
             overflow: hidden;
         }
@@ -179,127 +179,38 @@
             transform: translateY(0) !important;
         }
 
-        /* Commercial pathway row table */
-        .cp-row {
-            display: grid;
-            grid-template-columns: 80px 1fr auto;
-            align-items: stretch;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            transition: background 0.22s ease;
+        /* Commercial pathway cards — identical to technology page process-step-card */
+        .cp-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
-        .cp-row:hover { background: rgba(255,255,255,0.03); }
-        @media (max-width: 900px) {
-            .cp-row { grid-template-columns: 56px 1fr; }
-            .cp-row-cta { grid-column: 2; padding-bottom: 24px; }
+        .cp-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            border-color: rgba(255,215,0,0.4) !important;
         }
-        @media (max-width: 600px) {
-            .cp-row { grid-template-columns: 1fr; }
-            .cp-row-index { display: flex; align-items: center; gap: 16px; padding: 28px 0 0; }
-            .cp-index-line-h { flex: 1; height: 1px; background: rgba(255,255,255,0.1); display: block; }
-            .cp-row-cta { padding: 0 0 28px; }
-        }
-        .cp-row-index {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 36px 0;
-        }
-        .cp-index-num {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            font-weight: 700;
-            color: #64748B;
-            letter-spacing: 0.12em;
-            display: block;
-            margin-bottom: 12px;
-        }
-        .cp-index-line {
-            width: 1px;
-            flex: 1;
-            background: rgba(255,255,255,0.08);
-        }
-        @media (max-width: 600px) {
-            .cp-index-line { width: auto; height: 1px; flex: 1; }
-        }
-        .cp-row-content {
-            padding: 36px 48px 36px 28px;
-            border-left: 1px solid rgba(255,255,255,0.06);
-            border-right: 1px solid rgba(255,255,255,0.06);
-        }
-        @media (max-width: 768px) {
-            .cp-row-content { padding: 28px 20px 28px 20px; border-right: none; }
-        }
-        .cp-row-header {
-            display: flex;
-            align-items: baseline;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin-bottom: 14px;
-        }
-        .cp-row-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.01em;
-            color: #FFFFFF;
-            margin: 0;
-            white-space: nowrap;
-        }
-        .cp-row-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0;
-        }
-        .cp-row-meta span {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: #CBD5E1;
-            padding: 3px 10px;
-            border-left: 1px solid rgba(255,255,255,0.08);
-        }
-        .cp-row-meta span:first-child { border-left: none; padding-left: 0; }
-        .cp-row-body {
-            font-size: 0.875rem;
-            line-height: 1.7;
-            color: #94A3B8;
-            font-weight: 300;
-            margin: 0;
-            max-width: 520px;
-        }
-        .cp-row-cta {
-            display: flex;
-            align-items: center;
-            padding: 36px 0 36px 28px;
-        }
-        @media (max-width: 768px) {
-            .cp-row-cta { padding: 0 0 28px 0; }
-        }
+        /* Inquire CTA — Signal Yellow, Oswald Bold, sharp, brand-primary */
         .cp-row-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             font-family: 'Oswald', sans-serif;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: #0b1120;
+            color: #0B1120;
             background: #FFD700;
             border: none;
-            padding: 11px 20px;
+            border-radius: 0 !important;
+            padding: 10px 20px;
             cursor: pointer;
             white-space: nowrap;
-            transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 6px 20px rgba(255,215,0,0.2);
+            transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
         }
         .cp-row-btn:hover {
             background: #FFFFFF;
-            color: #0b1120;
-            transform: translateY(-1px);
+            color: #0B1120;
+            transform: translateX(3px);
         }
 
         /* Reveal */
@@ -315,7 +226,7 @@
         .ghost-wordmark {
             position: absolute;
             font-family: 'Oswald', sans-serif;
-            font-weight: 900;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: -0.04em;
             pointer-events: none;
@@ -382,9 +293,9 @@
             </a>
             <button class="text-syntra-text p-3 hover:text-syntra-amber transition-colors" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
                 <div class="flex flex-col gap-[6px] items-end">
-                    <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
-                    <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
-                    <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
+                    <span class="block w-8 h-[3px] bg-current menu-line" style="border-radius:0"></span>
+                    <span class="block w-8 h-[3px] bg-current menu-line" style="border-radius:0"></span>
+                    <span class="block w-8 h-[3px] bg-current menu-line" style="border-radius:0"></span>
                 </div>
             </button>
         </div>
@@ -413,17 +324,17 @@
                     <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Home</span>
                     <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </a>
-                <a href="commercial.html" class="group flex items-center justify-between px-5 py-4 bg-syntra-accent/10 border-l-4 border-syntra-amber transition-all duration-200">
-                    <span class="text-2xl font-head font-bold uppercase text-syntra-amber">Commercial</span>
-                    <svg class="w-5 h-5 text-syntra-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                <a href="company.html" class="group flex items-center justify-between px-5 py-4 bg-[#F8FAFC] hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Company</span>
+                    <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </a>
                 <a href="technology.html" class="group flex items-center justify-between px-5 py-4 bg-[#F8FAFC] hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
                     <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Technology</span>
                     <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </a>
-                <a href="company.html" class="group flex items-center justify-between px-5 py-4 bg-[#F8FAFC] hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
-                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Company</span>
-                    <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                <a href="commercial.html" class="group flex items-center justify-between px-5 py-4 bg-syntra-accent/10 border-l-4 border-syntra-amber transition-all duration-200">
+                    <span class="text-2xl font-head font-bold uppercase text-syntra-amber">Commercial</span>
+                    <svg class="w-5 h-5 text-syntra-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </a>
                 <a href="careers.html" class="group flex items-center justify-between px-5 py-4 bg-[#F8FAFC] hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
                     <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Careers</span>
@@ -437,7 +348,7 @@
         </div>
 
         <!-- Branding Footer -->
-        <div class="mt-auto relative overflow-hidden" style="background: linear-gradient(135deg, #0B1120 0%, #061225 100%);">
+        <div class="mt-auto relative overflow-hidden" style="background: #0B1120;">
             <!-- Gold left spine -->
             <div class="absolute left-0 top-0 bottom-0" style="width:4px; background:linear-gradient(to bottom, #FFD700 0%, rgba(255,215,0,0.3) 100%);"></div>
             <!-- Spinning diamond bg marks -->
@@ -470,49 +381,58 @@
     </div>
 
     <!-- HERO SECTION -->
-    <header id="hero-section" class="relative min-h-[75vh] sm:min-h-[85vh] flex items-center overflow-hidden" style="background:#ffffff;">
+    <header id="hero-section" class="relative py-20 sm:py-24 md:py-28 bg-white overflow-hidden">
 
-        <!-- White engineered grid background -->
-        <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true" style="background-image:linear-gradient(rgba(11,17,32,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(11,17,32,0.045) 1px,transparent 1px),linear-gradient(rgba(11,17,32,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(11,17,32,0.018) 1px,transparent 1px);background-size:160px 160px,160px 160px,40px 40px,40px 40px;"></div>
-
-        <!-- Bottom-left radial glow -->
-        <div class="absolute pointer-events-none" style="bottom:-100px;left:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(255,215,0,0.08) 0%,transparent 70%);" aria-hidden="true"></div>
-
-        <!-- Top-right teal glow -->
-        <div class="absolute pointer-events-none" style="top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(8,145,178,0.06) 0%,transparent 70%);" aria-hidden="true"></div>
-
-        <!-- Ghost wordmark -->
-        <div class="ghost-wordmark" style="font-size:clamp(80px,16vw,220px);color:rgba(11,17,32,0.04);top:50%;left:-10px;transform:translateY(-50%);white-space:nowrap;" aria-hidden="true">COMMERCIAL</div>
-
-        <!-- Spinning diamond rings -->
-        <div class="absolute pointer-events-none hidden lg:block" style="top:50%;right:-60px;transform:translateY(-50%);" aria-hidden="true">
-            <div class="diamond-spin" style="width:480px;height:480px;border:1px solid rgba(11,17,32,0.07);"></div>
+        <!-- Subtle grid overlay - matches index.html hero exactly -->
+        <div class="absolute inset-0 z-0 opacity-5" aria-hidden="true">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <pattern id="hero-grid-comm" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="black" stroke-width="1"/>
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#hero-grid-comm)" />
+            </svg>
         </div>
-        <div class="absolute pointer-events-none hidden lg:block" style="top:50%;right:-60px;transform:translateY(-50%);" aria-hidden="true">
-            <div class="diamond-spin-slow" style="width:300px;height:300px;border:1px solid rgba(255,215,0,0.25);"></div>
+
+        <!-- Signal Yellow left spine -->
+        <div class="hidden lg:block absolute left-0 top-0 bottom-0 z-20 pointer-events-none" style="width:6px; background:#FFD700;" aria-hidden="true"></div>
+
+        <!-- Animated spinning diamond brand mark - centered on content side, matches index.html -->
+        <div class="absolute pointer-events-none hidden lg:block" style="top:50%; right:54%; transform:translateY(-50%) translateX(50%);" aria-hidden="true">
+            <div class="diamond-spin" style="width:560px; height:560px; border:1px solid rgba(0,0,0,0.04);"></div>
         </div>
-        <div class="absolute pointer-events-none hidden lg:block" style="top:50%;right:150px;transform:translateY(-50%);width:32px;height:32px;background:rgba(255,215,0,0.15);" aria-hidden="true"></div>
+        <div class="absolute pointer-events-none hidden lg:block" style="top:50%; right:54%; transform:translateY(-50%) translateX(50%);" aria-hidden="true">
+            <div class="diamond-spin-slow" style="width:340px; height:340px; border:1px solid rgba(0,0,0,0.03);"></div>
+        </div>
 
-        <!-- Gold left spine -->
-        <div class="hidden lg:block absolute left-0 top-0 bottom-0 z-10 pointer-events-none" style="width:6px;background:linear-gradient(to bottom,#FFD700 0%,rgba(255,215,0,0.4) 100%);" aria-hidden="true"></div>
+        <!-- Ghost wordmark: "COMMERCIAL" very faint - matches index.html "SYNTRA" ghost treatment -->
+        <div class="absolute pointer-events-none hidden lg:block select-none" style="bottom:-40px; left:0px; font-family:'Oswald',sans-serif; font-weight:700; font-size:clamp(140px,18vw,240px); text-transform:uppercase; letter-spacing:-0.04em; line-height:0.85; color:rgba(0,0,0,0.025); z-index:0; white-space:nowrap;" aria-hidden="true">COMMERCIAL</div>
 
-        <!-- Hero content -->
-        <div class="container mx-auto px-6 sm:px-10 relative z-10 py-24 w-full">
-            <div class="inline-block px-4 py-2 mb-6 font-mono font-bold text-xs tracking-wider uppercase" style="background:rgba(8,145,178,0.1);color:#0891B2;border:1px solid rgba(8,145,178,0.25);">COMMERCIAL PARTNERSHIPS</div>
-            <h1 style="all:initial;display:block;font-family:'Oswald',sans-serif;font-size:clamp(2.8rem,10vw,6.5rem);font-weight:900;line-height:0.88;letter-spacing:-0.02em;text-transform:uppercase;color:#0B1120;margin-bottom:2rem;">
-                MULTI&#8209;METAL<br>
-                <span style="all:unset;color:#FFD700;font-family:inherit;font-size:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit;text-transform:inherit;">REFINING.</span><br>
-                <span style="all:unset;color:rgba(11,17,32,0.35);font-family:inherit;font-size:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit;text-transform:inherit;">UNIVERSAL INTAKE.</span>
-            </h1>
-            <div class="max-w-2xl">
-                <div style="position:relative;display:flex;gap:16px;align-items:stretch;margin-bottom:2rem;">
-                    <div aria-hidden="true" style="position:absolute;top:50%;left:40%;transform:translate(-50%,-50%) scale(0.5);width:200%;height:700%;pointer-events:none;opacity:0;transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1),transform 0.8s cubic-bezier(0.4,0,0.2,1);background:radial-gradient(ellipse at 50% 50%,rgba(255,214,0,0.20) 0%,rgba(255,214,0,0.09) 30%,rgba(255,214,0,0.02) 58%,transparent 75%);z-index:0;border-radius:50%;"></div>
-                    <div style="width:9px;background:#FFD700;flex-shrink:0;position:relative;z-index:1;"></div>
-                    <p class="text-base sm:text-lg leading-relaxed font-light" style="color:#475569;position:relative;z-index:1;">Our universal&#8209;intake model allows miners, battery recyclers, manufacturers, and technology partners to plug directly into a scalable system designed for <span style="color:#E6A800;font-weight:700;">global demand</span>.</p>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#partner-ecosystem-access" class="px-8 py-4 font-head font-bold text-lg uppercase tracking-wide transition-colors shadow-xl flex items-center justify-center gap-3" style="background:#FFD700;color:#0B1120;">INQUIRIES</a>
-                    <a href="technology.html" class="px-8 py-4 border-2 font-head font-bold text-lg uppercase tracking-wide transition-colors flex items-center justify-center gap-3" style="border-color:rgba(11,17,32,0.2);color:#0B1120;" onmouseover="this.style.borderColor='#FFD700';this.style.color='#E6A800';" onmouseout="this.style.borderColor='rgba(11,17,32,0.2)';this.style.color='#0B1120';">TECHNOLOGY</a>
+        <!-- Hero content - full width matching technology.html structure -->
+        <div class="relative z-10 w-full">
+            <div class="container mx-auto px-6">
+                <div class="hero-eyebrow" data-animate>COMMERCIAL PARTNERSHIPS</div>
+                <div class="syntra-yellow-bar" style="margin-bottom:0.75rem;" data-animate></div>
+                <h1 style="all:initial;display:block;font-family:'Oswald',sans-serif;font-size:clamp(2.8rem,10vw,6.5rem);font-weight:700;line-height:0.88;letter-spacing:-0.02em;text-transform:uppercase;color:#0B1120;margin-bottom:2rem;" data-animate>
+                    ADAPTIVE TECHNOLOGY<br>
+                    <span style="all:unset;color:#FFD700;font-family:inherit;font-size:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit;text-transform:inherit;">FLEXIBLE INPUT</span><br>
+                    <span style="all:unset;color:#64748B;font-family:inherit;font-size:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit;text-transform:inherit;">FLEXIBLE OUTPUT</span>
+                </h1>
+                <div class="max-w-2xl">
+                    <div class="hero-headline" style="margin-bottom:2rem;">
+                        <p class="text-base sm:text-lg text-[#64748B] leading-relaxed font-light">
+                            Our universal&#8209;intake model accepts feedstock from miners, battery recyclers, manufacturers, and technology partners within a scalable system built for <span style="color:#FFD700; font-weight:700;">global demand</span>.
+                        </p>
+                    </div>
+                    <div style="margin-top:2rem;">
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                            <a href="#partner-ecosystem-access" class="inline-flex items-center justify-center gap-2 w-52 py-4 bg-syntra-accent text-syntra-midnight font-head font-bold text-sm uppercase tracking-wide hover:bg-[#ffd700] transition-colors shadow-xl shadow-[#ffd700]/20 whitespace-nowrap">
+                                INQUIRIES
+                            </a>
+                            <a href="technology.html" class="inline-flex items-center justify-center gap-2 w-52 py-4 bg-syntra-accent text-syntra-midnight font-head font-bold text-sm uppercase tracking-wide hover:bg-[#ffd700] transition-colors shadow-xl shadow-[#ffd700]/20 whitespace-nowrap">
+                                TECHNOLOGY
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -547,210 +467,199 @@
     </script>
 
     <!-- TRANSITION: Hero → Dark -->
-    <div aria-hidden="true" style="position:relative;height:72px;overflow:hidden;background:#0B1120;margin:0;padding:0;pointer-events:none;">
-      <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;display:block;">
-        <defs>
-          <linearGradient id="hero-to-dark" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#ffffff"/>
-            <stop offset="100%" stop-color="#0B1120"/>
-          </linearGradient>
-        </defs>
-        <rect x="0" y="0" width="1440" height="72" fill="#0B1120"/>
-        <path d="M0,0 L1440,0 L1440,30 Q1080,62 720,38 Q360,14 0,46 Z" fill="#ffffff"/>
-        <path d="M0,0 L1440,0 L1440,30 Q1080,62 720,38 Q360,14 0,46 Z" fill="url(#hero-to-dark)" opacity="0.6"/>
-        <path d="M0,46 Q360,14 720,38 Q1080,62 1440,30" fill="none" stroke="rgba(255,214,0,0.15)" stroke-width="1.2"/>
-      </svg>
-    </div>
+    <div aria-hidden="true" style="height:4px;background:#FFD700;margin:0;padding:0;pointer-events:none;"></div>
 
-    <!-- COMMERCIAL PATHWAYS — dark section -->
-    <section id="commercial-pathways" class="py-16 sm:py-20 md:py-24 relative overflow-hidden syntra-industrial-surface">
-        <!-- Photo background -->
-        <div class="absolute inset-0 z-0" aria-hidden="true">
-            <img src="assets/images/Eslam_Embaby_MULTIMETALREFININGUNIVERSAL_INTAKE_commercial_plant_8e0c110b-629d-4e1c-8776-066ca031028e.png" alt="" class="w-full h-full object-cover object-center" style="filter:brightness(0.22) contrast(1.1);">
-        </div>
-        <!-- Overlays -->
-        <div class="absolute inset-0 z-[1] pointer-events-none" style="background:linear-gradient(135deg, rgba(6,18,37,0.92) 0%, rgba(11,17,32,0.78) 50%, rgba(6,18,37,0.88) 100%);"></div>
-        <div class="absolute inset-0 z-[1] pointer-events-none" style="background:radial-gradient(ellipse at 15% 50%, rgba(8,145,178,0.09) 0%, transparent 55%), radial-gradient(ellipse at 85% 50%, rgba(255,214,0,0.05) 0%, transparent 50%);"></div>
-        <!-- Denser dual-scale grid -->
-        <div class="absolute inset-0 z-[2] pointer-events-none" style="background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:160px 160px,160px 160px,40px 40px,40px 40px;"></div>
+    <!-- COMMERCIAL PATHWAYS - dark section -->
+    <section id="commercial-pathways" class="py-16 sm:py-20 md:py-24 relative overflow-hidden" style="background:#0B1120;">
+        <!-- Deep navy base -->
+        <div class="absolute inset-0 z-0 pointer-events-none" style="background:#0B1120;" aria-hidden="true"></div>
+        <!-- Brand diagonal slash lines (brand guideline cover pattern) -->
+        <svg class="absolute inset-0 w-full h-full z-[1] pointer-events-none" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+            <line x1="-200" y1="1000" x2="1100" y2="-200" stroke="rgba(255,255,255,0.045)" stroke-width="1.5"/>
+            <line x1="0" y1="1000" x2="1300" y2="-200" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+            <line x1="200" y1="1000" x2="1500" y2="-200" stroke="rgba(255,255,255,0.022)" stroke-width="1"/>
+            <line x1="1640" y1="800" x2="300" y2="-200" stroke="rgba(255,255,255,0.04)" stroke-width="1.5"/>
+            <line x1="1640" y1="550" x2="550" y2="-200" stroke="rgba(255,255,255,0.028)" stroke-width="1"/>
+            <line x1="1640" y1="300" x2="800" y2="-200" stroke="rgba(255,255,255,0.018)" stroke-width="1"/>
+            <line x1="-200" y1="700" x2="700" y2="-200" stroke="rgba(255,214,0,0.065)" stroke-width="1.5"/>
+            <line x1="1640" y1="400" x2="750" y2="-200" stroke="rgba(255,214,0,0.05)" stroke-width="1.5"/>
+            <rect x="820" y="0" width="300" height="100" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        </svg>
+        <!-- Atmospheric glows -->
+        <div class="absolute inset-0 z-[2] pointer-events-none" style="background:radial-gradient(ellipse at 15% 50%, rgba(255,215,0,0.05) 0%, transparent 55%), radial-gradient(ellipse at 85% 50%, rgba(255,214,0,0.04) 0%, transparent 50%);"></div>
         <!-- Signal Yellow left spine -->
-        <div class="absolute left-0 top-0 bottom-0 z-[3] pointer-events-none" style="width:6px;background:linear-gradient(to bottom,#FFD700 0%,rgba(255,215,0,0.3) 100%);" aria-hidden="true"></div>
-        <!-- Diamond accents — enhanced -->
+        <div class="absolute left-0 top-0 bottom-0 z-[3] pointer-events-none" style="width:4px;background:#FFD700;" aria-hidden="true"></div>
+        <!-- Diamond accents -->
         <div class="absolute z-0 pointer-events-none" style="top:-60px;right:-80px;width:360px;height:360px;transform:rotate(45deg);border:1px solid rgba(255,214,0,0.12);"></div>
         <div class="absolute z-0 pointer-events-none" style="top:-20px;right:-40px;width:220px;height:220px;transform:rotate(45deg);border:1px solid rgba(255,214,0,0.08);"></div>
-        <div class="absolute z-0 pointer-events-none hidden lg:block" style="bottom:8%;left:-40px;width:200px;height:200px;transform:rotate(45deg);border:1px solid rgba(8,145,178,0.10);"></div>
-        <div class="absolute z-0 pointer-events-none hidden lg:block" style="bottom:12%;left:0px;width:100px;height:100px;transform:rotate(45deg);border:1px solid rgba(8,145,178,0.07);"></div>
+        <div class="absolute z-0 pointer-events-none hidden lg:block" style="bottom:8%;left:-40px;width:200px;height:200px;transform:rotate(45deg);border:1px solid rgba(255,215,0,0.06);"></div>
+        <div class="absolute z-0 pointer-events-none hidden lg:block" style="bottom:12%;left:0px;width:100px;height:100px;transform:rotate(45deg);border:1px solid rgba(255,215,0,0.04);"></div>
         <!-- Ghost "PATHWAYS" watermark -->
-        <div class="absolute pointer-events-none hidden lg:block select-none" style="top:50%;right:0;transform:translateY(-50%);font-family:'Oswald',sans-serif;font-weight:900;font-size:clamp(100px,12vw,180px);text-transform:uppercase;letter-spacing:-0.04em;line-height:0.85;color:rgba(255,255,255,0.018);z-index:0;white-space:nowrap;" aria-hidden="true">PATHWAYS</div>
+        <div class="absolute pointer-events-none hidden lg:block select-none" style="top:50%;right:0;transform:translateY(-50%);font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(100px,12vw,180px);text-transform:uppercase;letter-spacing:-0.04em;line-height:0.85;color:rgba(255,255,255,0.018);z-index:0;white-space:nowrap;" aria-hidden="true">PATHWAYS</div>
 
-        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+        <div class="container mx-auto px-6 relative z-10">
 
             <!-- Section header -->
             <div class="mb-14 max-w-2xl" data-cp-reveal>
-                <div class="inline-block px-4 py-2 mb-6 font-bold text-xs tracking-wider uppercase" style="background-color: rgba(8, 145, 178, 0.22); color: #0891B2; border: 1px solid rgba(8,145,178,0.25);">
+                <div class="section-eyebrow">
                     COMMERCIAL PATHWAYS
                 </div>
                 <div class="syntra-yellow-bar"></div>
-                <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase" style="color:#FFFFFF;">Structured Engagement<br><span style="all:unset; color:#FFD700; font-family:'Oswald',sans-serif; font-size:inherit; font-weight:900; line-height:inherit; letter-spacing:inherit; text-transform:uppercase;">at Every Level</span></h2>
+                <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase" style="color:#FFFFFF;">Three Ways to<br><span style="all:unset; color:#FFD700; font-family:'Oswald',sans-serif; font-size:inherit; font-weight:700; line-height:inherit; letter-spacing:inherit; text-transform:uppercase;">Work With Syntra</span></h2>
                 <div style="display:flex; gap:16px; align-items:stretch; margin-top:1rem; position:relative;">
                     <div class="absolute pointer-events-none" style="top:50%; left:-20px; transform:translateY(-50%); width:500px; height:200px; background:radial-gradient(ellipse at 15% 50%, rgba(255,215,0,0.14) 0%, rgba(255,215,0,0.05) 45%, transparent 70%); z-index:0;"></div>
                     <div style="width:8px; background:#FFD700; border-radius:2px; flex-shrink:0; position:relative; z-index:1;"></div>
-                    <p class="text-base sm:text-lg font-light leading-relaxed" style="color:#94A3B8; position:relative; z-index:1;">We accept a wide range of high-value feedstocks — concentrates, tailings, black mass, and process scrap — through commercial structures engineered to each partner's position in the value chain.</p>
+                    <p class="text-base sm:text-lg font-light leading-relaxed" style="color:#94A3B8; position:relative; z-index:1;">We accept a wide range of high-value feedstocks: concentrates, tailings, black mass, and process scrap, through commercial structures engineered to each partner's position in the value chain.</p>
                 </div>
             </div>
 
-            <!-- Top rule with gold signal tick -->
-            <div style="display:flex;align-items:center;gap:0;margin-bottom:0;">
+            <!-- Gold brand rule before cards -->
+            <div style="display:flex;align-items:center;gap:0;margin-bottom:32px;">
                 <div style="width:6px;height:4px;background:#FFD700;"></div>
-                <div style="height:1px;flex:1;background:linear-gradient(to right,rgba(255,215,0,0.55),rgba(255,215,0,0.1),rgba(255,255,255,0.04));"></div>
+                <div style="height:1px;flex:1;background:rgba(255,215,0,0.25);max-width:320px;"></div>
             </div>
 
-            <!-- Pathway rows -->
-            <div data-cp-reveal data-cp-delay="80">
-                <div class="cp-row">
-                    <div class="cp-row-index">
-                        <span class="cp-index-num">01</span>
-                        <div class="cp-index-line"></div>
+            <!-- Pathway cards — same structure as technology page process-step-cards -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-10" data-cp-reveal data-cp-delay="80">
+
+                <div class="cp-card p-6 sm:p-8 border group" style="background:#0F172A; border-color:rgba(255,255,255,0.10);">
+                    <div class="w-8 h-0.5 bg-syntra-accent mb-4"></div>
+                    <h3 class="font-head text-xl font-bold uppercase mb-3" style="color:#FFFFFF;">Tolling Agreements</h3>
+                    <p class="text-sm leading-relaxed font-light mb-6" style="color:#94A3B8;">You supply the feedstock; we refine it into pure-grade minerals with qualification-ready consistency. Full chain-of-custody traceability, zero compromise on output specification.</p>
+                    <div class="flex flex-wrap gap-1.5 mb-6">
+                        <span class="font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-1" style="color:#FFD700; background:rgba(255,215,0,0.08); border:1px solid rgba(255,215,0,0.2);">Feedstock In, Pure-Grade Out</span>
+                        <span class="font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-1" style="color:#FFD700; background:rgba(255,215,0,0.08); border:1px solid rgba(255,215,0,0.2);">Full traceability</span>
+                        <span class="font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-1" style="color:#FFD700; background:rgba(255,215,0,0.08); border:1px solid rgba(255,215,0,0.2);">Qual-ready output</span>
                     </div>
-                    <div class="cp-row-content">
-                        <div class="cp-row-header">
-                            <h3 class="cp-row-title">Tolling Agreements</h3>
-                            <div class="cp-row-meta">
-                                <span>Feedstock-in / Pure-grade out</span>
-                                <span>Full traceability</span>
-                                <span>Qual-ready output</span>
-                            </div>
-                        </div>
-                        <p class="cp-row-body">You supply the feedstock; we refine it into pure-grade materials with qualification-ready consistency. Full chain-of-custody traceability, zero compromise on output specification.</p>
-                    </div>
-                    <div class="cp-row-cta">
+                    <div class="pt-4" style="border-top:1px solid rgba(255,255,255,0.07);">
                         <button onclick="window.openContactModal('Tolling Agreements')" class="cp-row-btn">
-                            Enquire
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Inquire
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 5l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </button>
                     </div>
                 </div>
 
-                <div class="cp-row">
-                    <div class="cp-row-index">
-                        <span class="cp-index-num">02</span>
-                        <div class="cp-index-line"></div>
+                <div class="cp-card p-6 sm:p-8 border group" style="background:#0F172A; border-color:rgba(255,255,255,0.10);">
+                    <div class="w-8 h-0.5 bg-syntra-accent mb-4"></div>
+                    <h3 class="font-head text-xl font-bold uppercase mb-3" style="color:#FFFFFF;">Merchant Supply</h3>
+                    <p class="text-sm leading-relaxed font-light mb-6" style="color:#94A3B8;">Provide feedstock and participate in mutually beneficial commercial terms for mineral output. Structured pricing, shared upside, and fully transparent settlement on every lot.</p>
+                    <div class="flex flex-wrap gap-1.5 mb-6">
+                        <span class="font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-1" style="color:#FFD700; background:rgba(255,215,0,0.08); border:1px solid rgba(255,215,0,0.2);">Shared commercial upside</span>
+                        <span class="font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-1" style="color:#FFD700; background:rgba(255,215,0,0.08); border:1px solid rgba(255,215,0,0.2);">Structured pricing</span>
+                        <span class="font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-1" style="color:#FFD700; background:rgba(255,215,0,0.08); border:1px solid rgba(255,215,0,0.2);">Transparent settlement</span>
                     </div>
-                    <div class="cp-row-content">
-                        <div class="cp-row-header">
-                            <h3 class="cp-row-title">Merchant Supply</h3>
-                            <div class="cp-row-meta">
-                                <span>Shared commercial upside</span>
-                                <span>Structured pricing</span>
-                                <span>Transparent settlement</span>
-                            </div>
-                        </div>
-                        <p class="cp-row-body">Provide feedstock and participate in mutually beneficial commercial terms for material output. Structured pricing, shared upside, and fully transparent settlement on every lot.</p>
-                    </div>
-                    <div class="cp-row-cta">
+                    <div class="pt-4" style="border-top:1px solid rgba(255,255,255,0.07);">
                         <button onclick="window.openContactModal('Merchant Supply')" class="cp-row-btn">
-                            Enquire
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Inquire
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 5l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </button>
                     </div>
                 </div>
 
-                <div class="cp-row" style="border-bottom:none;">
-                    <div class="cp-row-index">
-                        <span class="cp-index-num">03</span>
-                        <div class="cp-index-line"></div>
+                <div class="cp-card p-6 sm:p-8 border group sm:col-span-2 lg:col-span-1" style="background:#0F172A; border-color:rgba(255,255,255,0.10);">
+                    <div class="w-8 h-0.5 bg-syntra-accent mb-4"></div>
+                    <h3 class="font-head text-xl font-bold uppercase mb-3" style="color:#FFFFFF;">Strategic Engagements</h3>
+                    <p class="text-sm leading-relaxed font-light mb-6" style="color:#94A3B8;">Long-term agreements with OEMs, miners, investors, and R&amp;D collaborators to expand capacity, advance process development, and build critical-mineral supply security across North America.</p>
+                    <div class="flex flex-wrap gap-1.5 mb-6">
+                        <span class="font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-1" style="color:#FFD700; background:rgba(255,215,0,0.08); border:1px solid rgba(255,215,0,0.2);">OEMs &amp; Miners</span>
+                        <span class="font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-1" style="color:#FFD700; background:rgba(255,215,0,0.08); border:1px solid rgba(255,215,0,0.2);">Technology co-development</span>
+                        <span class="font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-1" style="color:#FFD700; background:rgba(255,215,0,0.08); border:1px solid rgba(255,215,0,0.2);">Long-term partnership</span>
                     </div>
-                    <div class="cp-row-content">
-                        <div class="cp-row-header">
-                            <h3 class="cp-row-title">Strategic Engagements</h3>
-                            <div class="cp-row-meta">
-                                <span>OEMs &amp; Miners</span>
-                                <span>Technology co-development</span>
-                                <span>Long-term partnership</span>
-                            </div>
-                        </div>
-                        <p class="cp-row-body">Long-term partnerships with OEMs, miners, investors, and R&amp;D collaborators to scale capacity, co-develop technology, and strengthen critical-mineral supply security at a system level.</p>
-                    </div>
-                    <div class="cp-row-cta">
+                    <div class="pt-4" style="border-top:1px solid rgba(255,255,255,0.07);">
                         <button onclick="window.openContactModal('Strategic Engagements')" class="cp-row-btn">
-                            Enquire
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Inquire
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 5l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </button>
                     </div>
                 </div>
+
             </div>
 
-            <!-- Accepted feedstocks bar -->
-            <div class="mt-12 p-5" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,215,0,0.18);" data-cp-reveal data-cp-delay="200">
-                <p class="font-mono text-[9px] uppercase tracking-[0.3em] text-[#9ca3af] mb-4">Accepted Feedstock Types</p>
-                <div class="flex flex-wrap gap-3">
-                    <span class="px-4 py-2 font-mono text-xs font-bold" style="background:#0A1428; border:1px solid rgba(107,114,128,0.25); color:#9ca3af;">Black Mass</span>
-                    <span class="px-4 py-2 font-mono text-xs font-bold" style="background:#0A1428; border:1px solid rgba(107,114,128,0.25); color:#9ca3af;">Spodumene Conc.</span>
-                    <span class="px-4 py-2 font-mono text-xs font-bold" style="background:#0A1428; border:1px solid rgba(107,114,128,0.25); color:#9ca3af;">Ni Sulfide Conc.</span>
-                    <span class="px-4 py-2 font-mono text-xs font-bold" style="background:#0A1428; border:1px solid rgba(107,114,128,0.25); color:#9ca3af;">Cathode Mfg. Scrap</span>
-                    <span class="px-4 py-2 font-mono text-xs font-bold" style="background:#0A1428; border:1px solid rgba(107,114,128,0.25); color:#9ca3af;">Mixed Tailings</span>
-                    <span class="px-4 py-2 font-mono text-xs font-bold" style="background:#0A1428; border:1px solid rgba(107,114,128,0.25); color:#9ca3af;">Process Intermediates</span>
+            <!-- Accepted feedstocks bar — mirrors technology page Critical Minerals Output card -->
+            <div class="cp-card p-6 sm:p-8 border group" style="background:#0F172A; border-color:rgba(255,215,0,0.2);" data-cp-reveal data-cp-delay="200">
+                <div class="w-8 h-0.5 bg-syntra-accent mb-4"></div>
+                <h3 class="font-head text-xl font-bold uppercase mb-6" style="color:#FFFFFF;">Accepted Feedstock Types</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="flex items-center py-4 px-4 transition-all duration-300" style="background:#0A1428; border:1px solid rgba(255,215,0,0.15);">
+                        <span class="font-mono text-[11px] font-bold tracking-wider uppercase" style="color:#CBD5E1;">Concentrates</span>
+                    </div>
+                    <div class="flex items-center py-4 px-4 transition-all duration-300" style="background:#0A1428; border:1px solid rgba(255,215,0,0.15);">
+                        <span class="font-mono text-[11px] font-bold tracking-wider uppercase" style="color:#CBD5E1;">Black Mass</span>
+                    </div>
+                    <div class="flex items-center py-4 px-4 transition-all duration-300" style="background:#0A1428; border:1px solid rgba(255,215,0,0.15);">
+                        <span class="font-mono text-[11px] font-bold tracking-wider uppercase" style="color:#CBD5E1;">NMC &amp; NCA LIBs</span>
+                    </div>
+                    <div class="flex items-center py-4 px-4 transition-all duration-300" style="background:#0A1428; border:1px solid rgba(255,215,0,0.15);">
+                        <span class="font-mono text-[11px] font-bold tracking-wider uppercase" style="color:#CBD5E1;">Tailings</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TRANSITION: Dark → Dark scan-line -->
-    <div aria-hidden="true" style="position:relative;height:56px;overflow:hidden;background:#061225;margin:0;padding:0;pointer-events:none;">
-      <svg viewBox="0 0 1440 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;display:block;">
-        <defs>
-          <linearGradient id="scan-gold" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="rgba(255,214,0,0)"/>
-            <stop offset="30%" stop-color="rgba(255,214,0,0.55)"/>
-            <stop offset="50%" stop-color="rgba(255,214,0,0.85)"/>
-            <stop offset="70%" stop-color="rgba(255,214,0,0.55)"/>
-            <stop offset="100%" stop-color="rgba(255,214,0,0)"/>
-          </linearGradient>
-          <linearGradient id="scan-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="rgba(8,145,178,0)"/>
-            <stop offset="25%" stop-color="rgba(8,145,178,0.3)"/>
-            <stop offset="50%" stop-color="rgba(8,145,178,0.5)"/>
-            <stop offset="75%" stop-color="rgba(8,145,178,0.3)"/>
-            <stop offset="100%" stop-color="rgba(8,145,178,0)"/>
-          </linearGradient>
-        </defs>
-        <rect x="0" y="0" width="1440" height="56" fill="#0B1120"/>
-        <polygon points="0,0 1440,20 1440,56 0,56" fill="#061225"/>
-        <line x1="0" y1="0" x2="1440" y2="20" stroke="url(#scan-gold)" stroke-width="1.2"/>
-        <line x1="0" y1="4" x2="1440" y2="24" stroke="url(#scan-cyan)" stroke-width="0.7"/>
-      </svg>
-    </div>
+    <!-- TRANSITION: Dark → Dark -->
+    <div aria-hidden="true" style="height:1px;background:rgba(255,215,0,0.2);margin:0;padding:0;pointer-events:none;"></div>
 
-    <!-- SYNHUB NETWORK — dark section -->
-    <section class="py-16 sm:py-20 md:py-24 relative overflow-hidden syntra-industrial-surface">
-        <!-- Dual-scale grid -->
-        <div class="absolute inset-0 z-0 pointer-events-none" style="background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:160px 160px,160px 160px,40px 40px,40px 40px;"></div>
-        <div class="absolute inset-0 z-0 pointer-events-none" style="background:radial-gradient(circle at 72% 28%, rgba(8,145,178,0.09) 0%, transparent 45%), radial-gradient(circle at 18% 72%, rgba(255,215,0,0.05) 0%, transparent 40%);"></div>
+    <!-- SYNHUB NETWORK - dark section -->
+    <section class="py-16 sm:py-20 md:py-24 relative overflow-hidden" style="background:#0B1120;">
+        <!-- Deep navy base -->
+        <div class="absolute inset-0 z-0 pointer-events-none" style="background:#0B1120;" aria-hidden="true"></div>
+        <!-- Brand diagonal slash lines (brand guideline cover pattern) -->
+        <svg class="absolute inset-0 w-full h-full z-0 pointer-events-none" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+            <line x1="-200" y1="1000" x2="1100" y2="-200" stroke="rgba(255,255,255,0.045)" stroke-width="1.5"/>
+            <line x1="0" y1="1000" x2="1300" y2="-200" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+            <line x1="200" y1="1000" x2="1500" y2="-200" stroke="rgba(255,255,255,0.022)" stroke-width="1"/>
+            <line x1="1640" y1="800" x2="300" y2="-200" stroke="rgba(255,255,255,0.04)" stroke-width="1.5"/>
+            <line x1="1640" y1="550" x2="550" y2="-200" stroke="rgba(255,255,255,0.028)" stroke-width="1"/>
+            <line x1="1640" y1="300" x2="800" y2="-200" stroke="rgba(255,255,255,0.018)" stroke-width="1"/>
+            <line x1="-200" y1="700" x2="700" y2="-200" stroke="rgba(255,214,0,0.065)" stroke-width="1.5"/>
+            <line x1="1640" y1="400" x2="750" y2="-200" stroke="rgba(255,214,0,0.05)" stroke-width="1.5"/>
+            <rect x="820" y="0" width="300" height="100" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        </svg>
+        <!-- Atmospheric glows -->
+        <div class="absolute inset-0 z-0 pointer-events-none" style="background:radial-gradient(circle at 72% 28%, rgba(255,215,0,0.05) 0%, transparent 45%), radial-gradient(circle at 18% 72%, rgba(255,215,0,0.04) 0%, transparent 40%);"></div>
         <!-- Signal Yellow left spine -->
-        <div class="absolute left-0 top-0 bottom-0 z-10 pointer-events-none" style="width:6px;background:linear-gradient(to bottom,rgba(255,215,0,0.3) 0%,#FFD700 40%,rgba(255,215,0,0.3) 100%);" aria-hidden="true"></div>
+        <div class="absolute left-0 top-0 bottom-0 z-10 pointer-events-none" style="width:4px;background:linear-gradient(to bottom,transparent 0%,rgba(255,215,0,0.4) 20%,#FFD700 50%,rgba(255,215,0,0.4) 80%,transparent 100%);" aria-hidden="true"></div>
         <!-- Ghost "SYNHUB" watermark -->
-        <div class="absolute pointer-events-none hidden lg:block select-none" style="bottom:0;right:0;font-family:'Oswald',sans-serif;font-weight:900;font-size:clamp(100px,12vw,180px);text-transform:uppercase;letter-spacing:-0.04em;line-height:0.85;color:rgba(255,255,255,0.018);z-index:0;white-space:nowrap;" aria-hidden="true">SYNHUB</div>
-        <!-- Diamond accent top-right -->
-        <div class="absolute z-0 pointer-events-none hidden lg:block" style="top:-60px;right:-80px;width:320px;height:320px;transform:rotate(45deg);border:1px solid rgba(8,145,178,0.10);"></div>
-        <div class="absolute z-0 pointer-events-none hidden lg:block" style="top:-20px;right:-40px;width:180px;height:180px;transform:rotate(45deg);border:1px solid rgba(255,215,0,0.08);"></div>
+        <div class="absolute pointer-events-none hidden lg:block select-none" style="bottom:0;right:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(100px,12vw,180px);text-transform:uppercase;letter-spacing:-0.04em;line-height:0.85;color:rgba(255,255,255,0.018);z-index:0;white-space:nowrap;" aria-hidden="true">SYNHUB</div>
+        <!-- Brand diagonal slash lines -->
+        <svg class="absolute inset-0 w-full h-full z-0 pointer-events-none" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+          <line x1="-100" y1="900" x2="900" y2="-100" stroke="rgba(255,255,255,0.035)" stroke-width="1.5"/>
+          <line x1="100" y1="900" x2="1100" y2="-100" stroke="rgba(255,255,255,0.025)" stroke-width="1"/>
+          <line x1="1540" y1="700" x2="400" y2="-100" stroke="rgba(255,255,255,0.03)" stroke-width="1.5"/>
+          <line x1="1540" y1="500" x2="600" y2="-100" stroke="rgba(255,255,255,0.02)" stroke-width="1"/>
+          <line x1="-100" y1="500" x2="600" y2="-100" stroke="rgba(255,214,0,0.055)" stroke-width="1.5"/>
+          <line x1="1540" y1="400" x2="700" y2="-100" stroke="rgba(255,214,0,0.04)" stroke-width="1"/>
+          <!-- Top corner rectangle (brand guideline cover element) -->
+          <rect x="820" y="0" width="280" height="90" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        </svg>
+        <!-- Diamond logo mark stack — top right -->
+        <div class="absolute z-0 pointer-events-none" style="top:-60px;right:-80px;width:320px;height:320px;transform:rotate(45deg);border:1.5px solid rgba(255,215,0,0.13);"></div>
+        <div class="absolute z-0 pointer-events-none" style="top:-20px;right:-40px;width:180px;height:180px;transform:rotate(45deg);border:1px solid rgba(255,215,0,0.08);"></div>
+        <!-- Inner square fill (logo mark: square always same color as diamond) -->
+        <div class="absolute z-0 pointer-events-none" style="top:44px;right:34px;width:62px;height:62px;background:rgba(255,215,0,0.07);"></div>
+        <!-- Bottom-left diamond cluster -->
+        <div class="absolute z-0 pointer-events-none hidden lg:block" style="bottom:6%;left:-50px;width:200px;height:200px;transform:rotate(45deg);border:1px solid rgba(8,145,178,0.12);"></div>
+        <div class="absolute z-0 pointer-events-none hidden lg:block" style="bottom:9%;left:-18px;width:120px;height:120px;transform:rotate(45deg);border:1px solid rgba(8,145,178,0.07);"></div>
+        <div class="absolute z-0 pointer-events-none hidden lg:block" style="bottom:calc(6% + 48px);left:26px;width:44px;height:44px;background:rgba(8,145,178,0.07);"></div>
 
-        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+        <div class="container mx-auto px-6 relative z-10">
             <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 lg:items-start">
 
                 <!-- Left: SYNHUB editorial -->
                 <div data-cp-reveal>
-                    <div class="inline-block px-4 py-2 mb-6 font-bold text-xs tracking-wider uppercase" style="background-color: rgba(255,215,0,0.10); color: #FFD700; border: 1px solid rgba(255,215,0,0.25);">
+                    <div class="section-eyebrow">
                         SYNHUB&#8482; NETWORK
                     </div>
                     <div class="syntra-yellow-bar"></div>
                     <h2 class="font-head text-3xl sm:text-4xl md:text-5xl font-bold uppercase mb-6" style="color:#FFFFFF;">
-                        The Infrastructure<br><span style="all:unset; color:#94A3B8; font-family:'Oswald',sans-serif; font-size:inherit; font-weight:900; line-height:inherit; letter-spacing:inherit; text-transform:uppercase;">for Collaboration</span>
+                        The Infrastructure<br><span style="all:unset; color:#94A3B8; font-family:'Oswald',sans-serif; font-size:inherit; font-weight:700; line-height:inherit; letter-spacing:inherit; text-transform:uppercase;">for Collaboration</span>
                     </h2>
                     <div style="display:flex; gap:16px; align-items:stretch; margin-bottom:2rem; position:relative;">
                         <div class="absolute pointer-events-none" style="top:50%; left:-20px; transform:translateY(-50%); width:520px; height:220px; background:radial-gradient(ellipse at 15% 50%, rgba(255,215,0,0.15) 0%, rgba(255,215,0,0.05) 45%, transparent 70%); z-index:0;"></div>
                         <div style="width:8px; background:#FFD700; border-radius:2px; flex-shrink:0; position:relative; z-index:1;"></div>
                         <p class="text-base sm:text-lg leading-relaxed font-light" style="color:#94A3B8; position:relative; z-index:1;">
-                            Whether securing refined materials, supplying feedstock, or exploring investment and technology partnerships — Syntra's distributed <strong style="color:#FFD700;font-weight:900;">SYNHUB&#8482;</strong> network creates direct opportunities to collaborate, unlock value, and contribute to a cleaner critical-mineral supply chain.
+                            The <strong style="color:#FFD700;font-weight:700;">SYNHUB&#8482;</strong> network gives partners direct access to domestic refining capacity — whether you're supplying feedstock, securing refined output, or looking for long-term supply agreements.
                         </p>
                     </div>
 
@@ -800,54 +709,55 @@
         </div>
     </section>
 
-    <!-- OUTPUT MATERIALS GALLERY -->
-    <section id="output-materials" style="background:#060E1E;position:relative;overflow:hidden;">
+    <!-- OUTPUT MINERALS GALLERY -->
+    <section id="output-minerals" style="background:#060E1E;position:relative;overflow:hidden;">
 
+      <!-- Brand diagonal slash lines SVG -->
+      <svg aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+        <line x1="-100" y1="900" x2="900" y2="-100" stroke="rgba(255,255,255,0.03)" stroke-width="1.5"/>
+        <line x1="200" y1="900" x2="1200" y2="-100" stroke="rgba(255,255,255,0.02)" stroke-width="1"/>
+        <line x1="1540" y1="600" x2="500" y2="-100" stroke="rgba(255,255,255,0.03)" stroke-width="1.5"/>
+        <line x1="1540" y1="350" x2="750" y2="-100" stroke="rgba(255,255,255,0.02)" stroke-width="1"/>
+        <line x1="-100" y1="600" x2="600" y2="-100" stroke="rgba(255,214,0,0.05)" stroke-width="1.5"/>
+        <!-- Top corner rect accent -->
+        <rect x="900" y="0" width="240" height="70" fill="none" stroke="rgba(255,255,255,0.045)" stroke-width="1"/>
+      </svg>
       <!-- Ambient background glows -->
       <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;z-index:0;">
-        <div style="position:absolute;top:-120px;left:-80px;width:640px;height:640px;background:radial-gradient(ellipse,rgba(8,145,178,0.09) 0%,transparent 70%);border-radius:50%;"></div>
+        <div style="position:absolute;top:-120px;left:-80px;width:640px;height:640px;background:radial-gradient(ellipse,rgba(255,215,0,0.06) 0%,transparent 70%);border-radius:50%;"></div>
         <div style="position:absolute;bottom:-80px;right:-60px;width:560px;height:560px;background:radial-gradient(ellipse,rgba(255,214,0,0.07) 0%,transparent 70%);border-radius:50%;"></div>
-        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(rgba(255,255,255,0.025) 1px,transparent 1px);background-size:32px 32px;opacity:0.5;"></div>
-        <div style="position:absolute;inset:0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
-                linear-gradient(45deg, rgba(255,255,255,0.012) 1px, transparent 1px),
-                linear-gradient(-45deg, rgba(255,255,255,0.012) 1px, transparent 1px);
-            background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px;
-            opacity: 0.7;"></div>
       </div>
 
       <!-- Signal Yellow left spine -->
-      <div class="hidden lg:block" style="position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(to bottom,#FFD700 0%,rgba(255,215,0,0.3) 100%);pointer-events:none;z-index:5;" aria-hidden="true"></div>
+      <div class="hidden lg:block" style="position:absolute;left:0;top:0;bottom:0;width:4px;background:#FFD700;pointer-events:none;z-index:5;" aria-hidden="true"></div>
 
       <!-- Ghost wordmark "OUTPUT" behind header -->
-      <div class="hidden lg:block select-none" style="position:absolute;top:20px;right:0;font-family:'Oswald',sans-serif;font-weight:900;font-size:clamp(120px,15vw,200px);text-transform:uppercase;letter-spacing:-0.04em;line-height:0.85;color:rgba(255,255,255,0.018);pointer-events:none;z-index:0;white-space:nowrap;" aria-hidden="true">OUTPUT</div>
+      <div class="hidden lg:block select-none" style="position:absolute;top:20px;right:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(120px,15vw,200px);text-transform:uppercase;letter-spacing:-0.04em;line-height:0.85;color:rgba(255,255,255,0.018);pointer-events:none;z-index:0;white-space:nowrap;" aria-hidden="true">OUTPUT</div>
 
-      <!-- Nested diamond geometry — top right corner -->
+      <!-- Nested diamond geometry - top right corner -->
       <div style="position:absolute;top:-120px;right:-120px;pointer-events:none;z-index:0;" aria-hidden="true">
         <div style="width:520px;height:520px;border:1px solid rgba(255,215,0,0.06);transform:rotate(45deg);"></div>
       </div>
       <div style="position:absolute;top:-80px;right:-80px;pointer-events:none;z-index:0;" aria-hidden="true">
-        <div style="width:320px;height:320px;border:1px solid rgba(8,145,178,0.07);transform:rotate(45deg);"></div>
+        <div style="width:320px;height:320px;border:1px solid rgba(255,215,0,0.04);transform:rotate(45deg);"></div>
       </div>
 
       <!-- Section header -->
-      <div class="container mx-auto px-4 sm:px-6" style="position:relative;z-index:1;padding-top:88px;padding-bottom:64px;">
+      <div class="container mx-auto px-6" style="position:relative;z-index:1;padding-top:88px;padding-bottom:64px;">
         <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
           <div style="width:6px;height:6px;background:#FFD700;transform:rotate(45deg);flex-shrink:0;"></div>
-          <div style="height:1px;flex:1;background:linear-gradient(to right,rgba(255,215,0,0.4),rgba(255,255,255,0.06));max-width:240px;"></div>
+          <div style="height:1px;flex:1;background:rgba(255,215,0,0.25);max-width:240px;"></div>
         </div>
         <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
-          <div class="inline-block px-4 py-2 font-bold text-xs tracking-wider uppercase" style="background-color:rgba(8,145,178,0.22);color:#0891B2;border:1px solid rgba(8,145,178,0.25);">Output Materials</div>
+          <div class="section-eyebrow">Output Minerals</div>
         </div>
         <div style="width:40px;height:3px;background:#FFD700;margin-bottom:20px;"></div>
         <div style="display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:flex-end;gap:24px;">
           <div>
-            <h2 style="font-family:'Oswald',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;text-transform:uppercase;color:#ffffff;letter-spacing:-0.02em;">Certified <span style="all:unset; display:inline; color:#0891B2; font-family:'Oswald',sans-serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:700; text-transform:uppercase; letter-spacing:-0.02em; line-height:inherit;">High-Purity</span> Outputs</h2>
+            <h2 style="font-family:'Oswald',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;text-transform:uppercase;color:#ffffff;letter-spacing:-0.02em;">Certified <span style="all:unset; display:inline; color:#FFD700; font-family:'Oswald',sans-serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:700; text-transform:uppercase; letter-spacing:-0.02em; line-height:inherit;">High-Purity</span> Outputs</h2>
           </div>
           <div style="margin-bottom:8px;padding:10px 16px;border:1px solid rgba(255,215,0,0.2);background:rgba(255,215,0,0.05);">
-            <p style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:3px;"><span style="color:#FFD700;">Syncore&trade;</span> Certified</p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:3px;"><span style="color:#FFD700;">SYNCORE&trade;</span> Validated</p>
             <p style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.1em;color:#FFD700;">&gt;99% Purity</p>
           </div>
         </div>
@@ -856,27 +766,27 @@
       <!-- Brand rule before gallery -->
       <div style="position:relative;z-index:1;display:flex;align-items:center;gap:0;margin-bottom:3px;">
         <div style="width:6px;height:4px;background:#FFD700;"></div>
-        <div style="height:1px;flex:1;background:linear-gradient(to right,rgba(255,215,0,0.5),rgba(255,215,0,0.08),transparent);"></div>
+        <div style="height:1px;flex:1;background:rgba(255,215,0,0.25);"></div>
       </div>
 
       <!-- Bento gallery grid -->
       <div id="output-gallery-grid" style="position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:480px 320px;gap:3px;background:#060E1E;padding:0 0 3px;">
 
-        <!-- Tile 1: Cobalt — 7 cols wide, row 1 -->
-        <div class="ogm-tile" data-accent="cyan" style="grid-column:1/8;grid-row:1/2;overflow:hidden;position:relative;">
+        <!-- Tile 1: Cobalt - 7 cols wide, row 1 -->
+        <div class="ogm-tile" data-accent="gold" style="grid-column:1/8;grid-row:1/2;overflow:hidden;position:relative;">
           <img src="/assets/images/Cobalt%20copy.png" class="ogm-img" alt="Cobalt mineral output">
           <div class="ogm-overlay"></div>
           <div class="ogm-ghost-num">01</div>
           <div class="ogm-tick"></div>
           <div class="ogm-bracket"></div>
           <div class="ogm-hover-panel">
-            <div class="ogm-accent-bar ogm-accent-cyan"></div>
+            <div class="ogm-accent-bar ogm-accent-gold"></div>
             <div class="ogm-label">Cobalt</div>
-            <div class="ogm-spec">Co — Battery Grade</div>
+            <div class="ogm-spec">Co / Battery Grade</div>
           </div>
         </div>
 
-        <!-- Tile 2: Graphite — 5 cols, spans both rows (tall) -->
+        <!-- Tile 2: Graphite - 5 cols, spans both rows (tall) -->
         <div class="ogm-tile" data-accent="gold" style="grid-column:8/13;grid-row:1/3;overflow:hidden;position:relative;">
           <img src="/assets/images/Graphite%20copy.png" class="ogm-img" alt="Graphite mineral output">
           <div class="ogm-overlay"></div>
@@ -886,25 +796,25 @@
           <div class="ogm-hover-panel">
             <div class="ogm-accent-bar ogm-accent-gold"></div>
             <div class="ogm-label">Graphite</div>
-            <div class="ogm-spec">C — Anode Grade</div>
+            <div class="ogm-spec">C / Anode Grade</div>
           </div>
         </div>
 
-        <!-- Tile 3: Lithium — 4 cols, row 2 -->
-        <div class="ogm-tile" data-accent="cyan" style="grid-column:1/5;grid-row:2/3;overflow:hidden;position:relative;">
+        <!-- Tile 3: Lithium - 4 cols, row 2 -->
+        <div class="ogm-tile" data-accent="gold" style="grid-column:1/5;grid-row:2/3;overflow:hidden;position:relative;">
           <img src="/assets/images/Lithium%20copy.png" class="ogm-img" alt="Lithium mineral output">
           <div class="ogm-overlay"></div>
           <div class="ogm-ghost-num">03</div>
           <div class="ogm-tick"></div>
           <div class="ogm-bracket"></div>
           <div class="ogm-hover-panel">
-            <div class="ogm-accent-bar ogm-accent-cyan"></div>
+            <div class="ogm-accent-bar ogm-accent-gold"></div>
             <div class="ogm-label">Lithium</div>
-            <div class="ogm-spec">Li&#x2082;CO&#x2083; — Battery Grade</div>
+            <div class="ogm-spec">Li&#x2082;CO&#x2083; / Battery Grade</div>
           </div>
         </div>
 
-        <!-- Tile 4: Manganese — 4 cols, row 2 -->
+        <!-- Tile 4: Manganese - 4 cols, row 2 -->
         <div class="ogm-tile" data-accent="gold" style="grid-column:5/8;grid-row:2/3;overflow:hidden;position:relative;">
           <img src="/assets/images/manganese_(1)_(1)%20copy%20copy.png" class="ogm-img" alt="Manganese mineral output">
           <div class="ogm-overlay"></div>
@@ -914,7 +824,7 @@
           <div class="ogm-hover-panel">
             <div class="ogm-accent-bar ogm-accent-gold"></div>
             <div class="ogm-label">Manganese</div>
-            <div class="ogm-spec">MnSO&#x2084; — Battery Grade</div>
+            <div class="ogm-spec">MnSO&#x2084; / Battery Grade</div>
           </div>
         </div>
 
@@ -926,27 +836,17 @@
         <div class="ogm-overlay ogm-strip-overlay"></div>
         <div aria-hidden="true" style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,0.08) 0px,rgba(0,0,0,0.08) 1px,transparent 1px,transparent 4px);pointer-events:none;z-index:2;"></div>
         <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;z-index:2;overflow:hidden;">
-          <div style="position:absolute;top:-60px;left:50%;width:2px;height:200%;background:linear-gradient(to bottom,transparent 0%,rgba(255,215,0,0.12) 30%,rgba(255,215,0,0.22) 50%,rgba(255,215,0,0.12) 70%,transparent 100%);transform:rotate(15deg);transform-origin:top center;"></div>
-          <div style="position:absolute;top:-60px;left:calc(50% + 120px);width:1px;height:200%;background:linear-gradient(to bottom,transparent 0%,rgba(255,215,0,0.06) 30%,rgba(255,215,0,0.10) 50%,rgba(255,215,0,0.06) 70%,transparent 100%);transform:rotate(15deg);transform-origin:top center;"></div>
+          <div style="position:absolute;top:0;left:50%;width:2px;height:100%;background:rgba(255,215,0,0.15);"></div>
+          <div style="position:absolute;top:0;left:calc(50% + 120px);width:1px;height:100%;background:rgba(255,215,0,0.07);"></div>
         </div>
-        <div style="position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(to bottom,#FFD700,rgba(255,215,0,0.5));pointer-events:none;z-index:4;" aria-hidden="true"></div>
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:3;flex-direction:column;gap:14px;">
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="width:6px;height:6px;background:#FFD700;transform:rotate(45deg);"></div>
-            <div style="width:80px;height:1px;background:rgba(255,214,0,0.55);"></div>
-            <div style="width:6px;height:6px;background:#FFD700;transform:rotate(45deg);"></div>
-          </div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:clamp(0.65rem,1.2vw,0.85rem);letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.9);font-weight:600;text-align:center;"><span style="color:#FFD700;">Syncore&trade;</span> Certified Output &nbsp;&mdash;&nbsp; <span style="font-family:'Oswald',sans-serif;font-size:1.15em;font-weight:700;letter-spacing:0.1em;">Nickel</span></div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(255,255,255,0.35);">Ni &mdash; Battery Grade &nbsp;&bull;&nbsp; &gt;99.5% Purity</div>
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="width:6px;height:6px;background:#FFD700;transform:rotate(45deg);"></div>
-            <div style="width:80px;height:1px;background:rgba(255,214,0,0.55);"></div>
-            <div style="width:6px;height:6px;background:#FFD700;transform:rotate(45deg);"></div>
-          </div>
+        <div class="ogm-ghost-num">05</div>
+        <div class="ogm-tick"></div>
+        <div class="ogm-bracket"></div>
+        <div class="ogm-hover-panel">
+          <div class="ogm-accent-bar ogm-accent-gold"></div>
+          <div class="ogm-label">Nickel</div>
+          <div class="ogm-spec">Ni / Battery Grade</div>
         </div>
-        <div style="position:absolute;top:24px;right:32px;font-family:'Oswald',sans-serif;font-size:5rem;font-weight:700;color:rgba(255,215,0,0.06);line-height:1;pointer-events:none;z-index:2;letter-spacing:-0.04em;">05</div>
-        <div style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-top:1.5px solid rgba(255,215,0,0.3);border-right:1.5px solid rgba(255,215,0,0.3);pointer-events:none;z-index:4;" aria-hidden="true"></div>
-        <div style="position:absolute;bottom:16px;left:24px;width:32px;height:32px;border-bottom:1.5px solid rgba(255,215,0,0.3);border-left:1.5px solid rgba(255,215,0,0.3);pointer-events:none;z-index:4;" aria-hidden="true"></div>
       </div>
 
       <style>
@@ -997,7 +897,7 @@
           transition: width 0.5s cubic-bezier(0.25,0.46,0.45,0.94) 0.05s; border-radius: 1px;
         }
         .ogm-tile:hover .ogm-accent-bar { width: 48px; }
-        .ogm-accent-cyan { background: #0891B2; }
+        .ogm-accent-gold { background: #FFD700; }
         .ogm-accent-gold { background: #FFD700; }
         .ogm-label {
           font-family: 'Oswald', sans-serif; font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 700;
@@ -1030,49 +930,52 @@
     </section>
 
     <!-- TRANSITION: Dark → White -->
-    <div aria-hidden="true" style="position:relative;height:80px;overflow:hidden;background:#ffffff;margin:0;padding:0;pointer-events:none;">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;display:block;">
-        <defs>
-          <linearGradient id="dark-to-white-fade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#061225"/>
-            <stop offset="100%" stop-color="#ffffff"/>
-          </linearGradient>
-        </defs>
-        <rect x="0" y="0" width="1440" height="80" fill="#ffffff"/>
-        <path d="M0,0 L1440,0 L1440,38 Q1200,72 960,48 Q720,22 480,52 Q240,76 0,44 Z" fill="#061225"/>
-        <path d="M0,0 L1440,0 L1440,38 Q1200,72 960,48 Q720,22 480,52 Q240,76 0,44 Z" fill="url(#dark-to-white-fade)" opacity="0.5"/>
-        <path d="M0,44 Q240,76 480,52 Q720,22 960,48 Q1200,72 1440,38" fill="none" stroke="rgba(255,214,0,0.25)" stroke-width="1"/>
-      </svg>
-    </div>
+    <div aria-hidden="true" style="height:4px;background:#FFD700;margin:0;padding:0;pointer-events:none;"></div>
 
-    <!-- BUILD WITH US CTA — dark section -->
-    <section id="partner-ecosystem-access" class="py-16 sm:py-24 md:py-32 bg-gradient-to-br from-syntra-midnight via-[#0b1120] to-syntra-midnight text-white relative overflow-hidden border-b-4 border-syntra-accent">
-        <div class="absolute pointer-events-none" style="top:-20%; left:-10%; width:70%; height:140%; background: radial-gradient(ellipse at 30% 40%, rgba(255,215,0,0.13) 0%, rgba(255,215,0,0.05) 35%, transparent 70%);"></div>
-        <!-- Dual-scale engineering grid -->
-        <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:160px 160px,160px 160px,40px 40px,40px 40px;"></div>
-        <!-- Signal Yellow left spine -->
-        <div class="absolute left-0 top-0 bottom-0 pointer-events-none" style="width:6px;background:#FFD700;z-index:10;" aria-hidden="true"></div>
-        <!-- Ghost "BUILD" watermark -->
-        <div class="absolute pointer-events-none hidden lg:block select-none" style="bottom:0;left:0;font-family:'Oswald',sans-serif;font-weight:900;font-size:clamp(120px,16vw,220px);text-transform:uppercase;letter-spacing:-0.04em;line-height:0.8;color:rgba(255,255,255,0.025);z-index:0;white-space:nowrap;line-height:1;" aria-hidden="true">BUILD</div>
-        <!-- Diamond rings — right side -->
-        <div class="absolute pointer-events-none hidden lg:block" style="top:50%;right:-140px;transform:translateY(-50%) rotate(45deg);width:560px;height:560px;border:1px solid rgba(255,215,0,0.07);z-index:0;" aria-hidden="true"></div>
-        <div class="absolute pointer-events-none hidden lg:block" style="top:50%;right:-100px;transform:translateY(-50%) rotate(45deg);width:360px;height:360px;border:1px solid rgba(8,145,178,0.07);z-index:0;" aria-hidden="true"></div>
-        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+    <!-- BUILD WITH US CTA -->
+    <section id="partner-ecosystem-access" class="py-16 sm:py-24 md:py-32 text-white relative overflow-hidden border-b-4 border-syntra-accent" style="background:#0B1120;">
+
+        <!-- Deep base -->
+        <div class="absolute inset-0 pointer-events-none" style="background:#0B1120;"></div>
+
+        <!-- Standard dark grid -->
+        <div class="absolute inset-0 pointer-events-none bg-chicken-wire-dark" aria-hidden="true"></div>
+
+        <!-- Animated spinning diamond -->
+        <div class="absolute pointer-events-none" style="top:50%; left:50%; margin-left:-320px; margin-top:-320px;" aria-hidden="true">
+            <div class="diamond-spin" style="width:640px; height:640px; border:1px solid rgba(255,215,0,0.07);"></div>
+        </div>
+        <div class="absolute pointer-events-none" style="top:50%; left:50%; margin-left:-220px; margin-top:-220px;" aria-hidden="true">
+            <div class="diamond-spin-slow" style="width:440px; height:440px; border:1px solid rgba(255,215,0,0.05);"></div>
+        </div>
+
+        <!-- Static square at center -->
+        <div class="absolute pointer-events-none" style="top:50%; left:50%; margin-left:-32px; margin-top:-32px; width:64px; height:64px; background:rgba(255,215,0,0.06);" aria-hidden="true"></div>
+
+        <!-- Ghost "SYNTRA" vertical -->
+        <div class="ghost-wordmark hidden xl:block" style="left:-0.5%; top:50%; transform:translateY(-50%); font-size:clamp(5rem,9vw,12rem); color:rgba(255,255,255,0.03); writing-mode:vertical-rl; text-orientation:mixed; white-space:nowrap; letter-spacing:0.12em;" aria-hidden="true">SYNTRA</div>
+
+        <!-- Radial accent glows -->
+        <div class="absolute pointer-events-none" style="top:-20%; left:-10%; width:70%; height:140%; background: radial-gradient(ellipse at 30% 40%, rgba(255,215,0,0.14) 0%, rgba(255,215,0,0.04) 35%, transparent 65%);"></div>
+
+        <!-- Yellow left spine -->
+        <div class="hidden lg:block absolute left-0 top-0 bottom-0 z-10 pointer-events-none" style="width:6px; background:linear-gradient(to bottom, rgba(255,215,0,0.7) 0%, #FFD700 50%, rgba(255,215,0,0.7) 100%);" aria-hidden="true"></div>
+        <div class="container mx-auto px-6 relative z-20">
             <div class="grid lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-16">
                 <div>
                     <div class="mb-6 sm:mb-8">
                         <h2 class="font-head text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white uppercase leading-none tracking-tight whitespace-nowrap"><span style="all:unset; font: inherit; letter-spacing: inherit; text-transform: inherit; line-height: inherit; color: #64748B;">BUILD</span> WITH US</h2>
                     </div>
                     <p class="text-slate-400 text-base sm:text-lg font-light mb-10 sm:mb-12 leading-relaxed">
-                        Syntra Refining is currently onboarding strategic partners for the 2027 production cycle.
+                        Syntra is onboarding miners, manufacturers, and off-takers for our 2027 production cycle.
                     </p>
                     <div class="space-y-6">
                         <div>
-                            <p class="text-[9px] font-mono font-bold tracking-[0.25em] uppercase mb-1 text-slate-400">Headquarter</p>
-                            <p class="font-head font-bold text-white text-base uppercase tracking-wide leading-snug">Syntra Hub &mdash; Halifax</p>
+                            <p class="text-[9px] font-mono font-bold tracking-[0.25em] uppercase mb-1 text-slate-400">Headquarters</p>
+                            <p class="font-head font-bold text-white text-base uppercase tracking-wide leading-snug">Syntra Hub, Halifax</p>
                             <p class="text-xs text-slate-400 mt-0.5 tracking-wide">Nova Scotia, Canada</p>
                         </div>
-                        <div class="w-8" style="height:1px; background: linear-gradient(to right, rgba(255,215,0,0.3), transparent);"></div>
+                        <div class="w-8" style="height:1px; background:rgba(255,215,0,0.25);"></div>
                         <div>
                             <p class="text-[9px] font-mono font-bold tracking-[0.25em] uppercase mb-1 text-slate-400">Commercial Inquiries</p>
                             <a href="mailto:commercial@syntrarefining.com" class="font-head font-bold text-white text-base uppercase tracking-wide leading-snug block transition-colors duration-200 hover:text-syntra-accent">commercial@syntrarefining.com</a>
@@ -1082,7 +985,7 @@
                 </div>
                 <div class="bg-gradient-to-br from-white to-[#F8FAFC] text-syntra-text p-6 sm:p-8 md:p-10 shadow-2xl border-2 border-[#CBD5E1] relative overflow-hidden flex flex-col items-center justify-center min-h-[280px] sm:min-h-[340px] md:min-h-[400px]">
                     <div class="absolute top-0 right-0 w-40 h-40 bg-syntra-accent/5 blur-3xl -mr-20 -mt-20"></div>
-                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-[#0891B2]/5 blur-3xl -ml-16 -mb-16"></div>
+                    <div class="absolute bottom-0 left-0 w-32 h-32 blur-3xl -ml-16 -mb-16" style="background:rgba(255,215,0,0.04);"></div>
                     <div class="relative z-10 text-center w-full flex flex-col items-center justify-center flex-1">
                         <h3 class="font-head text-4xl md:text-5xl font-bold uppercase mb-10 text-syntra-midnight">Contact Us</h3>
                         <button onclick="window.openContactModal('Strategic Partnership')" class="inline-flex items-center justify-center gap-2 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase px-8 py-4 text-sm hover:bg-[#ffd700] transition-colors shadow-xl shadow-[#ffd700]/20 whitespace-nowrap">
@@ -1096,9 +999,9 @@
 
     <!-- FOOTER -->
     <footer class="bg-syntra-midnight text-white py-12 sm:py-16 border-t-4 border-syntra-accent relative overflow-hidden">
-        <div class="absolute inset-0 pointer-events-none bg-chicken-wire-dark" style="opacity:0.6;" aria-hidden="true"></div>
-        <div class="hidden lg:block absolute left-0 top-0 bottom-0 z-10 pointer-events-none" style="width:6px; background:linear-gradient(to bottom, rgba(255,215,0,0.7) 0%, rgba(255,215,0,0.2) 100%);" aria-hidden="true"></div>
-        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+        <div class="absolute inset-0 pointer-events-none bg-chicken-wire-dark" aria-hidden="true"></div>
+        <div class="hidden lg:block absolute left-0 top-0 bottom-0 z-10 pointer-events-none" style="width:4px; background:#FFD700;" aria-hidden="true"></div>
+        <div class="container mx-auto px-6 relative z-10">
             <div class="grid md:grid-cols-12 gap-12 mb-16">
                 <div class="md:col-span-4 space-y-6">
                     <a href="index.html" class="syntra-logo-hover-wrapper syntra-logo-footer light">

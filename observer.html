@@ -155,17 +155,15 @@
 
     .bg-chicken-wire-dark {
       background-image:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(45deg, rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(-45deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
     }
 
     .ghost-wordmark {
       position: absolute;
       font-family: 'Oswald', sans-serif;
-      font-weight: 900;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: -0.04em;
       pointer-events: none;
@@ -272,8 +270,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </a>
-                <a href="commercial.html" class="group flex items-center justify-between px-5 py-4 bg-[#F8FAFC] hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
-                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Commercial</span>
+                <a href="company.html" class="group flex items-center justify-between px-5 py-4 bg-[#F8FAFC] hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Company</span>
                     <svg class="w-5 h-5 text-[#64748B] group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
@@ -284,8 +282,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </a>
-                <a href="company.html" class="group flex items-center justify-between px-5 py-4 bg-[#F8FAFC] hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
-                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Company</span>
+                <a href="commercial.html" class="group flex items-center justify-between px-5 py-4 bg-[#F8FAFC] hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+                    <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Commercial</span>
                     <svg class="w-5 h-5 text-[#64748B] group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
@@ -306,7 +304,7 @@
         </div>
 
         <!-- Branding Footer -->
-        <div class="mt-auto relative overflow-hidden" style="background: linear-gradient(135deg, #0B1120 0%, #061225 100%);">
+        <div class="mt-auto relative overflow-hidden" style="background: #0B1120;">
             <div class="absolute left-0 top-0 bottom-0" style="width:4px; background:linear-gradient(to bottom, #FFD700 0%, rgba(255,215,0,0.3) 100%);"></div>
             <div class="absolute pointer-events-none" style="top:50%; right:-40px; transform:translateY(-50%);" aria-hidden="true">
                 <div class="diamond-spin" style="width:180px; height:180px; border:1px solid rgba(255,215,0,0.08);"></div>
@@ -331,9 +329,25 @@
   </div>
 
   <!-- LOGIN FORM -->
-  <div id="loginSection" class="min-h-screen flex items-center justify-center py-16 relative overflow-hidden" style="background:linear-gradient(135deg, #061225 0%, #0B1120 50%, #061225 100%);">
-    <!-- Chicken wire texture -->
-    <div class="absolute inset-0 pointer-events-none bg-chicken-wire-dark" style="opacity:0.8;" aria-hidden="true"></div>
+  <div id="loginSection" class="min-h-screen flex items-center justify-center py-16 relative overflow-hidden" style="background:#0B1120;">
+    <!-- Brand diagonal lines -->
+    <svg class="absolute inset-0 w-full h-full z-0 pointer-events-none" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+      <line x1="-200" y1="1000" x2="1100" y2="-200" stroke="rgba(255,255,255,0.045)" stroke-width="1.5"/>
+      <line x1="0" y1="1000" x2="1300" y2="-200" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+      <line x1="200" y1="1000" x2="1500" y2="-200" stroke="rgba(255,255,255,0.022)" stroke-width="1"/>
+      <line x1="1640" y1="800" x2="300" y2="-200" stroke="rgba(255,255,255,0.04)" stroke-width="1.5"/>
+      <line x1="1640" y1="550" x2="550" y2="-200" stroke="rgba(255,255,255,0.028)" stroke-width="1"/>
+      <line x1="1640" y1="300" x2="800" y2="-200" stroke="rgba(255,255,255,0.018)" stroke-width="1"/>
+      <line x1="-200" y1="700" x2="700" y2="-200" stroke="rgba(255,214,0,0.065)" stroke-width="1.5"/>
+      <line x1="1640" y1="400" x2="750" y2="-200" stroke="rgba(255,214,0,0.05)" stroke-width="1.5"/>
+    </svg>
+    <!-- Diamond cluster — top right corner -->
+    <div class="absolute z-0 pointer-events-none" style="top:-80px;right:-100px;width:380px;height:380px;transform:rotate(45deg);border:1.5px solid rgba(255,215,0,0.12);" aria-hidden="true"></div>
+    <div class="absolute z-0 pointer-events-none" style="top:-40px;right:-60px;width:240px;height:240px;transform:rotate(45deg);border:1px solid rgba(255,215,0,0.07);" aria-hidden="true"></div>
+    <div class="absolute z-0 pointer-events-none" style="top:54px;right:26px;width:84px;height:84px;background:rgba(255,215,0,0.06);" aria-hidden="true"></div>
+    <!-- Diamond cluster — bottom left corner -->
+    <div class="absolute z-0 pointer-events-none" style="bottom:-80px;left:-100px;width:320px;height:320px;transform:rotate(45deg);border:1.5px solid rgba(255,215,0,0.09);" aria-hidden="true"></div>
+    <div class="absolute z-0 pointer-events-none" style="bottom:-40px;left:-60px;width:200px;height:200px;transform:rotate(45deg);border:1px solid rgba(255,215,0,0.05);" aria-hidden="true"></div>
     <!-- Spinning diamonds -->
     <div class="absolute pointer-events-none" style="top:50%; left:50%; margin-left:-300px; margin-top:-300px;" aria-hidden="true">
       <div class="diamond-spin" style="width:600px; height:600px; border:1px solid rgba(255,215,0,0.07);"></div>
@@ -355,8 +369,7 @@
           <img src="/assets/images/Wordmark_2_(1).png" alt="Syntra Refining Corp." style="height:28px;width:auto;display:block;" />
         </div>
         <div class="mb-8">
-          <div class="inline-block px-3 py-1 mb-4 font-mono font-bold text-[10px] tracking-widest uppercase" style="background:rgba(255,215,0,0.12); color:#B8860B; border:1px solid rgba(255,215,0,0.3);">SECURE ACCESS</div>
-          <h1 class="font-head text-3xl font-bold uppercase mb-3">Observer Portal</h1>
+          <h1 class="font-head text-2xl sm:text-3xl md:text-4xl font-bold uppercase mb-3">Observer Portal</h1>
           <p class="text-sm text-[#64748B] leading-relaxed">Secure access for strategic partners and institutional stakeholders. Please authenticate using your issued access credentials.</p>
         </div>
 
@@ -366,7 +379,7 @@
             <input
               type="text"
               id="loginUsername"
-              class="w-full bg-[#F9FAFC] border border-[#E2E8F0] rounded-md p-3.5 text-sm focus:border-syntra-accent focus:outline-none transition-all"
+              class="w-full bg-[#F9FAFC] border border-[#E2E8F0] p-3.5 text-sm focus:border-syntra-accent focus:outline-none transition-all"
               placeholder="Enter username"
               required
             />
@@ -377,7 +390,7 @@
             <input
               type="password"
               id="loginPassword"
-              class="w-full bg-[#F9FAFC] border border-[#E2E8F0] rounded-md p-3.5 text-sm focus:border-syntra-accent focus:outline-none transition-all"
+              class="w-full bg-[#F9FAFC] border border-[#E2E8F0] p-3.5 text-sm focus:border-syntra-accent focus:outline-none transition-all"
               placeholder="Enter password"
               required
             />
@@ -388,15 +401,15 @@
             <input
               type="text"
               id="loginToken"
-              class="w-full bg-[#F9FAFC] border border-[#E2E8F0] rounded-md p-3.5 text-sm font-mono focus:border-syntra-accent focus:outline-none transition-all"
+              class="w-full bg-[#F9FAFC] border border-[#E2E8F0] p-3.5 text-sm font-mono focus:border-syntra-accent focus:outline-none transition-all"
               placeholder="Enter authorized token"
               required
             />
           </div>
 
-          <div id="loginError" class="hidden bg-[#0b1120] border border-[#ffd700] rounded-md p-3.5 text-sm text-[#ffd700] font-medium"></div>
+          <div id="loginError" class="hidden bg-[#0b1120] border border-[#ffd700] p-3.5 text-sm text-[#ffd700] font-medium"></div>
 
-          <button type="submit" class="w-full bg-syntra-accent text-syntra-midnight font-head font-bold uppercase py-3.5 rounded-md hover:bg-[#ffd700] transition-all shadow-md shadow-[#ffd700]/20 hover:shadow-lg flex items-center justify-center">
+          <button type="submit" class="w-full bg-syntra-accent text-syntra-midnight font-head font-bold uppercase py-3.5 hover:bg-white transition-all flex items-center justify-center">
             Authenticate & Enter
           </button>
         </form>
@@ -419,7 +432,7 @@
             <h1 class="font-head text-4xl font-bold uppercase mb-3">Observer Dashboard</h1>
             <p class="text-[#64748B] text-sm leading-relaxed max-w-2xl">Real-time operational intelligence and strategic capacity metrics for institutional partners and stakeholders in the Syntra ecosystem.</p>
           </div>
-          <button onclick="handleLogout()" class="px-6 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-md text-sm font-mono uppercase transition-all">
+          <button onclick="handleLogout()" class="px-6 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 text-sm font-mono uppercase transition-all">
             Sign Out
           </button>
         </div>
@@ -510,7 +523,7 @@
         <p class="text-sm text-[#64748B] mb-6 leading-relaxed">Syntra maintains rigorous compliance standards and sustainable operational practices across all facilities.</p>
         <div class="prose prose-sm max-w-none">
           <p class="text-[#0F172A] mb-6 leading-relaxed text-[15px]">
-            Syntra Refining operates in full compliance with all applicable Canadian federal and provincial environmental regulations. Our proprietary zero-waste closed-loop hydrometallurgical system eliminates conventional wastewater discharge concerns, while comprehensive real-time emissions monitoring is maintained through the SynCore™ digital platform infrastructure.
+            Syntra Refining operates in full compliance with all applicable Canadian federal and provincial environmental regulations. Our proprietary zero-waste closed-loop hydrometallurgical system eliminates conventional wastewater discharge concerns, while comprehensive real-time emissions monitoring is maintained through the SYNCORE™ digital platform infrastructure.
           </p>
           <div class="space-y-4 mb-6">
             <div class="flex gap-4 items-start">
@@ -546,7 +559,7 @@
   <!-- FOOTER -->
   <footer class="bg-syntra-midnight text-white py-16 border-t-4 border-syntra-accent">
     <div class="container mx-auto px-6 ">
-      <p class="text-[#64748B] text-sm mb-4 font-medium">Syntra Refining Corp. • Institutional Observer Portal</p>
+
       <div class="flex justify-center gap-8 text-xs text-[#64748B] font-mono uppercase tracking-wider">
         <a href="privacy.html" class="hover:text-syntra-accent transition-colors">Privacy Policy</a>
         <a href="terms.html" class="hover:text-syntra-accent transition-colors">Terms of Service</a>

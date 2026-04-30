@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#0A1628">
+  <meta name="theme-color" content="#0B1120">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -37,7 +37,7 @@
               midnight: '#0B1120',
               accent: '#FFD700',
               amber: '#FFD700',
-              border: '#E2E8F0',
+              border: '#CBD5E1',
             },
           },
           fontFamily: {
@@ -101,20 +101,16 @@
 
     .bg-chicken-wire {
       background-image:
-        linear-gradient(rgba(11,17,32,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(11,17,32,0.06) 1px, transparent 1px),
-        linear-gradient(45deg, rgba(11,17,32,0.03) 1px, transparent 1px),
-        linear-gradient(-45deg, rgba(11,17,32,0.03) 1px, transparent 1px);
-      background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+        linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
     }
 
     .bg-chicken-wire-dark {
       background-image:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(45deg, rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(-45deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
     }
 
     .brand-spine-section { position: relative; }
@@ -132,7 +128,7 @@
     .ghost-wordmark {
       position: absolute;
       font-family: 'Oswald', sans-serif;
-      font-weight: 900;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: -0.04em;
       pointer-events: none;
@@ -176,9 +172,9 @@
       </a>
       <button class="text-syntra-text p-3 hover:text-syntra-amber transition-colors" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
         <div class="flex flex-col gap-[6px] items-end">
-          <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
-          <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
-          <span class="block w-8 h-[3px] bg-current rounded-full menu-line"></span>
+          <span class="block w-8 h-[3px] bg-current menu-line" style="border-radius:0"></span>
+          <span class="block w-8 h-[3px] bg-current menu-line" style="border-radius:0"></span>
+          <span class="block w-8 h-[3px] bg-current menu-line" style="border-radius:0"></span>
         </div>
       </button>
     </div>
@@ -190,10 +186,13 @@
   <div id="mobileMenu" class="fixed top-0 right-0 h-full w-[85%] sm:w-[450px] bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-out overflow-y-auto" role="dialog" aria-modal="true">
     <div class="sticky top-0 bg-white border-b border-syntra-border px-6 py-6 flex justify-between items-center z-10">
       <div class="flex items-center gap-3">
-        <svg class="menu-diamond" id="menuDiamond" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1" stroke="#FFD700" stroke-width="2.5" transform="rotate(45 12 12)"/></svg>
+        <div id="menuDiamond" class="syntra-logo-hover-wrapper" aria-hidden="true" style="position: relative; width: 36px; height: 36px; min-width: 36px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+          <div id="menuDiamondOuter" class="syntra-logo-diamond" style="position: absolute; width: 36px; height: 36px; border: 2px solid #FFD700; transform: rotate(45deg); transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); box-sizing: border-box;"></div>
+          <div class="syntra-logo-square" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 14px; height: 14px; background: #FFD700; box-sizing: border-box;"></div>
+        </div>
         <span class="font-head font-bold text-xl text-syntra-midnight">MENU</span>
       </div>
-      <button class="p-3 rounded-lg hover:bg-slate-100 transition-all hover:rotate-90 duration-200 group" onclick="toggleMobileMenu()" aria-label="Close menu">
+      <button class="p-3 hover:bg-[#CBD5E1] transition-all hover:rotate-90 duration-200 group" style="border-radius:0" onclick="toggleMobileMenu()" aria-label="Close menu">
         <svg class="w-6 h-6 text-syntra-text group-hover:text-syntra-amber transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
@@ -205,16 +204,16 @@
           <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Home</span>
           <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         </a>
-        <a href="commercial.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
-          <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Commercial</span>
+        <a href="company.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+          <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Company</span>
           <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         </a>
         <a href="technology.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
           <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Technology</span>
           <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         </a>
-        <a href="company.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
-          <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Company</span>
+        <a href="commercial.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
+          <span class="text-2xl font-head font-bold uppercase text-syntra-midnight group-hover:text-syntra-amber transition-colors">Commercial</span>
           <svg class="w-5 h-5 text-slate-400 group-hover:text-syntra-amber transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         </a>
         <a href="careers.html" class="group flex items-center justify-between px-5 py-4 bg-slate-50 hover:bg-syntra-accent/10 border-l-4 border-transparent hover:border-syntra-amber transition-all duration-200">
@@ -229,7 +228,7 @@
     </div>
 
         <!-- Branding Footer -->
-        <div class="mt-auto relative overflow-hidden" style="background: linear-gradient(135deg, #0B1120 0%, #061225 100%);">
+        <div class="mt-auto relative overflow-hidden" style="background: #0B1120;">
             <!-- Gold left spine -->
             <div class="absolute left-0 top-0 bottom-0" style="width:4px; background:linear-gradient(to bottom, #FFD700 0%, rgba(255,215,0,0.3) 100%);"></div>
             <!-- Spinning diamond bg marks -->
@@ -262,12 +261,17 @@
   </div>
 
   <!-- HEADER -->
-  <header class="brand-spine-section relative overflow-hidden bg-chicken-wire py-20 sm:py-24 md:py-28" style="background-color:#F9FAFC;">
+  <header class="brand-spine-section relative overflow-hidden py-20 sm:py-24 md:py-28" style="background-color:#F9FAFC;">
     <!-- Signal Yellow left spine -->
     <div class="hidden lg:block absolute left-0 top-0 bottom-0 z-10 pointer-events-none" style="width:6px; background:linear-gradient(to bottom, #FFD700 0%, rgba(255,215,0,0.4) 100%);" aria-hidden="true"></div>
-    <!-- Engineering grid overlay -->
-    <div class="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" aria-hidden="true">
-      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><pattern id="terms-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0b1120" stroke-width="1"/></pattern><rect width="100%" height="100%" fill="url(#terms-grid)"/></svg>
+    <!-- Subtle grid overlay -->
+    <div class="absolute inset-0 z-0 opacity-5" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <pattern id="hero-grid-terms" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="black" stroke-width="1"/>
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#hero-grid-terms)" />
+        </svg>
     </div>
     <!-- Ghost diamond geometry -->
     <div class="absolute pointer-events-none hidden lg:block" style="top:50%; right:-4%; transform:translateY(-50%) rotate(45deg); width:480px; height:480px; border:1.5px solid rgba(255,215,0,0.10); z-index:1;" aria-hidden="true">
@@ -278,10 +282,10 @@
     <div class="ghost-wordmark hidden xl:block" style="right:-1%; bottom:-10%; font-size:clamp(8rem,16vw,20rem); color:rgba(11,17,32,0.028); white-space:nowrap;" aria-hidden="true">SYNTRA.</div>
     <div class="container mx-auto px-6 max-w-5xl relative z-10">
       <div class="mb-10">
-        <div class="inline-block px-4 py-2 mb-6 font-bold text-xs tracking-wider uppercase font-mono" style="background-color: rgba(8, 145, 178, 0.15); color: #0891B2; border: 1px solid rgba(8,145,178,0.25);">
+        <div class="section-eyebrow">
           LEGAL DOCUMENTATION
         </div>
-        <h1 class="font-head text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase mb-6 leading-[0.9] tracking-tight text-syntra-midnight">Terms of<br>Service</h1>
+        <h1 class="font-head font-bold uppercase mb-6 tracking-tight text-syntra-midnight" style="font-size:clamp(2.8rem,10vw,6.5rem);line-height:0.88;">Terms of<br>Service</h1>
         <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
           These Terms of Service govern your access to and use of the Syntra Refining Corp. website, digital portals, and related services. Please read these terms carefully before using our services.
         </p>
@@ -329,7 +333,7 @@
       </div>
       <div class="space-y-4 text-slate-700 leading-relaxed">
         <p>For purposes of these Terms, the following definitions apply:</p>
-        <div class="bg-white border border-syntra-border p-6 rounded space-y-3">
+        <div class="bg-white border border-syntra-border p-6 space-y-3">
           <p><strong>"Content"</strong> means all text, graphics, images, data, software, technical documentation, business information, and other materials available through the Services.</p>
           <p><strong>"Confidential Information"</strong> means proprietary or confidential information disclosed by Syntra, including technical data, business plans, pricing, customer information, and any information designated as confidential.</p>
           <p><strong>"User Content"</strong> means any information, data, or materials you submit or upload to the Services, including through contact forms, portals, or communications.</p>
@@ -355,7 +359,7 @@
           <li>Restricted Partner Portals providing access to technical data, project updates, and confidential information (subject to separate agreements)</li>
           <li>Communications and updates related to Syntra's operations and services</li>
         </ul>
-        <p class="mt-4 text-sm bg-slate-100 border-l-4 border-syntra-amber p-4">
+        <p class="mt-4 text-sm bg-[#F9FAFC] border-l-4 border-syntra-amber p-4">
           <strong>Important:</strong> The Services are provided for informational and business communication purposes only. Access to certain restricted areas may require separate agreements, including non-disclosure agreements (NDAs) or commercial contracts.
         </p>
       </div>
@@ -455,7 +459,7 @@
         </p>
         <ul class="list-disc pl-6 space-y-1">
           <li>SYNTRA and the Syntra logo</li>
-          <li>SynCore™ (digital twin platform)</li>
+          <li>SYNCORE™ (digital-twin platform)</li>
           <li>Other product names, service marks, and slogans used in connection with our Services</li>
         </ul>
 
@@ -513,7 +517,7 @@
           <li>Any information marked or designated as confidential</li>
         </ul>
 
-        <div class="bg-syntra-midnight text-white p-6 rounded mt-6">
+        <div class="bg-syntra-midnight text-white p-6 mt-6">
           <h4 class="font-head text-xl font-bold uppercase mb-4">Confidentiality Obligations</h4>
           <p class="mb-4">If you receive access to Confidential Information, you agree to:</p>
           <ul class="list-disc pl-6 space-y-2 text-slate-200">
@@ -529,7 +533,7 @@
           These confidentiality obligations survive termination of your access to the Services and continue for a period of five (5) years, unless superseded by a separate written confidentiality agreement.
         </p>
 
-        <p class="mt-4 text-sm bg-slate-100 border-l-4 border-syntra-amber p-4">
+        <p class="mt-4 text-sm bg-[#F9FAFC] border-l-4 border-syntra-amber p-4">
           <strong>Note:</strong> In the event of a conflict between these Terms and a separate NDA or commercial agreement, the separate agreement will govern.
         </p>
       </div>
@@ -542,7 +546,7 @@
         <h2 class="font-head text-3xl font-bold uppercase">Disclaimers and Limitation of Warranties</h2>
       </div>
       <div class="space-y-6 text-slate-700 leading-relaxed">
-        <div class="bg-slate-100 border-2 border-slate-300 p-6 rounded">
+        <div class="bg-[#F9FAFC] border-2 border-slate-300 p-6">
           <p class="font-bold mb-3 uppercase text-syntra-text">THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND.</p>
           <p>
             To the maximum extent permitted by applicable law, Syntra disclaims all warranties, express or implied, including but not limited to:
@@ -588,7 +592,7 @@
         <h2 class="font-head text-3xl font-bold uppercase">Limitation of Liability</h2>
       </div>
       <div class="space-y-6 text-slate-700 leading-relaxed">
-        <div class="bg-slate-100 border-2 border-slate-300 p-6 rounded">
+        <div class="bg-[#F9FAFC] border-2 border-slate-300 p-6">
           <p class="font-bold mb-3 uppercase text-syntra-text">LIMITATION OF LIABILITY</p>
           <p class="mb-4">
             To the maximum extent permitted by applicable law, in no event shall Syntra Refining Corp., its affiliates, officers, directors, employees, agents, or licensors be liable for any:
@@ -772,7 +776,7 @@
         <p>
           Notices to Syntra must be sent to:
         </p>
-        <div class="bg-white border border-syntra-border p-4 rounded mt-3">
+        <div class="bg-white border border-syntra-border p-4 mt-3">
           <p>
             Syntra Refining Corp.<br>
             Halifax, Nova Scotia, Canada<br>
@@ -822,7 +826,7 @@
     </section>
 
     <!-- Acknowledgment -->
-    <section class="bg-slate-100 border border-syntra-border p-8">
+    <section class="bg-[#F9FAFC] border border-syntra-border p-8">
       <h3 class="font-head text-lg font-bold uppercase mb-4 text-syntra-text">Acknowledgment and Agreement</h3>
       <p class="text-sm text-slate-700 leading-relaxed">
         By accessing or using the Services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree to these Terms, you must immediately discontinue use of the Services.
@@ -832,7 +836,7 @@
 
   <!-- FOOTER -->
   <footer class="bg-syntra-midnight text-white py-16 border-t-4 border-syntra-accent mt-16 relative overflow-hidden">
-    <div class="absolute inset-0 pointer-events-none bg-chicken-wire-dark" style="opacity:0.6;" aria-hidden="true"></div>
+    <div class="absolute inset-0 pointer-events-none bg-chicken-wire-dark" aria-hidden="true"></div>
     <div class="hidden lg:block absolute left-0 top-0 bottom-0 z-10 pointer-events-none" style="width:6px; background:linear-gradient(to bottom, rgba(255,215,0,0.7) 0%, rgba(255,215,0,0.2) 100%);" aria-hidden="true"></div>
     <div class="container mx-auto px-6 relative z-10">
       <div class="grid md:grid-cols-12 gap-12 mb-16">
@@ -878,7 +882,7 @@
     function toggleMobileMenu() {
       const menu = document.getElementById('mobileMenu');
       const backdrop = document.getElementById('menuBackdrop');
-      const diamond = document.getElementById('menuDiamond');
+      const diamondOuter = document.getElementById('menuDiamondOuter');
       const body = document.body;
       if (!menu || !backdrop) return;
       const isOpen = menu.classList.contains('translate-x-0');
@@ -888,16 +892,32 @@
         backdrop.classList.remove('opacity-100', 'pointer-events-auto');
         backdrop.classList.add('opacity-0', 'pointer-events-none');
         body.style.overflow = '';
-        if (diamond) diamond.style.transform = 'rotate(45deg)';
+        if (diamondOuter) diamondOuter.style.transform = 'rotate(45deg)';
       } else {
         menu.classList.remove('translate-x-full');
         menu.classList.add('translate-x-0');
         backdrop.classList.remove('opacity-0', 'pointer-events-none');
         backdrop.classList.add('opacity-100', 'pointer-events-auto');
         body.style.overflow = 'hidden';
-        if (diamond) diamond.style.transform = 'rotate(90deg)';
+        if (diamondOuter) diamondOuter.style.transform = 'rotate(405deg)';
       }
     }
+    document.addEventListener('DOMContentLoaded', function() {
+      function isMenuOpen() {
+        const menu = document.getElementById('mobileMenu');
+        return menu && menu.classList.contains('translate-x-0');
+      }
+      const wrapper = document.getElementById('menuDiamond');
+      const outer = document.getElementById('menuDiamondOuter');
+      if (wrapper && outer) {
+        wrapper.addEventListener('mouseenter', function() {
+          outer.style.transform = 'rotate(405deg)';
+        });
+        wrapper.addEventListener('mouseleave', function() {
+          if (!isMenuOpen()) outer.style.transform = 'rotate(45deg)';
+        });
+      }
+    });
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         const menu = document.getElementById('mobileMenu');

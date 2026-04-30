@@ -69,14 +69,13 @@ class ProductionOutputCard {
                 <!-- Materials List -->
                 <div class="${fullWidth ? 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-x-0 sm:divide-x divide-y sm:divide-y-0 divide-syntra-border' : ''}">
                     ${this.materials.map((material, index) => `
-                        <a href="/production/${material.name.toLowerCase()}.html" aria-label="Open ${material.name} production output page" class="${fullWidth ? 'flex flex-col items-start gap-2 px-6 py-5 border-b border-syntra-border lg:border-b-0 lg:border-r' : 'flex items-center gap-6 px-6 py-4 ' + (index < this.materials.length - 1 ? 'border-b border-syntra-border' : '')} cursor-pointer transition-colors duration-200 hover:bg-syntra-base block no-underline" style="text-decoration:none;">
+                        <div class="${fullWidth ? 'flex flex-col items-start gap-2 px-6 py-5 border-b border-syntra-border lg:border-b-0 lg:border-r' : 'flex items-center gap-6 px-6 py-4 ' + (index < this.materials.length - 1 ? 'border-b border-syntra-border' : '')}">
                             <span class="font-head ${fullWidth ? 'text-5xl' : 'text-4xl'} font-bold text-syntra-text ${fullWidth ? '' : 'w-12 shrink-0'} leading-none">${material.symbol}</span>
                             <div class="${fullWidth ? 'w-full' : 'min-w-0 flex-1'}">
                                 <p class="font-mono text-[10px] text-syntra-muted uppercase tracking-widest mb-0.5">${material.name}</p>
                                 <p class="font-sans text-sm font-medium text-slate-600 leading-snug">${material.capability}</p>
                             </div>
-                            ${fullWidth ? '' : '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="M9 18l6-6-6-6"/></svg>'}
-                        </a>
+                        </div>
                     `).join('')}
                 </div>
 

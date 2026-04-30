@@ -2,44 +2,45 @@
 # Robots.txt - Search Engine Crawling Rules
 
 User-agent: *
-# Allow public pages
+
+# Public pages
 Allow: /
 Allow: /index.html
+Allow: /company.html
+Allow: /technology.html
+Allow: /commercial.html
 Allow: /careers.html
 Allow: /contact.html
-Allow: /technology.html
-Allow: /company.html
-Allow: /commercial.html
-Allow: /network.html
 Allow: /privacy.html
 Allow: /terms.html
-Allow: /process.html
-Allow: /value-chain.html
-Allow: /industries/
-Allow: /production/
 
-# Disallow portals (accessible but not indexed)
+# Portals (accessible but not indexed)
 Disallow: /observer.html
 Disallow: /supplier.html
 
-# Disallow internal and experimental directories
+# Restricted pages — not published
+Disallow: /network.html
+Disallow: /process.html
+Disallow: /value-chain.html
+Disallow: /industries/
+Disallow: /production/
+
+# Internal and experimental
 Disallow: /internal/
 Disallow: /experimental/
 
-# Disallow sensitive files
+# Sensitive files
 Disallow: /*.env
 Disallow: /*.sql
 Disallow: /*.md
 Disallow: /supabase/
 
-# Allow CSS, JS, and images for proper indexing
+# Assets
 Allow: /css/
 Allow: /js/
 Allow: /assets/
 
-# Sitemap location
 Sitemap: https://www.syntrarefining.com/sitemap.xml
 
-# Crawl-delay for aggressive bots
 User-agent: *
 Crawl-delay: 1
