@@ -15,8 +15,8 @@
  * <script src="/js/supabase-client.js"></script>
  */
 
-const SUPABASE_URL = window.SYNTRA_CONFIG?.supabaseUrl || 'https://smrfpquwwojfvnypjmkd.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = window.SYNTRA_CONFIG?.supabaseKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtcmZwcXV3d29qZnZueXBqbWtkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxNTY1NzMsImV4cCI6MjA4MjczMjU3M30.FdMEZNGwgtptar2K4YQbC9l61yAArBCNi4b7jLBiBuo';
+const SUPABASE_URL = window.SYNTRA_CONFIG?.supabaseUrl || 'https://ydvrofskmvnnzlqhyttd.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = window.SYNTRA_CONFIG?.supabaseKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkdnJvZnNrbXZubnpscWh5dHRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE4NjU1MzAsImV4cCI6MjA4NzQ0MTUzMH0.Lf9AFdf9B9aVDd6HNLMxH8LIy7jNCeJP22fdzMryquE';
 
 let supabaseClient = null;
 
@@ -201,6 +201,5 @@ function sendEmailNotification(formType, referenceId, formData) {
 window.submitFormToDatabase = submitFormToDatabase;
 window.initSupabase = initSupabase;
 window.supabaseClient = initSupabase();
-window.supabase = window.supabaseClient;
 
 console.log('[Syntra Forms] supabase-client.js loaded');
