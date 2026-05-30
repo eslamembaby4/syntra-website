@@ -1,11 +1,11 @@
 {
-  "name": "Syntra Refining Corporation",
+  "name": "Syntra Refining Corp.",
   "short_name": "Syntra",
-  "description": "North America's smart battery metals refinery - transforming mining, manufacturing, and recycling outputs into battery-grade materials",
+  "description": "North America's clean, modular critical minerals refining infrastructure \u2014 lithium, cobalt, nickel, manganese, copper, and aluminum.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0A1628",
-  "theme_color": "#0A1628",
+  "background_color": "#0B1120",
+  "theme_color": "#0B1120",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -38,8 +38,7 @@
     }
   ],
   "categories": [
-    "business",
-    "productivity"
+    "business"
   ],
   "lang": "en-US"
 }

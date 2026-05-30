@@ -1,4 +1,4 @@
-/* SYNTRA Logo with Image Watermark */
+/* SYNTRA Logo Image */
 
 .syntra-logo-hover-wrapper {
     display: inline-flex;
@@ -14,17 +14,11 @@
     transform: scale(1.05);
 }
 
-/* Logo Image Container */
 .syntra-logo-image {
     height: 60px;
     width: auto;
     display: block;
     position: relative;
-}
-
-/* Light variant (for dark backgrounds) - inverts the logo colors */
-.syntra-logo-hover-wrapper.light .syntra-logo-image {
-    filter: brightness(0) invert(1);
 }
 
 /* Responsive adjustments */

@@ -1,24 +1,29 @@
 <!DOCTYPE html>
-
-<html class="scroll-smooth" lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="noindex, nofollow" name="robots"/>
-<meta content="noindex, nofollow" name="googlebot"/>
-<title>Admin | Syntra Refining</title>
-<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link href="/public/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
-<link href="/public/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
-<link href="/manifest.json" rel="manifest"/>
-<meta content="#0A1628" name="theme-color"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Oswald:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="/css/syntra-brand-theme.css" rel="stylesheet"/>
-<link href="/css/syntra-design-system.css" rel="stylesheet"/>
-<script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <title>Admin | Syntra Refining</title>
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0B1120">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/syntra-brand-theme.css">
+  <link rel="stylesheet" href="/css/syntra-design-system.css">
+
+  <script>
     tailwind.config = {
       theme: {
         extend: {
@@ -44,7 +49,8 @@
       }
     }
   </script>
-<style>
+
+  <style>
     #loginScreen { display: flex; }
     #adminPanel  { display: none; }
     .authenticated #loginScreen { display: none; }
@@ -74,277 +80,302 @@
   </style>
 </head>
 <body class="bg-syntra-base text-syntra-text font-sans antialiased">
+
 <!-- ═══════════════════════════════════════════════════════ LOGIN -->
-<div class="min-h-screen items-center justify-center bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight" id="loginScreen">
-<div class="w-full max-w-md p-8">
-<div class="bg-white shadow-2xl p-8">
-<div class="mb-8">
-<img alt="Syntra Refining Corp." class="h-16 w-auto mb-6" src="/assets/images/Wordmark_2_(1).png"/>
-<h1 class="font-head text-2xl font-bold uppercase mb-1">Admin Access</h1>
-<p class="text-sm text-syntra-muted">Authorized access only.</p>
+<div id="loginScreen" class="min-h-screen items-center justify-center bg-gradient-to-br from-syntra-midnight via-slate-900 to-syntra-midnight">
+  <div class="w-full max-w-md p-8">
+    <div class="bg-white shadow-2xl p-8">
+      <div class="mb-8">
+        <img src="/assets/images/syntra-primary-logo-deep-navy-signal-yellow.png" alt="Syntra Refining Corp." class="h-16 w-auto mb-6">
+        <h1 class="font-head text-2xl font-bold uppercase mb-1">Admin Access</h1>
+        <p class="text-sm text-syntra-muted">Authorized access only.</p>
+      </div>
+
+      <form id="loginForm" class="space-y-4" onsubmit="handleLogin(event)">
+        <div>
+          <label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Email Address</label>
+          <input type="email" id="username" class="w-full px-4 py-3 border-2 border-syntra-border focus:border-syntra-accent focus:outline-none font-mono" placeholder="Enter your email" required autocomplete="email" />
+        </div>
+        <div>
+          <label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Password</label>
+          <input type="password" id="password" class="w-full px-4 py-3 border-2 border-syntra-border focus:border-syntra-accent focus:outline-none font-mono" placeholder="Enter your password" required autocomplete="current-password" />
+        </div>
+        <div id="loginError" class="hidden bg-red-50 border border-red-200 text-red-600 px-4 py-3 text-sm"></div>
+        <button type="submit" class="w-full bg-syntra-midnight hover:bg-black text-white font-mono uppercase py-3 transition-colors">Login</button>
+      </form>
+      <p class="text-xs text-syntra-muted mt-6 pt-6 border-t border-syntra-border">All activities are logged.</p>
+    </div>
+  </div>
 </div>
-<form class="space-y-4" id="loginForm" onsubmit="handleLogin(event)">
-<div>
-<label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Email Address</label>
-<input autocomplete="email" class="w-full px-4 py-3 border-2 border-syntra-border focus:border-syntra-accent focus:outline-none font-mono" id="username" placeholder="Enter your email" required="" type="email"/>
-</div>
-<div>
-<label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Password</label>
-<input autocomplete="current-password" class="w-full px-4 py-3 border-2 border-syntra-border focus:border-syntra-accent focus:outline-none font-mono" id="password" placeholder="Enter your password" required="" type="password"/>
-</div>
-<div class="hidden bg-red-50 border border-red-200 text-red-600 px-4 py-3 text-sm" id="loginError"></div>
-<button class="w-full bg-syntra-midnight hover:bg-black text-white font-mono uppercase py-3 transition-colors" type="submit">Login</button>
-</form>
-<p class="text-xs text-syntra-muted mt-6 pt-6 border-t border-syntra-border">All activities are logged.</p>
-</div>
-</div>
-</div>
+
 <!-- ═══════════════════════════════════════════════════════ ADMIN PANEL -->
 <div id="adminPanel">
-<!-- NAV -->
-<nav class="bg-white border-b border-syntra-border sticky top-0 z-30">
-<div class="container mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
-<img alt="Syntra Refining Corp." src="/assets/images/Wordmark_2_(1).png" style="height:60px;width:auto;"/>
-<div class="flex items-center gap-6">
-<!-- TABS -->
-<div class="flex items-end gap-0 h-20 md:h-24">
-<button class="tab-btn active px-5 h-full text-sm font-mono uppercase text-syntra-muted" id="tab-submissions" onclick="switchTab('submissions')">Submissions</button>
-<button class="tab-btn px-5 h-full text-sm font-mono uppercase text-syntra-muted" id="tab-blog" onclick="switchTab('blog')">Blog</button>
-</div>
-<button class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-mono uppercase transition-colors" onclick="handleLogout()">Logout</button>
-</div>
-</div>
-</nav>
-<!-- ─── SUBMISSIONS TAB ─── -->
-<div class="container mx-auto px-6 py-10" id="panel-submissions">
-<div class="mb-8">
-<h1 class="font-head text-4xl font-bold uppercase mb-6">Form Submissions</h1>
-<div class="grid md:grid-cols-4 gap-4">
-<div class="bg-white border border-syntra-border p-4">
-<p class="text-xs font-mono text-syntra-muted uppercase mb-1">Total</p>
-<p class="font-head text-3xl font-bold" id="totalCount">0</p>
-</div>
-<div class="bg-white border border-syntra-border p-4">
-<p class="text-xs font-mono text-syntra-muted uppercase mb-1">Unread</p>
-<p class="font-head text-3xl font-bold text-syntra-amber" id="unreadCount">0</p>
-</div>
-<div class="bg-white border border-syntra-border p-4">
-<p class="text-xs font-mono text-syntra-muted uppercase mb-1">Partner Inquiries</p>
-<p class="font-head text-3xl font-bold" id="partnerCount">0</p>
-</div>
-<div class="bg-white border border-syntra-border p-4">
-<p class="text-xs font-mono text-syntra-muted uppercase mb-1">Investor Inquiries</p>
-<p class="font-head text-3xl font-bold" id="investorCount">0</p>
-</div>
-</div>
-</div>
-<div class="bg-white border border-syntra-border p-4 mb-6 flex flex-wrap gap-4 items-center">
-<span class="text-sm font-mono uppercase text-syntra-muted">Filter:</span>
-<select class="bg-slate-50 border border-slate-200 px-4 py-2 text-sm font-mono" id="filterType" onchange="loadSubmissions()">
-<option value="all">All Types</option>
-<option value="partner_inquiry">Partner Inquiries</option>
-<option value="investor_inquiry">Investor Inquiries</option>
-<option value="career_application">Career Applications</option>
-</select>
-<select class="bg-slate-50 border border-slate-200 px-4 py-2 text-sm font-mono" id="filterStatus" onchange="loadSubmissions()">
-<option value="all">All Status</option>
-<option value="unread">Unread Only</option>
-<option value="read">Read Only</option>
-</select>
-<button class="ml-auto px-4 py-2 bg-syntra-accent text-syntra-midnight text-sm font-head font-bold uppercase hover:bg-yellow-400 transition-colors" onclick="loadSubmissions()">Refresh</button>
-</div>
-<div class="space-y-4" id="submissionsList">
-<p class="font-mono text-sm text-slate-500">Loading submissions...</p>
-</div>
-</div>
-<!-- ─── BLOG TAB ─── -->
-<div class="hidden container mx-auto px-6 py-10" id="panel-blog">
-<!-- Blog list view -->
-<div id="blog-list-view">
-<div class="flex items-center justify-between mb-6">
-<h1 class="font-head text-4xl font-bold uppercase">Blog Posts</h1>
-<button class="px-5 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase text-sm hover:bg-yellow-400 transition-colors" onclick="showBlogEditor(null)">+ New Post</button>
-</div>
-<!-- Blog stats -->
-<div class="grid grid-cols-3 gap-4 mb-8">
-<div class="bg-white border border-syntra-border p-4">
-<p class="text-xs font-mono text-syntra-muted uppercase mb-1">Total Posts</p>
-<p class="font-head text-3xl font-bold" id="blogTotalCount">0</p>
-</div>
-<div class="bg-white border border-syntra-border p-4">
-<p class="text-xs font-mono text-syntra-muted uppercase mb-1">Published</p>
-<p class="font-head text-3xl font-bold text-green-600" id="blogPublishedCount">0</p>
-</div>
-<div class="bg-white border border-syntra-border p-4">
-<p class="text-xs font-mono text-syntra-muted uppercase mb-1">Drafts</p>
-<p class="font-head text-3xl font-bold text-syntra-muted" id="blogDraftCount">0</p>
-</div>
-</div>
-<!-- Filter bar -->
-<div class="bg-white border border-syntra-border p-4 mb-6 flex flex-wrap gap-4 items-center">
-<span class="text-sm font-mono uppercase text-syntra-muted">Filter:</span>
-<select class="bg-slate-50 border border-slate-200 px-4 py-2 text-sm font-mono" id="blogFilterStatus" onchange="loadBlogPosts()">
-<option value="all">All Status</option>
-<option value="published">Published</option>
-<option value="draft">Drafts</option>
-<option value="archived">Archived</option>
-</select>
-<button class="ml-auto px-4 py-2 bg-syntra-accent text-syntra-midnight text-sm font-head font-bold uppercase hover:bg-yellow-400 transition-colors" onclick="loadBlogPosts()">Refresh</button>
-</div>
-<div class="space-y-4" id="blogPostsList">
-<p class="font-mono text-sm text-slate-500">Loading posts...</p>
-</div>
-</div>
-<!-- Blog editor view -->
-<div class="hidden" id="blog-editor-view">
-<div class="flex items-center gap-4 mb-8">
-<button class="flex items-center gap-2 text-sm font-mono text-syntra-muted hover:text-syntra-text transition-colors" onclick="showBlogList()">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+
+  <!-- NAV -->
+  <nav class="bg-white border-b border-syntra-border sticky top-0 z-30">
+    <div class="container mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
+      <img src="/assets/images/syntra-primary-logo-deep-navy-signal-yellow.png" alt="Syntra Refining Corp." style="height:60px;width:auto;">
+      <div class="flex items-center gap-6">
+        <!-- TABS -->
+        <div class="flex items-end gap-0 h-20 md:h-24">
+          <button id="tab-submissions" class="tab-btn active px-5 h-full text-sm font-mono uppercase text-syntra-muted" onclick="switchTab('submissions')">Submissions</button>
+          <button id="tab-blog" class="tab-btn px-5 h-full text-sm font-mono uppercase text-syntra-muted" onclick="switchTab('blog')">Blog</button>
+        </div>
+        <button onclick="handleLogout()" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-mono uppercase transition-colors">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── SUBMISSIONS TAB ─── -->
+  <div id="panel-submissions" class="container mx-auto px-6 py-10">
+    <div class="mb-8">
+      <h1 class="font-head text-4xl font-bold uppercase mb-6">Form Submissions</h1>
+      <div class="grid md:grid-cols-4 gap-4">
+        <div class="bg-white border border-syntra-border p-4">
+          <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Total</p>
+          <p id="totalCount" class="font-head text-3xl font-bold">0</p>
+        </div>
+        <div class="bg-white border border-syntra-border p-4">
+          <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Unread</p>
+          <p id="unreadCount" class="font-head text-3xl font-bold text-syntra-amber">0</p>
+        </div>
+        <div class="bg-white border border-syntra-border p-4">
+          <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Partner Inquiries</p>
+          <p id="partnerCount" class="font-head text-3xl font-bold">0</p>
+        </div>
+        <div class="bg-white border border-syntra-border p-4">
+          <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Investor Inquiries</p>
+          <p id="investorCount" class="font-head text-3xl font-bold">0</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white border border-syntra-border p-4 mb-6 flex flex-wrap gap-4 items-center">
+      <span class="text-sm font-mono uppercase text-syntra-muted">Filter:</span>
+      <select id="filterType" class="bg-slate-50 border border-slate-200 px-4 py-2 text-sm font-mono" onchange="loadSubmissions()">
+        <option value="all">All Types</option>
+        <option value="partner_inquiry">Partner Inquiries</option>
+        <option value="investor_inquiry">Investor Inquiries</option>
+        <option value="career_application">Career Applications</option>
+      </select>
+      <select id="filterStatus" class="bg-slate-50 border border-slate-200 px-4 py-2 text-sm font-mono" onchange="loadSubmissions()">
+        <option value="all">All Status</option>
+        <option value="unread">Unread Only</option>
+        <option value="read">Read Only</option>
+      </select>
+      <button onclick="loadSubmissions()" class="ml-auto px-4 py-2 bg-syntra-accent text-syntra-midnight text-sm font-head font-bold uppercase hover:bg-yellow-400 transition-colors">Refresh</button>
+    </div>
+
+    <div id="submissionsList" class="space-y-4">
+      <p class="font-mono text-sm text-slate-500">Loading submissions...</p>
+    </div>
+  </div>
+
+  <!-- ─── BLOG TAB ─── -->
+  <div id="panel-blog" class="hidden container mx-auto px-6 py-10">
+
+    <!-- Blog list view -->
+    <div id="blog-list-view">
+      <div class="flex items-center justify-between mb-6">
+        <h1 class="font-head text-4xl font-bold uppercase">Blog Posts</h1>
+        <button onclick="showBlogEditor(null)" class="px-5 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase text-sm hover:bg-yellow-400 transition-colors">+ New Post</button>
+      </div>
+
+      <!-- Blog stats -->
+      <div class="grid grid-cols-3 gap-4 mb-8">
+        <div class="bg-white border border-syntra-border p-4">
+          <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Total Posts</p>
+          <p id="blogTotalCount" class="font-head text-3xl font-bold">0</p>
+        </div>
+        <div class="bg-white border border-syntra-border p-4">
+          <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Published</p>
+          <p id="blogPublishedCount" class="font-head text-3xl font-bold text-green-600">0</p>
+        </div>
+        <div class="bg-white border border-syntra-border p-4">
+          <p class="text-xs font-mono text-syntra-muted uppercase mb-1">Drafts</p>
+          <p id="blogDraftCount" class="font-head text-3xl font-bold text-syntra-muted">0</p>
+        </div>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="bg-white border border-syntra-border p-4 mb-6 flex flex-wrap gap-4 items-center">
+        <span class="text-sm font-mono uppercase text-syntra-muted">Filter:</span>
+        <select id="blogFilterStatus" class="bg-slate-50 border border-slate-200 px-4 py-2 text-sm font-mono" onchange="loadBlogPosts()">
+          <option value="all">All Status</option>
+          <option value="published">Published</option>
+          <option value="draft">Drafts</option>
+          <option value="archived">Archived</option>
+        </select>
+        <button onclick="loadBlogPosts()" class="ml-auto px-4 py-2 bg-syntra-accent text-syntra-midnight text-sm font-head font-bold uppercase hover:bg-yellow-400 transition-colors">Refresh</button>
+      </div>
+
+      <div id="blogPostsList" class="space-y-4">
+        <p class="font-mono text-sm text-slate-500">Loading posts...</p>
+      </div>
+    </div>
+
+    <!-- Blog editor view -->
+    <div id="blog-editor-view" class="hidden">
+      <div class="flex items-center gap-4 mb-8">
+        <button onclick="showBlogList()" class="flex items-center gap-2 text-sm font-mono text-syntra-muted hover:text-syntra-text transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
           Back to Posts
         </button>
-<h1 class="font-head text-3xl font-bold uppercase" id="editorTitle">New Post</h1>
-</div>
-<div class="grid lg:grid-cols-3 gap-8">
-<!-- Main editor -->
-<div class="lg:col-span-2 space-y-6">
-<div class="bg-white border border-syntra-border p-6">
-<div class="space-y-5">
-<div>
-<label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Post Title <span class="text-red-500">*</span></label>
-<input class="w-full px-4 py-3 border-2 border-syntra-border focus:border-syntra-accent focus:outline-none font-head text-xl font-bold uppercase" id="postTitle" oninput="autoSlug()" placeholder="ENTER POST TITLE" type="text"/>
-</div>
-<div>
-<label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Slug (URL) <span class="text-red-500">*</span></label>
-<div class="flex gap-2">
-<span class="px-3 py-3 bg-slate-100 border border-r-0 border-syntra-border text-syntra-muted text-xs font-mono">/news/</span>
-<input class="flex-1 px-4 py-3 border-2 border-syntra-border focus:border-syntra-accent focus:outline-none font-mono text-sm" id="postSlug" placeholder="post-slug-here" type="text"/>
-</div>
-</div>
-<div>
-<label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Excerpt</label>
-<textarea class="w-full px-4 py-3 border-2 border-syntra-border focus:border-syntra-accent focus:outline-none text-sm resize-none" id="postExcerpt" placeholder="Short summary shown in listing cards (optional)" rows="2"></textarea>
-</div>
-<div>
-<label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Body <span class="text-red-500">*</span></label>
-<div class="border-2 border-syntra-border focus-within:border-syntra-accent">
-<!-- Toolbar -->
-<div class="flex gap-1 p-2 border-b border-slate-200 bg-slate-50">
-<button class="px-2 py-1 text-xs font-bold font-mono hover:bg-slate-200 transition-colors" onclick="insertMarkdown('**','**')" title="Bold" type="button">B</button>
-<button class="px-2 py-1 text-xs italic font-mono hover:bg-slate-200 transition-colors" onclick="insertMarkdown('*','*')" title="Italic" type="button">I</button>
-<button class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" onclick="insertMarkdown('\n## ','')" title="Heading" type="button">H2</button>
-<button class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" onclick="insertMarkdown('\n### ','')" title="Subheading" type="button">H3</button>
-<span class="w-px bg-slate-300 mx-1"></span>
-<button class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" onclick="insertMarkdown('\n- ','')" title="List item" type="button">• List</button>
-<button class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" onclick="insertMarkdown('\n&gt; ','')" title="Blockquote" type="button">" Quote</button>
-<button class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" onclick="insertMarkdown('\n---\n','')" title="Divider" type="button">— Rule</button>
-</div>
-<textarea class="w-full px-4 py-3 focus:outline-none bg-white" id="blogBody" placeholder="Write post content here. Supports basic Markdown: **bold**, *italic*, ## Heading, - List item, &gt; Quote"></textarea>
-</div>
-<p class="text-xs text-syntra-muted mt-1 font-mono">Supports Markdown formatting.</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Sidebar -->
-<div class="space-y-6">
-<!-- Publish card -->
-<div class="bg-white border border-syntra-border p-6">
-<h3 class="font-head font-bold uppercase text-sm mb-4">Publish</h3>
-<div class="space-y-3 mb-5">
-<div>
-<label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Status</label>
-<select class="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-sm font-mono" id="postStatus">
-<option value="draft">Draft</option>
-<option value="published">Published</option>
-<option value="archived">Archived</option>
-</select>
-</div>
-<div>
-<label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Category</label>
-<select class="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-sm font-mono" id="postCategory">
-<option value="Company">Company</option>
-<option value="Technology">Technology</option>
-<option value="Industry">Industry</option>
-<option value="Sustainability">Sustainability</option>
-<option value="Partnerships">Partnerships</option>
-<option value="General">General</option>
-</select>
-</div>
-<div>
-<label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Tags</label>
-<input class="w-full px-3 py-2 border border-slate-200 text-sm font-mono" id="postTags" placeholder="critical minerals, battery, refining" type="text"/>
-<p class="text-xs text-syntra-muted mt-1">Comma-separated</p>
-</div>
-</div>
-<div class="flex flex-col gap-2">
-<button class="w-full px-4 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase text-sm hover:bg-yellow-400 transition-colors" onclick="saveBlogPost()">Save Post</button>
-<button class="w-full px-4 py-3 bg-slate-100 text-slate-700 font-mono uppercase text-xs hover:bg-slate-200 transition-colors" onclick="showBlogList()">Cancel</button>
-</div>
-<div class="hidden mt-3" id="blogSaveMsg"></div>
-</div>
-<!-- Cover image card -->
-<div class="bg-white border border-syntra-border p-6">
-<h3 class="font-head font-bold uppercase text-sm mb-4">Cover Image</h3>
-<!-- Upload button -->
-<div class="mb-3">
-<input accept="image/jpeg,image/png,image/webp,image/gif" class="hidden" id="coverImageFile" onchange="uploadCoverImage(this)" type="file"/>
-<button class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-syntra-midnight text-white text-sm font-mono uppercase tracking-wide hover:bg-slate-700 transition-colors" onclick="document.getElementById('coverImageFile').click()" type="button">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+        <h1 id="editorTitle" class="font-head text-3xl font-bold uppercase">New Post</h1>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Main editor -->
+        <div class="lg:col-span-2 space-y-6">
+          <div class="bg-white border border-syntra-border p-6">
+            <div class="space-y-5">
+              <div>
+                <label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Post Title <span class="text-red-500">*</span></label>
+                <input type="text" id="postTitle" class="w-full px-4 py-3 border-2 border-syntra-border focus:border-syntra-accent focus:outline-none font-head text-xl font-bold uppercase" placeholder="ENTER POST TITLE" oninput="autoSlug()" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Slug (URL) <span class="text-red-500">*</span></label>
+                <div class="flex gap-2">
+                  <span class="px-3 py-3 bg-slate-100 border border-r-0 border-syntra-border text-syntra-muted text-xs font-mono">/news/</span>
+                  <input type="text" id="postSlug" class="flex-1 px-4 py-3 border-2 border-syntra-border focus:border-syntra-accent focus:outline-none font-mono text-sm" placeholder="post-slug-here" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Excerpt</label>
+                <textarea id="postExcerpt" rows="2" class="w-full px-4 py-3 border-2 border-syntra-border focus:border-syntra-accent focus:outline-none text-sm resize-none" placeholder="Short summary shown in listing cards (optional)"></textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Body <span class="text-red-500">*</span></label>
+                <div class="border-2 border-syntra-border focus-within:border-syntra-accent">
+                  <!-- Toolbar -->
+                  <div class="flex gap-1 p-2 border-b border-slate-200 bg-slate-50">
+                    <button type="button" onclick="insertMarkdown('**','**')" class="px-2 py-1 text-xs font-bold font-mono hover:bg-slate-200 transition-colors" title="Bold">B</button>
+                    <button type="button" onclick="insertMarkdown('*','*')" class="px-2 py-1 text-xs italic font-mono hover:bg-slate-200 transition-colors" title="Italic">I</button>
+                    <button type="button" onclick="insertMarkdown('\n## ','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="Heading">H2</button>
+                    <button type="button" onclick="insertMarkdown('\n### ','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="Subheading">H3</button>
+                    <span class="w-px bg-slate-300 mx-1"></span>
+                    <button type="button" onclick="insertMarkdown('\n- ','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="List item">• List</button>
+                    <button type="button" onclick="insertMarkdown('\n> ','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="Blockquote">" Quote</button>
+                    <button type="button" onclick="insertMarkdown('\n---\n','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="Divider">— Rule</button>
+                  </div>
+                  <textarea id="blogBody" class="w-full px-4 py-3 focus:outline-none bg-white" placeholder="Write post content here. Supports basic Markdown: **bold**, *italic*, ## Heading, - List item, > Quote"></textarea>
+                </div>
+                <p class="text-xs text-syntra-muted mt-1 font-mono">Supports Markdown formatting.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <!-- Publish card -->
+          <div class="bg-white border border-syntra-border p-6">
+            <h3 class="font-head font-bold uppercase text-sm mb-4">Publish</h3>
+            <div class="space-y-3 mb-5">
+              <div>
+                <label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Status</label>
+                <select id="postStatus" class="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-sm font-mono">
+                  <option value="draft">Draft</option>
+                  <option value="published">Published</option>
+                  <option value="archived">Archived</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Category</label>
+                <select id="postCategory" class="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-sm font-mono">
+                  <option value="Company">Company</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Industry">Industry</option>
+                  <option value="Sustainability">Sustainability</option>
+                  <option value="Partnerships">Partnerships</option>
+                  <option value="General">General</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Tags</label>
+                <input type="text" id="postTags" class="w-full px-3 py-2 border border-slate-200 text-sm font-mono" placeholder="critical minerals, battery, refining" />
+                <p class="text-xs text-syntra-muted mt-1">Comma-separated</p>
+              </div>
+            </div>
+            <div class="flex flex-col gap-2">
+              <button onclick="saveBlogPost()" class="w-full px-4 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase text-sm hover:bg-yellow-400 transition-colors">Save Post</button>
+              <button onclick="showBlogList()" class="w-full px-4 py-3 bg-slate-100 text-slate-700 font-mono uppercase text-xs hover:bg-slate-200 transition-colors">Cancel</button>
+            </div>
+            <div id="blogSaveMsg" class="hidden mt-3"></div>
+          </div>
+
+          <!-- Cover image card -->
+          <div class="bg-white border border-syntra-border p-6">
+            <h3 class="font-head font-bold uppercase text-sm mb-4">Cover Image</h3>
+            <!-- Upload button -->
+            <div class="mb-3">
+              <input type="file" id="coverImageFile" accept="image/jpeg,image/png,image/webp,image/gif" class="hidden" onchange="uploadCoverImage(this)" />
+              <button type="button" onclick="document.getElementById('coverImageFile').click()"
+                class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-syntra-midnight text-white text-sm font-mono uppercase tracking-wide hover:bg-slate-700 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
                 Upload Image
               </button>
-<div class="hidden mt-2 text-xs font-mono px-3 py-2" id="coverUploadStatus"></div>
-</div>
-<div class="relative">
-<label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Or paste image URL</label>
-<input class="w-full px-3 py-2 border border-slate-200 text-sm font-mono" id="postCoverImage" oninput="onCoverUrlInput(this.value)" placeholder="https://..." type="url"/>
-</div>
-<div class="mt-3 hidden relative group" id="coverPreview">
-<img alt="" class="w-full h-32 object-cover border border-slate-200" id="coverPreviewImg" src="">
-<button class="absolute top-1 right-1 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-xs font-bold" onclick="removeCoverImage()" type="button">
-                ×
+              <div id="coverUploadStatus" class="hidden mt-2 text-xs font-mono px-3 py-2"></div>
+            </div>
+            <div class="relative">
+              <label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Or paste image URL</label>
+              <input type="url" id="postCoverImage" oninput="onCoverUrlInput(this.value)" class="w-full px-3 py-2 border border-slate-200 text-sm font-mono" placeholder="https://..." />
+            </div>
+            <div id="coverPreview" class="mt-3 hidden relative group">
+              <img id="coverPreviewImg" src="" alt="" class="w-full h-32 object-cover border border-slate-200" />
+              <button type="button" onclick="removeCoverImage()"
+                class="absolute top-1 right-1 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-xs font-bold">
+                &times;
               </button>
-</img></div>
-</div>
-</div>
-</div>
-<input id="editingPostId" type="hidden" value=""/>
-</div>
-</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <input type="hidden" id="editingPostId" value="" />
+    </div>
+  </div>
+
 </div><!-- /adminPanel -->
+
 <!-- Calendar Modal -->
-<div class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" id="calendarModal">
-<div class="bg-white shadow-xl max-w-md w-full p-6">
-<div class="flex items-center justify-between mb-4">
-<h3 class="font-head text-xl font-bold uppercase">Add to Calendar</h3>
-<button class="text-syntra-muted hover:text-syntra-text" onclick="closeCalendarModal()">
-<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
+<div id="calendarModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+  <div class="bg-white shadow-xl max-w-md w-full p-6">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="font-head text-xl font-bold uppercase">Add to Calendar</h3>
+      <button onclick="closeCalendarModal()" class="text-syntra-muted hover:text-syntra-text">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <form id="calendarForm" onsubmit="addToCalendar(event)" class="space-y-4">
+      <div>
+        <label class="block text-sm font-mono uppercase text-syntra-muted mb-2">Event Title</label>
+        <input type="text" id="eventTitle" class="w-full px-4 py-2 border border-syntra-border" required />
+      </div>
+      <div>
+        <label class="block text-sm font-mono uppercase text-syntra-muted mb-2">Start Date & Time</label>
+        <input type="datetime-local" id="eventStart" class="w-full px-4 py-2 border border-syntra-border" required />
+      </div>
+      <div>
+        <label class="block text-sm font-mono uppercase text-syntra-muted mb-2">End Date & Time</label>
+        <input type="datetime-local" id="eventEnd" class="w-full px-4 py-2 border border-syntra-border" required />
+      </div>
+      <div>
+        <label class="block text-sm font-mono uppercase text-syntra-muted mb-2">Description</label>
+        <textarea id="eventDescription" rows="3" class="w-full px-4 py-2 border border-syntra-border"></textarea>
+      </div>
+      <input type="hidden" id="eventAttendee" />
+      <div class="flex gap-3">
+        <button type="button" onclick="closeCalendarModal()" class="flex-1 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-mono uppercase transition-colors">Cancel</button>
+        <button type="submit" class="flex-1 px-4 py-2 bg-syntra-accent hover:bg-yellow-400 text-syntra-midnight font-head font-bold uppercase transition-colors">Add to Calendar</button>
+      </div>
+    </form>
+  </div>
 </div>
-<form class="space-y-4" id="calendarForm" onsubmit="addToCalendar(event)">
-<div>
-<label class="block text-sm font-mono uppercase text-syntra-muted mb-2">Event Title</label>
-<input class="w-full px-4 py-2 border border-syntra-border" id="eventTitle" required="" type="text"/>
-</div>
-<div>
-<label class="block text-sm font-mono uppercase text-syntra-muted mb-2">Start Date &amp; Time</label>
-<input class="w-full px-4 py-2 border border-syntra-border" id="eventStart" required="" type="datetime-local"/>
-</div>
-<div>
-<label class="block text-sm font-mono uppercase text-syntra-muted mb-2">End Date &amp; Time</label>
-<input class="w-full px-4 py-2 border border-syntra-border" id="eventEnd" required="" type="datetime-local"/>
-</div>
-<div>
-<label class="block text-sm font-mono uppercase text-syntra-muted mb-2">Description</label>
-<textarea class="w-full px-4 py-2 border border-syntra-border" id="eventDescription" rows="3"></textarea>
-</div>
-<input id="eventAttendee" type="hidden"/>
-<div class="flex gap-3">
-<button class="flex-1 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-mono uppercase transition-colors" onclick="closeCalendarModal()" type="button">Cancel</button>
-<button class="flex-1 px-4 py-2 bg-syntra-accent hover:bg-yellow-400 text-syntra-midnight font-head font-bold uppercase transition-colors" type="submit">Add to Calendar</button>
-</div>
-</form>
-</div>
-</div>
+
 <!-- Supabase UMD build — explicit version, reliable CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
 <script>
@@ -456,7 +487,7 @@
 
   async function logAdminAction(action, tableName, recordId = null, details = {}) {
     try {
-      await supabase.rpc('log_admin_action', { p_action: action, p_table_name: tableName, p_record_id: recordId == null ? null : String(recordId), p_details: details });
+      await supabase.rpc('log_admin_action', { p_action: action, p_table_name: tableName, p_record_id: recordId, p_details: details });
     } catch (e) { console.warn('Log failed:', e); }
   }
 

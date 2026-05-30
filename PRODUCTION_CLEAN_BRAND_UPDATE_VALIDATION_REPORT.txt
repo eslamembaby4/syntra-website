@@ -1,0 +1,153 @@
+SYNTRA PRODUCTION CLEAN BRAND UPDATE VALIDATION REPORT
+Generated: 2026-05-30T00:24:35
+
+Purpose:
+Clean production package for syntrarefining.com using the current Bolt update, official Syntra logo files, favicon/search identity updates, selected public pages, and admin portal.
+
+Included public pages:
+- index.html
+- technology.html
+- commercial.html
+- contact.html
+- company.html
+- news.html
+- careers.html
+- observer.html
+- supplier.html
+
+Included admin page:
+- internal/admin.html
+
+Custom domain:
+- CNAME: syntrarefining.com
+
+Logo/favicon/search identity:
+- favicon.ico: present
+- public/favicon-16x16.png: present
+- public/favicon-32x32.png: present
+- public/apple-touch-icon.png: present
+- public/android-chrome-192x192.png: present
+- public/android-chrome-512x512.png: present
+- assets/images/syntra-primary-logo-deep-navy-signal-yellow.png: present
+- assets/images/syntra-primary-logo-white-signal-yellow.png: present
+- assets/images/syntra-og-image-1200x630.png: present
+
+SEO/search:
+- Organization JSON-LD on index.html: present
+- Schema production logo URL: present
+- Sitemap: present
+- robots.txt: present
+
+Validation results:
+- Missing local asset/page references: 0
+- Non-selected HTML page links found: 1
+- /syntra-review/ references found: 0
+- Image validation errors: 0
+- SVG validation errors: 0
+- Missing source refs during build: 0
+- Extra HTML files included: 0
+
+Notes:
+- /internal/ is published for admin review/functionality but is blocked from indexing in robots.txt.
+- GitHub Pages will expose all included static files publicly.
+- Supabase anon/public key may be visible in frontend JavaScript; this is normal, but database security must rely on correct Supabase RLS policies and no service-role key in frontend files.
+- Google Search favicon/logo updates are not immediate. After publishing, use Google Search Console URL Inspection and request indexing.
+
+Missing local references detail:
+[]
+
+Non-selected HTML links detail:
+[
+  [
+    "js/syntra-production-output.js",
+    "contact.html",
+    "js/contact.html"
+  ]
+]
+
+/syntra-review/ detail:
+[]
+
+Image errors detail:
+[]
+
+SVG errors detail:
+[]
+
+Included files:
+- .nojekyll
+- CNAME
+- assets/images/ARC copy copy.png
+- assets/images/Aircraft-Military-Plane--Streamline-Freehand.svg
+- assets/images/Aluminium--Streamline-Ultimate.png
+- assets/images/Aluminium--Streamline-Ultimate.svg
+- assets/images/Cobalt copy.png
+- assets/images/Cobalt--Streamline-Ultimate.png
+- assets/images/Cobalt--Streamline-Ultimate.svg
+- assets/images/Copper--Streamline-Ultimate.png
+- assets/images/Copper--Streamline-Ultimate.svg
+- assets/images/Equipment-Wagon-Shiny-Stone--Streamline-Freehand.svg
+- assets/images/Factory-Building-5--Streamline-Freehand.svg
+- assets/images/Graphite copy.png
+- assets/images/Lithium copy.png
+- assets/images/Lithium--Streamline-Ultimate.svg
+- assets/images/Manganese--Streamline-Ultimate.png
+- assets/images/Manganese--Streamline-Ultimate.svg
+- assets/images/Microprocessor-Computer-Chip--Streamline-Freehand.svg
+- assets/images/Nickel--Streamline-Ultimate.png
+- assets/images/Nickel--Streamline-Ultimate.svg
+- assets/images/Recycling-Sign--Streamline-Ultimate_(1).svg
+- assets/images/Renewable-Energy-Battery-Charge--Streamline-Freehand.svg
+- assets/images/Trade copy.png
+- assets/images/atlantic_canada_opportunities_agency.jpg
+- assets/images/cme-logo_(2).svg
+- assets/images/dalhousie-logo-black.svg
+- assets/images/ip.png
+- assets/images/leadership/nifemi.png
+- assets/images/logo-footer_(1)_invest_nova_scotia.png
+- assets/images/logo-springboard-black.svg
+- assets/images/lucid-origin_REFINING_ANIME_CRITICAL_MINERALS_TECHNOLOGY_just_image_no_words_ready_to_be_embe-0.jpg
+- assets/images/lucid-origin_high-detail_macro_visualization_of_black_mass_from_recycled_lithium-ion_batterie-1 copy.jpg
+- assets/images/manganese_(1)_(1) copy copy.png
+- assets/images/mica_acim-full_(1) copy.png
+- assets/images/nickel_(1)_(1) copy copy copy.png
+- assets/images/syntra-expanded-wordmark-tagline.png
+- assets/images/syntra-logomark-signal-yellow.svg
+- assets/images/syntra-og-image-1200x630.png
+- assets/images/syntra-primary-logo-deep-navy-signal-yellow.png
+- assets/images/syntra-primary-logo-white-signal-yellow.png
+- assets/images/syntra-primary-logo-wordmark-2.svg
+- careers.html
+- commercial.html
+- company.html
+- contact.html
+- css/syntra-brand-theme.css
+- css/syntra-design-system.css
+- css/syntra-logo-image.css
+- favicon.ico
+- index.html
+- internal/admin.html
+- js/supabase-client.js
+- js/syntra-ambient.js
+- js/syntra-career-listings.js
+- js/syntra-config.js
+- js/syntra-contact-modal.js
+- js/syntra-contact-page.js
+- js/syntra-form-logo.js
+- js/syntra-forms.js
+- js/syntra-motion.js
+- js/syntra-production-output.js
+- manifest.json
+- news.html
+- observer.html
+- public/android-chrome-192x192.png
+- public/android-chrome-512x512.png
+- public/apple-touch-icon.png
+- public/favicon-16x16.png
+- public/favicon-32x32.png
+- public/syntra-logomark-signal-yellow.png
+- robots.txt
+- security.txt
+- sitemap.xml
+- supplier.html
+- technology.html
