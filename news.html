@@ -153,7 +153,19 @@
         .post-body h1 { font-family: 'Oswald', sans-serif; font-size: 1.75rem; font-weight: 700; margin: 1.5rem 0 0.75rem; text-transform: uppercase; color: #0F172A; }
         .post-body h2 { font-family: 'Oswald', sans-serif; font-size: 1.4rem; font-weight: 600; margin: 1.5rem 0 0.5rem; text-transform: uppercase; color: #0F172A; border-left: 3px solid #FFD700; padding-left: 0.75rem; }
         .post-body h3 { font-family: 'Oswald', sans-serif; font-size: 1.15rem; font-weight: 600; margin: 1.25rem 0 0.4rem; color: #1E293B; }
-        .post-body p  { margin: 0 0 1rem; line-height: 1.75; color: #334155; }
+        .post-body p  { margin: 0 0 1em !important; min-height: 1.5em; line-height: 1.75; color: #334155; }
+        .post-body .ql-align-center  { text-align: center; }
+        .post-body .ql-align-right   { text-align: right; }
+        .post-body .ql-align-justify { text-align: justify; }
+        .post-body .ql-size-small  { font-size: 0.75em; }
+        .post-body .ql-size-large  { font-size: 1.5em; }
+        .post-body .ql-size-huge   { font-size: 2.5em; }
+        .post-body .ql-indent-1 { padding-left: 3em !important; }
+        .post-body .ql-indent-2 { padding-left: 6em !important; }
+        .post-body .ql-indent-3 { padding-left: 9em !important; }
+        .post-body img { max-width: 100%; height: auto; border-radius: 4px; margin: 0.5em 0; }
+        .post-body a { color: #0369a1; text-decoration: underline; }
+        .post-body iframe { max-width: 100%; border-radius: 4px; margin: 1em 0; }
         .post-body ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; color: #334155; }
         .post-body li { margin-bottom: 0.4rem; line-height: 1.7; }
         .post-body blockquote { border-left: 4px solid #FFD700; background: #FAFAF5; padding: 1rem 1.25rem; margin: 1.25rem 0; font-style: italic; color: #475569; }
@@ -459,8 +471,8 @@
             <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#64748B] font-mono">
                 <p>&copy; 2026 Syntra Refining Corp. All Rights Reserved.</p>
                 <div class="flex gap-8">
-                    <span class="hover:text-white transition-colors">Privacy Policy</span>
-                    <span class="hover:text-white transition-colors">Terms of Service</span>
+                    <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -608,8 +620,7 @@
                     </div>
                     <h3 class="post-card-title font-head font-bold uppercase text-base text-syntra-midnight leading-tight mb-1.5 flex-1 transition-colors duration-200">${escHtml(p.title)}</h3>
                     ${p.excerpt ? `<p class="text-syntra-muted text-xs leading-relaxed line-clamp-2 mb-3">${escHtml(p.excerpt)}</p>` : '<div class="flex-1"></div>'}
-                    <div class="flex items-center justify-between mt-auto pt-2.5 border-t border-slate-100">
-                        <span class="text-xs font-mono text-syntra-muted">${escHtml(p.author_name || '')}</span>
+                    <div class="flex items-center justify-end mt-auto pt-2.5 border-t border-slate-100">
                         <svg class="w-4 h-4 text-syntra-tech transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </div>
                 </div>
@@ -659,10 +670,16 @@
                     document.getElementById('modalExcerpt').classList.remove('hidden');
                 }
 
-                document.getElementById('modalBody').innerHTML = renderMarkdown(post.body || '');
+                const modalBody = document.getElementById('modalBody');
+                modalBody.innerHTML = renderBody(post.body || '');
+                // setProperty with 'important' is the only way to beat Tailwind CDN runtime styles
+                modalBody.querySelectorAll('p').forEach(p => {
+                    p.style.setProperty('margin-bottom', '1em', 'important');
+                    p.style.setProperty('min-height', '1.5em', 'important');
+                    p.style.setProperty('line-height', '1.75', 'important');
+                });
 
                 document.getElementById('modalFooter').innerHTML = `
-                    <span>By ${escHtml(post.author_name || 'Syntra Refining')}</span>
                     <span>${fmtDate(post.published_at)}</span>
                 `;
 
@@ -686,6 +703,86 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeModal();
         });
+
+        // ── HTML renderer / sanitizer ───────────────────────────────
+        function renderBody(content) {
+            if (!content) return '';
+            // Content already has real HTML tags — render directly
+            if (/<[a-z]/i.test(content)) {
+                return sanitizeHtml(content);
+            }
+            // Content has entity-encoded HTML — decode then render
+            if (content.includes('&lt;') || content.includes('&amp;lt;')) {
+                const ta = document.createElement('textarea');
+                ta.innerHTML = content;
+                const decoded = ta.value;
+                if (/<[a-z]/i.test(decoded)) {
+                    return sanitizeHtml(decoded);
+                }
+                return renderMarkdown(decoded);
+            }
+            return renderMarkdown(content);
+        }
+
+        function sanitizeHtml(html) {
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            doc.querySelectorAll('script, style, object, embed, form').forEach(el => el.remove());
+            doc.querySelectorAll('iframe').forEach(el => {
+                const src = el.getAttribute('src') || '';
+                const trusted = /^https:\/\/(www\.)?(youtube\.com\/embed|player\.vimeo\.com\/video)\//.test(src);
+                if (!trusted) el.remove();
+                else {
+                    el.setAttribute('allowfullscreen', 'true');
+                    el.setAttribute('frameborder', '0');
+                }
+            });
+            // Split paragraphs that contain \n\n-separated blocks into distinct <p> elements.
+            // Quill sometimes stores multi-section content in a single <p> with newlines rather
+            // than creating separate block elements. We walk text nodes and split on 2+ newlines,
+            // preserving inline elements (bold, em, img, etc.) that surround the split point.
+            doc.querySelectorAll('p').forEach(p => {
+                // Only act when raw text content contains a double-newline
+                if (!p.textContent.includes('\n\n') && !p.innerHTML.includes('\n\n')) return;
+
+                // Serialise the paragraph's innerHTML, split on 2+ consecutive newlines,
+                // then replace the original <p> with one new <p> per non-empty chunk.
+                const chunks = p.innerHTML.split(/\n{2,}/);
+                if (chunks.length < 2) return;
+
+                const classAttr = p.getAttribute('class') || '';
+                const newParas = document.createDocumentFragment();
+                chunks.forEach(chunk => {
+                    const trimmed = chunk.trim();
+                    if (!trimmed) return;
+                    const np = doc.createElement('p');
+                    if (classAttr) np.setAttribute('class', classAttr);
+                    np.innerHTML = trimmed;
+                    newParas.appendChild(np);
+                });
+                p.parentNode.replaceChild(newParas, p);
+            });
+
+            // Convert empty Quill paragraphs to spacer lines with &nbsp;
+            doc.querySelectorAll('p').forEach(p => {
+                const isEmpty = p.childNodes.length === 0 ||
+                    (p.childNodes.length === 1 && p.firstChild.nodeName === 'BR');
+                if (isEmpty) {
+                    p.innerHTML = '&nbsp;';
+                }
+            });
+            doc.querySelectorAll('*').forEach(el => {
+                for (const attr of [...el.attributes]) {
+                    if (attr.name.startsWith('on')) el.removeAttribute(attr.name);
+                    if (attr.name === 'href' && /^javascript:/i.test(attr.value)) el.removeAttribute(attr.name);
+                    if (attr.name === 'src'  && /^javascript:/i.test(attr.value)) el.removeAttribute(attr.name);
+                }
+                if (el.tagName === 'A') {
+                    el.setAttribute('target', '_blank');
+                    el.setAttribute('rel', 'noopener noreferrer');
+                }
+            });
+            return doc.body.innerHTML;
+        }
 
         // ── Minimal Markdown renderer ───────────────────────────────
         function renderMarkdown(md) {
