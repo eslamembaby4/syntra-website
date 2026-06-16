@@ -10,10 +10,8 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
-
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#0B1120">
+  <meta name="theme-color" content="#0A1628">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -22,6 +20,99 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/syntra-brand-theme.css">
   <link rel="stylesheet" href="/css/syntra-design-system.css">
+
+  <!-- Quill rich text editor -->
+  <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+  <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+  <!-- Quill image resize module -->
+  <script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
+
+  <style>
+    /* Quill editor skin overrides */
+    .ql-toolbar.ql-snow { border: none; border-bottom: 1px solid #E2E8F0; background: #F8FAFC; padding: 8px 10px; flex-wrap: wrap; gap: 2px; }
+    .ql-container.ql-snow { border: none; }
+    #quill-editor .ql-editor { min-height: 380px; font-size: 15px; line-height: 1.7; padding: 16px; font-family: Inter, sans-serif; }
+    #quill-editor .ql-editor:focus { outline: none; }
+    .ql-snow .ql-picker { color: #0F172A; }
+    .ql-snow .ql-stroke { stroke: #0F172A; }
+    .ql-snow .ql-fill { fill: #0F172A; }
+
+    /* ── Preview modal ── */
+    #previewModal { display:none; }
+    #previewModal.open { display:flex; }
+    /* Post-body prose identical to news.html */
+    .preview-body h1 { font-family:'Oswald',sans-serif; font-size:1.75rem; font-weight:700; margin:1.5rem 0 0.75rem; text-transform:uppercase; color:#0F172A; }
+    .preview-body h2 { font-family:'Oswald',sans-serif; font-size:1.4rem; font-weight:600; margin:1.5rem 0 0.5rem; text-transform:uppercase; color:#0F172A; border-left:3px solid #FFD700; padding-left:0.75rem; }
+    .preview-body h3 { font-family:'Oswald',sans-serif; font-size:1.15rem; font-weight:600; margin:1.25rem 0 0.4rem; color:#1E293B; }
+    .preview-body p  { margin:0 0 1rem; line-height:1.75; color:#334155; }
+    .preview-body ul { list-style:disc; padding-left:1.5rem; margin-bottom:1rem; color:#334155; }
+    .preview-body li { margin-bottom:0.4rem; line-height:1.7; }
+    .preview-body blockquote { border-left:4px solid #FFD700; background:#FAFAF5; padding:1rem 1.25rem; margin:1.25rem 0; font-style:italic; color:#475569; }
+    .preview-body strong { color:#0F172A; font-weight:600; }
+    .preview-body hr { border:none; border-top:1px solid #E2E8F0; margin:2rem 0; }
+    .preview-body img { max-width:100%; height:auto; margin:1rem 0; border-radius:4px; }
+    .preview-body a { color:#0891B2; text-decoration:underline; }
+    .preview-body a:hover { color:#0E7490; }
+    .preview-body table { border-collapse:collapse; width:100%; margin:1.25rem 0; font-size:0.9em; }
+    .preview-body table td, .preview-body table th { border:1px solid #CBD5E1; padding:8px 14px; }
+    .preview-body table th { background:#F1F5F9; font-weight:600; text-align:left; }
+    .preview-body table tr:nth-child(even) { background:#F8FAFC; }
+    .preview-body ol { list-style:decimal; padding-left:1.5rem; margin-bottom:1rem; color:#334155; }
+    .preview-body ol li { margin-bottom:0.4rem; line-height:1.7; }
+    .preview-body code { background:#F1F5F9; padding:2px 6px; border-radius:3px; font-size:0.875em; font-family:'JetBrains Mono',monospace; }
+    .preview-body pre { background:#1E293B; color:#E2E8F0; padding:1rem; overflow-x:auto; border-radius:4px; margin:1rem 0; }
+    .preview-body pre code { background:none; padding:0; color:inherit; }
+    .preview-body .ql-video-wrapper { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; margin:1rem 0; }
+    .preview-body .ql-video-wrapper iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius:4px; }
+    .preview-body hr { border:none; height:2px; background:linear-gradient(to right,#FFD700,transparent); margin:2rem 0; }
+    /* Quill content styles shown in editor */
+    #quill-editor .ql-editor h1 { font-family: Oswald, sans-serif; font-size: 2em; font-weight: 700; text-transform: uppercase; margin: 1em 0 0.4em; }
+    #quill-editor .ql-editor h2 { font-family: Oswald, sans-serif; font-size: 1.5em; font-weight: 600; text-transform: uppercase; margin: 0.8em 0 0.3em; }
+    #quill-editor .ql-editor h3 { font-family: Oswald, sans-serif; font-size: 1.15em; font-weight: 600; margin: 0.7em 0 0.3em; }
+    #quill-editor .ql-editor table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+    #quill-editor .ql-editor table td, #quill-editor .ql-editor table th { border: 1px solid #CBD5E1; padding: 8px 12px; }
+    #quill-editor .ql-editor table th { background: #F1F5F9; font-weight: 600; }
+    #quill-editor .ql-editor blockquote { border-left: 4px solid #FFD700; padding-left: 1em; margin: 1em 0; color: #475569; font-style: italic; }
+    #quill-editor .ql-editor img { max-width: 100%; height: auto; margin: 8px 0; cursor: pointer; }
+    #quill-editor .ql-editor a { color: #0891B2; text-decoration: underline; }
+
+    /* ── Size picker ── */
+    .ql-snow .ql-size .ql-picker-label::before,
+    .ql-snow .ql-size .ql-picker-item::before { content: 'Normal'; }
+    .ql-snow .ql-size .ql-picker-label[data-value="small"]::before,
+    .ql-snow .ql-size .ql-picker-item[data-value="small"]::before { content: 'Small'; }
+    .ql-snow .ql-size .ql-picker-label[data-value="large"]::before,
+    .ql-snow .ql-size .ql-picker-item[data-value="large"]::before { content: 'Large'; }
+    .ql-snow .ql-size .ql-picker-label[data-value="huge"]::before,
+    .ql-snow .ql-size .ql-picker-item[data-value="huge"]::before { content: 'Huge'; }
+    .ql-size-small  { font-size: 0.875em !important; }
+    .ql-size-large  { font-size: 1.25em !important; }
+    .ql-size-huge   { font-size: 1.75em !important; }
+
+    /* ── Custom toolbar button labels ── */
+    .ql-insertImage::after { content: "IMG"; font-size: 11px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+    .ql-insertDivider::after { content: "─"; font-size: 14px; font-weight: 700; }
+    .ql-insertVideo::after { content: "▶"; font-size: 12px; }
+    .ql-insertTable::after { content: "⊞"; font-size: 14px; font-weight: 700; }
+
+    /* ── Video embed blot in editor ── */
+    #quill-editor .ql-editor .ql-video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 1em 0; }
+    #quill-editor .ql-editor .ql-video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+    /* ── Image resize handles ── */
+    .image-resize-container { border: 2px solid #FFD700 !important; }
+    .image-resize-container .image-resize__handle { background: #FFD700 !important; border: 2px solid #0B1120 !important; width: 10px !important; height: 10px !important; }
+
+    /* ── Word count bar ── */
+    #editorWordCount { display: flex; align-items: center; gap: 12px; padding: 4px 12px; background: #F8FAFC; border-top: 1px solid #E2E8F0; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: #64748B; }
+
+    /* ── Fullscreen editor ── */
+    #editorFullscreenWrap.is-fullscreen { position: fixed; inset: 0; z-index: 100; background: white; display: flex; flex-direction: column; overflow: hidden; }
+    #editorFullscreenWrap.is-fullscreen #quill-editor .ql-editor { min-height: calc(100vh - 110px); }
+
+    /* ── Drop zone highlight ── */
+    #quill-editor.drag-over { outline: 2px dashed #FFD700; outline-offset: -2px; background: #FFFBEB; }
+  </style>
 
   <script>
     tailwind.config = {
@@ -249,21 +340,28 @@
 
               <div>
                 <label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Body <span class="text-red-500">*</span></label>
-                <div class="border-2 border-syntra-border focus-within:border-syntra-accent">
-                  <!-- Toolbar -->
-                  <div class="flex gap-1 p-2 border-b border-slate-200 bg-slate-50">
-                    <button type="button" onclick="insertMarkdown('**','**')" class="px-2 py-1 text-xs font-bold font-mono hover:bg-slate-200 transition-colors" title="Bold">B</button>
-                    <button type="button" onclick="insertMarkdown('*','*')" class="px-2 py-1 text-xs italic font-mono hover:bg-slate-200 transition-colors" title="Italic">I</button>
-                    <button type="button" onclick="insertMarkdown('\n## ','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="Heading">H2</button>
-                    <button type="button" onclick="insertMarkdown('\n### ','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="Subheading">H3</button>
-                    <span class="w-px bg-slate-300 mx-1"></span>
-                    <button type="button" onclick="insertMarkdown('\n- ','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="List item">• List</button>
-                    <button type="button" onclick="insertMarkdown('\n> ','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="Blockquote">" Quote</button>
-                    <button type="button" onclick="insertMarkdown('\n---\n','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="Divider">— Rule</button>
+                <div id="editorFullscreenWrap" class="border-2 border-syntra-border focus-within:border-syntra-accent">
+                  <!-- Fullscreen toolbar strip -->
+                  <div id="editorFsBar" class="hidden items-center justify-between bg-syntra-midnight text-white px-4 py-2 text-xs font-mono">
+                    <span class="text-syntra-accent font-bold uppercase tracking-widest">Full Screen Editor</span>
+                    <button onclick="toggleFullscreen()" class="px-3 py-1 bg-white/10 hover:bg-white/20 transition-colors rounded text-xs">Exit Fullscreen (Esc)</button>
                   </div>
-                  <textarea id="blogBody" class="w-full px-4 py-3 focus:outline-none bg-white" placeholder="Write post content here. Supports basic Markdown: **bold**, *italic*, ## Heading, - List item, > Quote"></textarea>
+                  <!-- Quill rich text editor -->
+                  <div id="quill-editor"></div>
+                  <!-- Word / char count -->
+                  <div id="editorWordCount">
+                    <span id="wc-words">0 words</span>
+                    <span class="text-slate-300">|</span>
+                    <span id="wc-chars">0 chars</span>
+                    <span class="flex-1"></span>
+                    <button onclick="toggleFullscreen()" title="Toggle fullscreen" class="text-slate-400 hover:text-syntra-midnight transition-colors ml-2 flex items-center gap-1">
+                      <svg id="fs-icon-expand" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+                      <svg id="fs-icon-collapse" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 9V4m0 5H4m16 0h-5m5-5v5M4 15h5m-5 5v-5m16 5l-5-5m5 5h-5m0 0v5"/></svg>
+                      <span class="text-[11px]" id="fs-label">Fullscreen</span>
+                    </button>
+                  </div>
                 </div>
-                <p class="text-xs text-syntra-muted mt-1 font-mono">Supports Markdown formatting.</p>
+                <p class="text-xs text-syntra-muted mt-1 font-mono">Rich text, tables, video embeds, inline images (any type). Paste directly from Word.</p>
               </div>
             </div>
           </div>
@@ -302,6 +400,10 @@
             </div>
             <div class="flex flex-col gap-2">
               <button onclick="saveBlogPost()" class="w-full px-4 py-3 bg-syntra-accent text-syntra-midnight font-head font-bold uppercase text-sm hover:bg-yellow-400 transition-colors">Save Post</button>
+              <button onclick="openPreview()" class="w-full px-4 py-3 bg-syntra-midnight text-white font-head font-bold uppercase text-sm hover:bg-slate-800 transition-colors flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                Preview
+              </button>
               <button onclick="showBlogList()" class="w-full px-4 py-3 bg-slate-100 text-slate-700 font-mono uppercase text-xs hover:bg-slate-200 transition-colors">Cancel</button>
             </div>
             <div id="blogSaveMsg" class="hidden mt-3"></div>
@@ -310,26 +412,62 @@
           <!-- Cover image card -->
           <div class="bg-white border border-syntra-border p-6">
             <h3 class="font-head font-bold uppercase text-sm mb-4">Cover Image</h3>
-            <!-- Upload button -->
-            <div class="mb-3">
-              <input type="file" id="coverImageFile" accept="image/jpeg,image/png,image/webp,image/gif" class="hidden" onchange="uploadCoverImage(this)" />
-              <button type="button" onclick="document.getElementById('coverImageFile').click()"
-                class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-syntra-midnight text-white text-sm font-mono uppercase tracking-wide hover:bg-slate-700 transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-                Upload Image
-              </button>
-              <div id="coverUploadStatus" class="hidden mt-2 text-xs font-mono px-3 py-2"></div>
+            <!-- Drop zone -->
+            <div id="coverDropZone"
+              class="border-2 border-dashed border-slate-300 rounded p-4 text-center mb-3 cursor-pointer hover:border-syntra-accent transition-colors relative"
+              onclick="document.getElementById('coverImageFile').click()"
+              ondragover="e => { e.preventDefault(); document.getElementById('coverDropZone').classList.add('border-syntra-accent','bg-yellow-50/30'); }"
+              ondragleave="document.getElementById('coverDropZone').classList.remove('border-syntra-accent','bg-yellow-50/30')"
+              ondrop="handleCoverDrop(event)">
+              <input type="file" id="coverImageFile" accept="image/*" class="hidden" onchange="uploadCoverImage(this.files[0])" />
+              <svg class="w-6 h-6 mx-auto mb-1 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+              <p class="text-xs font-mono text-slate-400">Click or drag &amp; drop</p>
+              <p class="text-xs font-mono text-slate-300 mt-0.5">Any image format — max 20MB</p>
             </div>
+            <div id="coverUploadStatus" class="hidden mb-3 text-xs font-mono px-3 py-2"></div>
+            <!-- Format guidelines -->
+            <details class="mb-3 group">
+              <summary class="cursor-pointer text-xs font-mono text-syntra-muted hover:text-syntra-text flex items-center gap-1 select-none list-none">
+                <svg class="w-3 h-3 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                Format guidelines
+              </summary>
+              <div class="mt-2 space-y-1.5 pl-4 border-l-2 border-syntra-accent/40">
+                <div class="flex items-start gap-2">
+                  <span class="text-[10px] font-mono font-bold uppercase text-syntra-accent bg-syntra-midnight px-1.5 py-0.5 rounded mt-0.5 shrink-0">IDEAL</span>
+                  <span class="text-[11px] font-mono text-slate-500">1200 × 630 px, 16:9 aspect ratio — standard for article headers and social sharing</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-[10px] font-mono font-bold uppercase text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded mt-0.5 shrink-0">ALT</span>
+                  <span class="text-[11px] font-mono text-slate-500">1600 × 900 px for high-DPI displays, or 800 × 450 px minimum</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-[10px] font-mono font-bold uppercase text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded mt-0.5 shrink-0">FILE</span>
+                  <span class="text-[11px] font-mono text-slate-500">JPG or WebP preferred for photos — smaller file size, faster load. PNG for graphics with transparency.</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-[10px] font-mono font-bold uppercase text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded mt-0.5 shrink-0">SIZE</span>
+                  <span class="text-[11px] font-mono text-slate-500">Keep under 500 KB for best performance. Above 2 MB will load slowly on mobile.</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-[10px] font-mono font-bold uppercase text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded mt-0.5 shrink-0">NOTE</span>
+                  <span class="text-[11px] font-mono text-slate-500">Image displays at its natural aspect ratio — no cropping. Landscape orientations work best for post headers.</span>
+                </div>
+              </div>
+            </details>
             <div class="relative">
               <label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Or paste image URL</label>
               <input type="url" id="postCoverImage" oninput="onCoverUrlInput(this.value)" class="w-full px-3 py-2 border border-slate-200 text-sm font-mono" placeholder="https://..." />
             </div>
             <div id="coverPreview" class="mt-3 hidden relative group">
-              <img id="coverPreviewImg" src="" alt="" class="w-full h-32 object-cover border border-slate-200" />
+              <img id="coverPreviewImg" src="" alt="" class="w-full h-32 object-cover border border-slate-200" onerror="this.closest('#coverPreview').classList.add('hidden'); showCoverError('Image could not be loaded. Check the URL.');" />
               <button type="button" onclick="removeCoverImage()"
                 class="absolute top-1 right-1 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-xs font-bold">
                 &times;
               </button>
+            </div>
+            <div class="mt-3">
+              <label class="block text-xs font-mono uppercase text-syntra-muted mb-1">Image Alt Text</label>
+              <input type="text" id="postCoverAlt" class="w-full px-3 py-2 border border-slate-200 text-sm font-mono" placeholder="Describe the image for accessibility" />
             </div>
           </div>
         </div>
@@ -340,6 +478,50 @@
   </div>
 
 </div><!-- /adminPanel -->
+
+<!-- ── Preview Modal ── -->
+<div id="previewModal" class="fixed inset-0 z-[200] items-start justify-center bg-black/70 backdrop-blur-sm overflow-y-auto p-4 sm:p-10" onclick="if(event.target===this)closePreview()">
+  <div class="bg-white w-full max-w-3xl mx-auto relative shadow-2xl">
+
+    <!-- Modal header bar -->
+    <div class="sticky top-0 z-10 flex items-center justify-between bg-syntra-midnight text-white px-6 py-3 border-b-2 border-syntra-accent">
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-mono uppercase tracking-widest text-syntra-accent">Preview</span>
+        <span class="text-slate-400 text-xs font-mono">— not yet published</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="saveBlogPost()" class="px-4 py-1.5 bg-syntra-accent text-syntra-midnight text-xs font-mono font-bold uppercase hover:bg-yellow-400 transition-colors">Save Post</button>
+        <button onclick="closePreview()" class="w-8 h-8 flex items-center justify-center hover:bg-white/10 transition-colors text-xl leading-none">&times;</button>
+      </div>
+    </div>
+
+    <!-- Cover image -->
+    <div id="previewCover" class="hidden">
+      <img id="previewCoverImg" src="" alt="" class="w-full h-auto block" />
+    </div>
+
+    <!-- Post content -->
+    <div class="px-8 sm:px-12 py-10">
+      <!-- Meta -->
+      <div class="flex flex-wrap items-center gap-3 mb-5">
+        <span id="previewCategory" class="text-xs font-mono font-bold uppercase tracking-wider px-2 py-1 bg-slate-100 text-slate-600"></span>
+        <span class="text-slate-300 text-xs">|</span>
+        <span class="text-xs font-mono text-slate-400">Draft Preview</span>
+      </div>
+
+      <!-- Title -->
+      <h1 id="previewTitle" class="font-head font-bold uppercase text-3xl sm:text-4xl text-syntra-midnight leading-tight mb-4"></h1>
+
+      <!-- Excerpt -->
+      <p id="previewExcerpt" class="text-slate-500 text-base leading-relaxed mb-6 hidden border-l-4 border-syntra-accent pl-4 italic"></p>
+
+      <!-- Body -->
+      <div class="border-t border-slate-100 pt-8">
+        <div id="previewBody" class="preview-body text-base"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Calendar Modal -->
 <div id="calendarModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
@@ -532,6 +714,71 @@
   // Store submissions by ID so buttons can look them up without inline JSON
   const _submissionsCache = new Map();
 
+  function escField(v) {
+    if (v == null) return '';
+    return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // Fields rendered separately — skip from generic additional_data display
+  const ADDITIONAL_DATA_SKIP = new Set([
+    'first_name','last_name','email','phone','company','organization',
+    'interest_type','message','form_type','reference_id','read_status',
+    'created_at','updated_at','id',
+    'resume_url','resume_metadata'
+  ]);
+
+  function renderAdditionalData(additional_data) {
+    if (!additional_data || typeof additional_data !== 'object' || !Object.keys(additional_data).length) return '';
+    const entries = Object.entries(additional_data).filter(([k]) => !ADDITIONAL_DATA_SKIP.has(k));
+    if (!entries.length) return '';
+    const rows = entries.map(([k, v]) => {
+      const label = k.replace(/_/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+      const val = typeof v === 'object' ? JSON.stringify(v, null, 2) : escField(v);
+      return `<div class="flex gap-2 text-xs py-1 border-b border-slate-100 last:border-0">
+        <span class="font-mono text-syntra-muted shrink-0 w-36">${escField(label)}:</span>
+        <span class="text-slate-800 break-all whitespace-pre-wrap">${val}</span>
+      </div>`;
+    }).join('');
+    return `<div class="mt-3 bg-slate-50 border border-slate-200 p-3">
+      <p class="font-mono text-syntra-muted text-xs mb-2 uppercase tracking-wide">Additional Fields</p>
+      ${rows}
+    </div>`;
+  }
+
+  function renderResumeBlock(additional_data) {
+    if (!additional_data?.resume_url) return '';
+    const meta = additional_data.resume_metadata || {};
+    const fileName = escField(meta.name || 'Resume');
+    const fileSize = meta.size ? ` &mdash; ${(meta.size / 1024).toFixed(0)} KB` : '';
+    // Extract storage path from URL: everything after /object/public/ or /object/sign/
+    const urlMatch = additional_data.resume_url.match(/\/storage\/v1\/object\/(?:public|sign)\/(.+)/);
+    const storagePath = urlMatch ? decodeURIComponent(urlMatch[1]) : null;
+    const pathAttr = storagePath ? `data-storage-path="${escField(storagePath)}"` : '';
+    return `<div class="mt-3 bg-slate-50 border border-slate-200 p-3 flex items-center justify-between gap-4">
+      <div>
+        <p class="font-mono text-syntra-muted text-xs mb-0.5 uppercase tracking-wide">Resume / CV</p>
+        <p class="text-sm font-semibold">${fileName}<span class="font-normal text-syntra-muted">${fileSize}</span></p>
+      </div>
+      <button data-action="resume" ${pathAttr} class="px-4 py-2 bg-syntra-midnight text-syntra-accent text-xs font-mono uppercase font-bold hover:bg-slate-800 transition-colors shrink-0 border border-syntra-accent/40">Download Resume</button>
+    </div>`;
+  }
+
+  async function downloadResume(storagePath) {
+    try {
+      startSessionTimeout();
+      // storagePath includes bucket name as first segment: "career-applications/resumes/..."
+      const parts = storagePath.split('/');
+      const bucket = parts[0];
+      const path = parts.slice(1).join('/');
+      const { data, error } = await supabase.storage.from(bucket).createSignedUrl(path, 120);
+      if (error) throw error;
+      // Open in new tab — browser will prompt download for PDF
+      window.open(data.signedUrl, '_blank', 'noopener,noreferrer');
+    } catch (e) {
+      alert('Could not generate download link: ' + e.message);
+    }
+  }
+
   function displaySubmissions(submissions) {
     const container = document.getElementById('submissionsList');
     if (!submissions.length) { container.innerHTML = '<p class="font-mono text-sm text-slate-500">No submissions found.</p>'; return; }
@@ -541,6 +788,7 @@
 
     container.innerHTML = submissions.map(sub => {
       const unread = !sub.read_status;
+      const formLabel = sub.form_type === 'partner_inquiry' ? 'Partner' : sub.form_type === 'investor_inquiry' ? 'Investor' : sub.form_type === 'career_application' ? 'Career' : (sub.form_type || 'Unknown');
       return `
       <div class="bg-white border ${unread ? 'border-syntra-accent border-2 bg-yellow-50/30' : 'border-syntra-border'} p-6">
         <div class="flex items-start justify-between mb-4">
@@ -548,19 +796,30 @@
             ${unread ? '<div class="w-2 h-2 bg-syntra-accent mt-2 shrink-0"></div>' : ''}
             <div class="flex-1">
               <div class="flex items-center gap-3 mb-2 flex-wrap">
-                <h3 class="font-head text-xl font-bold uppercase">${sub.first_name} ${sub.last_name || ''}</h3>
-                <span class="px-2 py-1 bg-slate-100 text-xs font-mono uppercase">${sub.form_type === 'partner_inquiry' ? 'Partner' : sub.form_type === 'investor_inquiry' ? 'Investor' : 'Career'}</span>
-                ${sub.reference_id ? `<span class="px-2 py-1 bg-cyan-100 text-cyan-800 text-xs font-mono">${sub.reference_id}</span>` : ''}
+                <h3 class="font-head text-xl font-bold uppercase">${escField(sub.first_name)} ${escField(sub.last_name || '')}</h3>
+                <span class="px-2 py-1 bg-slate-100 text-xs font-mono uppercase">${escField(formLabel)}</span>
+                ${sub.reference_id ? `<span class="px-2 py-1 bg-cyan-100 text-cyan-800 text-xs font-mono">${escField(sub.reference_id)}</span>` : ''}
                 ${unread ? '<span class="px-2 py-1 bg-syntra-accent/20 text-syntra-amber text-xs font-mono uppercase font-bold">NEW</span>' : ''}
               </div>
+
+              <!-- Core fields grid -->
               <div class="grid md:grid-cols-2 gap-x-6 gap-y-2 text-sm mb-3">
-                <div><span class="font-mono text-syntra-muted text-xs">Email:</span><a href="mailto:${sub.email}" class="text-syntra-tech hover:underline ml-2">${sub.email}</a></div>
-                ${sub.phone ? `<div><span class="font-mono text-syntra-muted text-xs">Phone:</span><a href="tel:${sub.phone}" class="text-syntra-tech hover:underline ml-2">${sub.phone}</a></div>` : ''}
-                ${sub.organization ? `<div><span class="font-mono text-syntra-muted text-xs">Org:</span><span class="ml-2 font-semibold">${sub.organization}</span></div>` : ''}
-                ${sub.interest_type ? `<div><span class="font-mono text-syntra-muted text-xs">Interest:</span><span class="ml-2">${sub.interest_type}</span></div>` : ''}
-                <div><span class="font-mono text-syntra-muted text-xs">Date:</span><span class="ml-2">${new Date(sub.created_at).toLocaleString()}</span></div>
+                <div><span class="font-mono text-syntra-muted text-xs">Email:</span><a href="mailto:${escField(sub.email)}" class="text-syntra-tech hover:underline ml-2">${escField(sub.email)}</a></div>
+                ${sub.phone ? `<div><span class="font-mono text-syntra-muted text-xs">Phone:</span><a href="tel:${escField(sub.phone)}" class="text-syntra-tech hover:underline ml-2">${escField(sub.phone)}</a></div>` : ''}
+                ${sub.company ? `<div><span class="font-mono text-syntra-muted text-xs">Company:</span><span class="ml-2 font-semibold">${escField(sub.company)}</span></div>` : ''}
+                ${sub.organization ? `<div><span class="font-mono text-syntra-muted text-xs">Organization:</span><span class="ml-2 font-semibold">${escField(sub.organization)}</span></div>` : ''}
+                ${sub.interest_type ? `<div><span class="font-mono text-syntra-muted text-xs">Interest:</span><span class="ml-2">${escField(sub.interest_type)}</span></div>` : ''}
+                <div><span class="font-mono text-syntra-muted text-xs">Submitted:</span><span class="ml-2">${new Date(sub.created_at).toLocaleString()}</span></div>
               </div>
-              ${sub.message ? `<div class="bg-slate-50 p-3 text-sm"><p class="font-mono text-syntra-muted text-xs mb-1">Message:</p><p class="whitespace-pre-wrap">${sub.message}</p></div>` : ''}
+
+              <!-- Message -->
+              ${sub.message ? `<div class="bg-slate-50 border border-slate-200 p-3 text-sm mb-0"><p class="font-mono text-syntra-muted text-xs mb-1 uppercase tracking-wide">Message:</p><p class="whitespace-pre-wrap">${escField(sub.message)}</p></div>` : ''}
+
+              <!-- additional_data JSON fields -->
+              ${renderAdditionalData(sub.additional_data)}
+
+              <!-- Resume download (career applications) -->
+              ${renderResumeBlock(sub.additional_data)}
             </div>
           </div>
           <div class="flex flex-col gap-2 ml-4 shrink-0">
@@ -586,6 +845,7 @@
       else if (action === 'read') markAsRead(id);
       else if (action === 'unread') markAsUnread(id);
       else if (action === 'delete') deleteSubmission(id);
+      else if (action === 'resume') downloadResume(btn.dataset.storagePath);
     };
   }
 
@@ -675,7 +935,6 @@
     document.getElementById('postTitle').value = '';
     document.getElementById('postSlug').value = '';
     document.getElementById('postExcerpt').value = '';
-    document.getElementById('blogBody').value = '';
     document.getElementById('postStatus').value = 'draft';
     document.getElementById('postCategory').value = 'Company';
     document.getElementById('postTags').value = '';
@@ -684,6 +943,7 @@
     document.getElementById('blogSaveMsg').classList.add('hidden');
     document.getElementById('coverImageFile').value = '';
     document.getElementById('coverUploadStatus').classList.add('hidden');
+    if (window._quill) window._quill.setContents([{ insert: '\n' }]);
 
     if (postId) {
       const { data: post, error } = await supabase.from('blog_posts').select('*').eq('id', postId).maybeSingle();
@@ -693,7 +953,6 @@
       document.getElementById('postTitle').value = post.title;
       document.getElementById('postSlug').value = post.slug;
       document.getElementById('postExcerpt').value = post.excerpt || '';
-      document.getElementById('blogBody').value = post.body || '';
       document.getElementById('postStatus').value = post.status;
       document.getElementById('postCategory').value = post.category;
       document.getElementById('postTags').value = (post.tags || []).join(', ');
@@ -702,6 +961,10 @@
         document.getElementById('coverPreviewImg').src = post.cover_image_url;
         document.getElementById('coverPreview').classList.remove('hidden');
       }
+      // Load HTML body into Quill
+      if (window._quill) {
+        window._quill.root.innerHTML = post.body || '';
+      }
     }
   }
 
@@ -709,6 +972,67 @@
     document.getElementById('blog-editor-view').classList.add('hidden');
     document.getElementById('blog-list-view').classList.remove('hidden');
     loadBlogPosts();
+  }
+
+  function openPreview() {
+    const title    = document.getElementById('postTitle').value.trim();
+    const excerpt  = document.getElementById('postExcerpt').value.trim();
+    const cover    = document.getElementById('postCoverImage').value.trim();
+    const category = document.getElementById('postCategory').value;
+    const body     = window._quill ? window._quill.root.innerHTML : '';
+
+    // Title
+    document.getElementById('previewTitle').textContent = title || 'Untitled Post';
+
+    // Category
+    document.getElementById('previewCategory').textContent = category;
+
+    // Excerpt
+    const excerptEl = document.getElementById('previewExcerpt');
+    if (excerpt) { excerptEl.textContent = excerpt; excerptEl.classList.remove('hidden'); }
+    else { excerptEl.classList.add('hidden'); }
+
+    // Cover image
+    const coverWrap = document.getElementById('previewCover');
+    const coverImg  = document.getElementById('previewCoverImg');
+    if (cover) {
+      coverImg.src = cover;
+      coverWrap.classList.remove('hidden');
+    } else {
+      coverWrap.classList.add('hidden');
+    }
+
+    // Body — sanitize before inserting
+    document.getElementById('previewBody').innerHTML = sanitizePreviewHtml(body);
+
+    // Open modal
+    document.getElementById('previewModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePreview() {
+    document.getElementById('previewModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function sanitizePreviewHtml(html) {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    doc.querySelectorAll('script,style,object,embed,form').forEach(el => el.remove());
+    // Allow iframes only from trusted video hosts
+    doc.querySelectorAll('iframe').forEach(el => {
+      const src = el.getAttribute('src') || '';
+      const trusted = /^https:\/\/(www\.)?(youtube\.com\/embed|player\.vimeo\.com\/video)\//.test(src);
+      if (!trusted) el.remove();
+      else { el.setAttribute('allowfullscreen', 'true'); el.setAttribute('frameborder', '0'); }
+    });
+    doc.querySelectorAll('*').forEach(el => {
+      [...el.attributes].forEach(attr => {
+        if (/^on/i.test(attr.name)) el.removeAttribute(attr.name);
+        if (['href','src','action'].includes(attr.name) && /^javascript:/i.test(attr.value)) el.removeAttribute(attr.name);
+      });
+      if (el.tagName === 'A') { el.setAttribute('target','_blank'); el.setAttribute('rel','noopener noreferrer'); }
+    });
+    return doc.body.innerHTML;
   }
 
   function onCoverUrlInput(val) {
@@ -729,27 +1053,50 @@
     document.getElementById('coverImageFile').value = '';
   }
 
-  async function uploadCoverImage(input) {
-    if (!input.files || !input.files[0]) return;
-    const file = input.files[0];
+  function showCoverError(msg) {
+    const statusEl = document.getElementById('coverUploadStatus');
+    statusEl.textContent = msg;
+    statusEl.className = 'mb-3 text-xs font-mono px-3 py-2 bg-red-50 text-red-600';
+    statusEl.classList.remove('hidden');
+  }
+
+  function handleCoverDrop(e) {
+    e.preventDefault();
+    document.getElementById('coverDropZone').classList.remove('border-syntra-accent', 'bg-yellow-50/30');
+    const file = e.dataTransfer.files[0];
+    if (file) uploadCoverImage(file);
+  }
+
+  async function uploadCoverImage(file) {
+    if (!file) return;
     const statusEl = document.getElementById('coverUploadStatus');
 
-    if (file.size > 5 * 1024 * 1024) {
-      statusEl.textContent = 'File too large. Max 5MB.';
-      statusEl.className = 'mt-2 text-xs font-mono px-3 py-2 bg-red-50 text-red-600';
+    if (!file.type.startsWith('image/')) {
+      statusEl.textContent = 'Please select an image file.';
+      statusEl.className = 'mb-3 text-xs font-mono px-3 py-2 bg-red-50 text-red-600';
       statusEl.classList.remove('hidden');
       return;
     }
 
-    statusEl.textContent = 'Uploading...';
-    statusEl.className = 'mt-2 text-xs font-mono px-3 py-2 bg-slate-50 text-slate-600';
+    if (file.size > 20 * 1024 * 1024) {
+      statusEl.textContent = `File is ${(file.size/1024/1024).toFixed(1)}MB — max allowed is 20MB.`;
+      statusEl.className = 'mb-3 text-xs font-mono px-3 py-2 bg-red-50 text-red-600';
+      statusEl.classList.remove('hidden');
+      return;
+    }
+
+    statusEl.textContent = 'Uploading…';
+    statusEl.className = 'mb-3 text-xs font-mono px-3 py-2 bg-slate-50 text-slate-600';
     statusEl.classList.remove('hidden');
 
     try {
-      const ext = file.name.split('.').pop();
-      const fileName = `cover-${Date.now()}.${ext}`;
-      const { error } = await supabase.storage.from('blog-images').upload(fileName, file, { upsert: false });
-      if (error) throw error;
+      const ext = file.name.split('.').pop().toLowerCase().replace('jpg', 'jpeg') || 'jpeg';
+      const fileName = `cover-${Date.now()}-${Math.random().toString(36).slice(2,7)}.${ext}`;
+      const { error: uploadError } = await supabase.storage.from('blog-images').upload(fileName, file, {
+        upsert: false,
+        contentType: file.type,
+      });
+      if (uploadError) throw uploadError;
 
       const { data: urlData } = supabase.storage.from('blog-images').getPublicUrl(fileName);
       const publicUrl = urlData.publicUrl;
@@ -758,24 +1105,32 @@
       document.getElementById('coverPreviewImg').src = publicUrl;
       document.getElementById('coverPreview').classList.remove('hidden');
 
-      statusEl.textContent = 'Image uploaded.';
-      statusEl.className = 'mt-2 text-xs font-mono px-3 py-2 bg-green-50 text-green-700';
+      statusEl.textContent = 'Cover image uploaded.';
+      statusEl.className = 'mb-3 text-xs font-mono px-3 py-2 bg-green-50 text-green-700';
       setTimeout(() => statusEl.classList.add('hidden'), 3000);
     } catch (e) {
-      statusEl.textContent = 'Upload failed: ' + e.message;
-      statusEl.className = 'mt-2 text-xs font-mono px-3 py-2 bg-red-50 text-red-600';
+      let msg = e.message || 'Upload failed.';
+      if (e.statusCode === 403 || msg.includes('permission') || msg.includes('policy')) {
+        msg = 'Permission denied. Make sure you are logged in as an admin.';
+      } else if (e.statusCode === 413 || msg.includes('too large')) {
+        msg = 'File too large for storage. Try compressing the image first.';
+      }
+      statusEl.textContent = msg;
+      statusEl.className = 'mb-3 text-xs font-mono px-3 py-2 bg-red-50 text-red-600';
     }
-    input.value = '';
+    document.getElementById('coverImageFile').value = '';
   }
 
   async function saveBlogPost() {
     const id = document.getElementById('editingPostId').value;
     const title = document.getElementById('postTitle').value.trim();
     const slug = document.getElementById('postSlug').value.trim();
-    const body = document.getElementById('blogBody').value.trim();
+    // Get HTML from Quill
+    const body = window._quill ? window._quill.root.innerHTML.trim() : '';
+    const bodyText = window._quill ? window._quill.getText().trim() : '';
     const status = document.getElementById('postStatus').value;
 
-    if (!title || !slug || !body) {
+    if (!title || !slug || !bodyText) {
       showBlogMsg('Title, slug, and body are required.', 'error');
       return;
     }
@@ -801,7 +1156,6 @@
       startSessionTimeout();
       let error;
       if (id) {
-        // preserve published_at if already published
         if (status !== 'published') payload.published_at = null;
         ({ error } = await supabase.from('blog_posts').update(payload).eq('id', id));
         if (!error) await logAdminAction('UPDATE_BLOG_POST', 'blog_posts', id, { title });
@@ -859,29 +1213,486 @@
     document.getElementById('postSlug').value = slug;
   }
 
-  // Markdown toolbar helper
-  function insertMarkdown(before, after) {
-    const ta = document.getElementById('blogBody');
-    const start = ta.selectionStart;
-    const end = ta.selectionEnd;
-    const selected = ta.value.substring(start, end);
-    ta.value = ta.value.substring(0, start) + before + selected + after + ta.value.substring(end);
-    ta.focus();
-    ta.selectionStart = start + before.length;
-    ta.selectionEnd = start + before.length + selected.length;
+  // Markdown toolbar helper — kept for legacy, no-op now
+  function insertMarkdown() {}
+
+  // ── QUILL EDITOR INIT ─────────────────────────────────────────────────────
+
+  function initQuill() {
+    if (window._quill) return;
+
+    // ── Register Size format ──────────────────────────────────────────────
+    const Size = Quill.import('attributors/style/size');
+    Size.whitelist = ['small', false, 'large', 'huge'];
+    Quill.register(Size, true);
+
+    // ── Register custom Video blot (responsive iframe) ────────────────────
+    const BlockEmbed = Quill.import('blots/block/embed');
+    class VideoBlot extends BlockEmbed {
+      static create(value) {
+        const node = super.create();
+        node.className = 'ql-video-wrapper';
+        const iframe = document.createElement('iframe');
+        iframe.setAttribute('src', value);
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allowfullscreen', 'true');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+        node.appendChild(iframe);
+        return node;
+      }
+      static value(node) {
+        return node.querySelector('iframe')?.getAttribute('src') || '';
+      }
+    }
+    VideoBlot.blotName = 'video';
+    VideoBlot.tagName = 'div';
+    VideoBlot.className = 'ql-video-wrapper';
+    Quill.register(VideoBlot, true);
+
+    // ── Custom toolbar icons ──────────────────────────────────────────────
+    const icons = Quill.import('ui/icons');
+    icons['insertImage'] = '<svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>';
+
+    // ── Register ImageResize if loaded ────────────────────────────────────
+    if (window.ImageResize) {
+      Quill.register('modules/imageResize', window.ImageResize.default || window.ImageResize);
+    }
+
+    const Delta = Quill.import('delta');
+
+    window._quill = new Quill('#quill-editor', {
+      theme: 'snow',
+      placeholder: 'Write or paste article content here. You can paste directly from Microsoft Word.',
+      modules: {
+        toolbar: {
+          container: [
+            [{ 'header': [1, 2, 3, false] }],
+            [{ 'size': ['small', false, 'large', 'huge'] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'script': 'sub' }, { 'script': 'super' }],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            [{ 'indent': '-1' }, { 'indent': '+1' }],
+            [{ 'align': [] }],
+            ['blockquote', 'code-block'],
+            ['link', 'insertImage', 'insertVideo'],
+            ['insertTable', 'insertDivider'],
+            ['clean']
+          ],
+          handlers: {
+            insertImage: function() {
+              const input = document.createElement('input');
+              input.setAttribute('type', 'file');
+              input.setAttribute('accept', 'image/*');
+              input.click();
+              input.onchange = async () => {
+                if (input.files && input.files[0]) await uploadInlineImage(input.files[0]);
+              };
+            },
+            insertVideo: function() {
+              const url = prompt('Paste a YouTube or Vimeo URL:');
+              if (!url) return;
+              const embedUrl = toEmbedUrl(url);
+              if (!embedUrl) { alert('Could not parse video URL. Please use a YouTube or Vimeo link.'); return; }
+              const range = this.quill.getSelection(true);
+              this.quill.insertEmbed(range.index, 'video', embedUrl, 'user');
+              this.quill.setSelection(range.index + 1, 0);
+            },
+            insertTable: function() {
+              const rows = parseInt(prompt('Number of rows:', '3') || '3', 10);
+              const cols = parseInt(prompt('Number of columns:', '3') || '3', 10);
+              if (!rows || !cols || rows < 1 || cols < 1) return;
+              const quill = this.quill;
+              const range = quill.getSelection(true);
+              let tableHtml = '<table><tbody>';
+              for (let r = 0; r < rows; r++) {
+                tableHtml += '<tr>';
+                for (let c = 0; c < cols; c++) {
+                  tableHtml += r === 0 ? '<th>&nbsp;</th>' : '<td>&nbsp;</td>';
+                }
+                tableHtml += '</tr>';
+              }
+              tableHtml += '</tbody></table>';
+              quill.clipboard.dangerouslyPasteHTML(range.index, tableHtml, 'user');
+            },
+            insertDivider: function() {
+              const range = this.quill.getSelection(true);
+              this.quill.insertEmbed(range.index, 'hr-divider', true, 'user');
+              this.quill.setSelection(range.index + 1, 0);
+            }
+          }
+        },
+        imageResize: window.ImageResize ? { modules: ['Resize', 'DisplaySize'] } : undefined,
+        clipboard: { matchVisual: false },
+      }
+    });
+
+    // ── Register HR divider blot ─────────────────────────────────────────
+    try {
+      const BlockEmbed2 = Quill.import('blots/block/embed');
+      class HrBlot extends BlockEmbed2 {
+        static create() { return super.create(); }
+      }
+      HrBlot.blotName = 'hr-divider';
+      HrBlot.tagName = 'hr';
+      Quill.register(HrBlot, true);
+    } catch(e) { /* already registered */ }
+
+    const quill = window._quill;
+
+    // ── Word/char count ───────────────────────────────────────────────────
+    function updateWordCount() {
+      const text = quill.getText().trim();
+      const words = text ? text.split(/\s+/).filter(w => w.length).length : 0;
+      const chars = text.length;
+      document.getElementById('wc-words').textContent = `${words} word${words !== 1 ? 's' : ''}`;
+      document.getElementById('wc-chars').textContent = `${chars} char${chars !== 1 ? 's' : ''}`;
+    }
+    quill.on('text-change', updateWordCount);
+    updateWordCount();
+
+    // ── Paste handler: preserve images from Word/browser paste ─────────────
+    quill.clipboard.addMatcher(Node.ELEMENT_NODE, function(node, delta) {
+      if (node.tagName === 'IMG') {
+        const src = node.getAttribute('src') || '';
+        if (src.startsWith('data:image')) {
+          dataUrlToBlob(src).then(blob => { if (blob) uploadInlineImage(blob, true); });
+          return new Delta().insert('[image uploading…]');
+        }
+        return new Delta().insert({ image: src });
+      }
+      return delta;
+    });
+
+    // ── Drag-and-drop images onto editor ─────────────────────────────────
+    const editorEl = document.getElementById('quill-editor');
+    editorEl.addEventListener('dragover', e => { e.preventDefault(); editorEl.classList.add('drag-over'); });
+    editorEl.addEventListener('dragleave', () => editorEl.classList.remove('drag-over'));
+    editorEl.addEventListener('drop', async e => {
+      e.preventDefault();
+      editorEl.classList.remove('drag-over');
+      for (const file of e.dataTransfer.files) {
+        if (file.type.startsWith('image/')) await uploadInlineImage(file);
+      }
+    });
+
+    // ── Paste from Microsoft Word (full fidelity) ────────────────────────
+    quill.root.addEventListener('paste', e => {
+      const items = Array.from(e.clipboardData?.items || []);
+      const htmlItem = items.find(i => i.kind === 'string' && i.type === 'text/html');
+      if (!htmlItem) return;
+      htmlItem.getAsString(async html => {
+        if (!/class="?Mso|mso-|urn:schemas-microsoft-com/i.test(html)) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        const cleanHtml = _wordToQuill(html);
+        const range = quill.getSelection(true);
+        quill.clipboard.dangerouslyPasteHTML(range ? range.index : quill.getLength(), cleanHtml, 'user');
+        // Upload any embedded images (data: or blob: URLs)
+        setTimeout(async () => {
+          for (const img of quill.root.querySelectorAll('img')) {
+            const src = img.getAttribute('src') || '';
+            if (src.includes('supabase.co') || (!src.startsWith('data:') && !src.startsWith('blob:'))) continue;
+            try {
+              const blob = await (await fetch(src)).blob();
+              const mime = blob.type || 'image/png';
+              const ext = mime.split('/')[1]?.split('+')[0] || 'png';
+              const name = `inline-${Date.now()}-${Math.random().toString(36).slice(2,7)}.${ext}`;
+              const { error } = await supabase.storage.from('blog-images').upload(name, blob, { contentType: mime });
+              if (!error) {
+                const { data: ud } = supabase.storage.from('blog-images').getPublicUrl(name);
+                img.setAttribute('src', ud.publicUrl);
+              }
+            } catch {}
+          }
+        }, 150);
+      });
+    }, true); // capture phase — runs before Quill's own paste handler
+
+    // ── Word HTML → clean Quill HTML converter ────────────────────────────
+    function _wordToQuill(html) {
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      return _wBlocks(doc.body) || '<p><br></p>';
+    }
+    function _wBlocks(container) {
+      let out = '', listType = null;
+      for (const node of container.childNodes) {
+        if (node.nodeType === 3) {
+          const t = node.textContent.trim();
+          if (t) { if (listType) { out += `</${listType}>`; listType = null; } out += `<p>${_esc(t)}</p>`; }
+          continue;
+        }
+        if (node.nodeType !== 1) continue;
+        const tag = node.tagName.toLowerCase();
+        if (['style','script','meta','link'].includes(tag)) continue;
+        const cls = node.getAttribute('class') || '';
+        const sty = node.getAttribute('style') || '';
+        // Table
+        if (tag === 'table') {
+          if (listType) { out += `</${listType}>`; listType = null; }
+          out += _wTable(node); continue;
+        }
+        // Transparent wrapper div
+        if (tag === 'div') {
+          if (listType) { out += `</${listType}>`; listType = null; }
+          out += _wBlocks(node); continue;
+        }
+        // List paragraph
+        const isList = /MsoList/i.test(cls) || /mso-list\s*:/i.test(sty);
+        if (isList) {
+          const ignoreSpan = node.querySelector('span[style*="mso-list"]');
+          const bullet = ignoreSpan ? ignoreSpan.textContent.trim() : '';
+          const isOl = /^\d+\.|^[a-zA-Z]\.|^[ivxlIVXL]+\./.test(bullet);
+          const lt = isOl ? 'ol' : 'ul';
+          if (!listType) { out += `<${lt}>`; listType = lt; }
+          else if (listType !== lt) { out += `</${listType}><${lt}>`; listType = lt; }
+          out += `<li>${_wListContent(node)}</li>`; continue;
+        }
+        if (listType) { out += `</${listType}>`; listType = null; }
+        // Named headings
+        const hMatch = cls.match(/MsoHeading(\d)/i) || cls.match(/MsoTitle/i) && ['', '1'];
+        if (hMatch) { const lv = Math.min(3, parseInt(hMatch[1]||1)); const c = _wInline(node); if (c.trim()) out += `<h${lv}>${c}</h${lv}>`; continue; }
+        if (/MsoSubtitle/i.test(cls)) { const c = _wInline(node); if (c.trim()) out += `<h2>${c}</h2>`; continue; }
+        // Native heading tags
+        if (/^h[1-6]$/.test(tag)) { out += `<${tag}>${_wInline(node)}</${tag}>`; continue; }
+        // Blockquote
+        if (tag === 'blockquote' || /MsoQuote|MsoIntenseQuote/i.test(cls)) { const c = _wInline(node); if (c.trim()) out += `<blockquote>${c}</blockquote>`; continue; }
+        // HR
+        if (tag === 'hr') { out += '<hr>'; continue; }
+        // Paragraph / anything else
+        const c = _wInline(node);
+        out += c.trim() ? `<p>${c}</p>` : '<p><br></p>';
+      }
+      if (listType) out += `</${listType}>`;
+      return out;
+    }
+    function _wTable(tbl) {
+      let html = '<table><tbody>';
+      tbl.querySelectorAll('tr').forEach((tr, ri) => {
+        const cells = tr.querySelectorAll('td,th');
+        if (!cells.length) return;
+        html += '<tr>';
+        cells.forEach(cell => {
+          const t = ri === 0 ? 'th' : 'td';
+          const cs = cell.getAttribute('colspan'); const rs = cell.getAttribute('rowspan');
+          const attrs = [(cs && cs !== '1' ? `colspan="${cs}"` : ''), (rs && rs !== '1' ? `rowspan="${rs}"` : '')].filter(Boolean).join(' ');
+          html += `<${t}${attrs ? ' '+attrs : ''}>${_wInline(cell) || '&nbsp;'}</${t}>`;
+        });
+        html += '</tr>';
+      });
+      return html + '</tbody></table><p><br></p>';
+    }
+    function _wInline(node) {
+      let html = '';
+      for (const child of node.childNodes) {
+        if (child.nodeType === 3) { html += _esc(child.textContent); continue; }
+        if (child.nodeType !== 1) continue;
+        const tag = child.tagName.toLowerCase();
+        const sty = child.getAttribute('style') || '';
+        if (tag === 'br') { html += '<br>'; continue; }
+        if (tag === 'img') { const s = child.getAttribute('src'); if (s) html += `<img src="${_ea(s)}" alt="${_ea(child.getAttribute('alt')||'')}">`; continue; }
+        if (tag === 'a') { const h = child.getAttribute('href') || ''; const inner = _wInline(child); html += (h && !h.startsWith('javascript:')) ? `<a href="${_ea(h)}">${inner}</a>` : inner; continue; }
+        const inner = _wInline(child);
+        if (!inner) continue;
+        const bold  = tag === 'b' || tag === 'strong' || /font-weight\s*:\s*(bold|[6-9]\d\d)/i.test(sty);
+        const ital  = tag === 'i' || tag === 'em'     || /font-style\s*:\s*italic/i.test(sty);
+        const under = tag === 'u'                      || /text-decoration[^;]*:\s*[^;]*underline/i.test(sty);
+        const strike= tag === 's' || tag === 'strike'  || /text-decoration[^;]*:\s*[^;]*line-through/i.test(sty);
+        const code  = tag === 'code' || tag === 'tt';
+        let w = inner;
+        if (code)  w = `<code>${w}</code>`;
+        if (bold)  w = `<strong>${w}</strong>`;
+        if (ital)  w = `<em>${w}</em>`;
+        if (under) w = `<u>${w}</u>`;
+        if (strike)w = `<s>${w}</s>`;
+        html += w;
+      }
+      return html;
+    }
+    function _wListContent(node) {
+      // Like _wInline but skips the first bullet/number span (marked with mso-list:Ignore)
+      let skipped = false, html = '';
+      for (const child of node.childNodes) {
+        if (child.nodeType === 3) { html += _esc(child.textContent); continue; }
+        if (child.nodeType !== 1) continue;
+        if (!skipped && /mso-list\s*:\s*Ignore/i.test(child.getAttribute('style') || '')) { skipped = true; continue; }
+        if (child.tagName.toLowerCase() === 'br') { html += '<br>'; continue; }
+        html += _wInline(child);
+      }
+      return html.trimStart();
+    }
+    function _esc(s)  { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function _ea(s)   { return s.replace(/"/g,'&quot;'); }
+
+    // ── Paste images from clipboard ──────────────────────────────────────
+    quill.root.addEventListener('paste', async e => {
+      const items = Array.from(e.clipboardData?.items || []);
+
+      // Case 1: clipboard contains a raw image file (e.g. screenshot, file copy)
+      const fileItems = items.filter(i => i.kind === 'file' && i.type.startsWith('image/'));
+      if (fileItems.length) {
+        e.preventDefault();
+        for (const item of fileItems) {
+          const file = item.getAsFile();
+          if (file) await uploadInlineImage(file);
+        }
+        return;
+      }
+
+      // Case 2: clipboard contains HTML with <img> tags (copy from webpage/doc)
+      const htmlItem = items.find(i => i.kind === 'string' && i.type === 'text/html');
+      if (!htmlItem) return;
+
+      htmlItem.getAsString(async html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const imgs = Array.from(doc.querySelectorAll('img'));
+        if (!imgs.length) return;
+
+        // Let Quill paste the HTML normally first, then replace bad img srcs
+        // We do this on the next tick so Quill has processed the paste
+        setTimeout(async () => {
+          const editorImgs = Array.from(quill.root.querySelectorAll('img'));
+          for (const img of editorImgs) {
+            const src = img.getAttribute('src') || '';
+            // Skip images already on our own storage
+            if (src.includes('supabase.co')) continue;
+            // Upload blob:, data:, or any external URL
+            if (src.startsWith('blob:') || src.startsWith('data:') || src.startsWith('http')) {
+              try {
+                let blob;
+                if (src.startsWith('data:')) {
+                  const res = await fetch(src);
+                  blob = await res.blob();
+                } else if (src.startsWith('blob:')) {
+                  const res = await fetch(src);
+                  blob = await res.blob();
+                } else {
+                  // External URL — fetch via proxy isn't possible cross-origin,
+                  // skip silently (CORS will block most external images anyway)
+                  continue;
+                }
+                const mimeType = blob.type || 'image/png';
+                const ext = mimeType.split('/')[1]?.split('+')[0] || 'png';
+                const fileName = `inline-${Date.now()}-${Math.random().toString(36).slice(2,7)}.${ext}`;
+                const { error } = await supabase.storage.from('blog-images').upload(fileName, blob, { contentType: mimeType });
+                if (error) throw error;
+                const { data: urlData } = supabase.storage.from('blog-images').getPublicUrl(fileName);
+                img.setAttribute('src', urlData.publicUrl);
+              } catch (err) {
+                console.warn('Could not upload pasted image:', err);
+              }
+            }
+          }
+        }, 100);
+      });
+    });
   }
 
-  // Cover image preview
-  document.addEventListener('DOMContentLoaded', () => {
-    const urlInput = document.getElementById('postCoverImage');
-    if (urlInput) {
-      urlInput.addEventListener('input', () => {
-        const url = urlInput.value.trim();
-        const preview = document.getElementById('coverPreview');
-        const img = document.getElementById('coverPreviewImg');
-        if (url) { img.src = url; preview.classList.remove('hidden'); }
-        else { preview.classList.add('hidden'); }
+  // Convert YouTube/Vimeo URL to embed URL
+  function toEmbedUrl(url) {
+    try {
+      const u = new URL(url);
+      // YouTube
+      if (u.hostname.includes('youtube.com') || u.hostname.includes('youtu.be')) {
+        const id = u.hostname.includes('youtu.be')
+          ? u.pathname.slice(1)
+          : (u.searchParams.get('v') || u.pathname.split('/').pop());
+        return id ? `https://www.youtube.com/embed/${id}` : null;
+      }
+      // Vimeo
+      if (u.hostname.includes('vimeo.com')) {
+        const id = u.pathname.split('/').filter(Boolean).pop();
+        return id ? `https://player.vimeo.com/video/${id}` : null;
+      }
+      // Allow direct embed URLs
+      if (url.includes('/embed/') || url.includes('player.vimeo.com')) return url;
+    } catch { return null; }
+    return null;
+  }
+
+  // Fullscreen toggle
+  function toggleFullscreen() {
+    const wrap = document.getElementById('editorFullscreenWrap');
+    const fsBar = document.getElementById('editorFsBar');
+    const iconExpand = document.getElementById('fs-icon-expand');
+    const iconCollapse = document.getElementById('fs-icon-collapse');
+    const label = document.getElementById('fs-label');
+    const isFs = wrap.classList.toggle('is-fullscreen');
+    fsBar.classList.toggle('hidden', !isFs);
+    fsBar.classList.toggle('flex', isFs);
+    iconExpand.classList.toggle('hidden', isFs);
+    iconCollapse.classList.toggle('hidden', !isFs);
+    label.textContent = isFs ? 'Exit' : 'Fullscreen';
+    if (isFs) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = '';
+  }
+
+  // Upload an inline image to blog-images bucket and insert into Quill
+  async function uploadInlineImage(fileOrBlob, replacePlaceholder = false) {
+    const quill = window._quill;
+    if (!quill) return;
+
+    const mimeType = fileOrBlob.type || 'image/jpeg';
+    // Preserve original extension; normalise image/jpeg → jpg, image/svg+xml → svg
+    const extMap = { 'image/jpeg': 'jpg', 'image/svg+xml': 'svg', 'image/x-icon': 'ico' };
+    const rawExt = mimeType.split('/')[1] || 'jpg';
+    const ext = extMap[mimeType] || rawExt.split('+')[0];
+    const fileName = `inline-${Date.now()}-${Math.random().toString(36).slice(2,7)}.${ext}`;
+
+    try {
+      const { error: uploadErr } = await supabase.storage.from('blog-images').upload(fileName, fileOrBlob, {
+        upsert: false,
+        contentType: mimeType,
       });
+      if (uploadErr) throw uploadErr;
+
+      const { data: urlData } = supabase.storage.from('blog-images').getPublicUrl(fileName);
+      const url = urlData.publicUrl;
+
+      if (replacePlaceholder) {
+        // Replace "[image uploading…]" text with actual image
+        const content = quill.getText();
+        const idx = content.indexOf('[image uploading…]');
+        if (idx !== -1) {
+          quill.deleteText(idx, '[image uploading…]'.length);
+          quill.insertEmbed(idx, 'image', url);
+        }
+      } else {
+        const range = quill.getSelection(true);
+        quill.insertEmbed(range ? range.index : quill.getLength(), 'image', url);
+        quill.setSelection((range ? range.index : quill.getLength()) + 1);
+      }
+    } catch (e) {
+      toast('Image upload failed: ' + e.message);
+    }
+  }
+
+  // Convert data URL to Blob
+  function dataUrlToBlob(dataUrl) {
+    return new Promise(resolve => {
+      try {
+        const [header, data] = dataUrl.split(',');
+        const mime = header.match(/:(.*?);/)[1];
+        const binary = atob(data);
+        const arr = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) arr[i] = binary.charCodeAt(i);
+        resolve(new Blob([arr], { type: mime }));
+      } catch { resolve(null); }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initQuill();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      if (document.getElementById('previewModal').classList.contains('open')) {
+        closePreview();
+      } else if (document.getElementById('editorFullscreenWrap')?.classList.contains('is-fullscreen')) {
+        toggleFullscreen();
+      }
     }
   });
 
