@@ -63,12 +63,80 @@
 
     /* Blog editor */
     #blogBody {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.875rem;
-      line-height: 1.7;
-      resize: vertical;
-      min-height: 320px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      min-height: 420px;
+      outline: none;
+      padding: 1.25rem 1.5rem;
+      background: #fff;
     }
+    #blogBody:empty::before {
+      content: attr(data-placeholder);
+      color: #94a3b8;
+      pointer-events: none;
+      display: block;
+    }
+    #blogBody img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin: 0.75em 0;
+      display: block;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    #blogBody img:hover { outline: 2px solid #FFD700; }
+    #blogBody h2 { font-family: 'Oswald', sans-serif; font-size: 1.4rem; font-weight: 700; text-transform: uppercase; margin: 1.5rem 0 0.5rem; border-left: 3px solid #FFD700; padding-left: 0.75rem; color: #0F172A; }
+    #blogBody h3 { font-family: 'Oswald', sans-serif; font-size: 1.15rem; font-weight: 600; margin: 1.25rem 0 0.4rem; color: #1E293B; }
+    #blogBody blockquote { border-left: 4px solid #FFD700; background: #FAFAF5; padding: 0.85rem 1.1rem; margin: 1.25rem 0; font-style: italic; color: #475569; border-radius: 0 4px 4px 0; }
+    #blogBody ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+    #blogBody ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+    #blogBody li { margin-bottom: 0.3rem; line-height: 1.7; }
+    #blogBody hr { border: none; border-top: 2px solid #e2e8f0; margin: 2rem 0; }
+    #blogBody a { color: #0369a1; text-decoration: underline; }
+    #blogBody strong { font-weight: 700; color: #0F172A; }
+    #blogBody em { font-style: italic; }
+    #blogBody u { text-decoration: underline; }
+    #blogBody s { text-decoration: line-through; }
+    #blogBody code { font-family: 'JetBrains Mono', monospace; background: #F1F5F9; padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.82em; color: #0F172A; }
+    #blogBody pre { background: #0F172A; color: #E2E8F0; padding: 1rem 1.25rem; border-radius: 6px; overflow-x: auto; margin: 1.25rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.6; }
+    #blogBody pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+    #blogBody .callout { display: flex; gap: 0.75rem; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 6px; padding: 1rem 1.1rem; margin: 1.25rem 0; color: #1e40af; }
+    #blogBody .callout-warn { background: #FFFBEB; border-color: #FDE68A; color: #92400E; }
+    #blogBody .callout-success { background: #F0FDF4; border-color: #BBF7D0; color: #166534; }
+    #blogBody p { margin: 0 0 0.75em; }
+    #blogBody .text-center { text-align: center; }
+    #blogBody .text-right { text-align: right; }
+    #blogBody .text-xl { font-size: 1.15rem; }
+    #blogBody .text-sm-body { font-size: 0.8rem; }
+    #blogBody table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+    #blogBody th { background: #0F172A; color: #fff; text-align: left; padding: 0.5rem 0.75rem; font-family: 'Oswald', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    #blogBody td { border: 1px solid #e2e8f0; padding: 0.45rem 0.75rem; vertical-align: top; }
+    #blogBody tr:nth-child(even) td { background: #F8FAFC; }
+
+    /* Toolbar */
+    .editor-toolbar { background: #F8FAFC; border-bottom: 1px solid #e2e8f0; padding: 0.375rem 0.5rem; display: flex; flex-wrap: wrap; gap: 1px; align-items: center; }
+    .tb-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0.3rem 0.45rem; border-radius: 4px; cursor: pointer;
+      font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; font-weight: 500;
+      color: #475569; background: transparent; border: none;
+      transition: background 0.12s, color 0.12s;
+      min-width: 28px; height: 28px; white-space: nowrap; gap: 3px;
+    }
+    .tb-btn:hover { background: #E2E8F0; color: #0F172A; }
+    .tb-btn.active { background: #0F172A; color: #FFD700; }
+    .tb-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .tb-sep { width: 1px; background: #CBD5E1; align-self: stretch; margin: 2px 3px; }
+    .tb-select {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #475569;
+      background: transparent; border: 1px solid #CBD5E1; border-radius: 4px;
+      padding: 0.2rem 0.4rem; height: 28px; cursor: pointer; outline: none;
+    }
+    .tb-select:hover { border-color: #94a3b8; }
+    .tb-label { font-size: 0.65rem; font-family: 'JetBrains Mono', monospace; color: #94a3b8; text-transform: uppercase; padding: 0 3px; letter-spacing: 0.06em; }
+    .editor-word-count { font-size: 0.65rem; font-family: 'JetBrains Mono', monospace; color: #94a3b8; padding: 0.2rem 0.5rem; margin-left: auto; white-space: nowrap; }
 
     .status-badge-draft     { background:#F1F5F9; color:#475569; }
     .status-badge-published { background:#DCFCE7; color:#15803D; }
@@ -247,21 +315,118 @@
 
               <div>
                 <label class="block text-xs font-mono uppercase text-syntra-muted mb-2">Body <span class="text-red-500">*</span></label>
-                <div class="border-2 border-syntra-border focus-within:border-syntra-accent">
-                  <!-- Toolbar -->
-                  <div class="flex gap-1 p-2 border-b border-slate-200 bg-slate-50">
-                    <button type="button" onclick="insertMarkdown('**','**')" class="px-2 py-1 text-xs font-bold font-mono hover:bg-slate-200 transition-colors" title="Bold">B</button>
-                    <button type="button" onclick="insertMarkdown('*','*')" class="px-2 py-1 text-xs italic font-mono hover:bg-slate-200 transition-colors" title="Italic">I</button>
-                    <button type="button" onclick="insertMarkdown('\n## ','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="Heading">H2</button>
-                    <button type="button" onclick="insertMarkdown('\n### ','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="Subheading">H3</button>
-                    <span class="w-px bg-slate-300 mx-1"></span>
-                    <button type="button" onclick="insertMarkdown('\n- ','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="List item">• List</button>
-                    <button type="button" onclick="insertMarkdown('\n> ','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="Blockquote">" Quote</button>
-                    <button type="button" onclick="insertMarkdown('\n---\n','')" class="px-2 py-1 text-xs font-mono hover:bg-slate-200 transition-colors" title="Divider">— Rule</button>
+                <div class="border-2 border-syntra-border focus-within:border-syntra-accent overflow-hidden">
+
+                  <!-- ── Toolbar ─────────────────────────────────────────── -->
+                  <div class="editor-toolbar">
+
+                    <!-- History -->
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); document.execCommand('undo')" title="Undo (Ctrl+Z)">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 010 16H3m0-16L7 6M3 10l4 4"/></svg>
+                    </button>
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); document.execCommand('redo')" title="Redo (Ctrl+Y)">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10H11a8 8 0 000 16h10m0-16l-4-4m4 4l-4 4"/></svg>
+                    </button>
+
+                    <div class="tb-sep"></div>
+
+                    <!-- Text style -->
+                    <select class="tb-select" onmousedown="event.stopPropagation()" onchange="applyTextStyle(this)" title="Text style">
+                      <option value="">Style</option>
+                      <option value="p">Normal</option>
+                      <option value="h2">Heading 2</option>
+                      <option value="h3">Heading 3</option>
+                      <option value="pre">Code Block</option>
+                      <option value="blockquote">Blockquote</option>
+                    </select>
+
+                    <div class="tb-sep"></div>
+
+                    <!-- Format -->
+                    <button type="button" id="tb-bold" class="tb-btn" onmousedown="event.preventDefault(); execFmt('bold')" title="Bold (Ctrl+B)"><strong>B</strong></button>
+                    <button type="button" id="tb-italic" class="tb-btn" onmousedown="event.preventDefault(); execFmt('italic')" title="Italic (Ctrl+I)"><em>I</em></button>
+                    <button type="button" id="tb-underline" class="tb-btn" onmousedown="event.preventDefault(); execFmt('underline')" title="Underline (Ctrl+U)"><u>U</u></button>
+                    <button type="button" id="tb-strikethrough" class="tb-btn" onmousedown="event.preventDefault(); execFmt('strikeThrough')" title="Strikethrough"><s>S</s></button>
+
+                    <div class="tb-sep"></div>
+
+                    <!-- Alignment -->
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); document.execCommand('justifyLeft')" title="Align Left">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h14"/></svg>
+                    </button>
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); document.execCommand('justifyCenter')" title="Align Center">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M7 12h10M6 18h12"/></svg>
+                    </button>
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); document.execCommand('justifyRight')" title="Align Right">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M10 12h10M6 18h14"/></svg>
+                    </button>
+
+                    <div class="tb-sep"></div>
+
+                    <!-- Lists -->
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); document.execCommand('insertUnorderedList')" title="Bullet List">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+                    </button>
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); document.execCommand('insertOrderedList')" title="Numbered List">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11M10 12h11M10 18h11M4 6h.01M4 10V6M4 18h2v-4H4v-1l2-1"/></svg>
+                    </button>
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); document.execCommand('indent')" title="Indent">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h12M3 18h15M7 9l3 3-3 3"/></svg>
+                    </button>
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); document.execCommand('outdent')" title="Outdent">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M9 12h12M6 18h15M10 9l-3 3 3 3"/></svg>
+                    </button>
+
+                    <div class="tb-sep"></div>
+
+                    <!-- Insert -->
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); insertLink()" title="Insert Link">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                      Link
+                    </button>
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); insertInlineCode()" title="Inline Code">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                      Code
+                    </button>
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); document.execCommand('insertHorizontalRule')" title="Horizontal Rule">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14"/></svg>
+                      Divider
+                    </button>
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); insertTable()" title="Insert Table">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+                      Table
+                    </button>
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); insertCallout('info')" title="Info Callout">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01"/></svg>
+                      Callout
+                    </button>
+
+                    <div class="tb-sep"></div>
+
+                    <!-- Image upload -->
+                    <input type="file" id="bodyImageFile" accept="image/jpeg,image/png,image/webp,image/gif" class="hidden" onchange="uploadBodyImage(this)" />
+                    <button type="button" class="tb-btn" style="background:#0F172A;color:#FFD700;" onclick="document.getElementById('bodyImageFile').click()" title="Insert Image">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" stroke-width="2"/><polyline points="21 15 16 10 5 21" stroke-width="2"/></svg>
+                      Image
+                    </button>
+                    <div id="bodyImageStatus" class="hidden text-xs font-mono text-slate-500 ml-1"></div>
+
+                    <div class="tb-sep"></div>
+
+                    <!-- Clear formatting -->
+                    <button type="button" class="tb-btn" onmousedown="event.preventDefault(); document.execCommand('removeFormat')" title="Clear formatting">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L17.94 6M4 6h9m-2 12h9"/></svg>
+                    </button>
+
+                    <!-- Word count -->
+                    <div id="wordCount" class="editor-word-count">0 words</div>
                   </div>
-                  <textarea id="blogBody" class="w-full px-4 py-3 focus:outline-none bg-white" placeholder="Write post content here. Supports basic Markdown: **bold**, *italic*, ## Heading, - List item, > Quote"></textarea>
+
+                  <div id="blogBody" contenteditable="true"
+                    data-placeholder="Write post content here..."
+                    class="w-full focus:outline-none bg-white"></div>
                 </div>
-                <p class="text-xs text-syntra-muted mt-1 font-mono">Supports Markdown formatting.</p>
+                <p class="text-xs text-syntra-muted mt-1 font-mono">Rich text editor — format with the toolbar or keyboard shortcuts (Ctrl+B, Ctrl+I, Ctrl+U).</p>
               </div>
             </div>
           </div>
@@ -590,6 +755,16 @@
               <!-- Message -->
               ${sub.message ? `<div class="bg-slate-50 border border-slate-200 p-3 text-sm mb-0"><p class="font-mono text-syntra-muted text-xs mb-1 uppercase tracking-wide">Message:</p><p class="whitespace-pre-wrap">${escField(sub.message)}</p></div>` : ''}
 
+              <!-- Resume download for career applications -->
+              ${sub.form_type === 'career_application' && sub.additional_data?.resume_url ? `
+              <div class="mt-3">
+                <a href="${escField(sub.additional_data.resume_url)}" target="_blank" rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-midnight text-white text-xs font-mono uppercase hover:bg-slate-700 transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                  Download Resume${sub.additional_data?.resume_metadata?.name ? ` &mdash; ${escField(sub.additional_data.resume_metadata.name)}` : ''}
+                </a>
+              </div>` : ''}
+
               <!-- additional_data JSON fields -->
               ${renderAdditionalData(sub.additional_data)}
             </div>
@@ -706,8 +881,7 @@
     document.getElementById('postTitle').value = '';
     document.getElementById('postSlug').value = '';
     document.getElementById('postExcerpt').value = '';
-    document.getElementById('blogBody').value = '';
-    document.getElementById('postStatus').value = 'draft';
+    document.getElementById('blogBody').innerHTML = '';
     document.getElementById('postCategory').value = 'Company';
     document.getElementById('postTags').value = '';
     document.getElementById('postCoverImage').value = '';
@@ -724,7 +898,7 @@
       document.getElementById('postTitle').value = post.title;
       document.getElementById('postSlug').value = post.slug;
       document.getElementById('postExcerpt').value = post.excerpt || '';
-      document.getElementById('blogBody').value = post.body || '';
+      document.getElementById('blogBody').innerHTML = mdImagesToHtml(post.body || '');
       document.getElementById('postStatus').value = post.status;
       document.getElementById('postCategory').value = post.category;
       document.getElementById('postTags').value = (post.tags || []).join(', ');
@@ -803,7 +977,7 @@
     const id = document.getElementById('editingPostId').value;
     const title = document.getElementById('postTitle').value.trim();
     const slug = document.getElementById('postSlug').value.trim();
-    const body = document.getElementById('blogBody').value.trim();
+    const body = document.getElementById('blogBody').innerHTML.trim();
     const status = document.getElementById('postStatus').value;
 
     if (!title || !slug || !body) {
@@ -890,19 +1064,193 @@
     document.getElementById('postSlug').value = slug;
   }
 
-  // Markdown toolbar helper
-  function insertMarkdown(before, after) {
-    const ta = document.getElementById('blogBody');
-    const start = ta.selectionStart;
-    const end = ta.selectionEnd;
-    const selected = ta.value.substring(start, end);
-    ta.value = ta.value.substring(0, start) + before + selected + after + ta.value.substring(end);
-    ta.focus();
-    ta.selectionStart = start + before.length;
-    ta.selectionEnd = start + before.length + selected.length;
+  // ── Rich editor helpers ───────────────────────────────────────────────────
+
+  // Convert legacy markdown image syntax to <img> for loading old posts
+  function mdImagesToHtml(content) {
+    if (!content) return '';
+    return content.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, alt, src) => {
+      const safeSrc = src.replace(/"/g, '&quot;');
+      const safeAlt = alt.replace(/"/g, '&quot;');
+      return `<img src="${safeSrc}" alt="${safeAlt}" style="max-width:100%;height:auto;">`;
+    });
   }
 
-  // Cover image preview
+  // Execute format command and update toolbar state
+  function execFmt(cmd) {
+    document.execCommand(cmd);
+    updateToolbarState();
+    document.getElementById('blogBody').focus();
+  }
+
+  // Apply block-level style from dropdown
+  function applyTextStyle(select) {
+    const val = select.value;
+    if (!val) return;
+    document.getElementById('blogBody').focus();
+    if (val === 'pre') {
+      insertCodeBlock();
+    } else if (val === 'blockquote') {
+      insertBlock('blockquote');
+    } else {
+      document.execCommand('formatBlock', false, val);
+    }
+    select.value = '';
+  }
+
+  function insertBlock(tag) {
+    const editor = document.getElementById('blogBody');
+    editor.focus();
+    const sel = window.getSelection();
+    if (!sel || !sel.rangeCount) return;
+
+    if (tag === 'blockquote') {
+      const bq = document.createElement('blockquote');
+      const sel2 = window.getSelection();
+      const range = sel2.getRangeAt(0);
+      const selectedText = range.toString();
+      bq.textContent = selectedText || 'Quote text here';
+      range.deleteContents();
+      range.insertNode(bq);
+      range.selectNodeContents(bq);
+      sel2.removeAllRanges();
+      sel2.addRange(range);
+      return;
+    }
+    document.execCommand('formatBlock', false, tag);
+  }
+
+  function insertLink() {
+    const url = prompt('Enter URL (e.g. https://example.com):');
+    if (!url) return;
+    document.getElementById('blogBody').focus();
+    const sel = window.getSelection();
+    const text = sel && sel.toString() ? sel.toString() : url;
+    if (sel && sel.toString()) {
+      document.execCommand('createLink', false, url);
+    } else {
+      document.execCommand('insertHTML', false, `<a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`);
+    }
+    document.querySelectorAll('#blogBody a').forEach(a => {
+      if (!a.getAttribute('target')) a.setAttribute('target', '_blank');
+      if (!a.getAttribute('rel')) a.setAttribute('rel', 'noopener noreferrer');
+    });
+  }
+
+  function insertInlineCode() {
+    const editor = document.getElementById('blogBody');
+    editor.focus();
+    const sel = window.getSelection();
+    const text = sel && sel.toString() ? sel.toString() : 'code';
+    document.execCommand('insertHTML', false, `<code>${text}</code>`);
+  }
+
+  function insertCodeBlock() {
+    const editor = document.getElementById('blogBody');
+    editor.focus();
+    const sel = window.getSelection();
+    const text = sel && sel.toString() ? sel.toString() : '// your code here';
+    document.execCommand('insertHTML', false, `<pre><code>${text}</code></pre><p><br></p>`);
+  }
+
+  function insertTable() {
+    const rows = parseInt(prompt('Number of rows (including header):', '3') || '3', 10);
+    const cols = parseInt(prompt('Number of columns:', '3') || '3', 10);
+    if (!rows || !cols || rows < 1 || cols < 1) return;
+
+    let html = '<table><thead><tr>';
+    for (let c = 0; c < cols; c++) html += `<th>Header ${c + 1}</th>`;
+    html += '</tr></thead><tbody>';
+    for (let r = 1; r < rows; r++) {
+      html += '<tr>';
+      for (let c = 0; c < cols; c++) html += '<td>Cell</td>';
+      html += '</tr>';
+    }
+    html += '</tbody></table><p><br></p>';
+
+    document.getElementById('blogBody').focus();
+    document.execCommand('insertHTML', false, html);
+  }
+
+  function insertCallout(type) {
+    const typeMap = { info: 'callout', warn: 'callout callout-warn', success: 'callout callout-success' };
+    const iconMap = {
+      info: '&#8505;',
+      warn: '&#9888;',
+      success: '&#10003;'
+    };
+    const cls = typeMap[type] || 'callout';
+    const icon = iconMap[type] || '&#8505;';
+    const html = `<div class="${cls}"><span style="font-size:1.1em;flex-shrink:0;">${icon}</span><div>Write your callout text here.</div></div><p><br></p>`;
+    document.getElementById('blogBody').focus();
+    document.execCommand('insertHTML', false, html);
+  }
+
+  // Update toolbar active states based on current selection
+  function updateToolbarState() {
+    const cmds = { bold: 'tb-bold', italic: 'tb-italic', underline: 'tb-underline', strikeThrough: 'tb-strikethrough' };
+    for (const [cmd, id] of Object.entries(cmds)) {
+      const btn = document.getElementById(id);
+      if (btn) btn.classList.toggle('active', document.queryCommandState(cmd));
+    }
+  }
+
+  // Word count updater
+  function updateWordCount() {
+    const editor = document.getElementById('blogBody');
+    if (!editor) return;
+    const text = editor.innerText || '';
+    const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+    const chars = text.replace(/\s/g, '').length;
+    const wc = document.getElementById('wordCount');
+    if (wc) wc.textContent = `${words} word${words !== 1 ? 's' : ''} · ${chars} chars`;
+  }
+
+  async function uploadBodyImage(input) {
+    if (!input.files || !input.files[0]) return;
+    const file = input.files[0];
+    const statusEl = document.getElementById('bodyImageStatus');
+
+    if (file.size > 5 * 1024 * 1024) {
+      statusEl.textContent = 'Max 5MB.';
+      statusEl.className = 'text-xs font-mono text-red-600 ml-1';
+      statusEl.classList.remove('hidden');
+      setTimeout(() => statusEl.classList.add('hidden'), 3000);
+      input.value = '';
+      return;
+    }
+
+    statusEl.textContent = 'Uploading...';
+    statusEl.className = 'text-xs font-mono text-slate-500 ml-1';
+    statusEl.classList.remove('hidden');
+
+    try {
+      const ext = file.name.split('.').pop();
+      const fileName = `body-${Date.now()}.${ext}`;
+      const { error } = await supabase.storage.from('blog-images').upload(fileName, file, { upsert: false });
+      if (error) throw error;
+
+      const { data: urlData } = supabase.storage.from('blog-images').getPublicUrl(fileName);
+      const publicUrl = urlData.publicUrl;
+      const altText = file.name.replace(/\.[^.]+$/, '').replace(/[_-]/g, ' ');
+
+      document.getElementById('blogBody').focus();
+      document.execCommand('insertHTML', false,
+        `<img src="${publicUrl}" alt="${altText}" style="max-width:100%;height:auto;border-radius:6px;margin:.75em 0;display:block;"><p><br></p>`
+      );
+
+      statusEl.textContent = 'Image inserted.';
+      statusEl.className = 'text-xs font-mono text-green-600 ml-1';
+      setTimeout(() => statusEl.classList.add('hidden'), 3000);
+    } catch (e) {
+      statusEl.textContent = 'Upload failed: ' + e.message;
+      statusEl.className = 'text-xs font-mono text-red-600 ml-1';
+      setTimeout(() => statusEl.classList.add('hidden'), 5000);
+    }
+    input.value = '';
+  }
+
+  // Cover image preview + editor event wiring
   document.addEventListener('DOMContentLoaded', () => {
     const urlInput = document.getElementById('postCoverImage');
     if (urlInput) {
@@ -913,6 +1261,19 @@
         if (url) { img.src = url; preview.classList.remove('hidden'); }
         else { preview.classList.add('hidden'); }
       });
+    }
+
+    // Toolbar active state + word count on selection / input
+    document.addEventListener('selectionchange', () => {
+      if (document.activeElement === document.getElementById('blogBody') ||
+          document.getElementById('blogBody').contains(document.activeElement)) {
+        updateToolbarState();
+      }
+    });
+    const editor = document.getElementById('blogBody');
+    if (editor) {
+      editor.addEventListener('input', updateWordCount);
+      editor.addEventListener('keyup', updateToolbarState);
     }
   });
 

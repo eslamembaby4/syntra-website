@@ -163,14 +163,25 @@
         .post-body .ql-indent-1 { padding-left: 3em !important; }
         .post-body .ql-indent-2 { padding-left: 6em !important; }
         .post-body .ql-indent-3 { padding-left: 9em !important; }
-        .post-body img { max-width: 100%; height: auto; border-radius: 4px; margin: 0.5em 0; }
+        .post-body img { max-width: 100%; height: auto; border-radius: 6px; margin: 0.75em 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .post-body a { color: #0369a1; text-decoration: underline; }
         .post-body iframe { max-width: 100%; border-radius: 4px; margin: 1em 0; }
         .post-body ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; color: #334155; }
+        .post-body ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1rem; color: #334155; }
         .post-body li { margin-bottom: 0.4rem; line-height: 1.7; }
-        .post-body blockquote { border-left: 4px solid #FFD700; background: #FAFAF5; padding: 1rem 1.25rem; margin: 1.25rem 0; font-style: italic; color: #475569; }
+        .post-body blockquote { border-left: 4px solid #FFD700; background: #FAFAF5; padding: 1rem 1.25rem; margin: 1.25rem 0; font-style: italic; color: #475569; border-radius: 0 4px 4px 0; }
         .post-body strong { color: #0F172A; font-weight: 600; }
-        .post-body hr { border: none; border-top: 1px solid #E2E8F0; margin: 2rem 0; }
+        .post-body hr { border: none; border-top: 2px solid #E2E8F0; margin: 2rem 0; }
+        .post-body code { font-family: 'JetBrains Mono', monospace; background: #F1F5F9; padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.82em; color: #0F172A; }
+        .post-body pre { background: #0F172A; color: #E2E8F0; padding: 1rem 1.25rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.6; }
+        .post-body pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+        .post-body table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+        .post-body th { background: #0F172A; color: #fff; text-align: left; padding: 0.5rem 0.75rem; font-family: 'Oswald', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .post-body td { border: 1px solid #e2e8f0; padding: 0.45rem 0.75rem; vertical-align: top; }
+        .post-body tr:nth-child(even) td { background: #F8FAFC; }
+        .post-body .callout { display: flex; gap: 0.75rem; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 8px; padding: 1rem 1.1rem; margin: 1.25rem 0; color: #1e40af; }
+        .post-body .callout-warn { background: #FFFBEB; border-color: #FDE68A; color: #92400E; }
+        .post-body .callout-success { background: #F0FDF4; border-color: #BBF7D0; color: #166534; }
 
         @keyframes fadeIn {
             from { opacity:0; transform:translateY(8px); }
@@ -786,7 +797,18 @@
 
         // ── Minimal Markdown renderer ───────────────────────────────
         function renderMarkdown(md) {
+            if (!md) return '';
             let html = escHtml(md);
+            // Images — convert ![alt](url) to <img> before other processing
+            html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, alt, src) => {
+                const cleanSrc = src.replace(/&amp;/g, '&').replace(/&quot;/g, '"');
+                return `<img src="${cleanSrc}" alt="${alt}" style="max-width:100%;height:auto;border-radius:4px;margin:.5em 0;">`;
+            });
+            // Links
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, text, href) => {
+                const cleanHref = href.replace(/&amp;/g, '&').replace(/&quot;/g, '"');
+                return `<a href="${cleanHref}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+            });
             // Headings
             html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
             html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
@@ -808,7 +830,7 @@
             html = blocks.map(b => {
                 b = b.trim();
                 if (!b) return '';
-                if (/^<(h[1-3]|ul|blockquote|hr)/.test(b)) return b;
+                if (/^<(h[1-3]|ul|blockquote|hr|img)/.test(b)) return b;
                 return `<p>${b.replace(/\n/g, '<br>')}</p>`;
             }).join('\n');
             return html;
