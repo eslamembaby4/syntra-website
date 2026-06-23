@@ -58,12 +58,20 @@ async function uploadFileToStorage(file, referenceId) {
     throw new Error('Failed to upload resume: ' + error.message);
   }
 
-  const { data: urlData } = client.storage
+  // Bucket is private — return a signed URL valid for 1 hour.
+  // The admin panel regenerates a fresh signed URL on each download click.
+  const { data: signedData, error: signErr } = await client.storage
     .from('career-applications')
-    .getPublicUrl(filePath);
+    .createSignedUrl(filePath, 3600);
 
-  console.log('[Syntra Forms] File uploaded successfully:', urlData.publicUrl);
-  return urlData.publicUrl;
+  if (signErr) {
+    // Fall back to storing the file path prefixed so admin can regenerate later
+    console.warn('[Syntra Forms] Could not create signed URL, storing path reference:', signErr.message);
+    return `storage-path:career-applications/${filePath}`;
+  }
+
+  console.log('[Syntra Forms] File uploaded successfully, signed URL created');
+  return signedData.signedUrl;
 }
 
 async function submitFormToDatabase(formData, formElement) {

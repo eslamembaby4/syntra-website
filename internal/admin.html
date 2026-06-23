@@ -758,11 +758,11 @@
               <!-- Resume download for career applications -->
               ${sub.form_type === 'career_application' && sub.additional_data?.resume_url ? `
               <div class="mt-3">
-                <a href="${escField(sub.additional_data.resume_url)}" target="_blank" rel="noopener noreferrer"
+                <button onclick="downloadResume(this, '${escField(sub.additional_data.resume_url)}')"
                   class="inline-flex items-center gap-2 px-4 py-2 bg-syntra-midnight text-white text-xs font-mono uppercase hover:bg-slate-700 transition-colors">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                   Download Resume${sub.additional_data?.resume_metadata?.name ? ` &mdash; ${escField(sub.additional_data.resume_metadata.name)}` : ''}
-                </a>
+                </button>
               </div>` : ''}
 
               <!-- additional_data JSON fields -->
@@ -803,6 +803,50 @@
   async function markAsUnread(id) {
     try { startSessionTimeout(); await supabase.from('form_submissions').update({ read_status: false }).eq('id', id); loadSubmissions(); }
     catch (e) { alert('Failed: ' + e.message); }
+  }
+
+  async function downloadResume(btn, storedUrl) {
+    const originalHtml = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Generating link...';
+
+    try {
+      // Extract the file path from the stored URL
+      // Supported formats:
+      //   1. storage-path:career-applications/resumes/...  (path reference stored as fallback)
+      //   2. https://.../object/public/career-applications/resumes/...  (old public URL)
+      //   3. https://.../object/sign/career-applications/resumes/...    (previous signed URL)
+      const bucketName = 'career-applications';
+      let filePath = null;
+
+      if (storedUrl.startsWith('storage-path:career-applications/')) {
+        filePath = storedUrl.replace('storage-path:career-applications/', '');
+      } else {
+        const publicMatch = storedUrl.match(/\/object\/(?:public|sign)\/career-applications\/(.+?)(?:\?|$)/);
+        if (publicMatch) filePath = decodeURIComponent(publicMatch[1]);
+      }
+
+      if (!filePath) {
+        // Fallback: just open the stored URL directly
+        window.open(storedUrl, '_blank', 'noopener,noreferrer');
+        return;
+      }
+
+      // Create a signed URL valid for 60 minutes
+      const { data, error } = await supabase.storage
+        .from(bucketName)
+        .createSignedUrl(filePath, 3600);
+
+      if (error) throw error;
+
+      // Open in new tab
+      window.open(data.signedUrl, '_blank', 'noopener,noreferrer');
+    } catch (e) {
+      alert('Could not generate download link: ' + e.message);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = originalHtml;
+    }
   }
 
   async function deleteSubmission(id) {
